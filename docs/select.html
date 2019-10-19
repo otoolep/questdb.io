@@ -1,0 +1,469 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>SELECT · QuestDB</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="`SELECT` allows you to specify list of columns and expressions to be selected and evaluated from a table."/><meta name="docsearch:language" content="en"/><meta property="og:title" content="SELECT · QuestDB"/><meta property="og:type" content="website"/><meta property="og:url" content="https://TheTanc.github.io/docpublish/"/><meta property="og:description" content="`SELECT` allows you to specify list of columns and expressions to be selected and evaluated from a table."/><meta property="og:image" content="https://TheTanc.github.io/docpublish/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://TheTanc.github.io/docpublish/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/docpublish/img/favicon.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/agate.min.css"/><link rel="alternate" type="application/atom+xml" href="https://TheTanc.github.io/docpublish/blog/atom.xml" title="QuestDB Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://TheTanc.github.io/docpublish/blog/feed.xml" title="QuestDB Blog RSS Feed"/><link rel="stylesheet" href="/css/code-block-buttons.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script src="/docpublish/js/scrollSpy.js"></script><link rel="stylesheet" href="/docpublish/css/main.css"/><script src="/docpublish/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/docpublish/"><img class="logo" src="/docpublish/img/favicon.png" alt="QuestDB"/><h2 class="headerTitleWithLogo">QuestDB</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docpublish/docs/technology" target="_self">Technology</a></li><li class="siteNavGroupActive"><a href="/docpublish/docs/documentation" target="_self">Documentation</a></li><li class=""><a href="/docpublish/help" target="_self">Contact</a></li><li class=""><a href="/docpublish/blog/" target="_self">Blog</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Using QuestDB</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Overview</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docpublish/docs/documentation">Overview</a></li><li class="navListItem"><a class="navItem" href="/docpublish/docs/storagemodel">Storage Model</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Getting Started</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docpublish/docs/install">Installing QuestDB</a></li><li class="navListItem"><a class="navItem" href="/docpublish/docs/run">Running QuestDB</a></li><li class="navListItem"><a class="navItem" href="/docpublish/docs/gettestdata">Obtaining Test Data</a></li><li class="navListItem"><a class="navItem" href="/docpublish/docs/console">Web Console</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Using QuestDB</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docpublish/docs/sql">SQL Language</a></li><li class="navListItem"><a class="navItem" href="/docpublish/docs/datatypes">Data Types</a></li><li class="navListItem"><a class="navItem" href="/docpublish/docs/createtable">CREATE TABLE</a></li><li class="navListItem"><a class="navItem" href="/docpublish/docs/altertable">ALTER TABLE</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docpublish/docs/select">SELECT</a></li><li class="navListItem"><a class="navItem" href="/docpublish/docs/drop">DROP TABLE</a></li><li class="navListItem"><a class="navItem" href="/docpublish/docs/truncate">TRUNCATE TABLE</a></li><li class="navListItem"><a class="navItem" href="/docpublish/docs/repairtable">REPAIR TABLE</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">API</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docpublish/docs/apiadmin">ADMIN</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">REST</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docpublish/docs/roverview">roverview</a></li><li class="navListItem"><a class="navItem" href="/docpublish/docs/apiread">READ</a></li><li class="navListItem"><a class="navItem" href="/docpublish/docs/apiwrite">WRITE</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">FAQ</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docpublish/docs/faq">Frequently Asked</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">SELECT</h1></header><article><div><span><p><code>SELECT</code> allows you to specify list of columns and expressions to be selected and evaluated from a table.</p>
+<blockquote>
+<p>All examples below are given for the file ratings.csv from the movielens project. See section to <strong><a href="/docpublish/docs/gettestdata">Get sample data</a></strong></p>
+</blockquote>
+<h2><a class="anchor" aria-hidden="true" id="syntax"></a><a href="#syntax" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Syntax</h2>
+<p><img src="/docpublish/docs/assets/select-statement.SVG" alt="alt-text"></p>
+<h2><a class="anchor" aria-hidden="true" id="simple-select"></a><a href="#simple-select" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Simple Select</h2>
+<h3><a class="anchor" aria-hidden="true" id="all-columns"></a><a href="#all-columns" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>All columns</h3>
+<p>QuestDB supports <code>SELECT * FROM tablename</code>. When selectin all, you can also ommit most of the statement and simply pass
+the table name.</p>
+<p>The two examples below are equivalent</p>
+<pre><code class="hljs css language-sql"><span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">FROM</span> ratings;
+
+// is equivalent to //
+
+ratings;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="specific-columns"></a><a href="#specific-columns" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Specific columns</h3>
+<p>To select specific columns, replace * by the names of the columns you are interested in.</p>
+<p>Example:</p>
+<pre><code class="hljs css language-sql"><span class="hljs-keyword">SELECT</span> movieId, rating  <span class="hljs-keyword">FROM</span> ratings;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="arithmetic-expressions"></a><a href="#arithmetic-expressions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Arithmetic Expressions</h3>
+<p><code>SELECT</code> is capable of evaluating multiple expressions and functions. You can mix comma separated lists
+of expressions with the column names you are selecting.</p>
+<pre><code class="hljs css language-sql"><span class="hljs-keyword">SELECT</span> movieId, (<span class="hljs-number">100</span> - rating)*<span class="hljs-number">2</span>, rating &gt; <span class="hljs-number">3.5</span> good  
+<span class="hljs-keyword">FROM</span> ratings;
+</code></pre>
+<p>The result of <code>rating &gt; 3.5</code> is a boolean. The column will be named good and take values true or false.</p>
+<h3><a class="anchor" aria-hidden="true" id="aliases"></a><a href="#aliases" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Aliases</h3>
+<p>Using aliases allow you to give expressions or column names of your choice. You can assign an alias to a column or an
+expression by writing the alias name you want after that expression</p>
+<blockquote>
+<p>Alias names and column names must be unique.
+Example:</p>
+</blockquote>
+<pre><code class="hljs css language-sql"><span class="hljs-keyword">SELECT</span> movieId alias1, rating alias2 
+<span class="hljs-keyword">FROM</span> ratings
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="aggregation"></a><a href="#aggregation" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Aggregation</h2>
+<p>Aggregation functions can be used in arithmetic expressions.</p>
+<h3><a class="anchor" aria-hidden="true" id="aggregate-functions"></a><a href="#aggregate-functions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Aggregate functions</h3>
+<p>Currently implemented aggregate functions:</p>
+<table class="alt tall">
+<thead>
+<th>Function</th>
+<th>Remarks</th>
+</thead>
+<tbody>
+<tr>
+<td class="param"><b>sum(expr)</b></td>
+<td>
+Sums values of numeric <code>expr</code>. Return type is <code>double</code> for <code>expr</code> of types
+<code>double</code>,<code>float</code>; <code>int</code> for <code>expr</code> of types <code>byte</code>,
+<code>short</code>,<code>int</code> and <code>long</code> for <code>expr</code> of type <code>long</code> 
+</td>
+</tr>
+<tr>
+<td class="param"><b>lsum(expr)</b></td>
+<td>
+Sums values of <code>expr</code> and returns <code>long</code>. This function can sum <code>int</code> values without
+overflowing the result.
+</td>
+</tr>
+<tr>
+<td class="param"><b>avg(expr)</b></td>
+<td>
+Calculates average value of <code>expr</code>.
+</td>
+</tr>
+<tr>
+<td class="param"><b>max(expr)</b></td>
+<td>
+Calculates maximum value of <code>expr</code>. Return type is the same as type of <code>expr</code>
+</td>
+</tr>
+<tr>
+<td class="param"><b>min(expr)</b></td>
+<td>
+Calculates minimum value of <code>expr</code>. Return type is the same as type of <code>expr</code>
+</td>
+</tr>
+<tr>
+<td class="param"><b>first(expr)</b></td>
+<td>
+First value of <code>expr</code> in natural order of records.
+</td>
+</tr>
+<tr>
+<td class="param"><b>last(expr)</b></td>
+<td>
+Last value of <code>expr</code> in natural order of records.
+</td>
+</tr>
+<tr>
+<td class="param"><b>count()</b></td>
+<td>
+Calculates count of records in query.
+</td>
+</tr>
+<tr>
+<td class="param"><b>count(expr)</b></td>
+<td>
+Calculates count of records with non-null values of <code>expr</code>
+</td>
+</tr>
+<tr>
+<td class="param"><b>var(expr)</b></td>
+<td>
+Calculates variance of <code>expr</code>.
+</td>
+</tr>
+<tr>
+<td class="param"><b>stddev(expr)</b></td>
+<td>
+Calculates standard deviation of values of <code>expr</code>
+</td>
+</tr>
+</tbody>
+</table>
+<h3><a class="anchor" aria-hidden="true" id="aggregation-by-group"></a><a href="#aggregation-by-group" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Aggregation by group</h3>
+<p>QuestDB evaluates aggregation functions without need for traditional <code>GROUP BY</code>. Simply use a mix of column
+names and aggregation functions in a <code>SELECT</code> clause. You can have any number of discrete value columns and
+any number of aggregation functions.</p>
+<pre><code class="hljs css language-sql"><span class="hljs-keyword">SELECT</span> movieId, <span class="hljs-keyword">avg</span>(rating), <span class="hljs-keyword">count</span>() <span class="hljs-keyword">FROM</span> ratings;
+
+// is equivalent to //
+
+<span class="hljs-keyword">SELECT</span> movieId, <span class="hljs-keyword">avg</span>(rating), <span class="hljs-keyword">count</span>() <span class="hljs-keyword">FROM</span> ratings <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> movieId;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="aggregation-arithmetic"></a><a href="#aggregation-arithmetic" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Aggregation arithmetic</h3>
+<p>Aggregation functions can be used in arithmetic expressions. The following computes <code>mid</code> of rating values for
+every movie.</p>
+<pre><code class="hljs css language-sql"><span class="hljs-keyword">SELECT</span> movieId, (<span class="hljs-keyword">min</span>(rating) + <span class="hljs-keyword">max</span>(rating))/<span class="hljs-number">2</span> <span class="hljs-keyword">mid</span>, <span class="hljs-keyword">count</span>() <span class="hljs-keyword">count</span> <span class="hljs-keyword">FROM</span> ratings;
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="where-clause"></a><a href="#where-clause" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>WHERE clause</h2>
+<h3><a class="anchor" aria-hidden="true" id="syntax-1"></a><a href="#syntax-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Syntax</h3>
+<p>QuestDB supports standard <code>WHERE</code> clause for filtering data.
+Filter expressions are required to return boolean result.</p>
+<p><img src="/docpublish/docs/assets/filtered-statement.SVG" alt="alt-text"></p>
+<pre><code class="hljs css language-sql"><span class="hljs-keyword">SELECT</span> COLUMN1, COLUMN2...
+<span class="hljs-keyword">FROM</span> TABLENAME
+<span class="hljs-keyword">WHERE</span> CONDITIONS;
+</code></pre>
+<p><code>CONDITIONS</code> are expressions that return boolean results.</p>
+<h3><a class="anchor" aria-hidden="true" id="operators"></a><a href="#operators" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Operators</h3>
+<p>Advanced conditions can be built using logical operators.</p>
+<p>List of supported <code>BOOLEAN</code> operators:</p>
+<table class="alt tall">
+<thead>
+<th>Operator</th>
+<th>Remarks</th>
+</thead>
+<tbody>
+<tr>
+<td class="param">and</td>
+<td>
+Logical AND operator.
+</td>
+</tr>
+<tr>
+<td class="param">or</td>
+<td>
+Logical OR opeator.
+</td>
+</tr>
+<tr>
+<td class="param">not</td>
+<td>
+Logical NOT opeator. Example <code>where not(x > 10)</code>
+</td>
+</tr>
+<tr>
+<td class="param">&lt;</td>
+<td>
+Numerical LESS than.
+</td>
+</tr>
+<tr>
+<td class="param">&gt;</td>
+<td>
+Numerical GREATER than.
+</td>
+</tr>
+<tr>
+<td class="param">&lt;=</td>
+<td>
+Numerical LESS than OR EQUAL.
+</td>
+</tr>
+<tr>
+<td class="param">&gt;=</td>
+<td>
+Numerical GREATER than OR EQUAL.
+</td>
+</tr>
+<tr>
+<td class="param">=</td>
+<td>
+Equality operator applicable to all types. <code>where x = 'ABC' and y = 10</code>
+</td>
+</tr>
+<tr>
+<td class="param">eq</td>
+<td>
+Equality operator applicable to <code>double</code> type. It compares two double values with a delta.
+<code>where eq(x, 0.5, 0.000001)</code>. This is logically equivalent to <code>abs(x-0.5) < 0.000001</code>
+</td>
+</tr>
+<tr>
+<td class="param">!=</td>
+<td>
+Non-equality operator applicable to all types.
+</td>
+</tr>
+<tr>
+<td class="param">in</td>
+<td>
+Returns <code>true</code> when value of left argument is one of list of values of right argument.
+<code>where x in ('ABC','CDE','HJK')</code>. This operator is performs better than logically equivalent
+<code>where x = 'ABC' or x = 'CDE' or x = 'HJK'</code>
+</td>
+</tr>
+<tr>
+<td class="param">~</td>
+<td>
+Returns <code>true</code> when value of left argument matches regular expression. <code>where x ~ 'THE'</code>
+Here <code>THE</code> is the pattern. In this case it matches all strings that contain <code>THE</code>. For more
+details on the pattern please refer to 
+<a href="https://docs.oracle.com/javase/8/docs/api/java/util/regex/Pattern.html" target="_blank">Java Pattern documentation</a> 
+</td>
+</tr>
+</tbody>
+</table>
+<h3><a class="anchor" aria-hidden="true" id="exact-timestamp"></a><a href="#exact-timestamp" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Exact timestamp</h3>
+<p>Use <code>=</code> operator and UTC date string for exact timestamp matches:</p>
+<pre><code class="hljs css language-sql"><span class="hljs-keyword">SELECT</span> ratings <span class="hljs-keyword">WHERE</span> <span class="hljs-built_in">timestamp</span> = <span class="hljs-string">'2010-01-12T00:02:26.000Z'</span>
+</code></pre>
+<p>QuestDB SQL optimiser will create more efficient plan when data is time series naturally ordered by timestamp.</p>
+<h3><a class="anchor" aria-hidden="true" id="interval-timestamp"></a><a href="#interval-timestamp" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Interval timestamp</h3>
+<p>Using <code>&gt;</code>,<code>&gt;=</code>,<code>&lt;</code>,<code>&lt;=</code> operators:</p>
+<pre><code class="hljs css language-sql"><span class="hljs-keyword">SELECT</span> ratings <span class="hljs-keyword">WHERE</span> <span class="hljs-built_in">timestamp</span> &gt; <span class="hljs-string">'2010-01-12T00:00:00.000Z'</span> <span class="hljs-keyword">and</span> <span class="hljs-built_in">timestamp</span> &lt; <span class="hljs-string">'2010-01-12T00:59:59.999Z'</span> 
+</code></pre>
+<p>Using <code>in</code> operator, for example:</p>
+<pre><code class="hljs css language-sql"><span class="hljs-keyword">SELECT</span> ratings <span class="hljs-keyword">WHERE</span> <span class="hljs-built_in">timestamp</span> <span class="hljs-keyword">in</span> (<span class="hljs-string">'2010-01-12T00:00:00.000Z'</span>, <span class="hljs-string">'2010-01-12T00:59:59.999Z'</span>) 
+</code></pre>
+<p><code>in</code> is inclusive of edges and supports exactly two UTC timestamps.</p>
+<p>Using <code>=</code> operator and partial UTC timestamp string. Example below selects data between 14:00 and 14:59 on 12 January 2010:</p>
+<pre><code class="hljs css language-sql"><span class="hljs-keyword">SELECT</span> ratings <span class="hljs-keyword">WHERE</span> <span class="hljs-built_in">timestamp</span> = <span class="hljs-string">'2010-01-12T14'</span> 
+</code></pre>
+<p>To obtain intervals UTC timestamps can be truncated at seconds, minutes, days, months and years. This example
+selects data for the whole of 2011:</p>
+<pre><code class="hljs css language-sql"><span class="hljs-keyword">SELECT</span> ratings <span class="hljs-keyword">WHERE</span> <span class="hljs-built_in">timestamp</span> = <span class="hljs-string">'2011'</span> 
+</code></pre>
+<p>Using <code>=</code> operator and interval length modifier to specify longer than single time unit intervals. This
+example selects 2pm, 3pm and 4pm data:</p>
+<pre><code class="hljs css language-sql"><span class="hljs-keyword">SELECT</span> ratings <span class="hljs-keyword">WHERE</span> <span class="hljs-built_in">timestamp</span> = <span class="hljs-string">'2010-01-12T14;2h'</span> 
+</code></pre>
+<p>QuestDB uses the following algorithm to create the interval: <code>2010-01-12T14</code> is translated into <em>natural</em> interval
+<code>[2010-01-12T14:00:00.000Z, 2010-01-12T14:59:59.999Z]</code>, then 2 hours added to the upper bound resulting in
+<code>[2010-01-12T14:00:00.000Z, 2010-01-12T16:59:59.999Z]</code> interval.</p>
+<p>Interval modifier format is:</p>
+<p><img src="/docpublish/docs/assets/interval-modifier.SVG" alt="alt-text"></p>
+<p>where letters stand for:</p>
+<table class="alt tall">
+<thead>
+<th>Modifier</th>
+<th>Remarks</th>
+</thead>
+<tbody>
+<tr>
+<td class="param">s</td>
+<td>
+Seconds
+</td>
+</tr>
+<tr>
+<td class="param">m</td>
+<td>
+Minutes
+</td>
+</tr>
+<tr>
+<td class="param">h</td>
+<td>
+Hours
+</td>
+</tr>
+<tr>
+<td class="param">d</td>
+<td>
+Days
+</td>
+</tr>
+<tr>
+<td class="param">M</td>
+<td>
+Months
+</td>
+</tr>
+<tr>
+<td class="param">y</td>
+<td>
+Years
+</td>
+</tr>
+</tbody>
+</table>
+<h3><a class="anchor" aria-hidden="true" id="floating-point"></a><a href="#floating-point" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Floating Point</h3>
+<p>You can use <code>eq</code> operator to compare <code>double</code> and <code>float</code> values with tolerance to avoid rounding problems.
+For example:</p>
+<pre><code class="hljs css language-sql"><span class="hljs-keyword">SELECT</span> prices <span class="hljs-keyword">WHERE</span> eq(bid, <span class="hljs-number">1.56</span>, <span class="hljs-number">0.000001</span>) 
+</code></pre>
+<p>You can also use <code>=</code>:</p>
+<pre><code class="hljs css language-sql"><span class="hljs-keyword">SELECT</span> prices <span class="hljs-keyword">WHERE</span> bid = <span class="hljs-number">1.56</span> 
+</code></pre>
+<p>but <code>=</code> would not match <code>1.56</code> and <code>1.559999999999</code>.</p>
+<blockquote>
+<p>Best practice for floating point values would be to store as LONG integer using scaling factors
+to avoid rounding-related issues.</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="search-using-aggregation-results"></a><a href="#search-using-aggregation-results" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Search using aggregation results</h3>
+<p>Subqueries can be used to filter on aggregation results in QuestDB SQL. It is fairly simple because of
+the optional nature of <code>select .. from</code>.</p>
+<p>The following example selects all movies that received over 50,000 ratings.</p>
+<pre><code class="hljs css language-sql">(<span class="hljs-keyword">select</span> movieId x, (<span class="hljs-keyword">min</span>(rating) + <span class="hljs-keyword">max</span>(rating))/<span class="hljs-number">2</span> <span class="hljs-keyword">mid</span>, <span class="hljs-keyword">count</span>() <span class="hljs-keyword">count</span> <span class="hljs-keyword">from</span> ratings) <span class="hljs-keyword">where</span> <span class="hljs-keyword">count</span> &gt; <span class="hljs-number">50000</span>
+</code></pre>
+<p>Standard SQL equivalent would be:</p>
+<pre><code class="hljs css language-sql"><span class="hljs-keyword">select</span> movieId, (<span class="hljs-keyword">min</span>(rating) + <span class="hljs-keyword">max</span>(rating))/<span class="hljs-number">2</span> <span class="hljs-keyword">mid</span>, <span class="hljs-keyword">count</span>() <span class="hljs-keyword">count</span> <span class="hljs-keyword">from</span> ratings
+<span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> movieId
+<span class="hljs-keyword">having</span> <span class="hljs-keyword">count</span>() &gt; <span class="hljs-number">50000</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="order-by"></a><a href="#order-by" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ORDER BY</h2>
+<h3><a class="anchor" aria-hidden="true" id="usage"></a><a href="#usage" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Usage</h3>
+<p><code>ORDER BY</code> is used to sort the results of a query in ascending or descending order.</p>
+<h3><a class="anchor" aria-hidden="true" id="syntax-2"></a><a href="#syntax-2" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Syntax</h3>
+<pre><code class="hljs css language-sql"><span class="hljs-keyword">SELECT</span> COLUMN1, COLUMN2...
+<span class="hljs-keyword">FROM</span> TABLENAME
+<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> COLUMN1 [<span class="hljs-keyword">ASC</span>]|<span class="hljs-keyword">DESC</span>, COLUMN2 [<span class="hljs-keyword">ASC</span>]|<span class="hljs-keyword">DESC</span> ...;
+</code></pre>
+<table class="alt tall">
+<thead>
+<th>Parameter</th>
+<th>Remarks</th>
+</thead>
+<tbody>
+<tr>
+<td class="param">COLUMN</td>
+<td>
+Columns by which you wish to order
+</td>
+</tr>
+<tr>
+<td class="param">ASC</td>
+<td>
+To sort in ascending order
+</td>
+</tr>
+<tr>
+<td class="param">DESC</td>
+<td>
+To sort in descending order
+</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Note that ASC is optional and can be omitted.</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="examples"></a><a href="#examples" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Examples</h3>
+<p>Order by one column in ascending order:</p>
+<pre><code class="hljs css language-sql">ratings ORDER BY userId;
+// is equivalent to //
+<span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">FROM</span> ratings <span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> userId <span class="hljs-keyword">ASC</span>;
+</code></pre>
+<p>Order by one column in descending order:</p>
+<pre><code class="hljs css language-sql">ratings ORDER BY userId DESC;
+</code></pre>
+<p>Order by several columns:</p>
+<pre><code class="hljs css language-sql">ratings ORDER BY userId, rating DESC;
+// is equivalent to //
+<span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">FROM</span> ratings <span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> userId <span class="hljs-keyword">ASC</span> , rating <span class="hljs-keyword">DESC</span>;
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="select-distinct"></a><a href="#select-distinct" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>SELECT DISTINCT</h2>
+<h3><a class="anchor" aria-hidden="true" id="usage-1"></a><a href="#usage-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Usage</h3>
+<p><code>SELECT DISTINCT</code> is used to return only distinct (i.e different) values.</p>
+<h3><a class="anchor" aria-hidden="true" id="syntax-3"></a><a href="#syntax-3" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Syntax</h3>
+<pre><code class="hljs css language-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">DISTINCT</span> COLUMN1, COLUMN2, ...
+<span class="hljs-keyword">FROM</span> <span class="hljs-keyword">TABLE</span>;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="example"></a><a href="#example" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Example</h3>
+<p>The following query will return a list of all unique ratings in the table.</p>
+<pre><code class="hljs css language-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">DISTINCT</span> rating 
+<span class="hljs-keyword">FROM</span> ratings;
+</code></pre>
+<blockquote>
+<p>SELECT DISTINCT can be used in conjunction with more advanced queries and filters.</p>
+</blockquote>
+<p>The following query will return a list of all unique ratings in the table, and the number of times they occur.</p>
+<pre><code class="hljs css language-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">DISTINCT</span> rating, <span class="hljs-keyword">count</span>() 
+<span class="hljs-keyword">FROM</span> ratings;
+</code></pre>
+<p>The following query will return a list of all ratings-userId couples in the table and hoy many times each user has assigned each rating.
+It is also filtered for ratings superior to 3</p>
+<pre><code class="hljs css language-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">DISTINCT</span> rating, userId, <span class="hljs-keyword">count</span>() 
+<span class="hljs-keyword">FROM</span> ratings
+<span class="hljs-keyword">WHERE</span> rating &gt; <span class="hljs-number">3</span>;
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="sample-by-fill-"></a><a href="#sample-by-fill-" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>SAMPLE BY .. FILL</h2>
+<h3><a class="anchor" aria-hidden="true" id="overview"></a><a href="#overview" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Overview</h3>
+<h3><a class="anchor" aria-hidden="true" id="syntax-4"></a><a href="#syntax-4" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Syntax</h3>
+<h3><a class="anchor" aria-hidden="true" id="examples-1"></a><a href="#examples-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Examples</h3>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docpublish/docs/altertable"><span class="arrow-prev">← </span><span>ALTER TABLE</span></a><a class="docs-next button" href="/docpublish/docs/drop"><span>DROP TABLE</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#syntax">Syntax</a></li><li><a href="#simple-select">Simple Select</a><ul class="toc-headings"><li><a href="#all-columns">All columns</a></li><li><a href="#specific-columns">Specific columns</a></li><li><a href="#arithmetic-expressions">Arithmetic Expressions</a></li><li><a href="#aliases">Aliases</a></li></ul></li><li><a href="#aggregation">Aggregation</a><ul class="toc-headings"><li><a href="#aggregate-functions">Aggregate functions</a></li><li><a href="#aggregation-by-group">Aggregation by group</a></li><li><a href="#aggregation-arithmetic">Aggregation arithmetic</a></li></ul></li><li><a href="#where-clause">WHERE clause</a><ul class="toc-headings"><li><a href="#syntax-1">Syntax</a></li><li><a href="#operators">Operators</a></li><li><a href="#exact-timestamp">Exact timestamp</a></li><li><a href="#interval-timestamp">Interval timestamp</a></li><li><a href="#floating-point">Floating Point</a></li><li><a href="#search-using-aggregation-results">Search using aggregation results</a></li></ul></li><li><a href="#order-by">ORDER BY</a><ul class="toc-headings"><li><a href="#usage">Usage</a></li><li><a href="#syntax-2">Syntax</a></li><li><a href="#examples">Examples</a></li></ul></li><li><a href="#select-distinct">SELECT DISTINCT</a><ul class="toc-headings"><li><a href="#usage-1">Usage</a></li><li><a href="#syntax-3">Syntax</a></li><li><a href="#example">Example</a></li></ul></li><li><a href="#sample-by-fill-">SAMPLE BY .. FILL</a><ul class="toc-headings"><li><a href="#overview">Overview</a></li><li><a href="#syntax-4">Syntax</a></li><li><a href="#examples-1">Examples</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/docpublish/" class="nav-home"><img src="/docpublish/img/favicon.png" alt="QuestDB" width="66" height="58"/></a><div align="center"><a></a><a href="/docpublish/docs/en/documentation.html">Documentation</a></div><div align="center"><a></a><a href="/docpublish/docs/en/technology.html">Technology</a></div><div align="center"><a></a><a href="/docpublish/team"> Team </a></div><div align="center"><a></a><a href="/docpublish/blog">Blog</a></div></section><a href="https://opensource.facebook.com/" target="_blank" rel="noreferrer noopener" class="fbOpenSource"><img src="/docpublish/img/oss_logo.png" alt="Facebook Open Source" width="170" height="45"/></a><section class="copyright">Copyright © 2019 QuestDB Limited</section></footer></div></body></html>

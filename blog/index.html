@@ -1,0 +1,207 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Blog · QuestDB</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="High-performance data"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Blog · QuestDB"/><meta property="og:type" content="website"/><meta property="og:url" content="https://TheTanc.github.io/docpublish/"/><meta property="og:description" content="High-performance data"/><meta property="og:image" content="https://TheTanc.github.io/docpublish/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://TheTanc.github.io/docpublish/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/docpublish/img/favicon.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/agate.min.css"/><link rel="alternate" type="application/atom+xml" href="https://TheTanc.github.io/docpublish/blog/atom.xml" title="QuestDB Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://TheTanc.github.io/docpublish/blog/feed.xml" title="QuestDB Blog RSS Feed"/><link rel="stylesheet" href="/css/code-block-buttons.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script src="/docpublish/js/scrollSpy.js"></script><link rel="stylesheet" href="/docpublish/css/main.css"/><script src="/docpublish/js/codetabs.js"></script></head><body class="blog"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/docpublish/"><img class="logo" src="/docpublish/img/favicon.png" alt="QuestDB"/><h2 class="headerTitleWithLogo">QuestDB</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docpublish/docs/technology" target="_self">Technology</a></li><li class=""><a href="/docpublish/docs/documentation" target="_self">Documentation</a></li><li class=""><a href="/docpublish/help" target="_self">Contact</a></li><li class="siteNavGroupActive siteNavItemActive"><a href="/docpublish/blog/" target="_self">Blog</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Recent Posts</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Recent Posts</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docpublish/blog/2019/10/05/interthread">The art of thread messaging</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer postContainer blogContainer"><div class="wrapper"><div class="posts"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle"><a href="/docpublish/blog/2019/10/05/interthread">The art of thread messaging</a></h1><p class="post-meta">October 5, 2019</p><div class="authorBlock"><p class="post-authorName"><a target="_blank" rel="noreferrer noopener">Vlad Ilyushchenko</a></p></div></header><article class="post-content"><div><span><h3><a class="anchor" aria-hidden="true" id="introduction"></a><a href="#introduction" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Introduction</h3>
+<p>Inter-thread messaging is a fundamental part of any asynchronous system. It is the component responsible for transportation of data between threads. Messaging forms the infrastructure, the scaffolding of multi-threaded application and just like real-world transport infrastructure we want it to be inexpensive, fast, reliable and clean.</p>
+<p>For QuestDB we wrote our own messaging and this post is about how it works and how fast it is.</p>
+<h3><a class="anchor" aria-hidden="true" id="architecture"></a><a href="#architecture" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Architecture</h3>
+<p>Borrowing heavily from world-famous Disruptor our messaging revolves around multiple threads accessing shared circular data structure. We call it RingQueue. Semantically RingQueue provides unbounded, index-based, random access to its elements. It does not coordinate concurrent access nor does it provide guarantees on thread safety. Coordination and thread-safety is a concern of Sequences. Sequences are responsible for providing indices that can be used to access RingQueue concurrently and safely.</p>
+<p>To help sequences do their magic they have to be shaped into a graph. We start with syntax to chain sequences together:</p>
+<p><code>a.then(b).then(c).then(d)</code></p>
+<p>The result is a trivial sequence graph:</p>
+<p><code>a -&gt; b -&gt; c -&gt; d</code></p>
+<p>To branch we use helper class FanOut:</p>
+<p><code>a.then(FanOut.to(b).and(c)).then(d)</code></p>
+<p>The result is this sequence graph:</p>
+<pre><code class="hljs css language-shell script">     +--&gt; B --&gt;+
+A --&gt;|         |--&gt; D
+     +--&gt; C --&gt;+
+</code></pre>
+<p>These two pieces of syntax are flexible enough to create any desired flow. This example shows that FanOut can have chain of sequences and other FanOuts:</p>
+<p><code>a.then(FanOut.to(FanOut.to(b).and(c)).and(d.then(e)).then(f)</code></p>
+<p>It is quite a mouthful but it creates this nice little graph:</p>
+<pre><code class="hljs css language-shell script">        +--&gt; B --&gt;+
+    +-&gt; |         |
+    |   +--&gt; C --&gt;+
+<span class="hljs-meta">A--&gt;</span><span class="bash">|             |--&gt; F </span>
+    |             |
+    +-&gt; D -&gt; E --&gt;+
+</code></pre>
+<p>FanOut can also be used as a placeholder in a chain to allow threads to subscribe/unsubscribe on the fly. Dynamic subscription is then simply adding a new sequence to FanOut:</p>
+<pre><code class="hljs css language-java"><span class="hljs-comment">// You can add as many sequences into fan out as you like.</span>
+<span class="hljs-comment">// Sequences can be added either up front or subscribe/unsubscribe on the fly.</span>
+FanOut fanOut = <span class="hljs-keyword">new</span> FanOut();
+
+<span class="hljs-comment">// orinary producer sequence</span>
+Sequence seqProducer = <span class="hljs-keyword">new</span> SPSequence(queue.getCapacity());
+<span class="hljs-comment">// daisy chain producer and fan out and loop back producer</span>
+seqProducer.then(fanOut).then(seqProducer);
+
+<span class="hljs-comment">// meanwhile in another thread ....</span>
+...
+
+<span class="hljs-comment">// Add individual consumer sequences later as needed.</span>
+<span class="hljs-comment">// This is thread safe non-blocking operation that can be performed from any thread.</span>
+<span class="hljs-comment">// It is important to use current producer position as consumer starting point when subscribing on the fly.</span>
+Sequence consumer1 = fanOut.addAndGet(<span class="hljs-keyword">new</span> SCSequence(seqProducer.current()));
+
+<span class="hljs-comment">// do something useful with consumer1 sequence</span>
+...
+
+<span class="hljs-comment">// remove sequence from fanOut to unsubscribe</span>
+fanOut.remove(consumer1);
+</code></pre>
+<p>Typical graph must contain single producer sequence and one or more consumer sequences. It will also have to be circular, e.g. to start and end with producer sequence. Graph has to be circular because we use circular underlying data structure, RingQueue. Without loop-back producer would be liable to overwrite queue elements before consumers had a chance to read them. Worse still, queue elements can be written to and read from concurrently. We don't want that to happen, right?</p>
+<p>To help create practical sequence graph we implemented 4 types of sequences we can play with. These sequences are better understood as combination of their types and properties. SP - single producer, MP - multiple producer, SC - single consumer and MC - multiple consumer. Multi- sequences allow concurrent access and they guarantee that no two threads can retrieve same index. It is this property adds extra fun dimension to sequence graphs. Consider this graph:</p>
+<p><code>A -&gt; B -&gt; A</code></p>
+<p>or in Java notations:</p>
+<p><code>A.then(B).then(A)</code></p>
+<p>When &quot;B&quot; is an instance of MCSequence() we have a self-balancing worker pool. When &quot;A&quot; is MPSequence(), we have many-to-many pub-sub system. Cool, eh?</p>
+<p>Single- sequences are faster but they are not thread-safe. They should be preferred for single-threaded consumer models.</p>
+<p>Lets take a look at how threads interact with sequences. This is a typical example of publisher:</p>
+<pre><code class="hljs css language-java"><span class="hljs-comment">// loop until there is work to do</span>
+<span class="hljs-comment">// consumer thread may be able to rely on producer to</span>
+<span class="hljs-comment">// publish "special" message to indicate end of stream.</span>
+<span class="hljs-keyword">while</span> (<span class="hljs-keyword">true</span>) {
+  
+  <span class="hljs-comment">// Non-blocking call. Method returns immediately either with zero-based</span>
+  <span class="hljs-comment">// ring queue index or negative long indicating one of following:</span>
+  <span class="hljs-comment">// -1 = queue is empty</span>
+  <span class="hljs-comment">// -2 = there was a contest for queue index and this thread has lost</span>
+  <span class="hljs-keyword">long</span> cursor = sequence.next();
+  <span class="hljs-keyword">if</span> (cursor &lt; <span class="hljs-number">0</span>) {
+    <span class="hljs-comment">// negative cursor is an error</span>
+    <span class="hljs-comment">// thread has a choice of things to do:</span>
+    <span class="hljs-comment">// - busy spin</span>
+    <span class="hljs-comment">// - yield/park</span>
+    <span class="hljs-comment">// - work on something else</span>
+    LockSupport.parkNanos(<span class="hljs-number">1</span>);
+    <span class="hljs-keyword">continue</span>;
+  }
+  
+  <span class="hljs-comment">// write to queue</span>
+  <span class="hljs-keyword">try</span> {
+    queue.get(cursor).value;
+  } <span class="hljs-keyword">finally</span> {
+    <span class="hljs-comment">// releasing cursor promptly is important</span>
+    sequence.done(cursor);
+  }
+}
+
+</code></pre>
+<p><code>Sequence.next()</code> return values are:</p>
+<p>-1  Queue is unavailable. It is either full or empty, depending on whether it is producer or consumer sequence</p>
+<p>-2  Temporary race condition. Sequence failed CAS and delegated decision to your application.</p>
+<p>Consumer sequence interaction is almost identical. The only difference would be consumer reading queue item instead of writing it.</p>
+<p>Performance of single-threaded sequences can benefit further from batching. Batching relies on receiving range of indices from sequence and calling done() at end of batch rather than for every queue item. This is what consumer code might look like (producer code is the same):</p>
+<pre><code class="hljs css language-java"><span class="hljs-keyword">while</span> (running) {
+  <span class="hljs-keyword">long</span> cursor = sequence.next();
+  
+  <span class="hljs-keyword">if</span> (cursor &lt; <span class="hljs-number">0</span>) {
+    LockSupport.parkNanos(<span class="hljs-number">1</span>);
+    <span class="hljs-keyword">continue</span>;
+  }
+
+  <span class="hljs-comment">// get max index sequence can reach</span>
+  <span class="hljs-keyword">long</span> available = sequence.available();
+  
+  <span class="hljs-comment">// look thru queue elements without using sequence</span>
+  <span class="hljs-keyword">while</span> (cursor &lt; available) {
+    queue.get(cursor++);
+  }
+  
+  <span class="hljs-comment">// calling done() only once per batch can yield significant performance benefit</span>
+  sequence.done(available - <span class="hljs-number">1</span>);
+}
+</code></pre>
+<p>Multi-threaded sequence do not support batches.</p>
+<h3><a class="anchor" aria-hidden="true" id="performance"></a><a href="#performance" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Performance</h3>
+<p>I used Shipilev's project that already had Disruptor benchmark and I added QuestDB implementation of the same pipeline.</p>
+<p>Benchmark source on <strong><a href="https://github.com/bluestreak01/disrupting-fjp">GitHub</a></strong></p>
+<p><strong>2 CPU MBP 2015</strong></p>
+<pre><code class="hljs css language-shell script">Benchmark          (slicesK)  (threads)  (workMult)  Mode  Cnt    Score    Error  Units
+Disruptor.run            500          2          10    ss   50   10.043 ±  0.158  ms/op
+Disruptor.run           1000          2          10    ss   50   19.944 ±  0.285  ms/op
+Disruptor.run           5000          2          10    ss   50  133.082 ±  6.032  ms/op
+QuestdbFanOut.run        500          2          10    ss   50   13.027 ±  0.180  ms/op
+QuestdbFanOut.run       1000          2          10    ss   50   26.329 ±  0.327  ms/op
+QuestdbFanOut.run       5000          2          10    ss   50  141.686 ±  4.129  ms/op
+QuestdbWorker.run        500          2          10    ss   50   29.470 ±  0.976  ms/op
+QuestdbWorker.run       1000          2          10    ss   50   62.205 ±  3.278  ms/op
+QuestdbWorker.run       5000          2          10    ss   50  321.697 ± 12.031  ms/op
+</code></pre>
+<p><strong>4 CPU x5960 @ 4.2Ghz</strong></p>
+<pre><code class="hljs css language-shell script">Benchmark          (slicesK)  (threads)  (workMult)  Mode  Cnt    Score    Error  Units
+Disruptor.run            500          4          10    ss   50    6.892 ±  0.654  ms/op
+Disruptor.run           1000          4          10    ss   50   10.143 ±  0.623  ms/op
+Disruptor.run           5000          4          10    ss   50   54.084 ±  4.164  ms/op
+QuestdbFanOut.run        500          4          10    ss   50    6.364 ±  0.197  ms/op
+QuestdbFanOut.run       1000          4          10    ss   50   11.454 ±  0.754  ms/op
+QuestdbFanOut.run       5000          4          10    ss   50   50.928 ±  3.264  ms/op
+QuestdbWorker.run        500          4          10    ss   50   14.240 ±  1.341  ms/op
+QuestdbWorker.run       1000          4          10    ss   50   27.246 ±  2.777  ms/op
+QuestdbWorker.run       5000          4          10    ss   50  142.207 ± 15.157  ms/op
+</code></pre>
+<p>Disruptor and QuestDB perform essentially the same.</p>
+<h3><a class="anchor" aria-hidden="true" id="how-to-get-it"></a><a href="#how-to-get-it" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>How to get it</h3>
+<p>Our messaging system is on Maven central as a part of QuestDB. Don't worry about package size though, QuestDB jar weighs in at 2.6MB and has no dependencies.</p>
+<pre><code class="hljs css language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.questdb<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>questdb-core<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.0.0-SNAPSHOT<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+</code></pre>
+</span></div></article></div><div class="docs-prevnext"></div></div></div></div></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/docpublish/" class="nav-home"><img src="/docpublish/img/favicon.png" alt="QuestDB" width="66" height="58"/></a><div align="center"><a></a><a href="/docpublish/docs/en/documentation.html">Documentation</a></div><div align="center"><a></a><a href="/docpublish/docs/en/technology.html">Technology</a></div><div align="center"><a></a><a href="/docpublish/team"> Team </a></div><div align="center"><a></a><a href="/docpublish/blog">Blog</a></div></section><a href="https://opensource.facebook.com/" target="_blank" rel="noreferrer noopener" class="fbOpenSource"><img src="/docpublish/img/oss_logo.png" alt="Facebook Open Source" width="170" height="45"/></a><section class="copyright">Copyright © 2019 QuestDB Limited</section></footer></div></body></html>
