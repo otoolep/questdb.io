@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>SELECT · QuestDB</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="`SELECT` allows you to specify list of columns and expressions to be selected and evaluated from a table."/><meta name="docsearch:language" content="en"/><meta property="og:title" content="SELECT · QuestDB"/><meta property="og:type" content="website"/><meta property="og:url" content="https://TheTanc.github.io/docpublish/"/><meta property="og:description" content="`SELECT` allows you to specify list of columns and expressions to be selected and evaluated from a table."/><meta property="og:image" content="https://TheTanc.github.io/docpublish/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://TheTanc.github.io/docpublish/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/docpublish/img/favicon.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/agate.min.css"/><link rel="alternate" type="application/atom+xml" href="https://TheTanc.github.io/docpublish/blog/atom.xml" title="QuestDB Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://TheTanc.github.io/docpublish/blog/feed.xml" title="QuestDB Blog RSS Feed"/><link rel="stylesheet" href="/css/code-block-buttons.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script src="/docpublish/js/scrollSpy.js"></script><link rel="stylesheet" href="/docpublish/css/main.css"/><script src="/docpublish/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/docpublish/"><img class="logo" src="/docpublish/img/favicon.png" alt="QuestDB"/><h2 class="headerTitleWithLogo">QuestDB</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docpublish/docs/technology" target="_self">Technology</a></li><li class="siteNavGroupActive"><a href="/docpublish/docs/documentation" target="_self">Documentation</a></li><li class=""><a href="/docpublish/help" target="_self">Contact</a></li><li class=""><a href="/docpublish/blog/" target="_self">Blog</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Using QuestDB</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Overview</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docpublish/docs/documentation">Overview</a></li><li class="navListItem"><a class="navItem" href="/docpublish/docs/storagemodel">Storage Model</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Getting Started</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docpublish/docs/install">Installing QuestDB</a></li><li class="navListItem"><a class="navItem" href="/docpublish/docs/run">Running QuestDB</a></li><li class="navListItem"><a class="navItem" href="/docpublish/docs/gettestdata">Obtaining Test Data</a></li><li class="navListItem"><a class="navItem" href="/docpublish/docs/console">Web Console</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Using QuestDB</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docpublish/docs/sql">SQL Language</a></li><li class="navListItem"><a class="navItem" href="/docpublish/docs/datatypes">Data Types</a></li><li class="navListItem"><a class="navItem" href="/docpublish/docs/tableadmin">Table Admin</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docpublish/docs/select">SELECT</a></li><li class="navListItem"><a class="navItem" href="/docpublish/docs/join">JOIN</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">API</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docpublish/docs/apiadmin">ADMIN</a></li><li class="navListItem"><a class="navItem" href="/docpublish/docs/apiread">READ</a></li><li class="navListItem"><a class="navItem" href="/docpublish/docs/apiwrite">WRITE</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">REST</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docpublish/docs/roverview">roverview</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">FAQ</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docpublish/docs/faq">Frequently Asked</a></li></ul></div></div></section></div><script>
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>SELECT · QuestDB</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="`SELECT` allows you to specify list of columns and expressions to be selected and evaluated from a table."/><meta name="docsearch:language" content="en"/><meta property="og:title" content="SELECT · QuestDB"/><meta property="og:type" content="website"/><meta property="og:url" content="https://TheTanc.github.io/docpublish/"/><meta property="og:description" content="`SELECT` allows you to specify list of columns and expressions to be selected and evaluated from a table."/><meta property="og:image" content="https://TheTanc.github.io/docpublish/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://TheTanc.github.io/docpublish/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/docpublish/img/favicon.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/agate.min.css"/><link rel="alternate" type="application/atom+xml" href="https://TheTanc.github.io/docpublish/blog/atom.xml" title="QuestDB Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://TheTanc.github.io/docpublish/blog/feed.xml" title="QuestDB Blog RSS Feed"/><link rel="stylesheet" href="/css/code-block-buttons.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script src="/docpublish/js/scrollSpy.js"></script><link rel="stylesheet" href="/docpublish/css/main.css"/><script src="/docpublish/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/docpublish/"><img class="logo" src="/docpublish/img/favicon.png" alt="QuestDB"/><h2 class="headerTitleWithLogo">QuestDB</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docpublish/docs/technology" target="_self">Technology</a></li><li class="siteNavGroupActive"><a href="/docpublish/docs/documentation" target="_self">Documentation</a></li><li class=""><a href="/docpublish/help" target="_self">Contact</a></li><li class=""><a href="/docpublish/blog/" target="_self">Blog</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Using QuestDB</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Overview</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docpublish/docs/documentation">Overview</a></li><li class="navListItem"><a class="navItem" href="/docpublish/docs/storagemodel">Storage Model</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Getting Started</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docpublish/docs/install">Installing QuestDB</a></li><li class="navListItem"><a class="navItem" href="/docpublish/docs/run">Running QuestDB</a></li><li class="navListItem"><a class="navItem" href="/docpublish/docs/gettestdata">Obtaining Test Data</a></li><li class="navListItem"><a class="navItem" href="/docpublish/docs/console">Web Console</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Using QuestDB</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docpublish/docs/sql">SQL Language</a></li><li class="navListItem"><a class="navItem" href="/docpublish/docs/datatypes">Data Types</a></li><li class="navListItem"><a class="navItem" href="/docpublish/docs/tableadmin">Table Admin</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docpublish/docs/select">SELECT</a></li><li class="navListItem"><a class="navItem" href="/docpublish/docs/join">JOIN</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Interfaces</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docpublish/docs/java">JAVA</a></li><li class="navListItem"><a class="navItem" href="/docpublish/docs/restful">REST</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">FAQ</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docpublish/docs/faq">Frequently Asked</a></li></ul></div></div></section></div><script>
             var coll = document.getElementsByClassName('collapsible');
             var checkActiveCategory = true;
             for (var i = 0; i < coll.length; i++) {
@@ -60,6 +60,10 @@
 </blockquote>
 <h2><a class="anchor" aria-hidden="true" id="syntax"></a><a href="#syntax" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Syntax</h2>
 <p><img src="/docpublish/docs/assets/select-statement.SVG" alt="alt-text"></p>
+<blockquote>
+<p>Note that the <code>TABLE</code> you query from can either be a table in your database (in which case you would pass the table's name),
+or the result of a sub query.</p>
+</blockquote>
 <h2><a class="anchor" aria-hidden="true" id="simple-select"></a><a href="#simple-select" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Simple Select</h2>
 <h3><a class="anchor" aria-hidden="true" id="all-columns"></a><a href="#all-columns" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>All columns</h3>
 <p>QuestDB supports <code>SELECT * FROM tablename</code>. When selectin all, you can also ommit most of the statement and simply pass
@@ -507,8 +511,217 @@ from the BOTTOM of the table, then l should be a negative number.</p>
 <p>For example, the following will return records between n-7 (exclusive) and n-3 (inclusive), i.e {n-6, n-5, n-4, n-3}</p>
 <pre><code class="hljs css language-sql">ratings LIMIT -7, -3;
 </code></pre>
-<h2><a class="anchor" aria-hidden="true" id="sample-by-fill-"></a><a href="#sample-by-fill-" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>SAMPLE BY .. FILL</h2>
+<h2><a class="anchor" aria-hidden="true" id="sample-by"></a><a href="#sample-by" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>SAMPLE BY</h2>
 <h3><a class="anchor" aria-hidden="true" id="overview-1"></a><a href="#overview-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Overview</h3>
+<p><code>SAMPLE BY</code> is used on time-series data to summarise large datasets into aggregates of hogeneous time chunks.</p>
+<blockquote>
+<p>To use <code>SAMPLE BY</code>, one column needs to be designated as <code>timestamp</code>. Find out more in the <strong><a href="/docpublish/docs/tableadmin">CREATE TABLE</a></strong> section.</p>
+</blockquote>
 <h3><a class="anchor" aria-hidden="true" id="syntax-5"></a><a href="#syntax-5" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Syntax</h3>
+<p><code>SAMPLE BY</code> syntax is as follows:</p>
+<pre><code class="hljs css language-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">columns</span>
+<span class="hljs-keyword">FROM</span> <span class="hljs-keyword">table</span> 
+<span class="hljs-keyword">SAMPLE</span> <span class="hljs-keyword">BY</span> nSAMPLE_SIZE
+</code></pre>
+<p>WHere <code>SAMPLE_SIZE</code> is the unit of time by which you wish to aggregate your results, and <code>n</code> is the number of
+time-chunks that will be summarised together. You can sample by any multiple of the following:</p>
+<table class="alt tall">
+<thead>
+<th>Modifier</th>
+<th>Remarks</th>
+</thead>
+<tbody>
+<tr>
+<td class="param">s</td>
+<td>
+Seconds
+</td>
+</tr>
+<tr>
+<td class="param">m</td>
+<td>
+Minutes
+</td>
+</tr>
+<tr>
+<td class="param">h</td>
+<td>
+Hours
+</td>
+</tr>
+<tr>
+<td class="param">d</td>
+<td>
+Days
+</td>
+</tr>
+<tr>
+<td class="param">M</td>
+<td>
+Months
+</td>
+</tr>
+<tr>
+<td class="param">y</td>
+<td>
+Years
+</td>
+</tr>
+</tbody>
+</table>
 <h3><a class="anchor" aria-hidden="true" id="examples-2"></a><a href="#examples-2" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Examples</h3>
-</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docpublish/docs/tableadmin"><span class="arrow-prev">← </span><span>Table Admin</span></a><a class="docs-next button" href="/docpublish/docs/join"><span>JOIN</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#syntax">Syntax</a></li><li><a href="#simple-select">Simple Select</a><ul class="toc-headings"><li><a href="#all-columns">All columns</a></li><li><a href="#specific-columns">Specific columns</a></li><li><a href="#arithmetic-expressions">Arithmetic Expressions</a></li><li><a href="#aliases">Aliases</a></li></ul></li><li><a href="#aggregation">Aggregation</a><ul class="toc-headings"><li><a href="#aggregate-functions">Aggregate functions</a></li><li><a href="#aggregation-by-group">Aggregation by group</a></li><li><a href="#aggregation-arithmetic">Aggregation arithmetic</a></li></ul></li><li><a href="#where-clause">WHERE clause</a><ul class="toc-headings"><li><a href="#syntax-1">Syntax</a></li><li><a href="#operators">Operators</a></li><li><a href="#exact-timestamp">Exact timestamp</a></li><li><a href="#interval-timestamp">Interval timestamp</a></li><li><a href="#floating-point">Floating Point</a></li><li><a href="#search-using-aggregation-results">Search using aggregation results</a></li></ul></li><li><a href="#order-by">ORDER BY</a><ul class="toc-headings"><li><a href="#usage">Usage</a></li><li><a href="#syntax-2">Syntax</a></li><li><a href="#examples">Examples</a></li></ul></li><li><a href="#select-distinct">SELECT DISTINCT</a><ul class="toc-headings"><li><a href="#usage-1">Usage</a></li><li><a href="#syntax-3">Syntax</a></li><li><a href="#example">Example</a></li></ul></li><li><a href="#limit">LIMIT</a><ul class="toc-headings"><li><a href="#overview">Overview</a></li><li><a href="#syntax-4">Syntax</a></li><li><a href="#examples-1">Examples</a></li><li><a href="#range">Range</a></li></ul></li><li><a href="#sample-by-fill-">SAMPLE BY .. FILL</a><ul class="toc-headings"><li><a href="#overview-1">Overview</a></li><li><a href="#syntax-5">Syntax</a></li><li><a href="#examples-2">Examples</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/docpublish/" class="nav-home"><img src="/docpublish/img/favicon.png" alt="QuestDB" width="66" height="58"/></a><div align="center"><a></a><a href="/docpublish/docs/en/documentation.html">Documentation</a></div><div align="center"><a></a><a href="/docpublish/docs/en/technology.html">Technology</a></div><div align="center"><a></a><a href="/docpublish/team"> Team </a></div><div align="center"><a></a><a href="/docpublish/blog">Blog</a></div></section><a href="https://opensource.facebook.com/" target="_blank" rel="noreferrer noopener" class="fbOpenSource"><img src="/docpublish/img/oss_logo.png" alt="Facebook Open Source" width="170" height="45"/></a><section class="copyright">Copyright © 2019 QuestDB Limited</section></footer></div></body></html>
+<p>Assume the following table</p>
+<pre><code class="hljs css language-shell script">TRADES
+===============================================
+timestamp,    buysell,    quantity,     price
+-----------------------------------------------
+ts1           B           q1            p1
+ts2           S           q2            p2
+ts3           S           q3            p3
+...           ...         ...           ...
+tsn           B           qn            pn
+</code></pre>
+<p>The following will return the number of trades per hour:</p>
+<pre><code class="hljs css language-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">timestamp</span>, <span class="hljs-keyword">count</span>()
+<span class="hljs-keyword">FROM</span> TRADES
+<span class="hljs-keyword">SAMPLE</span> <span class="hljs-keyword">BY</span> <span class="hljs-number">1</span>h;
+</code></pre>
+<p>The following will return the trade volume in 30 minute intervals</p>
+<pre><code class="hljs css language-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">timestamp</span>, <span class="hljs-keyword">sum</span>(quantity*price)
+<span class="hljs-keyword">FROM</span> TRADES
+<span class="hljs-keyword">SAMPLE</span> <span class="hljs-keyword">BY</span> <span class="hljs-number">30</span>m;
+</code></pre>
+<p>The following will return the averate trade notional (where notional is = q * p) by day:</p>
+<pre><code class="hljs css language-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">timestamp</span>, <span class="hljs-keyword">sum</span>(quantity*price)/<span class="hljs-keyword">count</span>()
+<span class="hljs-keyword">FROM</span> TRADES
+<span class="hljs-keyword">SAMPLE</span> <span class="hljs-keyword">BY</span> <span class="hljs-number">1</span>d;
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="fill"></a><a href="#fill" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>FILL</h2>
+<h3><a class="anchor" aria-hidden="true" id="overview-2"></a><a href="#overview-2" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Overview</h3>
+<p><code>FILL</code> is an option for <code>SAMPLE BY</code> to determine how the results of a query are displayed when one or more of your time-slices have no data.
+This is useful when you would like your query results to be homogeneous in time: rather than skipping the time chunk, the query will
+return a value determine by the type of FILL you choose.</p>
+<h3><a class="anchor" aria-hidden="true" id="syntax-6"></a><a href="#syntax-6" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Syntax</h3>
+<pre><code class="hljs css language-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">timestamp</span>, aggr1, aggr2, ...
+<span class="hljs-keyword">FROM</span> <span class="hljs-keyword">table</span> 
+<span class="hljs-keyword">SAMPLE</span> <span class="hljs-keyword">BY</span> YOUR_SAMPLE_SIZE
+FILL(FILL_OPTION_1, FILL_OPTION_2...);
+</code></pre>
+<p><code>FILL_OPTION</code> can be any of the following:</p>
+<table class="alt tall">
+<thead>
+<th>Option</th>
+<th>Remarks</th>
+</thead>
+<tbody>
+<tr>
+<td class="param">NONE</td>
+<td>
+Will not fill. In case there is no data, the time-chunk will be skipped in the results. This means your table could
+potentially be missing intervals.
+</td>
+</tr>
+<tr>
+<td class="param">NULL</td>
+<td>
+Will fill with NULL
+</td>
+</tr>
+<tr>
+<td class="param">PREV</td>
+<td>
+Will fill using the previous data point.
+</td>
+</tr>
+<tr>
+<td class="param">LINEAR</td>
+<td>
+Will fill with the result of the linear interpolation of the surrounding 2 points.
+</td>
+</tr>
+<tr>
+<td class="param">0</td>
+<td>
+Will fill with 0. Note you can replace 0 with any number of your choice (e.g fill 100.00)
+</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Fill must be used on aggregations such as sum(), count() etc.</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="examples-3"></a><a href="#examples-3" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Examples</h3>
+<p>Consider the following table</p>
+<pre><code class="hljs css language-shell script">PRICES
+======================
+timestamp,    price
+----------------------
+ts1           p1
+ts2           p2
+ts3           p3
+...           ...
+tsn           pn
+</code></pre>
+<p>We could run the following to get the minimum, maximum and average price per hour using the following query:</p>
+<pre><code class="hljs css language-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">timestamp</span>, <span class="hljs-keyword">min</span>(price) <span class="hljs-keyword">min</span>, <span class="hljs-keyword">max</span>(price) <span class="hljs-keyword">max</span>, <span class="hljs-keyword">sum</span>(price)/<span class="hljs-keyword">count</span>() <span class="hljs-keyword">avg</span>
+<span class="hljs-keyword">FROM</span> PRICES
+<span class="hljs-keyword">SAMPLE</span> <span class="hljs-keyword">BY</span> <span class="hljs-number">1</span>h;
+</code></pre>
+<p>It would generally return result like this:</p>
+<pre><code class="hljs css language-shell script">RESULTS
+======================================
+timestamp,    min,    max,    average
+--------------------------------------
+ts1           min1    max1    avg1
+...           ...     ...     ...
+tsn           minn    maxn    avgn
+</code></pre>
+<p>However, in case there was no <code>PRICES</code> data for a given hour, your table would have time-chunks missing. For example</p>
+<pre><code class="hljs css language-shell script">RESULTS
+======================================
+timestamp,    min,    max,    average
+--------------------------------------
+ts1           min1    max1    avg1
+ts2           min2    max2    avg2
+ts4           min4    max4    avg4
+...           ...     ...     ...
+tsn           minn    maxn    avgn
+</code></pre>
+<p>Here you can see that the third time chunk is missing. This is because there was no price update in the third hour.
+Let's see what different fill values would return:</p>
+<pre><code class="hljs css language-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">timestamp</span>, <span class="hljs-keyword">min</span>(price) <span class="hljs-keyword">min</span>, <span class="hljs-keyword">max</span>(price) <span class="hljs-keyword">max</span>, <span class="hljs-keyword">sum</span>(price)/<span class="hljs-keyword">count</span>() <span class="hljs-keyword">avg</span>
+<span class="hljs-keyword">FROM</span> PRICES
+<span class="hljs-keyword">SAMPLE</span> <span class="hljs-keyword">BY</span> <span class="hljs-number">1</span>h
+FILL(<span class="hljs-literal">null</span>, <span class="hljs-number">0</span>, prev);
+</code></pre>
+<p>would return:</p>
+<pre><code class="hljs css language-shell script">RESULTS
+======================================
+timestamp,    min,    max,    average
+--------------------------------------
+ts1           min1    max1    avg1
+ts2           min2    max2    avg2
+ts3           NULL    0       avg2   &lt;&lt;&lt; FILL VALUES
+ts4           min4    max4    avg4
+...           ...     ...     ...
+tsn           minn    maxn    avgn
+</code></pre>
+<p>And the following:</p>
+<pre><code class="hljs css language-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">timestamp</span>, <span class="hljs-keyword">min</span>(price) <span class="hljs-keyword">min</span>, <span class="hljs-keyword">sum</span>(price)/<span class="hljs-keyword">count</span>() <span class="hljs-keyword">avg</span>
+<span class="hljs-keyword">FROM</span> PRICES
+<span class="hljs-keyword">SAMPLE</span> <span class="hljs-keyword">BY</span> <span class="hljs-number">1</span>h
+FILL(<span class="hljs-number">25.5</span>, linear);
+</code></pre>
+<p>Would return:</p>
+<pre><code class="hljs css language-shell script">RESULTS
+======================================
+timestamp,    min,    average
+--------------------------------------
+ts1           min1    avg1
+ts2           min2    avg2
+ts3           25.5    (avg2+avg4)/2       &lt;&lt;&lt; FILL VALUES
+ts4           min4    avg4
+...           ...     ...
+tsn           minn    avgn
+</code></pre>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docpublish/docs/tableadmin"><span class="arrow-prev">← </span><span>Table Admin</span></a><a class="docs-next button" href="/docpublish/docs/join"><span>JOIN</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#syntax">Syntax</a></li><li><a href="#simple-select">Simple Select</a><ul class="toc-headings"><li><a href="#all-columns">All columns</a></li><li><a href="#specific-columns">Specific columns</a></li><li><a href="#arithmetic-expressions">Arithmetic Expressions</a></li><li><a href="#aliases">Aliases</a></li></ul></li><li><a href="#aggregation">Aggregation</a><ul class="toc-headings"><li><a href="#aggregate-functions">Aggregate functions</a></li><li><a href="#aggregation-by-group">Aggregation by group</a></li><li><a href="#aggregation-arithmetic">Aggregation arithmetic</a></li></ul></li><li><a href="#where-clause">WHERE clause</a><ul class="toc-headings"><li><a href="#syntax-1">Syntax</a></li><li><a href="#operators">Operators</a></li><li><a href="#exact-timestamp">Exact timestamp</a></li><li><a href="#interval-timestamp">Interval timestamp</a></li><li><a href="#floating-point">Floating Point</a></li><li><a href="#search-using-aggregation-results">Search using aggregation results</a></li></ul></li><li><a href="#order-by">ORDER BY</a><ul class="toc-headings"><li><a href="#usage">Usage</a></li><li><a href="#syntax-2">Syntax</a></li><li><a href="#examples">Examples</a></li></ul></li><li><a href="#select-distinct">SELECT DISTINCT</a><ul class="toc-headings"><li><a href="#usage-1">Usage</a></li><li><a href="#syntax-3">Syntax</a></li><li><a href="#example">Example</a></li></ul></li><li><a href="#limit">LIMIT</a><ul class="toc-headings"><li><a href="#overview">Overview</a></li><li><a href="#syntax-4">Syntax</a></li><li><a href="#examples-1">Examples</a></li><li><a href="#range">Range</a></li></ul></li><li><a href="#sample-by">SAMPLE BY</a><ul class="toc-headings"><li><a href="#overview-1">Overview</a></li><li><a href="#syntax-5">Syntax</a></li><li><a href="#examples-2">Examples</a></li></ul></li><li><a href="#fill">FILL</a><ul class="toc-headings"><li><a href="#overview-2">Overview</a></li><li><a href="#syntax-6">Syntax</a></li><li><a href="#examples-3">Examples</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/docpublish/" class="nav-home"><img src="/docpublish/img/favicon.png" alt="QuestDB" width="66" height="58"/></a><div align="center"><a></a><a href="/docpublish/docs/en/documentation.html">Documentation</a></div><div align="center"><a></a><a href="/docpublish/docs/en/technology.html">Technology</a></div><div align="center"><a></a><a href="/docpublish/team"> Team </a></div><div align="center"><a></a><a href="/docpublish/blog">Blog</a></div></section><a href="https://opensource.facebook.com/" target="_blank" rel="noreferrer noopener" class="fbOpenSource"><img src="/docpublish/img/oss_logo.png" alt="Facebook Open Source" width="170" height="45"/></a><section class="copyright">Copyright © 2019 QuestDB Limited</section></footer></div></body></html>
