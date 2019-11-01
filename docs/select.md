@@ -364,7 +364,7 @@ QuestDB uses the following algorithm to create the interval: `2010-01-12T14` is 
 
 Interval modifier format is:
 
-![alt-text](assets/interval-modifier.SVG)
+![alt-text](assets/interval-modifier.svg)
 
 where letters stand for:
 
