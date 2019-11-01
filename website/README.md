@@ -188,6 +188,17 @@ For more information about the navigation bar, click [here](https://docusaurus.i
 
 For more information about custom pages, click [here](https://docusaurus.io/docs/en/custom-pages).
 
-# Full Documentation
+## Publishing to GitHub
+
+1. Ensure document changes are tested, committed and pushed to 'master' branch
+2. Execute the following
+
+```
+cd website
+set GIT_USER=<your_git_username>
+yarn run publish-gh-pages
+```
+
+## Full Documentation
 
 Full documentation can be found on the [website](https://docusaurus.io/).
