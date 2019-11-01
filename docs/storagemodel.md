@@ -16,7 +16,7 @@ QuestDB uses a **column-based** storage model. Data is stored in tables with eac
  Moreover, the SQL optimiser leverages the chronology of the table data to optimise timestamp interval 
  search.
  
-![alt-text](assets/storage1.JPG)
+![alt-text](assets/storage-model.png)
  
 ## Writing data
  To guarantee **atomicity**, each table maintains a `last_committed_record_count` in a separate file. 
@@ -37,7 +37,7 @@ QuestDB uses a **column-based** storage model. Data is stored in tables with eac
  **Durability** is in line with all other database solutions `commit()` can optionally invoke `msync()`
  with a choice of synchronous or asynchronous IO.
 
-![alt-text](assets/storage2.JPG)
+![alt-text](assets/storage-model-2.png)
  
 ## Appending Model
 QuestDB appends one column at a time and each one is updated using the same method. 
@@ -47,14 +47,14 @@ and the new page is mapped at a new append offset.
  
 This method ensures minimum resource churn and consistent append latency. 
  
-![alt-text](assets/storage3.JPG)
+![alt-text](assets/column-read.png)
   
 ## Read Model
 Table columns are randomly accessible. Columns with fixed size data types are read by translating 
 record number into file offset by a simple bit shift. Offset in column file is then translated into 
 offset in a lazily mapped memory page, where the required value is read from.
   
-![alt-text](assets/storage4.JPG)
+![alt-text](assets/column-update.png)
 
 ## Summary
 To summarise, our storage model uses memory mapped files and cross-process atomic transaction updates, 
@@ -62,4 +62,4 @@ which allow to using QuestDB as a low overhead method of interprocess communicat
 one process can be instantaneously read by another process either randomly via queries or incrementally 
 as data queue. QuestDB provides a variety of reader implementations. 
    
-![alt-text](assets/storage5.JPG)
+![alt-text](assets/storage-summarized.png)
