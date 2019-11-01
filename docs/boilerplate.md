@@ -16,7 +16,7 @@
 ```
 <!--END_DOCUSAURUS_CODE_TABS-->
 
-![alt-text](assets/filtered-statement.SVG)
+![alt-text](assets/filtered-statement.svg)
 
 <table class="alt tall">
 <thead>

@@ -9,7 +9,7 @@ sidebar_label: SELECT
 >All examples below are given for the file ratings.csv from the movielens project. See section to **[Get sample data](gettestdata.md)**
 
 ## Syntax
-![alt-text](assets/select-statement.SVG)
+![alt-text](assets/select-statement.svg)
 
 >Note that the `TABLE` you query from can either be a table in your database (in which case you would pass the table's name),
 >or the result of a sub query.
@@ -195,7 +195,7 @@ SELECT movieId, (min(rating) + max(rating))/2 mid, count() count FROM ratings;
 QuestDB supports standard `WHERE` clause for filtering data. 
 Filter expressions are required to return boolean result.
 
-![alt-text](assets/filtered-statement.SVG)
+![alt-text](assets/filtered-statement.svg)
 
 ```sql
 SELECT COLUMN1, COLUMN2...
