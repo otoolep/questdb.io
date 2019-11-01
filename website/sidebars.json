@@ -1,0 +1,30 @@
+
+{
+  "docs": {
+    "Overview": [
+      "documentation",
+      "storagemodel"
+    ],
+    "Getting Started": [
+      "install",
+      "run",
+      "gettestdata",
+      "console"
+    ],
+    "Using QuestDB": [
+      "sql",
+      "datatypes",
+      "tableadmin",
+      "select",
+      "join"
+    ],
+    "Interfaces": [
+      "java",
+      "restful"
+    ],
+    "FAQ": [
+      "faq"
+    ]
+  }
+}
+
