@@ -101,19 +101,21 @@ class Index extends React.Component {
                 <h2>What is QuestDB?</h2>
 
                 <p>
-                    QuestDB is a high-performance low-latency database.
-                    We offer latencies in nanoseconds while minimising hardware footprint.
+                    QuestDB is a high-performance, low-latency time-series database.
+                    We offer unparalleled single thread performance.
                     We write at below 90 nanoseconds per entry.
+                    Fit for both the cloud and the edge.
                 </p>
 
                 <p>
-                    We achieve this with cutting-edge proprietary software that pushes today's to the maximum
-                    and defines the performance standard of tomorrow.
+                    We achieve maximum efficiency for a given unit of hardware with cutting-edge 
+                    proprietary software. QuestDB on a single thread is already multiples times 
+                    faster than multi-threaded databases.
                 </p>
 
                 <p>
-                    We also offer trading technology such as microsecond messaging services,
-                    and nanosecond orderbook calculators
+                    We also offer trading technology such as microsecond messaging services
+                    and nanosecond orderbook calculators.
                 </p>
 
             </div>
@@ -124,8 +126,8 @@ class Index extends React.Component {
                 {[
                     {
                         content:
-                            'Switch from Postgres in moments using the same integrations you already built. ' +
-                            'Integrate easily with your applications. We support JAVA natively and can run as a library. ' +
+                            'Switch from Postgres using the same integrations you have already built. ' +
+                            'Integrate easily with your applications. We support Java natively and can run as a library. ' +
                             'We also offer a REST API and web server. Last but not least, we talk SQL.',
                         image: `${baseUrl}img/undraw_code_review.svg`,
                         imageAlign: 'left',
@@ -155,8 +157,8 @@ class Index extends React.Component {
                 {[
                     {
                         content:
-                            'QuestDB is the fruit of years in R&D in high-frequency and low-latency trading. Our stack is built from the ground up' +
-                            'for performance, efficiency, and reliability. ',
+                            'QuestDB is the fruit of 6 years of R&D in high-frequency and low-latency trading environments. Our stack is built from the ground up' +
+                             'to maximise performance, efficiency, and reliability. ',
                         image: `${baseUrl}img/speed.svg`,
                         imageAlign: 'right',
                         textAlign: 'justified',
@@ -176,16 +178,16 @@ class Index extends React.Component {
                         title: 'Nanosecond Latency',
                     },
                     {
-                        content: 'Run natively on any platform, however low or high spec',
+                        content: 'Run natively on any platform, suited to all kind of specs',
                         image: `${baseUrl}img/maintenance.svg`,
                         imageAlign: 'top',
                         title: 'Full vertical scalability',
                     },
                     {
-                        content: 'We support standard ANSI SQL, with additional augmented features on top',
+                        content: 'We support standard ANSI SQL, with additional augmented features',
                         image: `${baseUrl}img/setup_wiz.svg`,
                         imageAlign: 'top',
-                        title: 'Interact in SQL',
+                        title: 'We are SQL',
                     },
                 ]}
             </Block>
