@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>JOIN · QuestDB</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="`JOIN` is used in order to combine rows from two or more tables together based on a common column."/><meta name="docsearch:language" content="en"/><meta property="og:title" content="JOIN · QuestDB"/><meta property="og:type" content="website"/><meta property="og:url" content="https://questdb.github.io/"/><meta property="og:description" content="`JOIN` is used in order to combine rows from two or more tables together based on a common column."/><meta property="og:image" content="https://questdb.github.io/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://questdb.github.io/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/agate.min.css"/><link rel="alternate" type="application/atom+xml" href="https://questdb.github.io/blog/atom.xml" title="QuestDB Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://questdb.github.io/blog/feed.xml" title="QuestDB Blog RSS Feed"/><link rel="stylesheet" href="/css/code-block-buttons.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/favicon.png" alt="QuestDB"/><h2 class="headerTitleWithLogo">QuestDB</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/technology" target="_self">Technology</a></li><li class="siteNavGroupActive"><a href="/docs/documentation" target="_self">Documentation</a></li><li class=""><a href="/help" target="_self">Contact</a></li><li class=""><a href="/blog/" target="_self">Blog</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Using QuestDB</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Overview</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/documentation">Overview</a></li><li class="navListItem"><a class="navItem" href="/docs/storagemodel">Storage Model</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Getting Started</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/install">Installing QuestDB</a></li><li class="navListItem"><a class="navItem" href="/docs/run">Running QuestDB</a></li><li class="navListItem"><a class="navItem" href="/docs/gettestdata">Obtaining Test Data</a></li><li class="navListItem"><a class="navItem" href="/docs/console">Web Console</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Using QuestDB</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/sql">SQL Language</a></li><li class="navListItem"><a class="navItem" href="/docs/datatypes">Data Types</a></li><li class="navListItem"><a class="navItem" href="/docs/tableadmin">Table Admin</a></li><li class="navListItem"><a class="navItem" href="/docs/select">SELECT</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/join">JOIN</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Interfaces</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/java">JAVA</a></li><li class="navListItem"><a class="navItem" href="/docs/restful">REST</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">FAQ</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/faq">Frequently Asked</a></li></ul></div></div></section></div><script>
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>JOINS · QuestDB</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="QuestDB supports the following types of joins: `INNER`, `OUTER`, `CROSS`, `ASOF` and `SPLICE`. `FULL` joins are not yet implemented and are on our roadmap. All supported"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="JOINS · QuestDB"/><meta property="og:type" content="website"/><meta property="og:url" content="https://questdb.github.io/"/><meta property="og:description" content="QuestDB supports the following types of joins: `INNER`, `OUTER`, `CROSS`, `ASOF` and `SPLICE`. `FULL` joins are not yet implemented and are on our roadmap. All supported"/><meta property="og:image" content="https://questdb.github.io/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://questdb.github.io/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/agate.min.css"/><link rel="alternate" type="application/atom+xml" href="https://questdb.github.io/blog/atom.xml" title="QuestDB Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://questdb.github.io/blog/feed.xml" title="QuestDB Blog RSS Feed"/><link rel="stylesheet" href="/css/code-block-buttons.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/favicon.png" alt="QuestDB"/><h2 class="headerTitleWithLogo">QuestDB</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/technology" target="_self">Technology</a></li><li class="siteNavGroupActive"><a href="/docs/documentation" target="_self">Documentation</a></li><li class=""><a href="/help" target="_self">Contact</a></li><li class=""><a href="/blog/" target="_self">Blog</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Using QuestDB</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Overview</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/documentation">Overview</a></li><li class="navListItem"><a class="navItem" href="/docs/storagemodel">Storage Model</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Getting Started</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/install">Installing QuestDB</a></li><li class="navListItem"><a class="navItem" href="/docs/run">Running QuestDB</a></li><li class="navListItem"><a class="navItem" href="/docs/gettestdata">Obtaining Test Data</a></li><li class="navListItem"><a class="navItem" href="/docs/console">Web Console</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Using QuestDB</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/sql">SQL Language</a></li><li class="navListItem"><a class="navItem" href="/docs/datatypes">Data Types</a></li><li class="navListItem"><a class="navItem" href="/docs/tableadmin">Table Admin</a></li><li class="navListItem"><a class="navItem" href="/docs/select">SELECT</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/join">JOINS</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Interfaces</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/java">JAVA</a></li><li class="navListItem"><a class="navItem" href="/docs/restful">REST</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">FAQ</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/faq">Frequently Asked</a></li></ul></div></div></section></div><script>
             var coll = document.getElementsByClassName('collapsible');
             var checkActiveCategory = true;
             for (var i = 0; i < coll.length; i++) {
@@ -54,20 +54,21 @@
                 };
               }
             });
-        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">JOIN</h1></header><article><div><span><p><code>JOIN</code> is used in order to combine rows from two or more tables together based on a common column.
-It can be used directly on tables, or on the results of other queries themselves.</p>
-<p>QuestDB supports (INNER) JOIN, LEFT JOIN, ASOF JOIN, OUTER JOIN and CROSS JOIN.</p>
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">JOINS</h1></header><article><div><span><p>QuestDB supports the following types of joins: <code>INNER</code>, <code>OUTER</code>, <code>CROSS</code>, <code>ASOF</code> and <code>SPLICE</code>. <code>FULL</code> joins are not yet implemented and are on our roadmap. All supported
+join types can be combined in a single SQL statement; it is job of QuestDB SQL optmiser to determine best execution order and algorithms.</p>
+<p>There are no known limitations on size of tables or sub-queries participating in joins and there are no limitations on number of joins either.</p>
+<h2><a class="anchor" aria-hidden="true" id="join-syntax"></a><a href="#join-syntax" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Join Syntax</h2>
+<p><img src="/docs/assets/joins.svg" alt="alt-text"></p>
+<p>Following data join columns from joined tables are combined in single row. Same name columns originating from different tables will be automatically aliased to create
+unique column namespace of the result set.</p>
+<p>Althought it is a best pactice to diligently specify join conditions, QuestDB will also analyse <code>WHERE</code> clause for implicit join condition and will derive transient join conditions where necessary.</p>
+<blockquote>
+<p>When tables are joined on column that has the same name in both tables you can use shorthand <code>ON (column)</code> clause</p>
+</blockquote>
 <h2><a class="anchor" aria-hidden="true" id="inner-join"></a><a href="#inner-join" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>(INNER) JOIN</h2>
 <h3><a class="anchor" aria-hidden="true" id="overview"></a><a href="#overview" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Overview</h3>
 <p><code>(INNER) JOIN</code> is used to return rows from 2 tables where the records on the compared column have matching values in both tables
 <img src="/docs/assets/innerjoin.gif" alt="alt-text"></p>
-<h3><a class="anchor" aria-hidden="true" id="syntax"></a><a href="#syntax" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Syntax</h3>
-<p>General syntax is as follows:</p>
-<pre><code class="hljs css language-sql"><span class="hljs-keyword">SELECT</span> column_names 
-<span class="hljs-keyword">FROM</span> table1 
-[<span class="hljs-keyword">INNER</span>] <span class="hljs-keyword">JOIN</span> table2 
-<span class="hljs-keyword">ON</span> table1.column_name = table2.column_name;
-</code></pre>
 <h3><a class="anchor" aria-hidden="true" id="examples"></a><a href="#examples" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Examples</h3>
 <p>The following query will return the movieId and the average rating from table <code>ratings</code>. It will also add a column
 for the <code>title</code> from table <code>movies</code>. The corresponding title will be identified based on the <code>movieId</code> in the <code>ratings</code> table
@@ -85,20 +86,35 @@ matching an <code>id</code> in the <code>movies</code> table.</p>
 </code></pre>
 <h2><a class="anchor" aria-hidden="true" id="outer-join"></a><a href="#outer-join" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>OUTER JOIN</h2>
 <h3><a class="anchor" aria-hidden="true" id="overview-1"></a><a href="#overview-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Overview</h3>
-<p><code>(LEFT) OUTER JOIN</code> will return <strong>all</strong> records from the LEFT table, and if matched, the records of the RIGHT table.
-When there is no match for the RIGHT table, it will return <code>NULL</code> values.
+<p><code>OUTER JOIN</code> will return <strong>all</strong> records from the LEFT table, and if matched, the records of the RIGHT table.
+When there is no match for the RIGHT table, it will return <code>NULL</code> values in right table fields
 <img src="/docs/assets/leftjoin.gif" alt="alt-text"></p>
-<h3><a class="anchor" aria-hidden="true" id="syntax-1"></a><a href="#syntax-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Syntax</h3>
-<p>General syntax is as follows:</p>
-<pre><code class="hljs css language-sql"><span class="hljs-keyword">SELECT</span> column_names 
-<span class="hljs-keyword">FROM</span> table1 
-<span class="hljs-keyword">OUTER</span> <span class="hljs-keyword">JOIN</span> table2 
-<span class="hljs-keyword">ON</span> table1.column_name = table2.column_name;
-</code></pre>
 <h3><a class="anchor" aria-hidden="true" id="examples-1"></a><a href="#examples-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Examples</h3>
-<p>@TODO</p>
-<h2><a class="anchor" aria-hidden="true" id="asof-join"></a><a href="#asof-join" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ASOF JOIN</h2>
+<p>General syntax is as follows:</p>
+<pre><code class="hljs css language-sql"><span class="hljs-keyword">SELECT</span> tab1.colA, tab2.colB 
+<span class="hljs-keyword">FROM</span> table1 tab1 
+<span class="hljs-keyword">OUTER</span> <span class="hljs-keyword">JOIN</span> table2 tab2
+<span class="hljs-keyword">ON</span> tab1.colA = tab2.colB;
+</code></pre>
+<p><code>OUTER JOIN</code> query can also be used to select all rows in left table that do not exist in right table.</p>
+<pre><code class="hljs css language-sql"><span class="hljs-keyword">SELECT</span> tab1.colA, tab2.colB 
+<span class="hljs-keyword">FROM</span> table1 tab1 
+<span class="hljs-keyword">OUTER</span> <span class="hljs-keyword">JOIN</span> table2 tab2
+<span class="hljs-keyword">ON</span> tab1.colA = tab2.colB
+<span class="hljs-keyword">WHERE</span> tab2.colB = <span class="hljs-literal">NULL</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="cross-join"></a><a href="#cross-join" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>CROSS JOIN</h2>
 <h3><a class="anchor" aria-hidden="true" id="overview-2"></a><a href="#overview-2" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Overview</h3>
+<p><code>CROSS JOIN</code> will return the cartesian product of the two tables being joined. It can be used to a table with all possible combinations.</p>
+<blockquote>
+<p>Note that <code>CROSS JOIN</code> does not have <code>ON</code> clause.</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="example"></a><a href="#example" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>EXAMPLE</h3>
+<p>The following will return all possible combinations of starters and deserts</p>
+<pre><code class="hljs css language-sql"><span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">FROM</span> starters <span class="hljs-keyword">CROSS</span> <span class="hljs-keyword">JOIN</span> deserts;
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="asof-join"></a><a href="#asof-join" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ASOF JOIN</h2>
+<h3><a class="anchor" aria-hidden="true" id="overview-3"></a><a href="#overview-3" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Overview</h3>
 <p><code>ASOF</code> joins are used on time-series data to join two tables based on timestamp where timestamps do not exactly match.
 For a given record at a given timestamp, it will return the corresponding record in the other table at the closest timestamp
 <strong>prior to</strong> the timstamp in the first table.</p>
@@ -106,37 +122,32 @@ For a given record at a given timestamp, it will return the corresponding record
 <p>To be able to leverage <code>ASOF JOIN</code>, both joined table must have a designated <code>timestamp</code> column. To designate a column as <code>timestamp</code>,
 please refer to the <strong><a href="/docs/tableadmin">CREATE TABLE</a></strong> section.</p>
 </blockquote>
-<h3><a class="anchor" aria-hidden="true" id="syntax-2"></a><a href="#syntax-2" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Syntax</h3>
-<p><code>ASOF JOIN</code> is used with the following syntax:</p>
-<pre><code class="hljs css language-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">columns</span>
-<span class="hljs-keyword">FROM</span> table1
-ASOF <span class="hljs-keyword">JOIN</span> (<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">columns</span> <span class="hljs-keyword">from</span> table2)
-[<span class="hljs-keyword">ON</span> table1.column1 = table2.column2];
-</code></pre>
-<blockquote>
-<p>In this case, the timestamps used will be these of table1. If you would like to return a table where ALL timestamps of BOTH tables are returned
-and for each table the <code>ASOF</code> value of the other table, please see <strong><code>SPLICE JOIN</code></strong>.</p>
-</blockquote>
-<h3><a class="anchor" aria-hidden="true" id="examples-2"></a><a href="#examples-2" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Examples</h3>
+<p><code>ASOF</code> join is performed on tables or result sets that are ordered by time. When table is created as ordered by time order of records is
+enforced and timestamp column name is in table metadata. <code>ASOF</code> join will use timestamp column from metadata.</p>
+<h3><a class="anchor" aria-hidden="true" id="example-1"></a><a href="#example-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Example</h3>
 <p>Consider the following tables.</p>
-<pre><code class="hljs css language-shell script">ASKS                               |BIDS
-=====================================================================
-ts,                          bid   | ts,                          ask
----------------------------------------------------------------------
-2019-10-17T00:00:00.000000Z, 100   | 2019-10-17T00:00:00.100000Z, 101
-2019-10-17T00:00:00.200000Z, 101   | 2019-10-17T00:00:00.300000Z, 102
-2019-10-17T00:00:00.400000Z, 102   | 2019-10-17T00:00:00.500000Z, 103
+<pre><code class="hljs css language-shell script">ASKS                               
+===================================
+ts,                          ask   
+-----------------------------------
+2019-10-17T00:00:00.000000Z, 100   
+2019-10-17T00:00:00.200000Z, 101   
+2019-10-17T00:00:00.400000Z, 102   
 </code></pre>
-<p>Note that there is no <code>ask</code> at timestamp <code>2019-10-17T00:00:00.100000Z</code>. The <code>ASOF JOIN</code> will look for the value in the
-<code>ask</code> table that has the closest timestamp inferior or equal to the target timestamp.</p>
+<pre><code class="hljs css language-shell script">BIDS                             
+=================================
+ ts,                          bid
+---------------------------------
+ 2019-10-17T00:00:00.100000Z, 101
+ 2019-10-17T00:00:00.300000Z, 102
+ 2019-10-17T00:00:00.500000Z, 103
+</code></pre>
 <p>Therefore the following query:</p>
-<pre><code class="hljs css language-sql"><span class="hljs-keyword">SELECT</span> ts timebid, bid, ask 
-<span class="hljs-keyword">FROM</span> ASKS 
-ASOF <span class="hljs-keyword">JOIN</span> 
-    (
-    <span class="hljs-keyword">SELECT</span> ts timesask, ask ask 
-    <span class="hljs-keyword">FROM</span> ASKS
-    );
+<pre><code class="hljs css language-sql"><span class="hljs-keyword">SELECT</span>
+ BIDS.ts timebid,
+ bid,
+ ask 
+<span class="hljs-keyword">FROM</span> BIDS ASOF <span class="hljs-keyword">JOIN</span> ASKS
 </code></pre>
 <p>Will return the following results</p>
 <pre><code class="hljs css language-shell script">RESULTS                               
@@ -147,48 +158,49 @@ ts,                          bid        ask
 2019-10-17T00:00:00.200000Z, 101,      101
 2019-10-17T00:00:00.400000Z, 102,      102
 </code></pre>
-<p>Note that the above query does not use the optional <code>ON</code> clause. In case you need additional filtering on the two tables, you can use the <code>ON</code> clause as follows:</p>
-<pre><code class="hljs css language-sql">bSELECT ts timebid, instrument bidInstrument, bid, ask 
-FROM ASKS 
-ASOF JOIN 
-    (
-    <span class="hljs-keyword">SELECT</span> ts timesask, instrument askInstrument, ask ask 
-    <span class="hljs-keyword">FROM</span> ASKS
-    )
-    <span class="hljs-keyword">ON</span> bidInstrument=askInstrument;
+<blockquote>
+<p>Note that there is no <code>ASKS</code> at timestamp <code>2019-10-17T00:00:00.100000Z</code>. The <code>ASOF JOIN</code> will look for the value in the
+<code>BIDS</code> table that has the closest timestamp inferior or equal to the target timestamp.</p>
+</blockquote>
+<p>In case tables do not have designated timestamp column, but data is in chronological order, timestamp columns can be specified at runtime:</p>
+<pre><code class="hljs css language-sql"><span class="hljs-keyword">SELECT</span>
+ BIDS.ts timebid,
+ bid,
+ ask 
+<span class="hljs-keyword">FROM</span> (BIDS <span class="hljs-built_in">timestamp</span>(ts)) ASOF <span class="hljs-keyword">JOIN</span> (ASKS <span class="hljs-built_in">timestamp</span> (ts))
+</code></pre>
+<blockquote>
+<p><code>ASOF</code> join does not check timestamp order, if data is not in chronological order join result is non-deterministic</p>
+</blockquote>
+<p>Above query assumes that there is only one instrument in <code>BIDS</code> and <code>ASKS</code> tables and therefore does not use the optional <code>ON</code> clause.</p>
+<p>If both tables store data for multiple instruments <code>ON</code> clause will allow you to find bids for asks with matching instrument value.</p>
+<pre><code class="hljs css language-sql"><span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">FROM</span> ASKS ASOF <span class="hljs-keyword">JOIN</span> BIDS <span class="hljs-keyword">ON</span> (instrument);
 </code></pre>
 <h2><a class="anchor" aria-hidden="true" id="splice-join"></a><a href="#splice-join" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>SPLICE JOIN</h2>
-<h3><a class="anchor" aria-hidden="true" id="overview-3"></a><a href="#overview-3" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Overview</h3>
-<p><code>SPLICE JOIN</code> is a full <code>ASOF JOIN</code>. It will return all the timestamps from table1 and table2.
-For each timestamp in a given table, it will other fields with either the exact corresponding value in the other table (for exact match),
-or the ASOF value otherwise.</p>
-<h3><a class="anchor" aria-hidden="true" id="syntax-3"></a><a href="#syntax-3" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Syntax</h3>
-<p><code>SPLICE JOIN</code> follows the same syntax as <code>ASOF JOIN</code>.</p>
-<pre><code class="hljs css language-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">columns</span>
-<span class="hljs-keyword">FROM</span> table1
-SPLICE <span class="hljs-keyword">JOIN</span> (<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">columns</span> <span class="hljs-keyword">from</span> table2)
-[<span class="hljs-keyword">ON</span> table1.column1 = table2.column2];
+<h3><a class="anchor" aria-hidden="true" id="overview-4"></a><a href="#overview-4" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Overview</h3>
+<p><code>SPLICE JOIN</code> is a full <code>ASOF JOIN</code>. It will return all the records from both tables. For each record from left table splice join will find
+prevailing record from right table and for each record from right table - prevailing record from left table.</p>
+<h3><a class="anchor" aria-hidden="true" id="examples-2"></a><a href="#examples-2" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Examples</h3>
+<p>Considering the following tables.</p>
+<pre><code class="hljs css language-shell script">ASKS                               
+===================================
+ts,                          ask   
+-----------------------------------
+2019-10-17T00:00:00.000000Z, 100   
+2019-10-17T00:00:00.200000Z, 101   
+2019-10-17T00:00:00.400000Z, 102   
 </code></pre>
-<h3><a class="anchor" aria-hidden="true" id="examples-3"></a><a href="#examples-3" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Examples</h3>
-<p>Consider the following tables.</p>
-<pre><code class="hljs css language-shell script">ASKS                               |BIDS
-=====================================================================
-ts,                          bid   | ts,                          ask
----------------------------------------------------------------------
-2019-10-17T00:00:00.000000Z, 100   | 2019-10-17T00:00:00.100000Z, 101
-2019-10-17T00:00:00.200000Z, 101   | 2019-10-17T00:00:00.300000Z, 102
-2019-10-17T00:00:00.400000Z, 102   | 2019-10-17T00:00:00.500000Z, 103
+<pre><code class="hljs css language-shell script">BIDS                             
+=================================
+ ts,                          bid
+---------------------------------
+ 2019-10-17T00:00:00.100000Z, 101
+ 2019-10-17T00:00:00.300000Z, 102
+ 2019-10-17T00:00:00.500000Z, 103
 </code></pre>
-<p><code>SPLICE JOIN</code> will first build a list of <strong>all unique timestamps</strong> by comparing the lists of the <code>ASKS</code> and <code>BIDS</code> tables.
-It will then return for each timestamp the exact matching value, or the ASOF value if no match is found.</p>
-<p>Therefore the following query:</p>
+<p>This query:</p>
 <pre><code class="hljs css language-sql"><span class="hljs-keyword">SELECT</span> ts timebid, bid, ask 
-<span class="hljs-keyword">FROM</span> ASKS 
-SPLICE <span class="hljs-keyword">JOIN</span> 
-    (
-    <span class="hljs-keyword">SELECT</span> ts timesask, ask ask 
-    <span class="hljs-keyword">FROM</span> ASKS
-    );
+<span class="hljs-keyword">FROM</span> BIDS SPLICE <span class="hljs-keyword">JOIN</span> ASKS
 </code></pre>
 <p>Will return the following results</p>
 <pre><code class="hljs css language-shell script">RESULTS                               
@@ -204,7 +216,7 @@ ts,                          bid        ask
 </code></pre>
 <p>Note that the above query does not use the optional <code>ON</code> clause. In case you need additional filtering on the two tables, you can use the <code>ON</code> clause as follows:</p>
 <pre><code class="hljs css language-sql"><span class="hljs-keyword">SELECT</span> ts timebid, instrument bidInstrument, bid, ask 
-<span class="hljs-keyword">FROM</span> ASKS 
+<span class="hljs-keyword">FROM</span> BIDS 
 SPLICE <span class="hljs-keyword">JOIN</span> 
     (
     <span class="hljs-keyword">SELECT</span> ts timesask, instrument askInstrument, ask ask 
@@ -212,17 +224,4 @@ SPLICE <span class="hljs-keyword">JOIN</span>
     )
     <span class="hljs-keyword">ON</span> bidInstrument=askInstrument;
 </code></pre>
-<h2><a class="anchor" aria-hidden="true" id="cross-join"></a><a href="#cross-join" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>CROSS JOIN</h2>
-<h3><a class="anchor" aria-hidden="true" id="overview-4"></a><a href="#overview-4" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Overview</h3>
-<p><code>CROSS JOIN</code> will return the cartesian product of the two tables being joined. It can be used to a table with all possible combinations.</p>
-<h3><a class="anchor" aria-hidden="true" id="syntax-4"></a><a href="#syntax-4" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>SYNTAX</h3>
-<pre><code class="hljs css language-sql">table1 CROSS JOIN table2;
-</code></pre>
-<blockquote>
-<p>Note that <code>CROSS JOIN</code> does not have <code>ON</code> clause.</p>
-</blockquote>
-<h3><a class="anchor" aria-hidden="true" id="example"></a><a href="#example" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>EXAMPLE</h3>
-<p>The following will return all possible combinations of starters and deserts</p>
-<pre><code class="hljs css language-sql"><span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">FROM</span> starters <span class="hljs-keyword">CROSS</span> <span class="hljs-keyword">JOIN</span> (<span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">FROM</span> deserts);
-</code></pre>
-</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/select"><span class="arrow-prev">← </span><span>SELECT</span></a><a class="docs-next button" href="/docs/java"><span>JAVA</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#inner-join">(INNER) JOIN</a><ul class="toc-headings"><li><a href="#overview">Overview</a></li><li><a href="#syntax">Syntax</a></li><li><a href="#examples">Examples</a></li></ul></li><li><a href="#outer-join">OUTER JOIN</a><ul class="toc-headings"><li><a href="#overview-1">Overview</a></li><li><a href="#syntax-1">Syntax</a></li><li><a href="#examples-1">Examples</a></li></ul></li><li><a href="#asof-join">ASOF JOIN</a><ul class="toc-headings"><li><a href="#overview-2">Overview</a></li><li><a href="#syntax-2">Syntax</a></li><li><a href="#examples-2">Examples</a></li></ul></li><li><a href="#splice-join">SPLICE JOIN</a><ul class="toc-headings"><li><a href="#overview-3">Overview</a></li><li><a href="#syntax-3">Syntax</a></li><li><a href="#examples-3">Examples</a></li></ul></li><li><a href="#cross-join">CROSS JOIN</a><ul class="toc-headings"><li><a href="#overview-4">Overview</a></li><li><a href="#syntax-4">SYNTAX</a></li><li><a href="#example">EXAMPLE</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/favicon.png" alt="QuestDB" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/en/doc1.html">Getting Started (or other categories)</a><a href="/docs/en/doc2.html">Guides (or other categories)</a><a href="/docs/en/doc3.html">API Reference (or other categories)</a></div><div><h5>Community</h5><a href="/en/users.html">User Showcase</a><a href="https://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://discordapp.com/">Project Chat</a><a href="https://twitter.com/" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/">GitHub</a><a class="github-button" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><a href="https://opensource.facebook.com/" target="_blank" rel="noreferrer noopener" class="fbOpenSource"><img src="/img/oss_logo.png" alt="Facebook Open Source" width="170" height="45"/></a><section class="copyright">Copyright © 2019 QuestDB Limited</section></footer></div></body></html>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/select"><span class="arrow-prev">← </span><span>SELECT</span></a><a class="docs-next button" href="/docs/java"><span>JAVA</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#join-syntax">Join Syntax</a></li><li><a href="#inner-join">(INNER) JOIN</a><ul class="toc-headings"><li><a href="#overview">Overview</a></li><li><a href="#examples">Examples</a></li></ul></li><li><a href="#outer-join">OUTER JOIN</a><ul class="toc-headings"><li><a href="#overview-1">Overview</a></li><li><a href="#examples-1">Examples</a></li></ul></li><li><a href="#cross-join">CROSS JOIN</a><ul class="toc-headings"><li><a href="#overview-2">Overview</a></li><li><a href="#example">EXAMPLE</a></li></ul></li><li><a href="#asof-join">ASOF JOIN</a><ul class="toc-headings"><li><a href="#overview-3">Overview</a></li><li><a href="#example-1">Example</a></li></ul></li><li><a href="#splice-join">SPLICE JOIN</a><ul class="toc-headings"><li><a href="#overview-4">Overview</a></li><li><a href="#examples-2">Examples</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/favicon.png" alt="QuestDB" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/en/doc1.html">Getting Started (or other categories)</a><a href="/docs/en/doc2.html">Guides (or other categories)</a><a href="/docs/en/doc3.html">API Reference (or other categories)</a></div><div><h5>Community</h5><a href="/en/users.html">User Showcase</a><a href="https://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://discordapp.com/">Project Chat</a><a href="https://twitter.com/" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/">GitHub</a><a class="github-button" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><a href="https://opensource.facebook.com/" target="_blank" rel="noreferrer noopener" class="fbOpenSource"><img src="/img/oss_logo.png" alt="Facebook Open Source" width="170" height="45"/></a><section class="copyright">Copyright © 2019 QuestDB Limited</section></footer></div></body></html>
