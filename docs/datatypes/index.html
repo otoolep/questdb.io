@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Data Types · QuestDB</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="Field types that can be specified in `schema` are combinations of physical data type and text format."/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Data Types · QuestDB"/><meta property="og:type" content="website"/><meta property="og:url" content="https://questdb.github.io/"/><meta property="og:description" content="Field types that can be specified in `schema` are combinations of physical data type and text format."/><meta property="og:image" content="https://questdb.github.io/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://questdb.github.io/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/agate.min.css"/><link rel="alternate" type="application/atom+xml" href="https://questdb.github.io/blog/atom.xml" title="QuestDB Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://questdb.github.io/blog/feed.xml" title="QuestDB Blog RSS Feed"/><link rel="stylesheet" href="/css/code-block-buttons.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/favicon.png" alt="QuestDB"/><h2 class="headerTitleWithLogo">QuestDB</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/technology" target="_self">Technology</a></li><li class="siteNavGroupActive"><a href="/docs/documentation" target="_self">Documentation</a></li><li class=""><a href="/help" target="_self">Contact</a></li><li class=""><a href="/blog/" target="_self">Blog</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Using QuestDB</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Overview</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/documentation">Overview</a></li><li class="navListItem"><a class="navItem" href="/docs/storagemodel">Storage Model</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Getting Started</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/install">Installing QuestDB</a></li><li class="navListItem"><a class="navItem" href="/docs/run">Running QuestDB</a></li><li class="navListItem"><a class="navItem" href="/docs/gettestdata">Obtaining Test Data</a></li><li class="navListItem"><a class="navItem" href="/docs/console">Web Console</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Using QuestDB</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/sql">SQL Language</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/datatypes">Data Types</a></li><li class="navListItem"><a class="navItem" href="/docs/tableadmin">Table Admin</a></li><li class="navListItem"><a class="navItem" href="/docs/select">SELECT</a></li><li class="navListItem"><a class="navItem" href="/docs/join">JOINS</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Interfaces</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/java">JAVA</a></li><li class="navListItem"><a class="navItem" href="/docs/restful">REST</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">FAQ</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/faq">Frequently Asked</a></li></ul></div></div></section></div><script>
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Type system · QuestDB</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="### Type system"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Type system · QuestDB"/><meta property="og:type" content="website"/><meta property="og:url" content="https://questdb.github.io/"/><meta property="og:description" content="### Type system"/><meta property="og:image" content="https://questdb.github.io/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://questdb.github.io/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/agate.min.css"/><link rel="alternate" type="application/atom+xml" href="https://questdb.github.io/blog/atom.xml" title="QuestDB Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://questdb.github.io/blog/feed.xml" title="QuestDB Blog RSS Feed"/><link rel="stylesheet" href="/css/code-block-buttons.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/favicon.png" alt="QuestDB"/><h2 class="headerTitleWithLogo">QuestDB</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/technology" target="_self">Technology</a></li><li class="siteNavGroupActive"><a href="/docs/documentation" target="_self">Documentation</a></li><li class=""><a href="/help" target="_self">Contact</a></li><li class=""><a href="/blog/" target="_self">Blog</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Using QuestDB</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Overview</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/documentation">Overview</a></li><li class="navListItem"><a class="navItem" href="/docs/storagemodel">Storage Model</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Getting Started</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/install">Installing QuestDB</a></li><li class="navListItem"><a class="navItem" href="/docs/run">Running QuestDB</a></li><li class="navListItem"><a class="navItem" href="/docs/gettestdata">Obtaining Test Data</a></li><li class="navListItem"><a class="navItem" href="/docs/console">Web Console</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Using QuestDB</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/sql">Query Language</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/datatypes">Type system</a></li><li class="navListItem"><a class="navItem" href="/docs/tableadmin">Table Admin</a></li><li class="navListItem"><a class="navItem" href="/docs/select">SELECT</a></li><li class="navListItem"><a class="navItem" href="/docs/join">JOINS</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Interfaces</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/java">JAVA</a></li><li class="navListItem"><a class="navItem" href="/docs/restful">REST</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">FAQ</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/faq">Frequently Asked</a></li></ul></div></div></section></div><script>
             var coll = document.getElementsByClassName('collapsible');
             var checkActiveCategory = true;
             for (var i = 0; i < coll.length; i++) {
@@ -54,83 +54,25 @@
                 };
               }
             });
-        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Data Types</h1></header><article><div><span><p>Field types that can be specified in <code>schema</code> are combinations of physical data type and text format.</p>
-<table class="alt tall">
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Type system</h1></header><article><div><span><h3><a class="anchor" aria-hidden="true" id="type-system"></a><a href="#type-system" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Type system</h3>
+<p>Type system is derived from Java language.</p>
+<table>
 <thead>
-<th>Imported Type</th>
-<th>Data Type</th>
-<th>Format</th>
+<tr><th style="text-align:right">Type Name</th><th style="text-align:right">Storage bits</th><th>Description</th></tr>
 </thead>
 <tbody>
-<tr>
-<td><code>BOOLEAN</code></td>
-<td><code>BOOLEAN</code></td>
-<td>case-insensitive match with `true`</td>
-</tr>
-<tr>
-<td><code>BYTE</code></td>
-<td><code>BYTE</code></td>
-<td>-127 to 127 int</td>
-</tr>
-<tr>
-<td><code>DOUBLE</code></td>
-<td><code>DOUBLE</code></td>
-<td>floating point value</td>
-</tr>
-<tr>
-<td><code>FLOAT</code></td>
-<td><code>FLOAT</code></td>
-<td>floating point value</td>
-</tr>
-<tr>
-<td><code>INT</code></td>
-<td><code>INT</code></td>
-<td></td>
-</tr>
-<tr>
-<td><code>LONG</code></td>
-<td><code>LONG</code></td>
-<td></td>
-</tr>
-<tr>
-<td><code>SHORT</code></td>
-<td><code>SHORT</code></td>
-<td></td>
-</tr>
-<tr>
-<td><code>STRING</code></td>
-<td><code>STRING</code></td>
-<td></td>
-</tr>
-<tr>
-<td><code>SYMBOL</code></td>
-<td><code>SYMBOL</code></td>
-<td></td>
-</tr>
-<tr>
-<td><code>DATE_ISO</code></td>
-<td><code>DATE</code></td>
-<td><code>2016-05-10T14:55:11.123Z</code></td>
-</tr>
-<tr>
-<td><code>DATE_1</code></td>
-<td><code>DATE</code></td>
-<td><code>2016-05-10 14:55:11</code></td>
-</tr>
-<tr>
-<td><code>DATE_2</code></td>
-<td><code>DATE</code></td>
-<td><code>MM/DD/YYYY</code></td>
-</tr>
-<tr>
-<td><code>DATE_3</code></td>
-<td><code>DATE</code></td>
-<td><code>DD/MM/YYYY</code></td>
-</tr>
+<tr><td style="text-align:right"><em>byte</em></td><td style="text-align:right"><code>8</code></td><td>signed integer  <code>-128</code> to <code>127</code></td></tr>
+<tr><td style="text-align:right"><em>short</em></td><td style="text-align:right"><code>16</code></td><td>signed integer  <code>-32768</code> to <code>32767</code></td></tr>
+<tr><td style="text-align:right"><em>int</em></td><td style="text-align:right"><code>32</code></td><td>signed integer  <code>0x80000000</code> to <code>0x7fffffff</code></td></tr>
+<tr><td style="text-align:right"><em>long</em></td><td style="text-align:right"><code>64</code></td><td>signed integer  <code>0x8000000000000000L</code> to <code>0x7fffffffffffffffL</code></td></tr>
+<tr><td style="text-align:right"><em>long256</em></td><td style="text-align:right"><code>256</code></td><td>unsigned 256-bit integer</td></tr>
+<tr><td style="text-align:right"><em>float</em></td><td style="text-align:right"><code>32</code></td><td>single precision IEEE 754 floating point value</td></tr>
+<tr><td style="text-align:right"><em>double</em></td><td style="text-align:right"><code>64</code></td><td>double precision IEEE 754 floating point value</td></tr>
+<tr><td style="text-align:right"><em>date</em></td><td style="text-align:right"><code>64</code></td><td>signed offset in milliseconds from <a href="https://en.wikipedia.org/wiki/Unix_time">Unix Epoch</a></td></tr>
+<tr><td style="text-align:right"><em>timestamp</em></td><td style="text-align:right"><code>64</code></td><td>signed offset in microseconds from <a href="https://en.wikipedia.org/wiki/Unix_time">Unix Epoch</a></td></tr>
+<tr><td style="text-align:right"><em>string</em></td><td style="text-align:right"><code>32+n*16</code></td><td>Length-prefixed sequence of UTF-16 encoded characters. Length is stored as signed 32-bit integer with maximum value of <code>0x7fffffff</code></td></tr>
+<tr><td style="text-align:right"><em>binary</em></td><td style="text-align:right"><code>64+n*8</code></td><td>Length-prefixed sequence of bytes. Length is stored as signed 64-bit integer with maximum value of <code>0x7fffffffffffffffL</code></td></tr>
+<tr><td style="text-align:right"><em>symbol</em></td><td style="text-align:right"><code>32</code></td><td>Symbols are stored as 32-bit signed indexes from symbol table. Each index will have a corresponding <code>string</code> value. Translation from index to string value is done automatically when data is being written or read. Symbol table is stored separately from column</td></tr>
 </tbody>
 </table>
-<blockquote>
-<p>Any date or integer column can be designated as <strong>timestamp</strong> using the <code>timestamp()</code> function. This makes it possible to use
-time-based <code>PARTITIONS</code> along with time joins such as <code>ASOF JOIN</code> and <code>SPLICE JOIN</code>. Find more information in the <strong><a href="/docs/tableadmin">CREATE TABLE</a></strong> section.</p>
-</blockquote>
-</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/sql"><span class="arrow-prev">← </span><span>SQL Language</span></a><a class="docs-next button" href="/docs/tableadmin"><span>Table Admin</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/favicon.png" alt="QuestDB" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/en/doc1.html">Getting Started (or other categories)</a><a href="/docs/en/doc2.html">Guides (or other categories)</a><a href="/docs/en/doc3.html">API Reference (or other categories)</a></div><div><h5>Community</h5><a href="/en/users.html">User Showcase</a><a href="https://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://discordapp.com/">Project Chat</a><a href="https://twitter.com/" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/">GitHub</a><a class="github-button" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><a href="https://opensource.facebook.com/" target="_blank" rel="noreferrer noopener" class="fbOpenSource"><img src="/img/oss_logo.png" alt="Facebook Open Source" width="170" height="45"/></a><section class="copyright">Copyright © 2019 QuestDB Limited</section></footer></div></body></html>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/sql"><span class="arrow-prev">← </span><span>Query Language</span></a><a class="docs-next button" href="/docs/tableadmin"><span>Table Admin</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/favicon.png" alt="QuestDB" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/en/doc1.html">Getting Started (or other categories)</a><a href="/docs/en/doc2.html">Guides (or other categories)</a><a href="/docs/en/doc3.html">API Reference (or other categories)</a></div><div><h5>Community</h5><a href="/en/users.html">User Showcase</a><a href="https://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://discordapp.com/">Project Chat</a><a href="https://twitter.com/" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/">GitHub</a><a class="github-button" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><a href="https://opensource.facebook.com/" target="_blank" rel="noreferrer noopener" class="fbOpenSource"><img src="/img/oss_logo.png" alt="Facebook Open Source" width="170" height="45"/></a><section class="copyright">Copyright © 2019 QuestDB Limited</section></footer></div></body></html>
