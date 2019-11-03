@@ -6,8 +6,7 @@ title: Technology
 
 
 ## Overview
-QuestDB is a bottom-up high performance technology stack. Each component challenges convention and is designed to be
-faster than any equivalent component out there.
+Questdb is a high performance, low latency database, which is optimised for time series. It is essentially a stack of components that can be assembled into products to fulfill a wide array of use cases. Each component challenges convention and is designed to be faster.
 
 Find more about our **database**, **messaging service** and **trading libraries** below.
 
@@ -18,46 +17,32 @@ Find more about our **database**, **messaging service** and **trading libraries*
 
 ## Database
 ### Java & Libraries
-QuestDB is programmed in JAVA. However, this is no traditional JAVA. Java is only used for its VM and JIT. 
-But none of the java standard libraries are being used. In addition, our code is fully
-zero-GC allowing for constant predictable performance.
+QuestDB is programmed in Java. However, this is no traditional Java, as none of its standard libraries are being used (Java is only used for its VM and JIT). In addition, our code is fully zero Garbage Collection (‘GC’), which results in constant and predictable performance.
 
-All the IO, including disk and network, is abstracted away in a thin JNI layer to make the underlying OS functions available to java.
-Libraries such as collections, eg lists and maps are rewritten to support primitive types and lend themselves to work cohesively with CPU caches
-Conversion routines, such as numeric to string and vice versa are rewritten to perform better than standard libraries algorithmically 
-and not create nor require the creation of intermediate objects.
+All the IO, including disk and network, is abstracted away in a thin JNI layer to make the underlying OS functions available to Java. 
+Libraries such as collections, lists and maps are rewritten to support primitive types. Libraries working cohesively with CPU caches conversion routines, such as numeric to string (and vice versa), have been rewritten to perform better than standard libraries algorithmically. As such, the creation of intermediate objects is not required.
 
 ### Timestamp & Dates
-QuestDB incorporates a brand new and unique date library that supports all date related arithmetic on both millisecond- and microsecond resolution timestamps. 
-Date to string and string to date conversion routines are compiled bytecode. Eg you date format gets compiled into format specific bytecode. 
-Net result is that this conversion is 100x faster than widely popular JodaTime.
+QuestDB incorporates a brand new and unique date library that supports all date related arithmetic for both millisecond and microsecond resolution timestamps. Date to string and string to date conversion routines are compiled bytecode. Date format is compiled into format specific bytecode. 
+This conversion is 100x faster than widely popular JodaTime.
 
 ### Queues
-There are are high performance queues unique in their ability to provide back-pressure feedback. 
-These queues are used to create tcp servers that have flow control.
+QuestDB includes high performance queues, which can provide back-pressure feedback. These queues are used to create tcp servers that have flow control.
 
 ### Storage
-Storage itself is column based. Each column is a virtualised memory mapped file. In that column is a sequence of large 
-memory pages stitched together by an interface that makes it look like one contiguous memory chunk. Storage is optimised 
-also optimised for CPU cache efficiency.
+Storage is column based. Each column is a virtualized memory mapped file. Inside each column we find a sequence of large memory pages stitched together via an interface that makes it look like one contiguous memory chunk. Storage is also optimised for CPU cache efficiency.
 
 ### SQL
-The SQL system is a sort of functional language where single execution plan is a chain on monads with each having as little 
-state as possible. Data is lifted directly from memory pages and passed out with no- or as little copying as possible. 
-Sometimes not copying is not possible when you hash or sort a data set.
+The SQL system is a functional language in which a single execution plan is a chain on monads, each having as little state as possible. The data is lifted directly from memory pages and passed out with no or as little copying as possible. Avoiding copying the data may not be possible when data sets are hashed or sorted. 
 
-To reduce ops and steps sql has optimiser that effectively rewrites query to remove unnecessary steps and inefficiencies 
-human would make. In particular it rewrites join clauses and where clauses to trim as much data at the start of pipeline as possible. 
+SQL includes an optimiser, which effectively rewrites queries to remove unnecessary steps and inefficiencies human would make otherwise. In particular, join and clauses, which are rewritten to trim as much data as possible from the start of the pipeline. 
+This allows to lift and manipulate the least possible amount of data to ensure maximum query performance and minimum resource usage.
 
 ### Zero GC & Off heap data structures
-All of data structures touched by data from database live outside of java heap. The whole system is without exaduration totally zero GC.
+We can access native memory instead of heap memory (memory that is managed by the JVM to represent Java objects), and as such manage memory ourselves instead of letting Java’s JVM manage the process. Moreover QuestDB uses does not allocate any memory along execution paths.
+
+In other words, all the data structures ‘touched’ by the data from the database live outside Java’s heap. The whole system is without exaduration and thus totally zero GC.
+
 
 ### Heavy usage
-QuestDB is able to ingest or send amounts of data limited only by disk space. It has an asymmetrical 
-ratio of active users to server threads. It is able to send or receive data to/from client that’s available 
-and switch over to from idle to active client instantly. 
-
-
-## Messaging service
-
-## Trading libraries
+QuestDB is able to ingest or send large amounts of data, which is only limited by disk’s space. It has an asymmetrical ratio of active users to server threads. It is able to send or receive data to/from a client that is available and switch over to from an idle to active client instantly.

@@ -5,25 +5,18 @@ sidebar_label: Overview
 ---
 
 ## Introduction
-QuestDB is a relational column-oriented database particularly optimised for time-series that uses SQL. 
-We are free from third-party dependencies and built for performance and scalability. 
-QuestDB will automatically use your hardware to its maximum and run fast on high-end servers and minimal portable edge devices alike.
+QuestDB is a relational column-oriented database, which is particularly optimised for time-series and with familiar SQL. We are free from third-party dependencies and built for ultimate performance and scalability. QuestDB pushes your hardware to the maximum and can run fast on high-end servers as well as minimal portable edge devices alike.
 
-## Why did we build QuestDB
-There are many innovative databases out there. However, most of the innovations have been 
-geared towards the hardware rather than the software itself. While tremendous progress has been made on parallelisation, 
-software core efficiency has been left aside.
+## Why QuestDB
+Most of the innovations surrounding databases have been geared towards the hardware rather than the software itself. While tremendous progress has been made on parallelisation, software's core efficiency has stalled.
 
-Our dev team consists of low-latency developers who
-worked in HFT, and our approach is different: rather than immediately focusing on scaling out and parallelising tasks, 
-we put over 5 years on R&D on single-thread performance. We achieve maximum efficiency for a given unit of hardware, 
-with performance on a single thread multiples times faster than multi-threaded databases.
+QuestDB's dev team consists of low-latency developers who worked in HFT. Our approach is unique: rather than immediately focusing on scaling and parallelisation, we dedicated over 5 years toward R&D to maximise single-thread performance. As such, we achieve maximum efficiency for a given unit of hardware. The result is that QuestDB’s performance on a single thread is already multiples times faster than multi-threaded databases.
 
 ## Who can use QuestDB
-QuestDB can cover most of database needs, however it is mostly suited for users that
-- store large datasets, particularly time-series, looking to reduce disk space
-- undertake heavy data processing and looking to reduce computation bills
-- want to use hardware to the maximum rather than upgrade or purchase more
+- QuestDB can cover most of database needs. However it is particularly suited for users who;
+- Store large data sets (particularly time-series), and optimise disk space
+- Undertake heavy data processing and minimise computation related costs
+- Want to maximise each unit of hardware to the fullest rather than upgrade or purchase more servers
 
 ## Explore
  Get Started:
