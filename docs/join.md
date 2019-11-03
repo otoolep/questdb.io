@@ -1,29 +1,29 @@
 ---
 id: join
-title: JOIN
-sidebar_label: JOIN
+title: JOINS
+sidebar_label: JOINS
 ---
 
-`JOIN` is used in order to combine rows from two or more tables together based on a common column.
-It can be used directly on tables, or on the results of other queries themselves.
+QuestDB supports the following types of joins: `INNER`, `OUTER`, `CROSS`, `ASOF` and `SPLICE`. `FULL` joins are not yet implemented and are on our roadmap. All supported
+join types can be combined in a single SQL statement; it is job of QuestDB SQL optmiser to determine best execution order and algorithms.
 
-QuestDB supports (INNER) JOIN, LEFT JOIN, ASOF JOIN, OUTER JOIN and CROSS JOIN.
+There are no known limitations on size of tables or sub-queries participating in joins and there are no limitations on number of joins either.
 
+## Join Syntax
+![alt-text](assets/joins.svg)
+
+Following data join columns from joined tables are combined in single row. Same name columns originating from different tables will be automatically aliased to create
+unique column namespace of the result set.
+
+Althought it is a best pactice to diligently specify join conditions, QuestDB will also analyse `WHERE` clause for implicit join condition and will derive transient join conditions where necessary.
+
+> When tables are joined on column that has the same name in both tables you can use shorthand `ON (column)` clause
 
 ## (INNER) JOIN 
 
 ### Overview
 `(INNER) JOIN` is used to return rows from 2 tables where the records on the compared column have matching values in both tables
 ![alt-text](assets/innerjoin.gif)
-
-### Syntax
-General syntax is as follows:
-```sql
-SELECT column_names 
-FROM table1 
-[INNER] JOIN table2 
-ON table1.column_name = table2.column_name;
-```
 
 ### Examples
 
@@ -49,21 +49,42 @@ ON ratings.movieId = id;
 ## OUTER JOIN
 
 ### Overview
-`(LEFT) OUTER JOIN` will return **all** records from the LEFT table, and if matched, the records of the RIGHT table.
-When there is no match for the RIGHT table, it will return `NULL` values.
+`OUTER JOIN` will return **all** records from the LEFT table, and if matched, the records of the RIGHT table.
+When there is no match for the RIGHT table, it will return `NULL` values in right table fields
 ![alt-text](assets/leftjoin.gif)
 
-### Syntax
+### Examples
 General syntax is as follows:
 ```sql
-SELECT column_names 
-FROM table1 
-OUTER JOIN table2 
-ON table1.column_name = table2.column_name;
+SELECT tab1.colA, tab2.colB 
+FROM table1 tab1 
+OUTER JOIN table2 tab2
+ON tab1.colA = tab2.colB;
 ```
 
-### Examples
-@TODO
+`OUTER JOIN` query can also be used to select all rows in left table that do not exist in right table. 
+
+```sql
+SELECT tab1.colA, tab2.colB 
+FROM table1 tab1 
+OUTER JOIN table2 tab2
+ON tab1.colA = tab2.colB
+WHERE tab2.colB = NULL
+```
+
+## CROSS JOIN
+
+### Overview
+`CROSS JOIN` will return the cartesian product of the two tables being joined. It can be used to a table with all possible combinations.
+
+> Note that `CROSS JOIN` does not have `ON` clause.
+
+### EXAMPLE
+The following will return all possible combinations of starters and deserts
+```sql
+SELECT * FROM starters CROSS JOIN deserts;
+```
+
 
 ## ASOF JOIN
 
@@ -72,46 +93,41 @@ ON table1.column_name = table2.column_name;
 For a given record at a given timestamp, it will return the corresponding record in the other table at the closest timestamp
 **prior to** the timstamp in the first table.
 
-> To be able to leverage `ASOF JOIN`, both joined table must have a designated `timestamp` column. To designate a column as `timestamp`, 
+>To be able to leverage `ASOF JOIN`, both joined table must have a designated `timestamp` column. To designate a column as `timestamp`, 
 >please refer to the **[CREATE TABLE](tableadmin.md)** section.
 
-### Syntax
+`ASOF` join is performed on tables or result sets that are ordered by time. When table is created as ordered by time order of records is
+enforced and timestamp column name is in table metadata. `ASOF` join will use timestamp column from metadata.
 
-`ASOF JOIN` is used with the following syntax:
-```sql
-SELECT columns
-FROM table1
-ASOF JOIN (SELECT columns from table2)
-[ON table1.column1 = table2.column2];
-```
-
-> In this case, the timestamps used will be these of table1. If you would like to return a table where ALL timestamps of BOTH tables are returned
->and for each table the `ASOF` value of the other table, please see **`SPLICE JOIN`**.
-
-### Examples
+### Example
 Consider the following tables.
 ```shell script
-ASKS                               |BIDS
-=====================================================================
-ts,                          bid   | ts,                          ask
----------------------------------------------------------------------
-2019-10-17T00:00:00.000000Z, 100   | 2019-10-17T00:00:00.100000Z, 101
-2019-10-17T00:00:00.200000Z, 101   | 2019-10-17T00:00:00.300000Z, 102
-2019-10-17T00:00:00.400000Z, 102   | 2019-10-17T00:00:00.500000Z, 103
+ASKS                               
+===================================
+ts,                          ask   
+-----------------------------------
+2019-10-17T00:00:00.000000Z, 100   
+2019-10-17T00:00:00.200000Z, 101   
+2019-10-17T00:00:00.400000Z, 102   
 ```
 
-Note that there is no `ask` at timestamp `2019-10-17T00:00:00.100000Z`. The `ASOF JOIN` will look for the value in the
-`ask` table that has the closest timestamp inferior or equal to the target timestamp.
+```shell script
+BIDS                             
+=================================
+ ts,                          bid
+---------------------------------
+ 2019-10-17T00:00:00.100000Z, 101
+ 2019-10-17T00:00:00.300000Z, 102
+ 2019-10-17T00:00:00.500000Z, 103
+```
 
 Therefore the following query:
 ```sql
-SELECT ts timebid, bid, ask 
-FROM ASKS 
-ASOF JOIN 
-    (
-    SELECT ts timesask, ask ask 
-    FROM ASKS
-    );
+SELECT
+ BIDS.ts timebid,
+ bid,
+ ask 
+FROM BIDS ASOF JOIN ASKS
 ```
 
 Will return the following results
@@ -125,60 +141,61 @@ ts,                          bid        ask
 2019-10-17T00:00:00.400000Z, 102,      102
 ```
 
-Note that the above query does not use the optional `ON` clause. In case you need additional filtering on the two tables, you can use the `ON` clause as follows:
+>Note that there is no `ASKS` at timestamp `2019-10-17T00:00:00.100000Z`. The `ASOF JOIN` will look for the value in the
+>`BIDS` table that has the closest timestamp inferior or equal to the target timestamp.
+
+In case tables do not have designated timestamp column, but data is in chronological order, timestamp columns can be specified at runtime:
 
 ```sql
-bSELECT ts timebid, instrument bidInstrument, bid, ask 
-FROM ASKS 
-ASOF JOIN 
-    (
-    SELECT ts timesask, instrument askInstrument, ask ask 
-    FROM ASKS
-    )
-    ON bidInstrument=askInstrument;
+SELECT
+ BIDS.ts timebid,
+ bid,
+ ask 
+FROM (BIDS timestamp(ts)) ASOF JOIN (ASKS timestamp (ts))
 ```
 
+>`ASOF` join does not check timestamp order, if data is not in chronological order join result is non-deterministic
+
+Above query assumes that there is only one instrument in `BIDS` and `ASKS` tables and therefore does not use the optional `ON` clause. 
+
+If both tables store data for multiple instruments `ON` clause will allow you to find bids for asks with matching instrument value.
+
+```sql
+SELECT * FROM ASKS ASOF JOIN BIDS ON (instrument);
+```
 
 ## SPLICE JOIN
 
 ### Overview
-`SPLICE JOIN` is a full `ASOF JOIN`. It will return all the timestamps from table1 and table2.
-For each timestamp in a given table, it will other fields with either the exact corresponding value in the other table (for exact match), 
-or the ASOF value otherwise.
-
-### Syntax
-`SPLICE JOIN` follows the same syntax as `ASOF JOIN`.
-```sql
-SELECT columns
-FROM table1
-SPLICE JOIN (SELECT columns from table2)
-[ON table1.column1 = table2.column2];
-```
+`SPLICE JOIN` is a full `ASOF JOIN`. It will return all the records from both tables. For each record from left table splice join will find
+prevailing record from right table and for each record from right table - prevailing record from left table. 
 
 ### Examples
-Consider the following tables.
+Considering the following tables.
 ```shell script
-ASKS                               |BIDS
-=====================================================================
-ts,                          bid   | ts,                          ask
----------------------------------------------------------------------
-2019-10-17T00:00:00.000000Z, 100   | 2019-10-17T00:00:00.100000Z, 101
-2019-10-17T00:00:00.200000Z, 101   | 2019-10-17T00:00:00.300000Z, 102
-2019-10-17T00:00:00.400000Z, 102   | 2019-10-17T00:00:00.500000Z, 103
+ASKS                               
+===================================
+ts,                          ask   
+-----------------------------------
+2019-10-17T00:00:00.000000Z, 100   
+2019-10-17T00:00:00.200000Z, 101   
+2019-10-17T00:00:00.400000Z, 102   
 ```
 
-`SPLICE JOIN` will first build a list of **all unique timestamps** by comparing the lists of the `ASKS` and `BIDS` tables.
-It will then return for each timestamp the exact matching value, or the ASOF value if no match is found.
+```shell script
+BIDS                             
+=================================
+ ts,                          bid
+---------------------------------
+ 2019-10-17T00:00:00.100000Z, 101
+ 2019-10-17T00:00:00.300000Z, 102
+ 2019-10-17T00:00:00.500000Z, 103
+```
 
-Therefore the following query:
+This query:
 ```sql
 SELECT ts timebid, bid, ask 
-FROM ASKS 
-SPLICE JOIN 
-    (
-    SELECT ts timesask, ask ask 
-    FROM ASKS
-    );
+FROM BIDS SPLICE JOIN ASKS
 ```
 
 Will return the following results
@@ -199,28 +216,11 @@ Note that the above query does not use the optional `ON` clause. In case you nee
 
 ```sql
 SELECT ts timebid, instrument bidInstrument, bid, ask 
-FROM ASKS 
+FROM BIDS 
 SPLICE JOIN 
     (
     SELECT ts timesask, instrument askInstrument, ask ask 
     FROM ASKS
     )
     ON bidInstrument=askInstrument;
-```
-
-## CROSS JOIN
-
-### Overview
-`CROSS JOIN` will return the cartesian product of the two tables being joined. It can be used to a table with all possible combinations.
-
-### SYNTAX
-```sql
-table1 CROSS JOIN table2;
-```
-> Note that `CROSS JOIN` does not have `ON` clause.
-
-### EXAMPLE
-The following will return all possible combinations of starters and deserts
-```sql
-SELECT * FROM starters CROSS JOIN (SELECT * FROM deserts);
 ```
