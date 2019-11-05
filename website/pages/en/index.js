@@ -101,25 +101,20 @@ class Index extends React.Component {
                 <h2>What is QuestDB?</h2>
 
                 <p>
-                    QuestDB is a high-performance, low-latency time-series database.
-                    We offer unparalleled single thread performance.
-                    We write at below 90 nanoseconds per entry.
-                    Fit for both the cloud and the edge.
+                    QuestDB is a high-performance, low-latency time-series database
+                    that runs natively across multiple platforms and architectures, from enterprise servers to ARM devices on the edge.
+                    Our coding principles are inherited from high-frequency and low-latency trading.
                 </p>
-
                 <p>
-                    We achieve maximum efficiency for a given unit of hardware with cutting-edge 
-                    proprietary software. QuestDB on a single thread is already multiples times 
-                    faster than multi-threaded databases.
+                    We achieve maximum efficiency for a given unit of hardware with cutting-edge
+                    proprietary software. Core performance has been pushed to the maximum; QuestDB on a single thread is already many times faster than multi-threaded databases.
                 </p>
-
                 <p>
-                    We also offer trading technology such as microsecond messaging services
-                    and nanosecond orderbook calculators.
+                    We provide full stack solutions ready for enterprise, IoT/edge and low-latency trading.
                 </p>
 
             </div>
-        );
+        );h
 
         const TryOut = () => (
             <Block id="try">
