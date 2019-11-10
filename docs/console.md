@@ -20,13 +20,13 @@ If QuestDB is running on another machine of your network, the webconsole can be 
 
 The load screen can be accessed by clicking this icon on the left-side menu. 
 
->Load menu is accessed with this button on the left navigation bar ![alt-text](assets/upload-button.PNG) 
+>Load menu is accessed with this button on the left navigation bar ![alt-text](assets/upload-button.png) 
 
 
 ### Drag and drop
 Simply drag and drop the data file you wish to import in the drag & drop area:
 
-![alt-text](assets/drag-and-drop.JPG)
+![alt-text](assets/drag-and-drop.jpg)
 
 ### Import from clipboard
 > You can also `COPY & PASTE` from your clipboard into this area. Select the data you would like to import
@@ -60,7 +60,7 @@ for a large file, we recommend you use the API.
 After you have loaded data with one of the two methods listed above, you will see it in your console.
 You can now change the import parameters and import again if you wish. The option buttons you are:
 
-![alt-text](assets/actions-empty.PNG)>
+![alt-text](assets/actions-empty.png)>
 
 
 <table class="alt tall">
@@ -94,7 +94,7 @@ If not, header names will be generated automatically (f1, f2, etc.)
 </tbody>
 </table>
 
->This button will trigger the upload with the parameters selected. ![alt-text](assets/upload-button.PNG) 
+>This button will trigger the upload with the parameters selected. ![alt-text](assets/upload-button.png) 
 
 ### Amending schema
 When importing from file or copy/paste, QuestDB will automatically detect the type of data in each column.
@@ -102,7 +102,7 @@ If you click on the File name in the import window, it will open the schema of t
 You can see which types have been used.
 
 >You can amend Type for any column by selecting the type of your choice in the dropdown menu.
-> You will then need to trigger the import again using the import button  ![alt-text](assets/upload-button.PNG) 
+> You will then need to trigger the import again using the import button  ![alt-text](assets/upload-button.png) 
 
 
 ![alt-text](assets/amendtype.jpg) 
@@ -110,20 +110,20 @@ You can see which types have been used.
 
 ## Querying Data
 >The SQL console allows you to run queries on your database directly from the browser. 
-You can access it via this button situated on the left-side menu:  ![alt-text](assets/console-sql.PNG)
+You can access it via this button situated on the left-side menu:  ![alt-text](assets/console-sql.png)
 
 
 ### Running queries
 Simply type your query in the editor. Then click 
 
-![alt-text](assets/run-query.PNG)
+![alt-text](assets/run-query.png)
 
 The results will be displayed in the table below the SQL editor. 
 You will also see metrics such as `execution time` and `number of records`. 
 
 Example:
 
-![alt-text](assets/console-output-example.PNG)
+![alt-text](assets/console-output-example.png)
 
 
 ### Exporting Query Results
