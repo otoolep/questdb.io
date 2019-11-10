@@ -114,7 +114,7 @@ class Index extends React.Component {
                 </p>
 
             </div>
-        );h
+        );
 
         const TryOut = () => (
             <Block id="try">
