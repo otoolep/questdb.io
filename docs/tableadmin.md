@@ -284,7 +284,7 @@ DROP TABLE 'TABLE_NAME';
 DROP TABLE ratings;
 ```
 
-> When you would like to delete the data inside a table but to keep the table, use the **[truncate](truncate.md)** function.
+> When you would like to delete the data inside a table but to keep the table, use the **truncate** function.
 >
 
 
@@ -303,4 +303,4 @@ TRUNCATE TABLE 'TABLE_NAME';
 TRUNCATE TABLE ratings;
 ```
 
-> When you would like to delete both the data and the table structure, use the **[drop](drop.md)** function.
+> When you would like to delete both the data and the table structure, use the **drop** function.
