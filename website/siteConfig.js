@@ -73,7 +73,7 @@ const siteConfig = {
   // This copyright info is used in /core/Footer.js and blog RSS/Atom feeds.
   copyright: `Copyright © ${new Date().getFullYear()} QuestDB Limited`,
 
-  //Tracking ID for google analytics
+  //Tracking ID for Google analytics
   gaTrackingId: 'UA-145747842-1',
 
   highlight: {
