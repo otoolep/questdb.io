@@ -1,5 +1,5 @@
 ---
-id: tut_timeseries
+id: tut_first_db
 title: Your first database
 sidebar_label: Your first database
 ---
