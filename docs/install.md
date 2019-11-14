@@ -10,9 +10,7 @@ We support the following platforms:
 * Windows 64-bit
 * Linux 64-bit
 
-We support JAVA 8 SDK and JRE
-
->32-bit versions are not supported.
+We support 64-bit JAVA 8 SDK and JRE
 
 We recommend to have Java installed and `JAVA_HOME` environment variable setup. 
 Both Windows and Linux wrappers for QuestDB will require `JAVA_HOME`. OSX wrapper 
