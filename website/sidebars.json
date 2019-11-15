@@ -9,7 +9,8 @@
       "install",
       "run",
       "gettestdata",
-      "console"
+      "console",
+      "tut_first_db"
     ],
     "Using QuestDB": [
       "sql",
