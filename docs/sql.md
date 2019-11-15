@@ -11,13 +11,14 @@ QuestDB attempts to implement standard ANSI SQL. We also attempt to be PostgreSQ
 2. ON
 3. JOIN
 4. WHERE
-5. GROUP BY (implicit)
-6. WITH
-7. HAVING (implicit)
-8. SELECT
-9. DISTINCT
-10. ORDER BY
-11. LIMIT
+5. LATEST BY
+6. GROUP BY (implicit)
+7. WITH
+8. HAVING (implicit)
+9. SELECT
+10. DISTINCT
+11. ORDER BY
+12. LIMIT
 
 We also implemted sub-queries. They can be used anywhere table name is used. Our sub-query implementation adds virtually zero to SQL execution cost and we encourage their use to add flavour of functional language to old-school SQL. 
 
@@ -74,7 +75,7 @@ Here we avoided repetitive aggregation expressions without extra furniture synta
 
 We have extended SQL language to support our data storage model and simplify semantics of timeseries queries.
 
-- `LATEST BY`
+- **[LATEST BY](latestby.md)**
 - `SAMPLE BY`
 
 Please follow the links for detailed description of these clauses.

@@ -16,6 +16,7 @@
       "datatypes",
       "tableadmin",
       "select",
+      "latestby",
       "join"
     ],
     "Interfaces": [
