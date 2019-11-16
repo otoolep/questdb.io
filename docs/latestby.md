@@ -1,7 +1,7 @@
 ---
-id: latestby
-title: LATEST BY clause
-sidebar_label: LATEST BY
+id: crud
+title: CRUD Functions
+sidebar_label: CRUD Functions
 ---
 
 ## Overview
@@ -22,6 +22,17 @@ create table balances (
 	status byte, 
 	timestamp timestamp
 );
+```
+
+```text
+curl -G "http://localhost:13005/exec" --data-urlencode "query=
+create table balances (
+    cust_id int,
+    balance_ccy symbol,
+    balance double,
+    status byte,
+    timestamp timestamp
+)"
 ```
 
 Here:

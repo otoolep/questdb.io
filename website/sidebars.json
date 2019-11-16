@@ -15,9 +15,9 @@
     "Using QuestDB": [
       "sql",
       "datatypes",
+      "crud",
       "tableadmin",
       "select",
-      "latestby",
       "join"
     ],
     "Interfaces": [
