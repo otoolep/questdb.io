@@ -14,6 +14,8 @@ table will result in error. When table is not partitioned, records can be added 
 
 Lets create table that holds bank balances for customers.
 
+<!--DOCUSAURUS_CODE_TABS-->
+<!--SQL-->
 ```sql
 create table balances (
 	cust_id int, 
@@ -24,7 +26,7 @@ create table balances (
 );
 ```
 
-<!--DOCUSAURUS_CODE_TABS-->
+
 <!--curl-->
 ```shell 
 curl -G "http://localhost:13005/exec" --data-urlencode "query=
@@ -36,12 +38,6 @@ create table balances (
     timestamp timestamp
 )"
 ```
-
-<!--java-->
-```java
-
-```
-
 <!--END_DOCUSAURUS_CODE_TABS-->
 
 Here:
