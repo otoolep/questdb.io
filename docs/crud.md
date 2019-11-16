@@ -24,7 +24,9 @@ create table balances (
 );
 ```
 
-```text
+<!--DOCUSAURUS_CODE_TABS-->
+<!--curl-->
+```shell 
 curl -G "http://localhost:13005/exec" --data-urlencode "query=
 create table balances (
     cust_id int,
@@ -34,6 +36,13 @@ create table balances (
     timestamp timestamp
 )"
 ```
+
+<!--java-->
+```java
+
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
 
 Here:
  - `cust_id` is the customer identifier. It unuquely identifies customer.

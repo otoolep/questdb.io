@@ -155,25 +155,27 @@ Results should looke like this
 
 ```sql
 -- Select average hourly temperature in Miami for Omron sensors
-SELECT ts, city, make, average(temp) 
+SELECT ts, city, make, avg(temp)
 FROM readings 
 JOIN (
     SELECT ID sensId, city, make
     FROM sensors
     WHERE city='Miami' AND make='Omron') 
-ON readings.sensorId = sensId sample by 1h;
+ON readings.sensorId = sensId 
+WHERE ts ='2019-10-21;1d' -- this is an interval between 21-10 and 1day later
+SAMPLE BY 1h;
 ```
 
 Results should look like this
 
 |ts	                            |city	|make	|average
 |-------------------------------|-------|-------|------------
-|2019-10-17T00:00:00.000000Z	|Miami	|Omron	|18.97225935
-|2019-10-17T01:00:00.000000Z	|Miami	|Omron	|19.15940157
-|2019-10-17T02:00:00.000000Z	|Miami	|Omron	|18.92696357
-|2019-10-17T03:00:00.000000Z	|Miami	|Omron	|19.09917038
-|2019-10-17T04:00:00.000000Z	|Miami	|Omron	|19.1161127
-|2019-10-17T05:00:00.000000Z	|Miami	|Omron	|18.93939597
+|2019-10-21T00:00:00.000000Z	|Miami	|Omron	|18.97225935
+|2019-10-21T01:00:00.000000Z	|Miami	|Omron	|19.15940157
+|2019-10-21T02:00:00.000000Z	|Miami	|Omron	|18.92696357
+|2019-10-21T03:00:00.000000Z	|Miami	|Omron	|19.09917038
+|2019-10-21T04:00:00.000000Z	|Miami	|Omron	|19.1161127
+|2019-10-21T05:00:00.000000Z	|Miami	|Omron	|18.93939597
 |...                            |...    |...    |...
 
 
