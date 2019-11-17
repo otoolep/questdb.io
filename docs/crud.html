@@ -1,0 +1,118 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>CRUD Functions · QuestDB</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## Overview"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="CRUD Functions · QuestDB"/><meta property="og:type" content="website"/><meta property="og:url" content="https://questdb.github.io/"/><meta property="og:description" content="## Overview"/><meta property="og:image" content="https://questdb.github.io/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://questdb.github.io/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/agate.min.css"/><link rel="alternate" type="application/atom+xml" href="https://questdb.github.io/blog/atom.xml" title="QuestDB Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://questdb.github.io/blog/feed.xml" title="QuestDB Blog RSS Feed"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-145747842-1', 'auto');
+              ga('send', 'pageview');
+            </script><link rel="stylesheet" href="/css/code-block-buttons.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/favicon.png" alt="QuestDB"/><h2 class="headerTitleWithLogo">QuestDB</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/technology" target="_self">Technology</a></li><li class="siteNavGroupActive"><a href="/docs/documentation" target="_self">Documentation</a></li><li class=""><a href="/help" target="_self">Contact</a></li><li class=""><a href="/blog/" target="_self">Blog</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Using QuestDB</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Overview</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/documentation">Overview</a></li><li class="navListItem"><a class="navItem" href="/docs/storagemodel">Storage Model</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Getting Started</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/install">Installing QuestDB</a></li><li class="navListItem"><a class="navItem" href="/docs/run">Running QuestDB</a></li><li class="navListItem"><a class="navItem" href="/docs/gettestdata">Obtaining Test Data</a></li><li class="navListItem"><a class="navItem" href="/docs/console">Web Console</a></li><li class="navListItem"><a class="navItem" href="/docs/tut_first_db">Your first database</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Using QuestDB</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/sql">Query Language</a></li><li class="navListItem"><a class="navItem" href="/docs/datatypes">Type system</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/crud">CRUD Functions</a></li><li class="navListItem"><a class="navItem" href="/docs/tableadmin">Table Admin</a></li><li class="navListItem"><a class="navItem" href="/docs/select">SELECT</a></li><li class="navListItem"><a class="navItem" href="/docs/join">JOINS</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Interfaces</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/java">JAVA</a></li><li class="navListItem"><a class="navItem" href="/docs/restful">REST</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">FAQ</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/faq">Frequently Asked</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">CRUD Functions</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="overview"></a><a href="#overview" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Overview</h2>
+<p><code>LASTEST BY</code> allows QuestDB developers implement CRUD operations over immutable data store. In this document we will describe each of CRUD operations and how to implement it using <code>LATEST BY</code>.</p>
+<h3><a class="anchor" aria-hidden="true" id="c-reate"></a><a href="#c-reate" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>(C)reate</h3>
+<p>Create operation in QuestDB appends record to bottom of table. If table is partitioned timestamp value determines partition the record is appended to. Only last partition can be appended to and attempt to add timestamp in middle of
+table will result in error. When table is not partitioned, records can be added in any timestamp order and table will have only one partition.</p>
+<p>Lets create table that holds bank balances for customers.</p>
+<div class="tabs"><div class="nav-tabs"><div id="tab-group-7-tab-8" class="nav-link active" data-group="group_7" data-tab="tab-group-7-content-8">SQL Console</div><div id="tab-group-7-tab-9" class="nav-link" data-group="group_7" data-tab="tab-group-7-content-9">curl</div><div id="tab-group-7-tab-10" class="nav-link" data-group="group_7" data-tab="tab-group-7-content-10">Embedded Java</div><div id="tab-group-7-tab-11" class="nav-link" data-group="group_7" data-tab="tab-group-7-content-11">JDBC</div></div><div class="tab-content"><div id="tab-group-7-content-8" class="tab-pane active" data-group="group_7" tabindex="-1"><div><span><pre><code class="hljs css language-sql"><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> balances (<br />    cust_id <span class="hljs-built_in">int</span>, <br />    balance_ccy symbol, <br />    balance <span class="hljs-keyword">double</span>, <br />    <span class="hljs-keyword">status</span> <span class="hljs-keyword">byte</span>, <br />    <span class="hljs-built_in">timestamp</span> <span class="hljs-built_in">timestamp</span><br />);<br /></code></pre>
+</span></div></div><div id="tab-group-7-content-9" class="tab-pane" data-group="group_7" tabindex="-1"><div><span><pre><code class="hljs css language-shell">curl -G "http://localhost:13005/exec" --data-urlencode "query=<br />create table balances (<br />    cust_id int,<br />    balance_ccy symbol,<br />    balance double,<br />    status byte,<br />    timestamp timestamp<br />)"<br /></code></pre>
+</span></div></div><div id="tab-group-7-content-10" class="tab-pane" data-group="group_7" tabindex="-1"><div><span><pre><code class="hljs css language-java"><span class="hljs-keyword">final</span> String cairoDatabaseRoot = <span class="hljs-string">"/tmp"</span>;<br /><span class="hljs-keyword">try</span> (CairoEngine engine = <span class="hljs-keyword">new</span> CairoEngine(<br />    <span class="hljs-keyword">new</span> DefaultCairoConfiguration(cairoDatabaseRoot))<br />) {<br />    <span class="hljs-keyword">try</span> (SqlCompiler compiler = <span class="hljs-keyword">new</span> SqlCompiler(engine)) {<br />        compiler.compile(<span class="hljs-string">"create table balances (\n"</span> +<br />                <span class="hljs-string">"    cust_id int, \n"</span> +<br />                <span class="hljs-string">"    balance_ccy symbol, \n"</span> +<br />                <span class="hljs-string">"    balance double, \n"</span> +<br />                <span class="hljs-string">"    status byte, \n"</span> +<br />                <span class="hljs-string">"    timestamp timestamp\n"</span> +<br />                <span class="hljs-string">")"</span>);<br />    }<br />}<br /></code></pre>
+</span></div></div><div id="tab-group-7-content-11" class="tab-pane" data-group="group_7" tabindex="-1"><div><span><pre><code class="hljs css language-java">Properties properties = <span class="hljs-keyword">new</span> Properties();<br />properties.setProperty(<span class="hljs-string">"user"</span>, <span class="hljs-string">"admin"</span>);<br />properties.setProperty(<span class="hljs-string">"password"</span>, <span class="hljs-string">"quest"</span>);<br />properties.setProperty(<span class="hljs-string">"sslmode"</span>, <span class="hljs-string">"disable"</span>);<br /><br /><span class="hljs-keyword">final</span> Connection connection = <br />    DriverManager.getConnection(<span class="hljs-string">"jdbc:postgresql://localhost:9120/qdb"</span>, properties);<br />PreparedStatement statement = connection.prepareStatement(<br />    <span class="hljs-string">"create table balances ("</span> +<br />    <span class="hljs-string">"    cust_id int,"</span> +<br />    <span class="hljs-string">"    balance_ccy symbol,"</span> +<br />    <span class="hljs-string">"    balance double,"</span> +<br />    <span class="hljs-string">"    status byte,"</span> +<br />    <span class="hljs-string">"    timestamp timestamp"</span> +<br />    <span class="hljs-string">")"</span><br />);<br />statement.execute();<br />connection.close();<br /><br /></code></pre>
+</span></div></div></div></div>
+<p>Here:</p>
+<ul>
+<li><code>cust_id</code> is the customer identifier. It unuquely identifies customer.</li>
+<li><code>balance_ccy</code> balance currency. We use <code>SYMBOL</code> here to avoid storing text against each record to save space and increase database performance</li>
+<li><code>balance</code> is the current balance for customer and currency tuple</li>
+<li><code>timestamp</code> timestamp in microseconds of the record</li>
+</ul>
+<p>Lets insert records:</p>
+<pre><code class="hljs css language-sql"><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> balances (cust_id, balance_ccy, balance, <span class="hljs-built_in">timestamp</span>)
+    <span class="hljs-keyword">values</span> (<span class="hljs-number">1</span>, <span class="hljs-string">'USD'</span>, <span class="hljs-number">1500.00</span>, to_timestamp(<span class="hljs-number">6000000001</span>));
+
+<span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> balances (cust_id, balance_ccy, balance, <span class="hljs-built_in">timestamp</span>)
+    <span class="hljs-keyword">values</span> (<span class="hljs-number">1</span>, <span class="hljs-string">'EUR'</span>, <span class="hljs-number">650.50</span>, to_timestamp(<span class="hljs-number">6000000001</span>));
+
+<span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> balances (cust_id, balance_ccy, balance, <span class="hljs-built_in">timestamp</span>)
+    <span class="hljs-keyword">values</span> (<span class="hljs-number">2</span>, <span class="hljs-string">'USD'</span>, <span class="hljs-number">900.75</span>, to_timestamp(<span class="hljs-number">6000000001</span>));
+
+<span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> balances (cust_id, balance_ccy, balance, <span class="hljs-built_in">timestamp</span>)
+    <span class="hljs-keyword">values</span> (<span class="hljs-number">2</span>, <span class="hljs-string">'EUR'</span>, <span class="hljs-number">880.20</span>, to_timestamp(<span class="hljs-number">6000000001</span>));
+</code></pre>
+<p>To select these records we can use basic <code>SELECT</code>:</p>
+<pre><code class="hljs css language-sql"><span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> balances;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="u-pdate"></a><a href="#u-pdate" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>(U)pdate</h3>
+<p>Lets update balance of customer <code>1</code> in the <code>balances</code> table:</p>
+<pre><code class="hljs css language-sql"><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> balances (cust_id, balance_ccy, balance, <span class="hljs-built_in">timestamp</span>)
+    <span class="hljs-keyword">values</span> (<span class="hljs-number">1</span>, <span class="hljs-string">'USD'</span>, <span class="hljs-number">660.50</span>, to_timestamp(<span class="hljs-number">6000000005</span>));
+</code></pre>
+<p>You expected <code>UPDATE</code> statement, right? Why <code>INSERT</code>? Do we now have duplicate records? That is right. What we have is change history. Our <code>SELECT</code> statement will have to change to select only last row for <code>(1,USD)</code> tuple:</p>
+<pre><code class="hljs css language-sql"><span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> balances latest <span class="hljs-keyword">by</span> cust_id, balance_ccy
+</code></pre>
+<p>To view balances of selected customers you can run this query:</p>
+<pre><code class="hljs css language-sql"><span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> balances latest <span class="hljs-keyword">by</span> cust_id, balance_ccy <span class="hljs-keyword">where</span> cust_id = <span class="hljs-number">1</span>
+</code></pre>
+<p>In above example QuestDB will execute <code>where</code> clause <em>before</em> <code>latest by</code>. To execute <code>where</code> <em>after</em> <code>latest by</code> we have to rely on sub-queries. This is an example of how to select customers with balances over 800:</p>
+<pre><code class="hljs css language-sql">(<span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> balances latest <span class="hljs-keyword">by</span> cust_id, balance_ccy) <span class="hljs-keyword">where</span> balance &gt; <span class="hljs-number">800</span>
+
+</code></pre>
+<blockquote>
+<p><code>latest by</code> performance note: QuestDB will search time sereies from newest values to oldest. For single <code>SYMBOL</code> column in <code>latest by</code> clause QuestDB will know all distinct values upront. Time series scan will end as soon as
+all values are matched. For all other field types, or multiple fields QuestDB will scan entire time series. Although scan is very fast you should be aware that performance wil degrade on hundreds of millions of records.</p>
+</blockquote>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/datatypes"><span class="arrow-prev">← </span><span>Type system</span></a><a class="docs-next button" href="/docs/tableadmin"><span>Table Admin</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#overview">Overview</a><ul class="toc-headings"><li><a href="#c-reate">(C)reate</a></li><li><a href="#u-pdate">(U)pdate</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/favicon.png" alt="QuestDB" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/en/doc1.html">Getting Started (or other categories)</a><a href="/docs/en/doc2.html">Guides (or other categories)</a><a href="/docs/en/doc3.html">API Reference (or other categories)</a></div><div><h5>Community</h5><a href="/en/users.html">User Showcase</a><a href="https://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://discordapp.com/">Project Chat</a><a href="https://twitter.com/" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/">GitHub</a><a class="github-button" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><a href="https://opensource.facebook.com/" target="_blank" rel="noreferrer noopener" class="fbOpenSource"><img src="/img/oss_logo.png" alt="Facebook Open Source" width="170" height="45"/></a><section class="copyright">Copyright © 2019 QuestDB Limited</section></footer></div></body></html>
