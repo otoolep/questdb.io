@@ -15,7 +15,7 @@ table will result in error. When table is not partitioned, records can be added 
 Lets create table that holds bank balances for customers.
 
 <!--DOCUSAURUS_CODE_TABS-->
-<!--SQL-->
+<!--SQL Console-->
 ```sql
 create table balances (
 	cust_id int, 
@@ -25,8 +25,6 @@ create table balances (
 	timestamp timestamp
 );
 ```
-
-
 <!--curl-->
 ```shell 
 curl -G "http://localhost:13005/exec" --data-urlencode "query=
@@ -37,6 +35,45 @@ create table balances (
     status byte,
     timestamp timestamp
 )"
+```
+<!--Embedded Java-->
+```java
+final String cairoDatabaseRoot = "/tmp";
+try (CairoEngine engine = new CairoEngine(
+    new DefaultCairoConfiguration(cairoDatabaseRoot))
+) {
+    try (SqlCompiler compiler = new SqlCompiler(engine)) {
+        compiler.compile("create table balances (\n" +
+                "    cust_id int, \n" +
+                "    balance_ccy symbol, \n" +
+                "    balance double, \n" +
+                "    status byte, \n" +
+                "    timestamp timestamp\n" +
+                ")");
+    }
+}
+```
+<!--JDBC-->
+```java
+Properties properties = new Properties();
+properties.setProperty("user", "admin");
+properties.setProperty("password", "quest");
+properties.setProperty("sslmode", "disable");
+
+final Connection connection = 
+    DriverManager.getConnection("jdbc:postgresql://localhost:9120/qdb", properties);
+PreparedStatement statement = connection.prepareStatement(
+    "create table balances (" +
+    "    cust_id int," +
+    "    balance_ccy symbol," +
+    "    balance double," +
+    "    status byte," +
+    "    timestamp timestamp" +
+    ")"
+);
+statement.execute();
+connection.close();
+
 ```
 <!--END_DOCUSAURUS_CODE_TABS-->
 
