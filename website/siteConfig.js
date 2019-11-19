@@ -24,7 +24,7 @@ const users = [
 
 const siteConfig = {
   title: 'QuestDB', // Title for your website.
-  tagline: 'High-performance data',
+  tagline: 'Ultimate performance time-series',
   url: 'https://questdb.github.io', // Your website URL
   baseUrl: '/', // Base URL for your project */
   projectName: 'website',
@@ -107,7 +107,8 @@ const siteConfig = {
 
   // You may provide arbitrary config keys to be used as needed by your
   // template. For example, if you need your repo's URL...
-  //   repoUrl: 'https://github.com/facebook/test-site',
+
+  repoUrl: 'https://github.com/questdb/questdb',
 
   scripts: [
         'https://buttons.github.io/buttons.js',

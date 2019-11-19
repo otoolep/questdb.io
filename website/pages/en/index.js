@@ -68,6 +68,7 @@ class HomeSplash extends React.Component {
                     <ProjectTitle siteConfig={siteConfig} />
                     <PromoSection>
                         <Button href={docUrl('technology.html')}>Technology</Button>
+                        <Button href={'https://github.com/questdb/questdb'}>Github</Button>
                         <Button href={docUrl('documentation.html')}>Documentation</Button>
                         <Button href={'https://github.com/questdb/questdb/releases/download/4.0.0/questdb-4.0.0-bin.tar.gz'}>Download</Button>
                     </PromoSection>
