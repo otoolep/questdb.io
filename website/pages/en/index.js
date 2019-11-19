@@ -101,9 +101,8 @@ class Index extends React.Component {
                 <h2>What is QuestDB?</h2>
 
                 <p>
-                    QuestDB is a high-performance, low-latency time-series database
-                    that runs natively across multiple platforms and architectures, from enterprise servers to ARM devices on the edge.
-                    Our coding principles are inherited from high-frequency and low-latency trading.
+                    QuestDB is a high-performance, low-latency time-series database, which runs natively across multiple platforms and architectures.
+                    Our approach is a different take on high performance databases, and was born from low latency trading principles.
                 </p>
                 <p>
                     We achieve maximum efficiency for a given unit of hardware with cutting-edge
@@ -121,9 +120,9 @@ class Index extends React.Component {
                 {[
                     {
                         content:
-                            'Switch from Postgres using the same integrations you have already built. ' +
+                            'Switch from Postgres using the same integrations, which you have already built. ' +
                             'Integrate easily with your applications. We support Java natively and can run as a library. ' +
-                            'We also offer a REST API and web server. Last but not least, we talk SQL.',
+                            'We also offer a REST API and web server. Finally, we are SQL.',
                         image: `${baseUrl}img/undraw_code_review.svg`,
                         imageAlign: 'left',
                         textAlign: `justified`,
@@ -152,7 +151,7 @@ class Index extends React.Component {
                 {[
                     {
                         content:
-                            'QuestDB is the fruit of 6 years of R&D in high-frequency and low-latency trading environments. Our stack is built from the ground up' +
+                            'QuestDB is the fruit of 5 years of R&D in high-frequency and low-latency trading environments. Our stack is built from the ground up ' +
                              'to maximise performance, efficiency, and reliability. ',
                         image: `${baseUrl}img/speed.svg`,
                         imageAlign: 'right',
