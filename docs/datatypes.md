@@ -24,3 +24,8 @@ Type system is derived from Java language.
 | _string_    | `32+n*16`    | Length-prefixed sequence of UTF-16 encoded characters. Length is stored as signed 32-bit integer with maximum value of `0x7fffffff`|
 | _binary_    | `64+n*8`     | Length-prefixed sequence of bytes. Length is stored as signed 64-bit integer with maximum value of `0x7fffffffffffffffL`|
 | _symbol_    | `32`         | Symbols are stored as 32-bit signed indexes from symbol table. Each index will have a corresponding `string` value. Translation from index to string value is done automatically when data is being written or read. Symbol table is stored separately from column
+
+
+> `BINARY` field size is limited either by 64-Bit signed int (8388608 peta bytes) or disk size, whichever is smaller
+
+> `STRING` field size is limited by either 32-bit singned int (1073741824 characters) or disk size, whicheve is smaller
