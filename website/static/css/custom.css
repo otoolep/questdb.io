@@ -14,3 +14,206 @@
 
 @media only screen and (min-width: 1500px) {
 }
+
+.mainContainer .twoByGridBlock ul {
+    padding: 0;
+}
+
+/*Buttons:*/
+li.getstarted {
+    background-color: #2d00a1;
+    border-radius: 25px;
+    box-shadow: 0px 3px grey;
+    width: 25%;
+}
+
+li.githoob:hover{
+    background-color: rgba(45, 0, 161, 0);
+    border-radius: 25px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #2d00a1;
+    box-shadow: 0px 2px grey;
+    width: 60%;
+}
+
+li.docker{
+    background-color: #2d00a1;
+    border-radius: 25px;
+    box-shadow: 0px 3px grey;
+    width: 60%;
+}
+
+li.docker:hover{
+    background-color: #4000f4;
+}
+
+.download {
+    background-color: rgba(45, 0, 161, 0);
+    border-radius: 25px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #2d00a1;
+    box-shadow: 0px 2px grey;
+    width: 60%;
+}
+
+.download:hover{
+    background-color: rgba(244, 232, 220, 0.21);
+    border-color: #7312ff;
+}
+
+.slack {
+    background-color: #2d00a1;
+    border-radius: 25px;
+    box-shadow: 0px 3px grey;
+    width: 25%;
+}
+
+.slack:hover{
+    background-color: #3800d3;
+}
+
+
+li.getstarted:hover{
+    background-color: #3800d3;
+}
+
+li.githoob{
+    background-color: rgba(45, 0, 161, 0);
+    border-radius: 25px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #2d00a1;
+    box-shadow: 0px 2px grey;
+    width: 25%;
+}
+
+
+li.githoob a{
+    color: #2d00a1;
+}
+
+li.docker a{
+    color: white;
+}
+
+li.getstarted a{
+    color: white;
+}
+
+li.download a{
+    color: #2d00a1;
+}
+
+li.slack a{
+    color: white;
+}
+
+.buttons li{
+    display: inline-block;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    padding-right: 1.5%;
+    padding-left: 1.5%;
+    alignment: left;
+    margin-right: 3%;
+    color: white;
+    font-weight: bold;
+    vertical-align: middle;
+    border: 1px;
+}
+
+.buttons .blockelement .twoByGridBlock p{
+    alignment: center;
+}
+
+.buttons{
+    margin-bottom: 30px;
+    margin-top: 30px;
+    alignment: center;
+
+}
+
+
+.mainContainer li{
+    align-items: center;
+    padding-right: 5%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+}
+
+.mainContainer li img {
+    vertical-align: middle;
+}
+
+.mainContainer li svg {
+    vertical-align: middle;
+    margin-left: 5%;
+}
+
+
+.inner small{
+    font-size: x-large;
+    font-weight: normal;
+    color: #2d00a1;
+}
+
+.mainContainer {
+    padding-top: 0px;
+}
+
+.homeContainer .homeSplashFade .wrapper .homeWrapper {
+    padding-bottom: 10px;
+    font-weight: bolder;
+}
+
+
+div.about{
+    margin-bottom: 20px;
+    padding-top: 20px;
+}
+
+div.about ul{
+    display: inline-block;
+}
+
+div.about li{
+    display: inline;
+    margin-right: 25px;
+}
+
+
+div.run{
+    margin-top: 50px;
+    padding-top: 50px;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+
+div.run li{
+    display: inline;
+    margin-right: 20px;
+    border-right: 20px;
+ }
+
+div.community ul{
+    margin-top: 5%;
+}
+
+div.run ul{
+    margin-top: 5%;
+}
+
+div.community {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+div.community li{
+    display: inline;
+    margin-right: 20px;
+    border-right: 20px;
+}

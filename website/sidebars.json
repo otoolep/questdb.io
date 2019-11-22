@@ -3,7 +3,8 @@
   "docs": {
     "Overview": [
       "documentation",
-      "storagemodel"
+      "storagemodel",
+      "roadmap"
     ],
     "Getting Started": [
       "install",

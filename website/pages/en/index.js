@@ -5,10 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-
-
 const React = require('react');
-
 const CompLibrary = require('../../core/CompLibrary.js');
 
 const MarkdownBlock = CompLibrary.MarkdownBlock; /* Used to read markdown */
@@ -16,6 +13,7 @@ const Container = CompLibrary.Container;
 const GridBlock = CompLibrary.GridBlock;
 
 class HomeSplash extends React.Component {
+
     render() {
         const {siteConfig, language = ''} = this.props;
         const {baseUrl, docsUrl} = siteConfig;
@@ -33,13 +31,17 @@ class HomeSplash extends React.Component {
 
         const Logo = props => (
             <div className="projectLogo">
-                <img src={props.img_src} alt="Project Logo" />
+                <img src={props.img_src} alt="Project Logo"/>
             </div>
         );
 
         const ProjectTitle = () => (
             <h2 className="projectTitle">
-                {siteConfig.title}
+                <h4 align="center">
+                    <img
+                        src="https://raw.githubusercontent.com/questdb/questdb/master/core/src/main/resources/site/public/images/logo-readme.jpg"/>
+                </h4>
+                {/* {siteConfig.title}*/}
                 <small>{siteConfig.tagline}</small>
             </h2>
         );
@@ -63,130 +65,181 @@ class HomeSplash extends React.Component {
 
         return (
             <SplashContainer>
-                <Logo img_src={`${baseUrl}img/server.svg`} />
                 <div className="inner">
-                    <ProjectTitle siteConfig={siteConfig} />
-                    <PromoSection>
-                        <Button href={docUrl('technology.html')}>Technology</Button>
-                        <Button href={'https://github.com/questdb/questdb'}>Github</Button>
-                        <Button href={docUrl('documentation.html')}>Documentation</Button>
-                        <Button href={'https://github.com/questdb/questdb/releases/download/4.0.0/questdb-4.0.0-bin.tar.gz'}>Download</Button>
-                    </PromoSection>
+                    <ProjectTitle siteConfig={siteConfig}/>
+
                 </div>
             </SplashContainer>
         );
     }
 }
 
+
 class Index extends React.Component {
+
     render() {
         const {config: siteConfig, language = ''} = this.props;
         const {baseUrl} = siteConfig;
 
         const Block = props => (
             <Container
-                padding={['top']}
                 id={props.id}
                 background={props.background}>
                 <GridBlock
-                    align="center"
+                    padding={['top', 'bottom']}
+                    align="justified"
                     contents={props.children}
                     layout={props.layout}
                 />
             </Container>
         );
 
-        const FeatureCallout = () => (
-            <div
-                className="productShowcaseSection"
-                style={{}}>
-                <h2>What is QuestDB?</h2>
-
-                <p>
-                    QuestDB is a high-performance, low-latency time-series database, which runs natively across multiple platforms and architectures.
-                    Our approach is a different take on high performance databases, and was born from low latency trading principles.
-                </p>
-                <p>
-                    We achieve maximum efficiency for a given unit of hardware with cutting-edge
-                    proprietary software. Core performance has been pushed to the maximum; QuestDB on a single thread is already many times faster than multi-threaded databases.
-                </p>
-                <p>
-                    We provide full stack solutions ready for enterprise, IoT/edge and low-latency trading.
-                </p>
-
+        const About = () => (
+            <div class="about">
+            <Block padding='bottom'>
+                {[
+                    {
+                        title: 'Lightning fast relational time-series',
+                        content:
+                            '<p align="justify">QuestDB is a fast NewSQL database for Hybrid Transactional, Analytical and Time Series processing workloads.</p>' +
+                            '<p>' +
+                            '<p align="justify">QuestDB ingests data via HTTP, PostgresSQL wire protocol, Influx line protocol or directly from Java. Reading data is done using SQL via HTTP, PostgreSQL wire protocol or via Java API. The whole database and console fits in a 3.5Mb package.</p> ' +
+                            '<p>' +
+                            '<p align="justify">The code is Open Source under <b>Apache 2.0</b> and we welcome contributions.</p>' +
+                            '<p>' +
+                            '<ul>' +
+                            '<li><img src="https://img.icons8.com/nolan/2x/checkmark.png" height="25" width="25" align="middle"> Relational Time-Series</li>' +
+                            '<li><img src="https://img.icons8.com/nolan/2x/checkmark.png" height="25" width="25" align="middle"> SQL</li>' +
+                            '<li><img src="https://img.icons8.com/nolan/2x/checkmark.png" height="25" width="25" align="middle"> Open-Source</li>' +
+                            '</ul>',
+                    },
+                    {
+                        image: `${baseUrl}img/demo.gif`,
+                        imageAlign: 'right',
+                        textAlign: 'left',
+                    }
+                ]
+                }
+            </Block>
             </div>
         );
 
-        const TryOut = () => (
-            <Block id="try">
-                {[
-                    {
-                        content:
-                            'Switch from Postgres using the same integrations, which you have already built. ' +
-                            'Integrate easily with your applications. We support Java natively and can run as a library. ' +
-                            'We also offer a REST API and web server. Finally, we are SQL.',
-                        image: `${baseUrl}img/undraw_code_review.svg`,
-                        imageAlign: 'left',
-                        textAlign: `justified`,
-                        title: '... and ease of use',
-                    },
-                ]}
-            </Block>
+        const Docker = () => (
+            <div class="run">
+                <Block layout="twoColumn">
+                    {[
+                        {
+                            image: `${baseUrl}img/demo.gif`,
+                            imageAlign: 'right',
+                            textAlign: 'left',
+                        },
+                        {
+                            title: 'Get started in seconds',
+                            content:
+                                'Run QuestDB on **Docker** or **Download** our binaries. Use with any **Linux**, **MacOS** or **Windows** machine.'+
+                                '<p>' +
+                                '<ul class="runbuttons">' +
+                                '<li class="docker"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"\n' +
+                                'width="30" height="30"\n' +
+                                'viewBox="0 0 64 64"\n' +
+                                'style=" fill: white;">' +
+                                '<path d="M 27 7 C 26.45 7 26 7.45 26 8 L 26 15 L 11 15 C 10.45 15 10 15.45 10 16 L 10 23 L 3 23 C 2.45 23 2 23.45 2 24 L 2 31 L 1.3222656 31 C 0.85526562 31 0.44970312 31.323297 0.34570312 31.779297 C 0.27070312 32.112297 -1.4381406 40.00275 3.3808594 46.59375 C 6.8728594 51.36875 12.830891 54.151328 21.087891 54.861328 C 22.169891 54.955328 23.215375 55 24.234375 55 C 44.171375 55 52.165937 37.927219 53.710938 34.074219 C 61.550937 34.701219 63.915453 28.400938 63.939453 28.335938 C 64.079453 27.946938 63.964391 27.510234 63.650391 27.240234 C 60.571391 24.590234 57.539125 24.542406 55.453125 25.191406 C 55.664125 20.610406 50.856094 17.327922 50.621094 17.169922 C 50.400094 17.020922 50.128141 16.966531 49.869141 17.019531 C 49.608141 17.071531 49.379422 17.223312 49.232422 17.445312 C 45.145422 23.602313 46.785531 28.081031 47.769531 29.832031 C 46.189531 31.033031 44.148656 31.003 44.097656 31 L 44 31 L 44 24 C 44 23.45 43.55 23 43 23 L 36 23 L 36 8 C 36 7.45 35.55 7 35 7 L 27 7 z M 28 9 L 34 9 L 34 15 L 28 15 L 28 9 z M 12 17 L 26 17 L 26 23 L 20 23 L 20 20 C 20 19.448 19.552 19 19 19 C 18.448 19 18 19.448 18 20 L 18 23 L 12 23 L 12 17 z M 28 17 L 34 17 L 34 31 L 28 31 L 28 25 L 31 25 C 31.55 25 32 24.55 32 24 C 32 23.45 31.55 23 31 23 L 28 23 L 28 17 z M 50.330078 19.46875 C 51.743078 20.68275 54.371187 23.476906 53.117188 26.628906 C 52.951188 27.045906 53.086359 27.520969 53.443359 27.792969 C 53.800359 28.064969 54.29925 28.062016 54.65625 27.791016 C 54.79225 27.688016 57.877766 25.416109 61.759766 28.287109 C 60.996766 29.666109 58.648547 32.739812 53.185547 32.007812 C 52.702547 31.942812 52.251562 32.228547 52.101562 32.685547 C 52.031563 32.898547 45.162937 53.000047 24.210938 52.998047 C 23.257938 52.997047 22.271766 52.956141 21.259766 52.869141 C 13.613766 52.211141 8.1458125 49.707687 5.0078125 45.429688 C 1.5458125 40.709688 1.8979219 35.043 2.1699219 33 L 3 33 L 43 33 C 43.006908 33 43.012655 32.996235 43.019531 32.996094 L 44.068359 32.996094 C 44.215359 33.002094 47.577641 33.075734 49.806641 30.677734 C 50.148641 30.310734 50.16375 29.746375 49.84375 29.359375 C 49.81075 29.320375 46.803078 25.56075 50.330078 19.46875 z M 4 25 L 10 25 L 10 31 L 4 31 L 4 25 z M 12 25 L 18 25 L 18 31 L 12 31 L 12 25 z M 20 25 L 26 25 L 26 31 L 20 31 L 20 25 z M 36 25 L 42 25 L 42 31 L 36 31 L 36 25 z M 12.5 38 A 2.5 2.5 0 0 0 12.5 43 A 2.5 2.5 0 0 0 12.5 38 z M 42.287109 38.509766 C 42.031984 38.531016 41.783969 38.649375 41.605469 38.859375 C 41.248469 39.281375 41.301656 39.912531 41.722656 40.269531 L 43.246094 41.564453 C 43.434094 41.723453 43.663578 41.800781 43.892578 41.800781 C 44.176578 41.800781 44.45725 41.680266 44.65625 41.447266 C 45.01325 41.025266 44.962016 40.394109 44.541016 40.037109 L 43.015625 38.744141 C 42.804625 38.565141 42.542234 38.488516 42.287109 38.509766 z M 39.009766 41.908203 C 38.755266 41.881578 38.491344 41.952953 38.277344 42.126953 C 37.848344 42.473953 37.782859 43.10225 38.130859 43.53125 L 39.388672 45.085938 C 39.585672 45.330938 39.875016 45.457031 40.166016 45.457031 C 40.387016 45.457031 40.608922 45.383422 40.794922 45.232422 C 41.223922 44.885422 41.289406 44.255172 40.941406 43.826172 L 39.683594 42.273438 C 39.509594 42.058937 39.264266 41.934828 39.009766 41.908203 z M 34.794922 44.539062 C 34.665375 44.54825 34.535109 44.583484 34.412109 44.646484 C 33.919109 44.897484 33.724609 45.500188 33.974609 45.992188 L 34.882812 47.775391 C 35.058813 48.121391 35.409438 48.320312 35.773438 48.320312 C 35.926437 48.320313 36.081563 48.285891 36.226562 48.212891 C 36.719563 47.961891 36.914062 47.359187 36.664062 46.867188 L 35.757812 45.085938 C 35.569563 44.716938 35.183563 44.5115 34.794922 44.539062 z M 30.505859 46.246094 C 30.377422 46.226922 30.242875 46.233328 30.109375 46.267578 C 29.574375 46.405578 29.254578 46.949375 29.392578 47.484375 L 29.892578 49.421875 C 30.009578 49.872875 30.414375 50.171875 30.859375 50.171875 C 30.942375 50.171875 31.026375 50.162625 31.109375 50.140625 C 31.644375 50.002625 31.966125 49.456875 31.828125 48.921875 L 31.328125 46.984375 C 31.224625 46.583875 30.891172 46.303609 30.505859 46.246094 z M 25.53125 46.951172 C 24.97925 46.979172 24.555984 47.448 24.583984 48 L 24.685547 49.998047 C 24.712547 50.532047 25.154594 50.947266 25.683594 50.947266 C 25.700594 50.947266 25.717375 50.945312 25.734375 50.945312 C 26.286375 50.917312 26.711594 50.448484 26.683594 49.896484 L 26.580078 47.898438 C 26.552078 47.346438 26.07325 46.926172 25.53125 46.951172 z"></path></svg>' +
+                                '<a href="https://hub.docker.com/repository/docker/questdb/questdb/general"> Docker</a></li>' +
+                                '<li class="download"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"\n' +
+                                'width="30" height="30"\n' +
+                                'viewBox="0 0 26 26"\n' +
+                                'style=" fill: #2d00a1;">' +
+                                '<path d="M 15.5 4 C 13.300781 4 11.199219 5.199219 10 7 L 9.5 7 C 7 7 4.886719 8.699219 4.1875 11 C 1.886719 11.101563 0 13.101563 0 15.5 C 0 18 2 20 4.5 20 L 20.5 20 C 23.5 20 26 17.5 26 14.5 C 26 12 24.304688 9.789063 21.90625 9.1875 C 21.304688 6.1875 18.601563 4 15.5 4 Z M 15.5 6 C 17.800781 6 19.800781 7.792969 20 10.09375 L 20 11 L 20.8125 11.09375 C 22.613281 11.292969 23.90625 12.792969 23.90625 14.59375 C 24.007813 16.394531 22.398438 18 20.5 18 L 4.5 18 C 3.101563 18 2 16.898438 2 15.5 C 2 14.101563 3.101563 13 4.5 13 L 4.90625 13 L 5.90625 13.1875 L 6 12.1875 C 6.199219 10.386719 7.699219 9 9.5 9 C 9.699219 9 10.011719 8.992188 10.3125 9.09375 L 11.09375 9.3125 L 11.40625 8.59375 C 12.207031 6.992188 13.800781 6 15.5 6 Z M 13 10 L 13 13 L 10.5 13 L 14 16.5 L 17.5 13 L 15 13 L 15 10 Z"></path></svg>' +
+                                '<a href="https://github.com/questdb/questdb/releases/download/4.0.0/questdb-4.0.0-bin.tar.gz"> Download </a></li>' +
+                                '</ul>',
+                        },
+                    ]}
+                </Block>
+            </div>
         );
 
-        const Description = () => (
-            <Block>
-                {[
-                    {
-                        content:
-                            'This is another description of how this project is useful',
-                        image: `${baseUrl}img/undraw_note_list.svg`,
-                        imageAlign: 'right',
-                        title: 'Description',
-                    },
-                ]}
-            </Block>
+        const Community = () => (
+            <div class="community">
+                <Block layout="twoColumn">
+                    {[
+                        {
+                            title: 'Speed up your game',
+                            content:
+                                'Get up to speed with our **Documentation & guides**. If you already know SQL you are good to go. If you have issues, you can rais on **Github** or ohave a chat on **Slack**.'+
+                                '<p>' +
+                                '<ul>' +
+                                '<li class="slack"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" ' +
+                                'width="24" height="24" ' +
+                                'viewBox="0 0 24 24" ' +
+                                'style=" fill: white;"><path d="M9 7C8.359 7 4.639 7 4 7 2.895 7 2 7.895 2 9c0 1.105.895 2 2 2 .639 0 4.359 0 5 0 1.105 0 2-.895 2-2C11 7.895 10.105 7 9 7zM11 4c0 .598 0 2 0 2S9.507 6 9 6C7.895 6 7 5.105 7 4s.895-2 2-2S11 2.895 11 4zM7 14c0 .641 0 4.361 0 5 0 1.105.895 2 2 2 1.105 0 2-.895 2-2 0-.639 0-4.359 0-5 0-1.105-.895-2-2-2C7.895 12 7 12.895 7 14zM4 12c.598 0 2 0 2 0s0 1.493 0 2c0 1.105-.895 2-2 2s-2-.895-2-2S2.895 12 4 12zM14 16c.641 0 4.361 0 5 0 1.105 0 2-.895 2-2 0-1.105-.895-2-2-2-.639 0-4.359 0-5 0-1.105 0-2 .895-2 2C12 15.104 12.895 16 14 16zM12 19c0-.598 0-2 0-2s1.493 0 2 0c1.105 0 2 .895 2 2 0 1.105-.895 2-2 2S12 20.104 12 19zM16 9c0-.641 0-4.361 0-5 0-1.105-.895-2-2-2-1.105 0-2 .895-2 2 0 .639 0 4.359 0 5 0 1.105.895 2 2 2C15.104 11 16 10.104 16 9zM19 11c-.598 0-2 0-2 0s0-1.493 0-2c0-1.105.895-2 2-2 1.105 0 2 .895 2 2S20.104 11 19 11z"></path></svg>' +
+                                '<a href="https://join.slack.com/t/questdb/shared_invite/enQtNzk4Nzg4Mjc2MTE2LTEzZThjMzliMjUzMTBmYzVjYWNmM2UyNWJmNDdkMDYyZmE0ZDliZTQxN2EzNzk5MDE3Zjc1ZmJiZmFiZTIwMGY"> Join Slack</a></li>' +
+                                '<li class="githoob"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"\n' +
+                                'width="30" height="30"\n' +
+                                'viewBox="0 0 50 50"\n' +
+                                'style=" fill: #2d00a1;">' +
+                                '<path d="M17.791,46.836C18.502,46.53,19,45.823,19,45v-5.4c0-0.197,0.016-0.402,0.041-0.61C19.027,38.994,19.014,38.997,19,39 c0,0-3,0-3.6,0c-1.5,0-2.8-0.6-3.4-1.8c-0.7-1.3-1-3.5-2.8-4.7C8.9,32.3,9.1,32,9.7,32c0.6,0.1,1.9,0.9,2.7,2c0.9,1.1,1.8,2,3.4,2 c2.487,0,3.82-0.125,4.622-0.555C21.356,34.056,22.649,33,24,33v-0.025c-5.668-0.182-9.289-2.066-10.975-4.975 c-3.665,0.042-6.856,0.405-8.677,0.707c-0.058-0.327-0.108-0.656-0.151-0.987c1.797-0.296,4.843-0.647,8.345-0.714 c-0.112-0.276-0.209-0.559-0.291-0.849c-3.511-0.178-6.541-0.039-8.187,0.097c-0.02-0.332-0.047-0.663-0.051-0.999 c1.649-0.135,4.597-0.27,8.018-0.111c-0.079-0.5-0.13-1.011-0.13-1.543c0-1.7,0.6-3.5,1.7-5c-0.5-1.7-1.2-5.3,0.2-6.6 c2.7,0,4.6,1.3,5.5,2.1C21,13.4,22.9,13,25,13s4,0.4,5.6,1.1c0.9-0.8,2.8-2.1,5.5-2.1c1.5,1.4,0.7,5,0.2,6.6c1.1,1.5,1.7,3.2,1.6,5 c0,0.484-0.045,0.951-0.11,1.409c3.499-0.172,6.527-0.034,8.204,0.102c-0.002,0.337-0.033,0.666-0.051,0.999 c-1.671-0.138-4.775-0.28-8.359-0.089c-0.089,0.336-0.197,0.663-0.325,0.98c3.546,0.046,6.665,0.389,8.548,0.689 c-0.043,0.332-0.093,0.661-0.151,0.987c-1.912-0.306-5.171-0.664-8.879-0.682C35.112,30.873,31.557,32.75,26,32.969V33 c2.6,0,5,3.9,5,6.6V45c0,0.823,0.498,1.53,1.209,1.836C41.37,43.804,48,35.164,48,25C48,12.318,37.683,2,25,2S2,12.318,2,25 C2,35.164,8.63,43.804,17.791,46.836z"></path></svg>' +
+                                '<a href="https://github.com/questdb/questdb"> Github</a></li>' +
+                                '<li class="getstarted"><a href="https://www.questdb.io/docs/install"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"\n' +
+                                'width="24" height="24"\n' +
+                                'viewBox="0 0 24 24"\n' +
+                                'style=" fill: white;">' +
+                                'style=" fill:#000000;"><path d="M 12 0 C 5.371094 0 0 5.371094 0 12 C 0 18.628906 5.371094 24 12 24 C 18.628906 24 24 18.628906 24 12 C 24 5.371094 18.628906 0 12 0 Z M 12 2 C 17.523438 2 22 6.476563 22 12 C 22 17.523438 17.523438 22 12 22 C 6.476563 22 2 17.523438 2 12 C 2 6.476563 6.476563 2 12 2 Z M 12 5.8125 C 11.816406 5.8125 11.664063 5.808594 11.5 5.84375 C 11.335938 5.878906 11.183594 5.96875 11.0625 6.0625 C 10.941406 6.15625 10.851563 6.285156 10.78125 6.4375 C 10.710938 6.589844 10.6875 6.769531 10.6875 7 C 10.6875 7.226563 10.710938 7.40625 10.78125 7.5625 C 10.851563 7.71875 10.941406 7.84375 11.0625 7.9375 C 11.183594 8.03125 11.335938 8.085938 11.5 8.125 C 11.664063 8.164063 11.816406 8.1875 12 8.1875 C 12.179688 8.1875 12.371094 8.164063 12.53125 8.125 C 12.691406 8.085938 12.816406 8.03125 12.9375 7.9375 C 13.058594 7.84375 13.148438 7.71875 13.21875 7.5625 C 13.289063 7.410156 13.34375 7.226563 13.34375 7 C 13.34375 6.769531 13.289063 6.589844 13.21875 6.4375 C 13.148438 6.285156 13.058594 6.15625 12.9375 6.0625 C 12.816406 5.96875 12.691406 5.878906 12.53125 5.84375 C 12.371094 5.808594 12.179688 5.8125 12 5.8125 Z M 10.78125 9.15625 L 10.78125 18.125 L 13.21875 18.125 L 13.21875 9.15625 Z"></path></svg>' +
+                                '<a href="https://www.questdb.io/docs/install"> Docs </a></li>' +
+                                '</ul>',
+                        },
+                        {
+                            image: `${baseUrl}img/demo.gif`,
+                            imageAlign: 'right',
+                            textAlign: 'right',
+                        },
+                    ]}
+                </Block>
+            </div>
         );
 
-        const About = () => (
-            <Block>
-                {[
-                    {
-                        content:
-                            'QuestDB is the fruit of 5 years of R&D in high-frequency and low-latency trading environments. Our stack is built from the ground up ' +
-                             'to maximise performance, efficiency, and reliability. ',
-                        image: `${baseUrl}img/speed.svg`,
-                        imageAlign: 'right',
-                        textAlign: 'justified',
-                        title: 'We are all about performance...',
-                    },
-                ]}
-            </Block>
-        );
-
-        const Features = () => (
-            <Block layout="fourColumn">
-                {[
-                    {
-                        content: 'Unrivaled read / write speed and reliable performance',
-                        image: `${baseUrl}img/undraw_react.svg`,
-                        imageAlign: 'top',
-                        title: 'Nanosecond Latency',
-                    },
-                    {
-                        content: 'Run natively on any platform, suited to all kind of specs',
-                        image: `${baseUrl}img/maintenance.svg`,
-                        imageAlign: 'top',
-                        title: 'Full vertical scalability',
-                    },
-                    {
-                        content: 'We support standard ANSI SQL, with additional augmented features',
-                        image: `${baseUrl}img/setup_wiz.svg`,
-                        imageAlign: 'top',
-                        title: 'We are SQL',
-                    },
-                ]}
-            </Block>
+        const All = () => (
+            <div class="buttons">
+                <Block layout="twoColumn" className="tancButtons">
+                    {[
+                        {
+                            image: `${baseUrl}img/demo.gif`,
+                            imageAlign: 'right',
+                            textAlign: 'left',
+                        },
+                        {
+                            title: 'Run from docker',
+                            content:
+                                '<p>' +
+                                '<ul>' +
+                                '<li class="githoob"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"\n' +
+                                'width="30" height="30"\n' +
+                                'viewBox="0 0 50 50"\n' +
+                                'style=" fill: white;">' +
+                                '<path d="M17.791,46.836C18.502,46.53,19,45.823,19,45v-5.4c0-0.197,0.016-0.402,0.041-0.61C19.027,38.994,19.014,38.997,19,39 c0,0-3,0-3.6,0c-1.5,0-2.8-0.6-3.4-1.8c-0.7-1.3-1-3.5-2.8-4.7C8.9,32.3,9.1,32,9.7,32c0.6,0.1,1.9,0.9,2.7,2c0.9,1.1,1.8,2,3.4,2 c2.487,0,3.82-0.125,4.622-0.555C21.356,34.056,22.649,33,24,33v-0.025c-5.668-0.182-9.289-2.066-10.975-4.975 c-3.665,0.042-6.856,0.405-8.677,0.707c-0.058-0.327-0.108-0.656-0.151-0.987c1.797-0.296,4.843-0.647,8.345-0.714 c-0.112-0.276-0.209-0.559-0.291-0.849c-3.511-0.178-6.541-0.039-8.187,0.097c-0.02-0.332-0.047-0.663-0.051-0.999 c1.649-0.135,4.597-0.27,8.018-0.111c-0.079-0.5-0.13-1.011-0.13-1.543c0-1.7,0.6-3.5,1.7-5c-0.5-1.7-1.2-5.3,0.2-6.6 c2.7,0,4.6,1.3,5.5,2.1C21,13.4,22.9,13,25,13s4,0.4,5.6,1.1c0.9-0.8,2.8-2.1,5.5-2.1c1.5,1.4,0.7,5,0.2,6.6c1.1,1.5,1.7,3.2,1.6,5 c0,0.484-0.045,0.951-0.11,1.409c3.499-0.172,6.527-0.034,8.204,0.102c-0.002,0.337-0.033,0.666-0.051,0.999 c-1.671-0.138-4.775-0.28-8.359-0.089c-0.089,0.336-0.197,0.663-0.325,0.98c3.546,0.046,6.665,0.389,8.548,0.689 c-0.043,0.332-0.093,0.661-0.151,0.987c-1.912-0.306-5.171-0.664-8.879-0.682C35.112,30.873,31.557,32.75,26,32.969V33 c2.6,0,5,3.9,5,6.6V45c0,0.823,0.498,1.53,1.209,1.836C41.37,43.804,48,35.164,48,25C48,12.318,37.683,2,25,2S2,12.318,2,25 C2,35.164,8.63,43.804,17.791,46.836z"></path></svg>' +
+                                '<a href="https://github.com/questdb/questdb"> Github</a></li>' +
+                                '<li class="getstarted"><a href="https://www.questdb.io/docs/install"><img src="https://img.icons8.com/ios-glyphs/30/000000/time.png"> Get Started </a></li>' +
+                                '<li class="docker"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"\n' +
+                                'width="30" height="30"\n' +
+                                'viewBox="0 0 64 64"\n' +
+                                'style=" fill: white;">' +
+                                '<path d="M 27 7 C 26.45 7 26 7.45 26 8 L 26 15 L 11 15 C 10.45 15 10 15.45 10 16 L 10 23 L 3 23 C 2.45 23 2 23.45 2 24 L 2 31 L 1.3222656 31 C 0.85526562 31 0.44970312 31.323297 0.34570312 31.779297 C 0.27070312 32.112297 -1.4381406 40.00275 3.3808594 46.59375 C 6.8728594 51.36875 12.830891 54.151328 21.087891 54.861328 C 22.169891 54.955328 23.215375 55 24.234375 55 C 44.171375 55 52.165937 37.927219 53.710938 34.074219 C 61.550937 34.701219 63.915453 28.400938 63.939453 28.335938 C 64.079453 27.946938 63.964391 27.510234 63.650391 27.240234 C 60.571391 24.590234 57.539125 24.542406 55.453125 25.191406 C 55.664125 20.610406 50.856094 17.327922 50.621094 17.169922 C 50.400094 17.020922 50.128141 16.966531 49.869141 17.019531 C 49.608141 17.071531 49.379422 17.223312 49.232422 17.445312 C 45.145422 23.602313 46.785531 28.081031 47.769531 29.832031 C 46.189531 31.033031 44.148656 31.003 44.097656 31 L 44 31 L 44 24 C 44 23.45 43.55 23 43 23 L 36 23 L 36 8 C 36 7.45 35.55 7 35 7 L 27 7 z M 28 9 L 34 9 L 34 15 L 28 15 L 28 9 z M 12 17 L 26 17 L 26 23 L 20 23 L 20 20 C 20 19.448 19.552 19 19 19 C 18.448 19 18 19.448 18 20 L 18 23 L 12 23 L 12 17 z M 28 17 L 34 17 L 34 31 L 28 31 L 28 25 L 31 25 C 31.55 25 32 24.55 32 24 C 32 23.45 31.55 23 31 23 L 28 23 L 28 17 z M 50.330078 19.46875 C 51.743078 20.68275 54.371187 23.476906 53.117188 26.628906 C 52.951188 27.045906 53.086359 27.520969 53.443359 27.792969 C 53.800359 28.064969 54.29925 28.062016 54.65625 27.791016 C 54.79225 27.688016 57.877766 25.416109 61.759766 28.287109 C 60.996766 29.666109 58.648547 32.739812 53.185547 32.007812 C 52.702547 31.942812 52.251562 32.228547 52.101562 32.685547 C 52.031563 32.898547 45.162937 53.000047 24.210938 52.998047 C 23.257938 52.997047 22.271766 52.956141 21.259766 52.869141 C 13.613766 52.211141 8.1458125 49.707687 5.0078125 45.429688 C 1.5458125 40.709688 1.8979219 35.043 2.1699219 33 L 3 33 L 43 33 C 43.006908 33 43.012655 32.996235 43.019531 32.996094 L 44.068359 32.996094 C 44.215359 33.002094 47.577641 33.075734 49.806641 30.677734 C 50.148641 30.310734 50.16375 29.746375 49.84375 29.359375 C 49.81075 29.320375 46.803078 25.56075 50.330078 19.46875 z M 4 25 L 10 25 L 10 31 L 4 31 L 4 25 z M 12 25 L 18 25 L 18 31 L 12 31 L 12 25 z M 20 25 L 26 25 L 26 31 L 20 31 L 20 25 z M 36 25 L 42 25 L 42 31 L 36 31 L 36 25 z M 12.5 38 A 2.5 2.5 0 0 0 12.5 43 A 2.5 2.5 0 0 0 12.5 38 z M 42.287109 38.509766 C 42.031984 38.531016 41.783969 38.649375 41.605469 38.859375 C 41.248469 39.281375 41.301656 39.912531 41.722656 40.269531 L 43.246094 41.564453 C 43.434094 41.723453 43.663578 41.800781 43.892578 41.800781 C 44.176578 41.800781 44.45725 41.680266 44.65625 41.447266 C 45.01325 41.025266 44.962016 40.394109 44.541016 40.037109 L 43.015625 38.744141 C 42.804625 38.565141 42.542234 38.488516 42.287109 38.509766 z M 39.009766 41.908203 C 38.755266 41.881578 38.491344 41.952953 38.277344 42.126953 C 37.848344 42.473953 37.782859 43.10225 38.130859 43.53125 L 39.388672 45.085938 C 39.585672 45.330938 39.875016 45.457031 40.166016 45.457031 C 40.387016 45.457031 40.608922 45.383422 40.794922 45.232422 C 41.223922 44.885422 41.289406 44.255172 40.941406 43.826172 L 39.683594 42.273438 C 39.509594 42.058937 39.264266 41.934828 39.009766 41.908203 z M 34.794922 44.539062 C 34.665375 44.54825 34.535109 44.583484 34.412109 44.646484 C 33.919109 44.897484 33.724609 45.500188 33.974609 45.992188 L 34.882812 47.775391 C 35.058813 48.121391 35.409438 48.320312 35.773438 48.320312 C 35.926437 48.320313 36.081563 48.285891 36.226562 48.212891 C 36.719563 47.961891 36.914062 47.359187 36.664062 46.867188 L 35.757812 45.085938 C 35.569563 44.716938 35.183563 44.5115 34.794922 44.539062 z M 30.505859 46.246094 C 30.377422 46.226922 30.242875 46.233328 30.109375 46.267578 C 29.574375 46.405578 29.254578 46.949375 29.392578 47.484375 L 29.892578 49.421875 C 30.009578 49.872875 30.414375 50.171875 30.859375 50.171875 C 30.942375 50.171875 31.026375 50.162625 31.109375 50.140625 C 31.644375 50.002625 31.966125 49.456875 31.828125 48.921875 L 31.328125 46.984375 C 31.224625 46.583875 30.891172 46.303609 30.505859 46.246094 z M 25.53125 46.951172 C 24.97925 46.979172 24.555984 47.448 24.583984 48 L 24.685547 49.998047 C 24.712547 50.532047 25.154594 50.947266 25.683594 50.947266 C 25.700594 50.947266 25.717375 50.945312 25.734375 50.945312 C 26.286375 50.917312 26.711594 50.448484 26.683594 49.896484 L 26.580078 47.898438 C 26.552078 47.346438 26.07325 46.926172 25.53125 46.951172 z"></path></svg>' +
+                                '<a href="https://hub.docker.com/repository/docker/questdb/questdb/general"> Docker</a></li>' +
+                                '<li class="download"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"\n' +
+                                'width="26" height="26"\n' +
+                                'viewBox="0 0 26 26"\n' +
+                                'style=" fill: white;">' +
+                                '<path d="M 15.5 4 C 13.300781 4 11.199219 5.199219 10 7 L 9.5 7 C 7 7 4.886719 8.699219 4.1875 11 C 1.886719 11.101563 0 13.101563 0 15.5 C 0 18 2 20 4.5 20 L 20.5 20 C 23.5 20 26 17.5 26 14.5 C 26 12 24.304688 9.789063 21.90625 9.1875 C 21.304688 6.1875 18.601563 4 15.5 4 Z M 15.5 6 C 17.800781 6 19.800781 7.792969 20 10.09375 L 20 11 L 20.8125 11.09375 C 22.613281 11.292969 23.90625 12.792969 23.90625 14.59375 C 24.007813 16.394531 22.398438 18 20.5 18 L 4.5 18 C 3.101563 18 2 16.898438 2 15.5 C 2 14.101563 3.101563 13 4.5 13 L 4.90625 13 L 5.90625 13.1875 L 6 12.1875 C 6.199219 10.386719 7.699219 9 9.5 9 C 9.699219 9 10.011719 8.992188 10.3125 9.09375 L 11.09375 9.3125 L 11.40625 8.59375 C 12.207031 6.992188 13.800781 6 15.5 6 Z M 13 10 L 13 13 L 10.5 13 L 14 16.5 L 17.5 13 L 15 13 L 15 10 Z"></path></svg>' +
+                                '<a href="https://github.com/questdb/questdb/releases/download/4.0.0/questdb-4.0.0-bin.tar.gz"> Download QuestDB</a></li>' +
+                                '<li class="slack"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" ' +
+                                'width="24" height="24" ' +
+                                'viewBox="0 0 24 24" ' +
+                                'style=" fill: white;"><path d="M9 7C8.359 7 4.639 7 4 7 2.895 7 2 7.895 2 9c0 1.105.895 2 2 2 .639 0 4.359 0 5 0 1.105 0 2-.895 2-2C11 7.895 10.105 7 9 7zM11 4c0 .598 0 2 0 2S9.507 6 9 6C7.895 6 7 5.105 7 4s.895-2 2-2S11 2.895 11 4zM7 14c0 .641 0 4.361 0 5 0 1.105.895 2 2 2 1.105 0 2-.895 2-2 0-.639 0-4.359 0-5 0-1.105-.895-2-2-2C7.895 12 7 12.895 7 14zM4 12c.598 0 2 0 2 0s0 1.493 0 2c0 1.105-.895 2-2 2s-2-.895-2-2S2.895 12 4 12zM14 16c.641 0 4.361 0 5 0 1.105 0 2-.895 2-2 0-1.105-.895-2-2-2-.639 0-4.359 0-5 0-1.105 0-2 .895-2 2C12 15.104 12.895 16 14 16zM12 19c0-.598 0-2 0-2s1.493 0 2 0c1.105 0 2 .895 2 2 0 1.105-.895 2-2 2S12 20.104 12 19zM16 9c0-.641 0-4.361 0-5 0-1.105-.895-2-2-2-1.105 0-2 .895-2 2 0 .639 0 4.359 0 5 0 1.105.895 2 2 2C15.104 11 16 10.104 16 9zM19 11c-.598 0-2 0-2 0s0-1.493 0-2c0-1.105.895-2 2-2 1.105 0 2 .895 2 2S20.104 11 19 11z"></path></svg>' +
+                                '<a href="https://join.slack.com/t/questdb/shared_invite/enQtNzk4Nzg4Mjc2MTE2LTEzZThjMzliMjUzMTBmYzVjYWNmM2UyNWJmNDdkMDYyZmE0ZDliZTQxN2EzNzk5MDE3Zjc1ZmJiZmFiZTIwMGY"> Join our Slack</a></li>' +
+                                '</ul>',
+                        },
+                    ]}
+                </Block>
+            </div>
         );
 
         const Showcase = () => {
@@ -198,7 +251,7 @@ class Index extends React.Component {
                 .filter(user => user.pinned)
                 .map(user => (
                     <a href={user.infoLink} key={user.infoLink}>
-                        <img src={user.image} alt={user.caption} title={user.caption} />
+                        <img src={user.image} alt={user.caption} title={user.caption}/>
                     </a>
                 ));
 
@@ -219,20 +272,14 @@ class Index extends React.Component {
             );
         };
 
-        /*@Tanc > Structure of page here*/
-        /**
-         removed <description />
-         */
 
         return (
             <div>
-                <HomeSplash siteConfig={siteConfig} language={language} />
+                <HomeSplash siteConfig={siteConfig} language={language}/>
                 <div className="mainContainer">
-                    <FeatureCallout />
-                    <Features />
-                    <About />
-                    <TryOut />
-                    <Showcase />
+                    <About/>
+                    <Docker/>
+                    <Community/>
                 </div>
             </div>
         );
@@ -240,5 +287,3 @@ class Index extends React.Component {
 }
 
 module.exports = Index;
-
-

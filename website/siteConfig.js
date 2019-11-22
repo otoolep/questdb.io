@@ -24,7 +24,7 @@ const users = [
 
 const siteConfig = {
   title: 'QuestDB', // Title for your website.
-  tagline: 'Ultimate performance time-series',
+  tagline: 'Always on time',
   url: 'https://questdb.github.io', // Your website URL
   baseUrl: '/', // Base URL for your project */
   projectName: 'website',
@@ -38,7 +38,6 @@ const siteConfig = {
   headerLinks: [
     {doc: `technology`, label: `Technology`},
     {doc: 'documentation', label: 'Documentation'},
-    {page: 'help', label: 'Contact'},
     {blog: true, label: 'Blog'},
   ],
 
