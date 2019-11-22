@@ -128,7 +128,9 @@ cross-process lock on the table.
 ### Example
 
 ~~~ java
-try (TableWriter writer = engine.getWriter("abc")) {
+AllowAllSecurityContextFactory securityContextFactor = new AllowAllSecurityContextFactory();
+CairoSecurityContext cairoSecurityContext = securityContextFactor.getInstance("admin");
+try (TableWriter writer = engine.getWriter(cairoSecurityContext, "abc")) {
     for (int i = 0; i < 10; i++) {
         TableWriter.Row row = writer.newRow(Os.currentTimeMicros());
         row.putInt(0, 123);
@@ -154,7 +156,9 @@ Detailed steps are:
 
 1 - Create an instance of TableWriter. In this case, we use engine but we can also use TableWriter constructor directly.
 ~~~ java
-try (TableWriter writer = engine.getWriter("abc")) {
+AllowAllSecurityContextFactory securityContextFactor = new AllowAllSecurityContextFactory();
+CairoSecurityContext cairoSecurityContext = securityContextFactor.getInstance("admin");
+try (TableWriter writer = engine.getWriter(cairoSecurityContext, "abc")) {
 ~~~
 The `writer` instance must be eventually released to release resources. 
 In this case, it will be released back to the engine for re-use. 
