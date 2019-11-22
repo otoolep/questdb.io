@@ -14,7 +14,7 @@ Administration commands can be run py passing configuration SQL to the compiler.
 ```java
 CairoConfiguration configuration = new DefaultCairoConfiguration("/tmp/my_database");
 BindVariableService bindVariableService = new BindVariableService();
-try (Engine engine = new Engine(configuration)) {
+try (CairoEngine engine = new CairoEngine(configuration)) {
     try (SqlCompiler compiler = new SqlCompiler(engine, configuration)) {
         compiler.compile(
             "YOUR_SQL_HERE"
@@ -40,7 +40,7 @@ The following will create a new table abc with the specifications set below.
 ```java
 CairoConfiguration configuration = new DefaultCairoConfiguration("/tmp/my_database");
 BindVariableService bindVariableService = new BindVariableService();
-try (Engine engine = new Engine(configuration)) {
+try (CairoEngine engine = new CairoEngine(configuration)) {
     try (SqlCompiler compiler = new SqlCompiler(engine, configuration)) {
         compiler.compile(
                 "create table abc (" +
