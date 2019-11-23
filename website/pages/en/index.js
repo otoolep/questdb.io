@@ -124,12 +124,40 @@ class Index extends React.Component {
             </div>
         );
 
-        const Docker = () => (
+        const SQL = () => (
+            <div class="sql">
+                <Block layout="twoColumn">
+                    {[
+                        {
+                            title: 'SQL on steroids',
+                            content:
+                                'Leverage the full power of **new SQL**:' +
+                                '<p>' +
+                                '- ANSI SQL' +
+                                '<p>' +
+                                '- Nested queries' +
+                                '<p>' +
+                                '- User-defined functions' +
+                                '<p>' +
+                                '- Tables as arguments'
+                        },
+                        {
+                            image: `${baseUrl}img/getstarted2.gif`,
+                            imageAlign: 'right',
+                            textAlign: 'left',
+                        },
+                    ]}
+                </Block>
+            </div>
+        );
+
+
+        const GetStarted = () => (
             <div class="run">
                 <Block layout="twoColumn">
                     {[
                         {
-                            image: `${baseUrl}img/demo.gif`,
+                            image: `${baseUrl}img/getstarted2.gif`,
                             imageAlign: 'right',
                             textAlign: 'left',
                         },
@@ -278,7 +306,8 @@ class Index extends React.Component {
                 <HomeSplash siteConfig={siteConfig} language={language}/>
                 <div className="mainContainer">
                     <About/>
-                    <Docker/>
+                    <GetStarted/>
+                    <SQL/>
                     <Community/>
                 </div>
             </div>
