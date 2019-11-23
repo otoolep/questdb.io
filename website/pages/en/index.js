@@ -111,10 +111,10 @@ class Index extends React.Component {
                             '<li><img src="https://img.icons8.com/nolan/2x/checkmark.png" height="25" width="25" align="middle"> Relational Time-Series</li>' +
                             '<li><img src="https://img.icons8.com/nolan/2x/checkmark.png" height="25" width="25" align="middle"> SQL</li>' +
                             '<li><img src="https://img.icons8.com/nolan/2x/checkmark.png" height="25" width="25" align="middle"> Open-Source</li>' +
-                            '</ul>',
+                            '</ul>'
                     },
                     {
-                        image: `${baseUrl}img/demo.gif`,
+                        image: `${baseUrl}img/speed.svg`,
                         imageAlign: 'right',
                         textAlign: 'left',
                     }
@@ -133,16 +133,12 @@ class Index extends React.Component {
                             content:
                                 'Leverage the full power of **new SQL**:' +
                                 '<p>' +
-                                '- ANSI SQL' +
+                                '- Use the classic **ANSI SQL** that you already know' +
                                 '<p>' +
-                                '- Nested queries' +
-                                '<p>' +
-                                '- User-defined functions' +
-                                '<p>' +
-                                '- Tables as arguments'
+                                '- Enjoy the power of **nested queries**, **user-defined functions**, and of using **tables as arguments**.'
                         },
                         {
-                            image: `${baseUrl}img/getstarted2.gif`,
+                            image: `${baseUrl}img/sql.gif`,
                             imageAlign: 'right',
                             textAlign: 'left',
                         },
@@ -158,7 +154,7 @@ class Index extends React.Component {
                     {[
                         {
                             image: `${baseUrl}img/getstarted2.gif`,
-                            imageAlign: 'right',
+                            imageAlign: 'bottom',
                             textAlign: 'left',
                         },
                         {
@@ -179,7 +175,9 @@ class Index extends React.Component {
                                 'style=" fill: #2d00a1;">' +
                                 '<path d="M 15.5 4 C 13.300781 4 11.199219 5.199219 10 7 L 9.5 7 C 7 7 4.886719 8.699219 4.1875 11 C 1.886719 11.101563 0 13.101563 0 15.5 C 0 18 2 20 4.5 20 L 20.5 20 C 23.5 20 26 17.5 26 14.5 C 26 12 24.304688 9.789063 21.90625 9.1875 C 21.304688 6.1875 18.601563 4 15.5 4 Z M 15.5 6 C 17.800781 6 19.800781 7.792969 20 10.09375 L 20 11 L 20.8125 11.09375 C 22.613281 11.292969 23.90625 12.792969 23.90625 14.59375 C 24.007813 16.394531 22.398438 18 20.5 18 L 4.5 18 C 3.101563 18 2 16.898438 2 15.5 C 2 14.101563 3.101563 13 4.5 13 L 4.90625 13 L 5.90625 13.1875 L 6 12.1875 C 6.199219 10.386719 7.699219 9 9.5 9 C 9.699219 9 10.011719 8.992188 10.3125 9.09375 L 11.09375 9.3125 L 11.40625 8.59375 C 12.207031 6.992188 13.800781 6 15.5 6 Z M 13 10 L 13 13 L 10.5 13 L 14 16.5 L 17.5 13 L 15 13 L 15 10 Z"></path></svg>' +
                                 '<a href="https://github.com/questdb/questdb/releases/download/4.0.0/questdb-4.0.0-bin.tar.gz"> Download </a></li>' +
-                                '</ul>',
+                                '</ul>' +
+                                '<p></p><p></p>' +
+                                '<p> <H2>`docker pull questdb/questdb`</H2></p>',
                         },
                     ]}
                 </Block>
@@ -191,7 +189,12 @@ class Index extends React.Component {
                 <Block layout="twoColumn">
                     {[
                         {
-                            title: 'Speed up your game',
+                            image: `${baseUrl}img/community.svg`,
+                            imageAlign: 'right',
+                            textAlign: 'right',
+                        },
+                        {
+                            title: 'Welcome to the community',
                             content:
                                 'Get up to speed with our **Documentation & guides**. If you already know SQL you are good to go. If you have issues, you can rais on **Github** or ohave a chat on **Slack**.'+
                                 '<p>' +
@@ -214,11 +217,6 @@ class Index extends React.Component {
                                 'style=" fill:#000000;"><path d="M 12 0 C 5.371094 0 0 5.371094 0 12 C 0 18.628906 5.371094 24 12 24 C 18.628906 24 24 18.628906 24 12 C 24 5.371094 18.628906 0 12 0 Z M 12 2 C 17.523438 2 22 6.476563 22 12 C 22 17.523438 17.523438 22 12 22 C 6.476563 22 2 17.523438 2 12 C 2 6.476563 6.476563 2 12 2 Z M 12 5.8125 C 11.816406 5.8125 11.664063 5.808594 11.5 5.84375 C 11.335938 5.878906 11.183594 5.96875 11.0625 6.0625 C 10.941406 6.15625 10.851563 6.285156 10.78125 6.4375 C 10.710938 6.589844 10.6875 6.769531 10.6875 7 C 10.6875 7.226563 10.710938 7.40625 10.78125 7.5625 C 10.851563 7.71875 10.941406 7.84375 11.0625 7.9375 C 11.183594 8.03125 11.335938 8.085938 11.5 8.125 C 11.664063 8.164063 11.816406 8.1875 12 8.1875 C 12.179688 8.1875 12.371094 8.164063 12.53125 8.125 C 12.691406 8.085938 12.816406 8.03125 12.9375 7.9375 C 13.058594 7.84375 13.148438 7.71875 13.21875 7.5625 C 13.289063 7.410156 13.34375 7.226563 13.34375 7 C 13.34375 6.769531 13.289063 6.589844 13.21875 6.4375 C 13.148438 6.285156 13.058594 6.15625 12.9375 6.0625 C 12.816406 5.96875 12.691406 5.878906 12.53125 5.84375 C 12.371094 5.808594 12.179688 5.8125 12 5.8125 Z M 10.78125 9.15625 L 10.78125 18.125 L 13.21875 18.125 L 13.21875 9.15625 Z"></path></svg>' +
                                 '<a href="https://www.questdb.io/docs/install"> Docs </a></li>' +
                                 '</ul>',
-                        },
-                        {
-                            image: `${baseUrl}img/demo.gif`,
-                            imageAlign: 'right',
-                            textAlign: 'right',
                         },
                     ]}
                 </Block>

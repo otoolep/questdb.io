@@ -163,10 +163,25 @@ li.slack a{
     font-weight: bolder;
 }
 
+div.sql{
+    margin-bottom: 20px;
+    padding-top: 20px;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    background-color: rgb(28,28,28);
+    color: white;
+}
+
 
 div.about{
     margin-bottom: 20px;
     padding-top: 20px;
+}
+
+div.community img{
+    padding-top: 10%;
+    width: 60%;
+    height: 60%;
 }
 
 div.about ul{
