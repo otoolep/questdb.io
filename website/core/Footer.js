@@ -105,20 +105,8 @@ class Footer extends React.Component {
                     </div>
                 </section>
 
-                <a
-                    href="https://opensource.facebook.com/"
-                    target="_blank"
-                    rel="noreferrer noopener"
-                    className="fbOpenSource">
-                    <img
-                        src={`${this.props.config.baseUrl}img/oss_logo.png`}
-                        alt="Facebook Open Source"
-                        width="170"
-                        height="45"
-                    />
-                </a>
                 <section className="copyright">{this.props.config.copyright}
-                  <p> <a target="_blank" href="/icons/set/checkmark">Checkmark icon</a> by <a target="_blank" href="https://icons8.com">Icons8</a></p>
+                  <p><a target="_blank" href="https://icons8.com"> Icons by Icons8</a></p>
                 </section>
 
             </footer>
