@@ -715,7 +715,7 @@ SAMPLE BY 30m;
 
 The following will return the averate trade notional (where notional is = q * p) by day:
 ```sql
-SELECT timestamp, sum(quantity*price)/count()
+SELECT timestamp, avg(quantity*price)
 FROM TRADES
 SAMPLE BY 1d;
 ``` 
@@ -800,7 +800,7 @@ tsn           pn
 
 We could run the following to get the minimum, maximum and average price per hour using the following query:
 ```sql
-SELECT timestamp, min(price) min, max(price) max, sum(price)/count() avg
+SELECT timestamp, min(price) min, max(price) max, avg(price) avg
 FROM PRICES
 SAMPLE BY 1h;
 ```
@@ -832,7 +832,7 @@ tsn           minn    maxn    avgn
 Here you can see that the third time chunk is missing. This is because there was no price update in the third hour. 
 Let's see what different fill values would return:
 ```sql
-SELECT timestamp, min(price) min, max(price) max, sum(price)/count() avg
+SELECT timestamp, min(price) min, max(price) max, avg(price) avg
 FROM PRICES
 SAMPLE BY 1h
 FILL(null, 0, prev);
@@ -854,7 +854,7 @@ tsn           minn    maxn    avgn
 
 And the following:
 ```sql
-SELECT timestamp, min(price) min, sum(price)/count() avg
+SELECT timestamp, min(price) min, avg(price) avg
 FROM PRICES
 SAMPLE BY 1h
 FILL(25.5, linear);

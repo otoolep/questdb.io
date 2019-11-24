@@ -5,10 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-
-
 const React = require('react');
-
 const CompLibrary = require('../../core/CompLibrary.js');
 
 const MarkdownBlock = CompLibrary.MarkdownBlock; /* Used to read markdown */
@@ -16,6 +13,7 @@ const Container = CompLibrary.Container;
 const GridBlock = CompLibrary.GridBlock;
 
 class HomeSplash extends React.Component {
+
     render() {
         const {siteConfig, language = ''} = this.props;
         const {baseUrl, docsUrl} = siteConfig;
@@ -33,15 +31,12 @@ class HomeSplash extends React.Component {
 
         const Logo = props => (
             <div className="projectLogo">
-                <img src={props.img_src} alt="Project Logo" />
+                <img src={props.img_src} alt="Project Logo"/>
             </div>
         );
 
         const ProjectTitle = () => (
-            <h2 className="projectTitle">
-                {siteConfig.title}
-                <small>{siteConfig.tagline}</small>
-            </h2>
+                <span/>
         );
 
         const PromoSection = props => (
@@ -63,129 +58,107 @@ class HomeSplash extends React.Component {
 
         return (
             <SplashContainer>
-                <Logo img_src={`${baseUrl}img/server.svg`} />
                 <div className="inner">
-                    <ProjectTitle siteConfig={siteConfig} />
-                    <PromoSection>
-                        <Button href={docUrl('technology.html')}>Technology</Button>
-                        <Button href={docUrl('documentation.html')}>Documentation</Button>
-                        <Button href={'https://github.com/questdb/questdb/releases/download/4.0.0/questdb-4.0.0-bin.tar.gz'}>Download</Button>
-                    </PromoSection>
+                    <ProjectTitle siteConfig={siteConfig}/>
                 </div>
             </SplashContainer>
         );
     }
 }
 
+
 class Index extends React.Component {
+
     render() {
         const {config: siteConfig, language = ''} = this.props;
         const {baseUrl} = siteConfig;
 
         const Block = props => (
             <Container
-                padding={['top']}
                 id={props.id}
                 background={props.background}>
                 <GridBlock
-                    align="center"
+                    padding={['top', 'bottom']}
+                    align="justified"
                     contents={props.children}
                     layout={props.layout}
                 />
             </Container>
         );
 
-        const FeatureCallout = () => (
-            <div
-                className="productShowcaseSection"
-                style={{}}>
-                <h2>What is QuestDB?</h2>
-
-                <p>
-                    QuestDB is a high-performance, low-latency time-series database, which runs natively across multiple platforms and architectures.
-                    Our approach is a different take on high performance databases, and was born from low latency trading principles.
-                </p>
-                <p>
-                    We achieve maximum efficiency for a given unit of hardware with cutting-edge
-                    proprietary software. Core performance has been pushed to the maximum; QuestDB on a single thread is already many times faster than multi-threaded databases.
-                </p>
-                <p>
-                    We provide full stack solutions ready for enterprise, IoT/edge and low-latency trading.
-                </p>
-
+        const About = () => (
+            <div className="about">
+            <Block padding='bottom'>
+                {[
+                    {
+                        image: `${baseUrl}img/speed.svg`,
+                        imageAlign: 'left',
+                    },
+                    {
+                        content:
+                            '<img class="logo" src="https://raw.githubusercontent.com/questdb/questdb/master/core/src/main/resources/site/public/images/logo-readme.jpg"/>'+
+                            '<span class="title">Fast relational time-series</span>'+
+                            '<p>QuestDB is a fast NewSQL database for Hybrid Transactional, Analytical and Time Series processing workloads. Users interact via ' +
+                            'HTTP endpoints, web console, PostgreSQL wire, Influx wire, and programmatic API. The whole database fits in a dependency-free 3.5mb package ' +
+                            'and is Open Source under Apache 2.0.'+
+                            '<ul class="features">' +
+                            '<li>Relational</li>' +
+                            '<li>Time series</li>' +
+                            '<li>SQL</li>' +
+                            '<li>Open Source</li>' +
+                            '</ul>' +
+                            '<ul class="buttons">' +
+                            '<li class="cta"><a href="/docs/documentation">Get started</a></li>' +
+                            '<li><a href="https://github.com/questdb/questdb" target="_blank">View on GitHub</a></li>' +
+                            '</ul>'
+                    }
+                ]
+                }
+            </Block>
             </div>
         );
 
-        const TryOut = () => (
-            <Block id="try">
-                {[
-                    {
-                        content:
-                            'Switch from Postgres using the same integrations, which you have already built. ' +
-                            'Integrate easily with your applications. We support Java natively and can run as a library. ' +
-                            'We also offer a REST API and web server. Finally, we are SQL.',
-                        image: `${baseUrl}img/undraw_code_review.svg`,
-                        imageAlign: 'left',
-                        textAlign: `justified`,
-                        title: '... and ease of use',
-                    },
-                ]}
-            </Block>
+        const SQL = () => (
+            <div className="sql">
+                <Block layout="twoColumn">
+                    {[
+                        {
+                            content:
+                                '<span class="title">Expressive SQL</span>'+
+                                'With build-in time series support QuestDB SQL Optimiser assembles a sequence of monads for best-effort-zero-copy query execution.' +
+                                'User function allowing data set manipulation aimed at provide ultimate SQL customisation'
+                        },
+                        {
+                            image: `${baseUrl}img/sql.gif`,
+                            imageAlign: 'right',
+                            textAlign: 'left',
+                        },
+                    ]}
+                </Block>
+            </div>
         );
 
-        const Description = () => (
-            <Block>
-                {[
-                    {
-                        content:
-                            'This is another description of how this project is useful',
-                        image: `${baseUrl}img/undraw_note_list.svg`,
-                        imageAlign: 'right',
-                        title: 'Description',
-                    },
-                ]}
-            </Block>
-        );
-
-        const About = () => (
-            <Block>
-                {[
-                    {
-                        content:
-                            'QuestDB is the fruit of 5 years of R&D in high-frequency and low-latency trading environments. Our stack is built from the ground up ' +
-                             'to maximise performance, efficiency, and reliability. ',
-                        image: `${baseUrl}img/speed.svg`,
-                        imageAlign: 'right',
-                        textAlign: 'justified',
-                        title: 'We are all about performance...',
-                    },
-                ]}
-            </Block>
-        );
-
-        const Features = () => (
-            <Block layout="fourColumn">
-                {[
-                    {
-                        content: 'Unrivaled read / write speed and reliable performance',
-                        image: `${baseUrl}img/undraw_react.svg`,
-                        imageAlign: 'top',
-                        title: 'Nanosecond Latency',
-                    },
-                    {
-                        content: 'Run natively on any platform, suited to all kind of specs',
-                        image: `${baseUrl}img/maintenance.svg`,
-                        imageAlign: 'top',
-                        title: 'Full vertical scalability',
-                    },
-                    {
-                        content: 'We support standard ANSI SQL, with additional augmented features',
-                        image: `${baseUrl}img/setup_wiz.svg`,
-                        imageAlign: 'top',
-                        title: 'We are SQL',
-                    },
-                ]}
-            </Block>
+        const Community = () => (
+            <div className="community">
+                <Block layout="twoColumn">
+                    {[
+                        {
+                            image: `${baseUrl}img/community.svg`,
+                            imageAlign: 'right',
+                            textAlign: 'right',
+                        },
+                        {
+                            content:
+                                '<span class="title">Welcome to the community</span>' +
+                                'Get up to speed with our documentation and guides. If you already know SQL you are good to go. If you have issues, you can rais on Github or ohave a chat on Slack.'+
+                                '<ul class="buttons">' +
+                                '<li><a href="https://join.slack.com/t/questdb/shared_invite/enQtNzk4Nzg4Mjc2MTE2LTEzZThjMzliMjUzMTBmYzVjYWNmM2UyNWJmNDdkMDYyZmE0ZDliZTQxN2EzNzk5MDE3Zjc1ZmJiZmFiZTIwMGY" target="_blank">Join Slack</a></li>' +
+                                '<li><a href="/docs/sql">Documentation </a></li>' +
+                                '</ul>'
+                        }
+                    ]}
+                </Block>
+            </div>
         );
 
         const Showcase = () => {
@@ -197,7 +170,7 @@ class Index extends React.Component {
                 .filter(user => user.pinned)
                 .map(user => (
                     <a href={user.infoLink} key={user.infoLink}>
-                        <img src={user.image} alt={user.caption} title={user.caption} />
+                        <img src={user.image} alt={user.caption} title={user.caption}/>
                     </a>
                 ));
 
@@ -218,20 +191,14 @@ class Index extends React.Component {
             );
         };
 
-        /*@Tanc > Structure of page here*/
-        /**
-         removed <description />
-         */
 
         return (
             <div>
-                <HomeSplash siteConfig={siteConfig} language={language} />
+                <HomeSplash siteConfig={siteConfig} language={language}/>
                 <div className="mainContainer">
-                    <FeatureCallout />
-                    <Features />
-                    <About />
-                    <TryOut />
-                    <Showcase />
+                    <About/>
+                    <SQL/>
+                    <Community/>
                 </div>
             </div>
         );
@@ -239,5 +206,3 @@ class Index extends React.Component {
 }
 
 module.exports = Index;
-
-

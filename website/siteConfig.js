@@ -10,21 +10,11 @@
 
 // List of projects/orgs using your project for the users page.
 const users = [
-    /** @Tanc who is using
-  {in
-    caption: 'User1',
-    // You will need to prepend the image path with your baseUrl
-    // if it is not '/', like: '/test-site/img/image.jpg'.
-    image: '/img/undraw_open_source.svg',
-    infoLink: 'https://www.facebook.com',
-    pinned: true,
-  },
-     */
 ];
 
 const siteConfig = {
   title: 'QuestDB', // Title for your website.
-  tagline: 'High-performance data',
+  tagline: 'Always on time',
   url: 'https://questdb.github.io', // Your website URL
   baseUrl: '/', // Base URL for your project */
   projectName: 'website',
@@ -34,11 +24,10 @@ const siteConfig = {
   //   organizationName: 'JoelMarcey'
 
   // For no header links in the top nav bar -> headerLinks: [],
-  //@Tancrede headers nav top bar
-  headerLinks: [
+  headerLinks:[
+    {doc: "documentation", label: 'Get Started'},
     {doc: `technology`, label: `Technology`},
-    {doc: 'documentation', label: 'Documentation'},
-    {page: 'help', label: 'Contact'},
+    {doc: 'sql', label: 'Documentation'},
     {blog: true, label: 'Blog'},
   ],
 
@@ -107,7 +96,8 @@ const siteConfig = {
 
   // You may provide arbitrary config keys to be used as needed by your
   // template. For example, if you need your repo's URL...
-  //   repoUrl: 'https://github.com/facebook/test-site',
+
+  repoUrl: 'https://github.com/questdb/questdb',
 
   scripts: [
         'https://buttons.github.io/buttons.js',

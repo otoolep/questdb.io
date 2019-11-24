@@ -8,7 +8,7 @@ title: Technology
 ## Overview
 Questdb is a high performance, low latency database, which is optimised for time series. It is essentially a stack of components that can be assembled into products to fulfill a wide array of use cases. Each component challenges convention and is designed to be faster.
 
-Find more about our **database**, **messaging service** and **trading libraries** below.
+Find out more about our plans in our **[roadmap](roadmap.md).**
 
 ### Statistics
 - Code Size: 1.5mb
