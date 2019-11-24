@@ -1,0 +1,155 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Roadmap · QuestDB</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="Here is a non-exhaustive list of things we are working on. Feel free to join us on "/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Roadmap · QuestDB"/><meta property="og:type" content="website"/><meta property="og:url" content="https://questdb.github.io/"/><meta property="og:description" content="Here is a non-exhaustive list of things we are working on. Feel free to join us on "/><meta property="og:image" content="https://questdb.github.io/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://questdb.github.io/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/agate.min.css"/><link rel="alternate" type="application/atom+xml" href="https://questdb.github.io/blog/atom.xml" title="QuestDB Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://questdb.github.io/blog/feed.xml" title="QuestDB Blog RSS Feed"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-145747842-1', 'auto');
+              ga('send', 'pageview');
+            </script><link rel="stylesheet" href="/css/code-block-buttons.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/favicon.png" alt="QuestDB"/><h2 class="headerTitleWithLogo">QuestDB</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/documentation" target="_self">Get Started</a></li><li class=""><a href="/docs/technology" target="_self">Technology</a></li><li class="siteNavGroupActive"><a href="/docs/sql" target="_self">Documentation</a></li><li class=""><a href="/blog/" target="_self">Blog</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Overview</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Overview</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/documentation">Overview</a></li><li class="navListItem"><a class="navItem" href="/docs/storagemodel">Storage Model</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/roadmap">Roadmap</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Getting Started</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/binaries">Running from binaries</a></li><li class="navListItem"><a class="navItem" href="/docs/docker">Running via Docker</a></li><li class="navListItem"><a class="navItem" href="/docs/gettestdata">Obtaining Test Data</a></li><li class="navListItem"><a class="navItem" href="/docs/console">Web Console</a></li><li class="navListItem"><a class="navItem" href="/docs/tut_first_db">Your first database</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Using QuestDB</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/sql">Query Language</a></li><li class="navListItem"><a class="navItem" href="/docs/datatypes">Type system</a></li><li class="navListItem"><a class="navItem" href="/docs/crud">CRUD Functions</a></li><li class="navListItem"><a class="navItem" href="/docs/tableadmin">Table Admin</a></li><li class="navListItem"><a class="navItem" href="/docs/select">SELECT</a></li><li class="navListItem"><a class="navItem" href="/docs/join">JOINS</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Interfaces</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/java">JAVA</a></li><li class="navListItem"><a class="navItem" href="/docs/restful">REST</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">FAQ</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/faq">Frequently Asked</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Roadmap</h1></header><article><div><span><p>Here is a non-exhaustive list of things we are working on. Feel free to join us on
+<strong><a href="'https://github.com/questdb/questdb'">Github</a></strong> to track progress and participate.</p>
+<h2><a class="anchor" aria-hidden="true" id="sql"></a><a href="#sql" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>SQL</h2>
+<ul>
+<li><p>[ ] Authorization framework:
+granular authorization framework to govern data access at table, column and SQL functional level</p></li>
+<li><p>[ ] Analytic functions</p></li>
+<li><p>[ ] Views</p></li>
+<li><p>[ ] Incremental queries: reuse result of previously users secure queries to reduce calculation effort</p></li>
+<li><p>[ ] true - parallel query execution</p></li>
+<li><p>[ ] low latency RPC (remote async query execution)</p></li>
+<li><p>[ ] column type change</p></li>
+<li><p>[ ] drop table partition</p></li>
+<li><p>[ ] replace table partition with aggregated data: downsample historical data to reduce data volume as significance of data diminishes</p></li>
+<li><p>[ ] pivot table</p></li>
+<li><p>[ ] parquet import</p></li>
+<li><p>[ ] AVRO import</p></li>
+<li><p>[ ] Cancel active query: lightweight method for cancelling loops that have negligeable impact on query performance</p></li>
+<li><p>[x] subqueries</p></li>
+<li><p>[x] support for NULL and NaN values in filters</p></li>
+<li><p>[x] simple aggregation (sum, count, avg etc)
+(aggregation does not require &quot;group by&quot; clause. Compiler works out
+key fields names automatically, e.g. 'select x, sum(y) from A' is
+equivalent to 'select x, sum(y) from A group by x')</p></li>
+<li><p>[x] simple resampling (where aggregation function produces single row of values)</p></li>
+<li><p>[x] classic sql joins (hash, nested loops)</p></li>
+<li><p>[x] Latest record by secondary entity attribute attribute: select latest order for all customers in group X, where
+orders is a time series and customers is dimension and &quot;group&quot; is a field of customer</p></li>
+<li><p>[x] time joins (merge)</p></li>
+<li><p>[x] as of joins (trade asof join quote on trade.ccy = quote.ccy)</p></li>
+<li><p>[x] ordering</p></li>
+<li><p>[x] top x rows (select ... limit low,high can be used for paging)</p></li>
+<li><p>[x] bottom x rows</p></li>
+<li><p>[x] query parameters</p></li>
+<li><p>[x] support for comments (both block /* */ and line --)</p></li>
+<li><p>[x] analytic functions</p></li>
+<li><p>[x] subquery optimiser</p></li>
+<li><p>[x] order by optimiser</p></li>
+<li><p>[x] DDL - create table</p></li>
+<li><p>[x] DDL - copy journal (sample syntax: create table x as (y where a=1 order by b))</p></li>
+<li><p>[x] DDL - add/remove column</p></li>
+<li><p>[x] DDL - drop table</p></li>
+<li><p>[x] data generation functions</p></li>
+<li><p>[x] COPY from implementation</p></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="http-server"></a><a href="#http-server" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>HTTP Server</h2>
+<ul>
+<li>[ ] authentication and authorization</li>
+<li>[ ] queued DDL execution
+whenever table writer is needed and not available due to normal race condition server should
+queue the query and attempt to execute autonomously and periodcally</li>
+<li>[ ] choice of export formats</li>
+<li>[ ] query parameter support</li>
+<li>[ ] grafana integration</li>
+<li>[x] file upload handling (multipart form parsing)</li>
+<li>[x] file upload handling from curl (100-continue recognition)</li>
+<li>[x] query execution</li>
+<li>[x] JSON result set serialization</li>
+<li>[x] flow control on file upload (park upload if client is not sending file)</li>
+<li>[x] flow control on query executions (do not execute until client is ready to read, park streaming if client is not ready to read)</li>
+<li>[x] SSL support</li>
+<li>[x] http compression</li>
+<li>[x] high-performance logging</li>
+<li>[x] manage parked uploads and downloads (timeout with resource cleanup)</li>
+<li>[x] C layer for windows</li>
+<li>[x] C layer for linux (epoll)</li>
+<li>[x] C layer for mac/bsd (kqueue)</li>
+<li>[x] sql result export to delimited format</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="postgresql-wire-server"></a><a href="#postgresql-wire-server" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>PostgreSQL wire server</h2>
+<ul>
+<li>[ ] insert execution with parameters</li>
+<li>[ ] psql: support metadata queries</li>
+<li>[x] query execution</li>
+<li>[x] query parameters</li>
+<li>[x] DDL execution</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="influx-wire-server"></a><a href="#influx-wire-server" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Influx wire server</h2>
+<ul>
+<li>[ ] TCP server</li>
+<li>[x] Protocol parser</li>
+<li>[x] UDP server</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="monitoring"></a><a href="#monitoring" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Monitoring</h2>
+<ul>
+<li>[ ] session details</li>
+<li>[ ] active queries</li>
+<li>[ ] memory usage</li>
+<li>[ ] open files</li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/storagemodel"><span class="arrow-prev">← </span><span>Storage Model</span></a><a class="docs-next button" href="/docs/binaries"><span>Running from binaries</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#sql">SQL</a></li><li><a href="#http-server">HTTP Server</a></li><li><a href="#postgresql-wire-server">PostgreSQL wire server</a></li><li><a href="#influx-wire-server">Influx wire server</a></li><li><a href="#monitoring">Monitoring</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><div align="left" class="tanc"><h5>QuestDB</h5><a href="/docs/en/documentation">Documentation</a><a href="https://github.com/questdb/questdb/releases/download/4.0.0/questdb-4.0.0-bin.tar.gz">Download</a><a href="https://questdb.io/docs/roadmap">Roadmap</a></div><div><h5>Community</h5><a href="https://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://join.slack.com/t/questdb/shared_invite/enQtNzk4Nzg4Mjc2MTE2LTEzZThjMzliMjUzMTBmYzVjYWNmM2UyNWJmNDdkMDYyZmE0ZDliZTQxN2EzNzk5MDE3Zjc1ZmJiZmFiZTIwMGY&gt;"> Join Slack </a><a href="https://twitter.com/" target="@QuestDB" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/questdb/questdb/">GitHub</a><a class="github-button" href="https://github.com/questdb/questdb" data-icon="octicon-star" data-count-href="/questdb/questdb/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="copyright">Copyright © 2019 QuestDB Limited</section></footer></div></body></html>
