@@ -9,105 +9,103 @@
 // site configuration options.
 
 // List of projects/orgs using your project for the users page.
-const users = [
-];
+const users = [];
 
 const siteConfig = {
-  title: 'QuestDB', // Title for your website.
-  tagline: 'Always on time',
-  url: 'https://questdb.github.io', // Your website URL
-  baseUrl: '/', // Base URL for your project */
-  projectName: 'website',
-  organizationName: 'questdb',
-  // For top-level user or org sites, the organization is still the same.
-  // e.g., for the https://JoelMarcey.github.io site, it would be set like...
-  //   organizationName: 'JoelMarcey'
+    title: 'QuestDB', // Title for your website.
+    tagline: 'Always on time',
+    url: 'https://questdb.github.io', // Your website URL
+    baseUrl: '/', // Base URL for your project */
+    projectName: 'website',
+    organizationName: 'questdb',
+    // For top-level user or org sites, the organization is still the same.
+    // e.g., for the https://JoelMarcey.github.io site, it would be set like...
+    //   organizationName: 'JoelMarcey'
 
-  // For no header links in the top nav bar -> headerLinks: [],
-  headerLinks:[
-    {doc: "documentation", label: 'Get Started'},
-    {doc: `technology`, label: `Technology`},
-    {doc: 'sql', label: 'Documentation'},
-    {blog: true, label: 'Blog'},
-  ],
-
-  // If you have users set above, you add it here:
-  users,
-
-  /* path to images for header/footer */
-  headerIcon: 'img/favicon.png',
-  footerIcon: 'img/favicon.png',
-  favicon: 'img/favicon.png',
-
-  /* Colors for website */
-  colors: {
-    primaryColor: '#0d011a',
-    secondaryColor: '#130042',
-  },
-
-  /* Custom fonts for website */
-  /*
-  fonts: {
-    myFont: [
-      "Times New Roman",
-      "Serif"
+    // For no header links in the top nav bar -> headerLinks: [],
+    headerLinks: [
+        {doc: "documentation", label: 'Get Started'},
+        {doc: `technology`, label: `Technology`},
+        {doc: 'sql', label: 'Documentation'},
+        {blog: true, label: 'Blog'},
     ],
-    myOtherFont: [
-      "-apple-system",
-      "system-ui"
-    ]
-  },
-  */
 
-  // This copyright info is used in /core/Footer.js and blog RSS/Atom feeds.
-  copyright: `Copyright © ${new Date().getFullYear()} QuestDB Limited`,
+    // If you have users set above, you add it here:
+    users,
 
-  //Tracking ID for Google analytics
-  gaTrackingId: 'UA-145747842-1',
+    /* path to images for header/footer */
+    headerIcon: 'img/favicon.png',
+    footerIcon: 'img/favicon.png',
+    favicon: 'img/favicon.png',
 
-  highlight: {
-    // Highlight.js theme to use for syntax highlighting in code blocks.
-    theme: 'agate',
-  },
+    /* Colors for website */
+    colors: {
+        primaryColor: '#0d011a',
+        secondaryColor: '#130042',
+    },
 
-  cname: 'www.questdb.io',
+    /* Custom fonts for website */
+    /*
+    fonts: {
+      myFont: [
+        "Times New Roman",
+        "Serif"
+      ],
+      myOtherFont: [
+        "-apple-system",
+        "system-ui"
+      ]
+    },
+    */
 
-  // Add custom scripts here that would be placed in <script> tags.
-  scripts: ['https://buttons.github.io/buttons.js'],
+    // This copyright info is used in /core/Footer.js and blog RSS/Atom feeds.
+    copyright: `Copyright © ${new Date().getFullYear()} QuestDB Limited`,
 
-  // On page navigation for the current documentation page.
-  onPageNav: 'separate',
-  // No .html extensions for paths.
-  cleanUrl: true,
+    //Tracking ID for Google analytics
+    gaTrackingId: 'UA-145747842-1',
 
-  // Open Graph and Twitter card images.
-  ogImage: 'img/undraw_online.svg',
-  twitterImage: 'img/undraw_tweetstorm.svg',
+    highlight: {
+        // Highlight.js theme to use for syntax highlighting in code blocks.
+        theme: 'agate',
+    },
 
-  // For sites with a sizable amount of content, set collapsible to true.
-  // Expand/collapse the links and subcategories under categories.
-  // docsSideNavCollapsible: true,
+    cname: 'www.questdb.io',
 
-  // Show documentation's last contributor's name.
-  // enableUpdateBy: true,
+    // On page navigation for the current documentation page.
+    onPageNav: 'separate',
+    // No .html extensions for paths.
+    cleanUrl: true,
 
-  // Show documentation's last update time.
-  // enableUpdateTime: true,
+    // Open Graph and Twitter card images.
+    ogImage: 'img/undraw_online.svg',
+    twitterImage: 'img/undraw_tweetstorm.svg',
 
-  // You may provide arbitrary config keys to be used as needed by your
-  // template. For example, if you need your repo's URL...
+    // For sites with a sizable amount of content, set collapsible to true.
+    // Expand/collapse the links and subcategories under categories.
+    // docsSideNavCollapsible: true,
 
-  repoUrl: 'https://github.com/questdb/questdb',
+    // Show documentation's last contributor's name.
+    // enableUpdateBy: true,
 
-  scripts: [
+    // Show documentation's last update time.
+    // enableUpdateTime: true,
+
+    // You may provide arbitrary config keys to be used as needed by your
+    // template. For example, if you need your repo's URL...
+
+    repoUrl: 'https://github.com/questdb/questdb',
+
+    scripts: [
         'https://buttons.github.io/buttons.js',
         'https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js',
-        '/js/code-block-buttons.js',
+        '/js/code-block-buttons.js'
     ],
-  stylesheets: ['/css/code-block-buttons.css']
+    stylesheets: [
+        'https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,500,600,700|Source+Code+Pro:400,700|Open+Sans:300,400,600,700',
+        '/css/code-block-buttons.css'
+    ]
 
 };
-
 
 
 module.exports = siteConfig;
