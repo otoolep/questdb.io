@@ -1,6 +1,9 @@
 /* your custom css */
 
 @media only screen and (min-device-width: 360px) and (max-device-width: 736px) {
+    .features li {
+        display: block!important;
+    }
 }
 
 @media only screen and (min-width: 1024px) {
@@ -36,15 +39,12 @@
     margin-left: -10px;
 }
 
-.about span {
-    text-align: justify;
-}
-
 .features {
     padding: 0;
     margin: 0;
-    display: block;
-    white-space: nowrap;
+    /*display: block;*/
+    text-align: left;
+    /*white-space: nowrap;*/
 }
 
 .features li {
@@ -133,7 +133,7 @@
 }
 
 .sql, .community {
-    margin-top: 100px;
+    margin-top: 50px;
 }
 
 .sql img {

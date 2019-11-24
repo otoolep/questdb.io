@@ -108,7 +108,6 @@ class Index extends React.Component {
                             '<li>Relational</li>' +
                             '<li>Time series</li>' +
                             '<li>SQL</li>' +
-                            '<li>PostgresSQL wire</li>' +
                             '<li>Open Source</li>' +
                             '</ul>' +
                             '<ul class="buttons">' +
