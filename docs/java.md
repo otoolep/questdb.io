@@ -14,7 +14,7 @@ Administration commands can be run py passing configuration SQL to the compiler.
 ```java
 CairoConfiguration configuration = new DefaultCairoConfiguration("/tmp/my_database");
 BindVariableService bindVariableService = new BindVariableService();
-try (Engine engine = new Engine(configuration)) {
+try (CairoEngine engine = new CairoEngine(configuration)) {
     try (SqlCompiler compiler = new SqlCompiler(engine, configuration)) {
         compiler.compile(
             "YOUR_SQL_HERE"
@@ -40,7 +40,7 @@ The following will create a new table abc with the specifications set below.
 ```java
 CairoConfiguration configuration = new DefaultCairoConfiguration("/tmp/my_database");
 BindVariableService bindVariableService = new BindVariableService();
-try (Engine engine = new Engine(configuration)) {
+try (CairoEngine engine = new CairoEngine(configuration)) {
     try (SqlCompiler compiler = new SqlCompiler(engine, configuration)) {
         compiler.compile(
                 "create table abc (" +
@@ -128,7 +128,9 @@ cross-process lock on the table.
 ### Example
 
 ~~~ java
-try (TableWriter writer = engine.getWriter("abc")) {
+AllowAllSecurityContextFactory securityContextFactor = new AllowAllSecurityContextFactory();
+CairoSecurityContext cairoSecurityContext = securityContextFactor.getInstance("admin");
+try (TableWriter writer = engine.getWriter(cairoSecurityContext, "abc")) {
     for (int i = 0; i < 10; i++) {
         TableWriter.Row row = writer.newRow(Os.currentTimeMicros());
         row.putInt(0, 123);
@@ -154,7 +156,9 @@ Detailed steps are:
 
 1 - Create an instance of TableWriter. In this case, we use engine but we can also use TableWriter constructor directly.
 ~~~ java
-try (TableWriter writer = engine.getWriter("abc")) {
+AllowAllSecurityContextFactory securityContextFactor = new AllowAllSecurityContextFactory();
+CairoSecurityContext cairoSecurityContext = securityContextFactor.getInstance("admin");
+try (TableWriter writer = engine.getWriter(cairoSecurityContext, "abc")) {
 ~~~
 The `writer` instance must be eventually released to release resources. 
 In this case, it will be released back to the engine for re-use. 
