@@ -32,6 +32,16 @@
     display: block;
 }
 
+
+.titlecenter {
+    font-size: 48px;
+    font-weight: 300;
+    text-align: center;
+    display: block;
+}
+
+div.blockjustified{text-align: justify}
+
 .about .logo {
     height: 80px;
     width: 230px;
@@ -140,7 +150,6 @@
     box-shadow: 10px 10px 5px grey;
     border: 1px solid #ccc
 }
-
 
 div.about {
     margin-bottom: 20px;

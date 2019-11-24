@@ -10,16 +10,6 @@
 
 // List of projects/orgs using your project for the users page.
 const users = [
-    /** @Tanc who is using
-  {in
-    caption: 'User1',
-    // You will need to prepend the image path with your baseUrl
-    // if it is not '/', like: '/test-site/img/image.jpg'.
-    image: '/img/undraw_open_source.svg',
-    infoLink: 'https://www.facebook.com',
-    pinned: true,
-  },
-     */
 ];
 
 const siteConfig = {
@@ -34,8 +24,8 @@ const siteConfig = {
   //   organizationName: 'JoelMarcey'
 
   // For no header links in the top nav bar -> headerLinks: [],
-  //@Tancrede headers nav top bar
-  headerLinks: [
+  headerLinks:[
+    {page: "getstarted", label: 'Get Started'},
     {doc: `technology`, label: `Technology`},
     {doc: 'documentation', label: 'Documentation'},
     {blog: true, label: 'Blog'},
