@@ -4,9 +4,6 @@ title: Frequently Asked Questions
 sidebar_label: Frequently Asked
 ---
 
-### What is QuestDB?
-QuestDB is a relational database optimised for time-series.
-
 ### What is QuestDB written in?
 We are JAVA. But by no means traditional JAVA. Our product is fully zero GC and uses off-heap data structures to
 guarantee zero jitter performance.
@@ -21,7 +18,7 @@ algorithm requires it. In most cases, however, access to assembly is not require
 The difference in favour of JAVA will be the hotspot. It uses stats to optimise assembly whereas in C, all optimisation will 
 be entirely manual and. In the vast majority of cases, the hotspot will optimise better because it is very aggressive.
                        
-Performance aside, java has better tooling, which leads to faster dev process and better tested code. It also makes 
+Performance aside, java has better tooling, which leads to faster dev process and better tested code. W It also makes 
 packaging easy since the same binary can be used across platforms whereas C languages would require individual packages.
 Installation is also simplified: unzip and run.
 
@@ -29,11 +26,7 @@ Installation is also simplified: unzip and run.
 None apart from JAVA of course. We use JAVA only for the JVM and the JIT. However, we do not use any of the standard java libraries.
 
 ### What is on the roadmap?
-While we are extremely fast in raw read/write, further optimisation is possible, for example for aggregation. We will
-implement stats() to leverage aggregations on partitioned data which will enable significant performance gains in aggregations.
-
-Also on the roadmap are high-availability features. Now that we achieved near-maximum single-thread performance, we will also start 
- work on multithreading & parallelisation.
+See our [roadmap](roadmap.md)
 
 ### Is QuestDB ACID compliant
 QuestDB is ACID compliant to write in a single table. We don't support ACID on multi-table transactions yet.

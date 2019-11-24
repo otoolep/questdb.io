@@ -98,12 +98,9 @@ class Index extends React.Component {
                         content:
                             '<img class="logo" src="https://raw.githubusercontent.com/questdb/questdb/master/core/src/main/resources/site/public/images/logo-readme.jpg"/>'+
                             '<span class="title">Fast relational time-series</span>'+
-                            '<p>QuestDB is a fast NewSQL database for Hybrid Transactional, Analytical and Time Series processing workloads.</p>' +
-                            '<p>' +
-                            '<p>QuestDB ingests data via HTTP, PostgresSQL wire protocol, Influx line protocol or directly from Java. Reading data is done using SQL via HTTP, PostgreSQL wire protocol or via Java API. The whole database and console fits in a 3.5Mb package.</p> ' +
-                            '<p>' +
-                            '<p>The code is Open Source under <b>Apache 2.0</b> and we welcome contributions.</p>' +
-                            '<p>' +
+                            '<p>QuestDB is a fast NewSQL database for Hybrid Transactional, Analytical and Time Series processing workloads. Users interact via ' +
+                            'HTTP endpoints, web console, PostgreSQL wire, Influx wire, and programmatic API. The whole database fits in a dependency-free 3.5mb package ' +
+                            'and is Open Source under Apache 2.0.'+
                             '<ul class="features">' +
                             '<li>Relational</li>' +
                             '<li>Time series</li>' +
