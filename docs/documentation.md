@@ -13,7 +13,7 @@ Most of the innovations surrounding databases have been geared towards the hardw
 QuestDB's dev team consists of low-latency developers who worked in HFT. Our approach is unique: rather than immediately focusing on scaling and parallelisation, we dedicated over 5 years toward R&D to maximise single-thread performance. As such, we achieve maximum efficiency for a given unit of hardware. The result is that QuestDB’s performance on a single thread is already multiples times faster than multi-threaded databases.
 
 ## Who can use QuestDB
-- QuestDB can cover most of database needs. However it is particularly suited for users who;
+QuestDB can cover most of database needs. However it is particularly suited for users who:
 - Store large data sets (particularly time-series), and optimise disk space
 - Undertake heavy data processing and minimise computation related costs
 - Want to maximise each unit of hardware to the fullest rather than upgrade or purchase more servers
