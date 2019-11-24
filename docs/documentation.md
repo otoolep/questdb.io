@@ -20,12 +20,10 @@ QuestDB can cover most of database needs. However it is particularly suited for 
 
 ## Explore
  Get Started:
-- Learn about our **[storage model](storagemodel.md)** 
-- Download & **[Install](install.md)** QuestDB
-- Open the web **[console](console.md)** in your browser
-- Use your own data or get download **[test data](gettestdata.md)**
-- **[drag'n'drop](console.md)** your data files into browser windows
-- Explore data via **[SQL queries](console.md)**
+- Learn about our **[storage model](storagemodel.md)**.
+- Run from **[Docker](docker.md)**. Alternatively, download & install our **[binaries](binaries.md)**. 
+- Open the web **[console](console.md)** in your browser.
+- Run our **[tutorial](tut_first_db.md)** to create your first database.
 
 
 
