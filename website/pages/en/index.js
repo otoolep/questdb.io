@@ -114,7 +114,6 @@ class Index extends React.Component {
                             '<ul class="buttons">' +
                             '<li class="cta"><a href="/docs/install" target="_blank">Get started</a></li>' +
                             '<li><a href="https://github.com/questdb/questdb" target="_blank">View on GitHub</a></li>' +
-                            '<li>Download</li>' +
                             '</ul>'
                     }
                 ]
@@ -157,8 +156,8 @@ class Index extends React.Component {
                                 '<span class="title">Welcome to our community</span>' +
                                 'Get up to speed with our documentation and guides. If you already know SQL you are good to go. If you have issues, you can rais on Github or ohave a chat on Slack.'+
                                 '<ul class="buttons">' +
-                                '<li><a href="https://join.slack.com/t/questdb/shared_invite/enQtNzk4Nzg4Mjc2MTE2LTEzZThjMzliMjUzMTBmYzVjYWNmM2UyNWJmNDdkMDYyZmE0ZDliZTQxN2EzNzk5MDE3Zjc1ZmJiZmFiZTIwMGY">Join Slack</a></li>' +
-                                '<li><a href="https://www.questdb.io/docs/install">Documentation </a></li>' +
+                                '<li><a href="https://join.slack.com/t/questdb/shared_invite/enQtNzk4Nzg4Mjc2MTE2LTEzZThjMzliMjUzMTBmYzVjYWNmM2UyNWJmNDdkMDYyZmE0ZDliZTQxN2EzNzk5MDE3Zjc1ZmJiZmFiZTIwMGY" target="_blank">Join Slack</a></li>' +
+                                '<li><a href="/docs/documentation" target="_blank">Documentation </a></li>' +
                                 '</ul>'
                         }
                     ]}
