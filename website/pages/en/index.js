@@ -98,8 +98,8 @@ class Index extends React.Component {
                         content:
                             '<img class="logo" src="https://raw.githubusercontent.com/questdb/questdb/master/core/src/main/resources/site/public/images/logo-readme.jpg"/>'+
                             '<span class="title">Fast relational time-series</span>'+
-                            '<p>QuestDB is a fast NewSQL database for Hybrid Transactional, Analytical and Time Series processing workloads. Users interact via ' +
-                            'HTTP endpoints, web console, PostgreSQL wire, Influx wire, and programmatic API. The whole database fits in a dependency-free 3.5mb package ' +
+                            '<p>QuestDB is a fast NewSQL database for Hybrid Transactional, Analytical and Time Series processing workloads. Users can interact via ' +
+                            'HTTP endpoints, our web console, wire protocols (PostgreSQL and Influx) and programmatic APIs. The entire database fits in a dependency-free 3.5mb package ' +
                             'and is Open Source under Apache 2.0.'+
                             '<ul class="features">' +
                             '<li>Relational</li>' +
@@ -125,8 +125,8 @@ class Index extends React.Component {
                         {
                             content:
                                 '<span class="title">Expressive SQL</span>'+
-                                'With build-in time series support QuestDB SQL Optimiser assembles a sequence of monads for best-effort-zero-copy query execution.' +
-                                'User function allowing data set manipulation aimed at provide ultimate SQL customisation'
+                                'QuestDB's SQL optimiser (built-in time-series native support) assembles a sequence of monads for best-effort-zero-copy query execution.' +
+                                ' User functions allow the manipulation of data sets. This provides ultimate SQL customisation.'
                         },
                         {
                             image: `${baseUrl}img/sql.gif`,
@@ -150,7 +150,7 @@ class Index extends React.Component {
                         {
                             content:
                                 '<span class="title">Welcome to the community</span>' +
-                                'Get up to speed with our documentation and guides. If you already know SQL you are good to go. If you have issues, you can rais on Github or ohave a chat on Slack.'+
+                                'Get up to speed with our documentation and guides. If you already know SQL, you can get started. You can raise issues on Github or join our community on Slack.'+
                                 '<ul class="buttons">' +
                                 '<li><a href="https://join.slack.com/t/questdb/shared_invite/enQtNzk4Nzg4Mjc2MTE2LTEzZThjMzliMjUzMTBmYzVjYWNmM2UyNWJmNDdkMDYyZmE0ZDliZTQxN2EzNzk5MDE3Zjc1ZmJiZmFiZTIwMGY" target="_blank">Join Slack</a></li>' +
                                 '<li><a href="/docs/sql">Documentation </a></li>' +
