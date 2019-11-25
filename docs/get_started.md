@@ -58,46 +58,140 @@ curl -i -F data=@ratings.csv http://localhost:9000/imp
 
 By default, QuestDB will analyse the data and determine if headers are present. It will also decide on the 
 appropriate schema. Users that want more control can use an array of options to flag if the data as headers, to pass a custom schema,
-to decide on durability and atomicity settings. For more information on this command, see our **[rest API guide](rest.md)**.
+to decide on durability and atomicity settings. 
+
+> For more information on this and the REST API, see our **[rest API guide](rest.md)**.
 
 ### Import via Web Console
-You can get .txt or .csv files into QuestDB using the web console. There are several methods.
+You can get `.txt` or `.csv` files into QuestDB using the web console. There are several methods.
 
-- Copy & Paste the data from the clipboard:
+#### Copy & Paste the data from the clipboard:
+
 ![alt-text](assets/copypaste.gif)
 
-- Drag & Drop the file:
+#### Drag & Drop the file:
 
+![alt-text](assets/dragdrop.gif)
 
+#### Use the SQL `copy` command:
 
+![alt-text](assets/copyconsole.gif)
 
-
-
-
+> For more information on how to use the console, see our **[web console guide](console.md)**.
 
 ### PostgresSQL COPY command
 __this is unfinished functionality, example of using psql with text file__
-- Influx line protocol over UDP
+
+### Influx LINE protocol via UDP
 __example of doing this from Linux command line and java__
 
 ### Import programmatically via Java
-__we have example of inserting data from java via TableWriter, insert here__
 
+The following uses `tablewriter` to write into a table programatically in java.
 
-- INSERT via Java
-__example of executing insert statement with parameters from java__
-- INSERT via PostgresSQL wire (tools and drivers)
+```java
+AllowAllSecurityContextFactory securityContextFactor = new AllowAllSecurityContextFactory();
+CairoSecurityContext cairoSecurityContext = securityContextFactor.getInstance("admin");
+try (TableWriter writer = engine.getWriter(cairoSecurityContext, "abc")) {
+    for (int i = 0; i < 10; i++) {
+        TableWriter.Row row = writer.newRow(Os.currentTimeMicros());
+        row.putInt(0, 123);
+        row.putByte(1, (byte) 1111);
+        row.putShort(2, (short) 222);
+        row.putLong(3, 333);
+        row.putFloat(4, 4.44f);
+        row.putDouble(5, 5.55);
+        row.putDate(6, System.currentTimeMillis());
+        // skip 7 - see separate function to write blobs
+        // skip 8 - timestamp is already set via newRow() call
+        row.putSym(9, "xyz");
+        row.putStr(10, "abc");
+        row.putBool(11, true);
+        row.append();
+    }
+    writer.commit();
+}
+```
+
+### INSERT via JAVA
+
+The following uses the `SqlCompiler` to compile and execute SQL queries. In this case, we use it
+to run an `INSERT` statement. The `SqlCompiler` can also be used to run any other SQL statement.
+
+```java
+CairoConfiguration configuration = new DefaultCairoConfiguration("/tmp/my_database");
+BindVariableService bindVariableService = new BindVariableService();
+try (CairoEngine engine = new CairoEngine(configuration)) {
+    try (SqlCompiler compiler = new SqlCompiler(engine, configuration)) {
+        compiler.compile(
+            "insert into balances (cust_id, balance_ccy, balance, timestamp);"
+        );
+    }
+}
+```
+
+### INSERT via PostgreSQL
 __example using JDBC to execute insert statement from java and possibly from Go for a good measure__
 
 ## Output methods
 
-- SQL via WebConsole
-__animated gif of web console__
-- SQL via REST
-__example of running query via curl, we have something like this in crud page__
-- SQL via PostgresSQL wire (tools and drivers)
+### SQL via WebConsole
+Run `SQL` and see the results directly in the web console. You can also export results to .csv.
+
+![alt-text](assets/sqlconsole.gif)
+
+### SQL via rest
+The following will use `curl` to send a query over http. The result will be sent back over HTTP.
+Note that the `query` is url-encoded.
+
+```shell script
+C:\Users\info>curl -v -G http://localhost:9000/exp --data-urlencode "query=select * from mydb;" -d limit=5
+*   Trying ::1...
+* TCP_NODELAY set
+*   Trying 127.0.0.1...
+* TCP_NODELAY set
+* Connected to localhost (127.0.0.1) port 9000 (#0)
+> GET /exp?query=select%20%2A%20from%20mydb%3B&limit=5 HTTP/1.1
+> Host: localhost:9000
+> User-Agent: curl/7.55.1
+> Accept: */*
+>
+< HTTP/1.1 200 OK
+< Server: questDB/1.0
+< Date: Mon, 25 Nov 2019 12:33:01 GMT
+< Transfer-Encoding: chunked
+< Content-Type: text/csv; charset=utf-8
+< Content-Disposition: attachment; filename="questdb-query-1574685181623.csv"
+< Keep-Alive: timeout=5, max=10000
+<
+"userId","movieId","rating","timestamp"
+1,307,3.5000000000,1256677221
+1,481,3.5000000000,1256677456
+1,1091,1.5000000000,1256677471
+1,1257,4.5000000000,1256677460
+1,1449,4.5000000000,1256677264
+* Connection #0 to host localhost left intact
+```
+
+### SQL via PostgresSQL wire (tools and drivers)
 __example of query execution and dataset consumption from JDBC and Go__
-- SQL via Java
-__example of using sql compiler to execute queries and consuming query output__
-- Embedded Java API
+
+### SQL via Java
+The following will use `SqlCompiler` to compile and run any query. Note that we also used `SqlCompiler`
+to write data through `INSERT` queries.
+
+```java
+CairoConfiguration configuration = new DefaultCairoConfiguration("/tmp/my_database");
+BindVariableService bindVariableService = new BindVariableService();
+try (CairoEngine engine = new CairoEngine(configuration)) {
+    try (SqlCompiler compiler = new SqlCompiler(engine, configuration)) {
+        compiler.compile(
+            "SELECT avg(temperature) FROM sensors_readings" +
+             "WHERE isOn = 1;"
+        );
+    }
+}
+```
+
+### Embedded Java API
 __example of reading a table and also example of live data consumption: one thread is writing and another is consuming in real time__
