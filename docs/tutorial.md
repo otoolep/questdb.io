@@ -1,11 +1,11 @@
 ---
-id: tut_first_db
-title: Your first database
-sidebar_label: Your first database
+id: tutorial
+title: Tutorial: Your first database
+sidebar_label: Tutorial
 ---
 
 The goal of this tutorial is to explore QuestDB's features to interact with time-series data.
-This assumes you have an instance running either through **[Docker](docker.md)** or directly using the **[binaries](binaries.md)**
+This assumes you have an instance running. See instructions in the **[installation](installrun.md)** section.
 
 In this tutorial, we will learn to
 - Create tables 

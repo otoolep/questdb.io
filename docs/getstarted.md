@@ -16,7 +16,7 @@ Docker is a convenient method to have QuestDB running very quickly via simple co
 to be installed on your system. QuestDB has images for Windows, Linux and ARM64 Linux as well as manifest to automatically
 download correct image for your target architecture.
 
-To install and use Docker, please refer to our **[Docker instructions](docker.md)**.
+To install and use Docker, please refer to our XX
 
 Disadvantage of Docker is that QuestDB will be running in a virtualized environment with up to 20% performance penalty.
 
@@ -24,26 +24,9 @@ Disadvantage of Docker is that QuestDB will be running in a virtualized environm
 
 QuestDB can be installed manually via downloading ZIP archive, extracting and running binary. Target system will require Java 8
 to be present and QuestDB will have to know directory where Java is installed. To install manually, please refer to
-our **[Binaries guide](binaries.md)**
+our XX
 
-### Via Maven dependency
 
-To use QuestDB as embedded database with your JVM based language simply add the following dependency:
-
-<!--DOCUSAURUS_CODE_TABS-->
-<!--gradle-->
-```shell script
-    implementation 'org.questdb:core:4.0.1'
-```
-<!--maven-->
-```xml
-    <dependency>
-        <groupId>org.questdb</groupId>
-        <artifactId>core</artifactId>
-        <version>4.0.1</version>
-    </dependency>
-```
-<!--END_DOCUSAURUS_CODE_TABS-->
 
 ## Input methods
 

@@ -1,18 +1,10 @@
 
 {
   "docs": {
-    "Overview": [
-      "documentation",
-      "storagemodel",
-      "roadmap"
-    ],
     "Getting Started": [
-      "getstarted",
-      "binaries",
-      "docker",
-      "gettestdata",
-      "console",
-      "tut_first_db"
+      "documentation",
+      "installrun",
+      "tutorial"
     ],
     "Using QuestDB": [
       "sql",
@@ -23,11 +15,15 @@
       "join"
     ],
     "Interfaces": [
+      "console",
       "java",
       "restful"
     ],
     "FAQ": [
-      "faq"
+      "faq",
+      "storagemodel",
+      "roadmap",
+      "gettestdata"
     ]
   }
 }
