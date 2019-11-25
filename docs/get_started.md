@@ -1,5 +1,5 @@
 ---
-id: get_started
+id: getstarted
 title: Get started
 sidebar_label: Get started
 ---
@@ -7,28 +7,30 @@ sidebar_label: Get started
 QuestDB is relational and time series database. It is wire compatible with PostgresSQL and InfluxDB;  
 accessible via SQL over network and embedded; accessible programmatically from Java for ultimate performance.
 
+## Installation
 There is a variety of installation methods and access methods for your convenience.
 
-## Installation using Docker image
+### Installation using Docker image
 
 Docker is a convenient method to have QuestDB running very quickly via simple command. You will of course need Docker
 to be installed on your system. QuestDB has images for Windows, Linux and ARM64 Linux as well as manifest to automatically
 download correct image for your target architecture.
 
-todo: link docker installation page
+To install and use Docker, please refer to our **[Docker instructions](docker.md)**.
 
 Disadvantage of Docker is that QuestDB will be running in a virtualized environment with up to 20% performance penalty.
 
-## Manual installation
+### Manual installation
 
-QuestDB can be installed manually via downloading ZIP archive, exracting and running binary. Target system will require Java 8
-to be present and QuestDB will have to know directory where Java is installed.
+QuestDB can be installed manually via downloading ZIP archive, extracting and running binary. Target system will require Java 8
+to be present and QuestDB will have to know directory where Java is installed. To install manually, please refer to
+our **[Binaries guide](binaries.md)**
 
-## Via Homebrew
+### Via Homebrew
 
 We have not yet updated this method, but its coming right up.
 
-## Via Maven dependency
+### Via Maven dependency
 
 To use QuestDB as embedded database with your JVM based language simply add the following dependency:
 
@@ -48,17 +50,40 @@ or
 
 ## Input methods
 
-- text files via REST
+### Import via REST
+You can import a file using `curl` as follows to import .csv or .txt files.
+```shell script
+curl -i -F data=@ratings.csv http://localhost:9000/imp
+```
 
-__example with curl goes here___
-- text files via Web Console
-__could use animated gif here?___
-- text files via PostgresSQL COPY command
+By default, QuestDB will analyse the data and determine if headers are present. It will also decide on the 
+appropriate schema. Users that want more control can use an array of options to flag if the data as headers, to pass a custom schema,
+to decide on durability and atomicity settings. For more information on this command, see our **[rest API guide](rest.md)**.
+
+### Import via Web Console
+You can get .txt or .csv files into QuestDB using the web console. There are several methods.
+
+- Copy & Paste the data from the clipboard:
+![alt-text](assets/copypaste.gif)
+
+- Drag & Drop the file:
+
+
+
+
+
+
+
+
+### PostgresSQL COPY command
 __this is unfinished functionality, example of using psql with text file__
 - Influx line protocol over UDP
 __example of doing this from Linux command line and java__
-- Programmatic via Java
+
+### Import programmatically via Java
 __we have example of inserting data from java via TableWriter, insert here__
+
+
 - INSERT via Java
 __example of executing insert statement with parameters from java__
 - INSERT via PostgresSQL wire (tools and drivers)
