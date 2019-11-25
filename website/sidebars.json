@@ -4,12 +4,12 @@
     "Getting Started": [
       "documentation",
       "installrun",
-      "tutorial"
+      "tutorial",
+      "crud"
     ],
     "Using QuestDB": [
       "sql",
       "datatypes",
-      "crud",
       "tableadmin",
       "select",
       "join"

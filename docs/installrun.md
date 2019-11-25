@@ -4,16 +4,16 @@ title: Install & run
 sidebar_label: Install & run
 ---
 
-You can use QuestDB:
-- With Docker
-- With the binaries
-- As a dependency 
-
 
 ## Docker
 
-QuestDB is available to run via **Docker**. You can find our 
-docker repository **[here](https://hub.docker.com/r/questdb/questdb)**.
+Docker is a convenient method to have QuestDB running very quickly via simple commands. You will of course need Docker
+to be installed on your system. QuestDB has images for Windows, Linux and ARM64 Linux as well as manifest to automatically
+download correct image for your target architecture.
+
+Disadvantage of Docker is that QuestDB will be running in a virtualized environment with up to 20% performance penalty.
+
+You can find our docker repository **[here](https://hub.docker.com/r/questdb/questdb)**.
 
 ### Supported platforms
 
@@ -49,8 +49,6 @@ argument. However doing so may limit your interaction with QuestDB.
 
 - `-p 9000:9000` opens port 9000 for the HTTP API and the web console. The web console is available on localhost:9000.
 - `-p 8892:8892` opens port 8892 for the PostgreSQL wire protocol.
-
-#### Running as a container
 
 #### Create a container
 

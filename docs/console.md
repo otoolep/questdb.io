@@ -26,22 +26,13 @@ The load screen can be accessed by clicking this icon on the left-side menu.
 ### Drag and drop
 Simply drag and drop the data file you wish to import in the drag & drop area:
 
-![alt-text](assets/drag-and-drop.jpg)
+![alt-text](assets/dragdrop.gif)
 
 ### Import from clipboard
 > You can also `COPY & PASTE` from your clipboard into this area. Select the data you would like to import
 >(range from Excel, csv text etc) and it will import automatically upon pasting into this area.
->
 
-### Copy command
-You can use the `COPY` command directly in the SQL console to import from a file.
-
-Syntax is `COPY tablename FROM file_path`
-
-Example:
-```sql
-COPY prices FROM `c:\\user\desktop\prices.csv`;
-```
+![alt-text](assets/copypaste.gif)
 
 ### Browse files import
 Click the [browse your files]() button, and select the file you wish to import.
@@ -53,6 +44,19 @@ using automatic type recognition. If you would like to change parameters before 
 for a large file, we recommend you use the API.
 </p>
 </aside>
+
+
+### Copy command
+You can use the `COPY` command directly in the SQL console to import from a file.
+
+Syntax is `COPY tablename FROM file_path`
+
+Example:
+```sql
+COPY prices FROM `c:\\user\desktop\prices.csv`;
+```
+
+![alt-text](assets/copyconsole.gif)
 
 
 ### Customising the upload
@@ -123,7 +127,7 @@ You will also see metrics such as `execution time` and `number of records`.
 
 Example:
 
-![alt-text](assets/console-output-example.png)
+![alt-text](assets/sqlconsole.gif)
 
 
 ### Exporting Query Results

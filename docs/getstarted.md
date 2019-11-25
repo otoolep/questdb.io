@@ -16,8 +16,6 @@ Docker is a convenient method to have QuestDB running very quickly via simple co
 to be installed on your system. QuestDB has images for Windows, Linux and ARM64 Linux as well as manifest to automatically
 download correct image for your target architecture.
 
-To install and use Docker, please refer to our XX
-
 Disadvantage of Docker is that QuestDB will be running in a virtualized environment with up to 20% performance penalty.
 
 ### Manual installation

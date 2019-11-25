@@ -1,15 +1,17 @@
 ---
 id: crud
-title: CRUD Functions
-sidebar_label: CRUD Functions
+title: CRUD Operations
+sidebar_label: CRUD Operations
 ---
 
 ## Overview
-`LASTEST BY` allows QuestDB developers implement CRUD operations over immutable data store. In this document we will describe each of CRUD operations and how to implement it using `LATEST BY`.
+`LASTEST BY` allows QuestDB developers implement CRUD operations over immutable data store. 
+In this document we will describe each of CRUD operations and how to implement it using `LATEST BY`.
 
 ### (C)reate
 
-Create operation in QuestDB appends record to bottom of table. If table is partitioned timestamp value determines partition the record is appended to. Only last partition can be appended to and attempt to add timestamp in middle of
+Create operation in QuestDB appends record to bottom of table. If table is partitioned timestamp value determines 
+partition the record is appended to. Only last partition can be appended to and attempt to add timestamp in middle of
 table will result in error. When table is not partitioned, records can be added in any timestamp order and table will have only one partition.
 
 Lets create table that holds bank balances for customers.

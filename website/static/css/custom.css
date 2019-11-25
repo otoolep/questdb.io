@@ -18,6 +18,10 @@
 @media only screen and (min-width: 1500px) {
 }
 
+h1.postHeaderTitle{
+    margin-top: 50px;
+}
+
 .about, .sql, .community {
     font-family: Source Sans Pro, serif;
     font-weight: 300;
@@ -32,6 +36,14 @@
     display: block;
 }
 
+.docMainWrapper{
+    font-family: Source Sans Pro, serif;
+    margin-top: 30px;
+}
+
+.docMainWrapper.wrapper{
+    text-align: justify;
+}
 
 .titlecenter {
     font-size: 48px;

@@ -342,8 +342,40 @@ included in the response.
 </tbody>
 </table>
 
+### Examples
+The following will use `curl` to send a query over http. The result will be sent back over HTTP.
+Note that the `query` is url-encoded.
 
-### Sucess response
+```shell script
+C:\Users\info>curl -v -G http://localhost:9000/exp --data-urlencode "query=select * from mydb;" -d limit=5
+*   Trying ::1...
+* TCP_NODELAY set
+*   Trying 127.0.0.1...
+* TCP_NODELAY set
+* Connected to localhost (127.0.0.1) port 9000 (#0)
+> GET /exp?query=select%20%2A%20from%20mydb%3B&limit=5 HTTP/1.1
+> Host: localhost:9000
+> User-Agent: curl/7.55.1
+> Accept: */*
+>
+< HTTP/1.1 200 OK
+< Server: questDB/1.0
+< Date: Mon, 25 Nov 2019 12:33:01 GMT
+< Transfer-Encoding: chunked
+< Content-Type: text/csv; charset=utf-8
+< Content-Disposition: attachment; filename="questdb-query-1574685181623.csv"
+< Keep-Alive: timeout=5, max=10000
+<
+"userId","movieId","rating","timestamp"
+1,307,3.5000000000,1256677221
+1,481,3.5000000000,1256677456
+1,1091,1.5000000000,1256677471
+1,1257,4.5000000000,1256677460
+1,1449,4.5000000000,1256677264
+* Connection #0 to host localhost left intact
+```
+
+
 This is an example of successful query execution response. HTTP status code `200`.
 
 ~~~ json
