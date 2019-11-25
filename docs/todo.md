@@ -1,4 +1,4 @@
-[]Link buttons getstarted page
+[x]Link buttons getstarted page
 []Document indexes
 
 []FROM
