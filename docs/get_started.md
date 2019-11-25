@@ -49,17 +49,30 @@ or
 ## Input methods
 
 - text files via REST
+
+__example with curl goes here___
 - text files via Web Console
+__could use animated gif here?___
 - text files via PostgresSQL COPY command
+__this is unfinished functionality, example of using psql with text file__
 - Influx line protocol over UDP
+__example of doing this from Linux command line and java__
 - Programmatic via Java
+__we have example of inserting data from java via TableWriter, insert here__
 - INSERT via Java
+__example of executing insert statement with parameters from java__
 - INSERT via PostgresSQL wire (tools and drivers)
+__example using JDBC to execute insert statement from java and possibly from Go for a good measure__
 
 ## Output methods
 
 - SQL via WebConsole
+__animated gif of web console__
 - SQL via REST
+__example of running query via curl, we have something like this in crud page__
 - SQL via PostgresSQL wire (tools and drivers)
+__example of query execution and dataset consumption from JDBC and Go__
 - SQL via Java
+__example of using sql compiler to execute queries and consuming query output__
 - Embedded Java API
+__example of reading a table and also example of live data consumption: one thread is writing and another is consuming in real time__
