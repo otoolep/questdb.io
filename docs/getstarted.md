@@ -30,12 +30,12 @@ our **[Binaries guide](binaries.md)**
 
 To use QuestDB as embedded database with your JVM based language simply add the following dependency:
 
-```
+<!--DOCUSAURUS_CODE_TABS-->
+<!--gradle-->
+```shell script
     implementation 'org.questdb:core:4.0.1'
 ```
-
-or
-
+<!--maven-->
 ```xml
     <dependency>
         <groupId>org.questdb</groupId>
@@ -43,6 +43,7 @@ or
         <version>4.0.1</version>
     </dependency>
 ```
+<!--END_DOCUSAURUS_CODE_TABS-->
 
 ## Input methods
 
