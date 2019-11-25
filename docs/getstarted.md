@@ -26,10 +26,6 @@ QuestDB can be installed manually via downloading ZIP archive, extracting and ru
 to be present and QuestDB will have to know directory where Java is installed. To install manually, please refer to
 our **[Binaries guide](binaries.md)**
 
-### Via Homebrew
-
-We have not yet updated this method, but its coming right up.
-
 ### Via Maven dependency
 
 To use QuestDB as embedded database with your JVM based language simply add the following dependency:
@@ -79,12 +75,6 @@ You can get `.txt` or `.csv` files into QuestDB using the web console. There are
 
 > For more information on how to use the console, see our **[web console guide](console.md)**.
 
-### PostgresSQL COPY command
-__this is unfinished functionality, example of using psql with text file__
-
-### Influx LINE protocol via UDP
-__example of doing this from Linux command line and java__
-
 ### Import programmatically via Java
 
 The following uses `tablewriter` to write into a table programatically in java.
@@ -130,9 +120,6 @@ try (CairoEngine engine = new CairoEngine(configuration)) {
 }
 ```
 
-### INSERT via PostgreSQL
-__example using JDBC to execute insert statement from java and possibly from Go for a good measure__
-
 ## Output methods
 
 ### SQL via WebConsole
@@ -173,9 +160,6 @@ C:\Users\info>curl -v -G http://localhost:9000/exp --data-urlencode "query=selec
 * Connection #0 to host localhost left intact
 ```
 
-### SQL via PostgresSQL wire (tools and drivers)
-__example of query execution and dataset consumption from JDBC and Go__
-
 ### SQL via Java
 The following will use `SqlCompiler` to compile and run any query. Note that we also used `SqlCompiler`
 to write data through `INSERT` queries.
@@ -192,6 +176,3 @@ try (CairoEngine engine = new CairoEngine(configuration)) {
     }
 }
 ```
-
-### Embedded Java API
-__example of reading a table and also example of live data consumption: one thread is writing and another is consuming in real time__
