@@ -5,7 +5,7 @@ sidebar_label: Tutorial
 ---
 
 The goal of this tutorial is to explore QuestDB's features to interact with time-series data.
-This assumes you have an instance running. See instructions in the **[installation](installrun.md)** section.
+This assumes you have an instance running. See instructions in the **[installation](setupmenu.md)** section.
 
 In this tutorial, we will learn to
 - Create tables 

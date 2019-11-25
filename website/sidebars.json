@@ -7,6 +7,12 @@
       "tutorial",
       "crud"
     ],
+    "Setup": [
+      "setupmenu",
+      "docker",
+      "binaries",
+      "dependency"
+    ],
     "Using QuestDB": [
       "sql",
       "datatypes",

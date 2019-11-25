@@ -29,8 +29,11 @@ Simply drag and drop the data file you wish to import in the drag & drop area:
 ![alt-text](assets/dragdrop.gif)
 
 ### Import from clipboard
-> You can also `COPY & PASTE` from your clipboard into this area. Select the data you would like to import
->(range from Excel, csv text etc) and it will import automatically upon pasting into this area.
+
+You can also `COPY & PASTE` from your clipboard into this area. Select the data you would like to import
+(range from Excel, csv text etc) and it will import automatically upon pasting into this area.
+
+You can copy data from clipboard from csv, excel and text files
 
 ![alt-text](assets/copypaste.gif)
 

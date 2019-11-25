@@ -1,0 +1,57 @@
+---
+id: functions
+title: Operators & Functions
+sidebar_label: Operators & Functions
+---
+
+## Operators
+
+### Logical Operators
+
+QuestDB supports the following logical operators:
+
+`AND`
+`OR`
+
+### Comparison operators
+
+QuestDB supports the following comparison operators:
+
+<table class="table" summary="Comparison Operators" border="1">
+        <colgroup>
+          <col>
+          <col>
+        </colgroup>
+        <thead>
+          <tr>
+            <th>Operator</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code class="literal">&lt;</code></td>
+            <td>less than</td>
+          </tr>
+          <tr>
+            <td><code class="literal">&gt;</code></td>
+            <td>greater than</td>
+          </tr>
+          <tr>
+            <td><code class="literal">&lt;=</code></td>
+            <td>less than or equal to</td>
+          </tr>
+          <tr>
+            <td><code class="literal">&gt;=</code></td>
+            <td>greater than or equal to</td>
+          </tr>
+          <tr>
+            <td><code class="literal">=</code></td>
+            <td>equal</td>
+          </tr>
+          <tr>
+            <td><code class="literal">&lt;&gt;</code> or <code class="literal">!=</code></td>
+            <td>not equal</td>
+          </tr>
+        </tbody>
+      </table>

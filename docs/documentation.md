@@ -6,7 +6,7 @@ sidebar_label: Get Started
 
 Get started with QuestDB in only a few steps.
 
-### [Step 1 - Setup QuestDB](installrun.md).
+### [Step 1 - Setup QuestDB](setupmenu.md).
 
 You can either install using **docker** or the **binaries**. Users who want to use QuestDB programmatically
 will also find out how to setup QuestDB as a **dependency** via maven and gradle.
