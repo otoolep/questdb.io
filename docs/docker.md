@@ -22,7 +22,7 @@ docker pull questdb/questdb
 
 If you prefer, you can pull a specific tag. For example
 ```shell script
-docker pull questdb/questdb:4.0.0
+docker pull questdb/questdb:4.0.1
 ```
 
 ## Using the image

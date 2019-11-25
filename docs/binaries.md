@@ -25,7 +25,7 @@ will figure out Java location automatically.
 
 ### Downloading QuestDB
 
-> You can download QuestDB binaries and launch scripts **[here](https://github.com/questdb/questdb/releases/download/4.0.0/questdb-4.0.0-bin.tar.gz)**
+> You can download QuestDB binaries and launch scripts **[here](https://github.com/questdb/questdb/releases/download/4.0.1/questdb-4.0.1-bin.tar.gz)**
 
 ### Installing
 Simply extract the files in a directory of your choice. Then to run:
