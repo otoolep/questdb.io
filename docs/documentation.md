@@ -1,10 +1,8 @@
 ---
 id: documentation
-title: ' '
+title: Get started with QuestDB in only a few steps
 sidebar_label: Get Started
 ---
-
-Get started with QuestDB in only a few steps.
 
 ### [Step 1 - Install & Run QuestDB](setupmenu.md).
 
