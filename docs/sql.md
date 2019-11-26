@@ -20,7 +20,8 @@ QuestDB attempts to implement standard ANSI SQL. We also attempt to be PostgreSQ
 11. ORDER BY
 12. LIMIT
 
-We also implemted sub-queries. They can be used anywhere table name is used. Our sub-query implementation adds virtually zero to SQL execution cost and we encourage their use to add flavour of functional language to old-school SQL. 
+We also implemented sub-queries. They can be used anywhere table name is used. Our sub-query implementation adds 
+virtually zero execution cost to SQL. We encourage their use to add flavours of functional language to old-school SQL. 
 
 ## Important differences from standard SQL
 

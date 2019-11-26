@@ -1,11 +1,11 @@
 ---
 id: binaries
-title: Setup Binaries
-sidebar_label: Setup Binaries
+title: Installing QuestDB Manually
+sidebar_label: Manual Installation
 ---
 
 
-## Installing binaries
+## Installing Manually
 
 ### Supported Platforms
 We support the following platforms:

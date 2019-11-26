@@ -1,11 +1,11 @@
 ---
 id: dependency
-title: Setup Dependency
-sidebar_label: Setup Dependency
+title: Installing as a Dependency
+sidebar_label: Install as a Dependency
 ---
 
 
-## Use as a dependency
+## Install as a dependency
 
 To use QuestDB as embedded database with your JVM based language simply add the following dependency:
 

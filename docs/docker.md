@@ -1,7 +1,7 @@
 ---
 id: docker
-title: Setup Docker
-sidebar_label: Setup Docker
+title: Installing using a Docker image
+sidebar_label: Docker image
 ---
 
 
@@ -13,7 +13,7 @@ download correct image for your target architecture.
 
 Disadvantage of Docker is that QuestDB will be running in a virtualized environment with up to 20% performance penalty.
 
-You can find our docker repository **[here](https://hub.docker.com/r/questdb/questdb)**.
+You can find our docker repository **<a href="https://hub.docker.com/r/questdb/questdb" target="_blank">here</a>**.
 
 ### Supported platforms
 

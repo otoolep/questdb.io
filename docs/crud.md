@@ -17,7 +17,7 @@ table will result in error. When table is not partitioned, records can be added 
 Lets create table that holds bank balances for customers.
 
 <!--DOCUSAURUS_CODE_TABS-->
-<!--SQL Console-->
+<!--SQL-->
 ```sql
 create table balances (
 	cust_id int, 

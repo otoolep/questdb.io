@@ -3,11 +3,10 @@
   "docs": {
     "Getting Started": [
       "documentation",
-      "installrun",
       "tutorial",
       "crud"
     ],
-    "Setup": [
+    "Install & Run": [
       "setupmenu",
       "docker",
       "binaries",

@@ -50,7 +50,7 @@ for a large file, we recommend you use the API.
 
 
 ### Copy command
-You can use the `COPY` command directly in the SQL console to import from a file.
+You can use the `COPY` command directly in the web console to import from a file.
 
 Syntax is `COPY tablename FROM file_path`
 
@@ -116,7 +116,7 @@ You can see which types have been used.
 
 
 ## Querying Data
->The SQL console allows you to run queries on your database directly from the browser. 
+>The web console allows you to run queries on your database directly from the browser. 
 You can access it via this button situated on the left-side menu:  ![alt-text](assets/console-sql.png)
 
 
