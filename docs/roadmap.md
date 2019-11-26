@@ -22,6 +22,10 @@ Here is a non-exhaustive list of things we are working on. Feel free to join us 
 - [ ] parquet import
 - [ ] AVRO import
 - [ ] Cancel active query: lightweight method for cancelling loops that have negligeable impact on query performance
+- [ ] Cancel active query: lightweight method for cancelling loops that have negligeable impact on query performance
+- [ ] JSON search
+- [ ] geospatial search
+- [ ] ACID over multiple tables 
 
 - [x] subqueries
 - [x] support for NULL and NaN values in filters
