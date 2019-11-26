@@ -1,12 +1,12 @@
 
 {
   "docs": {
-    "Getting Started": [
+    "Introduction": [
       "documentation",
       "tutorial",
       "crud"
     ],
-    "Install & Run": [
+    "Installation": [
       "setupmenu",
       "docker",
       "binaries",

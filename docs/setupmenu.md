@@ -1,10 +1,9 @@
 ---
 id: setupmenu
-title: Introduction
+title: Choose how you would like to run QuestDB
 sidebar_label: Introduction
 ---
 
-Choose how you would like to run QuestDB:
 
 ### Install a Docker container
 
@@ -12,7 +11,7 @@ Docker is a convenient method to have QuestDB running very quickly via simple co
 to be installed on your system. QuestDB has images for Windows, Linux and ARM64 Linux as well as manifest to automatically
 download correct image for your target architecture.
 
-<ul class="buttons"><li class="cta"><a href="/docs/docker">Install as a Docker container</a></li></ul>
+<ul class="buttons"><li class="cta"><a href="/docs/docker">Install using a Docker image</a></li></ul>
 
 ### Install Manually
 
@@ -25,4 +24,4 @@ Use QuestDB directly with its binaries on your local machine.
 Use QuestDB embedded to take advantage of the data store in your program itself. Simply pull the dependency
 from gradle or maven.
 
-<ul class="buttons"><li class="cta"><a href="/docs/dependency">Install as a Java Dependency</a></li></ul>
+<ul class="buttons"><li class="cta"><a href="/docs/dependency">nstall as Java Dependency</a></li></ul>

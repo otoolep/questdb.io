@@ -1,11 +1,8 @@
 ---
 id: docker
-title: Installing using a Docker image
-sidebar_label: Docker image
+title: Install using a Docker image
 ---
 
-
-## Docker
 
 Docker is a convenient method to have QuestDB running very quickly via simple commands. You will of course need Docker
 to be installed on your system. QuestDB has images for Windows, Linux and ARM64 Linux as well as manifest to automatically

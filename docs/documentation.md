@@ -1,6 +1,6 @@
 ---
 id: documentation
-title: Get Started
+title: ' '
 sidebar_label: Get Started
 ---
 
