@@ -5,7 +5,7 @@ sidebar_label: JOINS
 ---
 
 QuestDB supports the following types of joins: `INNER`, `OUTER`, `CROSS`, `ASOF` and `SPLICE`. `FULL` joins are not yet implemented and are on our roadmap. All supported
-join types can be combined in a single SQL statement; it is job of QuestDB SQL optmiser to determine best execution order and algorithms.
+join types can be combined in a single SQL statement; it is job of QuestDB SQL optimiser to determine best execution order and algorithms.
 
 There are no known limitations on size of tables or sub-queries participating in joins and there are no limitations on number of joins either.
 
@@ -15,7 +15,7 @@ There are no known limitations on size of tables or sub-queries participating in
 Following data join columns from joined tables are combined in single row. Same name columns originating from different tables will be automatically aliased to create
 unique column namespace of the result set.
 
-Althought it is a best pactice to diligently specify join conditions, QuestDB will also analyse `WHERE` clause for implicit join condition and will derive transient join conditions where necessary.
+Though it is a best practice to diligently specify join conditions, QuestDB will also analyse `WHERE` clause for implicit join condition and will derive transient join conditions where necessary.
 
 > When tables are joined on column that has the same name in both tables you can use shorthand `ON (column)` clause
 
@@ -91,7 +91,7 @@ SELECT * FROM starters CROSS JOIN deserts;
 ### Overview
 `ASOF` joins are used on time-series data to join two tables based on timestamp where timestamps do not exactly match.
 For a given record at a given timestamp, it will return the corresponding record in the other table at the closest timestamp
-**prior to** the timstamp in the first table.
+**prior to** the timestamp in the first table.
 
 >To be able to leverage `ASOF JOIN`, both joined table must have a designated `timestamp` column. To designate a column as `timestamp`, 
 >please refer to the **[CREATE TABLE](sqlCREATE.md)** section.

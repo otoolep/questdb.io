@@ -112,7 +112,7 @@ CREATE TABLE orders (sym SYMBOL ['CACHE'])
 CREATE TABLE orders (sym SYMBOL NOCACHE)
 ``` 
 
-or ommit `CACHE` and `NOCACHE` alltogether, which is equivalent:
+or omit `CACHE` and `NOCACHE` altogether, which is equivalent:
 ```sql
 CREATE TABLE orders (sym SYMBOL)
 ```

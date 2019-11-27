@@ -27,8 +27,8 @@ data size. Data type and structure is detected automatically and usually without
 However in some cases additional configuration can be provided to augment automatic detection results.
 
 
->The structure detection algorithm analyses chunk at beginnig and relies on relative uniformity of data.
-> When first chunk is non-respresentative of rest of data automatic import can yeild errors.
+>The structure detection algorithm analyses chunk at beginning and relies on relative uniformity of data.
+> When first chunk is non-representative of rest of data automatic import can yield errors.
 
 
 `/imp` column names from header row as table columns. The following characters are removed from column names:
@@ -97,14 +97,14 @@ When request is <durable>durable</durable> QuestDB will flush relevant disk cach
 <td class="param"><code>atomicity</code> (optional, query)</td>
 <td>
 Available values are <code>strict</code> and <code>relaxed</code>. Default value is <code>relaxed</code>. When atomicity is <code>relaxed</code>
-data rows that cannot be appended to table are discared, thus allowing partial uploads. In <code>strict</code> mode upload fails as soon as any
-data error is encoutered and all previously appended rows are rolled back. There is additional server parameter <code>http.abort.broken.uploads</code>
+data rows that cannot be appended to table are discarded, thus allowing partial uploads. In <code>strict</code> mode upload fails as soon as any
+data error is encountered and all previously appended rows are rolled back. There is additional server parameter <code>http.abort.broken.uploads</code>
 that governs if server will continue to receive all of the data to completion or close socket right away
 
 <p>
 When server is configured to obey HTTP protocol and receive incoming data even though it knows data is useless, it will be doing so with
 reduced amount of data processing. It will be parsing multipart data because it has to, but delimited file will not be parsed,
-speeding up the proccess.
+speeding up the process.
 </p>
 
 <p>When <code>http.abort.broken.uploads</code> is set to <code>true</code> server will close socket as soon as it detects data error. This
@@ -249,7 +249,7 @@ curl -i -F data=@ratings.csv 'http://localhost:9000/imp?forceHeaders=true&overwr
 ## /imp Append Data
 
 ### Overview
-`/imp` can be used to append data over HTTP. This is done through an HTTP multipart resquest.
+`/imp` can be used to append data over HTTP. This is done through an HTTP multipart request.
 
 ### Procedure
 1 - Prepare an `imp` command URL
@@ -318,7 +318,7 @@ URL-encoded query text. It can be multi-line, but query separator, such as <code
 <td>
 This argument is used for paging. Limit can be either in format of <code>X,Y</code> where <code>X</code> is the lower 
 limit and <code>Y</code> is the upper, or just <code>Y</code>. For example, <code>limit=10,20</code> will return row numbers 10 thru to 20 inclusive.
-and <code>limit=20</code> will return first 20 rows, which is equvalent to <code>limit=0,20</code>
+and <code>limit=20</code> will return first 20 rows, which is equivalent to <code>limit=0,20</code>
 </td>
 </tr>
 
@@ -454,7 +454,7 @@ URL-encoded query text. It can be multi-line, but query separator, such as <code
 <td>
 This argument is used for paging. Limit can be either in format of <code>X,Y</code> where <code>X</code> is the lower 
 limit and <code>Y</code> is the upper, or just <code>Y</code>. For example, <code>limit=10,20</code> will return row numbers 10 thru to 20 inclusive.
-and <code>limit=20</code> will return first 20 rows, which is equvalent to <code>limit=0,20</code>
+and <code>limit=20</code> will return first 20 rows, which is equivalent to <code>limit=0,20</code>
 </td>
 </tr>
 

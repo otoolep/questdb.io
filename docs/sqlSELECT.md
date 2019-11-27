@@ -17,7 +17,7 @@ sidebar_label: SELECT
 ## Simple Select
 
 ### All columns
-QuestDB supports `SELECT * FROM tablename`. When selectin all, you can also ommit most of the statement and simply pass 
+QuestDB supports `SELECT * FROM tablename`. When selecting all, you can also omit most of the statement and simply pass 
 the table name. 
 
 The two examples below are equivalent
@@ -227,14 +227,14 @@ Logical AND operator.
 <tr>
 <td class="param">or</td>
 <td>
-Logical OR opeator.
+Logical OR operator.
 </td>
 </tr>
 
 <tr>
 <td class="param">not</td>
 <td>
-Logical NOT opeator. Example <code>where not(x > 10)</code>
+Logical NOT operator. Example <code>where not(x > 10)</code>
 </td>
 </tr>
 
@@ -619,7 +619,7 @@ ratings LIMIT -7, -3;
 ## SAMPLE BY 
 
 ### Overview
-`SAMPLE BY` is used on time-series data to summarise large datasets into aggregates of hogeneous time chunks.
+`SAMPLE BY` is used on time-series data to summarise large datasets into aggregates of homogeneous time chunks.
 
 >To use `SAMPLE BY`, one column needs to be designated as `timestamp`. Find out more in the **[CREATE TABLE](sqlCREATE.md)** section.
 
@@ -713,7 +713,7 @@ FROM TRADES
 SAMPLE BY 30m;
 ```
 
-The following will return the averate trade notional (where notional is = q * p) by day:
+The following will return the average trade notional (where notional is = q * p) by day:
 ```sql
 SELECT timestamp, avg(quantity*price)
 FROM TRADES

@@ -1,5 +1,5 @@
 ---
-id: datatypes
+id: atatypes
 title: Type system
 sidebar_label: Type system
 ---
@@ -28,4 +28,4 @@ Type system is derived from Java language.
 
 > `BINARY` field size is limited either by 64-Bit signed int (8388608 peta bytes) or disk size, whichever is smaller
 
-> `STRING` field size is limited by either 32-bit singned int (1073741824 characters) or disk size, whicheve is smaller
+> `STRING` field size is limited by either 32-bit signed int (1073741824 characters) or disk size, whichever is smaller

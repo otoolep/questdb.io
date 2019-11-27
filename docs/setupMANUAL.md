@@ -35,7 +35,7 @@ configuration, or customise parameters as you start.
 
 ### Start
 
-Launch a new `cmd.exe` windowa and navigate to where to where you extracted tar.gz :
+Launch a new `cmd.exe` window and navigate to where to where you extracted tar.gz :
 
 ```shell script
 C:\cd questdb-1.0.2

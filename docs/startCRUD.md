@@ -80,7 +80,7 @@ connection.close();
 <!--END_DOCUSAURUS_CODE_TABS-->
 
 Here:
- - `cust_id` is the customer identifier. It unuquely identifies customer.
+ - `cust_id` is the customer identifier. It uniquely identifies customer.
  - `balance_ccy` balance currency. We use `SYMBOL` here to avoid storing text against each record to save space and increase database performance
  - `balance` is the current balance for customer and currency tuple 
  - `timestamp` timestamp in microseconds of the record
@@ -252,5 +252,5 @@ In above example QuestDB will execute `where` clause *before* `latest by`. To ex
 
 ```
 
-> `latest by` performance note: QuestDB will search time sereies from newest values to oldest. For single `SYMBOL` column in `latest by` clause QuestDB will know all distinct values upront. Time series scan will end as soon as
+> `latest by` performance note: QuestDB will search time sereies from newest values to oldest. For single `SYMBOL` column in `latest by` clause QuestDB will know all distinct values upfront. Time series scan will end as soon as
 > all values are matched. For all other field types, or multiple fields QuestDB will scan entire time series. Although scan is very fast you should be aware that performance wil degrade on hundreds of millions of records. 

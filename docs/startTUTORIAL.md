@@ -110,7 +110,7 @@ SELECT avg(temp) FROM readings;
 
 We can now leverage our `sensors` table to get more interesting data.
 ```sql
--- Run a join to get all readings and the corresonding metadata from the sensors table
+-- Run a join to get all readings and the corresponding metadata from the sensors table
 SELECT * 
 FROM readings 
 JOIN(
@@ -142,7 +142,7 @@ JOIN(
 ON readings.sensorId = sensId;
 ```
 
-Results should looke like this
+Results should look like this
 
 |city	        |max
 |---------------|-----------

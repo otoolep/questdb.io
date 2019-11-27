@@ -15,7 +15,7 @@ Simply download & extract the file. We recommend you do this in the `/tpm/` fold
 
 ## Generating data
 
-### Oerview
+### Overview
 You can generate sequences of data for testing. You can either use it to `SELECT` or to `CREATE TABLE`.
 
 ### Example

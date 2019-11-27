@@ -39,7 +39,7 @@ and
 tab
 ```
 
-achive the same effect.
+achieves the same effect.
 
 While `select * from` makes SQL look more complete on a single time, there are examples where its optionality makes things a lot easier to read. See examples in `GROUP BY` section.
 
@@ -51,7 +51,7 @@ We do not support explicit `GROUP BY` clause. Instead QuestDB optimiser derives 
 select a, b, c, d, sum(e) from tab group by a, b, c, d
 ```
 
-We find enumerating subset of `SELECT` columns in `GROUP BY` clause redundant and thereofre unnecessary. The same SQL in QuestDB SQL-dialect will look like:
+We find enumerating subset of `SELECT` columns in `GROUP BY` clause redundant and therefore unnecessary. The same SQL in QuestDB SQL-dialect will look like:
 
 ```sql
 select a, b, c, d, sum(e) from tab

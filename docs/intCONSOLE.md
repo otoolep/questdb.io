@@ -13,7 +13,7 @@ Each action will display a timer so you can get a sense of the performance.
 
 > After starting QuestDB, you can access the console on [http://localhost:9000/index.html](http://localhost:9000/index.html)
 
-If QuestDB is running on another machine of your network, the webconsole can be accessed on **http://IP_OF_THE_MACHINE:9000**
+If QuestDB is running on another machine of your network, the web console can be accessed on **http://IP_OF_THE_MACHINE:9000**
 
 ## Loading Data
 

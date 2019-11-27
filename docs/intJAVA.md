@@ -114,7 +114,7 @@ calls push this "window" down one record at a time.
 </p>
 </aside>
 
-## Writing data programatically
+## Writing data programmatically
 
 ### Overview
 The `TableWriter` facilitates table writes. To successfully create an instance of `TableWriter`, the table must:
@@ -160,7 +160,7 @@ try (TableWriter writer = engine.getWriter(cairoSecurityContext, "abc")) {
 The `writer` instance must be eventually released to release resources. 
 In this case, it will be released back to the engine for re-use. 
 Constructing a new writer is a resource-intensive operation and it will allocate memory on JVM heap. 
-Writers lifecycles should be carefully considered for your particular use case.
+Writers lifecycle should be carefully considered for your particular use case.
 
 2 - Create a new row
 ~~~ java

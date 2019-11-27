@@ -24,4 +24,4 @@ Use QuestDB directly with its binaries on your local machine.
 Use QuestDB embedded to take advantage of the data store in your program itself. Simply pull the dependency
 from gradle or maven.
 
-<ul class="buttons"><li class="cta"><a href="/docs/dependency">nstall as Java Dependency</a></li></ul>
+<ul class="buttons"><li class="cta"><a href="/docs/dependency">Install as Java Dependency</a></li></ul>

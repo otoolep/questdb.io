@@ -21,8 +21,8 @@ Here is a non-exhaustive list of things we are working on. Feel free to join us 
 - [ ] pivot table
 - [ ] parquet import
 - [ ] AVRO import
-- [ ] Cancel active query: lightweight method for cancelling loops that have negligeable impact on query performance
-- [ ] Cancel active query: lightweight method for cancelling loops that have negligeable impact on query performance
+- [ ] Cancel active query: lightweight method for cancelling loops that have neglectable impact on query performance
+- [ ] Cancel active query: lightweight method for cancelling loops that have neglectable impact on query performance
 - [ ] JSON search
 - [ ] geospatial search
 - [ ] ACID over multiple tables 
@@ -59,7 +59,7 @@ Here is a non-exhaustive list of things we are working on. Feel free to join us 
 - [ ] authentication and authorization
 - [ ] queued DDL execution
         whenever table writer is needed and not available due to normal race condition server should
-        queue the query and attempt to execute autonomously and periodcally
+        queue the query and attempt to execute autonomously and periodically
 - [ ] choice of export formats
 - [ ] JSON end-point with query parameter support
 - [ ] Grafana integration
