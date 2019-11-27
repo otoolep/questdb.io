@@ -16,9 +16,8 @@ const siteConfig = {
     tagline: 'Always on time',
     url: 'https://questdb.io', // Your website URL
     baseUrl: '/', // Base URL for your project */
-    projectName: 'QuestDB',
-    organizationName: 'QuestDB Ltd.',
-
+    projectName: 'website',
+    organizationName: 'questdb',
     // serach bar settings
     algolia: {
         apiKey: 'b2a69b4869a2a85284a82fb57519dcda',
