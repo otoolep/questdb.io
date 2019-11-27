@@ -18,12 +18,18 @@ const siteConfig = {
     baseUrl: '/', // Base URL for your project */
     projectName: 'website',
     organizationName: 'questdb',
-    // For top-level user or org sites, the organization is still the same.
-    // e.g., for the https://JoelMarcey.github.io site, it would be set like...
-    //   organizationName: 'JoelMarcey'
+
+    // serach bar settings
+    algolia: {
+        apiKey: 'b2a69b4869a2a85284a82fb57519dcda',
+        indexName: 'questdb',
+        placeholder: 'Search docs',
+        algoliaOptions: {} // Optional, if provided by Algolia
+    },
 
     // For no header links in the top nav bar -> headerLinks: [],
-    headerLinks: [
+    headerLinks:
+    [
         {doc: "getstarted", label: 'Get Started'},
         {doc: 'docstructure', label: 'Documentation'},
         {blog: true, label: 'Blog'},
