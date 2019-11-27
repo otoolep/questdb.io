@@ -1,7 +1,7 @@
 ---
-id: tableadmin
-title: Table Administration
-sidebar_label: Table Admin
+id: create
+title: CREATE TABLE
+sidebar_label: CREATE TABLE
 ---
 
 ## CREATE TABLE
@@ -36,7 +36,7 @@ For example in `SELECT . . FROM` queries. You can choose any table name you woul
 ### SCHEMA
 `SCHEMA` is a list of pairs of `COLUMN_NAMES` and `DATA_TYPES`, separated by commas.
 
-> For more information on data types, see the section on **[data types](datatypes.md)**
+> For more information on data types, see the section on **[data types](refDATATYPES.md)**
 
 Example:
 ```sql
@@ -172,7 +172,7 @@ where
 `NAME` is the name of the table you want to create via `CREATE TABLE AS`
 `QUERY` is the query you would like to use to create your new table from the existing table.
 'COLUMN' is the `COLUMN_NAME` in the existing table for which you wish to change type.
-`TYPE` is the new type (see **[types](datatypes.md)**)
+`TYPE` is the new type (see **[types](refDATATYPES.md)**)
 
 ### Examples
 Casting one column
@@ -193,114 +193,3 @@ CREATE TABLE orders as ('orders.csv'),
 cast(buyOrSell as SYMBOL CACHE);
 ```
 
-
-
-## ALTER TABLE
-`ALTER TABLE` is used to add modify the structure of an existing table.
-
-### ADD
-
-### Overview
-`ADD` is used to add a new column to an existing table
-
-### Syntax
-Adding a column is done with the following syntax:
-```sql
-ALTER TABLE 'TABLE' ADD COLUMN 'COLUMN_NAME' 'TYPE';
-```
-
-#### Parameters
-`TABLE` is the name of the table you would like to `ALTER`
-`COLUMN_NAME` is the name the new column will have
-`TYPE` is the **[data type](datatypes.md)** for the new column.
-
-### Examples
-The following example adds a new column called `comment` that is of `STRING` type to the table `ratings`
-
-```sql
-ALTER TABLE ratings ADD COLUMN comment STRING;
-```
-
-## DROP
-
-### Overview
-`DROP` is used to remove an existing column from an existing table. 
-
-> When using `DROP`, the data in that column will be deleted
-
-### Syntax
-Dropping a column a column is done with the following syntax:
-```sql
-ALTER TABLE 'TABLE' DROP COLUMN 'COLUMN_NAME';
-```
-
-### Parameters
-`TABLE` is the name of the table you would like to `ALTER`
-`COLUMN_NAME` is the name the new column will have
-
-### Examples
-The following example deletes the column called `comment` from the table `ratings`
-
-```sql
-ALTER TABLE ratings DROP COLUMN comment ;
-```
-
-## ALTER COLUMN
-
-### Overview
-`ALTER` is used to alter the type of a given column.
-
-### Syntax
-Adding a column is done with the following syntax:
-```sql
-ALTER TABLE 'TABLE' ALTER COLUMN 'COLUMN_NAME' 'NEW_TYPE';
-```
-
-### Parameters
-`TABLE` is the name of the table you would like to `ALTER`
-`COLUMN_NAME` is the name of the column to be altered
-`NEW_TYPE` is the new **[data type](datatypes.md)** for the column.
-
-### Examples
-The following example converts `movieId` that is of `LONG` type to `DOUBLE`
-
-```sql
-ALTER TABLE ratings ALTER COLUMN movieId DOUBLE;
-```
-
-
-## DROP TABLE
-`DROP TABLE` is used to permanently delete a table and its contents.
-
-### Syntax
-`DROP TABLE` uses the following syntax
-
-```sql
-DROP TABLE 'TABLE_NAME';
-```
-
-### Examples
-```sql
-DROP TABLE ratings;
-```
-
-> When you would like to delete the data inside a table but to keep the table, use the **truncate** function.
->
-
-
-## TRUNCATE TABLE
-`TRUNCATE TABLE` is used to permanently delete the contents of a table without deleting the table itself.
-
-### Syntax
-`TRUNCATE TABLE` uses the following syntax
-
-```sql
-TRUNCATE TABLE 'TABLE_NAME';
-```
-
-### Examples
-```sql
-TRUNCATE TABLE ratings;
-```
-
-> When you would like to delete both the data and the table structure, use the **drop** function.

@@ -1,7 +1,7 @@
 ---
-id: getstarted
+id: getstarted_wip
 title: Get started
-sidebar_label: First steps
+sidebar_label: Get started
 ---
 
 QuestDB is relational and time series database. It is wire compatible with PostgresSQL and InfluxDB;  
@@ -10,21 +10,43 @@ accessible via SQL over network and embedded; accessible programmatically from J
 ## Installation
 There is a variety of installation methods and access methods for your convenience.
 
-### Installing a Docker image
+### Installation using Docker image
 
 Docker is a convenient method to have QuestDB running very quickly via simple command. You will of course need Docker
 to be installed on your system. QuestDB has images for Windows, Linux and ARM64 Linux as well as manifest to automatically
 download correct image for your target architecture.
 
+To install and use Docker, please refer to our **[Docker instructions](setupDOCKER.md)**.
+
 Disadvantage of Docker is that QuestDB will be running in a virtualized environment with up to 20% performance penalty.
 
-### Installing manually
+### Manual installation
 
 QuestDB can be installed manually via downloading ZIP archive, extracting and running binary. Target system will require Java 8
 to be present and QuestDB will have to know directory where Java is installed. To install manually, please refer to
-our XX
+our **[Binaries guide](setupMANUAL.md)**
 
+### Via Homebrew
 
+We have not yet updated this method, but its coming right up.
+
+### Via Maven dependency
+
+To use QuestDB as embedded database with your JVM based language simply add the following dependency:
+
+```
+    implementation 'org.questdb:core:4.0.1'
+```
+
+or
+
+```xml
+    <dependency>
+        <groupId>org.questdb</groupId>
+        <artifactId>core</artifactId>
+        <version>4.0.1</version>
+    </dependency>
+```
 
 ## Input methods
 
@@ -38,7 +60,7 @@ By default, QuestDB will analyse the data and determine if headers are present. 
 appropriate schema. Users that want more control can use an array of options to flag if the data as headers, to pass a custom schema,
 to decide on durability and atomicity settings. 
 
-> For more information on this and the REST API, see our **[rest API guide](rest.md)**.
+> For more information on this and the REST API, see our **[rest API guide](intREST.md)**.
 
 ### Import via Web Console
 You can get `.txt` or `.csv` files into QuestDB using the web console. There are several methods.
@@ -55,7 +77,13 @@ You can get `.txt` or `.csv` files into QuestDB using the web console. There are
 
 ![alt-text](assets/copyconsole.gif)
 
-> For more information on how to use the console, see our **[web console guide](console.md)**.
+> For more information on how to use the console, see our **[web console guide](intCONSOLE.md)**.
+
+### PostgresSQL COPY command
+__this is unfinished functionality, example of using psql with text file__
+
+### Influx LINE protocol via UDP
+__example of doing this from Linux command line and java__
 
 ### Import programmatically via Java
 
@@ -102,6 +130,9 @@ try (CairoEngine engine = new CairoEngine(configuration)) {
 }
 ```
 
+### INSERT via PostgreSQL
+__example using JDBC to execute insert statement from java and possibly from Go for a good measure__
+
 ## Output methods
 
 ### SQL via WebConsole
@@ -142,6 +173,9 @@ C:\Users\info>curl -v -G http://localhost:9000/exp --data-urlencode "query=selec
 * Connection #0 to host localhost left intact
 ```
 
+### SQL via PostgresSQL wire (tools and drivers)
+__example of query execution and dataset consumption from JDBC and Go__
+
 ### SQL via Java
 The following will use `SqlCompiler` to compile and run any query. Note that we also used `SqlCompiler`
 to write data through `INSERT` queries.
@@ -158,3 +192,6 @@ try (CairoEngine engine = new CairoEngine(configuration)) {
     }
 }
 ```
+
+### Embedded Java API
+__example of reading a table and also example of live data consumption: one thread is writing and another is consuming in real time__

@@ -4,13 +4,16 @@ title: JAVA API
 sidebar_label: JAVA
 ---
 
-## Administrating tables
+## Compiling SQL in JAVA
+
 ### Overview
-Administration commands can be run py passing configuration SQL to the compiler. 
+JAVA users can use the `SqlCompiler` to run SQL queries like they would do in the web console for example.
+
+> Note this can be used for any SQL query. This means you can use this with any supported SQL statement. For example 
+> [INSERT](sqlINSERT.md) or [COPY](sqlCOPY.md) to write data, [CREATE TABLE](sqlCREATE.md) or [ALTER TABLE](sqlALTER.md)
+>to administer tables, and [SELECT](sqlSELECT.md) to query data.
 
 ### Syntax
-<!--DOCUSAURUS_CODE_TABS-->
-<!--java-->
 ```java
 CairoConfiguration configuration = new DefaultCairoConfiguration("/tmp/my_database");
 BindVariableService bindVariableService = new BindVariableService();
@@ -22,8 +25,6 @@ try (CairoEngine engine = new CairoEngine(configuration)) {
     }
 }
 ```
-<!--END_DOCUSAURUS_CODE_TABS-->
-
 
 `configuration` holds various settings that can be overridden via a subclass. 
 Most importantly configuration is bound to the database root - directory where table sub-directories will be created.
@@ -35,8 +36,6 @@ Most importantly configuration is bound to the database root - directory where t
 ### Example
 The following will create a new table abc with the specifications set below.
 
-<!--DOCUSAURUS_CODE_TABS-->
-<!--java-->
 ```java
 CairoConfiguration configuration = new DefaultCairoConfiguration("/tmp/my_database");
 BindVariableService bindVariableService = new BindVariableService();
@@ -61,12 +60,9 @@ try (CairoEngine engine = new CairoEngine(configuration)) {
     }
 }
 ```
-<!--END_DOCUSAURUS_CODE_TABS-->
 
-### Other admin commands.
-See the language section related to admin commands.
+## Reading query results
 
-## Running Queries
 ### Overview
 Querying data is a three-step process:
 
@@ -118,7 +114,8 @@ calls push this "window" down one record at a time.
 </p>
 </aside>
 
-## Writing data
+## Writing data programatically
+
 ### Overview
 The `TableWriter` facilitates table writes. To successfully create an instance of `TableWriter`, the table must:
 - already exist
@@ -201,4 +198,3 @@ A pending row is automatically cancelled when `writer.newRow()` is called.
 5 - Commit changes
 `writer.commit` commits changes, which makes them visible to readers. 
 This method call is atomic and has a complexity of O(1).
-

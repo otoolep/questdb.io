@@ -108,7 +108,7 @@ class Index extends React.Component {
                             '<li>Open Source</li>' +
                             '</ul>' +
                             '<ul class="buttons">' +
-                            '<li class="cta"><a href="/docs/documentation">Get started</a></li>' +
+                            '<li class="cta"><a href="/docs/getstarted">Get started</a></li>' +
                             '<li><a href="https://github.com/questdb/questdb" target="_blank">View on GitHub</a></li>' +
                             '</ul>'
                     }
@@ -153,7 +153,7 @@ class Index extends React.Component {
                                 'Get up to speed with our documentation and guides. If you already know SQL, you can get started. You can raise issues on Github or join our community on Slack.'+
                                 '<ul class="buttons">' +
                                 '<li><a href="https://join.slack.com/t/questdb/shared_invite/enQtNzk4Nzg4Mjc2MTE2LTEzZThjMzliMjUzMTBmYzVjYWNmM2UyNWJmNDdkMDYyZmE0ZDliZTQxN2EzNzk5MDE3Zjc1ZmJiZmFiZTIwMGY" target="_blank">Join Slack</a></li>' +
-                                '<li><a href="/docs/sql">Documentation </a></li>' +
+                                '<li><a href="/docs/docstructure">Documentation </a></li>' +
                                 '</ul>'
                         }
                     ]}

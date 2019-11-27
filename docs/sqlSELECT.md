@@ -6,7 +6,7 @@ sidebar_label: SELECT
 
 `SELECT` allows you to specify list of columns and expressions to be selected and evaluated from a table.
 
->All examples below are given for the file ratings.csv from the movielens project. See section to **[Get sample data](gettestdata.md)**
+>All examples below are given for the file ratings.csv from the movielens project. See section to **[Get sample data](faqGETTESTDATA.md)**
 
 ## Syntax
 ![alt-text](assets/select-statement.svg)
@@ -621,7 +621,7 @@ ratings LIMIT -7, -3;
 ### Overview
 `SAMPLE BY` is used on time-series data to summarise large datasets into aggregates of hogeneous time chunks.
 
->To use `SAMPLE BY`, one column needs to be designated as `timestamp`. Find out more in the **[CREATE TABLE](tableadmin.md)** section.
+>To use `SAMPLE BY`, one column needs to be designated as `timestamp`. Find out more in the **[CREATE TABLE](sqlCREATE.md)** section.
 
 ### Syntax
 `SAMPLE BY` syntax is as follows:

@@ -2,31 +2,44 @@
 {
   "docs": {
     "Introduction": [
-      "documentation",
+      "docstructure",
+      "getstarted",
       "tutorial",
       "crud"
     ],
     "Installation": [
       "setupmenu",
       "docker",
-      "binaries",
+      "manualinstall",
       "dependency"
     ],
     "Using QuestDB": [
-      "sql",
-      "datatypes",
-      "tableadmin",
-      "select",
-      "join"
+      "howtoload",
+      "howtoquery",
+      "howtoexport"
     ],
     "Interfaces": [
       "console",
       "java",
       "restful"
     ],
+    "Reference": [
+      "datatypes",
+      "storagemodel"
+    ],
+    "SQL Reference": [
+      "sql",
+      "create",
+      "alter",
+      "truncate",
+      "drop",
+      "insert",
+      "copy",
+      "select",
+      "join"
+    ],
     "FAQ": [
       "faq",
-      "storagemodel",
       "roadmap",
       "gettestdata"
     ]

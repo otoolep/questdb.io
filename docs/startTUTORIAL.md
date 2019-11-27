@@ -14,7 +14,7 @@ In this tutorial, we will learn to
 - Delete tables
 
 As an example, we will look at a hypothetical temperature readings from a variety of sensors. 
-All commands are run through the web **[console](console.md)** accessible on 
+All commands are run through the web **[console](intCONSOLE.md)** accessible on 
 **[http://localhost:9000/index.html](http://localhost:9000/index.html)**.
 
 ## Creating a table
@@ -27,7 +27,7 @@ First, we create the `sensors` table
 CREATE TABLE sensors (ID LONG, make STRING, city STRING);
 ```
 
->Find more about these commands in the **[SQL Administration](tableadmin.md)** commands section.
+>Find more about these commands in the **[SQL Administration](sqlCREATE.md)** commands section.
 
 ## Insert data
 We populate our `sensors` table with procedurally-generated data:
@@ -179,7 +179,7 @@ Results should look like this
 |...                            |...    |...    |...
 
 
-> Find more about these commands in the **[Select](select.md)** and **[Join](join.md)** sections.
+> Find more about these commands in the **[Select](sqlSELECT.md)** and **[Join](sqlJOIN.md)** sections.
 
 ## Finding your data files
 Data is stored on disk. You can find it in the same path as QuestDB executable in the db folder. 

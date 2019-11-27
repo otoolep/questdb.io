@@ -1,5 +1,5 @@
 ---
-id: binaries
+id: manualinstall
 title: Install manually
 ---
 

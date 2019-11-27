@@ -1,7 +1,7 @@
 ---
 id: sql
-title: Query Language
-sidebar_label: Query Language
+title: SQL implementation
+sidebar_label: SQL implementation
 ---
 
 ## Introduction
@@ -76,7 +76,7 @@ Here we avoided repetitive aggregation expressions without extra furniture synta
 
 We have extended SQL language to support our data storage model and simplify semantics of timeseries queries.
 
-- `LATEST BY` (find out more **[here](crud.md)**)
+- `LATEST BY` (find out more **[here](startCRUD.md)**)
 - `SAMPLE BY`
 
 Please follow the links for detailed description of these clauses.
