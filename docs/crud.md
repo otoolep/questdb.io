@@ -27,7 +27,7 @@ create table balances (
 	timestamp timestamp
 );
 ```
-<!--curl-->
+<!--REST-->
 ```shell 
 curl -G "http://localhost:13005/exec" --data-urlencode "query=
 create table balances (
@@ -38,7 +38,7 @@ create table balances (
     timestamp timestamp
 )"
 ```
-<!--Embedded Java-->
+<!--Java-->
 ```java
 final String cairoDatabaseRoot = "/tmp";
 try (CairoEngine engine = new CairoEngine(
@@ -86,26 +86,143 @@ Here:
  - `timestamp` timestamp in microseconds of the record
 
 Lets insert records:
+<!--DOCUSAURUS_CODE_TABS-->
+<!--SQL-->
 
 ```sql
 insert into balances (cust_id, balance_ccy, balance, timestamp)
 	values (1, 'USD', 1500.00, to_timestamp(6000000001));
 
 insert into balances (cust_id, balance_ccy, balance, timestamp)
-	values (1, 'EUR', 650.50, to_timestamp(6000000001));
+	values (1, 'EUR', 650.50, to_timestamp(6000000002));
 
 insert into balances (cust_id, balance_ccy, balance, timestamp)
-	values (2, 'USD', 900.75, to_timestamp(6000000001));
+	values (2, 'USD', 900.75, to_timestamp(6000000003));
 
 insert into balances (cust_id, balance_ccy, balance, timestamp)
-	values (2, 'EUR', 880.20, to_timestamp(6000000001));
+	values (2, 'EUR', 880.20, to_timestamp(6000000004));
+```
+<!--REST-->
+```
+work in progress
+```
+<!--Java Raw-->
+```java
+CairoConfiguration configuration = new DefaultCairoConfiguration(".");
+try (CairoEngine engine = new CairoEngine(configuration)) {
+    try (TableWriter writer = engine.getWriter(AllowAllCairoSecurityContext.INSTANCE, "balances")) {
+        TableWriter.Row r;
+
+        r = writer.newRow(6000000001); // timestamp
+        r.putInt(0, 1); // cust_id
+        r.putSym(1, "USD"); // symbol
+        r.putDouble(2, 1500.00); // balance
+        r.append();
+
+        r = writer.newRow(6000000002); // timestamp
+        r.putInt(0, 1); // cust_id
+        r.putSym(1, "EUR"); // symbol
+        r.putDouble(2, 650.5); // balance
+        r.append();
+
+        r = writer.newRow(6000000003); // timestamp
+        r.putInt(0, 2); // cust_id
+        r.putSym(1, "USD"); // symbol
+        r.putDouble(2, 900.75); // balance
+        r.append();
+
+        r = writer.newRow(6000000004); // timestamp
+        r.putInt(0, 2); // cust_id
+        r.putSym(1, "USD"); // symbol
+        r.putDouble(2, 880.2); // balance
+        r.append();
+
+        writer.commit();
+    }
+}
 ```
 
- To select these records we can use basic `SELECT`:
+<!--END_DOCUSAURUS_CODE_TABS-->
 
+
+### (R)ead
+
+Reading records can be done via `SELECT` query or by reading table directly via Java API. Reading via Java API is limited to
+reading data of one table only.
+
+<!--DOCUSAURUS_CODE_TABS-->
+<!--SQL-->
 ```sql
 select * from balances;
 ```
+<!--REST-->
+```shell 
+curl -G "http://localhost:9000/exec" --data-urlencode "query=select * from balances"
+```
+<!--Java SQL-->
+```java
+final String cairoDatabaseRoot = "/tmp";
+CairoConfiguration configuration = new DefaultCairoConfiguration(cairoDatabaseRoot);
+try (CairoEngine engine = new CairoEngine(configuration)) {
+    try (SqlCompiler compiler = new SqlCompiler(engine)) {
+        try (RecordCursorFactory factory = compiler.compile("select * from balances").getRecordCursorFactory()) {
+
+            try (RecordCursor cursor = factory.getCursor()) {
+                final Record record = cursor.getRecord();
+                while (cursor.hasNext()) {
+                    record.getInt(0); // cust_id
+                    record.getSym(1); // symbol
+                    record.getDouble(2); // balance
+                    record.getByte(3); // status
+                    record.getTimestamp(4); // timestamp
+                }
+            }
+        }
+    }
+}
+```
+<!--Java Raw-->
+```java
+CairoConfiguration configuration = new DefaultCairoConfiguration(".");
+try (CairoEngine engine = new CairoEngine(configuration)) {
+    try (TableReader reader = engine.getReader(AllowAllCairoSecurityContext.INSTANCE, "balances")) {
+        // closing this cursor will close reader too
+        // lets close reader explicitly
+        final TableReaderRecordCursor cursor = reader.getCursor();
+        final Record record = cursor.getRecord();
+        while (cursor.hasNext()) {
+            record.getInt(0); // cust_id
+            record.getSym(1); // symbol
+            record.getDouble(2); // balance
+            record.getByte(3); // status
+            record.getTimestamp(4); // timestamp
+        }
+    }
+}
+```
+<!--JDBC-->
+```java
+Properties properties = new Properties();
+properties.setProperty("user", "admin");
+properties.setProperty("password", "quest");
+properties.setProperty("sslmode", "disable");
+
+final Connection connection =
+        DriverManager.getConnection("jdbc:postgresql://localhost:8812/qdb", properties);
+PreparedStatement statement = connection.prepareStatement("select * from balances");
+
+ResultSet resultSet = statement.executeQuery();
+
+while (resultSet.next()) {
+    System.out.println(resultSet.getInt(1)); // cust_id
+    System.out.println(resultSet.getString(2)); // symbol
+    System.out.println(resultSet.getDouble(3)); // balance
+    System.out.println(resultSet.getByte(4)); // status
+    System.out.println(resultSet.getTimestamp(5)); // timestamp
+}
+connection.close();
+```
+<!--END_DOCUSAURUS_CODE_TABS-->
 
 ### (U)pdate
 

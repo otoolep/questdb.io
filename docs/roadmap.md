@@ -61,8 +61,8 @@ Here is a non-exhaustive list of things we are working on. Feel free to join us 
         whenever table writer is needed and not available due to normal race condition server should
         queue the query and attempt to execute autonomously and periodcally
 - [ ] choice of export formats
-- [ ] query parameter support
-- [ ] grafana integration
+- [ ] JSON end-point with query parameter support
+- [ ] Grafana integration
 - [x] file upload handling (multipart form parsing)
 - [x] file upload handling from curl (100-continue recognition)
 - [x] query execution
