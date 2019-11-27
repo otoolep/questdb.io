@@ -45,7 +45,7 @@ If you do not want to open either of these ports, simply remove the
 argument. However doing so may limit your interaction with QuestDB.
 
 - `-p 9000:9000` opens port 9000 for the HTTP API and the web console. The web console is available on localhost:9000.
-- `-p 8892:8892` opens port 8892 for the PostgreSQL wire protocol.
+- `-p 8892:8892` opens port 8892 for the PostgresSQL wire protocol.
 
 #### Create a container
 

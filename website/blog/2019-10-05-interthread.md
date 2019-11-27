@@ -54,7 +54,7 @@ FanOut can also be used as a placeholder in a chain to allow threads to subscrib
 // Sequences can be added either up front or subscribe/unsubscribe on the fly.
 FanOut fanOut = new FanOut();
 
-// orinary producer sequence
+// ordinary producer sequence
 Sequence seqProducer = new SPSequence(queue.getCapacity());
 // daisy chain producer and fan out and loop back producer
 seqProducer.then(fanOut).then(seqProducer);
@@ -194,11 +194,4 @@ QuestdbWorker.run       5000          4          10    ss   50  142.207 ± 15.15
 Disruptor and QuestDB perform essentially the same.
 
 ### How to get it
-Our messaging system is on Maven central as a part of QuestDB. Don't worry about package size though, QuestDB jar weighs in at 2.6MB and has no dependencies.
-```xml
-<dependency>
-  <groupId>io.questdb</groupId>
-  <artifactId>questdb-core</artifactId>
-  <version>3.5.0-SNAPSHOT</version>
-</dependency>
-```
+Our messaging system is on Maven central as a part of QuestDB. Don't worry about package size though, QuestDB jar weighs in at 3.6MB and has no dependencies. Jump **[here](/docs/dependency)** for version reference.

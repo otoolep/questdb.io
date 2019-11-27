@@ -14,23 +14,24 @@ const users = [];
 const siteConfig = {
     title: 'QuestDB', // Title for your website.
     tagline: 'Always on time',
-    url: 'https://questdb.github.io', // Your website URL
+    url: 'https://questdb.io', // Your website URL
     baseUrl: '/', // Base URL for your project */
-    projectName: 'website',
-    organizationName: 'questdb',
+    projectName: 'QuestDB',
+    organizationName: 'QuestDB Ltd.',
 
     // serach bar settings
     algolia: {
         apiKey: 'b2a69b4869a2a85284a82fb57519dcda',
         indexName: 'questdb',
-        placeholder: 'Search docs',
+        placeholder: 'Search...',
         algoliaOptions: {} // Optional, if provided by Algolia
     },
 
     // For no header links in the top nav bar -> headerLinks: [],
     headerLinks:
     [
-        {doc: "getstarted", label: 'Get Started'},
+        {href: "https://github.com/questdb/questdb", label: 'View on GitHub'},
+        {doc: 'getstarted', label: 'Get Started'},
         {doc: 'docstructure', label: 'Documentation'},
         {blog: true, label: 'Blog'},
     ],

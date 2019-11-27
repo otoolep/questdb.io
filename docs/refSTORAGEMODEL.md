@@ -58,7 +58,7 @@ offset in a lazily mapped memory page, where the required value is read from.
 
 ## Summary
 To summarise, our storage model uses memory mapped files and cross-process atomic transaction updates, 
-which allow to using QuestDB as a low overhead method of interprocess communication. Data committed by 
+which allow to using QuestDB as a low overhead method of inter-process communication. Data committed by 
 one process can be instantaneously read by another process either randomly via queries or incrementally 
 as data queue. QuestDB provides a variety of reader implementations. 
    

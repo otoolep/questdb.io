@@ -5,7 +5,7 @@ sidebar_label: SQL implementation
 ---
 
 ## Introduction
-QuestDB attempts to implement standard ANSI SQL. We also attempt to be PostgreSQL compatible, although some of it is work in progress. QuestDB implements the following clauses in this execution order:
+QuestDB attempts to implement standard ANSI SQL. We also attempt to be PostgresSQL compatible, although some of it is work in progress. QuestDB implements the following clauses in this execution order:
 
 1. FROM
 2. ON
@@ -74,7 +74,7 @@ Here we avoided repetitive aggregation expressions without extra furniture synta
 
 ## SQL extensions
 
-We have extended SQL language to support our data storage model and simplify semantics of timeseries queries.
+We have extended SQL language to support our data storage model and simplify semantics of time series queries.
 
 - `LATEST BY` (find out more **[here](startCRUD.md)**)
 - `SAMPLE BY`
