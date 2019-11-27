@@ -125,7 +125,7 @@ class Index extends React.Component {
                         {
                             content:
                                 '<span class="title">Expressive SQL</span>'+
-                                'QuestDB SQL optimiser (built-in time-series native support) assembles a sequence of monads for best-effort-zero-copy query execution.' +
+                                'QuestDB's SQL optimiser (built-in time-series native support) assembles a sequence of monads for best-effort-zero-copy query execution.' +
                                 ' User functions allow the manipulation of data sets. This provides ultimate SQL customisation.'
                         },
                         {
