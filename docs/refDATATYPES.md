@@ -1,5 +1,5 @@
 ---
-id: atatypes
+id: datatypes
 title: Type system
 sidebar_label: Type system
 ---
