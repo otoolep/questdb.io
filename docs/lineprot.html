@@ -1,0 +1,159 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Influx Line Protocol · QuestDB</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## Overview"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Influx Line Protocol · QuestDB"/><meta property="og:type" content="website"/><meta property="og:url" content="https://questdb.io/"/><meta property="og:description" content="## Overview"/><meta property="og:image" content="https://questdb.io/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://questdb.io/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/agate.min.css"/><link rel="alternate" type="application/atom+xml" href="https://questdb.io/blog/atom.xml" title="QuestDB Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://questdb.io/blog/feed.xml" title="QuestDB Blog RSS Feed"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-145747842-1', 'auto');
+              ga('send', 'pageview');
+            </script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,500,600,700|Source+Code+Pro:400,700|Open+Sans:300,400,600,700"/><link rel="stylesheet" href="/css/code-block-buttons.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/favicon.png" alt="QuestDB"/><h2 class="headerTitleWithLogo">QuestDB</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="https://github.com/questdb/questdb" target="_self">View on GitHub</a></li><li class="siteNavGroupActive"><a href="/docs/getstarted" target="_self">Get Started</a></li><li class="siteNavGroupActive"><a href="/docs/docstructure" target="_self">Documentation</a></li><li class=""><a href="/blog/" target="_self">Blog</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search..." title="Search..."/></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Interfaces</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Introduction<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/docstructure">Documentation Structure</a></li><li class="navListItem"><a class="navItem" href="/docs/getstarted">Get Started</a></li><li class="navListItem"><a class="navItem" href="/docs/tutorial">Tutorial</a></li><li class="navListItem"><a class="navItem" href="/docs/crud">CRUD Operations</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Installation<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/setupmenu">Introduction</a></li><li class="navListItem"><a class="navItem" href="/docs/docker">Install using a Docker image</a></li><li class="navListItem"><a class="navItem" href="/docs/manualinstall">Install manually</a></li><li class="navListItem"><a class="navItem" href="/docs/dependency">Install as Java Dependency</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Using QuestDB<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/howtoload">Loading data</a></li><li class="navListItem"><a class="navItem" href="/docs/howtoquery">Querying data</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Interfaces<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/console">Web Console</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/lineprot">Influx Line Protocol</a></li><li class="navListItem"><a class="navItem" href="/docs/java">JAVA</a></li><li class="navListItem"><a class="navItem" href="/docs/restful">REST</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Reference<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/datatypes">Type system</a></li><li class="navListItem"><a class="navItem" href="/docs/storagemodel">Storage Model</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">SQL Reference<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/sql">SQL implementation</a></li><li class="navListItem"><a class="navItem" href="/docs/create">CREATE TABLE</a></li><li class="navListItem"><a class="navItem" href="/docs/alter">ALTER TABLE</a></li><li class="navListItem"><a class="navItem" href="/docs/truncate">TRUNCATE TABLE</a></li><li class="navListItem"><a class="navItem" href="/docs/drop">DROP TABLE</a></li><li class="navListItem"><a class="navItem" href="/docs/insert">INSERT</a></li><li class="navListItem"><a class="navItem" href="/docs/select">SELECT</a></li><li class="navListItem"><a class="navItem" href="/docs/join">JOINS</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">FAQ<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/faq">Frequently Asked</a></li><li class="navListItem"><a class="navItem" href="/docs/roadmap">Roadmap</a></li><li class="navListItem"><a class="navItem" href="/docs/gettestdata">Obtaining Test Data</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Influx Line Protocol</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="overview"></a><a href="#overview" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Overview</h2>
+<p>QuestDB supports <strong>Influx Line Protocol</strong> as an <strong>input method</strong></p>
+<h2><a class="anchor" aria-hidden="true" id="supported-methods"></a><a href="#supported-methods" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Supported methods</h2>
+<p>QuestDB supports <strong>Influx Line Protocol</strong> in three ways:</p>
+<ul>
+<li>Java</li>
+<li>Telegraf via UDP</li>
+<li>Linux command line</li>
+</ul>
+<blockquote>
+<p>Line protocol via <strong>TCP</strong> and <strong>HTTP</strong> is not yet supported. This will be added in further releases.</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="syntax"></a><a href="#syntax" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Syntax</h3>
+<p>Influx Line Protocol with QuestDB consists of the following entities:</p>
+<pre><code class="hljs css language-shell script">table_name,tagset, valueset, timestamp
+</code></pre>
+<table>
+<thead>
+<tr><th>Element</th><th>Definition</th></tr>
+</thead>
+<tbody>
+<tr><td>table_name</td><td>Name of the table where QuestDB will write data.</td></tr>
+<tr><td>tagset</td><td>Array of string key-value pairs  separated by commas that represent the reading's associated metadata</td></tr>
+<tr><td>values</td><td>Array of key-value pairs separated by commas that represent the readings. The keys are string, values can be numeric or boolean</td></tr>
+<tr><td>timestamp</td><td>UNIX timestamp. By default in microseconds. Can be changed in the configuration (see below)</td></tr>
+</tbody>
+</table>
+<h3><a class="anchor" aria-hidden="true" id="examples"></a><a href="#examples" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Examples</h3>
+<p>Let's assume the following data:</p>
+<p><strong>Table Name: Readings</strong></p>
+<table>
+<thead>
+<tr><th>timestamp</th><th>city</th><th>temperature</th><th>humidity</th><th>make</th></tr>
+</thead>
+<tbody>
+<tr><td>1465839830100400000</td><td>London</td><td>23.5</td><td>0.343</td><td>Omron</td></tr>
+<tr><td>1465839830100600000</td><td>Bristol</td><td>23.2</td><td>0.443</td><td>Honeywell</td></tr>
+<tr><td>1465839830100700000</td><td>London</td><td>23.6</td><td>0.358</td><td>Omron</td></tr>
+</tbody>
+</table>
+<p>Line protocol would look like this:</p>
+<pre><code class="hljs css language-shell script">readings,city=London,make=Omron temperature=23.5,humidity=0.343 1465839830100400000
+readings,city=Bristol,make=Honeywell temperature=23.2,humidity=0.443 1465839830100600000
+readings,city=London,make=Omron temperature=23.6,humidity=0.348 1465839830100700000
+</code></pre>
+<blockquote>
+<p>Note there are only 2 spaces in each line. The firts betwwen the <code>tagset</code> and the <code>values</code>. The second between
+the <code>values</code> and the <code>timestamp</code>.</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="dealing-with-irregularly-structured-data"></a><a href="#dealing-with-irregularly-structured-data" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Dealing with Irregularly-structured Data</h3>
+<p>Influx line protocol makes it possible to send data under different shapes. Each new entry may contain certain
+metadata tags and others not. Similarly, entries may contain</p>
+<h2><a class="anchor" aria-hidden="true" id="configuration"></a><a href="#configuration" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Configuration</h2>
+<p>The following configuration parameters can be added to the configuration file to customise the interaction using
+Influx line protocol. The configuration file is found under <code>/questdb/conf/questdb.conf</code></p>
+<p>&quot;line.udp.bind.to&quot;, &quot;0.0.0.0:9009&quot;, (a, p) -&gt; {
+this.lineUdpBindIPV4Address = a;
+this.lineUdpPort = p;
+});</p>
+<table>
+<thead>
+<tr><th>Property</th><th>Type</th><th>Default value</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>line.udp.join</strong></td><td><code>string</code></td><td><em>&quot;232.1.2.3&quot;</em></td><td></td></tr>
+<tr><td><strong>line.udp.commit.rate</strong></td><td><code>long</code></td><td><em>10_000</em></td><td></td></tr>
+<tr><td><strong>line.udp.msg.buffer.size</strong></td><td><code>long</code></td><td><em>1,048,576</em></td><td></td></tr>
+<tr><td><strong>line.udp.msg.count</strong></td><td><code>long</code></td><td><em>10_000</em></td><td></td></tr>
+<tr><td><strong>line.udp.receive.buffer.size</strong></td><td><code>long</code></td><td>*2048  *</td><td></td></tr>
+<tr><td><strong>line.udp.enabled</strong></td><td><code>boolean</code></td><td><em>true</em></td><td></td></tr>
+<tr><td><strong>line.udp.own.thread</strong></td><td><code>boolean</code></td><td><em>false</em></td><td></td></tr>
+<tr><td><strong>line.udp.unicast</strong></td><td><code>boolean</code></td><td><em>false</em></td><td>When true, UDP will me unicast. Otherwise multicast</td></tr>
+</tbody>
+</table>
+<h2><a class="anchor" aria-hidden="true" id="using-java"></a><a href="#using-java" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Using Java</h2>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/console"><span class="arrow-prev">← </span><span>Web Console</span></a><a class="docs-next button" href="/docs/java"><span>JAVA</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#overview">Overview</a></li><li><a href="#supported-methods">Supported methods</a><ul class="toc-headings"><li><a href="#syntax">Syntax</a></li><li><a href="#examples">Examples</a></li><li><a href="#dealing-with-irregularly-structured-data">Dealing with Irregularly-structured Data</a></li></ul></li><li><a href="#configuration">Configuration</a></li><li><a href="#using-java">Using Java</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><div align="left" class="tanc"><h5>QuestDB</h5><a href="/docs/en/documentation">Documentation</a><a href="https://github.com/questdb/questdb/releases/download/4.0.0/questdb-4.0.0-bin.tar.gz">Download</a><a href="https://questdb.io/docs/roadmap">Roadmap</a></div><div><h5>Community</h5><a href="https://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://join.slack.com/t/questdb/shared_invite/enQtNzk4Nzg4Mjc2MTE2LTEzZThjMzliMjUzMTBmYzVjYWNmM2UyNWJmNDdkMDYyZmE0ZDliZTQxN2EzNzk5MDE3Zjc1ZmJiZmFiZTIwMGY&gt;"> Join Slack </a><a href="https://twitter.com/" target="@QuestDB" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/questdb/questdb/">GitHub</a><a class="github-button" href="https://github.com/questdb/questdb" data-icon="octicon-star" data-count-href="/questdb/questdb/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="copyright">Copyright © 2019 QuestDB Limited</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: 'b2a69b4869a2a85284a82fb57519dcda',
+                indexName: 'questdb',
+                inputSelector: '#search_input_react',
+                algoliaOptions: {}
+              });
+            </script></body></html>
