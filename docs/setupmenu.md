@@ -17,7 +17,7 @@ download correct image for your target architecture.
 
 Use QuestDB directly with its binaries on your local machine.
 
-<ul class="buttons"><li class="cta"><a href="/docs/binaries">Install manually</a></li></ul>
+<ul class="buttons"><li class="cta"><a href="/docs/manualinstall">Install manually</a></li></ul>
 
 ### Install as a Java Dependency
 
