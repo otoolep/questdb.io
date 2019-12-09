@@ -30,12 +30,12 @@ The following example adds a new column called `comment` that is of `STRING` typ
 ALTER TABLE ratings ADD COLUMN comment STRING;
 ```
 
-## DROP
+## DROP COLUMN
 
 ### Overview
-`DROP` is used to remove an existing column from an existing table. 
+`DROP COLUMN` is used to remove an existing column from an existing table. 
 
-> When using `DROP`, the data in that column will be deleted
+> When using `DROP COLUMN`, the data in that column will be deleted
 
 ### Syntax
 Dropping a column a column is done with the following syntax:
@@ -52,6 +52,49 @@ The following example deletes the column called `comment` from the table `rating
 
 ```sql
 ALTER TABLE ratings DROP COLUMN comment ;
+```
+
+## DROP PARTITION
+
+### Overview
+`DROP PARTITION` is used to remove an existing partition from a table.
+
+> When using `DROP PARTITION`, ALL data in the partition will be deleted.
+
+> `DROP PARTITION` will drop ALL columns within the selected partition.
+
+### Syntax
+Dropping a partition is done with the following syntax:
+```sql
+ALTER TABLE 'TABLE' DROP PARTITION 'PARTITIONS';
+```
+
+Where
+'TABLE' is the name of the table from which you would like to drop a partition.
+'PARTITIONS' are the names of the partitions you would like to delete, separated by commas
+The names of your partitions directly depend on how you created the table when using `PARTITION BY`
+See [Create Table](sqlCREATE.md) for more information.
+
+| Table Partition                           | Partition format                                  |
+|-------------------------------------------|---------------------------------------------------|
+|DAY                                        |'YYYY-MM-DD'                                       |
+|MONTH                                      |'YYYY-MM'                                          |
+|YEAR                                       |'YYYY'                                             |
+
+### Examples
+Drop one partition
+```sql
+--DAY
+ALTER TABLE my_table DROP PARTITION '2019-05-18';
+--MONTH
+ALTER TABLE my_table DROP PARTITION '2019-05';
+--YEAR
+ALTER TABLE my_table DROP PARTITION '2019';
+```
+
+Drop several partitions
+```sql
+ALTER TABLE my_table DROP PARTITION '2018','2019';
 ```
 
 ## ALTER COLUMN
