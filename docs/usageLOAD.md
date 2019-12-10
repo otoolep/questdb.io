@@ -44,3 +44,7 @@ The `/imp` command is used to import data from a file. Detailed steps can be fou
 ### Inserting data
 The `/imp` command can be used to import data. The data will be passed over HTTP as a multipart request. 
 Detailed steps can be found **[here](/docs/restful#imp-append-data)**.
+
+## Using Influx line protocol
+Users that wish to do so can load data with Influx Line Protocol. This is available using
+**[java](/docs/lineprot#java)**, Linux command line, and Telegraf.

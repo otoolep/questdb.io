@@ -21,7 +21,8 @@
     "Interfaces": [
       "console",
       "java",
-      "restful"
+      "restful",
+      "lineprot"
     ],
     "Reference": [
       "datatypes",
@@ -36,7 +37,8 @@
       "insert",
       "copy",
       "select",
-      "join"
+      "join",
+      "union"
     ],
     "FAQ": [
       "faq",
