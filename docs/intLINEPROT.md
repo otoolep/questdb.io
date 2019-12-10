@@ -5,8 +5,7 @@ sidebar_label: Influx Line Protocol
 ---
 
 ## Overview
-QuestDB supports **Influx Line Protocol** as an **input method**
-
+QuestDB supports inputs sent over  **Influx Line Protocol**
 ### Supported methods
 
 - Java
@@ -17,6 +16,7 @@ QuestDB supports **Influx Line Protocol** as an **input method**
 
 ### Syntax
 Influx Line Protocol follows this syntax
+
 ```shell script
 table_name,tagset, valueset, timestamp
 ```
@@ -30,8 +30,8 @@ where:
 | timestamp             | UNIX timestamp. By default in microseconds. Can be changed in the configuration (see below) |
 
 > When `table_name` does not correspond to an existing table, QuestDB will create the table on the fly using the name
->provided. Types will be assigned based on automatic recognition of the values sent via Influx line protocol.
-
+>provided. Types will be automatically recognized and assigned based on the data.
+>
 ### Examples
 Let's assume the following data:
 |timestamp             | city            | temperature           | humidity              | make              |
@@ -48,16 +48,17 @@ readings,city=Bristol,make=Honeywell temperature=23.2,humidity=0.443 14658398301
 readings,city=London,make=Omron temperature=23.6,humidity=0.348 1465839830100700000
 ```
 
-> Note there are only 2 spaces in each line. First betwwen the `tagset` and `values`. Second between
+> Note there are only 2 spaces in each line. First between the `tagset` and `values`. Second between
 > `values` and `timestamp`.
 
 ### Dealing with Irregularly-structured Data
 >QuestDB can support on-the-fly data structure changes with minimal overhead. Should users decide to send
->more / fewer readings or metadata tags, QuestDB will adapt on the fly.
+>varying quantities of readings or metadata tags for different entries, QuestDB will adapt on the fly.
 
 Influx line protocol makes it possible to send data under different shapes. Each new entry may contain certain 
-metadata tags and others not. Similarly, entries may contain certain value fields and others not. Whilst the example just above
-shows very structured data, it is common for Influx line protocol users to send data as follows.
+metadata tags or readings, and others not. Whilst the example just above
+highlights structured data, it is possible for Influx line protocol users to send data as follows.
+
 ```shell script
 readings,city=London temperature=23.2 1465839830100400000
 readings,city=London temperature=23.6 1465839830100700000
@@ -107,7 +108,6 @@ Influx line protocol. The configuration file is found under `/questdb/conf/quest
 
 
 ## Java
-
 Java users can use `LineProtoSender` to send line protocol to QuestDB.
 
 ### Using LineProtoSender
