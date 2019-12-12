@@ -7,9 +7,8 @@
               ga('create', 'UA-145747842-1', 'auto');
               ga('send', 'pageview');
             </script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,500,600,700|Source+Code+Pro:400,700|Open+Sans:300,400,600,700"/><link rel="stylesheet" href="/css/code-block-buttons.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/favicon.png" alt="QuestDB"/><h2 class="headerTitleWithLogo">QuestDB</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="https://github.com/questdb/questdb" target="_self">View on GitHub</a></li><li class=""><a href="/docs/getstarted" target="_self">Get Started</a></li><li class=""><a href="/docs/docstructure" target="_self">Documentation</a></li><li class=""><a href="/blog/" target="_self">Blog</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search..." title="Search..."/></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Influx Line Protocol</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="overview"></a><a href="#overview" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Overview</h2>
-<p>QuestDB supports <strong>Influx Line Protocol</strong> as an <strong>input method</strong></p>
-<h2><a class="anchor" aria-hidden="true" id="supported-methods"></a><a href="#supported-methods" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Supported methods</h2>
-<p>QuestDB supports <strong>Influx Line Protocol</strong> in three ways:</p>
+<p>QuestDB supports inputs sent over  <strong>Influx Line Protocol</strong></p>
+<h3><a class="anchor" aria-hidden="true" id="supported-methods"></a><a href="#supported-methods" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Supported methods</h3>
 <ul>
 <li>Java</li>
 <li>Telegraf via UDP</li>
@@ -19,9 +18,10 @@
 <p>Line protocol via <strong>TCP</strong> and <strong>HTTP</strong> is not yet supported. This will be added in further releases.</p>
 </blockquote>
 <h3><a class="anchor" aria-hidden="true" id="syntax"></a><a href="#syntax" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Syntax</h3>
-<p>Influx Line Protocol with QuestDB consists of the following entities:</p>
+<p>Influx Line Protocol follows this syntax</p>
 <pre><code class="hljs css language-shell script">table_name,tagset, valueset, timestamp
 </code></pre>
+<p>where:</p>
 <table>
 <thead>
 <tr><th>Element</th><th>Definition</th></tr>
@@ -33,9 +33,12 @@
 <tr><td>timestamp</td><td>UNIX timestamp. By default in microseconds. Can be changed in the configuration (see below)</td></tr>
 </tbody>
 </table>
+<blockquote>
+<p>When <code>table_name</code> does not correspond to an existing table, QuestDB will create the table on the fly using the name
+provided. Types will be automatically recognized and assigned based on the data.</p>
+</blockquote>
 <h3><a class="anchor" aria-hidden="true" id="examples"></a><a href="#examples" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Examples</h3>
 <p>Let's assume the following data:</p>
-<p><strong>Table Name: Readings</strong></p>
 <table>
 <thead>
 <tr><th>timestamp</th><th>city</th><th>temperature</th><th>humidity</th><th>make</th></tr>
@@ -46,18 +49,58 @@
 <tr><td>1465839830100700000</td><td>London</td><td>23.6</td><td>0.358</td><td>Omron</td></tr>
 </tbody>
 </table>
-<p>Line protocol would look like this:</p>
+<p>Line protocol to insert this data in the <code>readings</code> table would look like this:</p>
 <pre><code class="hljs css language-shell script">readings,city=London,make=Omron temperature=23.5,humidity=0.343 1465839830100400000
 readings,city=Bristol,make=Honeywell temperature=23.2,humidity=0.443 1465839830100600000
 readings,city=London,make=Omron temperature=23.6,humidity=0.348 1465839830100700000
 </code></pre>
 <blockquote>
-<p>Note there are only 2 spaces in each line. The firts betwwen the <code>tagset</code> and the <code>values</code>. The second between
-the <code>values</code> and the <code>timestamp</code>.</p>
+<p>Note there are only 2 spaces in each line. First between the <code>tagset</code> and <code>values</code>. Second between
+<code>values</code> and <code>timestamp</code>.</p>
 </blockquote>
 <h3><a class="anchor" aria-hidden="true" id="dealing-with-irregularly-structured-data"></a><a href="#dealing-with-irregularly-structured-data" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Dealing with Irregularly-structured Data</h3>
+<blockquote>
+<p>QuestDB can support on-the-fly data structure changes with minimal overhead. Should users decide to send
+varying quantities of readings or metadata tags for different entries, QuestDB will adapt on the fly.</p>
+</blockquote>
 <p>Influx line protocol makes it possible to send data under different shapes. Each new entry may contain certain
-metadata tags and others not. Similarly, entries may contain</p>
+metadata tags or readings, and others not. Whilst the example just above
+highlights structured data, it is possible for Influx line protocol users to send data as follows.</p>
+<pre><code class="hljs css language-shell script">readings,city=London temperature=23.2 1465839830100400000
+readings,city=London temperature=23.6 1465839830100700000
+readings,make=Honeywell temperature=23.2,humidity=0.443 1465839830100800000
+</code></pre>
+<p>Note that on the third line,</p>
+<ul>
+<li>a new <code>tag</code> is added: &quot;make&quot;</li>
+<li>a new <code>field</code> is added: &quot;humidity&quot;</li>
+</ul>
+<p>After writing two entries, the data would look like this:</p>
+<table>
+<thead>
+<tr><th>timestamp</th><th>city</th><th>temperature</th></tr>
+</thead>
+<tbody>
+<tr><td>1465839830100400000</td><td>London</td><td>23.5</td></tr>
+<tr><td>1465839830100700000</td><td>London</td><td>23.6</td></tr>
+</tbody>
+</table>
+<p>The third entry would result in the following table:</p>
+<table>
+<thead>
+<tr><th>timestamp</th><th>city</th><th>temperature</th><th>humidity</th><th>make</th></tr>
+</thead>
+<tbody>
+<tr><td>1465839830100400000</td><td>London</td><td>23.5</td><td>NULL</td><td>NULL</td></tr>
+<tr><td>1465839830100700000</td><td>London</td><td>23.6</td><td>NULL</td><td>NULL</td></tr>
+<tr><td>1465839830100800000</td><td>NULL</td><td>23.2</td><td>0.358</td><td>Honeywell</td></tr>
+</tbody>
+</table>
+<blockquote>
+<p>Adding columns on the fly is no issue for QuestDB. New columns will be created in the affected partitions, and only
+populated if they contain values. Whilst we offer this function for flexibility, we recommend that users try to minimise
+structural changes to maintain operational simplicity.</p>
+</blockquote>
 <h2><a class="anchor" aria-hidden="true" id="configuration"></a><a href="#configuration" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Configuration</h2>
 <p>The following configuration parameters can be added to the configuration file to customise the interaction using
 Influx line protocol. The configuration file is found under <code>/questdb/conf/questdb.conf</code></p>
@@ -71,17 +114,68 @@ this.lineUdpPort = p;
 </thead>
 <tbody>
 <tr><td><strong>line.udp.join</strong></td><td><code>string</code></td><td><em>&quot;232.1.2.3&quot;</em></td><td></td></tr>
-<tr><td><strong>line.udp.commit.rate</strong></td><td><code>long</code></td><td><em>10_000</em></td><td></td></tr>
+<tr><td><strong>line.udp.commit.rate</strong></td><td><code>long</code></td><td><em>10_000</em></td><td>Server will commit every N messages</td></tr>
 <tr><td><strong>line.udp.msg.buffer.size</strong></td><td><code>long</code></td><td><em>1,048,576</em></td><td></td></tr>
 <tr><td><strong>line.udp.msg.count</strong></td><td><code>long</code></td><td><em>10_000</em></td><td></td></tr>
-<tr><td><strong>line.udp.receive.buffer.size</strong></td><td><code>long</code></td><td>*2048  *</td><td></td></tr>
+<tr><td><strong>line.udp.receive.buffer.size</strong></td><td><code>long</code></td><td><em>2048</em></td><td></td></tr>
 <tr><td><strong>line.udp.enabled</strong></td><td><code>boolean</code></td><td><em>true</em></td><td></td></tr>
 <tr><td><strong>line.udp.own.thread</strong></td><td><code>boolean</code></td><td><em>false</em></td><td></td></tr>
 <tr><td><strong>line.udp.unicast</strong></td><td><code>boolean</code></td><td><em>false</em></td><td>When true, UDP will me unicast. Otherwise multicast</td></tr>
 </tbody>
 </table>
-<h2><a class="anchor" aria-hidden="true" id="using-java"></a><a href="#using-java" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Using Java</h2>
-</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#overview">Overview</a></li><li><a href="#supported-methods">Supported methods</a><ul class="toc-headings"><li><a href="#syntax">Syntax</a></li><li><a href="#examples">Examples</a></li><li><a href="#dealing-with-irregularly-structured-data">Dealing with Irregularly-structured Data</a></li></ul></li><li><a href="#configuration">Configuration</a></li><li><a href="#using-java">Using Java</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><div align="left" class="tanc"><h5>QuestDB</h5><a href="/docs/en/documentation">Documentation</a><a href="https://github.com/questdb/questdb/releases/download/4.0.0/questdb-4.0.0-bin.tar.gz">Download</a><a href="https://questdb.io/docs/roadmap">Roadmap</a></div><div><h5>Community</h5><a href="https://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://join.slack.com/t/questdb/shared_invite/enQtNzk4Nzg4Mjc2MTE2LTEzZThjMzliMjUzMTBmYzVjYWNmM2UyNWJmNDdkMDYyZmE0ZDliZTQxN2EzNzk5MDE3Zjc1ZmJiZmFiZTIwMGY&gt;"> Join Slack </a><a href="https://twitter.com/" target="@QuestDB" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/questdb/questdb/">GitHub</a><a class="github-button" href="https://github.com/questdb/questdb" data-icon="octicon-star" data-count-href="/questdb/questdb/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="copyright">Copyright © 2019 QuestDB Limited</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+<h2><a class="anchor" aria-hidden="true" id="java"></a><a href="#java" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Java</h2>
+<p>Java users can use <code>LineProtoSender</code> to send line protocol to QuestDB.</p>
+<h3><a class="anchor" aria-hidden="true" id="using-lineprotosender"></a><a href="#using-lineprotosender" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Using LineProtoSender</h3>
+<p><strong>Step 1:</strong> Create an instance of <code>LineProtoSender</code>.</p>
+<table>
+<thead>
+<tr><th>Arguments</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>NetworkFacade</td><td></td></tr>
+<tr><td>interfaceIPv4Address</td><td></td></tr>
+<tr><td>sendToIPv4Address</td><td></td></tr>
+<tr><td>capacity</td><td></td></tr>
+<tr><td>ttl</td><td></td></tr>
+</tbody>
+</table>
+<p>Example:</p>
+<pre><code class="hljs css language-java">    LineProtoSender sender = <span class="hljs-keyword">new</span> LineProtoSender(NetworkFacadeImpl.INSTANCE, <span class="hljs-number">0</span>, Net.parseIPv4(<span class="hljs-string">"232.1.2.3"</span>), <span class="hljs-number">9009</span>, <span class="hljs-number">110</span>, <span class="hljs-number">2</span>);
+</code></pre>
+<p><strong>Step 2:</strong> Create <code>entries</code> by building each entry's tagset and fieldset.
+Syntax</p>
+<pre><code class="hljs css language-java">sender.metric(<span class="hljs-string">"table_name"</span>).tag(<span class="hljs-string">"key"</span>,<span class="hljs-string">"value"</span>).field(<span class="hljs-string">"key"</span>, value).$(timestamp);
+</code></pre>
+<p>where:</p>
+<table>
+<thead>
+<tr><th>Element</th><th>Description</th><th>Can be repeated</th></tr>
+</thead>
+<tbody>
+<tr><td>metric(tableName)</td><td>Specify which table the data is to be written into</td><td>no</td></tr>
+<tr><td>tag(&quot;key&quot;,&quot;value&quot;)</td><td>Use to add a new key-value entry as metadata</td><td>yes</td></tr>
+<tr><td>field(&quot;key&quot;,&quot;value&quot;)</td><td>Use to add a new key-value entry as reading</td><td>yes</td></tr>
+<tr><td>$(timestamp)</td><td>Specify the timestamp for the reading</td><td>no</td></tr>
+</tbody>
+</table>
+<blockquote>
+<p>When an element can be repeated, you can concatenate them several times to add more.
+Example tag(&quot;a&quot;,&quot;x&quot;).tag(&quot;b&quot;,&quot;y&quot;).tag(&quot;c&quot;,&quot;z&quot;) etc</p>
+</blockquote>
+<p>Example:</p>
+<pre><code class="hljs css language-java">    sender.metric(<span class="hljs-string">"readings"</span>).tag(<span class="hljs-string">"city"</span>, <span class="hljs-string">"London"</span>).tag(<span class="hljs-string">"by"</span>, <span class="hljs-string">"quest"</span>).field(<span class="hljs-string">"temp"</span>, <span class="hljs-number">3400</span>).field(<span class="hljs-string">"humid"</span>, <span class="hljs-number">0.434</span>).$(Os.currentTimeNanos());
+</code></pre>
+<p><strong>Step 3:</strong> Push the metrics to QuestDB using <code>flush()</code></p>
+<pre><code class="hljs css language-java">    sender.flush();
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="example"></a><a href="#example" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Example</h3>
+<pre><code class="hljs css language-java">    LineProtoSender sender = <span class="hljs-keyword">new</span> LineProtoSender(NetworkFacadeImpl.INSTANCE, <span class="hljs-number">0</span>, Net.parseIPv4(<span class="hljs-string">"232.1.2.3"</span>), <span class="hljs-number">9009</span>, <span class="hljs-number">110</span>, <span class="hljs-number">2</span>);
+    sender.metric(<span class="hljs-string">"readings"</span>).tag(<span class="hljs-string">"city"</span>, <span class="hljs-string">"London"</span>).tag(<span class="hljs-string">"by"</span>, <span class="hljs-string">"quest"</span>).field(<span class="hljs-string">"temp"</span>, <span class="hljs-number">3400</span>).$(Os.currentTimeNanos());
+    sender.metric(<span class="hljs-string">"readings"</span>).tag(<span class="hljs-string">"city"</span>, <span class="hljs-string">"London"</span>).tag(<span class="hljs-string">"by"</span>, <span class="hljs-string">"quest"</span>).field(<span class="hljs-string">"temp"</span>, <span class="hljs-number">3400</span>).$(Os.currentTimeMicros());
+    sender.metric(<span class="hljs-string">"readings"</span>).tag(<span class="hljs-string">"city"</span>, <span class="hljs-string">"London"</span>).tag(<span class="hljs-string">"by"</span>, <span class="hljs-string">"quest"</span>).field(<span class="hljs-string">"temp"</span>, <span class="hljs-number">3400</span>).$(Os.currentTimeMicros());
+    sender.flush();
+</code></pre>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 12/10/2019</em></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#overview">Overview</a><ul class="toc-headings"><li><a href="#supported-methods">Supported methods</a></li><li><a href="#syntax">Syntax</a></li><li><a href="#examples">Examples</a></li><li><a href="#dealing-with-irregularly-structured-data">Dealing with Irregularly-structured Data</a></li></ul></li><li><a href="#configuration">Configuration</a></li><li><a href="#java">Java</a><ul class="toc-headings"><li><a href="#using-lineprotosender">Using LineProtoSender</a></li><li><a href="#example">Example</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><div align="left" class="tanc"><h5>QuestDB</h5><a href="/docs/en/docstructure">Documentation</a><a href="https://questdb.io/docs/setupmenu">Download</a><a href="https://questdb.io/docs/roadmap">Roadmap</a></div><div><h5>Community</h5><a href="https://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://join.slack.com/t/questdb/shared_invite/enQtNzk4Nzg4Mjc2MTE2LTEzZThjMzliMjUzMTBmYzVjYWNmM2UyNWJmNDdkMDYyZmE0ZDliZTQxN2EzNzk5MDE3Zjc1ZmJiZmFiZTIwMGY&gt;"> Join Slack </a><a href="https://twitter.com/" target="@QuestDB" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/questdb/questdb/">GitHub</a><a class="github-button" href="https://github.com/questdb/questdb" data-icon="octicon-star" data-count-href="/questdb/questdb/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="copyright">Copyright © 2019 QuestDB Limited</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
                 document.addEventListener('keyup', function(e) {
                   if (e.target !== document.body) {
                     return;
