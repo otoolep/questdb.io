@@ -21,8 +21,8 @@
     "Interfaces": [
       "console",
       "java",
-      "restful",
-      "lineprot"
+      "restful"
+
     ],
     "Reference": [
       "datatypes",

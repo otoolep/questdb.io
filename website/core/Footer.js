@@ -40,7 +40,7 @@ class Footer extends React.Component {
                         <a href={this.docUrl('docstructure', this.props.language)}>
                             Documentation
                         </a>
-                        <a href={`https://github.com/questdb/questdb/releases/download/4.0.0/questdb-4.0.0-bin.tar.gz`}>
+                        <a href={`https://questdb.io/docs/setupmenu`}>
                             Download
                         </a>
                         <a href={`https://questdb.io/docs/roadmap`}>
