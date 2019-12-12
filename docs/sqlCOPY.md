@@ -1,5 +1,5 @@
 ---
-id: sqlcopy
+id: copy
 title: COPY
 sidebar_label: COPY
 ---
