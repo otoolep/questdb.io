@@ -37,7 +37,7 @@ class Footer extends React.Component {
                     </a>*/}
                     <div align={"left"} className="tanc">
                         <h5>QuestDB</h5>
-                        <a href={this.docUrl('documentation', this.props.language)}>
+                        <a href={this.docUrl('docstructure', this.props.language)}>
                             Documentation
                         </a>
                         <a href={`https://github.com/questdb/questdb/releases/download/4.0.0/questdb-4.0.0-bin.tar.gz`}>
