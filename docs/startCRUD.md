@@ -103,8 +103,11 @@ insert into balances (cust_id, balance_ccy, balance, timestamp)
 	values (2, 'EUR', 880.20, to_timestamp(6000000004));
 ```
 <!--REST-->
-```
-work in progress
+```shell 
+curl -G "http://localhost:13005/exec" --data-urlencode "query=
+insert into balances (cust_id, balance_ccy, balance, timestamp)
+	values (1, 'USD', 1500.00, to_timestamp(6000000001))
+"
 ```
 <!--Java Raw-->
 ```java
@@ -140,6 +143,29 @@ try (CairoEngine engine = new CairoEngine(configuration)) {
         writer.commit();
     }
 }
+```
+<!-- JDBC -->
+```java
+Properties properties = new Properties();
+properties.setProperty("user", "admin");
+properties.setProperty("password", "quest");
+properties.setProperty("sslmode", "disable");
+
+final Connection connection = 
+    DriverManager.getConnection("jdbc:postgresql://localhost:9120/qdb", properties);
+PreparedStatement insert = connection.prepareStatement(
+    "insert into balances (cust_id, balance_ccy, balance, timestamp)"+
+     	"values (?, ?, ?, to_timestamp(?))";
+
+)
+insert.setInt(1, 1);
+insert.setString(2, "USD");
+insert.setDouble(3, 1500);
+insert.setLong(4, 6000000001);
+
+insert.execute();
+connection.close();
+
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->
