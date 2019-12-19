@@ -1,16 +1,20 @@
 ---
 id: lineprot
-title: InfluxDB Line Protocol
-sidebar_label: InfluxDB Line Protocol
+title: Influx Line Protocol
+sidebar_label: Influx Line Protocol
 ---
 
 ## Overview
-QuestDB is able to ingest data over  **InfluxDB Line Protocol**. Existing systems already publishing line protocol
+QuestDB is able to ingest data over **Influx Line Protocol**. Existing systems already publishing line protocol
 need not change at all. Although QuestDB uses relational model, line protocol parser will automatically create
 tables and add missing columns.
 
 For the time being QuestDB can listen for UDP packets, either multicast or unicast. TCP and HTTP support for line
 protocol is on our road map.
+
+> QuestDB listens for multicast on `232.1.2.3:9009`. The address change or switch to unicast can be done via configuration. If you run QuestDB via Docker
+> start container as `run --rm -it -p 9000:9000 -p 8892:8892 -p 9009:9009 --net=host questdb/questdb`  and publish
+> multicast packets with TTL of at least 2.
 
 ### Syntax
 Influx Line Protocol follows this syntax
