@@ -1,0 +1,651 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Functions · QuestDB</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="This section gives an overview of the functions available in QuestDB&#x27;s web console."/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Functions · QuestDB"/><meta property="og:type" content="website"/><meta property="og:url" content="https://questdb.io/"/><meta property="og:description" content="This section gives an overview of the functions available in QuestDB&#x27;s web console."/><meta property="og:image" content="https://questdb.io/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://questdb.io/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/agate.min.css"/><link rel="alternate" type="application/atom+xml" href="https://questdb.io/blog/atom.xml" title="QuestDB Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://questdb.io/blog/feed.xml" title="QuestDB Blog RSS Feed"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-145747842-1', 'auto');
+              ga('send', 'pageview');
+            </script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,500,600,700|Source+Code+Pro:400,700|Open+Sans:300,400,600,700"/><link rel="stylesheet" href="/css/code-block-buttons.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/favicon.png" alt="QuestDB"/><h2 class="headerTitleWithLogo">QuestDB</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="https://github.com/questdb/questdb" target="_self">View on GitHub</a></li><li class="siteNavGroupActive"><a href="/docs/getstarted" target="_self">Get Started</a></li><li class="siteNavGroupActive"><a href="/docs/docstructure" target="_self">Documentation</a></li><li class=""><a href="/blog/" target="_self">Blog</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search..." title="Search..."/></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Reference</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Introduction<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/docstructure">Documentation Structure</a></li><li class="navListItem"><a class="navItem" href="/docs/getstarted">Get Started</a></li><li class="navListItem"><a class="navItem" href="/docs/tutorial">Tutorial</a></li><li class="navListItem"><a class="navItem" href="/docs/crud">CRUD Operations</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Installation<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/setupmenu">Introduction</a></li><li class="navListItem"><a class="navItem" href="/docs/docker">Install using a Docker image</a></li><li class="navListItem"><a class="navItem" href="/docs/manualinstall">Install manually</a></li><li class="navListItem"><a class="navItem" href="/docs/dependency">Install as Java Dependency</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Using QuestDB<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/howtoload">Loading data</a></li><li class="navListItem"><a class="navItem" href="/docs/howtoquery">Querying data</a></li><li class="navListItem"><a class="navItem" href="/docs/howtoexport">Exporting data</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Interfaces<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/console">Web Console</a></li><li class="navListItem"><a class="navItem" href="/docs/java">JAVA</a></li><li class="navListItem"><a class="navItem" href="/docs/restful">REST</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Reference<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/datatypes">Type system</a></li><li class="navListItem"><a class="navItem" href="/docs/storagemodel">Storage Model</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/functions">Functions</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">SQL Reference<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/sql">SQL implementation</a></li><li class="navListItem"><a class="navItem" href="/docs/create">CREATE TABLE</a></li><li class="navListItem"><a class="navItem" href="/docs/alter">ALTER TABLE</a></li><li class="navListItem"><a class="navItem" href="/docs/truncate">TRUNCATE TABLE</a></li><li class="navListItem"><a class="navItem" href="/docs/drop">DROP TABLE</a></li><li class="navListItem"><a class="navItem" href="/docs/insert">INSERT</a></li><li class="navListItem"><a class="navItem" href="/docs/copy">COPY</a></li><li class="navListItem"><a class="navItem" href="/docs/select">SELECT</a></li><li class="navListItem"><a class="navItem" href="/docs/join">JOINS</a></li><li class="navListItem"><a class="navItem" href="/docs/union">UNION</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">FAQ<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/faq">Frequently Asked</a></li><li class="navListItem"><a class="navItem" href="/docs/roadmap">Roadmap</a></li><li class="navListItem"><a class="navItem" href="/docs/gettestdata">Obtaining Test Data</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Functions</h1></header><article><div><span><p>This section gives an overview of the functions available in QuestDB's web console.</p>
+<h2><a class="anchor" aria-hidden="true" id="arithmetics"></a><a href="#arithmetics" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Arithmetics</h2>
+<h4><a class="anchor" aria-hidden="true" id="example-table"></a><a href="#example-table" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Example table</h4>
+<p>All examples in this section refer to an hypothetical <code>transactions</code> table. This table looks like this:</p>
+<pre><code class="hljs css language-shell script">| ID         |  symbol     | quantity    | price    |
+|------------|-------------|-------------|----------|
+| 1          |  AAPL       | 203         | 103.2    |
+| 2          |  AMZN       | 122         | 253.3    |
+| 3          |  GOOG       | 23          | 1024.3   |
+| 4          |  AMZN       | 41          | 253.5    |
+| 5          |  AMZN       | 144         | 254.9    |
+| 6          |  AAPL       | 512         | 103.4    |
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="sum"></a><a href="#sum" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>sum()</h3>
+<p><code>sum</code> is used to add values together.</p>
+<p>Example:</p>
+<pre><code class="hljs css language-sql"><span class="hljs-comment">-- this will return the </span>
+<span class="hljs-keyword">SELECT</span> item, <span class="hljs-keyword">sum</span>(quantity) <span class="hljs-keyword">FROM</span> transactions;
+</code></pre>
+<blockquote>
+<p>Note that in the above example, GROUP BY is not necessary and therefore is omitted</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="count"></a><a href="#count" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>count()</h3>
+<p><code>count</code> is used to return the number of rows in a given column or subsection of it.</p>
+<p>Example:</p>
+<pre><code class="hljs css language-sql"><span class="hljs-comment">-- this will return the total number of items in the transactions table</span>
+<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">count</span>() <span class="hljs-keyword">FROM</span> transactions;
+
+<span class="hljs-comment">-- this will return the list of items in the transactions table and the number of transactions for each symbol</span>
+<span class="hljs-keyword">SELECT</span> symbol, <span class="hljs-keyword">count</span>() <span class="hljs-keyword">FROM</span> transactions;
+</code></pre>
+<blockquote>
+<p>Note that in the above example, GROUP BY is not necessary and therefore is omitted</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="avg"></a><a href="#avg" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>avg()</h3>
+<p><code>avg</code> returns the average value for the target column within the data selected.</p>
+<p>Example:</p>
+<pre><code class="hljs css language-sql"><span class="hljs-comment">-- this will return the average transaction quantity per instrument</span>
+<span class="hljs-keyword">SELECT</span> symbol, <span class="hljs-keyword">avg</span>(quantity) <span class="hljs-keyword">FROM</span> transactions;
+</code></pre>
+<blockquote>
+<p>Note that in the above example, GROUP BY is not necessary and therefore is omitted</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="min"></a><a href="#min" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>min()</h3>
+<p><code>min</code> returns the lowest value for the target column within the data selected.</p>
+<p>Example:</p>
+<pre><code class="hljs css language-sql"><span class="hljs-comment">-- this will return the lowest traded price for each instrument</span>
+<span class="hljs-keyword">SELECT</span> symbol, <span class="hljs-keyword">min</span>(price) <span class="hljs-keyword">FROM</span> transactions;
+</code></pre>
+<blockquote>
+<p>Note that in the above example, GROUP BY is not necessary and therefore is omitted</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="max"></a><a href="#max" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>max()</h3>
+<p><code>max</code> returns the highest value for the target column within the data selected.</p>
+<p>Example:</p>
+<pre><code class="hljs css language-sql"><span class="hljs-comment">-- this will return the highest traded price for each instrument</span>
+<span class="hljs-keyword">SELECT</span> symbol, <span class="hljs-keyword">max</span>(price) <span class="hljs-keyword">FROM</span> transactions;
+</code></pre>
+<blockquote>
+<p>Note that in the above example, GROUP BY is not necessary and therefore is omitted</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="round"></a><a href="#round" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>round()</h3>
+<p><code>round</code> returns the <strong>closest</strong> value with the specified precision.</p>
+<p>Syntax:</p>
+<p><code>round(column_name, precision)</code></p>
+<p>where:</p>
+<ul>
+<li><code>column_name</code> is the name of the column where you would like to round values</li>
+<li><code>precision</code> is the number of digits of precision after the floating point.</li>
+</ul>
+<p>Example:</p>
+<pre><code class="hljs css language-sql"><span class="hljs-comment">-- Query</span>
+<span class="hljs-keyword">SELECT</span>
+    <span class="hljs-keyword">value</span> val, 
+    <span class="hljs-keyword">round</span>(<span class="hljs-keyword">value</span>,<span class="hljs-number">0</span>) round_0,
+    <span class="hljs-keyword">round</span>(<span class="hljs-keyword">value</span>,<span class="hljs-number">1</span>) round_1,
+    <span class="hljs-keyword">round</span>(<span class="hljs-keyword">value</span>,<span class="hljs-number">2</span>) round_2,
+<span class="hljs-keyword">FROM</span> <span class="hljs-keyword">values</span>;
+
+<span class="hljs-comment">-- Results (example)</span>
+| val            | round_0  | round_1   | round_2    |
+|<span class="hljs-comment">----------------|----------|-----------|------------|</span>
+| 0.8077250783   | 1        | 0.8       | 0.81       |
+| 0.2612088981   | 0        | 0.3       | 0.26       |
+| 0.2394428859   | 0        | 0.2       | 0.24       |      
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="type-transformation"></a><a href="#type-transformation" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Type transformation</h2>
+<h3><a class="anchor" aria-hidden="true" id="to_str"></a><a href="#to_str" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>to_str()</h3>
+<p>Converts a <code>date</code> or <code>timestamp</code> into a string.</p>
+<p>Syntax:</p>
+<p><code>to_str(inputValue, outputFormat)</code></p>
+<p>where:</p>
+<ul>
+<li><code>inputValue</code> is either a <code>date</code> or <code>timestamp</code></li>
+<li><code>outputFormat</code> is the desired output string format e.g  <code>yyyy-mm-dd</code></li>
+</ul>
+<p>Example:</p>
+<pre><code class="hljs css language-sql"><span class="hljs-comment">-- Query</span>
+<span class="hljs-keyword">SELECT</span> to_str(rnd_date(), <span class="hljs-string">'yyyy-MM'</span>) <span class="hljs-keyword">FROM</span> long_sequence(<span class="hljs-number">1</span>);
+
+<span class="hljs-comment">-- Results (example)</span>
+'1970-01'
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="to_timestamp-to_date"></a><a href="#to_timestamp-to_date" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>to_timestamp(), to_date()</h3>
+<p>Convert a <code>string</code> into a <code>timestamp</code> or a <code>date</code> respectively</p>
+<p>Syntax:</p>
+<p><code>to_tiestamp(inputText, inputFormat)</code>
+<code>to_date(inputText, inputFormat)</code></p>
+<p>where</p>
+<ul>
+<li><code>inputText</code> is the input date formatted as text.</li>
+<li><code>inputFormat</code> is the description of the input structure (e.g 'yyyy-MM'ddTHH:mm:ss')</li>
+</ul>
+<p>Example: let's assume you receive a timestamp as text and want to insert it into a timestamp field.</p>
+<pre><code class="hljs css language-sql"><span class="hljs-comment">-- Query:</span>
+<span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> measurements <span class="hljs-keyword">values</span>(to_timestamp(<span class="hljs-string">'2019-12-12T12:15'</span>, <span class="hljs-string">'yyyy-MM-ddTHH:mm'</span>), <span class="hljs-number">123.5</span>);
+
+<span class="hljs-comment">-- Result:</span>
+timestamp                       value 
+2019-12-12T12:15:00.000000Z     123.5
+</code></pre>
+<blockquote>
+<p>The above example works with <code>date</code> type by replacing <code>to_timestamp</code> with <code>to_date</code>.</p>
+</blockquote>
+<h2><a class="anchor" aria-hidden="true" id="random-functions"></a><a href="#random-functions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Random functions</h2>
+<h3><a class="anchor" aria-hidden="true" id="overview"></a><a href="#overview" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Overview</h3>
+<p>The following functions have been created to help with our test suite. They are also useful for users testing QuestDB on
+specific workloads in order to quickly generate large test datasets that mimic the structure of their actual data.</p>
+<p>QuestDB supports the following random generation functions:</p>
+<ul>
+<li>rnd_boolean</li>
+<li>rnd_int</li>
+<li>rnd_str</li>
+<li>rnd_double</li>
+<li>rnd_float</li>
+<li>rnd_short</li>
+<li>rnd_date</li>
+<li>rnd_timestamp</li>
+<li>rnd_symbol</li>
+<li>rnd_long</li>
+<li>rnd_byte</li>
+<li>rnd_bin</li>
+<li>rnd_char</li>
+<li>rnd_long256</li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="usage"></a><a href="#usage" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Usage</h4>
+<blockquote>
+<p>Random functions should be used for populating test tables only. They do not hold values in memory and calculations should not be performed at the same time as the
+random numbers are generated.</p>
+<p>For example, running <code>SELECT round(a,2), a FROM (SELECT rnd_double() a FROM long_sequence(10));</code> is bad practice
+and will return inconsistent results.</p>
+<p>A better approach would be to populate a table and then run the query. So for example</p>
+<ul>
+<li><code>CREATE TABLE test(val double);</code> (create)</li>
+<li><code>INSERT INTO test SELECT * FROM (SELECT rnd_double() FROM long_sequence(10));</code> (populate)</li>
+<li><code>SELECT round(val,2) FROM test;</code>  (query)</li>
+</ul>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="rnd_int"></a><a href="#rnd_int" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>rnd_int()</h3>
+<ul>
+<li><strong>rnd_int()</strong>: returns a random integer.</li>
+<li><strong>rnd_int(min, max, nanRate)</strong> returns a random integer between <code>min</code> and <code>max</code> (both included).
+NaN values may occur at a frequency defined by <code>nanRate</code>.</li>
+</ul>
+<p>Parameters:</p>
+<ul>
+<li><code>min</code>: minimum value returned by the random generator.</li>
+<li><code>max</code>: maximum value returned by the random generator.</li>
+<li><code>nanRate</code> defines the frequency of occurrence of <code>null</code> values:
+<ul>
+<li><code>0</code>: No <code>NaN</code> will be returned.</li>
+<li><code>1</code>: Will only return <code>NaN</code>.</li>
+<li><code>N &gt; 1</code>: On average, one in N generated integer will be NaN.</li>
+</ul></li>
+</ul>
+<p>Example:</p>
+<pre><code class="hljs css language-sql"><span class="hljs-comment">-- Query:</span>
+<span class="hljs-keyword">select</span> rnd_int() <span class="hljs-keyword">from</span> long_sequence(<span class="hljs-number">5</span>)
+<span class="hljs-keyword">SELECT</span> rnd_int(<span class="hljs-number">1</span>,<span class="hljs-number">4</span>,<span class="hljs-number">0</span>) <span class="hljs-keyword">FROM</span> long_sequence(<span class="hljs-number">5</span>);
+<span class="hljs-keyword">SELECT</span> rnd_int(<span class="hljs-number">1</span>,<span class="hljs-number">4</span>,<span class="hljs-number">1</span>) <span class="hljs-keyword">FROM</span> long_sequence(<span class="hljs-number">5</span>);
+<span class="hljs-keyword">SELECT</span> rnd_int(<span class="hljs-number">1</span>,<span class="hljs-number">4</span>,<span class="hljs-number">2</span>) <span class="hljs-keyword">FROM</span> long_sequence(<span class="hljs-number">5</span>);
+
+<span class="hljs-comment">-- Result:</span>
+1822685476, 1173192835, -2808202361, 78121757821, 44934191
+1,4,3,1,2
+null,null,null,null,null 
+1,null,4,null,2
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="rnd_short"></a><a href="#rnd_short" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>rnd_short()</h3>
+<ul>
+<li><strong>rnd_short</strong>: returns a short integer, i.e between <code>-3768</code> and <code>32767</code></li>
+<li><strong>rnd_short(min, max)</strong>: returns values between <code>min</code> and <code>max</code> boundaries (both included).</li>
+</ul>
+<p>Example:</p>
+<pre><code class="hljs css language-sql"><span class="hljs-comment">-- Query:</span>
+<span class="hljs-keyword">SELECT</span> rnd_short() <span class="hljs-keyword">FROM</span> long_sequence(<span class="hljs-number">5</span>);
+<span class="hljs-keyword">SELECT</span> rnd_short(<span class="hljs-number">-1</span>,<span class="hljs-number">1</span>) <span class="hljs-keyword">FROM</span> long_sequence(<span class="hljs-number">5</span>);
+
+<span class="hljs-comment">-- Result:</span>
+-27434,234,-12977,8843,24
+0,1,-1,-1,0
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="rnd_long"></a><a href="#rnd_long" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>rnd_long()</h3>
+<ul>
+<li><strong>rnd_long()</strong>: returns a random long value.</li>
+<li><strong>rnd_long(min, max, nanRate)</strong>: returns a random long between <code>min</code> and <code>max</code> (both included) with a proportion
+of NaN defined by <code>nanRate</code>.</li>
+</ul>
+<p>Parameters:</p>
+<ul>
+<li><code>min</code>: minimum value returned by the random generator.</li>
+<li><code>max</code>: maximum value returned by the random generator.</li>
+<li><code>nanRate</code> defines the frequency of occurrence of <code>null</code> values:
+<ul>
+<li><code>0</code>: No <code>NaN</code> will be returned.</li>
+<li><code>1</code>: Will only return <code>NaN</code>.</li>
+<li><code>N &gt; 1</code>: On average, one in N generated integer will be NaN.</li>
+</ul></li>
+</ul>
+<p>Example:</p>
+<pre><code class="hljs css language-sql"><span class="hljs-comment">-- Query:</span>
+<span class="hljs-keyword">SELECT</span> rnd_long() <span class="hljs-keyword">FROM</span> long_sequence(<span class="hljs-number">5</span>);
+<span class="hljs-keyword">SELECT</span> rnd_long(<span class="hljs-number">1</span>,<span class="hljs-number">4</span>,<span class="hljs-number">0</span>) <span class="hljs-keyword">FROM</span> long_sequence(<span class="hljs-number">5</span>);
+<span class="hljs-keyword">SELECT</span> rnd_long(<span class="hljs-number">1</span>,<span class="hljs-number">4</span>,<span class="hljs-number">1</span>) <span class="hljs-keyword">FROM</span> long_sequence(<span class="hljs-number">5</span>);
+<span class="hljs-keyword">SELECT</span> rnd_long(<span class="hljs-number">-10000000</span>,<span class="hljs-number">10000000</span>,<span class="hljs-number">2</span>) <span class="hljs-keyword">FROM</span> long_sequence(<span class="hljs-number">5</span>);
+
+<span class="hljs-comment">-- Result:</span>
+1,4,3,1,2
+null,null,null,null,null 
+-164567594, -323331140, 26846334, -892982893, -351053301
+300291810703592700, 2787990010234796000, 4305203476273459700, -8518907563589124000, 8443756723558216000
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="rnd_boolean"></a><a href="#rnd_boolean" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>rnd_boolean()</h3>
+<p><code>rnd_boolean</code> returns a random boolean <code>true</code> or <code>false</code> with equal probability.</p>
+<p>Example:</p>
+<pre><code class="hljs css language-sql"><span class="hljs-comment">-- Query:</span>
+<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">value</span> a, <span class="hljs-keyword">count</span>() b <span class="hljs-keyword">FROM</span> (<span class="hljs-keyword">SELECT</span> rnd_boolean() <span class="hljs-keyword">value</span> <span class="hljs-keyword">FROM</span> long_sequence(<span class="hljs-number">100</span>));
+
+<span class="hljs-comment">-- Result:</span>
+| a                    | b              |
+|<span class="hljs-comment">----------------------|----------------|</span>
+| true                 | 47             |
+| false                | 53             |
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="rnd_float"></a><a href="#rnd_float" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>rnd_float()</h3>
+<ul>
+<li><strong>rnd_float()</strong>: returns a random <strong>positive</strong> floating point number between 0 and 1.</li>
+<li><strong>rnd_float(nanRate)</strong>: may return NaN (null) at a frequency defined by <code>nanRate</code>.</li>
+</ul>
+<p><code>nanRate</code> defines the frequency of occurrence of <code>null</code> values:</p>
+<ul>
+<li><code>0</code>: No <code>NaN</code> will be returned.</li>
+<li><code>1</code>: Will only return <code>NaN</code>.</li>
+<li><code>N &gt; 1</code>: On average, one in N generated integer will be NaN.</li>
+</ul>
+<p>Example:</p>
+<pre><code class="hljs css language-sql"><span class="hljs-comment">-- Query:</span>
+<span class="hljs-keyword">SELECT</span> rnd_float() <span class="hljs-keyword">FROM</span> long_sequence(<span class="hljs-number">5</span>);
+<span class="hljs-keyword">SELECT</span> rnd_float(<span class="hljs-number">2</span>) <span class="hljs-keyword">FROM</span> long_sequence(<span class="hljs-number">6</span>);
+
+<span class="hljs-comment">-- Result:</span>
+0.3821478, 0.5162148, 0.22929084, 0.03736937, 0.39675003
+0.08108246, 0.7082644, null, 0.6784522, null, 0.5711276
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="rnd_double"></a><a href="#rnd_double" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>rnd_double()</h3>
+<ul>
+<li><strong>rnd_double()</strong>: returns a random number between 0 and 1.</li>
+<li><strong>rnd_double(nanRate)</strong>: may return NaN (null) at a frequency defined by <code>nanRate</code>.</li>
+</ul>
+<p><code>nanRate</code> defines the frequency of occurrence of <code>null</code> values:</p>
+<ul>
+<li><code>0</code>: No <code>NaN</code> will be returned.</li>
+<li><code>1</code>: Will only return <code>NaN</code>.</li>
+<li><code>N &gt; 1</code>: On average, one in N generated integer will be NaN.</li>
+</ul>
+<p>Example:</p>
+<pre><code class="hljs css language-sql"><span class="hljs-comment">-- Query:</span>
+<span class="hljs-keyword">SELECT</span> rnd_double() <span class="hljs-keyword">FROM</span> long_sequence(<span class="hljs-number">5</span>);
+<span class="hljs-keyword">SELECT</span> rnd_double(<span class="hljs-number">2</span>) <span class="hljs-keyword">FROM</span> long_sequence(<span class="hljs-number">5</span>);
+
+<span class="hljs-comment">-- Result:</span>
+0.99115364871, 0.31011470271, 0.10776479191, 0.53938281731, 0.89820403511
+0.99115364871, null, null, 0.53938281731, 0.89820403511
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="rnd_char"></a><a href="#rnd_char" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>rnd_char()</h3>
+<p><code>rnd_char()</code> returns a random uppercase character from the 26-letter A to Z alphabet.</p>
+<p>Example:</p>
+<pre><code class="hljs css language-sql"><span class="hljs-comment">-- Query:</span>
+<span class="hljs-keyword">SELECT</span> rnd_char() <span class="hljs-keyword">FROM</span> long_sequence(<span class="hljs-number">5</span>);
+
+<span class="hljs-comment">-- Result:</span>
+G, P, E, W, K
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="rnd_symbol-rnd_string"></a><a href="#rnd_symbol-rnd_string" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>rnd_symbol(), rnd_string()</h3>
+<p><code>rnd_symbol</code> and <code>rnd_string</code> return a random symbol and string respectively. There are two variants</p>
+<ul>
+<li><strong>Static list</strong>: returns symbols or strings within a specific list defined by the user.</li>
+<li><strong>Random list</strong>: returns random symbols within the parameters defined by the user.</li>
+</ul>
+<p>Syntax:</p>
+<ul>
+<li>Static list</li>
+</ul>
+<p><code>rnd_symbol('symbol1', 'symbol2', ...'symbolN')</code></p>
+<p><code>rnd_string('string1', 'string2', ...'stringN')</code></p>
+<ul>
+<li>Random list</li>
+</ul>
+<p><code>rnd_symbol(count, minLength, maxLength, nanRate)</code></p>
+<p><code>rnd_string(count, minLength, maxLength, nanRate)</code></p>
+<p>Where:</p>
+<ul>
+<li><code>count</code> is the number of different symbols/strings that will be generated</li>
+<li><code>minLength</code> is the minimum number of characters for each symbol/string</li>
+<li><code>maxLength</code> is the maximum number of characters for each symbol/string</li>
+<li><code>nanRate</code> defines the frequency of occurrence of <code>null</code> values:
+<ul>
+<li><code>0</code>: No <code>NaN</code> will be returned.</li>
+<li><code>1</code>: Will only return <code>NaN</code>.</li>
+<li><code>N &gt; 1</code>: On average, one in N generated integer will be NaN.</li>
+</ul></li>
+</ul>
+<p>Example:</p>
+<pre><code class="hljs css language-sql"><span class="hljs-comment">-- STATIC LIST</span>
+<span class="hljs-comment">---------------------------------------------------------------------</span>
+<span class="hljs-comment">-- Query:</span>
+<span class="hljs-keyword">SELECT</span> rnd_symbol(<span class="hljs-string">'ABC'</span>,<span class="hljs-string">'def'</span>, <span class="hljs-string">'123'</span>) <span class="hljs-keyword">FROM</span> long_sequence(<span class="hljs-number">5</span>);
+<span class="hljs-keyword">SELECT</span> rnd_string(<span class="hljs-string">'ABC'</span>,<span class="hljs-string">'def'</span>, <span class="hljs-string">'123'</span>) <span class="hljs-keyword">FROM</span> long_sequence(<span class="hljs-number">5</span>);
+
+<span class="hljs-comment">-- Result:</span>
+'ABC', '123', 'def', '123', 'ABC'
+<span class="hljs-comment">---------------------------------------------------------------------</span>
+
+<span class="hljs-comment">-- RANDOM LIST</span>
+<span class="hljs-comment">---------------------------------------------------------------------</span>
+<span class="hljs-comment">-- Query:</span>
+<span class="hljs-keyword">SELECT</span> rnd_symbol(<span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">0</span>) <span class="hljs-keyword">FROM</span> long_sequence(<span class="hljs-number">5</span>);
+<span class="hljs-keyword">SELECT</span> rnd_string(<span class="hljs-number">3</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">4</span>) <span class="hljs-keyword">FROM</span> long_sequence(<span class="hljs-number">8</span>);
+
+<span class="hljs-comment">-- Result:</span>
+'ABC', 'DEFG', 'ABC', 'DEFG', 'DEFG'
+'AB', 'CD', null, 'EF', 'CD', 'EF', null, 'AB'
+<span class="hljs-comment">------------------------------------------------------------------------</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="rnd_timestamp-rnd_date"></a><a href="#rnd_timestamp-rnd_date" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>rnd_timestamp(), rnd_date()</h3>
+<p><code>rnd_timestamp</code> and <code>rnd_date</code> return a timestamp and a date chosen at random between two specified boundaries.</p>
+<p>Syntax:</p>
+<p><code>rnd_timestamp(start, end, nanRate)</code></p>
+<p>Where:</p>
+<ul>
+<li><code>start</code> is a the lowest possible generated timestamp/date</li>
+<li><code>end</code> is the highest possible generated timestamp/date</li>
+<li><code>nanRate</code> defines the frequency of occurrence of <code>null</code> values:
+<ul>
+<li><code>0</code>: No <code>NaN</code> will be returned.</li>
+<li><code>1</code>: Will only return <code>NaN</code>.</li>
+<li><code>N &gt; 1</code>: On average, one in N generated integer will be NaN.</li>
+</ul></li>
+</ul>
+<p>Examples:</p>
+<pre><code class="hljs css language-sql"><span class="hljs-comment">-- Query:</span>
+<span class="hljs-keyword">SELECT</span> rnd_timestamp(to_timestamp(<span class="hljs-string">'2015'</span>, <span class="hljs-string">'yyyy'</span>), to_timestamp(<span class="hljs-string">'2016'</span>, <span class="hljs-string">'yyyy'</span>), <span class="hljs-number">0</span>) <span class="hljs-keyword">FROM</span> long_sequence(<span class="hljs-number">5</span>);
+<span class="hljs-keyword">SELECT</span> rnd_date(<span class="hljs-keyword">to_date</span>(<span class="hljs-string">'2015'</span>, <span class="hljs-string">'yyyy'</span>), <span class="hljs-keyword">to_date</span>(<span class="hljs-string">'2016'</span>, <span class="hljs-string">'yyyy'</span>), <span class="hljs-number">0</span>) <span class="hljs-keyword">FROM</span> long_sequence(<span class="hljs-number">5</span>);
+
+<span class="hljs-comment">-- Result:</span>
+2015-01-29T18:00:17.402762Z, 2015-11-15T20:22:14.112744Z, 
+2015-12-08T09:26:04.483039Z, 2015-05-28T02:22:47.022680Z, 
+2015-10-13T19:16:37.034203Z
+
+<span class="hljs-comment">-- Query:</span>
+<span class="hljs-keyword">SELECT</span> rnd_timestamp() <span class="hljs-keyword">from</span> long_sequence(<span class="hljs-number">5</span>);
+<span class="hljs-keyword">SELECT</span> rnd_date() <span class="hljs-keyword">from</span> long_sequence(<span class="hljs-number">5</span>);
+
+<span class="hljs-comment">-- Result:</span>
+1970-01-01T02:02:25.319Z, 1970-01-01T00:17:15.585Z,
+1970-01-01T01:05:07.643Z, 1970-01-01T01:53:05.468Z, 
+1970-01-01T01:27:40.712Z
+</code></pre>
+<blockquote>
+<p>The timestamps generated above are in random order. If the table where you are generating has a designated timestamp
+(see <strong><a href="/docs/create">CREATE section</a></strong>) then you need the timestamps to be in ascending order. For this, we suggest
+you use <code>timestamp_sequence()</code>.</p>
+</blockquote>
+<h2><a class="anchor" aria-hidden="true" id="sequences"></a><a href="#sequences" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Sequences</h2>
+<p>Sequences are used to generate test datasets with incrementing values. For example a set of increasing timestamps
+or long integers. The growth can either be monotonic or randomizes by leveraging the suite of <code>rnd</code> functions.</p>
+<h3><a class="anchor" aria-hidden="true" id="long_sequence"></a><a href="#long_sequence" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>long_sequence()</h3>
+<p><code>long_sequence</code> is used to:</p>
+<ul>
+<li>generate a list of monotonic or randomly growing integers</li>
+<li>set a number of rows when generating a test dataset</li>
+</ul>
+<blockquote>
+<p>do not be afraid to generate very large datasets for your testing e.g 1bln rows or more if your disk allows.</p>
+</blockquote>
+<p>Syntax:</p>
+<p><code>long_sequence(iterations)</code></p>
+<p>Where:</p>
+<ul>
+<li><code>iterations</code> is the number of values to generate.</li>
+</ul>
+<pre><code class="hljs css language-sql"><span class="hljs-comment">-- Query:</span>
+long_sequence(10);
+
+<span class="hljs-comment">-- Result:</span>
+1, 2, 3, 4, 5, 6, 7, 8, 9, 10
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="accessing-numbers"></a><a href="#accessing-numbers" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Accessing numbers</h4>
+<blockquote>
+<p>numbers generated by long_sequence can be accessed using column <code>x</code></p>
+</blockquote>
+<pre><code class="hljs css language-sql">-- Query:
+SELECT x, x*x FROM long_sequence(5);
+
+-- Result:
+| x       | x*x     |
+|---------|---------|
+| 1       | 1       |
+| 2       | 4       |
+| 3       | 9       |
+| 4       | 16      |
+| 5       | 25      |
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="generating-rows"></a><a href="#generating-rows" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Generating rows</h4>
+<blockquote>
+<p>generating a 5-row dataset</p>
+</blockquote>
+<pre><code class="hljs css language-sql"><span class="hljs-comment">-- Query:</span>
+<span class="hljs-keyword">SELECT</span> x, rnd_double() <span class="hljs-keyword">FROM</span> long_sequence(<span class="hljs-number">5</span>);
+
+<span class="hljs-comment">-- Result:</span>
+| x         | rnd_double        |
+|<span class="hljs-comment">-----------|-------------------|</span>
+| 1         | 0.3279246687      |
+| 2         | 0.8341038236      |
+| 3         | 0.1023834675      |
+| 4         | 0.9130602021      |
+| 5         | 0.718276777       |
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="timestamp_sequence"></a><a href="#timestamp_sequence" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>timestamp_sequence()</h3>
+<p><code>timestamp_sequence</code> is used to generate a set of increasing timestamps.</p>
+<p>Syntax:</p>
+<p><code>timestamp_sequence(start, increment)</code></p>
+<p>Where:</p>
+<ul>
+<li><code>start</code> is the first <code>timestamp</code>. Use <code>to_timestamp</code> to cast from string.</li>
+<li><code>increment</code> is a <code>long</code> number representing the increment of time between two timestamps expressed in <code>microseconds</code>.</li>
+</ul>
+<blockquote>
+<p>Increment can be made random by leveraging the rnd functions.</p>
+</blockquote>
+<blockquote>
+<p>When generating timestamps, the number of timestamps will be defined by <code>long_sequence()</code></p>
+</blockquote>
+<h4><a class="anchor" aria-hidden="true" id="monotonic-increase"></a><a href="#monotonic-increase" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Monotonic increase</h4>
+<pre><code class="hljs css language-sql"><span class="hljs-comment">-- Query:</span>
+<span class="hljs-keyword">SELECT</span> x, timestamp_sequence
+            (
+            to_timestamp(<span class="hljs-string">'2019-10-17T00:00:00'</span>, <span class="hljs-string">'yyyy-MM-ddTHH:mm:ss'</span>), 
+            <span class="hljs-number">100000</span>L
+            ) 
+<span class="hljs-keyword">FROM</span> long_sequence(<span class="hljs-number">5</span>);
+
+<span class="hljs-comment">-- Result:</span>
+| x         | timestamp_sequence                |
+|<span class="hljs-comment">-----------|-----------------------------------|</span>
+| 1         | 2019-10-17T00:00:00.000000Z       |
+| 2         | 2019-10-17T00:00:00.100000Z       |
+| 3         | 2019-10-17T00:00:00.200000Z       |
+| 4         | 2019-10-17T00:00:00.300000Z       |
+| 5         | 2019-10-17T00:00:00.400000Z       |
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="random-increase"></a><a href="#random-increase" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Random increase:</h4>
+<pre><code class="hljs css language-sql"><span class="hljs-comment">-- Query:</span>
+<span class="hljs-keyword">SELECT</span> x, timestamp_sequence
+            (
+            to_timestamp(<span class="hljs-string">'2019-10-17T00:00:00'</span>, <span class="hljs-string">'yyyy-MM-ddTHH:mm:ss'</span>), 
+            rnd_short(<span class="hljs-number">1</span>,<span class="hljs-number">5</span>) * <span class="hljs-number">100000</span>L
+            ) 
+<span class="hljs-keyword">FROM</span> long_sequence(<span class="hljs-number">5</span>);
+
+<span class="hljs-comment">-- Result:</span>
+| x         | timestamp_sequence                |
+|<span class="hljs-comment">-----------|-----------------------------------|</span>
+| 1         | 2019-10-17T00:00:00.000000Z       |
+| 2         | 2019-10-17T00:00:00.100000Z       |
+| 3         | 2019-10-17T00:00:00.600000Z       |
+| 4         | 2019-10-17T00:00:00.900000Z       |
+| 5         | 2019-10-17T00:00:01.300000Z       |
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="text"></a><a href="#text" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Text</h2>
+<h3><a class="anchor" aria-hidden="true" id="concat"></a><a href="#concat" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>concat()</h3>
+<p><code>concat</code> generates a string from one or inputs.</p>
+<p>Example</p>
+<pre><code class="hljs css language-sql"><span class="hljs-comment">-- Query:</span>
+<span class="hljs-keyword">SELECT</span> firstName, lastName, <span class="hljs-keyword">concat</span>(firstName, <span class="hljs-string">' '</span>, lastName) <span class="hljs-keyword">FROM</span> <span class="hljs-keyword">names</span>;
+
+<span class="hljs-comment">-- Result:</span>
+| firstName     | lastName          | concat                |
+|<span class="hljs-comment">---------------|-------------------|-----------------------|</span>
+| Tim           | Thompson          | Tim Thompson          |
+| Anna          | Thompson          | Anna Thompson         |
+| Anna          | Mason             | Anna Mason            |
+| Tom           | Johnson           | Tom Johnson           |
+| Tim           | Smith             | Tim Smith             | 
+</code></pre>
+<p>As another example, the below can be used to generate <code>line protocol</code></p>
+<pre><code class="hljs css language-sql"><span class="hljs-comment">-- Query:</span>
+<span class="hljs-keyword">SELECT</span>
+<span class="hljs-keyword">concat</span>(
+    <span class="hljs-string">'trades,instrument='</span>, rnd_str(<span class="hljs-number">2</span>,<span class="hljs-number">2</span>,<span class="hljs-number">0</span>), 
+    <span class="hljs-string">',side='</span>, rnd_str(<span class="hljs-string">'B'</span>, <span class="hljs-string">'S'</span>),
+    <span class="hljs-string">' price='</span>, <span class="hljs-keyword">abs</span>(to_int(rnd_double(<span class="hljs-number">0</span>)*<span class="hljs-number">100000</span>)),
+    <span class="hljs-string">',quantity='</span>, <span class="hljs-keyword">abs</span>(to_int(rnd_double(<span class="hljs-number">0</span>)*<span class="hljs-number">10000</span>)),
+    <span class="hljs-string">' '</span>,
+    <span class="hljs-number">1571270400000</span> + (x<span class="hljs-number">-1</span>) * <span class="hljs-number">100</span>
+)
+<span class="hljs-keyword">FROM</span> long_sequence(<span class="hljs-number">5</span>) x;
+
+<span class="hljs-comment">-- Result:</span>
+trades,instrument=CR,side=B price=70867,quantity=9192 1571270400000
+trades,instrument=LN,side=S price=37950,quantity=1439 1571270400100
+trades,instrument=ZJ,side=S price=82829,quantity=8871 1571270400200
+trades,instrument=EW,side=S price=10427,quantity=1945 1571270400300
+trades,instrument=MI,side=B price=99348,quantity=8450 1571270400400
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="length"></a><a href="#length" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>length()</h3>
+<p><code>length(input)</code> is used to return the number of characters where <code>input</code> is either</p>
+<ul>
+<li>a <code>string</code></li>
+<li>a <code>symbol</code></li>
+<li>a <code>binary</code> blob</li>
+</ul>
+<p>Example:</p>
+<pre><code class="hljs css language-sql"><span class="hljs-comment">-- Query:</span>
+<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">name</span> a, <span class="hljs-keyword">length</span>(<span class="hljs-keyword">name</span>) b <span class="hljs-keyword">FROM</span> <span class="hljs-keyword">names</span> <span class="hljs-keyword">limit</span> <span class="hljs-number">4</span>
+
+<span class="hljs-comment">-- Result:</span>
+| a         | b         |
+|<span class="hljs-comment">-----------|-----------|</span>
+| AARON     | <span class="hljs-number">5</span>         |
+| AMELIE    | <span class="hljs-number">6</span>         |
+| TOM       | <span class="hljs-number">3</span>         |
+| <span class="hljs-literal">null</span>      | <span class="hljs-number">-1</span>        |
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="miscellaneous"></a><a href="#miscellaneous" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Miscellaneous</h2>
+<h3><a class="anchor" aria-hidden="true" id="systimestamp"></a><a href="#systimestamp" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>systimestamp()</h3>
+<p>Returns the timestamp of the host system with <code>microsecond</code> precision.</p>
+<p>Example:</p>
+<pre><code class="hljs css language-sql"><span class="hljs-comment">-- Query:</span>
+<span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> readings <span class="hljs-keyword">values</span>(systimestmap(), <span class="hljs-number">123.5</span>);
+
+<span class="hljs-comment">-- Result:</span>
+| ts                            | reading       |
+|<span class="hljs-comment">-------------------------------|---------------|</span>
+| 2020-01-02T19:28:48.727516Z   | 123.5         |
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="sysdate"></a><a href="#sysdate" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>sysdate()</h3>
+<p>Returns the timestamp of the host system as a <code>date</code> with <code>millisecond</code> precision.</p>
+<pre><code class="hljs css language-sql"><span class="hljs-comment">-- Query:</span>
+<span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> readings <span class="hljs-keyword">values</span>(systimestmap(), <span class="hljs-number">123.5</span>);
+
+<span class="hljs-comment">-- Result:</span>
+| ts                         | reading       |
+|<span class="hljs-comment">----------------------------|---------------|</span>
+| 2020-01-02T19:28:48.727Z   | 123.5         |
+</code></pre>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 1/2/2020</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/storagemodel"><span class="arrow-prev">← </span><span>Storage Model</span></a><a class="docs-next button" href="/docs/sql"><span>SQL implementation</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#arithmetics">Arithmetics</a><ul class="toc-headings"><li><a href="#sum">sum()</a></li><li><a href="#count">count()</a></li><li><a href="#avg">avg()</a></li><li><a href="#min">min()</a></li><li><a href="#max">max()</a></li><li><a href="#round">round()</a></li></ul></li><li><a href="#type-transformation">Type transformation</a><ul class="toc-headings"><li><a href="#to_str">to_str()</a></li><li><a href="#to_timestamp-to_date">to_timestamp(), to_date()</a></li></ul></li><li><a href="#random-functions">Random functions</a><ul class="toc-headings"><li><a href="#overview">Overview</a></li><li><a href="#rnd_int">rnd_int()</a></li><li><a href="#rnd_short">rnd_short()</a></li><li><a href="#rnd_long">rnd_long()</a></li><li><a href="#rnd_boolean">rnd_boolean()</a></li><li><a href="#rnd_float">rnd_float()</a></li><li><a href="#rnd_double">rnd_double()</a></li><li><a href="#rnd_char">rnd_char()</a></li><li><a href="#rnd_symbol-rnd_string">rnd_symbol(), rnd_string()</a></li><li><a href="#rnd_timestamp-rnd_date">rnd_timestamp(), rnd_date()</a></li></ul></li><li><a href="#sequences">Sequences</a><ul class="toc-headings"><li><a href="#long_sequence">long_sequence()</a></li><li><a href="#timestamp_sequence">timestamp_sequence()</a></li></ul></li><li><a href="#text">Text</a><ul class="toc-headings"><li><a href="#concat">concat()</a></li><li><a href="#length">length()</a></li></ul></li><li><a href="#miscellaneous">Miscellaneous</a><ul class="toc-headings"><li><a href="#systimestamp">systimestamp()</a></li><li><a href="#sysdate">sysdate()</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><div align="left" class="tanc"><h5>QuestDB</h5><a href="/docs/en/docstructure">Documentation</a><a href="https://questdb.io/docs/setupmenu">Download</a><a href="https://questdb.io/docs/roadmap">Roadmap</a></div><div><h5>Community</h5><a href="https://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://join.slack.com/t/questdb/shared_invite/enQtNzk4Nzg4Mjc2MTE2LTEzZThjMzliMjUzMTBmYzVjYWNmM2UyNWJmNDdkMDYyZmE0ZDliZTQxN2EzNzk5MDE3Zjc1ZmJiZmFiZTIwMGY&gt;"> Join Slack </a><a href="https://twitter.com/" target="@QuestDB" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/questdb/questdb/">GitHub</a><a class="github-button" href="https://github.com/questdb/questdb" data-icon="octicon-star" data-count-href="/questdb/questdb/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="copyright">Copyright © 2020 QuestDB Limited</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: 'b2a69b4869a2a85284a82fb57519dcda',
+                indexName: 'questdb',
+                inputSelector: '#search_input_react',
+                algoliaOptions: {}
+              });
+            </script></body></html>
