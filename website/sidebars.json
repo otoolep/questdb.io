@@ -26,7 +26,8 @@
     ],
     "Reference": [
       "datatypes",
-      "storagemodel"
+      "storagemodel",
+      "functions"
     ],
     "SQL Reference": [
       "sql",
