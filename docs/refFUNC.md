@@ -6,8 +6,7 @@ sidebar_label: Functions
 
 This section gives an overview of the functions available in QuestDB's web console.
 
-## Arithmetics
-
+## Aggregation
 
 #### Example table
 
@@ -60,6 +59,8 @@ SELECT symbol, avg(quantity) FROM transactions;
 
 > Note that in the above example, GROUP BY is not necessary and therefore is omitted
 
+## Scalar functions
+
 ### min()
 `min` returns the lowest value for the target column within the data selected.
 
@@ -109,6 +110,22 @@ FROM values;
 | 0.8077250783   | 1        | 0.8       | 0.81       |
 | 0.2612088981   | 0        | 0.3       | 0.26       |
 | 0.2394428859   | 0        | 0.2       | 0.24       |      
+```
+
+### abs()
+`abs` return the absolute value 
+
+Example:
+```sql
+-- Query:
+SELECT x - 2 a, abs(x -2) FROM long_sequence(3);
+
+-- Result:
+| a         | abs      |
+|-----------|----------|
+| -1        | 1        |
+| 0         | 0        |
+| 1         | 1        |
 ```
 
 ## Type transformation
@@ -433,7 +450,7 @@ or long integers. The growth can either be monotonic or randomizes by leveraging
 ### long_sequence()
 
 `long_sequence` is used to:
-- generate a list of monotonic or randomly growing integers
+- generate column x:long of monotonically increasing long integers starting from 0
 - set a number of rows when generating a test dataset
 
 > do not be afraid to generate very large datasets for your testing e.g 1bln rows or more if your disk allows.
