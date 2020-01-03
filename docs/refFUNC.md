@@ -92,24 +92,28 @@ Syntax:
 
 where:
 - `column_name` is the name of the column where you would like to round values
-- `precision` is the number of digits of precision after the floating point. 
+- `precision` is 
+    - when `positive`: the number of decimals **after** the floating point. 
+    - when `negative` then number of digits **before** the floating point. 
 
 Example:
 ```sql
 -- Query
-SELECT
-    value val, 
-    round(value,0) round_0,
-    round(value,1) round_1,
-    round(value,2) round_2,
-FROM values;
+SELECT d, round(d, -2), round(d, -1), round(d,0), round(d,1), round(d,2) FROM dbl;
 
 -- Results (example)
-| val            | round_0  | round_1   | round_2    |
-|----------------|----------|-----------|------------|
-| 0.8077250783   | 1        | 0.8       | 0.81       |
-| 0.2612088981   | 0        | 0.3       | 0.26       |
-| 0.2394428859   | 0        | 0.2       | 0.24       |      
+
+| d	             | round-2	| round-1	| round0	| round1	| round2     |
+|----------------|----------|-----------|-----------|-----------|------------|
+| -0.811905406   | 0	    | 0	        | -1	    | -0.8	    | -0.81      |
+| -5.002768547   | 0	    | -10	    | -5	    | -5	    | -5         |
+| -64.75487334   | -100	    | -60	    | -65	    | -64.8	    | -64.75     |
+| -926.531695    | -900	    | -930	    | -927	    | -926.5	| -926.53    |
+| 0.069361448    | 0	    | 0	        | 0	        | 0.1	    | 0.07       |
+| 4.003627053    | 0	    | 0	        | 4	        | 4	        | 4          |
+| 86.91359825    | 100	    | 90	    | 87	    | 86.9	    | 86.91      |
+| 376.3807766    | 400	    | 380	    | 376	    | 376.4	    | 376.38     |
+
 ```
 
 ### abs()
