@@ -116,6 +116,14 @@ SELECT d, round(d, -2), round(d, -1), round(d,0), round(d,1), round(d,2) FROM db
 
 ```
 
+### rounddown()
+`rounddown` behaves like `round` but instead of rounding to the closest value of the required precision, 
+will systematically round values down.
+
+### roudup()
+`roundup` behaves like `round` but instead of rounding to the closest value of the required precision, 
+will systematically round values up.
+
 ### abs()
 `abs` return the absolute value 
 
@@ -594,8 +602,8 @@ SELECT
 concat(
     'trades,instrument=', rnd_str(2,2,0), 
     ',side=', rnd_str('B', 'S'),
-    ' price=', abs(to_int(rnd_double(0)*100000)),
-    ',quantity=', abs(to_int(rnd_double(0)*10000)),
+    ' price=', abs(cast(rnd_double(0)*100000 as int)),
+    ',quantity=', abs(cast(rnd_double(0)*10000 as int)),
     ' ',
     1571270400000 + (x-1) * 100
 )
