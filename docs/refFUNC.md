@@ -116,12 +116,12 @@ SELECT d, round(d, -2), round(d, -1), round(d,0), round(d,1), round(d,2) FROM db
 
 ```
 
-### rounddown()
-`rounddown` behaves like `round` but instead of rounding to the closest value of the required precision, 
+### round_down()
+`round_down` behaves like `round` but instead of rounding to the closest value of the required precision, 
 will systematically round values down.
 
-### roudup()
-`roundup` behaves like `round` but instead of rounding to the closest value of the required precision, 
+### roud_up()
+`round_up` behaves like `round` but instead of rounding to the closest value of the required precision, 
 will systematically round values up.
 
 ### abs()
