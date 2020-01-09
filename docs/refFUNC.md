@@ -142,8 +142,38 @@ SELECT x - 2 a, abs(x -2) FROM long_sequence(3);
 
 ## Type transformation
 
+### cast()
+
+Converts an expression from one data type to another. Using this function is referred to as
+`explicit casting`. 
+
+> This section only describes the usage of the `cast()` function. For more detailed information about casting, including
+> `implicit casting`, see our section on **[casting](refCASTING.md)**.
+
+Syntax:
+
+`cast(expression as data_type)`
+
+where:
+- `expression` can be a constant, a column, or an expression that evaluates to a value.
+- `datatype` refers to the desired **[data type](refDATATYPES.md)**.
+
+Examples:
+```sql
+-- Query
+SELECT cast(3L + 2L as int), cast  FROM long_sequence(1);
+SELECT cast(1578506142000000 as timestamp) FROM long_sequence(1);
+SELECT cast('10.2' as double) FROM long_sequence(1); --string to double
+-- Result
+| cast                        |
+|-----------------------------|
+| 5                           |
+| 2020-01-08T17:55:42.000000Z |
+| 10.2                        |
+```
+
 ### to_str()
-Converts a `date` or `timestamp` into a string.
+Converts a `date` or `timestamp` into a string in the specified format.
 
 Syntax: 
 
@@ -158,7 +188,7 @@ Example:
 -- Query
 SELECT to_str(rnd_date(), 'yyyy-MM') FROM long_sequence(1);
 
--- Results (example)
+-- Result:
 '1970-01'
 ```
 
@@ -180,8 +210,9 @@ Example: let's assume you receive a timestamp as text and want to insert it into
 INSERT INTO measurements values(to_timestamp('2019-12-12T12:15', 'yyyy-MM-ddTHH:mm'), 123.5);
 
 -- Result:
-timestamp                       value 
-2019-12-12T12:15:00.000000Z     123.5
+| timestamp                        | value    |
+|----------------------------------|----------|
+| 2019-12-12T12:15:00.000000Z      | 123.5    |
 ```
 
 > The above example works with `date` type by replacing `to_timestamp` with `to_date`.
