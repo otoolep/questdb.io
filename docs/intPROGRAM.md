@@ -22,7 +22,7 @@ QuestDB implements the Postgres wire protocol. Users can connect to QuestDB the 
 - Any language that already has a Postgres adapter (R, Python, etc.).
 - Any tool in the Postgres ecosystem.
 - QuestDB's time-series and performance capabilities.
-- Await-free multi-user experience thanks to QuestDB's smart thread management.
+- Await-free multi-user experience thanks to QuestDB's smart multithreading management.
 
 ## Influx Line Protocol
 
