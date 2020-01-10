@@ -19,10 +19,6 @@
       "howtoquery",
       "howtoexport"
     ],
-    "Interfaces": [
-      "console",
-      "programmatic"
-    ],
     "Reference": [
       "datatypes",
       "storagemodel",
