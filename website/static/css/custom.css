@@ -22,7 +22,7 @@ h1.postHeaderTitle{
     margin-top: 50px;
 }
 
-.about, .sql, .community {
+.about, .sql, .community .interfaces {
     font-family: Source Sans Pro, serif;
     font-weight: 300;
     font-size: 20px;
@@ -69,6 +69,15 @@ div.blockjustified{text-align: justify}
     /*white-space: nowrap;*/
 }
 
+.featList {
+    list-style: none;
+}
+
+.featList li{
+    display: inline-block;
+    float: left;
+}
+
 .features li {
     background-image: url('../img/checkmark.png');
     background-position: left;
@@ -81,6 +90,24 @@ div.blockjustified{text-align: justify}
     font-weight: 800;
     display: block;
     text-align: left;
+}
+
+.interfaces li {
+    background-image: url('../img/checkmark.png');
+    background-position: left;
+    background-size: 30px;
+    background-repeat: no-repeat;
+    padding-left: 37px;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    font-size: 17px;
+    font-weight: 700;
+    display: block;
+    text-align: left;
+}
+
+.interfaces img{
+    padding-top: 10px;
 }
 
 .mainContainer .twoByGridBlock ul {
@@ -161,6 +188,10 @@ div.blockjustified{text-align: justify}
 .sql img {
     box-shadow: 10px 10px 5px grey;
     border: 1px solid #ccc
+}
+
+div.interfaces {
+    margin-top: 40px;
 }
 
 div.about {

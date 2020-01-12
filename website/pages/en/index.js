@@ -98,8 +98,7 @@ class Index extends React.Component {
                         content:
                             '<img class="logo" src="https://raw.githubusercontent.com/questdb/questdb/master/core/src/main/resources/site/public/images/logo-readme.jpg"/>'+
                             '<span class="title">Fast relational time-series</span>'+
-                            '<p>QuestDB is a fast NewSQL database for Hybrid Transactional, Analytical and Time Series processing workloads. Users can interact via ' +
-                            'HTTP endpoints, our web console, wire protocols (PostgreSQL and Influx) and programmatic APIs. The entire database fits in a dependency-free 3.5mb package ' +
+                            '<p>QuestDB is a fast NewSQL database for Hybrid Transactional, Analytical and Time Series processing workloads. The database fits in a dependency-free 3.5mb package ' +
                             'and is Open Source under Apache 2.0.'+
                             '<ul class="features">' +
                             '<li>Relational</li>' +
@@ -118,20 +117,76 @@ class Index extends React.Component {
             </div>
         );
 
+
+        const WhyQuestDB = () => (
+            <Block padding='bottom' layout='threeColumn'>
+                {[
+                    {
+                        content:
+                            '<p><br></p>' +
+                            '<span class="title"> Why QuestDB?</span>' +
+                            '<br>' +
+                            'We still ac'
+                    },
+                    {
+                        content:
+                            '<p><br></p>' +
+                            '<ul class="interfaces">' +
+                            '<li>Any language in the Postgres ecosystem via Postgres wire protocol</li>' +
+                            '<li>HTTP via REST API</li>' +
+                            '<li>JAVA API or embedded</li>' +
+                            '<li>Influx Line protocol via TCP, UDP, and telegraf</li>'+
+                            '</ul>',
+                    },
+                ]
+                }
+            </Block>
+        );
+
+
+        const Interfaces = () => (
+                <Block padding='bottom' layout='threeColumn'>
+                    {[
+                        {
+                            content:
+                                '<p><br></p>' +
+                            '<span class="title"> Use it your way</span>'
+                        },
+                        {
+                            image: `${baseUrl}img/integrations.jpg`,
+                        },
+                        {
+                            content:
+                                '<p><br></p>' +
+                                '<ul class="interfaces">' +
+                                '<li>Any language in the Postgres ecosystem via Postgres wire protocol</li>' +
+                                '<li>HTTP via REST API</li>' +
+                                '<li>JAVA API or embedded</li>' +
+                                '<li>Influx Line protocol via TCP, UDP, and telegraf</li>'+
+                                '</ul>',
+                        },
+                    ]
+                    }
+                </Block>
+        );
+
         const SQL = () => (
             <div className="sql">
                 <Block layout="twoColumn">
                     {[
                         {
-                            content:
-                                '<span class="title">Expressive SQL</span>'+
-                                'QuestDB\'\s SQL optimiser (built-in time-series native support) assembles a sequence of monads for best-effort-zero-copy query execution.' +
-                                ' User functions allow the manipulation of data sets. This provides ultimate SQL customisation.'
+                            image: `${baseUrl}img/sql.gif`,
+                            imageAlign: 'left',
+                            textAlign: 'left',
                         },
                         {
-                            image: `${baseUrl}img/sql.gif`,
-                            imageAlign: 'right',
-                            textAlign: 'left',
+                            content:
+                                '<span class="title">Express yourself</span>'+
+                                'Spend more time analysing data and less time adding indexes, ' +
+                                'profiling queries, or looking for the bottleneck. QuestDB\'s query optimiser ensures fast query execution by accessing ' +
+                                'as little data as necessary, as fast as possible.' +
+                                '<br><br>' +
+                                '<b>QuestDB takes care of the performance so you can focus on the data.</b>'
                         },
                     ]}
                 </Block>
@@ -143,19 +198,19 @@ class Index extends React.Component {
                 <Block layout="twoColumn">
                     {[
                         {
-                            image: `${baseUrl}img/community.svg`,
-                            imageAlign: 'right',
-                            textAlign: 'right',
-                        },
-                        {
                             content:
                                 '<span class="title">Welcome to the community</span>' +
-                                'Get up to speed with our documentation and guides. If you already know SQL, you can get started. You can raise issues on Github or join our community on Slack.'+
+                                'Get up to speed with our documentation and guides. If you already know SQL, it will be pretty easy!  find help and raise issues on Github or on Slack.'+
                                 '<ul class="buttons">' +
                                 '<li><a href="https://join.slack.com/t/questdb/shared_invite/enQtNzk4Nzg4Mjc2MTE2LTEzZThjMzliMjUzMTBmYzVjYWNmM2UyNWJmNDdkMDYyZmE0ZDliZTQxN2EzNzk5MDE3Zjc1ZmJiZmFiZTIwMGY" target="_blank">Join Slack</a></li>' +
                                 '<li><a href="/docs/docstructure">Documentation </a></li>' +
                                 '</ul>'
-                        }
+                        },
+                        {
+                            image: `${baseUrl}img/community.svg`,
+                            imageAlign: 'right',
+                            textAlign: 'right',
+                        },
                     ]}
                 </Block>
             </div>
@@ -197,6 +252,8 @@ class Index extends React.Component {
                 <HomeSplash siteConfig={siteConfig} language={language}/>
                 <div className="mainContainer">
                     <About/>
+                    <WhyQuestDB/>
+                    <Interfaces/>
                     <SQL/>
                     <Community/>
                 </div>
