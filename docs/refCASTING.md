@@ -23,24 +23,29 @@ Examples:
 ```sql
 -- Query
 SELECT cast(3.5 + 2 as int), cast  FROM long_sequence(1);
-SELECT cast(773456789945699L as int) FROM long_sequence(1);
+SELECT cast(7234623 as short) FROM long_sequence(1);
 SELECT cast(2334444.323 as short) FROM long_sequence(1);
 
 -- Result
 | cast                        |
 |-----------------------------|
 | 5                           | -- Loss of the decimals
-| 1899412835                  | -- Long truncated to int by truncating bits resulting in another number  
+| 25663                       | -- Int truncated to Short*
 | -24852                      | -- Loss of decimals and integer part bits are truncated resulting in another number
 ```
 
+*When casting numbers into a smaller data type, QuestDB will truncate the higher bits of this number. 
 
 
 ## Implicit conversion
 
-When an operation requires a specific data type, QuestDB
-will attempt to convert to the data type required by the context. This is called `implicit conversion` 
-and does not require explicit conversion using the `cast()` function.
+Type casting may be necessary in certain context such as
+- Operations involving various different types
+- Inserting values where the originating type is different from the destination column type.
+
+QuestDB will attempt to convert to the data type required by the context. This is called `implicit cast` 
+and does not require using the `cast()` function. QuestDB will only perform implicit cast
+when they would not result in data being truncated or precision being lost.
 
 The below chart illustrates the explicit and implicit cast available in QuestDB.
 
@@ -68,17 +73,25 @@ SELECT to_timestamp('2019-10-17T00:00:00', 'yyyy-MM-ddTHH:mm:ss') + 0.323 FROM l
 
 Examples:
 ```sql
--- Query
+-- We create a table with one column of type long
 CREATE TABLE my_table(my_number long);
 
--- The below statement will perform an implicit cast of the timestamp to long.
+-- We then insert a value into this table. Note that the value is of timestamp type 
+-- but that we are trying to insert into a long type column:
 INSERT INTO my_table values((to_timestamp('2019-10-17T00:00:00', 'yyyy-MM-ddTHH:mm:ss'));
--- Result
+
+-- As timestamp can be converted to long without loss, QuestDB performs an implicit
+-- cast on the value before inserting it. Therefore the value is now stored as a long:
+SELECT * FROM my_table;
 | 1571270400000000   | -- Returns a long.
 
--- It is equivalent to this statement
+-- The above insert would have been equivalent to running with explicit cast, 
+-- but QuestDB took care of this step automatically.
 INSERT INTO my_table values
-            (cast(to_timestamp('2019-10-17T00:00:00', 'yyyy-MM-ddTHH:mm:ss') as long));
+            (cast(
+                to_timestamp('2019-10-17T00:00:00', 'yyyy-MM-ddTHH:mm:ss') 
+                as long
+            ));
 -- Result
 | 1571270400000000   |
 ```

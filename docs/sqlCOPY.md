@@ -8,7 +8,7 @@ sidebar_label: COPY
 
 `COPY` is used to load data from a `file` into a `table`. The file can be `.txt` or `.csv`. 
 
-> Using `COPY` via the **[web console](intCONSOLE.md)** is an efficient way to get data in as it bypasses the 
+> Using `COPY` via the **[web console](usageINTERFACE.md#web-console)** is an efficient way to get data in as it bypasses the 
 > HTTP protocol that would be used by the **[drag & drop](/docs/console#drag-and-drop)** method. This creates a 
 > performance gain of approximately 40%.
 

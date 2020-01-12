@@ -12,12 +12,12 @@ will also find out how to install QuestDB as a **dependency** via maven and grad
 <ul class="buttons"><li class="cta"><a href="/docs/setupmenu">Go to setup</a></li></ul>
 
 
-### [ Step 2 - Discover the web console](intCONSOLE.md).
+### [ Step 2 - Discover the web console](usageINTERFACE.md#web-console).
 
 The web console will allow you to import, query and export data in an intuitive manner.
-There is also a variety of APIs to do so such as **[java](intJAVA.md)**, **[REST](intREST.md)** Postgres wire, Influx wire etc.
+There is also a variety of APIs to do so such as **[java](usageINTERFACE.md#java)**, **[REST](usageINTERFACE.md#http-rest)** Postgres wire, Influx wire etc.
 
-<ul class="buttons"><li class="cta"><a href="/docs/console">Discover the Web Console</a></li></ul>
+<ul class="buttons"><li class="cta"><a href="/docs/interfaces#web-console">Discover the Web Console</a></li></ul>
 
 ### [Step 3 - Run our tutorial & create your first database](startTUTORIAL.md).
 
