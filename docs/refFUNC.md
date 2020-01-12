@@ -164,12 +164,14 @@ Examples:
 SELECT cast(3L + 2L as int), cast  FROM long_sequence(1);
 SELECT cast(1578506142000000 as timestamp) FROM long_sequence(1);
 SELECT cast('10.2' as double) FROM long_sequence(1); --string to double
+SELECT cast('行' as int) FROM long_sequence(1);
 -- Result
 | cast                        |
 |-----------------------------|
 | 5                           |
 | 2020-01-08T17:55:42.000000Z |
 | 10.2                        |
+| 34892                       |
 ```
 
 ### to_str()

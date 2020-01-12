@@ -14,15 +14,10 @@
       "dependency"
     ],
     "Using QuestDB": [
+      "interfaces",
       "howtoload",
       "howtoquery",
       "howtoexport"
-    ],
-    "Interfaces": [
-      "console",
-      "java",
-      "restful"
-
     ],
     "Reference": [
       "datatypes",
