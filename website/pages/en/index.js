@@ -36,7 +36,7 @@ class HomeSplash extends React.Component {
         );
 
         const ProjectTitle = () => (
-                <span/>
+            <span/>
         );
 
         const PromoSection = props => (
@@ -86,88 +86,144 @@ class Index extends React.Component {
             </Container>
         );
 
-        const About = () => (
-            <div className="about">
-            <Block padding='bottom'>
-                {[
-                    {
-                        image: `${baseUrl}img/speed.svg`,
-                        imageAlign: 'left',
-                    },
-                    {
-                        content:
-                            '<img class="logo" src="https://raw.githubusercontent.com/questdb/questdb/master/core/src/main/resources/site/public/images/logo-readme.jpg"/>'+
-                            '<span class="title">Fast relational time-series</span>'+
-                            '<p>QuestDB is a fast NewSQL database for Hybrid Transactional, Analytical and Time Series processing workloads. The database fits in a dependency-free 3.5mb package ' +
-                            'and is Open Source under Apache 2.0.'+
-                            '<ul class="features">' +
-                            '<li>Relational</li>' +
-                            '<li>Time series</li>' +
-                            '<li>SQL</li>' +
-                            '<li>Open Source</li>' +
-                            '</ul>' +
-                            '<ul class="buttons">' +
-                            '<li class="cta"><a href="/docs/getstarted">Get started</a></li>' +
-                            '<li><a href="https://github.com/questdb/questdb" target="_blank">View on GitHub</a></li>' +
-                            '</ul>'
+        const Title = () => (
+            <div className="toptitle">
+                <Block padding='bottom'>
+                    {[
+                        /*                    {
+                                                image: `${baseUrl}img/speed.svg`,
+                                                imageAlign: 'left',
+                                            },*/
+                        {
+                            content:
+                                '<div align="center">' +
+                                '<img class="logo" src="https://raw.githubusercontent.com/questdb/questdb/master/core/src/main/resources/site/public/images/logo-readme.jpg"/>' +
+                                '<span class="title headTitle"><center>Fast relational time-series</center></span>' +
+                                '</div>'
+                        }
+                    ]
                     }
-                ]
-                }
-            </Block>
+                </Block>
             </div>
         );
 
-
-        const WhyQuestDB = () => (
-            <Block padding='bottom' layout='threeColumn'>
-                {[
-                    {
-                        content:
-                            '<p><br></p>' +
-                            '<span class="title"> Why QuestDB?</span>' +
-                            '<br>' +
-                            'We still ac'
-                    },
-                    {
-                        content:
-                            '<p><br></p>' +
-                            '<ul class="interfaces">' +
-                            '<li>Any language in the Postgres ecosystem via Postgres wire protocol</li>' +
-                            '<li>HTTP via REST API</li>' +
-                            '<li>JAVA API or embedded</li>' +
-                            '<li>Influx Line protocol via TCP, UDP, and telegraf</li>'+
-                            '</ul>',
-                    },
-                ]
-                }
-            </Block>
-        );
-
-
         const Interfaces = () => (
+            <div className="interfacesBlock">
                 <Block padding='bottom' layout='threeColumn'>
                     {[
                         {
                             content:
-                                '<p><br></p>' +
-                            '<span class="title"> Use it your way</span>'
+                                '<p></p>' +
+                                '<span class="title"> Work your way</span>' +
+                                '<br>' +
+                                'Use QuestDB with any language using the Postgres wire protocol or via HTTP REST.' +
+                                ' QuestDB is available on Maven Central to run embedded in a Java program. We even support ' +
+                                'Influx line protocol over telegraf (and made it faster).'
                         },
                         {
                             image: `${baseUrl}img/integrations.jpg`,
                         },
-                        {
-                            content:
-                                '<p><br></p>' +
-                                '<ul class="interfaces">' +
-                                '<li>Any language in the Postgres ecosystem via Postgres wire protocol</li>' +
-                                '<li>HTTP via REST API</li>' +
-                                '<li>JAVA API or embedded</li>' +
-                                '<li>Influx Line protocol via TCP, UDP, and telegraf</li>'+
-                                '</ul>',
-                        },
                     ]
                     }
                 </Block>
+            </div>
+        );
+
+
+        const Prob = () => (
+            <div className="news">
+                <Block layout="twoColumn">
+                    {[
+                        {
+                            image: ``,
+                            imageAlign: 'left',
+                            content:
+                                '<br>' +
+                                'Over the last two years alone 90 percent of the data in the world was generated.' +
+                                '<br><b><p align="right">It\'s time for databases to catch up!</b></p>',
+                        },
+                    ]}
+                </Block>
+            </div>
+        );
+
+        const Moore = () => (
+            <div className="moore">
+                <Block layout="twoColumn">
+                    {[
+                        {
+                            content:
+                                '<div align="center">' +
+                                '<span class="title"><center>When less is \'Moore\'</center></span>' +
+                                '<b>More performance, Less hardware. Not the other way around!</b>' +
+                                '<br><br>' +
+                                'Lean and efficient code got your back when Moore\'s law is letting you down.' +
+                                '</div>'
+                        },
+                    ]}
+                </Block>
+            </div>
+        );
+
+        const Moore2 = () => (
+            <div className="moore2">
+                <Block layout="twoColumn">
+                    {[
+                        {
+                            content:
+                                '<div align="center">' +
+                                '<b>Efficiency first!</b>' +
+                                '<br><br>' +
+                                'QuestDB does not rely on hardware to solve performance problems. ' +
+                                '</div>'
+                        },
+                        {
+                            content:
+                                '<div align="center">' +
+                                '<b>Starting from scratch</b>' +
+                                '<br><br>' +
+                                'QuestDB does not rely on hardware to solve performance problems. ' +
+                                'We write lean, efficient, dependency-free code that allows you to get more with less. ' +
+                                'We\'ve got your back, even when Moore\'s law is letting you down.' +
+                                '</div>'
+                        },
+                    ]}
+                </Block>
+            </div>
+        );
+
+
+        const About = () => (
+            <div className="about">
+                <Block padding='bottom'>
+                    {[
+                        {
+                            content:
+                                '<span class="title">What is QuestDB?</span>' +
+                                '<p><b>QuestDB is a fast NewSQL database for Hybrid Transactional, Analytical and Time Series processing workloads.</b> The database fits in a dependency-free 3.5mb package ' +
+                                'and is Open Source under Apache 2.0.'
+                        },
+                        {
+                            content:
+                                '<div>' +
+                                '<br>' +
+                                '<center>' +
+                                '<ul class="features">' +
+                                '<li>Relational</li>' +
+                                '<li>Time series</li>' +
+                                '<li>SQL</li>' +
+                                '<li>Open Source</li>' +
+                                '</ul>' +
+                                '<ul class="buttons">' +
+                                '<li class="cta"><a href="/docs/getstarted">Get started</a></li>' +
+                                '<li><a href="https://github.com/questdb/questdb" target="_blank">View on GitHub</a></li>' +
+                                '</ul></center>' +
+                                '</div>'
+                        }
+                    ]
+                    }
+                </Block>
+            </div>
         );
 
         const SQL = () => (
@@ -176,15 +232,17 @@ class Index extends React.Component {
                     {[
                         {
                             image: `${baseUrl}img/sql.gif`,
-                            imageAlign: 'left',
+                            imageAlign: 'bottom',
                             textAlign: 'left',
+                            content: '',
                         },
                         {
                             content:
-                                '<span class="title">Express yourself</span>'+
+                                '' +
+                                '<span class="title">Express yourself</span>' +
                                 'Spend more time analysing data and less time adding indexes, ' +
                                 'profiling queries, or looking for the bottleneck. QuestDB\'s query optimiser ensures fast query execution by accessing ' +
-                                'as little data as necessary, as fast as possible.' +
+                                'as little data as necessary, as fast as possible. SQL is your means of expression and all its power in your hands.' +
                                 '<br><br>' +
                                 '<b>QuestDB takes care of the performance so you can focus on the data.</b>'
                         },
@@ -200,7 +258,7 @@ class Index extends React.Component {
                         {
                             content:
                                 '<span class="title">Welcome to the community</span>' +
-                                'Get up to speed with our documentation and guides. If you already know SQL, it will be pretty easy!  find help and raise issues on Github or on Slack.'+
+                                'Get up to speed with our documentation and guides. If you already know SQL, it will be pretty easy!  find help and raise issues on Github or on Slack.' +
                                 '<ul class="buttons">' +
                                 '<li><a href="https://join.slack.com/t/questdb/shared_invite/enQtNzk4Nzg4Mjc2MTE2LTEzZThjMzliMjUzMTBmYzVjYWNmM2UyNWJmNDdkMDYyZmE0ZDliZTQxN2EzNzk5MDE3Zjc1ZmJiZmFiZTIwMGY" target="_blank">Join Slack</a></li>' +
                                 '<li><a href="/docs/docstructure">Documentation </a></li>' +
@@ -251,10 +309,13 @@ class Index extends React.Component {
             <div>
                 <HomeSplash siteConfig={siteConfig} language={language}/>
                 <div className="mainContainer">
+                    <Title/>
+                    <Prob/>
                     <About/>
-                    <WhyQuestDB/>
-                    <Interfaces/>
+                    <Moore/>
+                    <Moore2/>
                     <SQL/>
+                    <Interfaces/>
                     <Community/>
                 </div>
             </div>
