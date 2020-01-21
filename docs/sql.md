@@ -30,44 +30,44 @@ virtually zero execution cost to SQL. We encourage their use to add flavours of 
 In QuestDB `select * from` is optional.
 
 ```sql
-select * from tab
+SELECT * FROM tab;
 ```
 
 and
 
 ```sql
-tab
+tab;
 ```
 
 achieves the same effect.
 
 While `select * from` makes SQL look more complete on a single time, there are examples where its optionality makes things a lot easier to read. See examples in `GROUP BY` section.
 
-### Lack of `GROUP BY ... HAVING`
+### Absence of `GROUP BY ... HAVING`
 
 We do not support explicit `GROUP BY` clause. Instead QuestDB optimiser derives group-by implementation from `SELECT` clause. For example:
 
 ```sql
-select a, b, c, d, sum(e) from tab group by a, b, c, d
+SELECT a, b, c, d, sum(e) FROM tab GROUP BY a, b, c, d;
 ```
 
 We find enumerating subset of `SELECT` columns in `GROUP BY` clause redundant and therefore unnecessary. The same SQL in QuestDB SQL-dialect will look like:
 
 ```sql
-select a, b, c, d, sum(e) from tab
+SELECT a, b, c, d, sum(e) FROM tab;
 ```
 
 Lets see how we replace
 ```sql
-select a, b, c, d, sum(e) 
-from tab 
-group by a, b, c, d 
-having sum(e) > 100
+SELECT a, b, c, d, sum(e) 
+FROM tab 
+GROUP BY a, b, c, d 
+HAVING sum(e) > 100;
 ```
 Here `select * from` optionality and featherweight sub-queries come to the rescue:
 
 ```sql
-(select a, b, c, d, sum(e) sum from tab) where sum > 100
+(SELECT a, b, c, d, sum(e) s FROM tab) WHERE s > 100;
 ```
 
 Here we avoided repetitive aggregation expressions without extra furniture syntax.

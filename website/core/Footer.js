@@ -35,7 +35,7 @@ class Footer extends React.Component {
                             />
                         )}
                     </a>*/}
-                    <div align={"left"} className="tanc">
+                    <div align={"left"} className="footersection">
                         <h5>QuestDB</h5>
                         <a href={this.docUrl('docstructure', this.props.language)}>
                             Documentation
@@ -47,7 +47,7 @@ class Footer extends React.Component {
                             Roadmap
                         </a>
                     </div>
-                    <div>
+                    <div align={"left"} className="footersection">
                         <h5>Community</h5>
                         {/*            <a href={this.pageUrl('users.html', this.props.language)}>
               User Showcase
@@ -66,7 +66,7 @@ class Footer extends React.Component {
                             Twitter
                         </a>
                     </div>
-                    <div>
+                    <div align={"left"} className="footersection">
                         <h5>More</h5>
                         <a href={`${this.props.config.baseUrl}blog`}>Blog</a>
                         <a href="https://github.com/questdb/questdb/">GitHub</a>

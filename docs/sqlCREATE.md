@@ -71,6 +71,10 @@ CREATE TABLE my_table(symb SYMBOL, price DOUBLE, ts TIMESTAMP, strng STRING)
 > Timestamp flags a column to give it a special status. But that column does not need to correspond to a time. It can also be used as a `LONG`
 > to enforce normal indexing by row number for example.
 
+> `Windows users`: NTFS tends to considerably slow down as the number of directories increases. This in turn affects the
+>database performance as it needs to access the filesystem of the host machine. If you are running QuestDB on Windows, we recommend
+>using larger partitions (BY MONTH instead of BY DAY for example).
+
 ### Examples
 Creating a table. No partition is set. It will by default create one single partition.
 ```sql
@@ -174,7 +178,7 @@ CREATE TABLE goodratings as ('ratings.csv' where rating > 3.5);
 CREATE TABLE goodratings as (SELECT * FROM 'ratings.csv' where rating > 3.5);
 ```
 
-### CAST
+## CAST
 
 ### Usage
 `CREATE TABLE AS` can be used in conjunction with `CAST` to change column types.

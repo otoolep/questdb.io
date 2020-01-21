@@ -1,9 +1,15 @@
 ---
 id: setupmenu
-title: Choose how you would like to run QuestDB
+title: How do you want to run QuestDB?
 sidebar_label: Introduction
 ---
 
+
+<ul class="installOptions">
+<li><a href="/docs/docker">Install using a Docker image</li>
+<li><a href="/docs/manualinstall">Install manually</a></li>
+<li><a href="/docs/dependency">Install as Java Dependency</a></li>
+</ul>
 
 ### Install a Docker container
 
@@ -25,3 +31,4 @@ Use QuestDB embedded to take advantage of the data store in your program itself.
 from gradle or maven.
 
 <ul class="buttons"><li class="cta"><a href="/docs/dependency">Install as Java Dependency</a></li></ul>
+

@@ -1,144 +1,113 @@
 /* your custom css */
 
-@media only screen and (min-device-width: 360px) and (max-device-width: 736px) {
-    .features li {
-        display: block!important;
-    }
+h1.postHeaderTitle {
+    padding-top: 100px;
 }
 
-@media only screen and (min-width: 1024px) {
-}
-
-@media only screen and (max-width: 1023px) {
-}
-
-@media only screen and (min-width: 1400px) {
-}
-
-@media only screen and (min-width: 1500px) {
-}
-
-h1.postHeaderTitle{
-    margin-top: 50px;
-}
-
-.about, .sql, .community, .interfacesBlock, .moore {
-    font-family: Source Sans Pro, serif;
+.toptitle, .sql, .community, .interfaces, .whatwedo, .perf, .demo {
     font-weight: 300;
-    font-size: 20px;
     -webkit-font-smoothing: antialiased;
 }
-
-.news {
-    font-family: Source Sans Pro, serif;
-    font-weight: 400;
-    font-size: 30px;
-    -webkit-font-smoothing: antialiased;
-    padding-left: 19%;
-    padding-right: 19%;
-    color: #26486a;
-}
-
-.sql, .community, .about {
-    background-color: rgba(240, 244, 244, 0.33);
-}
-
 
 .title {
-    font-size: 48px;
-    font-weight: 300;
-    text-align: left;
+    font-weight: normal;
+    text-align: center;
     display: block;
+    margin-bottom: 10px;
 }
 
-.about title{
-    font-size: 48px;
-    font-weight: 300;
-    text-align: left;
-    display: block;
+.whatwedo p {
+    text-align: justify;
+    text-justify: inter-word;
+    color: white;
 }
 
-.headTitle {
-    font-size: 65px;
+.whatwedo b {
+    color: white;
 }
 
-.docMainWrapper{
-    font-family: Source Sans Pro, serif;
-    margin-top: 30px;
+.whatwedo {
+    background-color: #2371b5;
+    color: white;
 }
 
-.docMainWrapper.wrapper{
+div.whatwedo {
+    padding-top: 70px
+}
+
+.docMainWrapper {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+}
+
+#search_input_react{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+}
+
+.docMainWrapper.wrapper {
     text-align: justify;
 }
 
-.toptitle {
+.maintitle {
+    font-weight: bold;
+}
+
+.consoleGIF img {
+    position: relative;
+    display: block;
+    width: auto;
+    max-height: 300px;
+    margin-right: auto;
+    margin-left: auto;
+    align-self: center;
+    padding-top: 10px;
+    box-shadow: 0px 60px 50px 10px rgba(0,0,0,0.55);
+
+}
+
+body > div.navPusher > div > div.mainContainer > div.interfaces > div > div > div > div > div.blockContent{
+    display: none;
+}
+
+.consoleGIF {
+    margin-top: -200px;
+    margin-bottom: -20px;
+}
+
+div.blockContent div.interfaces{
+    display: none;
+}
+
+.community p {
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+.interfaces {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.sql {
+    margin-bottom: 150px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+
+.whatwedo b {
+    color: white;
+}
+
+.sql p {
     text-align: center;
-    alignment: center;
-    align-items: center;
-    display: block;
-    font-weight: 900;
-    font-family: Source Sans Pro, serif;
-    font-size: 20px;
-    padding-bottom: 30px;
 }
 
-.toptitle .logo {
-    height: 120px;
-    object-fit: contain;
-    margin-left: -10px;
-}
-
-
-div.blockjustified{text-align: justify}
-
-
-.features {
-    padding: 0;
-    margin: 0;
-    /*display: block;*/
-    text-align: left;
-    /*white-space: nowrap;*/
-}
-
-.featList {
-    list-style: none;
-}
-
-.featList li{
-    display: inline-block;
-    float: left;
-}
-
-.features li {
-    background-image: url('../img/checkmark.png');
-    background-position: left;
-    background-size: 30px;
-    background-repeat: no-repeat;
-    padding-left: 37px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    font-size: 19px;
-    font-weight: 800;
-    display: block;
-    text-align: left;
-}
-
-.interfaces li {
-/*    background-image: url('../img/checkmark.png');*/
-    background-position: left;
-    background-size: 30px;
-    background-repeat: no-repeat;
-    padding-left: 37px;
-    padding-top: 10px;
-    padding-bottom: 20px;
-    font-size: 17px;
-    font-weight: 700;
-    display: block;
-    text-align: left;
-}
-
-.interfaces img{
-    padding-top: 10px;
+div.blockjustified {
+    text-align: justify
 }
 
 .mainContainer .twoByGridBlock ul {
@@ -147,46 +116,19 @@ div.blockjustified{text-align: justify}
 
 .buttons {
     padding: 0;
-    margin: 50px 0;
-}
-
-
-.buttons li {
-    display: inline-block;
-    /*border: 1px solid #984631;*/
-    border: 1px solid rgb(0,30,65);
-    font-size: 18px;
-    text-transform: uppercase;
-    font-weight: 600;
-    padding: 12px 20px;
-    border-radius: 5px;
-    transition: transform 0.2s;
-    margin-right: 25px;
+    margin-top: 25px;
+    margin-bottom: 20px;
+    color: white;
 }
 
 .buttons li.cta {
     display: inline-block;
-    /*background-color: #ac4631;*/
-    background-color: rgb(0,30,65);
     color: white;
     transition: transform 0.2s;
 }
 
 .buttons li.cta a, .buttons li:hover a {
     color: white;
-}
-
-.buttons li:hover {
-    cursor: pointer;
-    background-color: rgb(0, 49, 118);
-    /*background-color: #de4f3a;*/
-    /*transform: translate(0px, -2px);*/
-    transform: scale(1.02);
-    -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none; /* Safari */
-    -moz-user-select: none; /* Old versions of Firefox */
-    -ms-user-select: none; /* Internet Explorer/Edge */
-    user-select: none; /* Non-prefixed version, currently supported by Chrome, Opera and Firefox */
 }
 
 .mainContainer li img {
@@ -212,67 +154,275 @@ div.blockjustified{text-align: justify}
     font-weight: bolder;
 }
 
-.sql, .community, .moore, .interfacesBlock {
-    padding-top: 50px;
-    padding-bottom: 40px;
+.homeSplashFade {
+    display: none;
 }
 
-.moore {
-    padding-left: 25%;
-    padding-right: 25%;
+.featuresList div.blockElement.imageAlignSide.imageAlignLeft.threeByGridBlock {
+    width: 33%;
+    display: inline-table;
 }
 
-.sql img {
-    box-shadow: 10px 10px 5px grey;
-    border: 1px solid #ccc
+.interfaces title {
+    margin-bottom: 50px;
 }
+
+.whatwedo {
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
+.perf {
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
+
+.perflist {
+    width: 50%;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.perflist .subtitle {
+    color: gray();
+}
+
+div.subtitle.perfbottom  {
+    text-align: center;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.perflist img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+    margin-bottom: 20px;
+    margin-top: 50px;
+    filter: grayscale(60%) contrast(40%);
+    height: 120px;
+}
+
+.interfaces img {
+    filter: grayscale(100%);
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.interfaces p {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: justify;
+}
+
+div.subtitle {
+    text-align: center;
+}
+
+.imageAlignLeft .blockImage {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.featuresList p {
+    alignment: center;
+}
+
 
 div.interfaces {
     margin-top: 40px;
 }
 
-div.about {
-    padding-left: 15%;
-    padding-right: 15%;
+
+.mainContainer h1 {
+    color: #2371b5;
+    font-size: 44px;
+}
+
+
+.mainContainer h2 {
+    margin-top: 75px;
+    margin-bottom: 20px;
+    font-size: 31px;
+    border-bottom: 3px solid #2371b5;
+    color: #2371b5;
+}
+
+.mainContainer h3 {
+    margin-top: 55px;
+    color: #2371b5;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    font-size: 25px;
+    margin-bottom: 5px;
+    border-bottom: 1px solid #004a3f;
+}
+
+.mainContainer blockquote {
+    background-color: rgba(0, 144, 127, 0);
+    font-size: 16px;
+    color: black;
+    border-left-color: #e68200;
+    border-left-width: 2px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+code {
+    color: #35393b;
+    font-weight: bold;
+}
+
+.consolecontainer {
+    display: none;
+}
+
+
+.console {
+    height: 700px;
+    display: block;
+    margin: 40px auto;
+    width: 90%;
+    border-radius: 12px;
+    background: none;
+}
+
+.demo {
+    color: white;
     padding-top: 40px;
+    padding-bottom: 40px;
+    background-color: #2371b5;
 }
 
-div.community img {
-    padding-top: 10%;
-    width: 60%;
-    height: 60%;
+.slidingNav li:nth-child(4) {
+    background-color: #e68200;
+    font-weight: 500;
+    border-radius: 5px;
 }
 
-div.about ul {
-    display: inline-block;
+.slidingNav {
+    background-color: #2371b5;
+    padding-bottom: 10px;
 }
 
-div.about li {
-    display: inline;
-    margin-right: 25px;
+div.blockImage {
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+}
+
+.toptitle p {
+    text-align: center;
+    alignment: center;
+    align-items: center;
+    display: block;
+    margin-bottom: 30px;
+}
+
+.sitemap {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    padding-left: 10%;
+}
+
+.mainContainer b {
+    color: #2371b5;
+}
+
+footer.nav-footer {
+    padding-top: 50px;
+
+}
+
+
+.fixedHeaderContainer img {
+    filter: brightness(100) contrast(100) drop-shadow(2px 4px 6px black) grayscale(100%);
+}
+
+.fixedHeaderContainer h2 {
+    filter: brightness(100) contrast(100) drop-shadow(2px 4px 6px black);
+}
+
+.toptitle {
+    padding-top: 90px;
+    padding-bottom: 60px;
+    position: relative;
+    min-height: 200px;
+    color: #edffff;
+/*    background: linear-gradient(180deg, #2371b5 0%, #2371b5 75%, #313264 100%);*/
+    background-color: #2371b5;
+    z-index: 1;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.fixedHeaderContainer, .nav-footer {
+    background-color: #2371b5;
+}
+
+body > div.fixedHeaderContainer{
+    padding-bottom: 20px;
 }
 
 .sitemap a {
-    font-size: 14px;
+    font-size: 11px;
     text-transform: uppercase;
 }
 
 .sitemap h5 {
     font-size: 14px;
     text-transform: uppercase;
-    font-weight: 800;
+    font-weight: 500;
 }
 
-.wave{
-    background:
-            linear-gradient(to right, sandybrown, chocolate);
+.buttons li {
+    display: inline-block;
+    color: white;
+    /*border: 1px solid #984631;*/
+    border: 1px solid rgb(250, 240, 255);
+    font-size: 11px;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 8px 25px;
+    border-radius: 5px;
+    transition: transform 0.2s;
+}
+
+
+.buttons li:hover {
+    cursor: pointer;
+    color: white;
+    background-color: #01177f;
+    /*background-color: #de4f3a;*/
+    /*transform: translate(0px, -2px);*/
+    transform: scale(1.02);
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently supported by Chrome, Opera and Firefox */
+}
+
+
+.wave {
+    background: linear-gradient(to right, sandybrown, chocolate);
     height: 50px;
     position: relative;
 }
-.wave::before, .wave::after{
+
+.wave::before, .wave::after {
     border-bottom: 5px solid yellow;
 }
-.wave::before{
+
+.wave::before {
     content: "";
     position: absolute;
     left: 0;
@@ -280,10 +430,10 @@ div.about li {
     bottom: 0;
     height: 10px;
     background-size: 20px 40px;
-    background-image:
-            radial-gradient(circle at 10px -15px, transparent 20px, yellow 21px);
+    background-image: radial-gradient(circle at 10px -15px, transparent 20px, yellow 21px);
 }
-.wave::after{
+
+.wave::after {
     content: "";
     position: absolute;
     left: 0;
@@ -291,15 +441,296 @@ div.about li {
     bottom: 0;
     height: 15px;
     background-size: 40px 40px;
-    background-image:
-            radial-gradient(circle at 10px 26px, yellow 20px, transparent 21px);
+    background-image: radial-gradient(circle at 10px 26px, yellow 20px, transparent 21px);
 }
 
-article h2, article h3, article h4 {
-    margin-top: 2em;
-}
 
-article a {
-    color: #d44d38;
-    font-weight: 400;
-}
+                                @media only screen and (max-width: 1000px) {
+
+
+                                    .toptitle, .sql, .community, .interfaces, .whatwedo, .perf, .demo {
+                                        font-size: 12px;
+                                        padding-bottom: 15px;
+                                    }
+
+                                    .toptitle {
+                                        padding-top: 20px;
+                                        margin-top: 0px;
+                                    }
+
+
+                                    .title {
+                                        font-size: 22px;
+                                    }
+
+
+                                    .sql p, .interfaces p {
+                                        text-align: center;
+                                        font-size: 14px;
+                                    }
+
+                                    .sql, .interfaces {
+                                        width: 75%;
+                                        padding-bottom: 70px;
+                                    }
+
+
+                                    .docMainWrapper {
+                                        margin-top: 20px;
+                                    }
+
+
+                                    .toptitle p {
+                                        font-size: 14px;
+                                    }
+
+                                    .maintitle {
+                                        font-size: 22px;
+                                    }
+
+
+                                    .buttons li {
+                                        font-size: 11px;
+                                    }
+
+
+                                    .featuresList {
+                                        width: 90%;
+                                    }
+
+                                    .whatwedo .title{
+                                        margin-bottom: 30px;
+                                    }
+
+                                    .featuresList .subtitle{
+                                        margin-bottom: 20px;
+                                        margin-top: 5px;
+                                        margin-right: auto;
+                                        margin-left: auto;
+                                    }
+
+                                    div.gridBlock .featuresList{
+                                        margin-left: auto;
+                                        margin-right: auto;
+                                        width: 100%;
+                                        display: block;
+
+                                    }
+
+
+                                    .featuresList img {
+                                        width: 33%;
+                                        filter: brightness(0) invert(1);
+                                        height: 30px;
+                                        display: block;
+                                        margin-left: auto;
+                                        margin-right: auto;
+                                    }
+
+                                    div.container features {
+                                        margin-left: auto;
+                                        margin-right: auto;
+                                        width: 90%;
+                                    }
+
+                                    .perf{
+                                        padding-top: 40px;
+                                        padding-bottom: 40px;
+                                    }
+
+
+                                    .perflist img {
+                                        height: 50px;
+                                        margin-left: auto;
+                                        margin-right: auto;
+                                        width: 95%;
+                                    }
+
+
+                                    .perflist div.blockElement.imageAlignSide.imageAlignLeft.threeByGridBlock{
+                                        margin-left: auto;
+                                        margin-right: auto;
+                                        width: 95%;
+                                        display: block;
+                                    }
+
+                                    .perflist img{
+                                        margin-top: 20px;
+                                        margin-bottom: 10px;
+                                    }
+
+                                    div.subtitle.perfbottom  {
+                                        margin-top: 30px;
+                                        width: 80%;
+                                    }
+
+                                    .featuresList div.container{
+                                        margin-left: auto;
+                                        margin-right: auto;
+                                        width: 100%;
+                                    }
+
+                                    div.featuresList {
+                                        margin-left: auto;
+                                        margin-right: auto;
+                                        width: 100%;
+                                        display: block;
+                                    }
+
+
+
+                                    .consoleGIF img{
+                                        width: 95%;
+                                    }
+
+                                    .wrapper {
+                                        width: 100%;
+                                    }
+
+                                    .interfaces {
+                                        padding-top: 20px;
+                                        padding-bottom: 20px;
+                                    }
+
+
+                                    .fixedHeaderContainer{
+                                        font-size: 14px;
+                                    }
+
+                                    .nav-footer {
+                                        font-size: 8px;
+                                    }
+
+                                    .sitemap a{
+                                        font-size: 9px;
+                                    }
+
+                                    .sitemap h5{
+                                        font-size: 12px;
+                                    }
+
+                                    .nav-footer .sitemap {
+                                        flex-direction: unset;
+                                        margin-bottom: 0px;
+                                    }
+
+                                    .sitemap {
+                                        margin-bottom: 0px;
+                                        line-height: 13px;
+                                    }
+
+                                    section.copyright {
+                                        margin-bottom: 10px;
+                                    }
+
+                                    div.footersection{
+                                        display: block;
+                                        width: 20%;
+                                        margin-bottom: 0;
+                                    }
+
+                                    .navigationSlider .slidingNav ul li a {
+                                        height: 30px;
+                                    }
+
+                                }
+
+
+                                                                @media only screen and (min-width: 1000px) {
+
+                                                                    .about, .sql, .community, .interfaces, .whatwedo, .perf, .demo {
+                                                                        font-size: 20px;
+                                                                    }
+
+                                                                    .title {
+                                                                        font-size: 48px;
+                                                                    }
+
+
+
+                                                                    .sql {
+                                                                        width: 50%;
+                                                                    }
+
+
+                                                                    .headTitle {
+                                                                        font-size: 35px;
+                                                                    }
+
+                                                                    .docMainWrapper {
+                                                                        margin-top: 30px;
+                                                                    }
+
+
+                                                                    .toptitle p {
+                                                                        font-size: 25px;
+                                                                    }
+
+                                                                    .maintitle {
+                                                                        font-size: 60px;
+                                                                    }
+
+                                                                    div.subtitle.perfbottom  {
+                                                                        margin-top: 50px;
+                                                                        width: 60%;
+                                                                    }
+
+                                                                    .buttons li {
+                                                                        font-size: 18px;
+                                                                    }
+
+
+                                                                    .featuresList {
+                                                                        width: 50%;
+                                                                        margin-right: auto;
+                                                                        margin-left: auto;
+                                                                        display: block;
+                                                                    }
+
+                                                                    .featuresList img {
+                                                                        display: block;
+                                                                        width: 50%;
+                                                                        margin: 50px auto 5px;
+                                                                        filter: brightness(0) invert(1);
+                                                                        height: 60px;
+                                                                    }
+
+                                                                    .perflist img {
+                                                                        height: 120px;
+                                                                    }
+
+
+                                                                    .interfaces {
+                                                                        margin-bottom: 10px;
+                                                                        margin-left: auto;
+                                                                        margin-right: auto;
+                                                                        display: block;
+
+                                                                    }
+
+                                                                    .interfaces p{
+                                                                        text-align: center;
+                                                                        width: 50%;
+                                                                        margin-right: auto;
+                                                                        margin-left: auto;
+                                                                        margin-top: 30px;
+                                                                        margin-bottom: 30px;
+                                                                        display: block;
+                                                                    }
+
+
+                                                                    div.blockImage {
+                                                                        display: block;
+                                                                        margin-left: auto;
+                                                                        margin-right: auto;
+                                                                    }
+
+
+                                                                    .fixedHeaderContainer, .nav-footer {
+                                                                        padding-top: 20px;
+                                                                        font-size: 18px;
+                                                                    }
+
+                                                                }
+
+

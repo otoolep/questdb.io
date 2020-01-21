@@ -30,13 +30,13 @@ const siteConfig = {
     // For no header links in the top nav bar -> headerLinks: [],
     headerLinks:
     [
-        {href: "https://github.com/questdb/questdb", label: 'View on GitHub'},
-        {doc: 'getstarted', label: 'Get Started'},
-        {doc: 'docstructure', label: 'Documentation'},
+        {href: "https://github.com/questdb/questdb", label: 'GitHub'},
+        {doc: 'docstructure', label: 'Docs'},
         {blog: true, label: 'Blog'},
+        {doc: 'getstarted', label: 'Get Started'},
     ],
-
     // If you have users set above, you add it here:
+
     users,
 
     /* path to images for header/footer */
@@ -45,9 +45,10 @@ const siteConfig = {
     favicon: 'img/favicon.png',
 
     /* Colors for website */
+/*    Both set to transparent to customise manually*/
     colors: {
-        primaryColor: '#0d011a',
-        secondaryColor: '#130042',
+        primaryColor: 'rgb(0,2,59)',
+        secondaryColor: 'rgb(0,2,87)',
     },
 
     /* Custom fonts for website */
@@ -104,7 +105,8 @@ const siteConfig = {
     scripts: [
         'https://buttons.github.io/buttons.js',
         'https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js',
-        '/js/code-block-buttons.js'
+        '/js/code-block-buttons.js',
+        '/js/console-demo.js'
     ],
     stylesheets: [
         'https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,500,600,700|Source+Code+Pro:400,700|Open+Sans:300,400,600,700',

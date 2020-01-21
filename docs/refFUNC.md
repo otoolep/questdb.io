@@ -69,17 +69,17 @@ SELECT symbol, max(price) FROM transactions;
 > Note that in the above example, GROUP BY is not necessary and therefore is omitted
 
 ### round()
-`round` returns the **closest** value with the specified `scale`. 
+`round` returns the **closest** value with the specified precision.
 
 Syntax:
 
-`round(column_name, scale)`
+`round(column_name, precision)`
 
 where:
 - `column_name` is the name of the column where you would like to round values
-- `scale` is 
+- `precision` is 
     - when `positive`: the number of decimals **after** the floating point. 
-    - when `negative` then number of rounded digits **before** the floating point. 
+    - when `negative` then number of digits **before** the floating point. 
 
 Example:
 ```sql
@@ -102,11 +102,11 @@ SELECT d, round(d, -2), round(d, -1), round(d,0), round(d,1), round(d,2) FROM db
 ```
 
 ### round_down()
-`round_down` behaves like `round` but instead of rounding to the closest value of the required scale, 
+`round_down` behaves like `round` but instead of rounding to the closest value of the required precision, 
 will systematically round values down.
 
 ### roud_up()
-`round_up` behaves like `round` but instead of rounding to the closest value of the required scale, 
+`round_up` behaves like `round` but instead of rounding to the closest value of the required precision, 
 will systematically round values up.
 
 ### abs()
@@ -217,6 +217,7 @@ QuestDB supports the following format elements:
 |z    	|Time zone	                |General time zone	|Pacific Standard Time; PST; GMT-08:00|
 |Z	    |Time zone	                |RFC 822 time zone	|-0800|
 |X	    |Time zone	                |ISO 8601 time zone	|-08; -0800; -08:00|
+
 
 Example: let's assume you receive a timestamp as text and want to insert it into a timestamp field. 
 ```sql
