@@ -88,18 +88,32 @@ class Index extends React.Component {
 
         const Title = () => (
             <div className="toptitle">
+                <Block padding='bottom'>
+                    {[
+                        /*                    {
+                                                image: `${baseUrl}img/speed.svg`,
+                                                imageAlign: 'left',
+                                            },*/
+                        {
+                            content:
+                                '<div align="center">' +
+                                '<span class="title"><center>Fast relational time-series</center></span>' +
+                                '</div>'
+                        }
+                    ]
+                    }
+                </Block>
                 <Block>
                     {[
                         {
-                            image: `${baseUrl}img/datavis.svg`,
-                        },{
                             content:
-                               '<span class="title">Take on time-series in an instant</span>' +
-                                '<p class="left subTopTitle">QuestDB is an open-source time-series database to store, stream, query data and analytics at the speed of light, with the the convenience of SQL.</p>' +
+                                '<center>' +
+                                '<p>QuestDB is a fast SQL database for Hybrid Transactional, Analytical and Time Series processing. ' +
                                 '<br>' +
                                 '<ul class="buttons">' +
-                                '<li class="cta"><a href="/getstarted">Get started</a></li>' +
-                                '</ul>'
+                                '<li class="cta"><a href="/docs/getstarted">Get started</a></li>' +
+                                '</ul>' +
+                                '</center>'
                         }
                     ]
                     }
@@ -179,12 +193,16 @@ class Index extends React.Component {
 
         const Demo = () => (
             <div className="demo">
-                <center>Before we bore you with "incredible features", "massive scalability", "terabytes of data" and "billions of data points", here is 10 years of NY taxi rides to play with so you can get a sense for yourselves of what QuestDB can do.</center>
+                <span className="title"><center>Try QuestDB, right here, right now!</center></span>
+                <center>Ever wanted to play with the billion taxi rides? Here is your chance!</center>
+                <center>
+                <ul className="buttons">
+                    <li><a id="consolebutton"> Show Console </a></li>
+                </ul>
+            </center>
                 <block class="consolecontainer" id="consolecontainer">
                     <iframe className="console"
-                            src="http://localhost:9000/demo.html"></iframe>
-                  {/*  <iframe className="console"
-                            src="http://ec2-3-9-184-96.eu-west-2.compute.amazonaws.com:9000/index.html"></iframe>*/}
+                            src="http://ec2-3-9-184-96.eu-west-2.compute.amazonaws.com:9000/index.html"></iframe>
                     <center>
                         <ul className="gh-buttons">
                             <a className="github-button" href="https://github.com/questdb/questdb"
@@ -204,6 +222,15 @@ class Index extends React.Component {
                 </block>
             </div>
         );
+
+            const Script = () => (
+                <script>
+                    function myFirst() {
+                    alert("My First JavaScript")
+                }
+                </script>
+            );
+
 
         const SQL = () => (
             <div className="sql">
@@ -253,12 +280,12 @@ class Index extends React.Component {
                             {
                                 image: `${baseUrl}img/stackicon.svg`,
                                 content:
-                                    '<div class="subtitle">No software dependency</div>'
+                                    '<div class="subtitle">No dependency</div>'
                             },
                             {
-                                image: `${baseUrl}img/filter.svg`,
+                                image: `${baseUrl}img/garbageicon.svg`,
                                 content:
-                                    '<div class="subtitle">No GC performance bottleneck</div>'
+                                    '<div class="subtitle">No garbage generation</div>'
                             },
                             {
                                 image: `${baseUrl}img/algoicon.svg`,
@@ -278,11 +305,11 @@ class Index extends React.Component {
                 <HomeSplash siteConfig={siteConfig} language={language}/>
                 <div className="mainContainer">
                     <Title/>
-                    <Demo/>
                     <SQL/>
                     <ConsoleGIF/>
                     <WhatWeDo/>
                     <Perf/>
+                    <Demo/>
                     <Integrations/>
                 </div>
             </div>
