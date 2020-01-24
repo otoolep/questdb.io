@@ -10,10 +10,43 @@ h1.postHeaderTitle {
 }
 
 .title {
-    font-weight: normal;
     text-align: center;
     display: block;
     margin-bottom: 10px;
+    font-weight: normal;
+}
+
+#getStartedInstall, #getStartedQuestion, #getStartedTuto{
+    display: none;
+}
+
+body > div.navPusher > div > div.mainContainer > div.toptitle > div > div > div > div > div.blockContent > div > span > p:nth-child(1) > span{
+    text-align: left;
+}
+
+body > div.navPusher > div > div.mainContainer > div.toptitle > div > div{
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    width: 70%;
+}
+
+#start > div.startlist > div > div > div > div{
+    border: 1px solid gray;
+    box-shadow: 0px 4px 2px 1px rgba(0,0,0,0.55);
+}
+
+.toptitle img{
+    max-height: 90%;
+}
+
+
+.container .wrapper .imageAlignSide p{
+    margin-bottom: 0px;
+}
+
+.left {
+    text-align: left;
 }
 
 .whatwedo p {
@@ -27,8 +60,9 @@ h1.postHeaderTitle {
 }
 
 .whatwedo {
-    background-color: #2371b5;
+    background-color: #6f7372;
     color: white;
+    box-shadow: 0px 2px 2px 1px rgba(0,0,0,0.55);
 }
 
 div.whatwedo {
@@ -59,8 +93,7 @@ div.whatwedo {
     margin-right: auto;
     margin-left: auto;
     align-self: center;
-    padding-top: 10px;
-    box-shadow: 0px 60px 50px 10px rgba(0,0,0,0.55);
+    box-shadow: 10px 30px 30px 20px rgba(0,0,0,0.55);
 
 }
 
@@ -129,6 +162,7 @@ div.blockjustified {
 
 .buttons li.cta a, .buttons li:hover a {
     color: white;
+    cursor: pointer;
 }
 
 .mainContainer li img {
@@ -174,7 +208,14 @@ div.blockjustified {
 
 .perf {
     padding-top: 100px;
-    padding-bottom: 100px;
+    padding-botom: 100px;
+}
+
+div.subtitle.perfbottom  {
+    text-align: center;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 50px;
 }
 
 
@@ -189,11 +230,6 @@ div.blockjustified {
     color: gray();
 }
 
-div.subtitle.perfbottom  {
-    text-align: center;
-    margin-right: auto;
-    margin-left: auto;
-}
 
 .perflist img {
     display: block;
@@ -204,6 +240,60 @@ div.subtitle.perfbottom  {
     margin-top: 50px;
     filter: grayscale(60%) contrast(40%);
     height: 120px;
+}
+
+.startlist {
+    margin-top: 5%;
+    width: 70%;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.sublist {
+    width:  50%;
+    margin-top: 10%;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.sublist .subtitle{
+    margin-top: 10%;
+    text-align: center;
+}
+
+.sublist img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+    height: 100px;
+}
+
+.startlist .subtitle {
+    color: gray();
+}
+
+ div.startlist div.blockImage{
+     margin-top: 10%;
+     margin-bottom: 10%;
+ }
+
+.startlist img{
+    height: 150px;
+}
+
+#start > div.startlist > div > div > div > div:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+    filter: brightness(70%);
+}
+
+
+.sublist img:hover {
+    transform: scale(1.1);
+    cursor: pointer;
 }
 
 .interfaces img {
@@ -299,12 +389,24 @@ code {
     padding-top: 40px;
     padding-bottom: 40px;
     background-color: #2371b5;
+    box-shadow: 0px 2px 2px 1px rgba(0,0,0,0.55);
 }
 
 .slidingNav li:nth-child(4) {
     background-color: #e68200;
     font-weight: 500;
-    border-radius: 5px;
+    border-radius: 2px;
+}
+
+.slidingNav li {
+    font-weight: 500;
+    border-radius: 2px;
+}
+
+.slidingNav li:hover:not(:last-child) {
+    background-color: #e68200;
+    font-weight: 500;
+    border-radius: 2px;
 }
 
 .slidingNav {
@@ -318,11 +420,9 @@ div.blockImage {
 }
 
 .toptitle p {
-    text-align: center;
-    alignment: center;
-    align-items: center;
+    text-align: justify;
     display: block;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
 }
 
 .sitemap {
@@ -357,14 +457,25 @@ footer.nav-footer {
     position: relative;
     min-height: 200px;
     color: #edffff;
-/*    background: linear-gradient(180deg, #2371b5 0%, #2371b5 75%, #313264 100%);*/
-    background-color: #2371b5;
+    /*    background: linear-gradient(180deg, #2371b5 0%, #2371b5 75%, #313264 100%);*/
+    background: linear-gradient(180deg, #2371b5 0%, #2371b5 55%, #1a5487 100%);
+    box-shadow: 0 0 2px 3px rgba(0,0,0,0.55);
     z-index: 1;
-    background-repeat: no-repeat;
-    background-position: center center;
 }
 
-.fixedHeaderContainer, .nav-footer {
+.startTitle{
+    padding-top: 90px;
+    padding-bottom: 30px;
+    position: relative;
+    min-height: 150px;
+}
+
+.nav-footer {
+/*    background-color: #2371b5;*/
+        background: linear-gradient(180deg, #2371b5 0%, #2371b5 55%, #1a5487 100%);
+}
+
+.fixedHeaderContainer{
     background-color: #2371b5;
 }
 
@@ -448,7 +559,7 @@ body > div.fixedHeaderContainer{
                                 @media only screen and (max-width: 1000px) {
 
 
-                                    .toptitle, .sql, .community, .interfaces, .whatwedo, .perf, .demo {
+                                    .toptitle, .sql, .community, .interfaces, .whatwedo, .perf, .demo, .start {
                                         font-size: 12px;
                                         padding-bottom: 15px;
                                     }
@@ -461,6 +572,7 @@ body > div.fixedHeaderContainer{
 
                                     .title {
                                         font-size: 22px;
+
                                     }
 
 
@@ -538,6 +650,11 @@ body > div.fixedHeaderContainer{
                                         padding-bottom: 40px;
                                     }
 
+                                    .start{
+                                        padding-top: 40px;
+                                        padding-bottom: 40px;
+                                    }
+
 
                                     .perflist img {
                                         height: 50px;
@@ -557,6 +674,42 @@ body > div.fixedHeaderContainer{
                                     .perflist img{
                                         margin-top: 20px;
                                         margin-bottom: 10px;
+                                    }
+
+                                    .startlist img {
+                                        height: 50px;
+                                        margin-left: auto;
+                                        margin-right: auto;
+                                        width: 95%;
+                                    }
+
+                                    .sublist img {
+                                        height: 50px;
+                                        margin-left: auto;
+                                        margin-right: auto;
+                                        width: 95%;
+                                    }
+
+
+
+                                    .startlist div.blockElement.imageAlignSide.imageAlignLeft.threeByGridBlock{
+                                        margin-left: auto;
+                                        margin-right: auto;
+                                        width: 95%;
+                                        display: block;
+                                    }
+
+                                    .startlist img{
+                                        margin-top: 20px;
+                                        margin-bottom: 10px;
+                                    }
+
+                                    .sublist img{
+                                        margin-top: 20px;
+                                        margin-bottom: 10px;
+                                        margin-right: auto;
+                                        margin-left: auto;
+                                        display: block;
                                     }
 
                                     div.subtitle.perfbottom  {
@@ -638,12 +791,14 @@ body > div.fixedHeaderContainer{
 
                                                                 @media only screen and (min-width: 1000px) {
 
-                                                                    .about, .sql, .community, .interfaces, .whatwedo, .perf, .demo {
+                                                                    .about, .sql, .community, .interfaces, .whatwedo, .perf, .start, .demo {
                                                                         font-size: 20px;
                                                                     }
 
                                                                     .title {
                                                                         font-size: 48px;
+                                                                        line-height: 50px;
+                                                                        margin-bottom: 20px;
                                                                     }
 
 
@@ -655,6 +810,7 @@ body > div.fixedHeaderContainer{
 
                                                                     .headTitle {
                                                                         font-size: 35px;
+                                                                        font-weight: bold;
                                                                     }
 
                                                                     .docMainWrapper {
@@ -664,6 +820,7 @@ body > div.fixedHeaderContainer{
 
                                                                     .toptitle p {
                                                                         font-size: 25px;
+                                                                        line-height: 30px;
                                                                     }
 
                                                                     .maintitle {
@@ -699,6 +856,14 @@ body > div.fixedHeaderContainer{
                                                                         height: 120px;
                                                                     }
 
+                                                                    .startlist img {
+                                                                        padding-left: 10%;
+                                                                        padding-right: 10%;
+                                                                        width: 80%;
+                                                                        max-height: 70%;
+                                                                        display: block;
+
+                                                                    }
 
                                                                     .interfaces {
                                                                         margin-bottom: 10px;

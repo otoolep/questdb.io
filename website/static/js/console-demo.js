@@ -1,9 +1,10 @@
+window.addEventListener("scroll", changeCss , false);
 
-window.addEventListener('scroll', function() {
+function changeCss () {
+    const navElement = document.querySelector("body > div.fixedHeaderContainer");
+    this.scrollY > 1 ? navElement.style.backgroundColor = '#1a588c' : navElement.style.backgroundColor = '#2371b5';
+}
 
-    document.getElementById()
-
-});
 
 window.addEventListener('load', function() {
 

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="5e1838a0-6e06-4e3f-aa75-de6d8e6cdfa0"
+   data-name="Layer 1"
+   width="1007.04"
+   height="858"
+   viewBox="0 0 1007.04 858"
+   version="1.1"
+   sodipodi:docname="tuto.svg"
+   inkscape:version="0.92.4 (5da689c313, 2019-01-14)">
+  <metadata
+     id="metadata98">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1794"
+     inkscape:window-height="861"
+     id="namedview96"
+     showgrid="false"
+     inkscape:zoom="0.27505828"
+     inkscape:cx="-87.263899"
+     inkscape:cy="429.00001"
+     inkscape:window-x="2062"
+     inkscape:window-y="252"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="5e1838a0-6e06-4e3f-aa75-de6d8e6cdfa0" />
+  <defs
+     id="defs9">
+    <linearGradient
+       id="cc082665-c41a-43d9-8451-73726d32e49c"
+       x1="569.66"
+       y1="824.63"
+       x2="569.66"
+       y2="70.6"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         offset="0"
+         stop-color="gray"
+         stop-opacity="0.25"
+         id="stop2" />
+      <stop
+         offset="0.54"
+         stop-color="gray"
+         stop-opacity="0.12"
+         id="stop4" />
+      <stop
+         offset="1"
+         stop-color="gray"
+         stop-opacity="0.1"
+         id="stop6" />
+    </linearGradient>
+  </defs>
+  <title
+     id="title11">reading list</title>
+  <polygon
+     points="425.91,550.1 425.91,530.13 238.4,489.08 225.08,499.06 "
+     id="polygon67"
+     transform="matrix(1.832594,0,0,1.832594,-296.71051,-724.01752)"
+     style="fill:#e4e6ed" />
+  <polygon
+     points="425.91,550.1 425.91,530.13 626.74,485.75 640.05,495.74 "
+     id="polygon69"
+     transform="matrix(1.832594,0,0,1.832594,-296.71051,-724.01752)"
+     style="fill:#e4e6ed" />
+  <polygon
+     points="412.59,803.08 249.49,752.04 212.88,489.08 399.28,532.35 "
+     id="polygon71"
+     style="fill:#0088aa"
+     transform="matrix(1.832594,0,0,1.832594,-296.71051,-724.01752)" />
+  <polygon
+     points="461.41,806.41 645.6,749.82 648.93,489.08 450.32,534.57 "
+     id="polygon73"
+     style="fill:#0088aa"
+     transform="matrix(1.832594,0,0,1.832594,-296.71051,-724.01752)" />
+  <path
+     d="m 422.80254,251.56395 c 0,0 59.63262,36.65187 122.32567,0 l 12.20506,506.30908 h -97.9155 z"
+     id="path75"
+     style="fill:#006680;stroke-width:1.83259416"
+     inkscape:connector-curvature="0" />
+  <path
+     d="m 148.31661,166.16505 v 14.23927 l 335.493,67.09126 c 0,0 -170.79777,-63.04123 -335.493,-81.33053 z"
+     id="path79"
+     inkscape:connector-curvature="0"
+     style="fill:#d8d9e5;stroke-width:1.83259416" />
+  <path
+     d="m 845.74693,158.02834 v 14.23926 l -361.93732,75.22798 c 0,0 197.20544,-71.15963 361.93732,-89.46724 z"
+     id="path81"
+     inkscape:connector-curvature="0"
+     style="fill:#d8d9e5;stroke-width:1.83259416" />
+</svg>

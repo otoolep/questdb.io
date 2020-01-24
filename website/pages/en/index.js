@@ -88,32 +88,17 @@ class Index extends React.Component {
 
         const Title = () => (
             <div className="toptitle">
-                <Block padding='bottom'>
-                    {[
-                        /*                    {
-                                                image: `${baseUrl}img/speed.svg`,
-                                                imageAlign: 'left',
-                                            },*/
-                        {
-                            content:
-                                '<div align="center">' +
-                                '<span class="title"><center>Fast relational time-series</center></span>' +
-                                '</div>'
-                        }
-                    ]
-                    }
-                </Block>
                 <Block>
                     {[
                         {
+                            image: `${baseUrl}img/datavis.svg`,
                             content:
-                                '<center>' +
-                                '<p>QuestDB is a fast SQL database for Hybrid Transactional, Analytical and Time Series processing. ' +
+                               '<span class="title">Take on time-series in an instant</span>' +
+                                '<p class="left">QuestDB is an open-source time-series database to store, stream, query data and analytics at the speed of light, with the the convenience of SQL.</p>' +
                                 '<br>' +
                                 '<ul class="buttons">' +
-                                '<li class="cta"><a href="/docs/getstarted">Get started</a></li>' +
-                                '</ul>' +
-                                '</center>'
+                                '<li class="cta"><a href="/getstarted">Get started</a></li>' +
+                                '</ul>'
                         }
                     ]
                     }
