@@ -8,7 +8,6 @@
 const React = require('react');
 const CompLibrary = require('../../core/CompLibrary.js');
 
-const MarkdownBlock = CompLibrary.MarkdownBlock; /* Used to read markdown */
 const Container = CompLibrary.Container;
 const GridBlock = CompLibrary.GridBlock;
 
@@ -29,31 +28,10 @@ class HomeSplash extends React.Component {
             </div>
         );
 
-        const Logo = props => (
-            <div className="projectLogo">
-                <img src={props.img_src} alt="Project Logo"/>
-            </div>
-        );
-
         const ProjectTitle = () => (
             <span/>
         );
 
-        const PromoSection = props => (
-            <div className="section promoSection">
-                <div className="promoRow">
-                    <div className="pluginRowBlock">{props.children}</div>
-                </div>
-            </div>
-        );
-
-        const Button = props => (
-            <div className="pluginWrapper buttonWrapper">
-                <a className="button" href={props.href} target={props.target}>
-                    {props.children}
-                </a>
-            </div>
-        );
 
 
         return (
@@ -90,13 +68,9 @@ class Index extends React.Component {
             <div className="startTitle">
                 <Block>
                     {[
-                        /*                    {
-                                                image: `${baseUrl}img/speed.svg`,
-                                                imageAlign: 'left',
-                                            },*/
                         {
                             content:
-                                '<span class="title">Get Started</span>'
+                                '<span class="title" id="getStartedTitle">Get Started</span>'
                         }
                     ]
                     }
@@ -114,18 +88,18 @@ class Index extends React.Component {
                         {[
                             {
                                 content:
-                                    ' <img src="img/package.svg" id="packageIcon"/>' +
-                                    '<div class="subtitle">Install QuestDB</div>'
+                                    '<img src="img/package.svg" id="packageIcon"/>' +
+                                    '<div class="subtitle bold">Install</div>'
                             },
                             {
                                 content:
                                     ' <img src="img/tuto.svg" id="tutoIcon"/>' +
-                                    '<div class="subtitle">Run Tutorials</div>'
+                                    '<div class="subtitle bold">Discover</div>'
                             },
                             {
                                 content:
                                     ' <img src="img/community.svg" id="questionIcon"/>' +
-                                    '<div class="subtitle">Ask a question</div>'
+                                    '<div class="subtitle bold">Get help</div>'
                             },
                         ]}
                     </Block>
@@ -134,77 +108,96 @@ class Index extends React.Component {
         );
 
         const GetStartedSubInstall = () => (
-            <div className="sublist" id="getStartedInstall">
+            <div className="start" id="getStartedInstall">
+                <div className="subtitle">How would you like to run QuestDB?</div>
+                <div className="startlist">
                 <Block layout="threeColumn">
                     {[
                         {
-                            image: `${baseUrl}img/docker.svg`,
                             content:
-                                '<div class="subtitle">As a Docker image</div>'
+                                '<a  href="/docs/docker"><img src="img/docker.svg"/></a>' +
+                                '<div class="subtitle bold" >Docker image</div>',
                         },
                         {
-                            image: `${baseUrl}img/box.svg`,
                             content:
-                                '<div class="subtitle">Manually with binaries</div>'
+                                '<a  href="/docs/manualinstall"><img src="img/box.svg"/></a>' +
+                                '<div class="subtitle bold">Manually with binaries</div>',
                         },
                         {
-                            image: `${baseUrl}img/dependency.svg`,
                             content:
-                                '<div class="subtitle">As a Java dependency</div>'
+                                '<a  href="/docs/dependency"><img src="img/dependency.svg"/></a>' +
+                                '<div class="subtitle bold">Java dependency</div>',
                         },
                     ]}
                 </Block>
+                </div>
             </div>
         );
 
         const GetStartedSubQuestion = () => (
-            <div className="sublist" id="getStartedQuestion">
+            <div className="start" id="getStartedQuestion">
+                <div className="subtitle">How would you like to get help?</div>
+                <div className="startlist">
                 <Block layout="threeColumn">
                     {[
                         {
-                            image: `${baseUrl}img/slack.svg`,
                             content:
-                                '<div class="subtitle">Join Slack</div>'
+                                '<a  href="https://join.slack.com/t/questdb/shared_invite/enQtNzk4Nzg4Mjc2MTE2LTEzZThjMzliMjUzMTBmYzVjYWNmM2UyNWJmNDdkMDYyZmE0ZDliZTQxN2EzNzk5MDE3Zjc1ZmJiZmFiZTIwMGY>"><img src="img/slack.svg"/></a>' +
+                                '<div class="subtitle bold">Ask on Slack</div>',
                         },
                         {
-                            image: `${baseUrl}img/github.svg`,
                             content:
-                                '<div class="subtitle">Raise an issue</div>'
+                                '<a  href="https://github.com/questdb/questdb/issues"><img src="img/github.svg"/></a>' +
+                                '<div class="subtitle bold">Raise an issue on Github</div>',
+                        },
+                        {
+                            content:
+                                '<a  href="/docs/interfaces"><img src="img/tuto.svg"/></a>' +
+                                '<div class="subtitle bold">Search the docs</div>',
                         },
                     ]}
                 </Block>
+                </div>
             </div>
         );
 
         const GetStartedSubTuto = () => (
-            <div className="sublist" id="getStartedTuto">
+            <div className="start" id="getStartedTuto">
+                <div className="subtitle">What would you like to do?</div>
+                <div className="startlist">
                 <Block layout="threeColumn">
                     {[
                         {
-                            image: `${baseUrl}img/slack.svg`,
                             content:
-                                '<div class="subtitle">Join Slack</div>'
+                                '<a  href="http://try.questdb.io:9000/index.html"><img src="img/tire.svg"/></a>' +
+                                '<div class="subtitle bold">Query NY Taxi data online</div>',
                         },
                         {
-                            image: `${baseUrl}img/github.svg`,
                             content:
-                                '<div class="subtitle">Raise an issue</div>'
+                                '<a  href="docs/tutorial/"><img src="img/rocket.svg"/></a>' +
+                                '<div class="subtitle bold">First Database tutorial</div>',
                         },
+                        {
+                            content:
+                                '<a  href="/docs/crud"><img src="img/crud.svg"/></a>' +
+                                '<div class="subtitle bold">Learn to perform CRUD operations</div>',
+                        },
+
                     ]}
                 </Block>
+                </div>
             </div>
         );
 
-
-        /*
-                const GetStartedSubTutorial = () => (
-                    <div></div>
-                );
-
-                const GetStartedSubInstall = () => (
-                    <div></div>
-                );
-        */
+        const BackButton = () => (
+            <div className="backButton" id="backButton">
+                <center>
+                <ul class="buttonsDark">
+                <li class="cta"><a href="/getstarted">Back</a></li>
+                </ul>
+                </center>
+            </div>
+        );
 
 
         return (
@@ -216,6 +209,7 @@ class Index extends React.Component {
                     <GetStartedSubInstall/>
                     <GetStartedSubQuestion/>
                     <GetStartedSubTuto/>
+                    <BackButton/>
                 </div>
             </div>
         );

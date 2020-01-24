@@ -76,7 +76,7 @@ Here we avoided repetitive aggregation expressions without extra furniture synta
 
 We have extended SQL language to support our data storage model and simplify semantics of time series queries.
 
-- `LATEST BY` (find out more **[here](startCRUD.md)**)
+- `LATEST BY` (find out more **[here](tutoCRUD.md)**)
 - `SAMPLE BY`
 
 Please follow the links for detailed description of these clauses.

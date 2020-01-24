@@ -31,7 +31,7 @@ const siteConfig = {
     headerLinks:
     [
         {href: "https://github.com/questdb/questdb", label: 'GitHub'},
-        {doc: 'docstructure', label: 'Docs'},
+        {doc: 'interfaces', label: 'Docs'},
         {blog: true, label: 'Blog'},
         {href: '/getstarted', label: 'Get Started'},
     ],

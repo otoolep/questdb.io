@@ -16,7 +16,11 @@ h1.postHeaderTitle {
     font-weight: normal;
 }
 
-#getStartedInstall, #getStartedQuestion, #getStartedTuto{
+.bold {
+    font-weight: bold;
+}
+
+#getStartedInstall, #getStartedQuestion, #getStartedTuto, #backButton{
     display: none;
 }
 
@@ -31,10 +35,25 @@ body > div.navPusher > div > div.mainContainer > div.toptitle > div > div{
     width: 70%;
 }
 
-#start > div.startlist > div > div > div > div{
-    border: 1px solid gray;
-    box-shadow: 0px 4px 2px 1px rgba(0,0,0,0.55);
+#start > div.startlist > div > div > div > div,
+#getStartedInstall > div.startlist > div > div > div > div,
+#getStartedQuestion > div.startlist > div > div > div > div,
+#getStartedTuto > div.startlist > div > div > div > div{
+    box-shadow: 0px 3px 5px 3px rgba(0,0,0,0.20);
+    transition: 0.8s;
 }
+
+
+#start > div.startlist > div > div > div > div:hover,
+#getStartedInstall > div.startlist > div > div > div > div:hover,
+#getStartedQuestion > div.startlist > div > div > div > div:hover,
+#getStartedTuto > div.startlist > div > div > div > div:hover{
+    transform: scale(1.1);
+    cursor: pointer;
+    transition: 0.5s;
+    background-color: #fdffff;
+}
+
 
 .toptitle img{
     max-height: 90%;
@@ -56,6 +75,16 @@ body > div.navPusher > div > div.mainContainer > div.toptitle > div > div{
 }
 
 .whatwedo b {
+    color: lightgray;
+}
+
+
+.icons {
+    font-size: 9px;
+    color: lightgray;
+}
+
+.icons a{
     color: white;
 }
 
@@ -154,6 +183,20 @@ div.blockjustified {
     color: white;
 }
 
+.buttonsDark {
+    padding: 0;
+    margin-top: 25px;
+    margin-bottom: 20px;
+    color: blue;
+}
+
+.buttonsDark li.cta {
+    display: inline-block;
+    color: blue;
+    transition: transform 0.2s;
+}
+
+
 .buttons li.cta {
     display: inline-block;
     color: white;
@@ -250,26 +293,6 @@ div.subtitle.perfbottom  {
     margin-left: auto;
 }
 
-.sublist {
-    width:  50%;
-    margin-top: 10%;
-    display: block;
-    margin-right: auto;
-    margin-left: auto;
-}
-
-.sublist .subtitle{
-    margin-top: 10%;
-    text-align: center;
-}
-
-.sublist img{
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 70%;
-    height: 100px;
-}
 
 .startlist .subtitle {
     color: gray();
@@ -280,21 +303,10 @@ div.subtitle.perfbottom  {
      margin-bottom: 10%;
  }
 
-.startlist img{
+.start img{
     height: 150px;
 }
 
-#start > div.startlist > div > div > div > div:hover {
-    transform: scale(1.1);
-    cursor: pointer;
-    filter: brightness(70%);
-}
-
-
-.sublist img:hover {
-    transform: scale(1.1);
-    cursor: pointer;
-}
 
 .interfaces img {
     filter: grayscale(100%);
@@ -683,14 +695,6 @@ body > div.fixedHeaderContainer{
                                         width: 95%;
                                     }
 
-                                    .sublist img {
-                                        height: 50px;
-                                        margin-left: auto;
-                                        margin-right: auto;
-                                        width: 95%;
-                                    }
-
-
 
                                     .startlist div.blockElement.imageAlignSide.imageAlignLeft.threeByGridBlock{
                                         margin-left: auto;
@@ -702,14 +706,6 @@ body > div.fixedHeaderContainer{
                                     .startlist img{
                                         margin-top: 20px;
                                         margin-bottom: 10px;
-                                    }
-
-                                    .sublist img{
-                                        margin-top: 20px;
-                                        margin-bottom: 10px;
-                                        margin-right: auto;
-                                        margin-left: auto;
-                                        display: block;
                                     }
 
                                     div.subtitle.perfbottom  {
