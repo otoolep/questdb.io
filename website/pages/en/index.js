@@ -92,9 +92,10 @@ class Index extends React.Component {
                     {[
                         {
                             image: `${baseUrl}img/datavis.svg`,
+                        },{
                             content:
                                '<span class="title">Take on time-series in an instant</span>' +
-                                '<p class="left">QuestDB is an open-source time-series database to store, stream, query data and analytics at the speed of light, with the the convenience of SQL.</p>' +
+                                '<p class="left subTopTitle">QuestDB is an open-source time-series database to store, stream, query data and analytics at the speed of light, with the the convenience of SQL.</p>' +
                                 '<br>' +
                                 '<ul class="buttons">' +
                                 '<li class="cta"><a href="/getstarted">Get started</a></li>' +
@@ -265,12 +266,12 @@ class Index extends React.Component {
                             {
                                 image: `${baseUrl}img/stackicon.svg`,
                                 content:
-                                    '<div class="subtitle">No dependency</div>'
+                                    '<div class="subtitle">No software dependency</div>'
                             },
                             {
-                                image: `${baseUrl}img/garbageicon.svg`,
+                                image: `${baseUrl}img/filter.svg`,
                                 content:
-                                    '<div class="subtitle">No garbage generation</div>'
+                                    '<div class="subtitle">No GC performance bottleneck</div>'
                             },
                             {
                                 image: `${baseUrl}img/algoicon.svg`,

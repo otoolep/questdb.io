@@ -33,7 +33,6 @@ class HomeSplash extends React.Component {
         );
 
 
-
         return (
             <SplashContainer>
                 <div className="inner">
@@ -111,25 +110,25 @@ class Index extends React.Component {
             <div className="start" id="getStartedInstall">
                 <div className="subtitle">How would you like to run QuestDB?</div>
                 <div className="startlist">
-                <Block layout="threeColumn">
-                    {[
-                        {
-                            content:
-                                '<a  href="/docs/docker"><img src="img/docker.svg"/></a>' +
-                                '<div class="subtitle bold" >Docker image</div>',
-                        },
-                        {
-                            content:
-                                '<a  href="/docs/manualinstall"><img src="img/box.svg"/></a>' +
-                                '<div class="subtitle bold">Manually with binaries</div>',
-                        },
-                        {
-                            content:
-                                '<a  href="/docs/dependency"><img src="img/dependency.svg"/></a>' +
-                                '<div class="subtitle bold">Java dependency</div>',
-                        },
-                    ]}
-                </Block>
+                    <Block layout="threeColumn">
+                        {[
+                            {
+                                content:
+                                    '<a  href="/docs/docker"><img src="img/docker.svg"/></a>' +
+                                    '<div class="subtitle bold" >Docker image</div>',
+                            },
+                            {
+                                content:
+                                    '<a  href="/docs/manualinstall"><img src="img/box.svg"/></a>' +
+                                    '<div class="subtitle bold">Manually with binaries</div>',
+                            },
+                            {
+                                content:
+                                    '<a  href="/docs/dependency"><img src="img/dependency.svg"/></a>' +
+                                    '<div class="subtitle bold">Java dependency</div>',
+                            },
+                        ]}
+                    </Block>
                 </div>
             </div>
         );
@@ -138,25 +137,25 @@ class Index extends React.Component {
             <div className="start" id="getStartedQuestion">
                 <div className="subtitle">How would you like to get help?</div>
                 <div className="startlist">
-                <Block layout="threeColumn">
-                    {[
-                        {
-                            content:
-                                '<a  href="https://join.slack.com/t/questdb/shared_invite/enQtNzk4Nzg4Mjc2MTE2LTEzZThjMzliMjUzMTBmYzVjYWNmM2UyNWJmNDdkMDYyZmE0ZDliZTQxN2EzNzk5MDE3Zjc1ZmJiZmFiZTIwMGY>"><img src="img/slack.svg"/></a>' +
-                                '<div class="subtitle bold">Ask on Slack</div>',
-                        },
-                        {
-                            content:
-                                '<a  href="https://github.com/questdb/questdb/issues"><img src="img/github.svg"/></a>' +
-                                '<div class="subtitle bold">Raise an issue on Github</div>',
-                        },
-                        {
-                            content:
-                                '<a  href="/docs/interfaces"><img src="img/tuto.svg"/></a>' +
-                                '<div class="subtitle bold">Search the docs</div>',
-                        },
-                    ]}
-                </Block>
+                    <Block layout="threeColumn">
+                        {[
+                            {
+                                content:
+                                    '<a  href="https://join.slack.com/t/questdb/shared_invite/enQtNzk4Nzg4Mjc2MTE2LTEzZThjMzliMjUzMTBmYzVjYWNmM2UyNWJmNDdkMDYyZmE0ZDliZTQxN2EzNzk5MDE3Zjc1ZmJiZmFiZTIwMGY>"><img src="img/slack.svg"/></a>' +
+                                    '<div class="subtitle bold">Ask on Slack</div>',
+                            },
+                            {
+                                content:
+                                    '<a  href="https://github.com/questdb/questdb/issues"><img src="img/github.svg"/></a>' +
+                                    '<div class="subtitle bold">Raise an issue on Github</div>',
+                            },
+                            {
+                                content:
+                                    '<a  href="/docs/interfaces"><img src="img/tuto.svg"/></a>' +
+                                    '<div class="subtitle bold">Search the docs</div>',
+                            },
+                        ]}
+                    </Block>
                 </div>
             </div>
         );
@@ -165,26 +164,26 @@ class Index extends React.Component {
             <div className="start" id="getStartedTuto">
                 <div className="subtitle">What would you like to do?</div>
                 <div className="startlist">
-                <Block layout="threeColumn">
-                    {[
-                        {
-                            content:
-                                '<a  href="http://try.questdb.io:9000/index.html"><img src="img/tire.svg"/></a>' +
-                                '<div class="subtitle bold">Query NY Taxi data online</div>',
-                        },
-                        {
-                            content:
-                                '<a  href="docs/tutorial/"><img src="img/rocket.svg"/></a>' +
-                                '<div class="subtitle bold">First Database tutorial</div>',
-                        },
-                        {
-                            content:
-                                '<a  href="/docs/crud"><img src="img/crud.svg"/></a>' +
-                                '<div class="subtitle bold">Learn to perform CRUD operations</div>',
-                        },
+                    <Block layout="threeColumn">
+                        {[
+                            {
+                                content:
+                                    '<a  href="http://try.questdb.io:9000/index.html"><img src="img/tire.svg"/></a>' +
+                                    '<div class="subtitle bold">Query NY Taxi data online</div>',
+                            },
+                            {
+                                content:
+                                    '<a  href="docs/tutorial/"><img src="img/rocket.svg"/></a>' +
+                                    '<div class="subtitle bold">First Database tutorial</div>',
+                            },
+                            {
+                                content:
+                                    '<a  href="/docs/crud"><img src="img/crud.svg"/></a>' +
+                                    '<div class="subtitle bold">Learn to perform CRUD operations</div>',
+                            },
 
-                    ]}
-                </Block>
+                        ]}
+                    </Block>
                 </div>
             </div>
         );
@@ -192,9 +191,9 @@ class Index extends React.Component {
         const BackButton = () => (
             <div className="backButton" id="backButton">
                 <center>
-                <ul class="buttonsDark">
-                <li class="cta"><a href="/getstarted">Back</a></li>
-                </ul>
+                    <ul class="buttonsDark">
+                        <li class="cta"><a href="/getstarted">Back</a></li>
+                    </ul>
                 </center>
             </div>
         );
@@ -204,12 +203,14 @@ class Index extends React.Component {
             <div>
                 <HomeSplash siteConfig={siteConfig} language={language}/>
                 <div className="mainContainer">
-                    <Title/>
-                    <GetStarted/>
-                    <GetStartedSubInstall/>
-                    <GetStartedSubQuestion/>
-                    <GetStartedSubTuto/>
-                    <BackButton/>
+                    <div className="centeredContainer">
+                        <Title/>
+                        <GetStarted/>
+                        <GetStartedSubInstall/>
+                        <GetStartedSubQuestion/>
+                        <GetStartedSubTuto/>
+                        <BackButton/>
+                    </div>
                 </div>
             </div>
         );
