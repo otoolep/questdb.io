@@ -69,17 +69,17 @@ SELECT symbol, max(price) FROM transactions;
 > Note that in the above example, GROUP BY is not necessary and therefore is omitted
 
 ### round()
-`round` returns the **closest** value with the specified precision.
+`round` returns the **closest** value with the specified `scale`. 
 
 Syntax:
 
-`round(column_name, precision)`
+`round(column_name, scale)`
 
 where:
 - `column_name` is the name of the column where you would like to round values
-- `precision` is 
+- `scale` is 
     - when `positive`: the number of decimals **after** the floating point. 
-    - when `negative` then number of digits **before** the floating point. 
+    - when `negative` then number of rounded digits **before** the floating point. 
 
 Example:
 ```sql
@@ -102,11 +102,11 @@ SELECT d, round(d, -2), round(d, -1), round(d,0), round(d,1), round(d,2) FROM db
 ```
 
 ### round_down()
-`round_down` behaves like `round` but instead of rounding to the closest value of the required precision, 
+`round_down` behaves like `round` but instead of rounding to the closest value of the required scale, 
 will systematically round values down.
 
 ### roud_up()
-`round_up` behaves like `round` but instead of rounding to the closest value of the required precision, 
+`round_up` behaves like `round` but instead of rounding to the closest value of the required scale, 
 will systematically round values up.
 
 ### abs()

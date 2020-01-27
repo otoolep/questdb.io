@@ -80,15 +80,13 @@ class Index extends React.Component {
 
         const GetStarted = () => (
             <div className="start" id="start">
-                <div className="subtitle">What would you like to do?</div>
-
                 <div className="startlist">
                     <Block layout="threeColumn">
                         {[
                             {
                                 content:
-                                    '<img src="img/package.svg" id="packageIcon"/>' +
-                                    '<div class="subtitle bold">Install</div>'
+                                        '<img src="img/package.svg" id="packageIcon"/>' +
+                                        '<div class="subtitle bold">Install</div>'
                             },
                             {
                                 content:
@@ -108,7 +106,6 @@ class Index extends React.Component {
 
         const GetStartedSubInstall = () => (
             <div className="start" id="getStartedInstall">
-                <div className="subtitle">How would you like to run QuestDB?</div>
                 <div className="startlist">
                     <Block layout="threeColumn">
                         {[
@@ -135,7 +132,6 @@ class Index extends React.Component {
 
         const GetStartedSubQuestion = () => (
             <div className="start" id="getStartedQuestion">
-                <div className="subtitle">How would you like to get help?</div>
                 <div className="startlist">
                     <Block layout="threeColumn">
                         {[
@@ -162,7 +158,6 @@ class Index extends React.Component {
 
         const GetStartedSubTuto = () => (
             <div className="start" id="getStartedTuto">
-                <div className="subtitle">What would you like to do?</div>
                 <div className="startlist">
                     <Block layout="threeColumn">
                         {[
