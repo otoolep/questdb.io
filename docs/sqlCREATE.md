@@ -85,6 +85,21 @@ Creating a table with partition by `DAY`:
 ```sql
 CREATE TABLE orders(sym SYMBOL, amount DOUBLE, side BYTE, timestamp TIMESTAMP) PARTITION BY DAY;
 ```
+## INDEX
+
+QuestDB supports indexes on `symbol` fields. To create an index on a symbol field when creating a table, please use the following syntax:
+
+### Syntax
+```sql
+CREATE TABLE 'TABLE'(symbol_field symbol INDEX, ...);
+```
+
+### Example
+```sql
+CREATE TABLE orders(sym SYMBOL INDEX, anount DOUBLE, side BYTE, timestamp TIMESTAMP);
+```
+
+> Indexes can also be created on the fly. For more information about `INDEX` please refer to the **[INDEX section](sqlINDEX.md)**.
 
 > `Windows users`: NTFS tends to considerably slow down as the number of directories increases. This in turn affects the
 >database performance as it needs to access the filesystem of the host machine. If you are running QuestDB on Windows, we recommend

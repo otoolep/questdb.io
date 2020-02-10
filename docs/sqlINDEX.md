@@ -1,8 +1,9 @@
 ---
-id: indexes
-title: INDEXES
-sidebar_label: Indexes
+id: index
+title: INDEX
+sidebar_label: INDEX
 ---
+
 
 An index stores row locations for each value of the target column in order to provide faster read access.
 It allows to bypass full table scans by directly accessing the relevant rows on queries with `WHERE` conditions.
@@ -10,8 +11,36 @@ It allows to bypass full table scans by directly accessing the relevant rows on 
 > Indexing is available for `SYMBOL` columns. Index support for other types will be added over time.
 
 There are two ways to create an index:
-- At table creation time using  [CREATE TABLE](sqlCREATE.md#index).
-- Using  [ALTER TABLE](sqlALTER.md#add-index-to-column) 
+- When using `CREATE TABLE`.
+- On the fly
+
+## CREATE TABLE ... INDEX
+
+Index is created during a `CREATE TABLE` statement. To index a `symbol` column, simply declare the schema as normal,
+and add INDEX after `symbol` within the field 
+```sqls
+CREATE TABLE `NAME`(col_symbol symbol INDEX);
+```
+
+For example:
+```sql
+CREATE TABLE trades (isBuy booleam, instrument symbol INDEX, quantity int, price double);
+```
+
+## ALTER TABLE .. ALTER COLUMN .. ADD INDEX
+
+`ADD INDEX` is used to create an index for an existing `symbol` column. This can be done on the fly on an existing table.
+
+#### Syntax
+```sql
+ALTER TABLE 'TABLE' ALTER COLUMN 'COLUMN_NAME' ADD INDEX;
+```
+
+#### Example
+```sql
+ALTER TABLE trades ALTER COLUMN symbol ADD INDEX;
+```
+
 
 ## How does Index work
 

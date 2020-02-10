@@ -19,20 +19,20 @@
     "Reference": [
       "datatypes",
       "storagemodel",
-      "sql",
       "functions",
-      "indexes",
-      "joins",
       "casting"
     ],
     "SQL Reference": [
-      "alter",
-      "copy",
+      "sql",
       "create",
+      "alter",
+      "truncate",
       "drop",
       "insert",
+      "index",
+      "copy",
       "select",
-      "truncate",
+      "join",
       "union"
     ],
     "FAQ": [
