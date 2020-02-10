@@ -40,7 +40,7 @@ For example in `SELECT . . FROM` queries. You can choose any table name you woul
 
 Example:
 ```sql
-syb SYMBOL, price DOUBLE, timestamp TIMESTAMP, str STRING
+CREATE TABLE test(symb SYMBOL, px DOUBLE, ts TIMESTAMP, str STRING);
 ```
 
 ### OPTIONS
@@ -77,23 +77,37 @@ syb SYMBOL, price DOUBLE, timestamp TIMESTAMP, str STRING
 ### Examples
 Creating a table. No partition is set. It will by default create one single partition.
 ```sql
-CREATE TABLE orders (sym SYMBOL, amount DOUBLE, side BYTE, timestamp TIMESTAMP) TIMESTAMP(timestamp);
+CREATE TABLE orders(sym SYMBOL, amount DOUBLE, side BYTE, timestamp TIMESTAMP) TIMESTAMP(timestamp);
 ```
 
 Creating a table with partition by `DAY`:
 ```sql
-CREATE TABLE orders (sym SYMBOL, amount DOUBLE, side BYTE, timestamp TIMESTAMP) PARTITION BY DAY;
+CREATE TABLE orders(sym SYMBOL, amount DOUBLE, side BYTE, timestamp TIMESTAMP) PARTITION BY DAY;
 ```
+## INDEX
+
+QuestDB supports indexes on `symbol` fields. To create an index on a symbol field when creating a table, please use the following syntax:
+
+### Syntax
+```sql
+CREATE TABLE 'TABLE'(symbol_field symbol INDEX, ...);
+```
+
+### Example
+```sql
+CREATE TABLE orders(sym SYMBOL INDEX, anount DOUBLE, side BYTE, timestamp TIMESTAMP);
+```
+
+> Indexes can also be created on the fly. For more information about `INDEX` please refer to the **[INDEX section](sqlINDEX.md)**.
 
 ## SYMBOL CACHE
 
 ### Usage
-Where your `TYPE` is `SYMBOL`, you can use the `CACHE` flag to cache the symbol and make access faster.
+`SYMBOL` converts strings as integers and stores a dictionary of `INT <-> STRING`. This allows to store strings as integers and 
+seamlessly reduces storage requirements and compexity for string operations. 
 
-> Caching symbol values is optional. 
-
-When `SYMBOL` is `CACHED`, the `INT <-> STRING` dictionary is maintained on Java Heap. This allows faster dictionary access 
-for both write and read operations. 
+When `SYMBOL` is `CACHED`, the `INT <-> STRING` dictionary is maintained on the Java Heap. This allows faster dictionary access 
+for both read and write operations. 
 
 `NOCACHE` or omitting this option will maintain dictionary directly on memory mapped file. This is reduces memory requirement 
 dramatically and allows for very large dictionary size. `NOCACHE` slows down write and read performance of `SYMBOL` as a penalty.
@@ -104,30 +118,30 @@ dramatically and allows for very large dictionary size. `NOCACHE` slows down wri
 ### Syntax
 To flag a `SYMBOL` column as `CACHE`, simply add `CACHE` next to the declaration.
 ```sql
-CREATE TABLE orders (sym SYMBOL ['CACHE'])
+CREATE TABLE orders(sym SYMBOL ['CACHE'])
 ``` 
 
 `[CACHE]` is optional. If you do not want to `CACHE` the symbol column in question, you can either explicitly declare:
 ```sql
-CREATE TABLE orders (sym SYMBOL NOCACHE)
+CREATE TABLE orders(sym SYMBOL NOCACHE)
 ``` 
 
 or omit `CACHE` and `NOCACHE` altogether, which is equivalent:
 ```sql
-CREATE TABLE orders (sym SYMBOL)
+CREATE TABLE orders(sym SYMBOL)
 ```
 
 ### Example
 The following syntax is used to declare a symbol column as `CACHE`:
 ```sql
-CREATE TABLE orders (sym SYMBOL CACHE, amount DOUBLE, side BYTE, timestamp TIMESTAMP)
+CREATE TABLE orders(sym SYMBOL CACHE, amount DOUBLE, side BYTE, timestamp TIMESTAMP)
 ```
 
 The following syntax is used to declare a symbol column as `NOCACHE`:
 ```sql
-CREATE TABLE orders (sym SYMBOL NOCACHE, amount DOUBLE, side BYTE, timestamp TIMESTAMP)
+CREATE TABLE orders(sym SYMBOL NOCACHE, amount DOUBLE, side BYTE, timestamp TIMESTAMP)
 // is equivalent to //
-CREATE TABLE orders (sym SYMBOL, amount DOUBLE, side BYTE, timestamp TIMESTAMP)
+CREATE TABLE orders(sym SYMBOL, amount DOUBLE, side BYTE, timestamp TIMESTAMP)
 ```
 
 

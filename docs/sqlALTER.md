@@ -7,7 +7,7 @@ sidebar_label: ALTER TABLE
 ## ALTER TABLE
 `ALTER TABLE` is used to add modify the structure of an existing table.
 
-### ADD
+### ADD COLUMN
 
 ### Overview
 `ADD` is used to add a new column to an existing table
@@ -29,6 +29,23 @@ The following example adds a new column called `comment` that is of `STRING` typ
 ```sql
 ALTER TABLE ratings ADD COLUMN comment STRING;
 ```
+
+## ALTER COLUMN .. ADD INDEX
+
+### Overview
+`ADD INDEX` is used to create an index for an existing `symbol` column.
+
+### Syntax
+```sql
+ALTER TABLE 'TABLE' ALTER COLUMN 'COLUMN_NAME' ADD INDEX;
+```
+
+### Example
+```sql
+ALTER TABLE trades ALTER COLUMN symbol ADD INDEX;
+```
+
+> For more information about `INDEX` please refer to the **[INDEX section](sqlINDEX.md)**.
 
 ## DROP COLUMN
 
@@ -96,27 +113,3 @@ Drop several partitions
 ```sql
 ALTER TABLE my_table DROP PARTITION '2018','2019';
 ```
-
-## ALTER COLUMN
-
-### Overview
-`ALTER` is used to alter the type of a given column.
-
-### Syntax
-Adding a column is done with the following syntax:
-```sql
-ALTER TABLE 'TABLE' ALTER COLUMN 'COLUMN_NAME' 'NEW_TYPE';
-```
-
-### Parameters
-`TABLE` is the name of the table you would like to `ALTER`
-`COLUMN_NAME` is the name of the column to be altered
-`NEW_TYPE` is the new **[data type](refDATATYPES.md)** for the column.
-
-### Examples
-The following example converts `movieId` that is of `LONG` type to `DOUBLE`
-
-```sql
-ALTER TABLE ratings ALTER COLUMN movieId DOUBLE;
-```
-

@@ -32,6 +32,7 @@
       "truncate",
       "drop",
       "insert",
+      "index",
       "copy",
       "select",
       "join",
