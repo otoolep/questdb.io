@@ -1,7 +1,7 @@
 ---
 id: sql
-title: SQL implementation
-sidebar_label: SQL implementation
+title: SQL Overview
+sidebar_label: SQL Overview
 ---
 
 ## Introduction

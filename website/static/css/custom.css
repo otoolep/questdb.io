@@ -225,3 +225,12 @@ div.about li {
     background-image:
             radial-gradient(circle at 10px 26px, yellow 20px, transparent 21px);
 }
+
+article h2, article h3, article h4 {
+    margin-top: 2em;
+}
+
+article a {
+    color: #d44d38;
+    font-weight: 400;
+}

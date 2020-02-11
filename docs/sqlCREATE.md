@@ -4,10 +4,7 @@ title: CREATE TABLE
 sidebar_label: CREATE TABLE
 ---
 
-## CREATE TABLE
-
-### Overview
-`CREATE TABLE` is used to create a new table in your database.  
+Creates new table in the database  
 
 ### Syntax
 General syntax is as follows

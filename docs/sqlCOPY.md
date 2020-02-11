@@ -3,25 +3,23 @@ id: copy
 title: COPY
 sidebar_label: COPY
 ---
+ 
+ ### Syntax
+ 
+![alt-text](assets/copy.svg)
 
-## Overview
+### Description
 
-`COPY` is used to load data from a `file` into a `table`. The file can be `.txt` or `.csv`. 
+Copies data from a delimited text file into a table. Column delimiter detection is automatic.
 
-> Using `COPY` via the **[web console](usageINTERFACE.md#web-console)** is an efficient way to get data in as it bypasses the 
-> HTTP protocol that would be used by the **[drag & drop](/docs/console#drag-and-drop)** method. This creates a 
-> performance gain of approximately 40%.
+When target table exists data is appended if file structure matches the table. 
 
-## Syntax
+When target table does not exist it is created using metadata derived from the file data.  
 
-```sql
-COPY TABLE_NAME FROM file_path
-```
+File can either be on local disk to the server or a remote disk, on a remote file system. In either case QuestDB will treat the
+file name as relative to the value of ``cairo.sql.copy.root`` configuration property. This is a security feature to disallow random file access via QuestDB.
 
-Where `TABLE_NAME` is the name of the table where the data should be loaded and `file_path` is the path to the 
-file containing the data you want to load.
-
-### Examples
+### Example
 
 ```sql
 COPY trades20191223 FROM 'C:\archive\trades\20191223.csv';
