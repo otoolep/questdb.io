@@ -4,7 +4,6 @@ title: Interfaces
 sidebar_label: Interfaces
 ---
 
-## Introduction
 QuestDB exposes the following interfaces:
 - **[Postgres wire protocol](usageINTERFACE.md#postgres-wire-protocol)**
 Interact with QuestDB SQL engine using any language with an existing Postgres adapter.
@@ -24,8 +23,6 @@ These interfaces interact with QuestDB either via the SQL engine (GRIFFIN) or di
 
 ## Web Console
 
-### Overview
-
 QuestDB offers an intuitive web console to interact with your data without using the API.
 It allows you to import data in to the database, run queries on the fly, and export data.
 Each action will display a timer so you can get a sense of the performance.
@@ -37,11 +34,12 @@ If QuestDB is running on another machine of your network, the web console can be
 
 ### Loading Data
 
+Switch to loading mode using naviagation bar on left. Web Console loads text files in real time. Once progress indicator
+reaches 100% data is fully accessible via queries. Data delimiter and types of columns are usually detected automatically. Once
+file loading is finished, QuestDB will report number of lines loaded as well as number of lines failed. Some failed lines might
+be attributed to columns, which types have been mis-detected.
 
-The load screen can be accessed by clicking this icon on the left-side menu. 
-
->Load menu is accessed with this button on the left navigation bar ![alt-text](assets/upload-button.png) 
-
+Column type detection is done by sampling first 1MB buffer. Mis-detection is possible if data changes dramatically past 1MB.   
 
 #### Drag and drop
 Simply drag and drop the data file you wish to import in the drag & drop area:
@@ -352,7 +350,6 @@ echo "readings,city=London,make=Omron temperature=23.5,humidity=0.343 1465839830
 
 ### Compiling SQL in Java
 
-#### Overview
 JAVA users can use the `SqlCompiler` to run SQL queries like they would do in the web console for example.
 
 > Note this can be used for any SQL query. This means you can use this with any supported SQL statement. For example 
@@ -408,8 +405,6 @@ try (CairoEngine engine = new CairoEngine(configuration)) {
 ```
 
 ### Reading query results
-
-#### Overview
 Querying data is a three-step process:
 
 1 - Compile the SQL text to an instance of `RecordCursorFactory`, an instance that encapsulates execution plan. You can 
@@ -462,7 +457,6 @@ calls push this "window" down one record at a time.
 
 ### Writing data programmatically
 
-#### Overview
 The `TableWriter` facilitates table writes. To successfully create an instance of `TableWriter`, the table must:
 - already exist
 - have no other open writers against it as the `TableWriter` constructor will attempt to obtain an exclusive 
@@ -547,9 +541,6 @@ This method call is atomic and has a complexity of O(1).
 
 
 ## HTTP Rest
-
-
-### Overview
 QuestDB REST API is based around standard HTTP features and is understood by off-the-shelf HTTP clients.
 It provides a simple way to interact with QuestDB as is compatible with most programming languages.
 API functions are keyed on full URL and they use query parameters as their arguments. Responses are function specific, for example you can download
@@ -565,7 +556,6 @@ Other machines on your network can access the console or connect to the DB progr
  by navigating `http://IP_OF_THE_HOST_MACHINE:9000`
 
 ### /imp - Loading data
-#### Overview
 The function `/imp` streams tabular text data directly into a table.
 It supports CSV, TAB and Pipe (`|`) delimited inputs and optional headers. There are no restrictions on
 data size. Data type and structure is detected automatically and usually without additional configuration.
@@ -690,7 +680,7 @@ When column types are correct error count must be zero.
 
 #### Basic import
 ```shell script
-mpb:ml-latest user$ <em>curl -i -F data=@ratings.csv http://localhost:9000/imp
+mpb:ml-latest user$ curl -i -F data=@ratings.csv http://localhost:9000/imp
 ```
 
 Response:
@@ -793,7 +783,6 @@ curl -i -F data=@ratings.csv 'http://localhost:9000/imp?forceHeaders=true&overwr
 
 ### /imp Append Data
 
-#### Overview
 `/imp` can be used to append data over HTTP. This is done through an HTTP multipart request.
 
 #### Procedure
@@ -832,7 +821,6 @@ mid,timestamp
 
 ### /exec Query Data
 
-#### Overview
 `/exec` compiles and executes the SQL query supplied as an argument and returns a JSON object with
 either data or an error. The **error object** contains message and position in query text. Position is a number of 
 characters from beginning of query where error occurred.
