@@ -322,20 +322,25 @@ QuestDB SQL optimiser will create more efficient plan when data is time series n
 
 ### Interval timestamp
 
-Using `>`,`>=`,`<`,`<=` operators:
+> QuestDB supports interval timestamp search with comparison operators. However, to obtain best performance, 
+>we recommend using our timestamp search notation described below
+
+#### Using `>`,`>=`,`<`,`<=` operators:
 
 ~~~ sql
 SELECT ratings WHERE timestamp > '2010-01-12T00:00:00.000Z' and timestamp < '2010-01-12T00:59:59.999Z' 
 ~~~
 
 
-Using `in` operator, for example: 
+#### Using `in` operator, for example: 
 
 ~~~ sql
 SELECT ratings WHERE timestamp in ('2010-01-12T00:00:00.000Z', '2010-01-12T00:59:59.999Z') 
 ~~~
 
 `in` is inclusive of edges and supports exactly two UTC timestamps.
+
+#### Using QuestDB timestamp search notation
 
 Using `=` operator and partial UTC timestamp string. Example below selects data between 14:00 and 14:59 on 12 January 2010: 
 
