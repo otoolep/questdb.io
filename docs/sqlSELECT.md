@@ -332,7 +332,7 @@ SELECT ratings WHERE timestamp > '2010-01-12T00:00:00.000Z' and timestamp < '201
 ~~~
 
 
-#### Using `in` operator, for example: 
+#### Using `in` operator: 
 
 ~~~ sql
 SELECT ratings WHERE timestamp in ('2010-01-12T00:00:00.000Z', '2010-01-12T00:59:59.999Z') 
