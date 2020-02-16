@@ -63,14 +63,6 @@ C:\questdb-1.0.2&gt;questdb.exe
 ```
 
 
-Response:
-```shell script
-<pre class="term">
-QuestDB HTTP Server 1.0.2
-Listening on 0.0.0.0:9000 [HTTP plain]
-```
-
-
 
 ### Start (as a service)
 Simply run `questdb.exe` as Administrator.
@@ -91,23 +83,12 @@ When run from console QuestDB server home is `qdbroot` in current directory.
 ```shell script
 mbp:~ user$ questdb start
 ```
->
 
-Response:
-```shell script
-QuestDB HTTP Server 1.0
-Listening on 0.0.0.0:9000 [HTTP plain]
-```
 
 
 ### Stop
 ```shell script
 mpb:~ user$ questdb stop
-```
-
-Response:
-```shell script
-Stopped 82395
 ```
 
 
@@ -116,13 +97,6 @@ Stopped 82395
 ```shell script
 mbp:~ user$ questdb start -d $HOME/.questdb
 ```
-
-Response:
-```shell script
-QuestDB HTTP Server 1.0
-Listening on 0.0.0.0:9000 [HTTP plain]
-```
-
 
 
 ## Running on Linux
@@ -141,21 +115,10 @@ user@ubuntu:~$ cd questdb-1.0.2/
 user@ubuntu:~/questdb-1.0.2$ ./questdb.sh start
 ```
 
-Response:
-```shell script
-Listening on 0.0.0.0:9000 [HTTP plain]
-```
-
-
 ### Stop
 Response:
 ```shell script
 user@ubuntu:~/questdb-1.0.2$ ./questdb.sh stop
-```
-
-Response:
-```shell script
-Stopped 4631
 ```
 
 
@@ -165,8 +128,8 @@ Windows launches supports the following commands and options:
 
 
 ```shell script
-<em>Usage: C:\questdb-1.0.2\questdb.exe 
-[start|stop|status|install|remove] [-d dir] [-f] [-j JAVA_HOME] [-t tag]</em>
+Usage: C:\questdb-1.0.2\questdb.exe 
+[start|stop|status|install|remove] [-d dir] [-f] [-j JAVA_HOME] [-t tag]
 ```
 
 

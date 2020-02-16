@@ -8,21 +8,6 @@ This section gives an overview of the functions available in QuestDB's web conso
 
 ## Aggregation
 
-#### Example table
-
-All examples in this section refer to an hypothetical `transactions` table. This table looks like this:
-      
-```shell script
-| ID         |  symbol     | quantity    | price    |
-|------------|-------------|-------------|----------|
-| 1          |  AAPL       | 203         | 103.2    |
-| 2          |  AMZN       | 122         | 253.3    |
-| 3          |  GOOG       | 23          | 1024.3   |
-| 4          |  AMZN       | 41          | 253.5    |
-| 5          |  AMZN       | 144         | 254.9    |
-| 6          |  AAPL       | 512         | 103.4    |
-```
-
 ### sum()
 `sum` is used to add values together.
 
@@ -84,17 +69,17 @@ SELECT symbol, max(price) FROM transactions;
 > Note that in the above example, GROUP BY is not necessary and therefore is omitted
 
 ### round()
-`round` returns the **closest** value with the specified precision.
+`round` returns the **closest** value with the specified `scale`. 
 
 Syntax:
 
-`round(column_name, precision)`
+`round(column_name, scale)`
 
 where:
 - `column_name` is the name of the column where you would like to round values
-- `precision` is 
+- `scale` is 
     - when `positive`: the number of decimals **after** the floating point. 
-    - when `negative` then number of digits **before** the floating point. 
+    - when `negative` then number of rounded digits **before** the floating point. 
 
 Example:
 ```sql
@@ -117,11 +102,11 @@ SELECT d, round(d, -2), round(d, -1), round(d,0), round(d,1), round(d,2) FROM db
 ```
 
 ### round_down()
-`round_down` behaves like `round` but instead of rounding to the closest value of the required precision, 
+`round_down` behaves like `round` but instead of rounding to the closest value of the required scale, 
 will systematically round values down.
 
 ### roud_up()
-`round_up` behaves like `round` but instead of rounding to the closest value of the required precision, 
+`round_up` behaves like `round` but instead of rounding to the closest value of the required scale, 
 will systematically round values up.
 
 ### abs()
@@ -206,15 +191,44 @@ where
 - `inputText` is the input date formatted as text.
 - `inputFormat` is the description of the input structure (e.g 'yyyy-MM'ddTHH:mm:ss')
 
+QuestDB supports the following format elements:
+
+|Letter	|Date or Time Component     |Presentation	    |Examples   |
+|-------|---------------------------|-------------------|-----------|
+|G	    |Era designator	            |Text	            |AD         |
+|y	    |Year	                    |Year            	|1996; 96   |
+|Y	    |Week year  	            |Year	            |2009; 09   |
+|M    	|Month in year	            |Month	            |July; Jul; 07|
+|w	    |Week in year	            |Number	            |27         |
+|W    	|Week in month	            |Number	            |2          |
+|D    	|Day in year	            |Number         	|189         |
+|d    	|Day in month	            |Number         	|10|
+|F    	|Day of week in month	    |Number         	|2|
+|E    	|Day name in week	        |Text           	|Tuesday; Tue|
+|u	    |Day number of week (1 = Monday, ..., 7 = Sunday)	|Number	|1|
+|a	    |Am/pm marker	            |Text	            |PM|
+|H	    |Hour in day (0-23)	        |Number         	|0|
+|k	    |Hour in day (1-24)	        |Number         	|24|
+|K	    |Hour in am/pm (0-11)	    |Number	            |0|
+|h	    |Hour in am/pm (1-12)	    |Number           	|12|
+|m    	|Minute in hour	            |Number     	    |30|
+|s	    |Second in minute	        |Number         	|55|
+|S	    |Millisecond	            |Number         	|978|
+|z    	|Time zone	                |General time zone	|Pacific Standard Time; PST; GMT-08:00|
+|Z	    |Time zone	                |RFC 822 time zone	|-0800|
+|X	    |Time zone	                |ISO 8601 time zone	|-08; -0800; -08:00|
+
 Example: let's assume you receive a timestamp as text and want to insert it into a timestamp field. 
 ```sql
 -- Query:
 INSERT INTO measurements values(to_timestamp('2019-12-12T12:15', 'yyyy-MM-ddTHH:mm'), 123.5);
+INSERT INTO measurements values(to_timestamp('12/12/2019 12:15:03 PM', 'MM/dd/yyyy HH:mm:ss a'), 124.5);
 
 -- Result:
 | timestamp                        | value    |
 |----------------------------------|----------|
 | 2019-12-12T12:15:00.000000Z      | 123.5    |
+| 2019-12-12T12:15:03.000000Z      | 124.5    |
 ```
 
 > The above example works with `date` type by replacing `to_timestamp` with `to_date`.
