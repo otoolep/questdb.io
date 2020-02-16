@@ -218,7 +218,6 @@ QuestDB supports the following format elements:
 |Z	    |Time zone	                |RFC 822 time zone	|-0800|
 |X	    |Time zone	                |ISO 8601 time zone	|-08; -0800; -08:00|
 
-
 Example: let's assume you receive a timestamp as text and want to insert it into a timestamp field. 
 ```sql
 -- Query:
