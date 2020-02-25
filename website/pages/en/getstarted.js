@@ -85,17 +85,17 @@ class Index extends React.Component {
                         {[
                             {
                                 content:
-                                        '<img src="img/package.svg" id="packageIcon"/>' +
+                                        '<img src="img/package.svg" id="packageIcon" alt="Install"/>' +
                                         '<div class="subtitle bold">Install</div>'
                             },
                             {
                                 content:
-                                    ' <img src="img/tuto.svg" id="tutoIcon"/>' +
+                                    ' <img src="img/tuto.svg" id="tutoIcon" alt="Discover"/>' +
                                     '<div class="subtitle bold">Discover</div>'
                             },
                             {
                                 content:
-                                    ' <img src="img/community.svg" id="questionIcon"/>' +
+                                    ' <img src="img/community.svg" id="questionIcon" alt="Get Help"/>' +
                                     '<div class="subtitle bold">Get help</div>'
                             },
                         ]}

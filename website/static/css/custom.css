@@ -44,7 +44,7 @@ body > div.navPusher > div > div.mainContainer > div.toptitle > div > div {
 #getStartedInstall > div.startlist > div > div > div > div,
 #getStartedQuestion > div.startlist > div > div > div > div,
 #getStartedTuto > div.startlist > div > div > div > div {
-    box-shadow: 0px 3px 5px 3px rgba(0, 0, 0, 0.20);
+    box-shadow: 0 3px 5px 3px rgba(0, 0, 0, 0.20);
     transition: 0.8s;
 }
 
@@ -59,12 +59,12 @@ body > div.navPusher > div > div.mainContainer > div.toptitle > div > div {
     background-color: #fdffff;
 }
 
-body > div.navPusher > div > div.mainContainer > div.toptitle > div > div > div > div.blockElement.imageAlignSide.imageAlignLeft.twoByGridBlock > div.blockContent{
+body > div.navPusher > div > div.mainContainer > div.toptitle > div > div > div > div.blockElement.imageAlignSide.imageAlignLeft.twoByGridBlock > div.blockContent {
     display: none;
 }
 
 .container .wrapper .imageAlignSide p {
-    margin-bottom: 0px;
+    margin-bottom: 0;
 }
 
 .left {
@@ -82,6 +82,10 @@ body > div.navPusher > div > div.mainContainer > div.toptitle > div > div > div 
     color: white;
 }
 
+.whatwedo .title {
+    color: black;
+}
+
 .icons {
     font-size: 9px;
     color: rgba(211, 211, 211, 0.64);
@@ -94,7 +98,7 @@ body > div.navPusher > div > div.mainContainer > div.toptitle > div > div > div 
 .whatwedo {
     background-color: #e6e8ea;
     color: black;
-    box-shadow: 0px 2px 2px 3px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 2px 3px rgba(0, 0, 0, 0.1);
 }
 
 div.whatwedo {
@@ -308,7 +312,7 @@ div.subtitle.perfbottom {
 }
 
 .perflist .subtitle {
-    color: gray();
+    color: gray;
 }
 
 
@@ -333,7 +337,7 @@ div.subtitle.perfbottom {
 
 
 .startlist .subtitle {
-    color: gray();
+    color: gray;
 }
 
 div.startlist div.blockImage {
@@ -375,7 +379,7 @@ div.subtitle {
     alignment: center;
 }
 
-.featuresList img{
+.featuresList img {
     filter: invert(0.3);
 }
 
@@ -437,7 +441,7 @@ code {
     background-color: lightslategrey;
     padding-top: 40px;
     padding-bottom: 40px;
-    box-shadow: 0px 2px 2px 1px rgba(0, 0, 0, 0.55);
+    box-shadow: 0 2px 2px 1px rgba(0, 0, 0, 0.55);
 }
 
 .slidingNav li:nth-child(5) {
@@ -463,12 +467,11 @@ code {
 }
 
 div.blockImage {
-    margin-bottom: 0px;
-    padding-bottom: 0px;
+    margin-bottom: 0;
+    padding-bottom: 0;
 }
 
 .toptitle p {
-    text-align: justify;
     display: block;
     margin-bottom: 10px;
 }
@@ -633,7 +636,7 @@ body > div.fixedHeaderContainer {
 
 .apply-steps {
     list-style-type: none;
-    padding-left: 0px;
+    padding-left: 0;
     font-size: 110%;
 }
 
@@ -643,340 +646,338 @@ body > div.fixedHeaderContainer {
 }
 
 
+@media only screen and (max-width: 735px) {
 
-                    @media only screen and (max-width: 1000px) {
+    .toptitle img {
+        display: none;
+    }
 
-                        .toptitle img{
-                            display: none;
-                        }
+    .toptitle, .sql, .community, .interfaces, .whatwedo, .perf, .demo, .start {
+        font-size: 20px;
+        padding-bottom: 15px;
+    }
 
-                        .toptitle, .sql, .community, .interfaces, .whatwedo, .perf, .demo, .start {
-                            font-size: 12px;
-                            padding-bottom: 15px;
-                        }
+    .toptitle {
+        padding-top: 20px;
+        margin-top: 0;
+    }
 
-                        .toptitle {
-                            padding-top: 20px;
-                            margin-top: 0px;
-                        }
 
+    .title {
+        font-size: 28px;
+        font-weight: 400;
+    }
+
 
-                        .title {
-                            font-size: 22px;
+    .sql p, .interfaces p {
+        text-align: center;
+        font-size: 20px;
+    }
+
+    .sql, .interfaces {
+        width: 75%;
+        padding-bottom: 70px;
+    }
 
-                        }
+
+    .docMainWrapper {
+        margin-top: 20px;
+    }
+
+
+    .toptitle p {
+        font-size: 20px;
+    }
+
+    .maintitle {
+        font-size: 28px;
+    }
+
+
+    .buttons li {
+        font-size: 11px;
+    }
+
+    .featuresList {
+        width: 90%;
+    }
+
+    .whatwedo .title {
+        margin-bottom: 30px;
+    }
+
+    .featuresList .subtitle {
+        font-size: 16px;
+        margin-bottom: 20px;
+        margin-top: 5px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    div.gridBlock .featuresList {
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+        display: block;
+
+    }
+
+
+    .featuresList img {
+        width: 33%;
+        height: 30px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    div.container .features {
+        margin-left: auto;
+        margin-right: auto;
+        width: 90%;
+    }
+
+    .perf {
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+
+    .start {
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+
 
-
-                        .sql p, .interfaces p {
-                            text-align: center;
-                            font-size: 14px;
-                        }
-
-                        .sql, .interfaces {
-                            width: 75%;
-                            padding-bottom: 70px;
-                        }
-
-
-                        .docMainWrapper {
-                            margin-top: 20px;
-                        }
-
-
-                        .toptitle p {
-                            font-size: 14px;
-                        }
-
-                        .maintitle {
-                            font-size: 22px;
-                        }
-
-
-                        .buttons li {
-                            font-size: 11px;
-                        }
-
-
-                        .featuresList {
-                            width: 90%;
-                        }
-
-                        .whatwedo .title {
-                            margin-bottom: 30px;
-                        }
-
-                        .featuresList .subtitle {
-                            margin-bottom: 20px;
-                            margin-top: 5px;
-                            margin-right: auto;
-                            margin-left: auto;
-                        }
-
-                        div.gridBlock .featuresList {
-                            margin-left: auto;
-                            margin-right: auto;
-                            width: 100%;
-                            display: block;
-
-                        }
-
-
-                        .featuresList img {
-                            width: 33%;
-                            height: 30px;
-                            display: block;
-                            margin-left: auto;
-                            margin-right: auto;
-                        }
-
-                        div.container features {
-                            margin-left: auto;
-                            margin-right: auto;
-                            width: 90%;
-                        }
-
-                        .perf {
-                            padding-top: 40px;
-                            padding-bottom: 40px;
-                        }
-
-                        .start {
-                            padding-top: 40px;
-                            padding-bottom: 40px;
-                        }
-
-
-                        .perflist img {
-                            height: 50px;
-                            margin-left: auto;
-                            margin-right: auto;
-                            width: 95%;
-                        }
-
-
-                        .perflist div.blockElement.imageAlignSide.imageAlignLeft.threeByGridBlock {
-                            margin-left: auto;
-                            margin-right: auto;
-                            width: 95%;
-                            display: block;
-                        }
-
-                        .perflist img {
-                            margin-top: 20px;
-                            margin-bottom: 10px;
-                        }
-
-                        .startlist img {
-                            height: 50px;
-                            margin-left: auto;
-                            margin-right: auto;
-                            width: 95%;
-                        }
-
-
-                        .startlist div.blockElement.imageAlignSide.imageAlignLeft.threeByGridBlock {
-                            margin-left: auto;
-                            margin-right: auto;
-                            width: 95%;
-                            display: block;
-                        }
-
-                        .startlist img {
-                            margin-top: 20px;
-                            margin-bottom: 10px;
-                        }
-
-                        div.subtitle.perfbottom {
-                            margin-top: 30px;
-                            width: 80%;
-                        }
-
-                        .featuresList div.container {
-                            margin-left: auto;
-                            margin-right: auto;
-                            width: 100%;
-                        }
-
-                        div.featuresList {
-                            margin-left: auto;
-                            margin-right: auto;
-                            width: 100%;
-                            display: block;
-                        }
-
-
-                        .consoleGIF img {
-                            width: 95%;
-                        }
-
-                        .wrapper {
-                            width: 100%;
-                        }
-
-                        .interfaces {
-                            padding-top: 20px;
-                            padding-bottom: 20px;
-                        }
-
-
-                        .fixedHeaderContainer {
-                            font-size: 14px;
-                        }
-
-                        .nav-footer {
-                            font-size: 8px;
-                        }
-
-                        .sitemap a {
-                            font-size: 9px;
-                        }
-
-                        .sitemap h5 {
-                            font-size: 12px;
-                        }
-
-                        .nav-footer .sitemap {
-                            flex-direction: unset;
-                            margin-bottom: 0px;
-                        }
-
-                        .sitemap {
-                            margin-bottom: 0px;
-                            line-height: 13px;
-                        }
-
-                        section.copyright {
-                            margin-bottom: 10px;
-                        }
-
-                        div.footersection {
-                            display: block;
-                            width: 20%;
-                            margin-bottom: 0;
-                        }
-
-                        .navigationSlider .slidingNav ul li a {
-                            height: 30px;
-                        }
-
-                    }
-
-
-                                        @media only screen and (min-width: 1000px) {
-
-
-
-                                            .about, .sql, .community, .interfaces, .whatwedo, .perf, .start, .demo {
-                                                font-size: 20px;
-                                            }
-
-                                            .title {
-                                                font-size: 48px;
-                                                line-height: 50px;
-                                                margin-bottom: 30px;
-                                            }
-
-                                            body > div.navPusher > div > div.mainContainer > div.toptitle > div > div > div > div.blockElement.imageAlignSide.imageAlignLeft.twoByGridBlock > div.blockImage {
-                                                margin-left:auto; margin-right:0;
-                                                padding-left:auto; padding-right:0;
-                                            }
-
-                                            .sql {
-                                                width: 50%;
-                                            }
-
-                                            .start {
-                                                padding-top: 10px;
-                                                padding-bottom: 50px;
-                                            }
-
-                                            .headTitle {
-                                                font-size: 35px;
-                                                font-weight: bold;
-                                            }
-
-                                            .docMainWrapper {
-                                                margin-top: 30px;
-                                            }
-
-
-                                            .toptitle p {
-                                                font-size: 25px;
-                                                line-height: 30px;
-                                            }
-
-                                            .maintitle {
-                                                font-size: 60px;
-                                            }
-
-                                            div.subtitle.perfbottom {
-                                                margin-top: 50px;
-                                                width: 60%;
-                                            }
-
-                                            .buttons li {
-                                                font-size: 18px;
-                                            }
-
-
-                                            .featuresList {
-                                                width: 50%;
-                                                margin-right: auto;
-                                                margin-left: auto;
-                                                display: block;
-                                            }
-
-                                            .featuresList img {
-                                                display: block;
-                                                width: 50%;
-                                                margin: 50px auto 5px;
-                                                height: 60px;
-                                            }
-
-                                            .perflist img {
-                                                height: 80px;
-                                            }
-
-                                            .startlist img {
-                                                padding-left: 10%;
-                                                padding-right: 10%;
-                                                width: 80%;
-                                                max-height: 70%;
-                                                display: block;
-
-                                            }
-
-                                            .interfaces {
-                                                margin-bottom: 10px;
-                                                margin-left: auto;
-                                                margin-right: auto;
-                                                display: block;
-
-                                            }
-
-                                            .interfaces p {
-                                                text-align: center;
-                                                width: 50%;
-                                                margin-right: auto;
-                                                margin-left: auto;
-                                                margin-top: 30px;
-                                                margin-bottom: 30px;
-                                                display: block;
-                                            }
-
-
-                                            div.blockImage {
-                                                display: block;
-                                                margin-left: auto;
-                                                margin-right: auto;
-                                            }
-
-
-                                            .fixedHeaderContainer, .nav-footer {
-                                                padding-top: 20px;
-                                                font-size: 18px;
-                                            }
-
-                                        }
+    .perflist img {
+        height: 50px;
+        margin-left: auto;
+        margin-right: auto;
+        width: 95%;
+    }
+
+
+    .perflist div.blockElement.imageAlignSide.imageAlignLeft.threeByGridBlock {
+        margin-left: auto;
+        margin-right: auto;
+        width: 95%;
+        display: block;
+    }
+
+    .perflist img {
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+
+    .startlist img {
+        height: 50px;
+        margin-left: auto;
+        margin-right: auto;
+        width: 95%;
+    }
+
+
+    .startlist div.blockElement.imageAlignSide.imageAlignLeft.threeByGridBlock {
+        margin-left: auto;
+        margin-right: auto;
+        width: 95%;
+        display: block;
+    }
+
+    .startlist img {
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+
+    div.subtitle.perfbottom {
+        margin-top: 30px;
+        width: 80%;
+    }
+
+    .featuresList div.container {
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+    }
+
+    div.featuresList {
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+        display: block;
+    }
+
+
+    .consoleGIF img {
+        width: 95%;
+    }
+
+    .wrapper {
+        width: 100%;
+    }
+
+    .interfaces {
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
+
+    .fixedHeaderContainer {
+        font-size: 14px;
+    }
+
+    .nav-footer {
+        font-size: 8px;
+    }
+
+    .sitemap a {
+        font-size: 9px;
+    }
+
+    .sitemap h5 {
+        font-size: 12px;
+    }
+
+    .nav-footer .sitemap {
+        flex-direction: unset;
+        margin-bottom: 0;
+    }
+
+    .sitemap {
+        margin-bottom: 0;
+        line-height: 13px;
+    }
+
+    section.copyright {
+        margin-bottom: 10px;
+    }
+
+    div.footersection {
+        display: block;
+        width: 20%;
+        margin-bottom: 0;
+    }
+
+    .navigationSlider .slidingNav ul li a {
+        height: 30px;
+    }
+
+}
+
+@media only screen and (min-width: 736px) {
+
+    .about, .sql, .community, .interfaces, .whatwedo, .perf, .start, .demo {
+        font-size: 20px;
+    }
+
+    .title {
+        font-size: 48px;
+        line-height: 50px;
+        margin-bottom: 30px;
+        font-weight: 300;
+    }
+
+    body > div.navPusher > div > div.mainContainer > div.toptitle > div > div > div > div.blockElement.imageAlignSide.imageAlignLeft.twoByGridBlock > div.blockImage {
+        margin-left: auto;
+        margin-right: 0;
+        /*padding-left: auto;*/
+        padding-right: 0;
+    }
+
+    .sql {
+        width: 50%;
+    }
+
+    .start {
+        padding-top: 10px;
+        padding-bottom: 50px;
+    }
+
+    .headTitle {
+        font-size: 35px;
+        font-weight: bold;
+    }
+
+    .docMainWrapper {
+        margin-top: 30px;
+    }
+
+
+    .toptitle p {
+        font-size: 25px;
+        line-height: 30px;
+    }
+
+    .maintitle {
+        font-size: 60px;
+    }
+
+    div.subtitle.perfbottom {
+        margin-top: 50px;
+        width: 60%;
+    }
+
+    .buttons li {
+        font-size: 18px;
+    }
+
+
+    .featuresList {
+        width: 50%;
+        margin-right: auto;
+        margin-left: auto;
+        display: block;
+    }
+
+    .featuresList img {
+        display: block;
+        width: 50%;
+        margin: 50px auto 5px;
+        height: 60px;
+    }
+
+    .perflist img {
+        height: 80px;
+    }
+
+    .startlist img {
+        padding-left: 10%;
+        padding-right: 10%;
+        width: 80%;
+        max-height: 70%;
+        display: block;
+
+    }
+
+    .interfaces {
+        margin-bottom: 10px;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+
+    }
+
+    .interfaces p {
+        text-align: center;
+        width: 50%;
+        margin-right: auto;
+        margin-left: auto;
+        margin-top: 30px;
+        margin-bottom: 30px;
+        display: block;
+    }
+
+
+    div.blockImage {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+
+    .fixedHeaderContainer, .nav-footer {
+        padding-top: 20px;
+        font-size: 18px;
+    }
+}
 
 

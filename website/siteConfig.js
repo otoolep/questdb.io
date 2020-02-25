@@ -30,11 +30,13 @@ const siteConfig = {
     // For no header links in the top nav bar -> headerLinks: [],
     headerLinks:
     [
-        {href: "https://github.com/questdb/questdb", label: 'GitHub'},
-        {doc: 'interfaces', label: 'Docs'},
+        {href: "/", label: 'Home'},
+        {doc: 'getstarted', label: 'Get Started'},
+        {doc: 'interfaces', label: 'Documentation'},
         {blog: true, label: 'Blog'},
         {href: "/careers", label: 'Careers'},
-        {href: "/getstarted", label: 'Get Started'},
+        {doc: 'getstarted', label: 'About'},
+        // {href: "https://github.com/questdb/questdb", label: 'GitHub'},
     ],
     // If you have users set above, you add it here:
 
@@ -112,10 +114,11 @@ const siteConfig = {
     ],
     stylesheets: [
         'https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,500,600,700|Source+Code+Pro:400,700|Open+Sans:300,400,600,700',
-        '/css/code-block-buttons.css'
+        '/css/code-block-buttons.css',
+        '/css/sign-up.css'
     ],
     separateCss: [
-        '/css/code-block-buttons.css'
+        '/css/code-block-buttons.css',
     ]
 
 };

@@ -8,18 +8,14 @@
 const React = require('react');
 const CompLibrary = require('../../core/CompLibrary.js');
 
-const MarkdownBlock = CompLibrary.MarkdownBlock; /* Used to read markdown */
+// const MarkdownBlock = CompLibrary.MarkdownBlock; /* Used to read markdown */
 const Container = CompLibrary.Container;
 const GridBlock = CompLibrary.GridBlock;
 
 class HomeSplash extends React.Component {
 
     render() {
-        const {siteConfig, language = ''} = this.props;
-        const {baseUrl, docsUrl} = siteConfig;
-        const docsPart = `${docsUrl ? `${docsUrl}/` : ''}`;
-        const langPart = `${language ? `${language}/` : ''}`;
-        const docUrl = doc => `${baseUrl}${docsPart}${langPart}${doc}`;
+        const {siteConfig} = this.props;
 
         const SplashContainer = props => (
             <div className="homeContainer">
@@ -29,32 +25,9 @@ class HomeSplash extends React.Component {
             </div>
         );
 
-        const Logo = props => (
-            <div className="projectLogo">
-                <img src={props.img_src} alt="Project Logo"/>
-            </div>
-        );
-
         const ProjectTitle = () => (
             <span/>
         );
-
-        const PromoSection = props => (
-            <div className="section promoSection">
-                <div className="promoRow">
-                    <div className="pluginRowBlock">{props.children}</div>
-                </div>
-            </div>
-        );
-
-        const Button = props => (
-            <div className="pluginWrapper buttonWrapper">
-                <a className="button" href={props.href} target={props.target}>
-                    {props.children}
-                </a>
-            </div>
-        );
-
 
         return (
             <SplashContainer>
@@ -79,7 +52,17 @@ class Index extends React.Component {
                 background={props.background}>
                 <GridBlock
                     padding={['top', 'bottom']}
-                    align="justified"
+                    align="left"
+                    contents={props.children}
+                    layout={props.layout}
+                />
+            </Container>
+        );
+
+        const CenterBlock = props => (
+            <Container id={props.id} background={props.background}>
+                <GridBlock
+                    align="center"
                     contents={props.children}
                     layout={props.layout}
                 />
@@ -88,32 +71,19 @@ class Index extends React.Component {
 
         const Title = () => (
             <div className="toptitle">
-                <Block padding='bottom'>
-                    {[
-                        /*                    {
-                                                image: `${baseUrl}img/speed.svg`,
-                                                imageAlign: 'left',
-                                            },*/
-                        {
-                            content:
-                                '<div align="center">' +
-                                '<span class="title"><center>Fast relational time-series</center></span>' +
-                                '</div>'
-                        }
-                    ]
-                    }
-                </Block>
                 <Block>
                     {[
                         {
+                            image: `${baseUrl}img/datavis.svg`,
+                        },
+                        {
                             content:
-                                '<center>' +
-                                '<p>QuestDB is a fast SQL database for Hybrid Transactional, Analytical and Time Series processing. ' +
+                                '<span class="title">Take on time-series in an instant</span>' +
+                                '<p class="left subTopTitle">QuestDB is an open-source time-series database to store, stream, query data and analytics at the speed of light, with the the convenience of SQL.</p>' +
                                 '<br>' +
                                 '<ul class="buttons">' +
-                                '<li class="cta"><a href="/docs/getstarted">Get started</a></li>' +
-                                '</ul>' +
-                                '</center>'
+                                '<li class="cta"><a href="/getstarted">Get started</a></li>' +
+                                '</ul>'
                         }
                     ]
                     }
@@ -123,101 +93,139 @@ class Index extends React.Component {
 
         const WhatWeDo = () => (
             <div className="whatwedo">
-
                 <Block layout="twoColumn">
                     {[
                         {
-                            content:
-                                '<div align="center">' +
-                                '<span class="title"><center>Features</center></span>' +
-                                '</div>'
+                            content: '<span class="title">Features</span>'
                         },
                     ]}
                 </Block>
 
-<div className="featuresList">
-                <Block layout="threeColumn">
-                    {[
-                        {
-                            image: `${baseUrl}img/ossicon.svg`,
-                            content:
-                                '<div class="subtitle">Open Source</div>'
-                        },
-                        {
-                            image: `${baseUrl}img/speedicon.svg`,
-                            content:
-                                '<div class="subtitle">Unrivaled Speed</div>'
-                        },
-                        {
-                            image: `${baseUrl}img/table.svg`,
-                            content:
-                                '<div class="subtitle">Relational Model</div>'
-                        },
-                        {
-                            image: `${baseUrl}img/packageicon.svg`,
-                            content:
-                                '<div class="subtitle">Cross-platform package</div>'
-                        },
-                        {
-                            image: `${baseUrl}img/sqlicon.svg`,
-                            content:
-                                '<div class="subtitle">Query Language</div>'
-                        },
-                        {
-                            image: `${baseUrl}img/usersicon.svg`,
-                            content:
-                                '<div class="subtitle">Fast for concurrent users</div>'
-                        },
-                        {
-                            image: `${baseUrl}img/joinsicon.svg`,
-                            content:
-                                '<div class="subtitle">Relational joins</div>'
-                        },
-                        {
-                            image: `${baseUrl}img/charticon.svg`,
-                            content:
-                                '<div class="subtitle">Time-series joins</div>'
-                        },
-                        {
-                            image: `${baseUrl}img/unlimtransacticon.svg`,
-                            content:
-                                '<div class="subtitle">Unlimited transaction size</div>'
-                        },
+                <div className="featuresList">
+                    <Block layout="threeColumn">
+                        {[
+                            {
+                                image: `${baseUrl}img/ossicon.svg`,
+                                content:
+                                    '<div class="subtitle">Open Source</div>'
+                            },
+                            {
+                                image: `${baseUrl}img/speedicon.svg`,
+                                content:
+                                    '<div class="subtitle">SIMD accelerated</div>'
+                            },
+                            {
+                                image: `${baseUrl}img/table.svg`,
+                                content:
+                                    '<div class="subtitle">Relational Model</div>'
+                            },
+                            {
+                                image: `${baseUrl}img/packageicon.svg`,
+                                content:
+                                    '<div class="subtitle">Cross-platform package</div>'
+                            },
+                            {
+                                image: `${baseUrl}img/sqlicon.svg`,
+                                content:
+                                    '<div class="subtitle">Query Optimiser</div>'
+                            },
+                            {
+                                image: `${baseUrl}img/usersicon.svg`,
+                                content:
+                                    '<div class="subtitle">Fast for concurrent users</div>'
+                            },
+                            {
+                                image: `${baseUrl}img/joinsicon.svg`,
+                                content:
+                                    '<div class="subtitle">Relational joins</div>'
+                            },
+                            {
+                                image: `${baseUrl}img/charticon.svg`,
+                                content:
+                                    '<div class="subtitle">Time-series joins</div>'
+                            },
+                            {
+                                image: `${baseUrl}img/unlimtransacticon.svg`,
+                                content:
+                                    '<div class="subtitle">Unlimited transaction size</div>'
+                            },
 
-                    ]}
-                </Block>
-            </div>
+                        ]}
+                    </Block>
+                </div>
             </div>
         );
 
 
         const Demo = () => (
             <div className="demo">
-                <center>Before we bore you with "incredible features", "massive scalability", "terabytes of data" and "billions of data points", here is 10 years of NY taxi rides to play with so you can get a sense for yourselves of what QuestDB can do.</center>
-                <block class="consolecontainer" id="consolecontainer">
-                    <iframe className="console"
-                            src="http://localhost:9000/demo.html"></iframe>
-                  {/*  <iframe className="console"
-                            src="http://ec2-3-9-184-96.eu-west-2.compute.amazonaws.com:9000/index.html"></iframe>*/}
-                    <center>
-                        <ul className="gh-buttons">
-                            <a className="github-button" href="https://github.com/questdb/questdb"
-                               data-color-scheme="no-preference: light; light: light; dark: dark;"
-                               data-icon="octicon-star" data-size="large"
-                               aria-label="Star questdb/questdb on GitHub">Star</a>
-                            <a className="github-button" href="https://github.com/questdb/questdb/releases/download/4.0.4/questdb-4.0.4-bin.tar.gz"
-                               data-color-scheme="no-preference: light; light: light; dark: dark;"
-                               data-icon="octicon-cloud-download" data-size="large"
-                               aria-label="Download questdb/questdb on GitHub">Download</a>
-                            <a className="github-button" href="https://github.com/questdb/questdb/issues/new/choose"
-                               data-color-scheme="no-preference: light; light: light; dark: dark;"
-                               data-icon="octicon-issue-opened" data-size="large"
-                               aria-label="Issue questdb/questdb on GitHub">Issue</a>
-                        </ul>
-                    </center>
-                </block>
+                <CenterBlock class="titlecenter">
+                    {[
+                        {
+                            content: '<span class="title">Live demo is coming right up!</span>',
+                        },
+                    ]}
+                </CenterBlock>
+                <Block>
+                    {[
+                        {
+                            content: '<ul class="announcement">' +
+                                '<li>Large dataset - 1.6 billion rows NY Taxi data set</li>' +
+                                '<li>Attainable hardware - AWS bare metal</li>' +
+                                '<li>Arbitrary SQL queries against real data set</li>' +
+                                '<li>Vectorized aggregation - SIMD based SQL intrinsics</li>' +
+                                '<li>Parallel SQL execution - low overhead work split and work stealing</li>' +
+                                '<li>Sub-second un-cached query execution</li>' +
+                                '<li>Time series joins - correlate events with SQL</li>' +
+                                '</ul>'
+                        },
+                    ]}
+                </Block>
+
+                {/*<block class="consolecontainer" id="consolecontainer">*/}
+                {/*    <iframe className="console"*/}
+                {/*            src="http://localhost:9000/demo.html"></iframe>*/}
+                {/*  /!*  <iframe className="console"*/}
+                {/*            src="http://ec2-3-9-184-96.eu-west-2.compute.amazonaws.com:9000/index.html"></iframe>*!/*/}
+                {/*    <center>*/}
+                {/*        <ul className="gh-buttons">*/}
+                {/*            <a className="github-button" href="https://github.com/questdb/questdb"*/}
+                {/*               data-color-scheme="no-preference: light; light: light; dark: dark;"*/}
+                {/*               data-icon="octicon-star" data-size="large"*/}
+                {/*               aria-label="Star questdb/questdb on GitHub">Star</a>*/}
+                {/*            <a className="github-button" href="https://github.com/questdb/questdb/releases/download/4.0.4/questdb-4.0.4-bin.tar.gz"*/}
+                {/*               data-color-scheme="no-preference: light; light: light; dark: dark;"*/}
+                {/*               data-icon="octicon-cloud-download" data-size="large"*/}
+                {/*               aria-label="Download questdb/questdb on GitHub">Download</a>*/}
+                {/*            <a className="github-button" href="https://github.com/questdb/questdb/issues/new/choose"*/}
+                {/*               data-color-scheme="no-preference: light; light: light; dark: dark;"*/}
+                {/*               data-icon="octicon-issue-opened" data-size="large"*/}
+                {/*               aria-label="Issue questdb/questdb on GitHub">Issue</a>*/}
+                {/*        </ul>*/}
+                {/*    </center>*/}
+                {/*</block>*/}
             </div>
         );
+
+        const SignUpForm = () => (
+            <div className="signup">
+                <div className="signup-inner">
+                    <span className="why">Be the first to experience our demo</span>
+                    <form action="">
+                        <ul>
+                            <li><label>First name</label></li>
+                            <li><input id="mce-FNAME" type="text" placeholder="John"/></li>
+                            <li><label>Last name</label></li>
+                            <li><input id="mce-LNAME" type="text" placeholder="Doe"/></li>
+                            <li><label>Email</label></li>
+                            <li><input id="mce-EMAIL" type="text" placeholder="john@acme.com"/></li>
+                            <li className="send"><a href="">Sign up!</a></li>
+                        </ul>
+                    </form>
+                </div>
+            </div>
+        );
+
 
         const SQL = () => (
             <div className="sql">
@@ -239,20 +247,21 @@ class Index extends React.Component {
         const Integrations = () => (
             <div className='interfaces'>
                 <span className="title">Integrations</span>
-                <p>Any tool and language via Postgres wire protocol. High-performance HTTP API, Influx line protocol and Telegraf.</p>
+                <p>Any tool and language via Postgres wire protocol. High-performance HTTP API, Influx line protocol and
+                    Telegraf.</p>
                 <Block layout="threeColumn">
                     {[
                         {
                             image: `${baseUrl}img/interfaces.jpg`,
                         }]}
-                        </Block>
+                </Block>
 
             </div>
         );
 
         const ConsoleGIF = () => (
             <div className='consoleGIF'>
-            <img src='/img/sql.gif'/>
+                <img src='/img/sql.gif'/>
             </div>
         );
 
@@ -282,7 +291,9 @@ class Index extends React.Component {
                         ]}
                     </Block>
                 </div>
-                <div className="subtitle perfbottom">Software can only be as fast as its slowest component. Complete control enables to remove any blocker.</div>
+                <div className="subtitle perfbottom">Software can only be as fast as its slowest component. Complete
+                    control enables to remove any blocker.
+                </div>
             </div>
         );
 
@@ -293,10 +304,11 @@ class Index extends React.Component {
                 <div className="mainContainer">
                     <Title/>
                     <Demo/>
+                    <SignUpForm/>
                     <SQL/>
                     <ConsoleGIF/>
                     <WhatWeDo/>
-                    <Perf/>
+                    {/*<Perf/>*/}
                     <Integrations/>
                 </div>
             </div>

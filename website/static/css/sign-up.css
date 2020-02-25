@@ -1,0 +1,122 @@
+@media only screen and (min-width: 1001px) {
+    .signup {
+        background-color: #2066a3;
+        width: 400px;
+        align-self: flex-end;
+        margin: -300px 5% -80px auto;
+        border-radius: 8px;
+        box-shadow: 10px 30px 30px 20px rgba(0, 0, 0, 0.55);
+        padding: 3px;
+        color: white;
+        -webkit-font-smoothing: antialiased;
+        opacity: .99;
+    }
+
+    .signup-inner {
+        padding: 20px 0;
+        border: 3px solid #e68200;
+        border-radius: 8px;
+    }
+
+    .signup ul {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+    }
+
+    .signup li {
+        padding: 0 0 7px 40px;
+        margin: 0;
+    }
+
+    .signup li input {
+        margin-left: auto;
+        padding: 10px;
+        font-size: 100%;
+        align-self: center;
+        width: 90%;
+        color: #e68200;
+        font-weight: 600;
+    }
+
+    .signup .why {
+        display: block;
+        text-align: center;
+        padding-bottom: 20px;
+        font-size: 130%;
+        font-weight: 400;
+    }
+
+    .signup .send {
+        padding: 5px 0 5px 0;
+        text-align: center;
+        width: 150px;
+        background-color: #e68200;
+        align-self: center;
+        margin: 30px auto 10px;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+
+    .signup {
+        background-color: #2066a3;
+        width: 100%;
+        align-self: flex-end;
+        margin-left: auto;
+        margin-right: 10%;
+        border-radius: 8px;
+        box-shadow: 10px 30px 30px 20px rgba(0, 0, 0, 0.55);
+        padding:  3px;
+        color: white;
+        -webkit-font-smoothing: antialiased;
+    }
+
+    .signup-inner {
+        padding: 20px 0;
+    }
+
+    .signup ul {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+    }
+
+    .signup li {
+        padding: 0 0 7px 40px;
+        margin: 0;
+    }
+
+    .signup li input {
+        margin-left: auto;
+        padding: 5px;
+        font-size: 100%;
+        align-self: center;
+        width: 90%;
+    }
+
+    .signup .why {
+        display: block;
+        text-align: center;
+        padding-bottom: 20px;
+        font-size: 130%;
+        font-weight: 400;
+    }
+
+    .signup .send {
+        padding: 5px 0 5px 0;
+        text-align: center;
+        width: 150px;
+        background-color: #e68200;
+        align-self: center;
+        margin: 30px auto 10px;
+    }
+}
+
+.announcement {
+    list-style: inside;
+}
+
+.demo {
+    padding: 20px 0;
+}
