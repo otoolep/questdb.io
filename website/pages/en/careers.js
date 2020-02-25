@@ -246,48 +246,45 @@ class Index extends React.Component {
             <div className="job" id="dev-backend-job">
                 <span className="jobtitle colored bold">Back-end developer</span>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam eget posuere nisl, eget posuere
-                    ante. Etiam varius ante eget tortor finibus, non egestas turpis sollicitudin. Pellentesque quis
-                    ultrices massa. Duis sed viverra velit. Phasellus et porttitor ante. Praesent sed lacinia ex, sit
-                    amet interdum est.
+                    QuestDB stands for speed and efficiency. As a key member of the dev team, you will put these
+                    principles
+                    in motion and contribute to the fastest database engine in the world.
                     <br/><br/>
-                    Mauris at nibh vel magna condimentum tincidunt. Lorem ipsum dolor sit amet, consectetur adipiscing
-                    elit. Integer sit amet orci justo. Ut nulla tortor, ultrices id sapien sit amet, vestibulum laoreet
-                    neque. Phasellus interdum aliquet odio, at laoreet est rhoncus rutrum. Nulla facilisi.
+                    This is not your standard dev job. QuestDB uses innovative coding techniques and strives for
+                    performance. It will take some time to get up to speed (and we will help you along the way), but the
+                    skills you will gain will be extremely rewarding.
+                    <br/><br/>
+                    Feel free to skim through our
+                    <a className="bold color" href="https://github.com/questdb/questdb"> Github repo </a>
+                    to get an idea of what is expected. If you're up to the challenge, get in touch!
                 </p>
 
                 <span className="jobsubtitle colored bold">Responsibilities</span>
                 <ul>
-                    <li>Understand and track developers needs: Create feedback loops with the developer community to
-                        inform
-                        product roadmap. Be the first point of contact for developers requests and questions.
+                    <li>Participate and take the lead of development efforts across the whole technology stack (storage
+                        engine, SQL engine, interfaces).
                     </li>
-                    <li>Manage and engage the community: Build engagement developers' social channels and grow our
-                        Slack
-                        community. Manage outreach to developers both online (Moderate day-to-day community activity in
-                        the
-                        discussion forums) and offline via conferences, events, workshops, etc.
+                    <li>Propose, design and implement new functions and features. Propose ways to improve performance on
+                        existing
+                        modules.
                     </li>
-                    <li>Create content: Work with the CTO and CPO to create technical articles and blog posts that bring
-                        value to developers.
+                    <li>Ensure new features meet the standards of code quality, performance, and reliability.
                     </li>
-                    <li>Identify strategic partnership opportunities to grow our developer community.</li>
+                    <li>Actively engage with and assist customers to boost experience and adoption.</li>
                 </ul>
 
                 <span className="jobsubtitle colored bold">Requirements</span>
                 <ul>
-                    <li>3+ years of experience in community development</li>
-                    <li>Passionate about open source and the developer community</li>
-                    <li>Database or Java knowledge preferred</li>
-                    <li>Strong writing and communication skills</li>
-                    <li>Marketing experience is a plus</li>
-                    <li>Relationships in prominent Open Source communities is a plus</li>
-                    <li>Familiarity with developer tools</li>
-                    <li>Excellent spoken and written English</li>
+                    <li>3+ years of software engineering experience</li>
+                    <li>Passionate about performance and code efficiency</li>
+                    <li>Experience with databases and the JVM</li>
+                    <li>Innovative and inquisitive spirit</li>
+                    <li>Low-latency expertise is a plus</li>
+                    <li>Strong affection for thoroughly tested code</li>
                 </ul>
 
                 <span className="jobsubtitle colored bold">Remuneration</span>
-                We see this role as foundational for the long-term success of the company. We do offer a competitive
+                Our tech and our devs are at the center of what we do. We do offer a competitive
                 salary and very large equity stake to align your remuneration to the long-term success of the firm.
 
             </div>
@@ -297,14 +294,17 @@ class Index extends React.Component {
             <div className="job" id="dev-frontend-job">
                 <span className="jobtitle colored bold">Front-end developer</span>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam eget posuere nisl, eget posuere
-                    ante. Etiam varius ante eget tortor finibus, non egestas turpis sollicitudin. Pellentesque quis
-                    ultrices massa. Duis sed viverra velit. Phasellus et porttitor ante. Praesent sed lacinia ex, sit
-                    amet interdum est.
+                    The key to the QuestDB experience is not only that it is fast. It is that it looks and feels good,
+                    and allows users to achieve what they want, however crazy that may be.
                     <br/><br/>
-                    Mauris at nibh vel magna condimentum tincidunt. Lorem ipsum dolor sit amet, consectetur adipiscing
-                    elit. Integer sit amet orci justo. Ut nulla tortor, ultrices id sapien sit amet, vestibulum laoreet
-                    neque. Phasellus interdum aliquet odio, at laoreet est rhoncus rutrum. Nulla facilisi.
+                    Most companies separate front-end and back-end developers through invisible and unnecessary
+                    knowledge and information silos. We do the opposite.
+                    <br/><br/>
+                    While we are looking for somebody whose focus will be the look and feel of the
+                    platform, the role will he actively involved in every step of the design and
+                    discussions around new features for the database engine. By being at the center in every step of the journey
+                    and by having decision power in the back-end development, you will be instrumental in creating product that
+                    not only looks and feels great, but also IS great.
                 </p>
 
                 <span className="jobsubtitle colored bold">Responsibilities</span>
