@@ -82,11 +82,6 @@ body > div.navPusher > div > div.mainContainer > div.toptitle > div > div > div 
     color: white;
 }
 
-.whatwedo b {
-    color: lightgray;
-}
-
-
 .icons {
     font-size: 9px;
     color: rgba(211, 211, 211, 0.64);
@@ -163,10 +158,6 @@ div.blockContent div.interfaces {
     margin-left: auto;
 }
 
-
-.whatwedo b {
-    color: white;
-}
 
 .sql p {
     text-align: center;
@@ -255,7 +246,50 @@ div.blockjustified {
 
 .perf {
     padding-top: 100px;
-    padding-botom: 100px;
+    padding-bottom: 100px;
+}
+
+.careers{
+    padding-top: 100px;
+}
+
+.careers-footer{
+    text-align: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    font-size: 120%;
+}
+
+
+.job {
+    /*The negative margin is intentional so job sections reached via hyperlink appear correctly as the title
+    would otherwise be hidden by the top menu. IT is offset by the padding.*/
+    margin-top: -80px;
+    padding-top: 120px;
+    padding-bottom: 40px;
+    border-bottom: 1.5px solid #2371b5;
+}
+
+.job-list{
+    font-weight: 500;
+}
+
+.jobtitle{
+    margin-bottom: 10px;
+    font-size: 30px;
+    text-align: left;
+    display: block;
+}
+
+.jobsubtitle{
+    margin-bottom: 10px;
+    font-size: 20px;
+    text-align: left;
+    display: block;
 }
 
 div.subtitle.perfbottom {
@@ -406,7 +440,7 @@ code {
     box-shadow: 0px 2px 2px 1px rgba(0, 0, 0, 0.55);
 }
 
-.slidingNav li:nth-child(4) {
+.slidingNav li:nth-child(5) {
     background-color: #e68200;
     font-weight: 500;
     border-radius: 2px;
@@ -447,8 +481,12 @@ div.blockImage {
     padding-left: 10%;
 }
 
-.mainContainer b {
+.colored {
     color: #2371b5;
+}
+
+.bold   {
+    font-weight: 400;
 }
 
 footer.nav-footer {
@@ -567,6 +605,43 @@ body > div.fixedHeaderContainer {
     background-size: 40px 40px;
     background-image: radial-gradient(circle at 10px 26px, yellow 20px, transparent 21px);
 }
+
+.careers, .job {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.center{
+    text-align: center;
+}
+
+.apply{
+    background-color: #f1f1f1;
+
+}
+
+.apply-text {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    padding-bottom: 30px;
+    padding-top: 30px;
+}
+
+.apply-steps {
+    list-style-type: none;
+    padding-left: 0px;
+    font-size: 110%;
+}
+
+.apply-steps li{
+    font-weight: 500;
+    color: #2371b5;
+}
+
 
 
                     @media only screen and (max-width: 1000px) {
