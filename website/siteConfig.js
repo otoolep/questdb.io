@@ -115,7 +115,6 @@ const siteConfig = {
     stylesheets: [
         'https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,500,600,700|Source+Code+Pro:400,700|Open+Sans:300,400,600,700',
         '/css/code-block-buttons.css',
-        '/css/sign-up.css'
     ],
     separateCss: [
         '/css/code-block-buttons.css',

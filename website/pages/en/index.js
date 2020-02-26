@@ -166,17 +166,42 @@ class Index extends React.Component {
                         },
                     ]}
                 </CenterBlock>
-                <Block>
+                <Block layout="twoColumn">
                     {[
                         {
                             content: '<ul class="announcement">' +
-                                '<li>Large dataset - 1.6 billion rows NY Taxi data set</li>' +
-                                '<li>Attainable hardware - AWS bare metal</li>' +
-                                '<li>Arbitrary SQL queries against real data set</li>' +
-                                '<li>Vectorized aggregation - SIMD based SQL intrinsics</li>' +
-                                '<li>Parallel SQL execution - low overhead work split and work stealing</li>' +
-                                '<li>Sub-second un-cached query execution</li>' +
-                                '<li>Time series joins - correlate events with SQL</li>' +
+                                '<li>' +
+                                '<span class="headline">Large dataset - 1.6 billion rows NY Taxi data set</span>' +
+                                '<span class="summary">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque euismod elit in arcu malesuada laoreet. Quisque sagittis tincidunt laoreet. Pellentesque auctor quam non quam venenatis imperdiet. Aliquam erat volutpat. Nulla.</span>' +
+                                '</li>' +
+                                '<li>' +
+                                '<span class="headline">Attainable hardware</span>' +
+                                '<span class="summary">AWS bare metal. Pellentesque euismod elit in arcu malesuada laoreet.</span>' +
+                                '</li>' +
+                                '<li>' +
+                                '<span class="headline">Arbitrary SQL queries against real data set</span>' +
+                                '<span class="summary">Quisque sagittis tincidunt laoreet. Pellentesque auctor quam non quam venenatis imperdiet.</span>' +
+                                '</li>' +
+                                '</ul>'
+                        },
+                        {
+                            content: '<ul class="announcement">' +
+                                '<li>' +
+                                '<span class="headline">Parallel SQL execution</span>' +
+                                '<span class="summary">Low overhead work split and work stealing</span>' +
+                                '</li>' +
+                                '<li>' +
+                                '<span class="headline">Sub-second query execution</span>' +
+                                '<span class="summary">We aim to execute all queries under a second</span>' +
+                                '</li>' +
+                                '<li>' +
+                                '<span class="headline">Time series joins</span>' +
+                                '<span class="summary">Time-series sampling, and joining on arbitrary timestamps</span>' +
+                                '</li>' +
+                                '<li>' +
+                                '<span class="headline">Vectorized aggregation</span>' +
+                                '<span class="summary">SIMD based SQL intrinsics</span>' +
+                                '</li>' +
                                 '</ul>'
                         },
                     ]}
