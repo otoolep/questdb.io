@@ -159,7 +159,7 @@ class Index extends React.Component {
 
         const Demo = () => (
             <div className="demo">
-                <CenterBlock class="titlecenter">
+                <CenterBlock className="titlecenter">
                     {[
                         {
                             content: '<span class="title">Live demo is coming right up!</span>',

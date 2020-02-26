@@ -1,3 +1,16 @@
+.signup .send {
+    padding: 5px 0 5px 0;
+    text-align: center;
+    width: 150px;
+    background-color: #e68200;
+    align-self: center;
+    margin: 30px auto 10px;
+}
+
+.signup .send a {
+    color: white;
+}
+
 @media only screen and (min-width: 1001px) {
     .signup {
         background-color: #2066a3;
@@ -46,15 +59,6 @@
         font-size: 130%;
         font-weight: 400;
     }
-
-    .signup .send {
-        padding: 5px 0 5px 0;
-        text-align: center;
-        width: 150px;
-        background-color: #e68200;
-        align-self: center;
-        margin: 30px auto 10px;
-    }
 }
 
 @media only screen and (max-width: 1000px) {
@@ -101,14 +105,5 @@
         padding-bottom: 20px;
         font-size: 130%;
         font-weight: 400;
-    }
-
-    .signup .send {
-        padding: 5px 0 5px 0;
-        text-align: center;
-        width: 150px;
-        background-color: #e68200;
-        align-self: center;
-        margin: 30px auto 10px;
     }
 }

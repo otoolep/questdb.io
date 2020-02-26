@@ -1,9 +1,17 @@
 
 window.addEventListener('load', function() {
 
-    document.getElementById('packageIcon').addEventListener('click', showInstall);
-    document.getElementById('tutoIcon').addEventListener('click', showTuto);
-    document.getElementById('questionIcon').addEventListener('click', showQuestion);
+    function setClick(id, f) {
+        document.getElementById(id).parentElement.parentElement.parentElement.parentElement.parentElement.addEventListener('click', f);
+    }
+
+    setClick('packageIcon', showInstall);
+    setClick('tutoIcon', showTuto);
+    setClick('questionIcon', showQuestion);
+
+    // document.getElementById('packageIcon').parentElement.parentElement.parentElement.parentElement.parentElement.addEventListener('click', showInstall);
+    // document.getElementById('tutoIcon').addEventListener('click', showTuto);
+    // document.getElementById('questionIcon').addEventListener('click', showQuestion);
 
     function showInstall() {
         document.getElementById('getStartedInstall').style.display='block';

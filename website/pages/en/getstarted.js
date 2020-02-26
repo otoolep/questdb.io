@@ -14,11 +14,7 @@ const GridBlock = CompLibrary.GridBlock;
 class HomeSplash extends React.Component {
 
     render() {
-        const {siteConfig, language = ''} = this.props;
-        const {baseUrl, docsUrl} = siteConfig;
-        const docsPart = `${docsUrl ? `${docsUrl}/` : ''}`;
-        const langPart = `${language ? `${language}/` : ''}`;
-        const docUrl = doc => `${baseUrl}${docsPart}${langPart}${doc}`;
+        const {siteConfig} = this.props;
 
         const SplashContainer = props => (
             <div className="homeContainer">
@@ -48,7 +44,6 @@ class Index extends React.Component {
 
     render() {
         const {config: siteConfig, language = ''} = this.props;
-        const {baseUrl} = siteConfig;
 
         const Block = props => (
             <Container
@@ -86,7 +81,7 @@ class Index extends React.Component {
                             {
                                 content:
                                         '<img src="img/package.svg" id="packageIcon" alt="Install"/>' +
-                                        '<div class="subtitle bold">Install</div>'
+                                        '<div class="subtitle bold">Install</div>',
                             },
                             {
                                 content:
@@ -111,18 +106,20 @@ class Index extends React.Component {
                         {[
                             {
                                 content:
-                                    '<a  href="/docs/docker"><img src="img/docker.svg"/></a>' +
-                                    '<div class="subtitle bold" >Docker image</div>',
+                                    '<a href="/docs/docker">' +
+                                    '<img src="img/docker.svg" alt="Docker"/>' +
+                                    '<div class="subtitle bold" >Docker image</div>' +
+                                    '</a>',
                             },
                             {
                                 content:
-                                    '<a  href="/docs/manualinstall"><img src="img/box.svg"/></a>' +
-                                    '<div class="subtitle bold">Manually with binaries</div>',
+                                    '<a href="/docs/manualinstall"><img src="img/box.svg" alt="Download Binaries"/></a>' +
+                                    '<div class="subtitle bold">Download binaries</div>',
                             },
                             {
                                 content:
-                                    '<a  href="/docs/dependency"><img src="img/dependency.svg"/></a>' +
-                                    '<div class="subtitle bold">Java dependency</div>',
+                                    '<a href="/docs/dependency"><img src="img/dependency.svg" alt="Java Dependency"/></a>' +
+                                    '<div class="subtitle bold">Use as Java dependency</div>',
                             },
                         ]}
                     </Block>
@@ -137,18 +134,18 @@ class Index extends React.Component {
                         {[
                             {
                                 content:
-                                    '<a  href="https://join.slack.com/t/questdb/shared_invite/enQtNzk4Nzg4Mjc2MTE2LTEzZThjMzliMjUzMTBmYzVjYWNmM2UyNWJmNDdkMDYyZmE0ZDliZTQxN2EzNzk5MDE3Zjc1ZmJiZmFiZTIwMGY>"><img src="img/slack.svg"/></a>' +
+                                    '<a  href="https://join.slack.com/t/questdb/shared_invite/enQtNzk4Nzg4Mjc2MTE2LTEzZThjMzliMjUzMTBmYzVjYWNmM2UyNWJmNDdkMDYyZmE0ZDliZTQxN2EzNzk5MDE3Zjc1ZmJiZmFiZTIwMGY>"><img src="img/slack.svg" alt="Slack"/></a>' +
                                     '<div class="subtitle bold">Ask on Slack</div>',
                             },
                             {
                                 content:
-                                    '<a  href="https://github.com/questdb/questdb/issues"><img src="img/github.svg"/></a>' +
+                                    '<a  href="https://github.com/questdb/questdb/issues"><img src="img/github.svg" alt="GitHub"/></a>' +
                                     '<div class="subtitle bold">Raise an issue on Github</div>',
                             },
                             {
                                 content:
-                                    '<a  href="/docs/interfaces"><img src="img/tuto.svg"/></a>' +
-                                    '<div class="subtitle bold">Search the docs</div>',
+                                    '<a  href="/docs/interfaces"><img src="img/tuto.svg" alt="Search documentation"/></a>' +
+                                    '<div class="subtitle bold">Search documentation</div>',
                             },
                         ]}
                     </Block>
@@ -163,17 +160,17 @@ class Index extends React.Component {
                         {[
                             {
                                 content:
-                                    '<a  href="http://try.questdb.io:9000/index.html"><img src="img/tire.svg"/></a>' +
+                                    '<a  href="http://try.questdb.io:9000/index.html"><img src="img/tire.svg" alt="Taxi Demo"/></a>' +
                                     '<div class="subtitle bold">Query NY Taxi data online</div>',
                             },
                             {
                                 content:
-                                    '<a  href="docs/tutorial/"><img src="img/rocket.svg"/></a>' +
+                                    '<a  href="docs/tutorial/"><img src="img/rocket.svg" alt="Database tutorial"/></a>' +
                                     '<div class="subtitle bold">First Database tutorial</div>',
                             },
                             {
                                 content:
-                                    '<a  href="/docs/crud"><img src="img/crud.svg"/></a>' +
+                                    '<a  href="/docs/crud"><img src="img/crud.svg" alt="CRUD how-to"/></a>' +
                                     '<div class="subtitle bold">Learn to perform CRUD operations</div>',
                             },
 
@@ -186,8 +183,8 @@ class Index extends React.Component {
         const BackButton = () => (
             <div className="backButton" id="backButton">
                 <center>
-                    <ul class="buttonsDark">
-                        <li class="cta"><a href="/getstarted">Back</a></li>
+                    <ul className="buttonsDark">
+                        <li className="cta"><a href="/getstarted">Back</a></li>
                     </ul>
                 </center>
             </div>

@@ -71,7 +71,6 @@ class Index extends React.Component {
 
     render() {
         const {config: siteConfig, language = ''} = this.props;
-        const {baseUrl} = siteConfig;
 
         const Block = props => (
             <Container
@@ -102,7 +101,7 @@ class Index extends React.Component {
 
         const Intro = () => (
             <div className="careers">
-                <span class="title colored bold">Careers</span>
+                <span className="title colored bold">Careers</span>
                 <div>
                     <p>
                         Want to join an ambitious team set to break all speed records in data processing? Good news...

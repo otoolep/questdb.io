@@ -31,11 +31,12 @@ const siteConfig = {
     headerLinks:
     [
         {href: "/", label: 'Home'},
-        {doc: 'getstarted', label: 'Get Started'},
+        {page: 'getstarted', label: 'Get QuestDB'},
         {doc: 'interfaces', label: 'Documentation'},
         {blog: true, label: 'Blog'},
-        {href: "/careers", label: 'Careers'},
-        {doc: 'getstarted', label: 'About'},
+        {page: "careers", label: 'Careers'},
+        {page: '', label: 'About'},
+        {search: true}
         // {href: "https://github.com/questdb/questdb", label: 'GitHub'},
     ],
     // If you have users set above, you add it here:

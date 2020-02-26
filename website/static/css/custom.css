@@ -1,5 +1,10 @@
 /* your custom css */
 
+
+.fixedHeaderContainer .wrapper {
+    max-width: 1400px!important;
+}
+
 h1.postHeaderTitle {
     padding-top: 100px;
 }
@@ -444,11 +449,11 @@ code {
     box-shadow: 0 2px 2px 1px rgba(0, 0, 0, 0.55);
 }
 
-.slidingNav li:nth-child(5) {
-    background-color: #e68200;
-    font-weight: 500;
-    border-radius: 2px;
-}
+/*.slidingNav li:nth-child(5) {*/
+/*    background-color: #e68200;*/
+/*    font-weight: 500;*/
+/*    border-radius: 2px;*/
+/*}*/
 
 .slidingNav li {
     font-weight: 500;
@@ -456,15 +461,23 @@ code {
 }
 
 .slidingNav li:hover:not(:last-child) {
-    background-color: #e68200;
     font-weight: 500;
-    border-radius: 2px;
+    border-bottom: 4px solid #e68200;
 }
 
 .slidingNav {
     background-color: #2371b5;
     padding-bottom: 10px;
 }
+
+.slidingNav .siteNavItemActive {
+    background-color: #e68200;
+}
+
+.slidingNav .siteNavItemActive a {
+    background-color: #e68200;
+}
+
 
 div.blockImage {
     margin-bottom: 0;
@@ -518,7 +531,6 @@ footer.nav-footer {
 }
 
 .startTitle {
-    padding-top: 90px;
     padding-bottom: 30px;
     position: relative;
     min-height: 150px;
@@ -979,5 +991,4 @@ body > div.fixedHeaderContainer {
         font-size: 18px;
     }
 }
-
 

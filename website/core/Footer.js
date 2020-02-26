@@ -16,11 +16,6 @@ class Footer extends React.Component {
         return `${baseUrl}${docsPart}${langPart}${doc}`;
     }
 
-    pageUrl(doc, language) {
-        const baseUrl = this.props.config.baseUrl;
-        return baseUrl + (language ? `${language}/` : '') + doc;
-    }
-
     render() {
         return (
             <footer className="nav-footer" id="footer">
@@ -107,9 +102,7 @@ class Footer extends React.Component {
 
                 <section className="copyright">{this.props.config.copyright}
                 </section>
-
-                <div class="icons"><center>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></center></div>
-
+                <div className="icons"><center>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></center></div>
             </footer>
         );
     }
