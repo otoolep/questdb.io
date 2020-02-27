@@ -29,32 +29,9 @@ class HomeSplash extends React.Component {
             </div>
         );
 
-        const Logo = props => (
-            <div className="projectLogo">
-                <img src={props.img_src} alt="Project Logo"/>
-            </div>
-        );
-
         const ProjectTitle = () => (
             <span/>
         );
-
-        const PromoSection = props => (
-            <div className="section promoSection">
-                <div className="promoRow">
-                    <div className="pluginRowBlock">{props.children}</div>
-                </div>
-            </div>
-        );
-
-        const Button = props => (
-            <div className="pluginWrapper buttonWrapper">
-                <a className="button" href={props.href} target={props.target}>
-                    {props.children}
-                </a>
-            </div>
-        );
-
 
         return (
             <SplashContainer>
@@ -107,17 +84,18 @@ class Index extends React.Component {
                         Want to join an ambitious team set to break all speed records in data processing? Good news...
                         <b>We're hiring!</b>
                         <br/>
-                        <img src='/img/team.png'/>
+                        <img src='/img/team.svg'/>
                         <br/><br/>
-                        We are based in <b>London</b> and <b>San Francisco</b>, and backed by leading venture capital
-                        firms.
-                        <br/>
-                        We are actively recruiting for the following positions:
-                        <ul className="job-list">
-                            <li><a href="#dev-rel-job">Head of developer relations (London, San Francisco)</a></li>
-                            <li><a href="#dev-backend-job">Back-end engineer (London)</a></li>
-                            <li><a href="#dev-frontend-job">Front-end engineer (London)</a></li>
+                        QuestDB is based in <b>London</b> and <b>San Francisco</b>, and backed by leading venture
+                        capital firms.
+
+                        <ul className="buttons center">
+                            <li><a
+                                href="#job-list">
+                                <b>View Openings</b>
+                            </a></li>
                         </ul>
+
                     </p>
                 </div>
             </div>
@@ -130,7 +108,7 @@ class Index extends React.Component {
                     Simply send your CV and job reference to <b>hr@questdb.io</b> or
                     <a href="https://join.slack.com/t/questdb/shared_invite/enQtNzk4Nzg4Mjc2MTE2LTEzZThjMzliMjUzMTBmYzVjYWNmM2UyNWJmNDdkMDYyZmE0ZDliZTQxN2EzNzk5MDE3Zjc1ZmJiZmFiZTIwMGY>"
                        className="color">
-                        <b> Talk to us on Slack!</b>
+                        <b> chat us on Slack! </b>
                     </a>
                     <br/><br/>
                     <span className="jobtitle colored bold">Our interview process</span>
@@ -145,14 +123,14 @@ class Index extends React.Component {
                             Send your CV by email to <b>hr@questdb.io </b> or
                             <a href="https://join.slack.com/t/questdb/shared_invite/enQtNzk4Nzg4Mjc2MTE2LTEzZThjMzliMjUzMTBmYzVjYWNmM2UyNWJmNDdkMDYyZmE0ZDliZTQxN2EzNzk5MDE3Zjc1ZmJiZmFiZTIwMGY>"
                                className="color">
-                                <b> chat us on Slack!</b>
+                                <b> chat us on Slack! </b>
                             </a>
                             We will review your application and aim to come back to you within 3 days.
                             <br/><br/>
                             <li>Step 2 - Get ready to show off!</li>
                             We will offer you the opportunity to show off. You can either show us something you did (for
                             engineers, this could be some code you are proud of. For designers, it could be your
-                            portfolio). If you prefer, or in some cases, we would send you a challenge to complete
+                            portfolio). Alternatively, we would send you a challenge to complete
                             before your interview.
                             <br/><br/>
                             <li>Step 3 - Impress us!</li>
@@ -165,7 +143,9 @@ class Index extends React.Component {
                             We are aware that interviews only give you a superficial view of the company. So if you want
                             to, we will welcome you to join us for a day and see how we work. You will be
                             assigned a buddy to guide you, but will be allowed to stay with any employee and shadow them
-                            during their day. Think of it like school open days for grown ups!
+                            during their day. Think of it like school open days for grown ups! If you have a partner and
+                            would like to get their opinion, you are free to bring them along and they can also
+                            interview us!
                             <br/><br/>
                             <li>Step 5 - Join us!</li>
                             We will work out your job description and specifics. We will also conduct some mandatory
@@ -182,11 +162,13 @@ class Index extends React.Component {
                 <div>
                     <p>
                         Want to work with us but can't find a job description that matches your profile? <br/>
-                        <a href="https://join.slack.com/t/questdb/shared_invite/enQtNzk4Nzg4Mjc2MTE2LTEzZThjMzliMjUzMTBmYzVjYWNmM2UyNWJmNDdkMDYyZmE0ZDliZTQxN2EzNzk5MDE3Zjc1ZmJiZmFiZTIwMGY>"
-                           className="color">
-                            <b>Get in touch on Slack!</b>
-                        </a>
-                        <br/>We'll figure something out.
+                        <ul class="buttons">
+                            <li><a
+                                href="https://join.slack.com/t/questdb/shared_invite/enQtNzk4Nzg4Mjc2MTE2LTEzZThjMzliMjUzMTBmYzVjYWNmM2UyNWJmNDdkMDYyZmE0ZDliZTQxN2EzNzk5MDE3Zjc1ZmJiZmFiZTIwMGY>">
+                                <b>Get in touch on Slack!</b>
+                            </a></li>
+                        </ul>
+                        We'll figure something out.
                     </p>
                 </div>
             </div>
@@ -196,8 +178,9 @@ class Index extends React.Component {
             <div className="job" id="dev-rel-job">
                 <span className="jobtitle colored bold">Head of developer relations</span>
                 <p>
-                    Helping developers solve their problems is at the center of what we do. Your role will consist of
-                    engaging with the user base and orchestrating the growth of our open source communities.
+                    Helping developers achieve their goals is at the center of what we do. Your role will consist of
+                    engaging with the user base and orchestrating the growth of our open source communities by reaching
+                    out to developers and help them solve their problems.
                     <br/><br/>
                     This is an open-ended role with a substantial degree of autonomy. You will have full liberty to
                     develop outreach channels such as promoting content to spur adoption, planning events, marketing, PR
@@ -235,15 +218,15 @@ class Index extends React.Component {
                 </ul>
 
                 <span className="jobsubtitle colored bold">Remuneration</span>
-                We see this role as foundational for the long-term success of the company. We do offer a competitive
-                salary and very large equity stake to align your remuneration to the long-term success of the firm.
+                We see this role as foundational for the long-term success of the company. We offer a competitive
+                salary and large equity stake to align your remuneration to the long-term success of the firm.
 
             </div>
         );
 
         const Dev = () => (
             <div className="job" id="dev-backend-job">
-                <span className="jobtitle colored bold">Back-end developer</span>
+                <span className="jobtitle colored bold">Back-end engineer</span>
                 <p>
                     QuestDB stands for speed and efficiency. As a key member of the dev team, you will put these
                     principles
@@ -283,66 +266,80 @@ class Index extends React.Component {
                 </ul>
 
                 <span className="jobsubtitle colored bold">Remuneration</span>
-                Our tech and our devs are at the center of what we do. We do offer a competitive
-                salary and very large equity stake to align your remuneration to the long-term success of the firm.
+                Our tech and our devs are at the center of what we do.
+                salary and large equity stake to align your remuneration to the long-term success of the firm.
 
             </div>
         );
 
         const DefFE = () => (
             <div className="job" id="dev-frontend-job">
-                <span className="jobtitle colored bold">Front-end developer</span>
+                <span className="jobtitle colored bold">Front-end engineer</span>
                 <p>
-                    The key to the QuestDB experience is not only that it is fast. It is that it looks and feels good,
-                    and allows users to achieve what they want, however crazy that may be.
+                    QuestDB is not only fast. It feels good and,
+                    allows users to achieve what they want with ease.
                     <br/><br/>
                     Most companies separate front-end and back-end developers through invisible and unnecessary
                     knowledge and information silos. We do the opposite.
                     <br/><br/>
-                    While we are looking for somebody whose focus will be the look and feel of the
-                    platform, the role will he actively involved in every step of the design and
-                    discussions around new features for the database engine. By being at the center in every step of the journey
-                    and by having decision power in the back-end development, you will be instrumental in creating product that
-                    not only looks and feels great, but also IS great.
+                    While front-end focused, the role will he actively involved in every step of the design and
+                    development of the database engine. By having decision power in the back-end development, you will
+                    be instrumental in creating product that not only looks and feels great because it is a whole
+                    integrated entity.
                 </p>
 
                 <span className="jobsubtitle colored bold">Responsibilities</span>
                 <ul>
-                    <li>Understand and track developers needs: Create feedback loops with the developer community to
-                        inform
-                        product roadmap. Be the first point of contact for developers requests and questions.
+                    <li>Development: Design and implementation of all internal and user-facing UI. This includes tools
+                        for database setup, querying and visualisation, realtime monitoring,
+                        and cluster management via integrations with various cloud providers along with occasional
+                        website work.
                     </li>
-                    <li>Manage and engage the community: Build engagement developers' social channels and grow our
-                        Slack
-                        community. Manage outreach to developers both online (Moderate day-to-day community activity in
-                        the
-                        discussion forums) and offline via conferences, events, workshops, etc.
+                    <li>UX: Full flexibility to imagine, design, and implement smooth and powerful user experience
+                        through all tools and website. You will be fully responsible and independent to create the
+                        best user experience out there.
                     </li>
-                    <li>Create content: Work with the CTO and CPO to create technical articles and blog posts that bring
-                        value to developers.
+                    <li>
+                        Features design: advise on new and existing features so their development is consistent with the
+                        user experience you design.
                     </li>
-                    <li>Identify strategic partnership opportunities to grow our developer community.</li>
+                    <li>Community development: engage with the community to both promote new features, absorb and
+                        integrate feedback, and help users achieve their goals. Occasionally host live demos or webinars
+                        to show your work.
+                    </li>
                 </ul>
 
                 <span className="jobsubtitle colored bold">Requirements</span>
                 <ul>
-                    <li>3+ years of experience in community development</li>
+                    <li>3+ years of experience in front-end development</li>
+                    <li>Innovative spirit with both the ability to generate ideas and to implement them</li>
                     <li>Passionate about open source and the developer community</li>
-                    <li>Database or Java knowledge preferred</li>
-                    <li>Strong writing and communication skills</li>
-                    <li>Marketing experience is a plus</li>
-                    <li>Relationships in prominent Open Source communities is a plus</li>
+                    <li>Desire to get to know the back-end</li>
+                    <li>Database knowledge preferred</li>
                     <li>Familiarity with developer tools</li>
                     <li>Excellent spoken and written English</li>
                 </ul>
 
                 <span className="jobsubtitle colored bold">Remuneration</span>
-                We see this role as foundational for the long-term success of the company. We do offer a competitive
-                salary and very large equity stake to align your remuneration to the long-term success of the firm.
+                Users will see and interact with QuestDB through your work, and the quality of it will forge their
+                opinion.
+                This high responsibility job comes with a competitive salary and large equity stake.
 
             </div>
         );
 
+        const Openings = () => (
+            <div className="job" id="job-list">
+                <span className="jobtitle colored bold">Current openings</span>
+                We are actively recruiting for the following positions:
+                <br/><br/>
+                <ul>
+                    <li><a href="#dev-rel-job">Head of developer relations (London, San Francisco)</a></li>
+                    <li><a href="#dev-backend-job">Back-end engineer (London)</a></li>
+                    <li><a href="#dev-frontend-job">Front-end engineer (London)</a></li>
+                </ul>
+            </div>
+        );
 
         return (
             <div>
@@ -350,6 +347,7 @@ class Index extends React.Component {
                 <div className="mainContainer">
                     <Intro/>
                     <Apply/>
+                    <Openings/>
                     <DevRel/>
                     <Dev/>
                     <DefFE/>
