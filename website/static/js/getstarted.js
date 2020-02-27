@@ -14,7 +14,7 @@ window.addEventListener('load', function() {
     // document.getElementById('questionIcon').addEventListener('click', showQuestion);
 
     function showInstall() {
-        document.getElementById('getStartedInstall').style.display='block';
+        document.getElementById('jsDownload').style.display='block';
         document.getElementById('getStartedTuto').style.display='none';
         document.getElementById('getStartedQuestion').style.display='none';
         document.getElementById('packageIcon').style.webkitFilter = "grayscale(0%)";
@@ -24,7 +24,7 @@ window.addEventListener('load', function() {
     }
 
     function showTuto() {
-        document.getElementById('getStartedInstall').style.display='none';
+        document.getElementById('jsDownload').style.display='none';
         document.getElementById('getStartedTuto').style.display='block';
         document.getElementById('getStartedQuestion').style.display='none';
         document.getElementById('packageIcon').style.webkitFilter = "grayscale(75%)";
@@ -33,7 +33,7 @@ window.addEventListener('load', function() {
     }
 
     function showQuestion() {
-        document.getElementById('getStartedInstall').style.display='none';
+        document.getElementById('jsDownload').style.display='none';
         document.getElementById('getStartedTuto').style.display='none';
         document.getElementById('getStartedQuestion').style.display='block';
         document.getElementById('packageIcon').style.webkitFilter = "grayscale(75%)";

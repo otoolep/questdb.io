@@ -100,9 +100,7 @@ class Footer extends React.Component {
                     </div>
                 </section>
 
-                <section className="copyright">{this.props.config.copyright}
-                </section>
-                <div className="icons"><center>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></center></div>
+                <section className="copyright">{this.props.config.copyright}</section>
             </footer>
         );
     }

@@ -345,7 +345,7 @@ div.subtitle.perfbottom {
 }
 
 .startlist {
-    margin-top: 5%;
+    /*margin-top: 5%;*/
     width: 70%;
     display: block;
     margin-right: auto;
@@ -409,7 +409,6 @@ div.interfaces {
     color: #2371b5;
     font-size: 44px;
 }
-
 
 .mainContainer h2 {
     margin-top: 75px;
@@ -911,7 +910,7 @@ body > div.fixedHeaderContainer {
     }
 
     .start {
-        padding-top: 10px;
+        padding-top: 50px;
         padding-bottom: 50px;
     }
 

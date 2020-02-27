@@ -1,0 +1,40 @@
+.download {
+    width: 850px;
+    margin-left: auto;
+    margin-right: auto;
+    align-self: center;
+}
+
+.download ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.download li {
+    /*border: 1px dotted blueviolet;*/
+    padding: 0;
+    margin: 0;
+}
+
+.download pre {
+    white-space: pre;
+    padding: 15px 20px;
+    background: #e6e8ea;
+    font-family: monospace;
+    font-size: 105%;
+    font-weight: 600;
+}
+
+.download .headline {
+    display: block;
+    font-weight: 400;
+    font-size: 140%;
+    padding-top: 30px;
+    padding-bottom: 10px;
+}
+
+.download p {
+    margin: 0;
+    padding: 0 0 5px;
+}
