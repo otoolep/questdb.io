@@ -80,13 +80,12 @@ class Index extends React.Component {
             <div className="careers">
                 <span className="title colored bold">Careers</span>
                 <div>
+                    <img src='/img/team.svg'/>
+                    <br/><br/>
                     <p>
                         Want to join an ambitious team set to break all speed records in data processing? Good news...
-                        <b>We're hiring!</b>
-                        <br/>
-                        <img src='/img/team.svg'/>
-                        <br/><br/>
-                        QuestDB is based in <b>London</b> and <b>San Francisco</b>, and backed by leading venture
+                        <b> We're hiring!</b> QuestDB is based in <b>London</b> and <b>San Francisco</b>, and backed by
+                        leading venture
                         capital firms.
 
                         <ul className="buttons center">
@@ -113,10 +112,10 @@ class Index extends React.Component {
                     <br/><br/>
                     <span className="jobtitle colored bold">Our interview process</span>
                     <p>
-                        The most important thing for us is to have a great team. And the only way to get a great team is
-                        to have a great fit. It is often hard for candidates to know what's going on inside a start-up
-                        before actually joining it. So we designed our interview process in order to give you maximum
-                        transparency into who we are, what we do, and how we work.
+                        The only way to get a great team is to make sure every member is a great fit. We designed our
+                        interview process in order to give you maximum
+                        transparency into who we are, what we do, and how we work, so you can know for certain whether
+                        you want to join us in the adventure.
 
                         <ul className="apply-steps">
                             <li>Step 1 - Contact us!</li>
@@ -134,7 +133,7 @@ class Index extends React.Component {
                             before your interview.
                             <br/><br/>
                             <li>Step 3 - Impress us!</li>
-                            We will schedule an interview, either in our office or via videochat. The interview will be
+                            We will schedule an interview, either in our office or via video conference. The interview will be
                             the occasion for you to walk us through what you did at step 2. We will also take some time
                             at the beginning to introduce ourselves and make sure we dedicate time so you can ask as
                             many questions as you want.
@@ -142,7 +141,7 @@ class Index extends React.Component {
                             <li>Step 4 - Try us!</li>
                             We are aware that interviews only give you a superficial view of the company. So if you want
                             to, we will welcome you to join us for a day and see how we work. You will be
-                            assigned a buddy to guide you, but will be allowed to stay with any employee and shadow them
+                            assigned a buddy to guide you, but will be allowed to follow any employee
                             during their day. Think of it like school open days for grown ups! If you have a partner and
                             would like to get their opinion, you are free to bring them along and they can also
                             interview us!
@@ -266,7 +265,7 @@ class Index extends React.Component {
                 </ul>
 
                 <span className="jobsubtitle colored bold">Remuneration</span>
-                Our tech and our devs are at the center of what we do.
+                Our tech and our development team are at the center of what we do.
                 salary and large equity stake to align your remuneration to the long-term success of the firm.
 
             </div>
@@ -304,7 +303,7 @@ class Index extends React.Component {
                         user experience you design.
                     </li>
                     <li>Community development: engage with the community to both promote new features, absorb and
-                        integrate feedback, and help users achieve their goals. Occasionally host live demos or webinars
+                        integrate feedback, and help users achieve their goals. Occasionally host live demos or web conferencing
                         to show your work.
                     </li>
                 </ul>
