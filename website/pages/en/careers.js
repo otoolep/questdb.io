@@ -105,7 +105,7 @@ class Index extends React.Component {
                 <div className="apply-text">
                     <span className="jobtitle colored bold">How to apply</span>
                     Simply send your CV and job reference to <b>hr@questdb.io</b> or
-                    <a href="https://join.slack.com/t/questdb/shared_invite/enQtNzk4Nzg4Mjc2MTE2LTEzZThjMzliMjUzMTBmYzVjYWNmM2UyNWJmNDdkMDYyZmE0ZDliZTQxN2EzNzk5MDE3Zjc1ZmJiZmFiZTIwMGY>"
+                    <a target="_blank" href="https://join.slack.com/t/questdb/shared_invite/enQtNzk4Nzg4Mjc2MTE2LTEzZThjMzliMjUzMTBmYzVjYWNmM2UyNWJmNDdkMDYyZmE0ZDliZTQxN2EzNzk5MDE3Zjc1ZmJiZmFiZTIwMGY>"
                        className="color">
                         <b> chat us on Slack! </b>
                     </a>
@@ -120,7 +120,7 @@ class Index extends React.Component {
                         <ul className="apply-steps">
                             <li>Step 1 - Contact us!</li>
                             Send your CV by email to <b>hr@questdb.io </b> or
-                            <a href="https://join.slack.com/t/questdb/shared_invite/enQtNzk4Nzg4Mjc2MTE2LTEzZThjMzliMjUzMTBmYzVjYWNmM2UyNWJmNDdkMDYyZmE0ZDliZTQxN2EzNzk5MDE3Zjc1ZmJiZmFiZTIwMGY>"
+                            <a target="_blank" href="https://join.slack.com/t/questdb/shared_invite/enQtNzk4Nzg4Mjc2MTE2LTEzZThjMzliMjUzMTBmYzVjYWNmM2UyNWJmNDdkMDYyZmE0ZDliZTQxN2EzNzk5MDE3Zjc1ZmJiZmFiZTIwMGY>"
                                className="color">
                                 <b> chat us on Slack! </b>
                             </a>
@@ -163,6 +163,7 @@ class Index extends React.Component {
                         Want to work with us but can't find a job description that matches your profile? <br/>
                         <ul class="buttons">
                             <li><a
+                                target="_blank"
                                 href="https://join.slack.com/t/questdb/shared_invite/enQtNzk4Nzg4Mjc2MTE2LTEzZThjMzliMjUzMTBmYzVjYWNmM2UyNWJmNDdkMDYyZmE0ZDliZTQxN2EzNzk5MDE3Zjc1ZmJiZmFiZTIwMGY>">
                                 <b>Get in touch on Slack!</b>
                             </a></li>
@@ -236,7 +237,7 @@ class Index extends React.Component {
                     skills you will gain will be extremely rewarding.
                     <br/><br/>
                     Feel free to skim through our
-                    <a className="bold color" href="https://github.com/questdb/questdb"> Github repo </a>
+                    <a className="bold color" target="_blank" href="https://github.com/questdb/questdb"> Github repo </a>
                     to get an idea of what is expected. If you're up to the challenge, get in touch!
                 </p>
 
