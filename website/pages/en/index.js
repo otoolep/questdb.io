@@ -82,7 +82,7 @@ class Index extends React.Component {
                                 '<p class="left subTopTitle">QuestDB is an open-source time-series database to store, stream, query data and run analytics at the speed of light, with the the convenience of SQL.</p>' +
                                 '<br>' +
                                 '<ul class="buttons">' +
-                                '<li class="cta"><a href="/getstarted">Get started</a></li>' +
+                                '<li class="cta"><a href="/getstarted">Get QuestDB</a></li>' +
                                 '</ul>'
                         }
                     ]
@@ -215,16 +215,25 @@ class Index extends React.Component {
                     <div className="signup shadow">
                         <div className="signup-inner">
                             <span className="why">Be the first to experience our demo</span>
-                            <form action="">
+                            <form method="post" id="jsSignupForm"
+                                  action="https://questdb.us4.list-manage.com/subscribe/post?u=ded0bfce4eb932e7617add7c5&amp;id=0e88cd5ecb"
+                                  name="mc-embedded-subscribe-form"
+                                  target="_blank" noValidate>
                                 <ul>
                                     <li><label>First name</label></li>
-                                    <li><input id="mce-FNAME" type="text" placeholder="John"/></li>
+                                    <li><input name="FNAME" type="text" placeholder="John"/></li>
                                     <li><label>Last name</label></li>
-                                    <li><input id="mce-LNAME" type="text" placeholder="Doe"/></li>
+                                    <li><input name="LNAME" type="text" placeholder="Doe"/></li>
                                     <li><label>Email</label></li>
-                                    <li><input id="mce-EMAIL" type="text" placeholder="john@acme.com"/></li>
+                                    <li><input id="jsInputEmail" name="EMAIL" type="text" placeholder="john@acme.com"/>
+                                    </li>
                                     <li className="send"><a href="" id="jsSignUp">Sign up!</a></li>
                                 </ul>
+                                <div style={{display: 'none'}}>
+                                    <input type="text" name="b_ded0bfce4eb932e7617add7c5_0e88cd5ecb" tabIndex="-1"
+                                           value="" readOnly={true}/>
+                                    <input type="submit" name="subscribe" value="submit" readOnly={true}/>
+                                </div>
                             </form>
                         </div>
                     </div>
