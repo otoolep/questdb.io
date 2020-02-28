@@ -21,6 +21,11 @@ h1.postHeaderTitle {
     font-weight: normal;
 }
 
+.no-margin-bottom {
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
 .bold {
     font-weight: bold;
 }
@@ -246,6 +251,10 @@ div.blockjustified {
     margin-bottom: 50px;
 }
 
+.justify {
+    text-align: justify;
+}
+
 .whatwedo {
     padding-top: 100px;
     padding-bottom: 100px;
@@ -254,66 +263,6 @@ div.blockjustified {
 .perf {
     padding-top: 100px;
     padding-bottom: 100px;
-}
-
-.careers{
-    padding-top: 100px;
-    padding-bottom: 20px;
-}
-
-.careers-footer{
-    text-align: center;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%;
-    padding-top: 40px;
-    padding-bottom: 40px;
-    font-size: 120%;
-}
-
-.careers img {
-    width: 50%;
-    margin-right: auto;
-    margin-left: auto;
-    display: block;
-}
-
-.job {
-    /*The negative margin is intentional so job sections reached via hyperlink appear correctly as the title
-    would otherwise be hidden by the top menu. IT is offset by the padding.*/
-    margin-top: -80px;
-    padding-top: 120px;
-    padding-bottom: 40px;
-    border-bottom: 1.5px solid #2371b5;
-}
-
-.job-list{
-    margin-top: -120px;
-    padding-top: 120px;
-    padding-bottom: 40px;
-}
-
-
-.jobtitle{
-    margin-bottom: 10px;
-    font-size: 30px;
-    text-align: left;
-    display: block;
-}
-
-.jobsubtitle{
-    margin-bottom: 10px;
-    font-size: 20px;
-    text-align: left;
-    display: block;
-}
-
-div.subtitle.perfbottom {
-    text-align: center;
-    margin-right: auto;
-    margin-left: auto;
-    margin-bottom: 50px;
 }
 
 
@@ -328,6 +277,13 @@ div.subtitle.perfbottom {
     color: gray;
 }
 
+
+div.subtitle.perfbottom {
+    text-align: center;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 50px;
+}
 
 .perflist img {
     display: block;
@@ -508,6 +464,10 @@ div.blockImage {
     color: #2371b5;
 }
 
+.white {
+    color: white;
+}
+
 .bold   {
     font-weight: 400;
 }
@@ -628,12 +588,6 @@ body > div.fixedHeaderContainer {
     background-image: radial-gradient(circle at 10px 26px, yellow 20px, transparent 21px);
 }
 
-.careers, .job {
-    width: 50%;
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
-}
 
 .center{
     text-align: center;
@@ -651,11 +605,6 @@ body > div.fixedHeaderContainer {
     display: block;
     padding-bottom: 30px;
     padding-top: 30px;
-}
-
-.apply-steps {
-    list-style-type: none;
-    padding-left: 0;
 }
 
 .apply-steps li{
@@ -737,7 +686,6 @@ body > div.fixedHeaderContainer {
         margin-right: auto;
         width: 100%;
         display: block;
-
     }
 
 

@@ -8,7 +8,6 @@
 const React = require('react');
 const CompLibrary = require('../../core/CompLibrary.js');
 
-const MarkdownBlock = CompLibrary.MarkdownBlock; /* Used to read markdown */
 const Container = CompLibrary.Container;
 const GridBlock = CompLibrary.GridBlock;
 
@@ -16,10 +15,6 @@ class HomeSplash extends React.Component {
 
     render() {
         const {siteConfig, language = ''} = this.props;
-        const {baseUrl, docsUrl} = siteConfig;
-        const docsPart = `${docsUrl ? `${docsUrl}/` : ''}`;
-        const langPart = `${language ? `${language}/` : ''}`;
-        const docUrl = doc => `${baseUrl}${docsPart}${langPart}${doc}`;
 
         const SplashContainer = props => (
             <div className="homeContainer">
@@ -48,6 +43,7 @@ class Index extends React.Component {
 
     render() {
         const {config: siteConfig, language = ''} = this.props;
+        const {baseUrl} = siteConfig;
 
         const Block = props => (
             <Container
@@ -77,25 +73,54 @@ class Index extends React.Component {
         );
 
         const Intro = () => (
-            <div className="careers">
-                <span className="title colored bold">Careers</span>
-                <div>
-                    <img src='/img/team.svg'/>
-                    <br/><br/>
+            <div>
+                <div className="careers-intro">
+                    <span className="title colored bold">Careers</span>
                     <p>
                         Want to join an ambitious team set to break all speed records in data processing? Good news...
                         <b> We're hiring!</b> QuestDB is based in <b>London</b> and <b>San Francisco</b>, and backed by
-                        leading venture
-                        capital firms.
-
-                        <ul className="buttons center">
-                            <li><a
-                                href="#job-list">
-                                <b>View Openings</b>
-                            </a></li>
-                        </ul>
-
+                        leading venture capital firms.
                     </p>
+
+                    <img className="careers-img" src='/img/team.svg'/>
+                    <br/>
+                </div>
+
+
+                <div className="perks center">
+                    <span className="jobtitle colored bold center">Perks</span>
+                    <Block layout="twoColumn">
+                        {[
+                            {
+                                content: '<span class="center">Flexible work schedule</span>',
+                                image: `${baseUrl}img/flexible-time.svg`,
+                                imageAlign: 'top'
+                            },
+                            {
+                                content: '<span class="center">Equity participation</span>',
+                                image: `${baseUrl}img/equity-comp.svg`,
+                                imageAlign: 'top'
+                            },
+                            {
+                                content: '<span class="center">Choose your equipment</span>',
+                                image: `${baseUrl}img/laptop.svg`,
+                                imageAlign: 'top'
+                            },
+                            {
+                                content: '<span class="center">Onsite barista</span>',
+                                image: `${baseUrl}img/barista.svg`,
+                                imageAlign: 'top'
+                            },
+                        ]}
+                    </Block>
+                    <br/>
+                    and more...
+                    <ul className="buttons center white">
+                        <li><a
+                            href="#job-list">
+                            <b>Check out our open positions</b>
+                        </a></li>
+                    </ul>
                 </div>
             </div>
         );
@@ -105,7 +130,8 @@ class Index extends React.Component {
                 <div className="apply-text">
                     <span className="jobtitle colored bold">How to apply</span>
                     Simply send your CV and job reference to <b>hr@questdb.io</b> or
-                    <a target="_blank" href="https://join.slack.com/t/questdb/shared_invite/enQtNzk4Nzg4Mjc2MTE2LTEzZThjMzliMjUzMTBmYzVjYWNmM2UyNWJmNDdkMDYyZmE0ZDliZTQxN2EzNzk5MDE3Zjc1ZmJiZmFiZTIwMGY>"
+                    <a target="_blank"
+                       href="https://join.slack.com/t/questdb/shared_invite/enQtNzk4Nzg4Mjc2MTE2LTEzZThjMzliMjUzMTBmYzVjYWNmM2UyNWJmNDdkMDYyZmE0ZDliZTQxN2EzNzk5MDE3Zjc1ZmJiZmFiZTIwMGY>"
                        className="color">
                         <b> chat us on Slack! </b>
                     </a>
@@ -120,7 +146,8 @@ class Index extends React.Component {
                         <ul className="apply-steps">
                             <li>Step 1 - Contact us!</li>
                             Send your CV by email to <b>hr@questdb.io </b> or
-                            <a target="_blank" href="https://join.slack.com/t/questdb/shared_invite/enQtNzk4Nzg4Mjc2MTE2LTEzZThjMzliMjUzMTBmYzVjYWNmM2UyNWJmNDdkMDYyZmE0ZDliZTQxN2EzNzk5MDE3Zjc1ZmJiZmFiZTIwMGY>"
+                            <a target="_blank"
+                               href="https://join.slack.com/t/questdb/shared_invite/enQtNzk4Nzg4Mjc2MTE2LTEzZThjMzliMjUzMTBmYzVjYWNmM2UyNWJmNDdkMDYyZmE0ZDliZTQxN2EzNzk5MDE3Zjc1ZmJiZmFiZTIwMGY>"
                                className="color">
                                 <b> chat us on Slack! </b>
                             </a>
@@ -133,7 +160,8 @@ class Index extends React.Component {
                             before your interview.
                             <br/><br/>
                             <li>Step 3 - Impress us!</li>
-                            We will schedule an interview, either in our office or via video conference. The interview will be
+                            We will schedule an interview, either in our office or via video conference. The interview
+                            will be
                             the occasion for you to walk us through what you did at step 2. We will also take some time
                             at the beginning to introduce ourselves and make sure we dedicate time so you can ask as
                             many questions as you want.
@@ -237,7 +265,8 @@ class Index extends React.Component {
                     skills you will gain will be extremely rewarding.
                     <br/><br/>
                     Feel free to skim through our
-                    <a className="bold color" target="_blank" href="https://github.com/questdb/questdb"> Github repo </a>
+                    <a className="bold color" target="_blank" href="https://github.com/questdb/questdb"> Github
+                        repo </a>
                     to get an idea of what is expected. If you're up to the challenge, get in touch!
                 </p>
 
@@ -276,15 +305,14 @@ class Index extends React.Component {
             <div className="job" id="dev-frontend-job">
                 <span className="jobtitle colored bold">Front-end engineer</span>
                 <p>
-                    QuestDB is not only fast. It feels good and,
-                    allows users to achieve what they want with ease.
-                    <br/><br/>
-                    Most companies separate front-end and back-end developers through invisible and unnecessary
-                    knowledge and information silos. We do the opposite.
+                    QuestDB is not only meant to be fast: it is meant for users to achieve what they want with ease.
+                    While most companies separate front-end and back-end developers through invisible and unnecessary
+                    knowledge and information silos, we do the opposite and strive to build an end-to-end integrated
+                    product.
                     <br/><br/>
                     While front-end focused, the role will he actively involved in every step of the design and
                     development of the database engine. By having decision power in the back-end development, you will
-                    be instrumental in creating product that not only looks and feels great because it is a whole
+                    be instrumental in creating product that looks and feels great because it is a whole
                     integrated entity.
                 </p>
 
@@ -304,7 +332,8 @@ class Index extends React.Component {
                         user experience you design.
                     </li>
                     <li>Community development: engage with the community to both promote new features, absorb and
-                        integrate feedback, and help users achieve their goals. Occasionally host live demos or web conferencing
+                        integrate feedback, and help users achieve their goals. Occasionally host live demos or web
+                        conferencing
                         to show your work.
                     </li>
                 </ul>
@@ -315,6 +344,7 @@ class Index extends React.Component {
                     <li>Innovative spirit with both the ability to generate ideas and to implement them</li>
                     <li>Passionate about open source and the developer community</li>
                     <li>Desire to get to know the back-end</li>
+                    <li>Familiarity with cloud architectures and APIs</li>
                     <li>Database knowledge preferred</li>
                     <li>Familiarity with developer tools</li>
                     <li>Excellent spoken and written English</li>
