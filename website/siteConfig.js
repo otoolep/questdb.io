@@ -70,7 +70,7 @@ const siteConfig = {
     */
 
     // This copyright info is used in /core/Footer.js and blog RSS/Atom feeds.
-    copyright: `Copyright © ${new Date().getFullYear()} QuestDB Limited`,
+    copyright: `Copyright © ${new Date().getFullYear()} QuestDB`,
 
     //Tracking ID for Google analytics
     gaTrackingId: 'UA-145747842-1',
@@ -111,7 +111,8 @@ const siteConfig = {
         'https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js',
         '/js/code-block-buttons.js',
         '/js/console-demo.js',
-        '/js/getstarted.js'
+        '/js/getstarted.js',
+        '/js/signup.js'
     ],
     stylesheets: [
         'https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,500,600,700|Source+Code+Pro:400,700|Open+Sans:300,400,600,700',

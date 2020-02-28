@@ -130,8 +130,6 @@ div.whatwedo {
     margin-right: auto;
     margin-left: auto;
     align-self: center;
-    box-shadow: 10px 30px 30px 20px rgba(0, 0, 0, 0.55);
-
 }
 
 body > div.navPusher > div > div.mainContainer > div.interfaces > div > div > div > div > div.blockContent {

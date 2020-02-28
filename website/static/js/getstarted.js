@@ -1,45 +1,48 @@
+window.addEventListener('load', function () {
 
-window.addEventListener('load', function() {
+    const divDownload = document.getElementById('jsDownload');
+    const divExpore = document.getElementById('getStartedTuto');
+    const divTutoIcon = document.getElementById('tutoIcon');
+    const divPackageIcon = document.getElementById('packageIcon');
+    const divQuestionIcon = document.getElementById('questionIcon');
+    const divCommunity = document.getElementById('getStartedQuestion');
 
     function setClick(id, f) {
-        document.getElementById(id).parentElement.parentElement.parentElement.parentElement.parentElement.addEventListener('click', f);
+        const e = document.getElementById(id);
+        if (e) {
+            e.parentElement.parentElement.parentElement.parentElement.parentElement.addEventListener('click', f);
+        }
     }
 
     setClick('packageIcon', showInstall);
     setClick('tutoIcon', showTuto);
     setClick('questionIcon', showQuestion);
 
-    // document.getElementById('packageIcon').parentElement.parentElement.parentElement.parentElement.parentElement.addEventListener('click', showInstall);
-    // document.getElementById('tutoIcon').addEventListener('click', showTuto);
-    // document.getElementById('questionIcon').addEventListener('click', showQuestion);
-
     function showInstall() {
-        document.getElementById('jsDownload').style.display='block';
-        document.getElementById('getStartedTuto').style.display='none';
-        document.getElementById('getStartedQuestion').style.display='none';
-        document.getElementById('packageIcon').style.webkitFilter = "grayscale(0%)";
-        document.getElementById('tutoIcon').style.webkitFilter = "grayscale(75%)";
-        document.getElementById('questionIcon').style.webkitFilter = "grayscale(75%)";
+        divDownload.style.display = 'block';
+        divExpore.style.display = 'none';
+        divCommunity.style.display = 'none';
+        divPackageIcon.style.webkitFilter = "grayscale(0%)";
+        divTutoIcon.style.webkitFilter = "grayscale(75%)";
+        divQuestionIcon.style.webkitFilter = "grayscale(75%)";
 
     }
 
     function showTuto() {
-        document.getElementById('jsDownload').style.display='none';
-        document.getElementById('getStartedTuto').style.display='block';
-        document.getElementById('getStartedQuestion').style.display='none';
-        document.getElementById('packageIcon').style.webkitFilter = "grayscale(75%)";
-        document.getElementById('tutoIcon').style.webkitFilter = "grayscale(0%)";
-        document.getElementById('questionIcon').style.webkitFilter = "grayscale(75%)";
+        divDownload.style.display = 'none';
+        divExpore.style.display = 'block';
+        divCommunity.style.display = 'none';
+        divPackageIcon.style.webkitFilter = "grayscale(75%)";
+        divTutoIcon.style.webkitFilter = "grayscale(0%)";
+        divQuestionIcon.style.webkitFilter = "grayscale(75%)";
     }
 
     function showQuestion() {
-        document.getElementById('jsDownload').style.display='none';
-        document.getElementById('getStartedTuto').style.display='none';
-        document.getElementById('getStartedQuestion').style.display='block';
-        document.getElementById('packageIcon').style.webkitFilter = "grayscale(75%)";
-        document.getElementById('tutoIcon').style.webkitFilter = "grayscale(90%)";
-        document.getElementById('questionIcon').style.webkitFilter = "grayscale(0%)";
-
+        divDownload.style.display = 'none';
+        divExpore.style.display = 'none';
+        divCommunity.style.display = 'block';
+        divPackageIcon.style.webkitFilter = "grayscale(75%)";
+        divTutoIcon.style.webkitFilter = "grayscale(90%)";
+        divQuestionIcon.style.webkitFilter = "grayscale(0%)";
     }
-
 });

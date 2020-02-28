@@ -107,7 +107,7 @@ class Index extends React.Component {
                             {
                                 image: `${baseUrl}img/ossicon.svg`,
                                 content:
-                                    '<div class="subtitle">Open Source</div>'
+                                    '<div class="subtitle">Apache 2.0</div>'
                             },
                             {
                                 image: `${baseUrl}img/speedicon.svg`,
@@ -206,47 +206,33 @@ class Index extends React.Component {
                         },
                     ]}
                 </Block>
-
-                {/*<block class="consolecontainer" id="consolecontainer">*/}
-                {/*    <iframe className="console"*/}
-                {/*            src="http://localhost:9000/demo.html"></iframe>*/}
-                {/*  /!*  <iframe className="console"*/}
-                {/*            src="http://ec2-3-9-184-96.eu-west-2.compute.amazonaws.com:9000/index.html"></iframe>*!/*/}
-                {/*    <center>*/}
-                {/*        <ul className="gh-buttons">*/}
-                {/*            <a className="github-button" href="https://github.com/questdb/questdb"*/}
-                {/*               data-color-scheme="no-preference: light; light: light; dark: dark;"*/}
-                {/*               data-icon="octicon-star" data-size="large"*/}
-                {/*               aria-label="Star questdb/questdb on GitHub">Star</a>*/}
-                {/*            <a className="github-button" href="https://github.com/questdb/questdb/releases/download/4.0.4/questdb-4.0.4-bin.tar.gz"*/}
-                {/*               data-color-scheme="no-preference: light; light: light; dark: dark;"*/}
-                {/*               data-icon="octicon-cloud-download" data-size="large"*/}
-                {/*               aria-label="Download questdb/questdb on GitHub">Download</a>*/}
-                {/*            <a className="github-button" href="https://github.com/questdb/questdb/issues/new/choose"*/}
-                {/*               data-color-scheme="no-preference: light; light: light; dark: dark;"*/}
-                {/*               data-icon="octicon-issue-opened" data-size="large"*/}
-                {/*               aria-label="Issue questdb/questdb on GitHub">Issue</a>*/}
-                {/*        </ul>*/}
-                {/*    </center>*/}
-                {/*</block>*/}
             </div>
         );
 
         const SignUpForm = () => (
-            <div className="signup">
-                <div className="signup-inner">
-                    <span className="why">Be the first to experience our demo</span>
-                    <form action="">
-                        <ul>
-                            <li><label>First name</label></li>
-                            <li><input id="mce-FNAME" type="text" placeholder="John"/></li>
-                            <li><label>Last name</label></li>
-                            <li><input id="mce-LNAME" type="text" placeholder="Doe"/></li>
-                            <li><label>Email</label></li>
-                            <li><input id="mce-EMAIL" type="text" placeholder="john@acme.com"/></li>
-                            <li className="send"><a href="">Sign up!</a></li>
-                        </ul>
-                    </form>
+            <div className="flip-box">
+                <div className="flip-box-inner" id="jsSignUpFlipInner">
+                    <div className="signup shadow">
+                        <div className="signup-inner">
+                            <span className="why">Be the first to experience our demo</span>
+                            <form action="">
+                                <ul>
+                                    <li><label>First name</label></li>
+                                    <li><input id="mce-FNAME" type="text" placeholder="John"/></li>
+                                    <li><label>Last name</label></li>
+                                    <li><input id="mce-LNAME" type="text" placeholder="Doe"/></li>
+                                    <li><label>Email</label></li>
+                                    <li><input id="mce-EMAIL" type="text" placeholder="john@acme.com"/></li>
+                                    <li className="send"><a href="" id="jsSignUp">Sign up!</a></li>
+                                </ul>
+                            </form>
+                        </div>
+                    </div>
+                    <div className="signup-back shadow">
+                        <img src={'/img/thumb-up-outline-symbol.svg'} alt="thumbs up!"/>
+                        <div className="headline">Thank you!</div>
+                        <div className="summary"> Please check your inbox. We will notify you as soon as demo as available</div>
+                    </div>
                 </div>
             </div>
         );
@@ -286,42 +272,9 @@ class Index extends React.Component {
 
         const ConsoleGIF = () => (
             <div className='consoleGIF'>
-                <img src='/img/sql.gif'/>
+                <img src={'/img/sql.gif'} alt="sql example" className={'shadow'}/>
             </div>
         );
-
-        const Perf = () => (
-            <div className="perf">
-                <span className="title">Built for performance</span>
-                <div className="subtitle">Fast and reliable by design</div>
-
-                <div className="perflist">
-                    <Block layout="threeColumn">
-                        {[
-                            {
-                                image: `${baseUrl}img/stackicon.svg`,
-                                content:
-                                    '<div class="subtitle">No dependency</div>'
-                            },
-                            {
-                                image: `${baseUrl}img/garbageicon.svg`,
-                                content:
-                                    '<div class="subtitle">No garbage generation</div>'
-                            },
-                            {
-                                image: `${baseUrl}img/algoicon.svg`,
-                                content:
-                                    '<div class="subtitle">Efficiency in every algorithm</div>'
-                            },
-                        ]}
-                    </Block>
-                </div>
-                <div className="subtitle perfbottom">Software can only be as fast as its slowest component. Complete
-                    control enables to remove any blocker.
-                </div>
-            </div>
-        );
-
 
         return (
             <div>
