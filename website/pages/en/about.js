@@ -69,7 +69,7 @@ class Index extends React.Component {
         const Venture = () => (
             <div className="">
                 <div className="about-content-wide center">
-                    <span className="title colored bold center">QuestDB is backed by</span>
+                    <span className="title colored bold center">Backed by</span>
                     <ul className="vc-list">
                         <li><a href="https://www.episode1.com/" target="_blank"><img className="vc-img"
                                                                                      src='/img/E1.png'
@@ -128,7 +128,6 @@ class Index extends React.Component {
         const Title = () => (
             <div className="toptitle about-title">
                 <span className="title">About QuestDB</span>
-                <img src="/img/test.svg"/>
             </div>
         );
         const Contact = () => (

@@ -74,12 +74,12 @@ class Index extends React.Component {
                 <Block>
                     {[
                         {
-                            image: `${baseUrl}img/datavis.svg`,
+                            image: `${baseUrl}img/test.svg`,
                         },
                         {
                             content:
-                                '<span class="title">Take on time-series in an instant</span>' +
-                                '<p class="left subTopTitle">QuestDB is an open-source time-series database to store, stream, query data and analytics at the speed of light, with the the convenience of SQL.</p>' +
+                                '<span class="title">Fast time-series data</span>' +
+                                '<p class="left subTopTitle">QuestDB is an open-source time-series database to store, stream, query data and run analytics at the speed of light, with the the convenience of SQL.</p>' +
                                 '<br>' +
                                 '<ul class="buttons">' +
                                 '<li class="cta"><a href="/getstarted">Get started</a></li>' +
