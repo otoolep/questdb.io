@@ -35,7 +35,7 @@ const siteConfig = {
         {doc: 'interfaces', label: 'Documentation'},
         {blog: true, label: 'Blog'},
         {page: "careers", label: 'Careers'},
-        {page: '', label: 'About'},
+        {page: 'about', label: 'About'},
         {search: true}
         // {href: "https://github.com/questdb/questdb", label: 'GitHub'},
     ],

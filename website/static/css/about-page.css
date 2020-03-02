@@ -1,0 +1,166 @@
+.about-page-content{
+    width: 50%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.about-page-content-intro{
+    width: 50%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 80px;
+}
+
+.about-page-highlight{
+    background-color: #f8f8f8;
+}
+
+.vc-list{
+    padding-left: 0;
+}
+
+.vc-list li{
+    display: contents;
+    list-style: none;
+}
+
+
+.vc-list img{
+    height: 80px;
+    width: auto;
+    margin: 1.5% 3% 3% 1.5%;
+}
+
+
+
+.headshot-list li{
+    display: inline-grid;
+    list-style:none;
+}
+
+.txt130{
+    font-size: 130%;
+    }
+
+.no-bottom-padding{
+    padding-bottom: 0;
+}
+
+.bottom-padding{
+    padding-bottom: 80px;
+}
+
+
+body > div.navPusher > div > div.mainContainer > div.contact-box > div  {
+    padding-top: 5%;
+}
+
+.headshot-list img{
+    height: 150px;
+    width: 150px;
+    object-fit: cover;
+    border: 2px solid lightgray;
+    border-radius: 50%;
+    margin-left: 4%;
+    margin-right: 4%;
+    margin-bottom: 2%;
+    box-shadow: 0 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.headshot-list figure{
+    width: 300px;
+
+    margin-bottom: 10%;
+}
+
+.about-content-wide {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 30px;
+}
+
+.team-name {
+    font-weight: bolder;
+}
+
+
+.contact-box {
+    background-color: #f8fafa;
+    width: 200px;
+    height: 420px;
+    margin: 50px 20px -400px auto;
+    border-radius: 8px;
+    box-shadow: 10px 30px 30px 20px rgba(0, 0, 0, 0.55);
+    -webkit-font-smoothing: antialiased;
+    opacity: .99;
+}
+
+.contact-box img{
+    width: 30%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 10%;
+    padding-bottom: 3%;
+    filter: grayscale(100%) contrast(40%);
+}
+
+
+.company-description{
+    position: absolute;
+    top: 20%;
+    left: 20%;
+    transform: translate(-20%, -20%);
+    font-size: 400%;
+    text-align: left;
+    color: white;
+    font-weight: bolder;
+}
+
+.about-title{
+    height: 10%;
+}
+
+.about-title img{
+    filter: grayscale(70%) contrast(100%);
+    opacity: 50%;
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+}
+
+.title-image{
+    filter: grayscale(50%) contrast(40%);
+}
+
+.address {
+    margin-top: 20px;
+    color: gray;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+
+@media only screen and (max-width: 1000px) {
+
+    .contact-box {
+        width: 100%;
+        margin-top: 30px;
+        margin-bottom: 0;
+        -webkit-font-smoothing: antialiased;
+        height: 180px;
+        box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.55);
+        padding-top: 0;
+    }
+
+    .address {
+        display: none;
+    }
+
+    body > div.navPusher > div > div.mainContainer > div.contact-box > div  {
+        padding-top: 0;
+    }
+}
