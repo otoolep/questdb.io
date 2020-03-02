@@ -119,15 +119,6 @@ class Index extends React.Component {
                                 </figure>
                             </a>
                         </li>
-                        <li>
-                            <a href="https://www.linkedin.com/in/tancrede-collard-35228926/" target="_blank">
-                                <figure>
-                                    <img className="team-img" src='/img/tanc.png'/>
-                                    <figcaption><a className="team-name">Paul McNabb </a> <br/> Board Member
-                                    </figcaption>
-                                </figure>
-                            </a>
-                        </li>
                     </ul>
                 </div>
             </div>
