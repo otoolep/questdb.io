@@ -1,7 +1,7 @@
 .signup .send a {
     padding: 7px 30px;
     width: 150px;
-    background-color: #e68200;
+    background-color: black;
     color: white;
     border-radius: 3px;
 }
@@ -25,7 +25,7 @@
     }
 
     .signup, .signup-back {
-        background-color: #2066a3;
+        background: linear-gradient(180deg, #ff7400 0%, #fc841e 55%, #c08625 100%);
         width: 400px;
         align-self: flex-end;
         margin: -300px 5% -80px auto;
@@ -49,7 +49,7 @@
 
     .signup-inner {
         padding: 20px 0;
-        border: 3px solid #e68200;
+        border: 2px solid white;
         border-radius: 8px;
     }
 
@@ -65,8 +65,8 @@
         font-size: 100%;
         align-self: center;
         width: 90%;
-        color: #e68200;
-        font-weight: 600;
+        color: #1c3f6e;
+        font-weight: 400;
     }
 
     .signup .why {
@@ -80,6 +80,12 @@
     .flip-box {
         perspective: 1000px;
     }
+}
+
+.signup .send:hover{
+    transform: scale(1.1);
+    cursor: pointer;
+    transition: 0.5s;
 }
 
 @media only screen and (max-width: 1000px) {
@@ -156,7 +162,7 @@
     width: 100px;
     height: 100px;
     padding-bottom: 20px;
-    filter: invert(67%) sepia(40%) saturate(6078%) hue-rotate(346deg) brightness(104%) contrast(97%);
+    filter: invert(100%) ;
 }
 
 .signup-back .headline {

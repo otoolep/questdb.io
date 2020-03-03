@@ -231,7 +231,7 @@ class Index extends React.Component {
                     <div className="signup-back shadow">
                         <img src={'/img/thumb-up-outline-symbol.svg'} alt="thumbs up!"/>
                         <div className="headline">Thank you!</div>
-                        <div className="summary"> Please check your inbox. We will notify you as soon as demo as available</div>
+                        <div className="summary"> Please check your inbox to confirm your signup.</div>
                     </div>
                 </div>
             </div>
