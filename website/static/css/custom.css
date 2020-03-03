@@ -345,7 +345,7 @@ div.subtitle {
 }
 
 .featuresList img {
-    filter: invert(0.3);
+    filter: invert(35%) sepia(95%) saturate(519%) hue-rotate(169deg) brightness(95%) contrast(93%) drop-shadow(1px 5px 9px gray);
 }
 
 div.interfaces {
