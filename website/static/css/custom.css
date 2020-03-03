@@ -1,12 +1,12 @@
 /* your custom css */
 
 
-.fixedHeaderContainer .wrapper {
-    max-width: 1400px!important;
+.mainContainer.index {
+    padding: 0;
 }
 
-h1.postHeaderTitle {
-    padding-top: 100px;
+.fixedHeaderContainer .wrapper {
+    max-width: 1400px!important;
 }
 
 .toptitle, .sql, .community, .interfaces, .whatwedo, .perf, .demo {
@@ -230,10 +230,6 @@ div.blockjustified {
     color: #2d00a1;
 }
 
-.mainContainer {
-    padding-top: 0;
-}
-
 .homeContainer .homeSplashFade .wrapper .homeWrapper {
     font-weight: bolder;
 }
@@ -354,45 +350,6 @@ div.subtitle {
 
 div.interfaces {
     margin-top: 40px;
-}
-
-
-.mainContainer h1 {
-    color: #2371b5;
-    font-size: 44px;
-}
-
-.mainContainer h2 {
-    margin-top: 75px;
-    margin-bottom: 20px;
-    font-size: 31px;
-    border-bottom: 3px solid #2371b5;
-    color: #2371b5;
-}
-
-.mainContainer h3 {
-    margin-top: 55px;
-    color: #2371b5;
-    padding-bottom: 5px;
-    padding-top: 5px;
-    font-size: 25px;
-    margin-bottom: 5px;
-    border-bottom: 1px solid #004a3f;
-}
-
-.mainContainer blockquote {
-    background-color: rgba(0, 144, 127, 0);
-    font-size: 16px;
-    color: black;
-    border-left-color: #e68200;
-    border-left-width: 2px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-}
-
-code {
-    color: #35393b;
-    font-weight: bold;
 }
 
 .console {
