@@ -1,3 +1,7 @@
+.mainContainer.aboutpage {
+    padding: 0;
+}
+
 .about-page-content{
     width: 50%;
     display: block;
