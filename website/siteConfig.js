@@ -221,7 +221,7 @@ const siteConfig = {
     favicon: 'img/favicon.png',
 
     /* Colors for website */
-/*    Both set to transparent to customise manually*/
+    /*    Both set to transparent to customise manually*/
     colors: {
         primaryColor: '#2371b5',
         secondaryColor: '#2371b5',
@@ -239,6 +239,7 @@ const siteConfig = {
         "system-ui"
       ]
     },
+
     */
 
     // This copyright info is used in /core/Footer.js and blog RSS/Atom feeds.
