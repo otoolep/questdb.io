@@ -251,7 +251,7 @@ const siteConfig = {
     highlight: {
         themeUrl: '/css/code-highlight.css',
         hljs: function (hljs) {
-            hljs.registerLanguage('qsql', sql_qdb);
+            hljs.registerLanguage('sql', sql_qdb);
         }
     },
 
