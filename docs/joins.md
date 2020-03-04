@@ -1,7 +1,7 @@
 ---
 id: joins
 title: JOINS
-sidebar_label: Joins
+sidebar_label: JOINS
 ---
 
 QuestDB supports the following types of joins: `INNER`, `OUTER`, `CROSS`, `ASOF` and `SPLICE`. `FULL` joins are not yet implemented and are on our roadmap. All supported
