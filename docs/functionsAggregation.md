@@ -60,20 +60,20 @@ SELECT sum(cast(a as long)) from table
 
 ## count
 
-`count()` or `count(*)` - counts values.
+`count()` or `count(*)` - counts rows.
 
 #### Arguments
 - `count` does not require arguments.
 
 #### Description
-`count()` counts values, including missing data (e.g `null` values)
+`count()` counts rows, irrespective of underlying data. 
 
 #### Return value
 Return value type is `long`.
 
 #### Examples
 
-- Count of items in the transactions table (including `null` values).
+- Count of rows in the transactions table.
 ```sql
 SELECT count() FROM transactions;
 ```
@@ -84,7 +84,7 @@ SELECT count() FROM transactions;
 | 100       |
 ```
 
-- Count of items in the transactions table aggregated by `payment_type`. 
+- Count of rows in the transactions table aggregated by `payment_type` value. 
 ```sql
 SELECT payment_type, count() FROM transactions;
 ```

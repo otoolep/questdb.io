@@ -20,7 +20,7 @@ when the value is exactly halfway between the `round_up` and `round_down` values
 #### Return value
 Return value type is `double`.
 
-Example:
+#### Examples
 ```sql
 SELECT d, round(d, -2), round(d, -1), round(d,0), round(d,1), round(d,2) FROM dbl;
 ```
@@ -56,8 +56,7 @@ to the nearest tenths.
 #### Return value
 Return value type is `double`.
 
-#### Example
-
+#### Examples
 ```sql
 SELECT d, round_down(d, -2), round_down(d, -1), round_down(d,0), round_down(d,1), round_down(d,2) FROM dbl;
 ```
@@ -189,7 +188,6 @@ SELECT d, round_half_even(d, -2), round_half_even(d, -1), round_half_even(d,0), 
 Return value type is `double`.
 
 #### Examples
-Example:
 ```sql
 SELECT x - 2 a, abs(x -2) FROM long_sequence(3);
 ```
