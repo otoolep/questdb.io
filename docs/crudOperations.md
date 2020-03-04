@@ -1,14 +1,13 @@
 ---
-id: crud
+id: crudOperations
 title: CRUD Operations
 sidebar_label: CRUD Operations
 ---
 
-## Overview
 `LASTEST BY` allows QuestDB developers implement CRUD operations over immutable data store. 
 In this document we will describe each of CRUD operations and how to implement it using `LATEST BY`.
 
-### (C)reate
+## (C)reate
 
 Create operation in QuestDB appends record to bottom of table. If table is partitioned timestamp value determines 
 partition the record is appended to. Only last partition can be appended to and attempt to add timestamp in middle of
@@ -171,7 +170,7 @@ connection.close();
 <!--END_DOCUSAURUS_CODE_TABS-->
 
 
-### (R)ead
+## (R)ead
 
 Reading records can be done via `SELECT` query or by reading table directly via Java API. Reading via Java API is limited to
 reading data of one table only.
@@ -250,7 +249,7 @@ connection.close();
 ```
 <!--END_DOCUSAURUS_CODE_TABS-->
 
-### (U)pdate
+## (U)pdate
 
 Lets update balance of customer `1` in the `balances` table:
 

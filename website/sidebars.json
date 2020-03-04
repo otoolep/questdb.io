@@ -1,39 +1,74 @@
-
 {
   "docs": {
-    "Tutorials": [
-      "tutorial",
-      "crud"
+    "Intro": [
+      "documentationOverview"
     ],
-    "Installation": [
-      "docker",
-      "manualinstall",
-      "dependency"
+    "Guides": [
+      {
+        "type": "subcategory",
+        "label": "Installation",
+        "ids": [
+          "installationOverview",
+          "installFromDockerImage",
+          "installFromBinary"
+        ]
+      },
+      "usingWebConsole",
+      "myFirstDatabase"
     ],
-    "Using QuestDB": [
-      "interfaces",
-      "howtoload",
-      "howtoquery",
-      "howtoexport"
+    "Concepts": [
+      "storageModel",
+      "datatypes",
+      "crudOperations"
     ],
     "Reference": [
-      "datatypes",
-      "storagemodel",
-      "sql",
+      {
+        "type": "subcategory",
+        "label": "APIs",
+        "ids": [
+          "restAPI",
+          "embeddedJavaAPI",
+          "influxLineProtocol"
+        ]
+      },
       "functions",
       "indexes",
-      "joins",
-      "casting"
-    ],
-    "SQL Reference": [
-      "alter",
-      "copy",
-      "create",
-      "drop",
-      "insert",
-      "select",
-      "truncate",
-      "union"
+      {
+        "type": "subcategory",
+        "label": "Functions",
+        "ids": [
+          "functionsAggregation",
+          "functionsNumeric",
+          "functionsDateAndTime",
+          "functionsRandomValueGenerators",
+          "functionsRowGenerator"
+        ]
+      },
+      {
+        "type": "subcategory",
+        "label": "SQL Reference",
+        "ids": [
+          "sqlExecutionOrder",
+          "alterTable",
+          "cast",
+          "copy",
+          "create",
+          "drop",
+          "insert",
+          "joins",
+          "select",
+          "truncate",
+          "union"
+        ]
+      },
+      {
+        "type": "subcategory",
+        "label": "Java API Reference",
+        "ids": [
+          "javaAPIOverview",
+          "influxSenderLibrary"
+        ]
+      }
     ],
     "FAQ": [
       "faq",

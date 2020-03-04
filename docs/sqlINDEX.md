@@ -11,7 +11,7 @@ It allows to bypass full table scans by directly accessing the relevant rows on 
 
 There are two ways to create an index:
 - At table creation time using  [CREATE TABLE](sqlCREATE.md#index).
-- Using  [ALTER TABLE](sqlALTER.md#add-index-to-column) 
+- Using  [ALTER TABLE](alterTable.md#add-index-to-column) 
 
 ## How does Index work
 

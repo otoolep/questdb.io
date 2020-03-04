@@ -1,5 +1,5 @@
 ---
-id: sql
+id: sqlOverview
 title: SQL Overview
 sidebar_label: SQL Overview
 ---
@@ -76,7 +76,7 @@ Here we avoided repetitive aggregation expressions without extra furniture synta
 
 We have extended SQL language to support our data storage model and simplify semantics of time series queries.
 
-- `LATEST BY` (find out more **[here](tutoCRUD.md)**)
+- `LATEST BY` (find out more **[here](crudOperations.md)**)
 - `SAMPLE BY`
 
 Please follow the links for detailed description of these clauses.

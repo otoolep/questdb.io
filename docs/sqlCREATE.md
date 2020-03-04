@@ -33,7 +33,7 @@ For example in `SELECT . . FROM` queries. You can choose any table name you woul
 ### SCHEMA
 `SCHEMA` is a list of pairs of `COLUMN_NAMES` and `DATA_TYPES`, separated by commas.
 
-> For more information on data types, see the section on **[data types](refDATATYPES.md)**
+> For more information on data types, see the section on **[data types](datatypes.md)**
 
 Example:
 ```sql
@@ -212,7 +212,7 @@ where
 `NAME` is the name of the table you want to create via `CREATE TABLE AS`
 `QUERY` is the query you would like to use to create your new table from the existing table.
 'COLUMN' is the `COLUMN_NAME` in the existing table for which you wish to change type.
-`TYPE` is the new type (see **[types](refDATATYPES.md)**)
+`TYPE` is the new type (see **[types](datatypes.md)**)
 
 ### Examples
 Casting one column

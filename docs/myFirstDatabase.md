@@ -1,11 +1,11 @@
 ---
-id: tutorial
-title: Tutorial: Your first database
-sidebar_label: Tutorial
+id: myFirstDatabase
+title: My First Database
+sidebar_label: My First Database
 ---
 
 The goal of this tutorial is to explore QuestDB's features to interact with time-series data.
-This assumes you have an instance running. See instructions in the **[installation](setupmenu.md)** section.
+This assumes you have an instance running. See instructions in the [installation page](installationOverview.md)
 
 In this tutorial, we will learn to
 - Create tables 
@@ -14,7 +14,7 @@ In this tutorial, we will learn to
 - Delete tables
 
 As an example, we will look at a hypothetical temperature readings from a variety of sensors. 
-All commands are run through the web **[console](usageINTERFACE.md#web-console)** accessible on 
+All commands are run through the [Web Console](usingWebConsole) accessible on 
 **[http://localhost:9000/index.html](http://localhost:9000/index.html)**.
 
 ## Creating a table
@@ -179,7 +179,7 @@ Results should look like this
 |...                            |...    |...    |...
 
 
-> Find more about these commands in the **[Select](sqlSELECT.md)** and **[Join](sqlJOIN.md)** sections.
+> Find more about these commands in the **[Select](sqlSELECT.md)** and **[Join](joins.md)** sections.
 
 ## Finding your data files
 Data is stored on disk. You can find it in the same path as QuestDB executable in the db folder. 

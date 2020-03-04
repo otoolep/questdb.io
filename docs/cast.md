@@ -1,17 +1,45 @@
 ---
-id: casting
-title: Casting
-sidebar_label: Casting
+id: cast
+title: Cast
+sidebar_label: CAST
 ---
 
 QuestDB implements type conversion explicitly via `cast()` and implicitly when required by the context.
 
 ## Explicit conversion
 
-Types can be converted from one to another using the `cast()` function. This function is documented **[here](refFUNC.md#cast)**.
+Types can be converted from one to another using the `cast()` function.
+
+Syntax:
+
+`cast(expression as data_type)`
+
+where:
+- `expression` can be a constant, a column, or an expression that evaluates to a value.
+- `datatype` refers to the desired **[data type](datatypes.md)**.
+
+Examples:
+```sql
+-- Query
+SELECT cast(3L + 2L as int), cast  FROM long_sequence(1);
+SELECT cast(1578506142000000 as timestamp) FROM long_sequence(1);
+SELECT cast('10.2' as double) FROM long_sequence(1); --string to double
+SELECT cast('行' as int) FROM long_sequence(1);
+```
+Result output
+
+```
+| cast                        |
+|-----------------------------|
+| 5                           |
+| 2020-01-08T17:55:42.000000Z |
+| 10.2                        |
+| 34892                       |
+```
 
 
-> Explicit casting of an expression to a smaller **[data type](refDATATYPES.md)** may result in loss of data
+
+> Explicit casting of an expression to a smaller **[data type](datatypes.md)** may result in loss of data
 > when the output data type is smaller than the expression. 
 
 - Casting a decimal number type (`float` or `double`) to an integer number type (`long`, `int`, `short`) 
@@ -19,14 +47,17 @@ will result in decimals drop.
 - If the integer part being cast is larger than the resulting data type, it will be resized by truncating bits.
 - Conversions from `char` to a number type will return the corresponding `unicode` number and vice versa.
 
-Examples:
+Precision loss examples:
 ```sql
 -- Query
 SELECT cast(3.5 + 2 as int), cast  FROM long_sequence(1);
 SELECT cast(7234623 as short) FROM long_sequence(1);
 SELECT cast(2334444.323 as short) FROM long_sequence(1);
+```
 
--- Result
+Result output 
+
+```
 | cast                        |
 |-----------------------------|
 | 5                           | -- Loss of the decimals
@@ -34,7 +65,7 @@ SELECT cast(2334444.323 as short) FROM long_sequence(1);
 | -24852                      | -- Loss of decimals and integer part bits are truncated resulting in another number
 ```
 
-*When casting numbers into a smaller data type, QuestDB will truncate the higher bits of this number. 
+When casting numbers into a smaller data type, QuestDB will truncate the higher bits of this number. 
 
 
 ## Implicit conversion
@@ -56,13 +87,14 @@ type so that no data is lost.
 
 Examples:
 ```sql
--- Query
 SELECT 1234L + 567 FROM long_sequence(1);
 SELECT 1234L + 0.567 FROM long_sequence(1);
 SELECT to_timestamp('2019-10-17T00:00:00', 'yyyy-MM-ddTHH:mm:ss') + 323 FROM long_sequence(1);
 SELECT to_timestamp('2019-10-17T00:00:00', 'yyyy-MM-ddTHH:mm:ss') + 0.323 FROM long_sequence(1);
+```
+Result output
 
--- Result
+```
 | 1801                           | -- Returns a long.
 | 1234.567                       | -- Implicit cast to double.
 | 2019-10-17T00:00:00.000323Z    | -- Returns a timestamp with an extra 323 microseconds.
@@ -83,15 +115,25 @@ INSERT INTO my_table values((to_timestamp('2019-10-17T00:00:00', 'yyyy-MM-ddTHH:
 -- As timestamp can be converted to long without loss, QuestDB performs an implicit
 -- cast on the value before inserting it. Therefore the value is now stored as a long:
 SELECT * FROM my_table;
-| 1571270400000000   | -- Returns a long.
+```
 
--- The above insert would have been equivalent to running with explicit cast, 
--- but QuestDB took care of this step automatically.
+will result in
+```
+| 1571270400000000   | -- Returns a long.
+``` 
+
+
+The above insert would have been equivalent to running with explicit cast, but QuestDB took care of this step automatically.
+```sql
 INSERT INTO my_table values
             (cast(
                 to_timestamp('2019-10-17T00:00:00', 'yyyy-MM-ddTHH:mm:ss') 
                 as long
             ));
--- Result
+```
+
+Same result
+
+```
 | 1571270400000000   |
 ```

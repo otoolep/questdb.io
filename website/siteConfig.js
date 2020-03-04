@@ -204,7 +204,7 @@ const siteConfig = {
         [
             {href: "/", label: 'Home'},
             {page: 'getstarted', label: 'Get QuestDB'},
-            {doc: 'interfaces', label: 'Documentation'},
+            {doc: 'documentationOverview', label: 'Documentation'},
             {blog: true, label: 'Blog'},
             {page: "careers", label: 'Careers'},
             {page: 'about', label: 'About'},

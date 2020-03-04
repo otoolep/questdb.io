@@ -1,10 +1,8 @@
 ---
-id: storagemodel
+id: storageModel
 title: Storage Model
 sidebar_label: Storage Model
 ---
-
-## Intro
 QuestDB uses a **column-based** storage model. Data is stored in tables with each column stored in its own file
  and its native format. New data is appended to the bottom of each column 
  to allow data to be organically retrieved in the same order versus ingestion. 
@@ -39,7 +37,7 @@ QuestDB uses a **column-based** storage model. Data is stored in tables with eac
 
 ![alt-text](assets/storage-model-2.png)
  
-## Appending Model
+## Append Model
 QuestDB appends one column at a time and each one is updated using the same method. 
 The tail of column file is mapped into the memory page in RAM and the column append is effectively a 
 memory write at an address. Once the memory  page is exhausted it is unmapped (thus writing data to disk) 

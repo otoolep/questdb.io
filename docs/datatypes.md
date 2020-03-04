@@ -1,11 +1,8 @@
 ---
 id: datatypes
-title: Type system
-sidebar_label: Type system
+title: Data types
+sidebar_label: Data Types
 ---
-
-
-## Supported Types 
     
 The type system is derived from types in Java.
 

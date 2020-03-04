@@ -1,6 +1,6 @@
 ---
-id: manualinstall
-title: Install manually
+id: installFromBinary
+title: Install from Binary
 ---
 
 ### Supported Platforms

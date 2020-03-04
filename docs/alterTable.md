@@ -1,5 +1,5 @@
 ---
-id: alter
+id: alterTable
 title: ALTER TABLE
 sidebar_label: ALTER TABLE
 ---
@@ -16,7 +16,7 @@ Adds columns to existing table. Table has to exist and column names have to be u
 
 ![alt-text](assets/alter-table-add-column.svg)
 
-Single column is added instantly and is not back-populated even if table contains data. Please refer our guide to [the data types](refDATATYPES.md).
+Single column is added instantly and is not back-populated even if table contains data. Please refer our guide to [the data types](datatypes.md).
 Adding a new column does not lock the table for reading and also does not wait on any reads to finish.
 
 While single column is added atomically, adding multiple columns is not an atomic operation. QuestDB will stop adding remaining columns on the list on the first failure.
