@@ -7,16 +7,15 @@ sidebar_label: Aggregation
 
 ## sum
 
+`sum(value)` - adds values.
+
+#### Arguments
+
+- `value` is any numeric value.
+
 #### Description
 
-Adds values ignoring missing data, e.g. `null` values.
-
-#### Syntax
-```sql
-sum(argument)
-```
-
-Where `argument` is any numeric value.
+`sum(value)` adds values ignoring missing data (e.g `null` values).
 
 #### Return value
 
@@ -61,19 +60,13 @@ SELECT sum(cast(a as long)) from table
 
 ## count
 
+`count()` or `count(*)` - counts values.
+
+#### Arguments
+- `count` does not require arguments.
+
 #### Description
-`count` counts the number of rows, including rows with `null` values. 
-
-#### Syntax
-`count` does not require any argument, and the syntax is simply:
-```sql
-count()
-```
-
-The following alternative syntax is provided for convenience and has the same behaviour:
-```sql
-count(*)
-```
+`count()` counts values, including missing data (e.g `null` values)
 
 #### Return value
 Return value type is `long`.
@@ -91,7 +84,7 @@ SELECT count() FROM transactions;
 | 100       |
 ```
 
-- Count of items in the transactions table aggregated by payment_type. Note `null` values are aggregated.
+- Count of items in the transactions table aggregated by `payment_type`. 
 ```sql
 SELECT payment_type, count() FROM transactions;
 ```
@@ -103,23 +96,20 @@ SELECT payment_type, count() FROM transactions;
 | card          | 70            |
 | null          | 5             |
 ```
-
+> Note `null` values are aggregated with `count()`.
 
 
 
 
 ## avg
 
+`avg(value)` calculates simple average of values
+
+#### Arguments
+- `value` is any numeric value.
+
 #### Description
-`avg` returns the simple average of a set of numerical values. 
-> `null` values are not ignored and will affect calculations. 
-
-#### Syntax
-```sql
-avg(argument)
-```
-
-Where `argument` is any numeric value.
+`avg(value)` averages values ignoring missing data (e.g `null` values).
 
 #### Return value
 
@@ -138,7 +128,7 @@ SELECT avg(amount) FROM transactions;
 | 22.4      |
 ```
 
-- Average transaction amount aggregated by payment_type.
+- Average transaction amount aggregated by `payment_type`.
 ```sql
 SELECT payment_type, avg(amount) FROM transactions;
 ```
@@ -151,53 +141,15 @@ SELECT payment_type, avg(amount) FROM transactions;
 | null          | 18.02         |
 ```
 
-#### Null behaviour
-
-`avg` does not ignore `null` values in calculations and treats them as normal numeric values. As a result,
-using `avg` on data with `null` values may result in skewed results.
-
-Example dataset: 
-```
-| values        |
-|---------------|
-| 1             |
-| 2             |
-| null          |
-```
-
-```sql
-SELECT avg(values) from TABLE;
-```
-```
-| avg           |
-|---------------|
-| -715827881.66 |
-```
-
-#### Ignoring null values
-If your data contains `null` values, we recommend filtering for null with `WHERE`
-```sql
-SELECT avg(values) FROM TABLE WHERE NOT x=cast('null' AS int);
-```
-```
-| avg           |
-|---------------|
-| 1.5           |
-```
-
->This method is suboptimal. For optimal performance, we recommend enforcing a NOT NULL insert policy on numeric
->columns where you expect to perform aggregation calculations.
-
 ## min
 
-#### Description
-`min` returns the lowest value in the target data ignoring `null` values 
+`min(value)` - finds the lowest value.
 
-#### Syntax
-```sql
-min(argument)
-```
-Where `argument` is any numeric value.
+#### Arguments
+- `value` is any numeric value 
+
+#### Description
+`min(value)` finds the lowest value ignoring missing data (e.g `null` values).
 
 #### Return value
 Return value type is the same as the type of the argument.
@@ -215,7 +167,7 @@ SELECT min(amount) FROM transactions;
 | 12.5      |
 ```
 
-- Lowest amount in the transactions table, aggregated by payment_type
+- Lowest amount in the transactions table, aggregated by `payment_type`.
 ```sql
 SELECT payment_type, min(amount) FROM transactions;
 ```
@@ -233,13 +185,14 @@ SELECT payment_type, min(amount) FROM transactions;
 
 
 ## max
-`max` returns the lowest value in the target data ignoring `null` values 
 
-#### Syntax
-```sql
-max(argument)
-```
-Where `argument` is any numeric value.
+`max(value)` - finds the highest value.
+
+#### Arguments
+- `value` is any numeric value 
+
+#### Description
+`max(value)` finds the highest value ignoring missing data (e.g `null` values).
 
 #### Return value
 Return value type is the same as the type of the argument.
@@ -257,7 +210,7 @@ SELECT max(amount) FROM transactions;
 | 55.3      |
 ```
 
-- Lowest amount in the transactions table, aggregated by payment_type
+- Highest amount in the transactions table, aggregated by `payment_type`.
 ```sql
 SELECT payment_type, max(amount) FROM transactions;
 ```
