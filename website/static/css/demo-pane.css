@@ -24,3 +24,11 @@
     padding-top: 10px;
     padding-bottom: 10px;
 }
+
+.demo {
+    color: white;
+    background-color: lightslategrey;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    box-shadow: 0 2px 2px 1px rgba(0, 0, 0, 0.55);
+}

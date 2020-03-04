@@ -93,7 +93,7 @@ body > div.navPusher > div > div.mainContainer > div.toptitle > div > div > div 
 }
 
 .whatwedo .title {
-    color: black;
+    color: white;
 }
 
 .icons {
@@ -106,8 +106,8 @@ body > div.navPusher > div > div.mainContainer > div.toptitle > div > div > div 
 }
 
 .whatwedo {
-    background-color: #e6e8ea;
-    color: black;
+    background-color: lightslategrey;
+    color: white;
     box-shadow: 0 2px 2px 3px rgba(0, 0, 0, 0.1);
 }
 
@@ -345,7 +345,7 @@ div.subtitle {
 }
 
 .featuresList img {
-    filter: invert(35%) sepia(95%) saturate(519%) hue-rotate(169deg) brightness(95%) contrast(93%) drop-shadow(1px 5px 9px gray);
+    filter: invert(35%) brightness(300%) ;
 }
 
 div.interfaces {
@@ -361,13 +361,7 @@ div.interfaces {
     background: none;
 }
 
-.demo {
-    color: white;
-    background-color: lightslategrey;
-    padding-top: 40px;
-    padding-bottom: 40px;
-    box-shadow: 0 2px 2px 1px rgba(0, 0, 0, 0.55);
-}
+
 
 /*.slidingNav li:nth-child(5) {*/
 /*    background-color: #e68200;*/
