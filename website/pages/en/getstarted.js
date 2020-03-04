@@ -81,7 +81,7 @@ class Index extends React.Component {
                             },
                             {
                                 content:
-                                    ' <img src="img/tuto.svg" id="tutoIcon" alt="Discover QuestDB"/>' +
+                                    '<img src="img/tuto.svg" id="tutoIcon" alt="Discover QuestDB"/>' +
                                     '<div class="subtitle bold">Discover QuestDB</div>'
                             },
                             {
@@ -123,7 +123,7 @@ class Index extends React.Component {
                         {[
                             {
                                 content:
-                                    '<a  href="docs/myFirstDatabase/"><img src="img/rocket.svg" alt="Database tutorial"/></a>' +
+                                    '<a  href="/docs/myFirstDatabase"><img src="img/rocket.svg" alt="Database tutorial"/></a>' +
                                     '<div class="subtitle bold">First Database tutorial</div>',
                             },
                             {
