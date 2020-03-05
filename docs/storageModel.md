@@ -3,18 +3,10 @@ id: storageModel
 title: Storage Model
 sidebar_label: Storage Model
 ---
+
 QuestDB uses a **column-based** storage model. Data is stored in tables with each column stored in its own file
  and its native format. New data is appended to the bottom of each column 
- to allow data to be organically retrieved in the same order versus ingestion. 
- 
- Optionally, tables can be physically partitioned by timestamps.  In this case, 
- for each nominated time interval, the data is stored in separate sets of files. 
- 
- Our SQL optimiser leverages partitioning to reduce disk IO for timestamps interval searches. 
- Moreover, the SQL optimiser leverages the chronology of the table data to optimise timestamp interval 
- search.
- 
-![alt-text](assets/storage-model.png)
+ to allow data to be organically retrieved in the same order versus ingestion.  
  
 ## Writing data
  To guarantee **atomicity**, each table maintains a `last_committed_record_count` in a separate file. 

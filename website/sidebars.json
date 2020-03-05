@@ -19,6 +19,8 @@
     "Concepts": [
       "storageModel",
       "datatypes",
+      "designatedTimestamp",
+      "partitions",
       "crudOperations"
     ],
     "Reference": [
