@@ -175,7 +175,7 @@ SELECT d, round_half_even(d, -2), round_half_even(d, -1), round_half_even(d,0), 
 ## abs
 `abs(value)` return the absolute value. 
 
-#### Parameters
+#### Arguments
 - `value` is any numeric value.
 
 #### Description

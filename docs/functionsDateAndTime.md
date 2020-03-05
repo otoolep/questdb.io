@@ -5,7 +5,6 @@ sidebar_label: Date and Time
 ---
 
 ## systimestamp
-
 `systimestamp()` - offset from UTC Epoch in microseconds
 
 #### Arguments
@@ -42,7 +41,6 @@ SELECT * FROM readings WHERE date_time > systimestamp() - 60000000L;
 
 
 ## sysdate
-
 `sysdate()` - returns the timestamp of the host system as a `date` with `millisecond` precision.
 
 #### Arguments
@@ -75,7 +73,6 @@ SELECT * FROM readings WHERE date_time > sysdate() - 60000000L;
 
 
 ## to_str
-
 `to_str(value, format)` - converts date or timestamp value to a string in the specified format
 
 #### Arguments
@@ -118,7 +115,6 @@ SELECT to_str(systimestamp(), 'yyyy-MM-dd gooD DAY 123') FROM long_sequence(1);
 
 
 ## to_timestamp
-
 `to_timestamp(string, format)` - converts string to `timestamp` by using the supplied `format` to extract the value.
 
 #### Arguments
@@ -260,7 +256,6 @@ select hour(ts), count() from transactions;
 ```
 
 ## Date and Timestamp format
-
 Format is a combination of letters from table below combined with arbitrary text. 
 Format letters are case-sensitive and are used as is (e.g. without any prefix)
 
