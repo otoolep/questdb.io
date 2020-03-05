@@ -23,7 +23,7 @@ function sql_qdb(hljs) {
                     'delete do handler insert load replace select truncate update set show pragma grant ' +
                     'merge describe use explain help declare prepare execute deallocate release ' +
                     'unlock purge reset change stop analyze cache flush optimize repair kill ' +
-                    'install uninstall checksum restore check backup revoke comment values with',
+                    'install uninstall checksum restore check backup revoke comment values with copy ',
                 end: /;/, endsWithParent: true,
                 lexemes: /[\w\.]+/,
                 keywords: {
@@ -137,7 +137,7 @@ function sql_qdb(hljs) {
                         'verify version versions view virtual visible void wait wallet warning warnings week weekday weekofyear ' +
                         'wellformed when whene whenev wheneve whenever where while whitespace window with within without work wrapped ' +
                         'xdb xml xmlagg xmlattributes xmlcast xmlcolattval xmlelement xmlexists xmlforest xmlindex xmlnamespaces ' +
-                        'xmlpi xmlquery xmlroot xmlschema xmlserialize xmltable xmltype xor year_to_month years yearweek cache ' +
+                        'xmlpi xmlquery xmlroot xmlschema xmlserialize xmltable xmltype xor year_to_month years yearweek cache copy ' +
                         '',
                     literal:
                         'true false null unknown',
