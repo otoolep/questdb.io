@@ -137,7 +137,7 @@ function sql_qdb(hljs) {
                         'verify version versions view virtual visible void wait wallet warning warnings week weekday weekofyear ' +
                         'wellformed when whene whenev wheneve whenever where while whitespace window with within without work wrapped ' +
                         'xdb xml xmlagg xmlattributes xmlcast xmlcolattval xmlelement xmlexists xmlforest xmlindex xmlnamespaces ' +
-                        'xmlpi xmlquery xmlroot xmlschema xmlserialize xmltable xmltype xor year_to_month years yearweek ' +
+                        'xmlpi xmlquery xmlroot xmlschema xmlserialize xmltable xmltype xor year_to_month years yearweek cache ' +
                         '',
                     literal:
                         'true false null unknown',
