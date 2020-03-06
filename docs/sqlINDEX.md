@@ -10,8 +10,8 @@ It allows to bypass full table scans by directly accessing the relevant rows on 
 > Indexing is available for `SYMBOL` columns. Index support for other types will be added over time.
 
 There are two ways to create an index:
-- At table creation time using  [CREATE TABLE](sqlCREATE.md#index).
-- Using  [ALTER TABLE](sqlALTER.md#add-index-to-column) 
+- At table creation time using  [CREATE TABLE](createTable.md#index).
+- Using  [ALTER TABLE](alterTableAlterColumnAddIndex.md) 
 
 ## How does Index work
 

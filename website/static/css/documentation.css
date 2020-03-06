@@ -1,0 +1,40 @@
+h1.postHeaderTitle {
+    padding-top: 200px;
+}
+
+.mainContainer h1 {
+    margin-top: 80px;
+    color: #2371b5;
+    font-size: 44px;
+}
+
+.mainContainer h2 {
+    padding-top: 10px;
+    font-size: 28px;
+    color: #2371b5;
+}
+
+.mainContainer h3 {
+    margin-top: 55px;
+    color: #2371b5;
+    font-size: 20px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    margin-bottom: 5px;
+    border-bottom: 1px solid rgba(35, 113, 181, 0.44);
+}
+
+.mainContainer blockquote {
+    font-size: 16px;
+    color: black;
+    border-left-color: #fb8e00;
+    border-left-width: 3px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: rgba(219, 232, 249, 0.32);
+}
+
+code {
+    color: #35393b;
+    font-weight: bold;
+}

@@ -194,4 +194,4 @@ QuestdbWorker.run       5000          4          10    ss   50  142.207 ± 15.15
 Disruptor and QuestDB perform essentially the same.
 
 ### How to get it
-Our messaging system is on Maven central as a part of QuestDB. Don't worry about package size though, QuestDB jar weighs in at 3.6MB and has no dependencies. Jump **[here](/docs/dependency)** for version reference.
+Our messaging system is on Maven central as a part of QuestDB. Don't worry about package size though, QuestDB jar weighs in at 3.6MB and has no dependencies. Jump **[here](https://github.com/questdb/questdb/releases)** for version reference.

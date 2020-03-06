@@ -16,9 +16,11 @@ class Footer extends React.Component {
         return `${baseUrl}${docsPart}${langPart}${doc}`;
     }
 
-    pageUrl(doc, language) {
+    docUrlDefault(doc) {
         const baseUrl = this.props.config.baseUrl;
-        return baseUrl + (language ? `${language}/` : '') + doc;
+        const docsUrl = this.props.config.docsUrl;
+        const docsPart = `${docsUrl ? `${docsUrl}/` : ''}`;
+        return `${baseUrl}${docsPart}${doc}`;
     }
 
     render() {
@@ -35,19 +37,19 @@ class Footer extends React.Component {
                             />
                         )}
                     </a>*/}
-                    <div align={"left"} className="tanc">
+                    <div align={"left"} className="footersection">
                         <h5>QuestDB</h5>
-                        <a href={this.docUrl('docstructure', this.props.language)}>
+                        <a href={this.docUrlDefault('documentationOverview')}>
                             Documentation
                         </a>
-                        <a href={`https://questdb.io/docs/setupmenu`}>
+                        <a href={`/getstarted`}>
                             Download
                         </a>
-                        <a href={`https://questdb.io/docs/roadmap`}>
+                        <a href={this.docUrlDefault('roadmap')}>
                             Roadmap
                         </a>
                     </div>
-                    <div>
+                    <div align={"left"} className="footersection">
                         <h5>Community</h5>
                         {/*            <a href={this.pageUrl('users.html', this.props.language)}>
               User Showcase
@@ -66,7 +68,7 @@ class Footer extends React.Component {
                             Twitter
                         </a>
                     </div>
-                    <div>
+                    <div align={"left"} className="footersection">
                         <h5>More</h5>
                         <a href={`${this.props.config.baseUrl}blog`}>Blog</a>
                         <a href="https://github.com/questdb/questdb/">GitHub</a>
@@ -105,9 +107,7 @@ class Footer extends React.Component {
                     </div>
                 </section>
 
-                <section className="copyright">{this.props.config.copyright}
-                </section>
-
+                <section className="copyright">{this.props.config.copyright}</section>
             </footer>
         );
     }

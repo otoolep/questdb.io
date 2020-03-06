@@ -8,18 +8,14 @@
 const React = require('react');
 const CompLibrary = require('../../core/CompLibrary.js');
 
-const MarkdownBlock = CompLibrary.MarkdownBlock; /* Used to read markdown */
+// const MarkdownBlock = CompLibrary.MarkdownBlock; /* Used to read markdown */
 const Container = CompLibrary.Container;
 const GridBlock = CompLibrary.GridBlock;
 
 class HomeSplash extends React.Component {
 
     render() {
-        const {siteConfig, language = ''} = this.props;
-        const {baseUrl, docsUrl} = siteConfig;
-        const docsPart = `${docsUrl ? `${docsUrl}/` : ''}`;
-        const langPart = `${language ? `${language}/` : ''}`;
-        const docUrl = doc => `${baseUrl}${docsPart}${langPart}${doc}`;
+        const {siteConfig} = this.props;
 
         const SplashContainer = props => (
             <div className="homeContainer">
@@ -29,32 +25,9 @@ class HomeSplash extends React.Component {
             </div>
         );
 
-        const Logo = props => (
-            <div className="projectLogo">
-                <img src={props.img_src} alt="Project Logo"/>
-            </div>
-        );
-
         const ProjectTitle = () => (
-                <span/>
+            <span/>
         );
-
-        const PromoSection = props => (
-            <div className="section promoSection">
-                <div className="promoRow">
-                    <div className="pluginRowBlock">{props.children}</div>
-                </div>
-            </div>
-        );
-
-        const Button = props => (
-            <div className="pluginWrapper buttonWrapper">
-                <a className="button" href={props.href} target={props.target}>
-                    {props.children}
-                </a>
-            </div>
-        );
-
 
         return (
             <SplashContainer>
@@ -79,44 +52,201 @@ class Index extends React.Component {
                 background={props.background}>
                 <GridBlock
                     padding={['top', 'bottom']}
-                    align="justified"
+                    align="left"
                     contents={props.children}
                     layout={props.layout}
                 />
             </Container>
         );
 
-        const About = () => (
-            <div className="about">
-            <Block padding='bottom'>
-                {[
-                    {
-                        image: `${baseUrl}img/speed.svg`,
-                        imageAlign: 'left',
-                    },
-                    {
-                        content:
-                            '<img class="logo" src="https://raw.githubusercontent.com/questdb/questdb/master/core/src/main/resources/site/public/images/logo-readme.jpg"/>'+
-                            '<span class="title">Fast relational time-series</span>'+
-                            '<p>QuestDB is a fast NewSQL database for Hybrid Transactional, Analytical and Time Series processing workloads. Users can interact via ' +
-                            'HTTP endpoints, our web console, wire protocols (PostgreSQL and Influx) and programmatic APIs. The entire database fits in a dependency-free 3.5mb package ' +
-                            'and is Open Source under Apache 2.0.'+
-                            '<ul class="features">' +
-                            '<li>Relational</li>' +
-                            '<li>Time series</li>' +
-                            '<li>SQL</li>' +
-                            '<li>Open Source</li>' +
-                            '</ul>' +
-                            '<ul class="buttons">' +
-                            '<li class="cta"><a href="/docs/getstarted">Get started</a></li>' +
-                            '<li><a href="https://github.com/questdb/questdb" target="_blank">View on GitHub</a></li>' +
-                            '</ul>'
+        const CenterBlock = props => (
+            <Container id={props.id} background={props.background}>
+                <GridBlock
+                    align="center"
+                    contents={props.children}
+                    layout={props.layout}
+                />
+            </Container>
+        );
+
+        const Title = () => (
+            <div className="toptitle">
+                <Block>
+                    {[
+                        {
+                            image: `${baseUrl}img/test.svg`,
+                        },
+                        {
+                            content:
+                                '<span class="title">Time-series data, faster</span>' +
+                                '<p class="left subTopTitle">QuestDB is an SQL open-source time-series database to store, stream and query data - faster</p>' +
+                                '<br>' +
+                                '<ul class="buttons">' +
+                                '<li class="cta"><a href="/getstarted">Get QuestDB</a></li>' +
+                                '</ul>'
+                        }
+                    ]
                     }
-                ]
-                }
-            </Block>
+                </Block>
             </div>
         );
+
+        const WhatWeDo = () => (
+            <div className="whatwedo">
+                <Block layout="twoColumn">
+                    {[
+                        {
+                            content: '<span class="title">Features</span>'
+                        },
+                    ]}
+                </Block>
+
+                <div className="featuresList">
+                    <Block layout="threeColumn">
+                        {[
+                            {
+                                image: `${baseUrl}img/ossicon.svg`,
+                                content:
+                                    '<div class="subtitle">Apache 2.0</div>'
+                            },
+                            {
+                                image: `${baseUrl}img/speedicon.svg`,
+                                content:
+                                    '<div class="subtitle">SIMD accelerated</div>'
+                            },
+                            {
+                                image: `${baseUrl}img/table.svg`,
+                                content:
+                                    '<div class="subtitle">Relational Model</div>'
+                            },
+                            {
+                                image: `${baseUrl}img/packageicon.svg`,
+                                content:
+                                    '<div class="subtitle">Cross-platform package</div>'
+                            },
+                            {
+                                image: `${baseUrl}img/sqlicon.svg`,
+                                content:
+                                    '<div class="subtitle">Query Optimiser</div>'
+                            },
+                            {
+                                image: `${baseUrl}img/usersicon.svg`,
+                                content:
+                                    '<div class="subtitle">Fast for concurrent users</div>'
+                            },
+                            {
+                                image: `${baseUrl}img/joinsicon.svg`,
+                                content:
+                                    '<div class="subtitle">Relational joins</div>'
+                            },
+                            {
+                                image: `${baseUrl}img/charticon.svg`,
+                                content:
+                                    '<div class="subtitle">Time-series joins</div>'
+                            },
+                            {
+                                image: `${baseUrl}img/unlimtransacticon.svg`,
+                                content:
+                                    '<div class="subtitle">Unlimited transaction size</div>'
+                            },
+
+                        ]}
+                    </Block>
+                </div>
+            </div>
+        );
+
+
+        const Demo = () => (
+            <div className="demo">
+                <CenterBlock className="titlecenter">
+                    {[
+                        {
+                            content: '<span class="title">Live demo coming up</span>',
+                        },
+                    ]}
+                </CenterBlock>
+                <Block layout="twoColumn">
+                    {[
+                        {
+                            content: '<ul class="announcement">' +
+                                '<li>' +
+                                '<span class="headline">Large dataset sandbox </span>' +
+                                '<span class="summary">1.6 billion rows NY taxi rides, 800 million for-hire vehicle trips, hourly weather observations, gas prices, etc. Accessible without any download</span>' +
+                                '</li>' +
+                                '<li>' +
+                                '<span class="headline">Attainable hardware</span>' +
+                                '<span class="summary">Hosted on single general purpose AWS bare metal. No expensive data sharding / distributed queries. No need for expensive GPU nor terabytes of RAM</span>' +
+                                '</li>' +
+                                '<li>' +
+                                '<span class="headline">Arbitrary SQL queries</span>' +
+                                '<span class="summary">Test QuestDB through queries you like over the entire dataset' +
+                                '</span>' +
+                                '</li>' +
+                                '</ul>'
+                        },
+                        {
+                            content: '<ul class="announcement">' +
+                                '<li>' +
+                                '<span class="headline">Sub-second query execution</span>' +
+                                '<span class="summary">Execute all queries under a second on this 1.6bn row dataset</span>' +
+                                '</li>' +
+                                '<li>' +
+                                '<span class="headline">Parallel SQL execution</span>' +
+                                '<span class="summary">Low overhead work split and work stealing</span>' +
+                                '</li>' +
+                                '<li>' +
+                                '<span class="headline">Time series joins</span>' +
+                                '<span class="summary">Time-series sampling, and joining on arbitrary timestamps</span>' +
+                                '</li>' +
+                                '<li>' +
+                                '<span class="headline">Vectorized aggregation</span>' +
+                                '<span class="summary">SIMD based SQL intrinsics</span>' +
+                                '</li>' +
+                                '</ul>'
+                        },
+                    ]}
+                </Block>
+            </div>
+        );
+
+        const SignUpForm = () => (
+            <div className="flip-box">
+                <div className="flip-box-inner" id="jsSignUpFlipInner">
+                    <div className="signup shadow">
+                        <div className="signup-inner">
+                            <span className="why">Be the first to experience our demo</span>
+                            <form method="post" id="jsSignupForm"
+                                  action="https://questdb.us4.list-manage.com/subscribe/post?u=ded0bfce4eb932e7617add7c5&amp;id=0e88cd5ecb"
+                                  name="mc-embedded-subscribe-form"
+                                  target="_blank" noValidate>
+                                <ul>
+                                    <li><label>First name</label></li>
+                                    <li><input name="FNAME" type="text" placeholder="John"/></li>
+                                    <li><label>Last name</label></li>
+                                    <li><input name="LNAME" type="text" placeholder="Doe"/></li>
+                                    <li><label>Email</label></li>
+                                    <li><input id="jsInputEmail" name="EMAIL" type="text" placeholder="john@acme.com"/>
+                                    </li>
+                                    <li className="send"><a href="" id="jsSignUp">Sign up!</a></li>
+                                </ul>
+                                <div style={{display: 'none'}}>
+                                    <input type="text" name="b_ded0bfce4eb932e7617add7c5_0e88cd5ecb" tabIndex="-1"
+                                           value="" readOnly={true}/>
+                                    <input type="submit" name="subscribe" value="submit" readOnly={true}/>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div className="signup-back shadow">
+                        <img src={'/img/thumb-up-outline-symbol.svg'} alt="thumbs up!"/>
+                        <div className="headline">Thank you!</div>
+                        <div className="summary"> Please check your inbox to confirm your signup.</div>
+                    </div>
+                </div>
+            </div>
+        );
+
 
         const SQL = () => (
             <div className="sql">
@@ -124,81 +254,50 @@ class Index extends React.Component {
                     {[
                         {
                             content:
-                                '<span class="title">Expressive SQL</span>'+
-                                'QuestDB\'\s SQL optimiser (built-in time-series native support) assembles a sequence of monads for best-effort-zero-copy query execution.' +
-                                ' User functions allow the manipulation of data sets. This provides ultimate SQL customisation.'
-                        },
-                        {
-                            image: `${baseUrl}img/sql.gif`,
-                            imageAlign: 'right',
-                            textAlign: 'left',
+                                '' +
+                                '<span class="title">Express yourself</span>' +
+                                'Just write SQL. Let QuestDB focus on the performance while you focus on the data.' +
+                                '<br><br>' +
+                                '<b>Less indexing and profiling. More ingesting and querying!</b>'
                         },
                     ]}
                 </Block>
             </div>
         );
 
-        const Community = () => (
-            <div className="community">
-                <Block layout="twoColumn">
+        const Integrations = () => (
+            <div className='interfaces'>
+                <span className="title">Integrations</span>
+                <p>Any tool and language via Postgres wire protocol. High-performance HTTP API, Influx line protocol and
+                    Telegraf.</p>
+                <Block layout="threeColumn">
                     {[
                         {
-                            image: `${baseUrl}img/community.svg`,
-                            imageAlign: 'right',
-                            textAlign: 'right',
-                        },
-                        {
-                            content:
-                                '<span class="title">Welcome to the community</span>' +
-                                'Get up to speed with our documentation and guides. If you already know SQL, you can get started. You can raise issues on Github or join our community on Slack.'+
-                                '<ul class="buttons">' +
-                                '<li><a href="https://join.slack.com/t/questdb/shared_invite/enQtNzk4Nzg4Mjc2MTE2LTEzZThjMzliMjUzMTBmYzVjYWNmM2UyNWJmNDdkMDYyZmE0ZDliZTQxN2EzNzk5MDE3Zjc1ZmJiZmFiZTIwMGY" target="_blank">Join Slack</a></li>' +
-                                '<li><a href="/docs/docstructure">Documentation </a></li>' +
-                                '</ul>'
-                        }
-                    ]}
+                            image: `${baseUrl}img/interfaces.jpg`,
+                        }]}
                 </Block>
+
             </div>
         );
 
-        const Showcase = () => {
-            if ((siteConfig.users || []).length === 0) {
-                return null;
-            }
-
-            const showcase = siteConfig.users
-                .filter(user => user.pinned)
-                .map(user => (
-                    <a href={user.infoLink} key={user.infoLink}>
-                        <img src={user.image} alt={user.caption} title={user.caption}/>
-                    </a>
-                ));
-
-            const pageUrl = page => baseUrl + (language ? `${language}/` : '') + page;
-
-
-            return (
-                <div className="productShowcaseSection paddingBottom">
-                    <h2>Who is Using This?</h2>
-                    <p>This project is used by all these people</p>
-                    <div className="logos">{showcase}</div>
-                    <div className="more-users">
-                        <a className="button" href={pageUrl('users.html')}>
-                            More {siteConfig.title} Users
-                        </a>
-                    </div>
-                </div>
-            );
-        };
-
+        const ConsoleGIF = () => (
+            <div className='consoleGIF'>
+                <img src={'/img/sql.gif'} alt="sql example" className={'shadow'}/>
+            </div>
+        );
 
         return (
             <div>
                 <HomeSplash siteConfig={siteConfig} language={language}/>
-                <div className="mainContainer">
-                    <About/>
+                <div className="mainContainer index">
+                    <Title/>
+                    <Demo/>
+                    <SignUpForm/>
                     <SQL/>
-                    <Community/>
+                    <ConsoleGIF/>
+                    <WhatWeDo/>
+                    {/*<Perf/>*/}
+                    <Integrations/>
                 </div>
             </div>
         );

@@ -1,42 +1,80 @@
-
 {
   "docs": {
-    "Introduction": [
-      "docstructure",
-      "getstarted",
-      "tutorial",
-      "crud"
+    "Intro": [
+      "documentationOverview"
     ],
-    "Installation": [
-      "setupmenu",
-      "docker",
-      "manualinstall",
-      "dependency"
+    "Guides": [
+      {
+        "type": "subcategory",
+        "label": "Installation",
+        "ids": [
+          "installationOverview",
+          "installFromDockerImage",
+          "installFromBinary"
+        ]
+      },
+      "usingWebConsole",
+      "myFirstDatabase"
     ],
-    "Using QuestDB": [
-      "interfaces",
-      "howtoload",
-      "howtoquery",
-      "howtoexport"
+    "Concepts": [
+      "storageModel",
+      "datatypes",
+      "designatedTimestamp",
+      "partitions",
+      "crudOperations",
+      "indexes"
     ],
     "Reference": [
-      "datatypes",
-      "storagemodel",
-      "sql",
-      "functions",
-      "indexes",
-      "joins",
-      "casting"
-    ],
-    "SQL Reference": [
-      "alter",
-      "copy",
-      "create",
-      "drop",
-      "insert",
-      "select",
-      "truncate",
-      "union"
+      {
+        "type": "subcategory",
+        "label": "APIs",
+        "ids": [
+          "restAPI",
+          "embeddedJavaAPI",
+          "influxLineProtocol"
+        ]
+      },
+      {
+        "type": "subcategory",
+        "label": "Functions",
+        "ids": [
+          "functionsAggregation",
+          "functionsNumeric",
+          "functionsDateAndTime",
+          "functionsRandomValueGenerators",
+          "functionsRowGenerator",
+          "functionsTimestampGenerator",
+          "functionsText"
+        ]
+      },
+      {
+        "type": "subcategory",
+        "label": "SQL Reference",
+        "ids": [
+          "sqlExecutionOrder",
+          "alterTableAddColumn",
+          "alterTableDropColumn",
+          "alterTableAlterColumnAddIndex",
+          "alterTableDropPartition",
+          "cast",
+          "copy",
+          "createTable",
+          "drop",
+          "insert",
+          "joins",
+          "select",
+          "truncate",
+          "union"
+        ]
+      },
+      {
+        "type": "subcategory",
+        "label": "Java API Reference",
+        "ids": [
+          "javaAPIOverview",
+          "influxSenderLibrary"
+        ]
+      }
     ],
     "FAQ": [
       "faq",

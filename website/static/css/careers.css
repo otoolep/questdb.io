@@ -1,0 +1,145 @@
+
+.careers{
+    padding-top: 100px;
+}
+
+.perks  {
+    width: 50%;
+    margin-right: auto;
+    margin-left: auto;
+    display: block;
+    margin-bottom: 2%;
+    padding-bottom: .8%;
+    padding-top: .8%;
+    background-color: rgba(223, 231, 255, 0.26);
+}
+
+.perks .buttons{
+    margin-top: 4%;
+}
+
+.perks .buttons li{
+    background-color: rgba(56, 153, 255, 0.4);
+    border: 1px solid #f8f9ff;
+}
+
+.perks .buttons li:hover {
+    cursor: pointer;
+    background-color: rgba(21, 84, 255, 0.4);
+    /*background-color: #de4f3a;*/
+    /*transform: translate(0px, -2px);*/
+    transform: scale(1.02);
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently supported by Chrome, Opera and Firefox */
+}
+
+.careers-footer .buttons li{
+    background-color: rgba(56, 153, 255, 0.4);
+    border: 1px solid #ccccd1;
+}
+
+.careers-footer .buttons li:hover {
+    cursor: pointer;
+    background-color: rgba(21, 84, 255, 0.4);
+    /*background-color: #de4f3a;*/
+    /*transform: translate(0px, -2px);*/
+    transform: scale(1.02);
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently supported by Chrome, Opera and Firefox */
+}
+
+.perks .gridBlock > * {
+    margin-top: 3%;
+    margin-bottom: 2%;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.perks img {
+    width: 100%;
+    height: 60px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    horiz-align: center;
+    filter: grayscale(0%) contrast(40%);
+}
+
+.apply-steps {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+
+.careers-footer{
+    text-align: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    font-size: 120%;
+}
+
+.careers-img {
+    width: 50%;
+    margin-right: auto;
+    margin-left: auto;
+    display: block;
+}
+
+.job {
+    /*The negative margin is intentional so job sections reached via hyperlink appear correctly as the title
+    would otherwise be hidden by the top menu. IT is offset by the padding.*/
+    margin-top: -80px;
+    padding-top: 120px;
+    padding-bottom: 40px;
+    border-bottom: 1.5px solid #2371b5;
+}
+
+
+.job-list{
+    margin-top: -120px;
+    padding-top: 120px;
+    padding-bottom: 40px;
+}
+
+
+.jobtitle{
+    margin-bottom: 10px;
+    font-size: 30px;
+    text-align: left;
+    display: block;
+}
+
+.jobsubtitle{
+    margin-bottom: 10px;
+    font-size: 20px;
+    text-align: left;
+    display: block;
+}
+
+
+.careers, .job {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.careers-intro{
+    font-size: 130%;
+    padding-top: 30px;
+    padding-bottom: 2%;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}

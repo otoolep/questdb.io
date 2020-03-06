@@ -1,0 +1,25 @@
+createTableDef
+  ::= 'CREATE' 'TABLE' tableName
+(
+(
+'(' columnName typeDef (',' columnName typeDef)* ')'
+) | (
+'as' '(' selectSql ')'  (',' castDef)* (',' indexDef)*
+)
+) (
+('timestamp' columnRef) ('partition' 'by' ('NONE' | 'DAY' | 'MONTH' | 'YEAR'))?
+)?
+
+castDef ::= 'cast' '(' columnRef 'as' typeDef ')'
+
+inlineIndexDef ::= 'index' (indexCapacityDef)?
+
+typeDef ::= (
+'boolean' | 'byte' | 'short' | 'char' | 'int' | 'float' |
+('symbol' ('capacity' distinctValueEstimate)? ('CACHE' | 'NOCACHE')? inlineIndexDef?) |
+'string' | 'long' | 'date' | 'timestamp' | 'double' | 'binary' | 'long256'
+)
+
+indexDef ::= 'index' '(' columnRef (indexCapacityDef)? ')'
+
+indexCapacityDef ::= 'capacity' valueBlockSize
