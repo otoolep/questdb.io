@@ -78,8 +78,8 @@ class Index extends React.Component {
                         },
                         {
                             content:
-                                '<span class="title">Fast time-series data</span>' +
-                                '<p class="left subTopTitle">QuestDB is an open-source time-series database to store, stream, query data and run analytics at the speed of light, with the the convenience of SQL.</p>' +
+                                '<span class="title">Time-series data, faster</span>' +
+                                '<p class="left subTopTitle">QuestDB is an SQL open-source time-series database to store, stream and query data - faster</p>' +
                                 '<br>' +
                                 '<ul class="buttons">' +
                                 '<li class="cta"><a href="/getstarted">Get QuestDB</a></li>' +
@@ -162,7 +162,7 @@ class Index extends React.Component {
                 <CenterBlock className="titlecenter">
                     {[
                         {
-                            content: '<span class="title">Live demo is coming right up!</span>',
+                            content: '<span class="title">Live demo coming up</span>',
                         },
                     ]}
                 </CenterBlock>

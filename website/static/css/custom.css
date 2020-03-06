@@ -1,5 +1,28 @@
 /* your custom css */
 
+@media only screen and (min-width: 1025px) {
+    .logo {
+        padding-top: 30px;
+        padding-bottom: 30px;
+        height: 100px !important;
+    }
+}
+
+@media only screen and (max-width: 1025px) {
+    .logo {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        height: 50px !important;
+    }
+}
+
+.subTopTitle {
+    line-height: 1.4em!important;
+}
+
+.headerTitleWithLogo {
+    display: none!important;
+}
 
 .mainContainer.index {
     padding: 0;

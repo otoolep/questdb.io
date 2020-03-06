@@ -2,14 +2,19 @@
     padding: 0;
 }
 
-.about-page-content{
+.about-page-content {
     width: 50%;
     display: block;
     margin-left: auto;
     margin-right: auto;
 }
 
-.about-page-content-intro{
+.about-content-wide ul {
+    padding: 0;
+    margin: 0;
+}
+
+.about-page-content-intro {
     width: 50%;
     display: block;
     margin-left: auto;
@@ -17,49 +22,49 @@
     padding-top: 80px;
 }
 
-.about-page-highlight{
+.about-page-highlight {
     background-color: #f8f8f8;
 }
 
-.vc-list{
+.vc-list {
     padding-left: 0;
 }
 
-.vc-list li{
+.vc-list li {
     display: contents;
     list-style: none;
 }
 
 
-.vc-list img{
+.vc-list img {
     height: 80px;
     width: auto;
     margin: 1.5% 3% 3% 1.5%;
 }
 
-.headshot-list li{
+.headshot-list li {
     display: inline-grid;
-    list-style:none;
+    list-style: none;
 }
 
-.txt130{
+.txt130 {
     font-size: 130%;
-    }
+}
 
-.no-bottom-padding{
+.no-bottom-padding {
     padding-bottom: 0;
 }
 
-.bottom-padding{
+.bottom-padding {
     padding-bottom: 80px;
 }
 
 
-body > div.navPusher > div > div.mainContainer > div.contact-box > div  {
+body > div.navPusher > div > div.mainContainer > div.contact-box > div {
     padding-top: 5%;
 }
 
-.headshot-list img{
+.headshot-list img {
     height: 150px;
     width: 150px;
     object-fit: cover;
@@ -71,7 +76,7 @@ body > div.navPusher > div > div.mainContainer > div.contact-box > div  {
     box-shadow: 0 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
-.headshot-list figure{
+.headshot-list figure {
     width: 300px;
     margin-bottom: 10%;
 }
@@ -88,7 +93,7 @@ body > div.navPusher > div > div.mainContainer > div.contact-box > div  {
 }
 
 
-.company-description{
+.company-description {
     position: absolute;
     top: 20%;
     left: 20%;
@@ -99,17 +104,17 @@ body > div.navPusher > div > div.mainContainer > div.contact-box > div  {
     font-weight: bolder;
 }
 
-.toptitle.about-title{
+.toptitle.about-title {
     padding-bottom: 0;
     min-height: 200px;
 
 }
 
-.about-title{
+.about-title {
     height: 10%;
 }
 
-.about-title img{
+.about-title img {
     filter: grayscale(70%) contrast(100%);
     opacity: 50%;
     width: 100%;
@@ -117,31 +122,30 @@ body > div.navPusher > div > div.mainContainer > div.contact-box > div  {
     object-fit: cover;
 }
 
-.title-image{
+.title-image {
     filter: grayscale(50%) contrast(40%);
 }
 
-    .contact-box {
-        background-color: #f8fafa;
-        width: 200px;
-        height: 420px;
-        margin: 50px 20px -400px auto;
-        border-radius: 8px;
-        box-shadow: 10px 30px 30px 20px rgba(0, 0, 0, 0.55);
-        -webkit-font-smoothing: antialiased;
-        opacity: .99;
-    }
+.contact-box {
+    background-color: #f8fafa;
+    width: 200px;
+    height: 420px;
+    margin: 50px 20px -400px auto;
+    border-radius: 8px;
+    box-shadow: 10px 30px 30px 20px rgba(0, 0, 0, 0.55);
+    -webkit-font-smoothing: antialiased;
+    opacity: .99;
+}
 
-    .contact-box img {
-        width: 30%;
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        padding-top: 5%;
-        padding-bottom: 5%;
-        filter: grayscale(100%) contrast(40%);
-    }
-
+.contact-box img {
+    width: 30%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    filter: grayscale(100%) contrast(40%);
+}
 
 
 body > div.navPusher > div > div.mainContainer > div.contact-box > div.container > div > div > div > div.blockContent {
@@ -149,16 +153,15 @@ body > div.navPusher > div > div.mainContainer > div.contact-box > div.container
     padding-bottom: 2.5%;
 }
 
-    .address {
-        margin-top: 20px;
-        color: gray;
-        text-transform: uppercase;
-        text-align: center;
-    }
+.address {
+    margin-top: 20px;
+    color: gray;
+    text-transform: uppercase;
+    text-align: center;
+}
 
 
-
-@media only screen and (max-width: 1000px)  {
+@media only screen and (max-width: 1000px) {
 
     .contact-box {
         width: 100%;
@@ -175,7 +178,7 @@ body > div.navPusher > div > div.mainContainer > div.contact-box > div.container
         display: none;
     }
 
-    body > div.navPusher > div > div.mainContainer > div.contact-box > div  {
+    body > div.navPusher > div > div.mainContainer > div.contact-box > div {
         padding-top: 0;
         flex: none;
     }

@@ -216,8 +216,8 @@ const siteConfig = {
     users,
 
     /* path to images for header/footer */
-    headerIcon: 'img/favicon.png',
-    footerIcon: 'img/favicon.png',
+    headerIcon: 'img/QuestDB_Logo.png',
+    footerIcon: 'img/QuestDB_Logo.png',
     favicon: 'img/favicon.png',
 
     /* Colors for website */

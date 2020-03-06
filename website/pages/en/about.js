@@ -95,8 +95,8 @@ class Index extends React.Component {
                         <li>
                             <a href="https://www.linkedin.com/in/nicolas-hourcard-cfa-b7349b37/" target="_blank">
                                 <figure>
-                                    <img className="team-img" src='/img/tanc.png'/>
-                                    <figcaption><a className="team-name">Nic Hourcard </a> <br/>Co-Founder & CEO
+                                    <img className="team-img" src='/img/nic.jpg'/>
+                                    <figcaption><a className="team-name">Nicolas Hourcard </a> <br/>Co-Founder & CEO
                                     </figcaption>
                                 </figure>
                             </a>
@@ -104,7 +104,7 @@ class Index extends React.Component {
                         <li>
                             <a href="https://www.linkedin.com/in/ilyushchenko/" target="_blank">
                                 <figure>
-                                    <img className="team-img" src='/img/tanc.png'/>
+                                    <img className="team-img" src='/img/vlad.jpg'/>
                                     <figcaption><a className="team-name">Vlad Ilyushchenko </a> <br/> Co-Founder & CTO
                                     </figcaption>
                                 </figure>
@@ -113,8 +113,8 @@ class Index extends React.Component {
                         <li>
                             <a href="https://www.linkedin.com/in/tancrede-collard-35228926/" target="_blank">
                                 <figure>
-                                    <img className="team-img" src='/img/tanc.png'/>
-                                    <figcaption><a className="team-name">Nic Hourcard </a> <br/> Co-Founder & CPO
+                                    <img className="team-img" src='/img/tanc.jpg'/>
+                                    <figcaption><a className="team-name">Tancrède Collard</a> <br/> Co-Founder & CPO
                                     </figcaption>
                                 </figure>
                             </a>
