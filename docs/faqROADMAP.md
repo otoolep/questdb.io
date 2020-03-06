@@ -17,7 +17,7 @@ Here is a non-exhaustive list of things we are working on. Feel free to join us 
 - [ ] low latency RPC (remote async query execution)
 - [ ] column type change
 - [ ] drop table partition
-- [ ] replace table partition with aggregated data: downsample historical data to reduce data volume as significance of data diminishes
+- [ ] replace table partition with aggregated data: down-sample historical data to reduce data volume as significance of data diminishes
 - [ ] pivot table
 - [ ] parquet import
 - [ ] AVRO import

@@ -101,7 +101,7 @@ CREATE TABLE 'TABLE'(symbol_field symbol INDEX, ...);
 
 ### Example
 ```sql
-CREATE TABLE orders(sym SYMBOL INDEX, anount DOUBLE, side BYTE, timestamp TIMESTAMP);
+CREATE TABLE orders(sym SYMBOL INDEX, amount DOUBLE, side BYTE, timestamp TIMESTAMP);
 ```
 
 > Indexes can also be created on the fly. For more information about `INDEX` please refer to the **[INDEX section](sqlINDEX.md)**.
@@ -130,7 +130,7 @@ CREATE TABLE orders(sym SYMBOL INDEX, anount DOUBLE, side BYTE, timestamp TIMEST
 
 ### Usage
 `SYMBOL` converts strings as integers and stores a dictionary of `INT <-> STRING`. This allows to store strings as integers and 
-seamlessly reduces storage requirements and compexity for string operations. 
+seamlessly reduces storage requirements and complexity for string operations. 
 
 When `SYMBOL` is `CACHED`, the `INT <-> STRING` dictionary is maintained on the Java Heap. This allows faster dictionary access 
 for both read and write operations. 

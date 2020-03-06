@@ -93,7 +93,7 @@ device_name symbol,
 reading int);
 ```
 
-When switching over to a new day, insert the last day of data in an ordered fasion:
+When switching over to a new day, insert the last day of data in an ordered fashion:
 ```sql
 INSERT INTO readings 
     SELECT * FROM (readings_temp ORDER BY db_ts) timestamp(db_ts);
