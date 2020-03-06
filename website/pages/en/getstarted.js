@@ -123,12 +123,12 @@ class Index extends React.Component {
                         {[
                             {
                                 content:
-                                    '<a  href="docs/tutorial/"><img src="img/rocket.svg" alt="Database tutorial"/></a>' +
+                                    '<a  href="docs/myFirstDatabase/"><img src="img/rocket.svg" alt="Database tutorial"/></a>' +
                                     '<div class="subtitle bold">First Database tutorial</div>',
                             },
                             {
                                 content:
-                                    '<a  href="/docs/crud"><img src="img/crud.svg" alt="CRUD how-to"/></a>' +
+                                    '<a  href="/docs/crudOperations"><img src="img/crud.svg" alt="CRUD how-to"/></a>' +
                                     '<div class="subtitle bold">Learn to perform CRUD operations</div>',
                             },
 

@@ -14,7 +14,7 @@ In this tutorial, we will learn to
 - Delete tables
 
 As an example, we will look at a hypothetical temperature readings from a variety of sensors. 
-All commands are run through the [Web Console](usingWebConsole) accessible on 
+All commands are run through the [Web Console](usingWebConsole.md) accessible on 
 **[http://localhost:9000/index.html](http://localhost:9000/index.html)**.
 
 ## Creating a table

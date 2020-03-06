@@ -5,7 +5,7 @@ sidebar_label: Roadmap
 ---
 
 Here is a non-exhaustive list of things we are working on. Feel free to join us on 
-**[Github]('https://github.com/questdb/questdb')** to track progress and participate.
+**[Github](https://github.com/questdb/questdb)** to track progress and participate.
 
 ## SQL
 - [ ] Authorization framework:

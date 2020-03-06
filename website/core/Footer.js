@@ -16,6 +16,13 @@ class Footer extends React.Component {
         return `${baseUrl}${docsPart}${langPart}${doc}`;
     }
 
+    docUrlDefault(doc) {
+        const baseUrl = this.props.config.baseUrl;
+        const docsUrl = this.props.config.docsUrl;
+        const docsPart = `${docsUrl ? `${docsUrl}/` : ''}`;
+        return `${baseUrl}${docsPart}${doc}`;
+    }
+
     render() {
         return (
             <footer className="nav-footer" id="footer">
@@ -32,13 +39,13 @@ class Footer extends React.Component {
                     </a>*/}
                     <div align={"left"} className="footersection">
                         <h5>QuestDB</h5>
-                        <a href={this.docUrl('docstructure', this.props.language)}>
+                        <a href={this.docUrlDefault('documentationOverview')}>
                             Documentation
                         </a>
-                        <a href={`https://questdb.io/docs/setupmenu`}>
+                        <a href={`/getstarted`}>
                             Download
                         </a>
-                        <a href={`https://questdb.io/docs/roadmap`}>
+                        <a href={this.docUrlDefault('roadmap')}>
                             Roadmap
                         </a>
                     </div>
