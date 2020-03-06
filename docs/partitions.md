@@ -15,7 +15,7 @@ QuestDB offers the option to partition tables by intervals of time. Data for eac
 - Available partition intervals are `NONE`, `DAY`, `MONTH` and `YEAR`.
 - Default behaviour is `PARTITION BY NONE`.
 - Partitions are defined at table creation. 
-For more information, please refer to **[CREATE TABLE section](sqlCREATE.md)**.
+For more information, please refer to **[CREATE TABLE section](createTable.md)**.
 
 #### Requirements
 Partition is only available on tables with a `designated timestamp`. The main consequence of using a

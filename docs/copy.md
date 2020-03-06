@@ -4,11 +4,11 @@ title: COPY
 sidebar_label: COPY
 ---
  
- ### Syntax
+## Syntax
  
 ![alt-text](assets/copy.svg)
 
-### Description
+## Description
 
 Copies data from a delimited text file into a table. Column delimiter detection is automatic.
 
@@ -19,9 +19,9 @@ When target table does not exist it is created using metadata derived from the f
 File can either be on local disk to the server or a remote disk, on a remote file system. In either case QuestDB will treat the
 file name as relative to the value of ``cairo.sql.copy.root`` configuration property. This is a security feature to disallow random file access via QuestDB.
 
-### Example
+## Example
 
 ```sql
-COPY trades20191223 FROM 'C:\archive\trades\20191223.csv';
+COPY trades20191223 FROM 'C:\archive\trades\20191223.csv'
 ```
 

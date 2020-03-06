@@ -14,7 +14,7 @@ const GridBlock = CompLibrary.GridBlock;
 class HomeSplash extends React.Component {
 
     render() {
-        const {siteConfig, language = ''} = this.props;
+        const {siteConfig} = this.props;
 
         const SplashContainer = props => (
             <div className="homeContainer">
@@ -58,27 +58,14 @@ class Index extends React.Component {
             </Container>
         );
 
-        const Title = () => (
-            <div className="toptitle center">
-                <Block>
-                    {[
-                        {
-                            content:
-                                '<span class="title">Careers</span>'
-                        }
-                    ]
-                    }
-                </Block>
-            </div>
-        );
-
         const Intro = () => (
             <div>
                 <div className="careers-intro">
                     <span className="title colored bold">Careers</span>
                     <p>
-                        Want to join an ambitious team set to break all speed records in data processing? Good news...
-                        <b> We're hiring!</b> QuestDB is based in <b>London</b> and <b>San Francisco</b>, and backed by
+                        Want to join an ambitious team whose mission to push the boundaries of database
+                        performance? <b> We're hiring!</b> QuestDB is based in <b>London</b> and <b>San Francisco</b>,
+                        and backed by
                         leading venture capital firms.
                     </p>
 
@@ -116,8 +103,7 @@ class Index extends React.Component {
                     <br/>
                     and more...
                     <ul className="buttons center white">
-                        <li><a
-                            href="#job-list">
+                        <li><a href="#job-list">
                             <b>Check out our open positions</b>
                         </a></li>
                     </ul>
@@ -129,55 +115,38 @@ class Index extends React.Component {
             <div className="apply">
                 <div className="apply-text">
                     <span className="jobtitle colored bold">How to apply</span>
-                    Simply send your CV and job reference to <b>hr@questdb.io</b> or
+                    Send your CV to <b>careers at questdb.io</b> or
                     <a target="_blank"
                        href="https://join.slack.com/t/questdb/shared_invite/enQtNzk4Nzg4Mjc2MTE2LTEzZThjMzliMjUzMTBmYzVjYWNmM2UyNWJmNDdkMDYyZmE0ZDliZTQxN2EzNzk5MDE3Zjc1ZmJiZmFiZTIwMGY>"
                        className="color">
-                        <b> chat us on Slack! </b>
+                        <b> chat to us on Slack! </b>
                     </a>
                     <br/><br/>
                     <span className="jobtitle colored bold">Our interview process</span>
                     <p>
-                        The only way to get a great team is to make sure every member is a great fit. We designed our
-                        interview process in order to give you maximum
-                        transparency into who we are, what we do, and how we work, so you can know for certain whether
-                        you want to join us in the adventure.
+                        We have designed our interview process to give you the maximum transparency about the way we work together and our culture.
 
                         <ul className="apply-steps">
                             <li>Step 1 - Contact us!</li>
-                            Send your CV by email to <b>hr@questdb.io </b> or
+                            Send your CV by email to <b>careers at questdb.io</b> or
                             <a target="_blank"
                                href="https://join.slack.com/t/questdb/shared_invite/enQtNzk4Nzg4Mjc2MTE2LTEzZThjMzliMjUzMTBmYzVjYWNmM2UyNWJmNDdkMDYyZmE0ZDliZTQxN2EzNzk5MDE3Zjc1ZmJiZmFiZTIwMGY>"
                                className="color">
-                                <b> chat us on Slack! </b>
+                                <b> chat to us on Slack.</b>
                             </a>
                             We will review your application and aim to come back to you within 3 days.
                             <br/><br/>
-                            <li>Step 2 - Get ready to show off!</li>
-                            We will offer you the opportunity to show off. You can either show us something you did (for
-                            engineers, this could be some code you are proud of. For designers, it could be your
-                            portfolio). Alternatively, we would send you a challenge to complete
-                            before your interview.
+                            <li>Step 2 - Phone interview</li>
+                            We will offer you the opportunity to showcase your skills. You can either show us something you did (for engineers, this could be code you are proud of. For designers, it could be your portfolio). Alternatively, we may send you a challenge to complete before your interview.
                             <br/><br/>
-                            <li>Step 3 - Impress us!</li>
-                            We will schedule an interview, either in our office or via video conference. The interview
-                            will be
-                            the occasion for you to walk us through what you did at step 2. We will also take some time
-                            at the beginning to introduce ourselves and make sure we dedicate time so you can ask as
-                            many questions as you want.
+                            <li>Step 3 - Face-to-face or video interviews with founders</li>
+                            We will schedule face-to-face interviews with all founders, either in our office or via video conference.
                             <br/><br/>
-                            <li>Step 4 - Try us!</li>
-                            We are aware that interviews only give you a superficial view of the company. So if you want
-                            to, we will welcome you to join us for a day and see how we work. You will be
-                            assigned a buddy to guide you, but will be allowed to follow any employee
-                            during their day. Think of it like school open days for grown ups! If you have a partner and
-                            would like to get their opinion, you are free to bring them along and they can also
-                            interview us!
+                            <li>Step 4 - Spend a day with us</li>
+                            We are aware that interviews only give you a superficial view of the company. We will welcome you to join us for a day and see how we work. You will be assigned a buddy to guide yo throughout the day.
                             <br/><br/>
-                            <li>Step 5 - Join us!</li>
-                            We will work out your job description and specifics. We will also conduct some mandatory
-                            background checks. As soon as these are out of the way, all you need to do is choose your
-                            new computer and screens!
+                            <li>Step 5 - Reference checks and job offer</li>
+                            We will come up with an offer and iron out the details. We will also conduct some mandatory background checks. As soon as these are out of the way, all you need to do is choose your new computer and screen before getting started!
                         </ul>
                     </p>
                 </div>
@@ -189,7 +158,7 @@ class Index extends React.Component {
                 <div>
                     <p>
                         Want to work with us but can't find a job description that matches your profile? <br/>
-                        <ul class="buttons">
+                        <ul className="buttons">
                             <li><a
                                 target="_blank"
                                 href="https://join.slack.com/t/questdb/shared_invite/enQtNzk4Nzg4Mjc2MTE2LTEzZThjMzliMjUzMTBmYzVjYWNmM2UyNWJmNDdkMDYyZmE0ZDliZTQxN2EzNzk5MDE3Zjc1ZmJiZmFiZTIwMGY>">

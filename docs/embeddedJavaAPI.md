@@ -115,8 +115,7 @@ This method call is atomic and has a complexity of O(1).
 JAVA users can use the `SqlCompiler` to run SQL queries like they would do in the web console for example.
 
 > Note this can be used for any SQL query. This means you can use this with any supported SQL statement. For example 
-> [INSERT](sqlINSERT.md) or [COPY](sqlCOPY.md) to write data, [CREATE TABLE](sqlCREATE.md) or [ALTER TABLE](alterTable.md)
->to administer tables, and [SELECT](sqlSELECT.md) to query data.
+> [INSERT](sqlINSERT.md) or [COPY](copy.md) to write data, DDL such as [CREATE TABLE](createTable.md) or [SELECT](sqlSELECT.md) to query data.
 
 ### Syntax
 ```java

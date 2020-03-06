@@ -94,7 +94,7 @@ For a given record at a given timestamp, it will return the corresponding record
 **prior to** the timestamp in the first table.
 
 >To be able to leverage `ASOF JOIN`, both joined table must have a designated `timestamp` column. To designate a column as `timestamp`, 
->please refer to the **[CREATE TABLE](sqlCREATE.md)** section.
+>please refer to the **[CREATE TABLE](createTable.md)** section.
 
 `ASOF` join is performed on tables or result sets that are ordered by time. When table is created as ordered by time order of records is
 enforced and timestamp column name is in table metadata. `ASOF` join will use timestamp column from metadata.

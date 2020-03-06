@@ -10,15 +10,18 @@ QuestDB implements type conversion explicitly via `cast()` and implicitly when r
 
 Types can be converted from one to another using the `cast()` function.
 
-Syntax:
+### Syntax
 
-`cast(expression as data_type)`
+`cast(expression as data_type)` - changes type of expression preserving expression value
 
 where:
 - `expression` can be a constant, a column, or an expression that evaluates to a value.
 - `datatype` refers to the desired **[data type](datatypes.md)**.
 
-Examples:
+`cast` can be used a part of arithmetic expression as normal
+
+### Examples
+
 ```sql
 -- Query
 SELECT cast(3L + 2L as int), cast  FROM long_sequence(1);
@@ -47,7 +50,8 @@ will result in decimals drop.
 - If the integer part being cast is larger than the resulting data type, it will be resized by truncating bits.
 - Conversions from `char` to a number type will return the corresponding `unicode` number and vice versa.
 
-Precision loss examples:
+### Precision loss examples
+
 ```sql
 -- Query
 SELECT cast(3.5 + 2 as int), cast  FROM long_sequence(1);
@@ -129,7 +133,7 @@ INSERT INTO my_table values
             (cast(
                 to_timestamp('2019-10-17T00:00:00', 'yyyy-MM-ddTHH:mm:ss') 
                 as long
-            ));
+            ))
 ```
 
 Same result

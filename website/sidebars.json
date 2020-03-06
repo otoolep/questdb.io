@@ -21,7 +21,8 @@
       "datatypes",
       "designatedTimestamp",
       "partitions",
-      "crudOperations"
+      "crudOperations",
+      "indexes"
     ],
     "Reference": [
       {
@@ -33,8 +34,6 @@
           "influxLineProtocol"
         ]
       },
-      "functions",
-      "indexes",
       {
         "type": "subcategory",
         "label": "Functions",
@@ -44,7 +43,8 @@
           "functionsDateAndTime",
           "functionsRandomValueGenerators",
           "functionsRowGenerator",
-          "functionsTimestampGenerator"
+          "functionsTimestampGenerator",
+          "functionsText"
         ]
       },
       {
@@ -52,10 +52,13 @@
         "label": "SQL Reference",
         "ids": [
           "sqlExecutionOrder",
-          "alterTable",
+          "alterTableAddColumn",
+          "alterTableDropColumn",
+          "alterTableAlterColumnAddIndex",
+          "alterTableDropPartition",
           "cast",
           "copy",
-          "create",
+          "createTable",
           "drop",
           "insert",
           "joins",

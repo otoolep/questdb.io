@@ -249,7 +249,7 @@ const siteConfig = {
     gaTrackingId: 'UA-145747842-1',
 
     highlight: {
-        themeUrl: '/css/code-highlight.css',
+        // themeUrl: '/css/code-highlight.css',
         hljs: function (hljs) {
             hljs.registerLanguage('sql', sql_qdb);
         }

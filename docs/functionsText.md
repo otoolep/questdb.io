@@ -1,17 +1,12 @@
 ---
-id: functions
-title: Functions
-sidebar_label: Functions
+id: functionsText
+title: Text Functions
+sidebar_label: Text Functions
 ---
 
-This section gives an overview of the functions available in QuestDB's web console.
+## concat
 
-
-## Text
-
-### concat()
-
-`concat` generates a string from one or inputs. 
+`concat(str, ...)`  - concatenates a string from one or more input values 
 
 Example
 ```sql
@@ -50,9 +45,15 @@ trades,instrument=EW,side=S price=10427,quantity=1945 1571270400300
 trades,instrument=MI,side=B price=99348,quantity=8450 1571270400400
 ```
 
-### length()
+## length
 
-`length(input)` is used to return the number of characters where `input` is either
+`length(string)` - reads length of `string` value type (result is `int`)
+
+`length(symbol)` - reads length of `symbol` value type (result is `int`)
+
+`length(blob)` - reads length of `binary` value type (result is `long`)
+
+
 - a `string`
 - a `symbol`
 - a `binary` blob
@@ -71,5 +72,17 @@ SELECT name a, length(name) b FROM names limit 4
 | null      | -1        |
 ```
 
-## Miscellaneous
+## ~=
+
+`~=(string, regex)` - matches `string` value to regex
+
+`~=(symbol, regex)` - matches `symbol` value to regex
+
+https://docs.oracle.com/javase/8/docs/api/java/util/regex/Pattern.html
+
+## !~
+
+`!~(string, regex)` - checks if `string` value does not match regex
+
+`!~(symbol, regex)` - checks if `symbol` value does not match regex
 

@@ -626,7 +626,7 @@ ratings LIMIT -7, -3;
 ### Overview
 `SAMPLE BY` is used on time-series data to summarise large datasets into aggregates of homogeneous time chunks.
 
->To use `SAMPLE BY`, one column needs to be designated as `timestamp`. Find out more in the **[CREATE TABLE](sqlCREATE.md)** section.
+>To use `SAMPLE BY`, one column needs to be designated as `timestamp`. Find out more in the **[CREATE TABLE](createTable.md)** section.
 
 ### Syntax
 `SAMPLE BY` syntax is as follows:

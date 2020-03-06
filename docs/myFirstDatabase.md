@@ -27,7 +27,7 @@ First, we create the `sensors` table
 CREATE TABLE sensors (ID LONG, make STRING, city STRING);
 ```
 
->Find more about these commands in the **[SQL Administration](sqlCREATE.md)** commands section.
+>Find more about these commands in the **[SQL Administration](createTable.md)** commands section.
 
 ## Insert data
 We populate our `sensors` table with procedurally-generated data:
