@@ -33,5 +33,3 @@ QuestDB is ACID compliant to write in a single table. We don't support ACID on m
 Contrary to other databases, our transaction size is neither limited by the software nor by the available RAM.
 Our transaction size is limited by disk size only.
 
-### Do you run on ARM processors, Raspberry Pi etc?
-Yes. Tutorial coming soon.

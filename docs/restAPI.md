@@ -229,8 +229,8 @@ Content-Type: text/plain; charset=utf-8
 |   Rows handled  |                                          22884377  |            |
 |  Rows imported  |                                          22884377  |            |
 +-----------------------------------------------------------------------------------+
-|              0  |                                 userId <em>STRING(16)</em>  |         0  |
-|              1  |                                movieId <em>STRING(16)</em>  |         0  |
+|              0  |                                 userId STRING(16)  |         0  |
+|              1  |                                movieId STRING(16)  |         0  |
 |              2  |                                  rating DOUBLE(8)  |         0  |
 |              3  |                                  timestamp INT(4)  |         0  |
 +-----------------------------------------------------------------------------------+
