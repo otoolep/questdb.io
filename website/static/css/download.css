@@ -1,7 +1,6 @@
 .download {
-    width: 850px;
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 15%;
+    margin-right: 15%;
     align-self: center;
 }
 
@@ -24,6 +23,9 @@
     font-family: monospace;
     font-size: 105%;
     font-weight: 600;
+    text-overflow: ellipsis;
+    overflow: hidden;
+
 }
 
 .download .headline {
