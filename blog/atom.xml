@@ -6,8 +6,8 @@
     <generator>Feed for Node.js</generator>
     <link rel="alternate" href="https://questdb.io/blog"/>
     <subtitle>The best place to stay up-to-date with the latest QuestDB news and events.</subtitle>
-    <logo>https://questdb.io/img/favicon.png</logo>
-    <rights>Copyright © 2020 QuestDB Limited</rights>
+    <logo>https://questdb.io/img/QuestDB_Logo.png</logo>
+    <rights>Copyright © 2020 QuestDB</rights>
     <entry>
         <title type="html"><![CDATA[Speeding up Influx line protocol]]></title>
         <id>https://questdb.io/blog/2019/12/19/lineprot.html</id>

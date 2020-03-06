@@ -9,10 +9,10 @@
         <generator>Feed for Node.js</generator>
         <image>
             <title>QuestDB Blog</title>
-            <url>https://questdb.io/img/favicon.png</url>
+            <url>https://questdb.io/img/QuestDB_Logo.png</url>
             <link>https://questdb.io/blog</link>
         </image>
-        <copyright>Copyright © 2020 QuestDB Limited</copyright>
+        <copyright>Copyright © 2020 QuestDB</copyright>
         <item>
             <title><![CDATA[Speeding up Influx line protocol]]></title>
             <link>https://questdb.io/blog/2019/12/19/lineprot.html</link>
