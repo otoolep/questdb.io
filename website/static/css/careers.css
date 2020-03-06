@@ -1,10 +1,14 @@
 
-.careers{
+.careers {
     padding-top: 100px;
 }
 
-.perks  {
-    width: 50%;
+.job, .perks, .apply-text, .careers-intro {
+    max-width: 1400px;
+    padding: 0 30px;
+}
+
+.perks {
     margin-right: auto;
     margin-left: auto;
     display: block;
@@ -14,11 +18,11 @@
     background-color: rgba(223, 231, 255, 0.26);
 }
 
-.perks .buttons{
+.perks .buttons {
     margin-top: 4%;
 }
 
-.perks .buttons li{
+.perks .buttons li {
     background-color: rgba(56, 153, 255, 0.4);
     border: 1px solid #f8f9ff;
 }
@@ -36,7 +40,7 @@
     user-select: none; /* Non-prefixed version, currently supported by Chrome, Opera and Firefox */
 }
 
-.careers-footer .buttons li{
+.careers-footer .buttons li {
     background-color: rgba(56, 153, 255, 0.4);
     border: 1px solid #ccccd1;
 }
@@ -77,19 +81,17 @@
 }
 
 
-.careers-footer{
+.careers-footer {
     text-align: center;
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 50%;
     padding-top: 40px;
     padding-bottom: 40px;
     font-size: 120%;
 }
 
 .careers-img {
-    width: 50%;
     margin-right: auto;
     margin-left: auto;
     display: block;
@@ -105,21 +107,21 @@
 }
 
 
-.job-list{
+.job-list {
     margin-top: -120px;
     padding-top: 120px;
     padding-bottom: 40px;
 }
 
 
-.jobtitle{
+.jobtitle {
     margin-bottom: 10px;
     font-size: 30px;
     text-align: left;
     display: block;
 }
 
-.jobsubtitle{
+.jobsubtitle {
     margin-bottom: 10px;
     font-size: 20px;
     text-align: left;
@@ -128,18 +130,33 @@
 
 
 .careers, .job {
-    width: 50%;
     margin-left: auto;
     margin-right: auto;
     display: block;
 }
 
-.careers-intro{
+.careers-intro {
     font-size: 130%;
     padding-top: 30px;
     padding-bottom: 2%;
-    width: 50%;
     margin-left: auto;
     margin-right: auto;
     display: block;
+}
+
+.apply{
+    background-color: #f1f1f1;
+}
+
+.apply-text {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    padding-bottom: 30px;
+    padding-top: 30px;
+}
+
+.apply-steps li{
+    font-weight: 500;
+    color: #2371b5;
 }

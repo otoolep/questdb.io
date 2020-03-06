@@ -565,26 +565,6 @@ body > div.fixedHeaderContainer {
     text-align: center;
 }
 
-.apply{
-    background-color: #f1f1f1;
-
-}
-
-.apply-text {
-    width: 50%;
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
-    padding-bottom: 30px;
-    padding-top: 30px;
-}
-
-.apply-steps li{
-    font-weight: 500;
-    color: #2371b5;
-}
-
-
 @media only screen and (max-width: 735px) {
 
     .toptitle img {
