@@ -171,28 +171,28 @@ class Index extends React.Component {
                         {
                             content: '<ul class="announcement">' +
                                 '<li>' +
-                                '<span class="headline">Large dataset - 1.6 billion rows NY Taxi data set</span>' +
-                                '<span class="summary">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque euismod elit in arcu malesuada laoreet. Quisque sagittis tincidunt laoreet. Pellentesque auctor quam non quam venenatis imperdiet. Aliquam erat volutpat. Nulla.</span>' +
+                                '<span class="headline">Large dataset sandbox </span>' +
+                                '<span class="summary">1.6 billion rows NY Taxi rides, 800 million for-hire vehicle trips, hourly weather observations, gas prices, and more. All available to you without any download.</span>' +
                                 '</li>' +
                                 '<li>' +
                                 '<span class="headline">Attainable hardware</span>' +
-                                '<span class="summary">AWS bare metal. Pellentesque euismod elit in arcu malesuada laoreet.</span>' +
+                                '<span class="summary">Hosted on single general purpose AWS bare metal. No crazy expensive data sharding and distributed queries. No need for expensive GPU or terabytes of RAM.</span>' +
                                 '</li>' +
                                 '<li>' +
-                                '<span class="headline">Arbitrary SQL queries against real data set</span>' +
-                                '<span class="summary">Quisque sagittis tincidunt laoreet. Pellentesque auctor quam non quam venenatis imperdiet.</span>' +
+                                '<span class="headline">Arbitrary SQL queries</span>' +
+                                '<span class="summary">You are free to test us with any query you like over the whole dataset, and to play with it however you like.</span>' +
                                 '</li>' +
                                 '</ul>'
                         },
                         {
                             content: '<ul class="announcement">' +
                                 '<li>' +
-                                '<span class="headline">Parallel SQL execution</span>' +
-                                '<span class="summary">Low overhead work split and work stealing</span>' +
-                                '</li>' +
-                                '<li>' +
                                 '<span class="headline">Sub-second query execution</span>' +
                                 '<span class="summary">We aim to execute all queries under a second</span>' +
+                                '</li>' +
+                                '<li>' +
+                                '<span class="headline">Parallel SQL execution</span>' +
+                                '<span class="summary">Low overhead work split and work stealing</span>' +
                                 '</li>' +
                                 '<li>' +
                                 '<span class="headline">Time series joins</span>' +
@@ -206,6 +206,48 @@ class Index extends React.Component {
                         },
                     ]}
                 </Block>
+
+                <Block layout="twoColumn">
+                    {[
+                        {
+                            content: '<ul class="announcement">' +
+                                '<li>' +
+                                '<span class="headline">Answer real questions, instantly </span>' +
+                                '<ul>' +
+                                '<li>Did Uber kill the NYC taxi business?</li>' +
+                                '<li>Why are drivers earning less?</li>' +
+                                '<li>What\'s the impact of rain, snow, wind, sunshine?</li>' +
+                                '</ul>' +
+                                '</li>' +
+                                '</ul>'
+                        },
+                        {
+                            content: '<ul class="announcement">' +
+                                '<li>' +
+                                '<span class="headline"> <br/> </span>' +
+                                '<ul>' +
+                                '<li>What are the most profitable rides?</li>' +
+                                '<li>Is the meter system adapted?</li>' +
+                                '<li>Are the medallions fairly priced?</li>' +
+                                '</ul>' +
+                                '</li>' +
+                                '</ul>'
+                        }
+                    ]}
+                </Block>
+
+                <Block layout="twoColumn">
+                    {[
+                        {
+                            content: '<ul class="announcement">' +
+                                '<li>' +
+                                '<span className="headline">And more thanks to instant time-based joins and aggregations on a set of rich and diverse tables.</span>' +
+                                '</li>' +
+                                '</ul>'
+                        }
+                    ]}
+                </Block>
+
             </div>
         );
 
