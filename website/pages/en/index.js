@@ -189,7 +189,7 @@ class Index extends React.Component {
                             content: '<ul class="announcement">' +
                                 '<li>' +
                                 '<span class="headline">Sub-second query execution</span>' +
-                                '<span class="summary">Execute all queries under a second on this 1.6bn row dataset</span>' +
+                                '<span class="summary">Execute all queries under a second on this 1.6bn rows dataset</span>' +
                                 '</li>' +
                                 '<li>' +
                                 '<span class="headline">Parallel SQL execution</span>' +
@@ -256,7 +256,7 @@ class Index extends React.Component {
                             content:
                                 '' +
                                 '<span class="title">Express yourself</span>' +
-                                'Just write SQL. Let QuestDB focus on the performance while you focus on the data.' +
+                                'Just write SQL. Let questDB look after the performance while you focus on the data.' +
                                 '<br><br>' +
                                 '<b>Less indexing and profiling. More ingesting and querying!</b>'
                         },

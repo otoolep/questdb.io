@@ -65,8 +65,7 @@ class Index extends React.Component {
                     <p>
                         Want to join an ambitious team whose mission to push the boundaries of database
                         performance? <b> We're hiring!</b> QuestDB is based in <b>London</b> and <b>San Francisco</b>,
-                        and backed by
-                        leading venture capital funds.
+                        and backed by leading venture capital funds.
                     </p>
 
                     <img className="careers-img" src='/img/team.svg'/>
@@ -124,7 +123,8 @@ class Index extends React.Component {
                     <br/><br/>
                     <span className="jobtitle colored bold">Our interview process</span>
                     <p>
-                        We have designed our interview process to give you the maximum transparency about the way we work together and our culture.
+                        We have designed our interview process to give you the maximum transparency about the way we
+                        work together and our culture.
 
                         <ul className="apply-steps">
                             <li>Step 1 - Contact us!</li>
@@ -137,16 +137,23 @@ class Index extends React.Component {
                             We will review your application and aim to come back to you within 3 days.
                             <br/><br/>
                             <li>Step 2 - Phone interview</li>
-                            We will offer you the opportunity to showcase your skills. You can either show us something you did (for engineers, this could be code you are proud of. For designers, it could be your portfolio). Alternatively, we may send you a challenge to complete before your interview.
+                            We will offer you the opportunity to showcase your skills. You can either show us something
+                            you did (for engineers, this could be code you are proud of. For designers, it could be your
+                            portfolio). Alternatively, we may send you a challenge to complete before your interview.
                             <br/><br/>
                             <li>Step 3 - Face-to-face or video interviews with founders</li>
-                            We will schedule face-to-face interviews with all founders, either in our office or via video conference.
+                            We will schedule face-to-face interviews with all founders, either in our office or via
+                            video conference.
                             <br/><br/>
                             <li>Step 4 - Spend a day with us</li>
-                            We are aware that interviews only give you a superficial view of the company. We will welcome you to join us for a day and see how we work. You will be assigned a buddy to guide yo throughout the day.
+                            We are aware that interviews only give you a superficial view of the company. We will
+                            welcome you to join us for a day and see how we work. You will be assigned a buddy to guide
+                            you throughout the day.
                             <br/><br/>
                             <li>Step 5 - Reference checks and job offer</li>
-                            We will come up with an offer and iron out the details. We will also conduct some mandatory background checks. As soon as these are out of the way, all you need to do is choose your new computer and screen before getting started!
+                            We will come up with an offer and iron out the details. We will also conduct some mandatory
+                            background checks. As soon as these are out of the way, all you need to do is choose your
+                            new computer and screen before getting started!
                         </ul>
                     </p>
                 </div>
