@@ -133,9 +133,8 @@ body > div.navPusher > div > div.mainContainer > div.toptitle > div > div > div 
 }
 
 .whatwedo {
-    background-color: lightslategrey;
+    background-color: #99acc0;
     color: white;
-    box-shadow: 0 2px 2px 3px rgba(0, 0, 0, 0.1);
 }
 
 div.whatwedo {
@@ -403,7 +402,8 @@ div.interfaces {
 }
 
 .slidingNav {
-    background-color: #2371b5;
+    background: linear-gradient(90deg, #24477b 0%, #609bcd 100%);
+    background-size: 3000px;
     padding-bottom: 10px;
 }
 
@@ -460,13 +460,12 @@ footer.nav-footer {
 
 .toptitle {
     padding-top: 90px;
-    padding-bottom: 60px;
+    padding-bottom: 120px;
     position: relative;
     min-height: 200px;
     color: #edffff;
-    background: linear-gradient(180deg, #2371b5 0%, #2371b5 55%, #1a5487 100%);
-    box-shadow: 0 0 2px 3px rgba(0, 0, 0, 0.55);
     z-index: 1;
+    background-image: url(/docs/assets/wave.svg);
 }
 
 .startTitle {
@@ -475,13 +474,9 @@ footer.nav-footer {
     min-height: 150px;
 }
 
-.nav-footer {
-    /*    background-color: #2371b5;*/
-    background: linear-gradient(0deg, #2371b5 0%, #2371b5 55%, #1a5487 100%);
-}
-
-.fixedHeaderContainer {
-    background-color: #2371b5;
+.fixedHeaderContainer, .nav-footer {
+    background: linear-gradient(90deg, #24477b 0%, #609bcd 100%);
+    background-size: 3000px;
 }
 
 body > div.fixedHeaderContainer {
@@ -583,8 +578,8 @@ body > div.fixedHeaderContainer {
 
 
     .title {
-        font-size: 28px;
-        font-weight: 400;
+        font-size: 32px;
+        font-weight: 600;
     }
 
 
@@ -788,10 +783,10 @@ body > div.fixedHeaderContainer {
     }
 
     .title {
-        font-size: 48px;
+        font-size: 52px;
         line-height: 50px;
         margin-bottom: 30px;
-        font-weight: 300;
+        font-weight: 600;
     }
 
     body > div.navPusher > div > div.mainContainer > div.toptitle > div > div > div > div.blockElement.imageAlignSide.imageAlignLeft.twoByGridBlock > div.blockImage {

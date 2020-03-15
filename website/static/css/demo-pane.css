@@ -13,7 +13,7 @@
     font-size: 90%;
     padding-bottom: 30px;
     width: 80%;
-    color: #d2d2d2;
+    color: #faf9f9;
 }
 
 .demo {
@@ -27,8 +27,15 @@
 
 .demo {
     color: white;
-    background-color: lightslategrey;
+    background-color: #99acc0;
+    margin-top: 0;
     padding-top: 40px;
     padding-bottom: 10px;
-    box-shadow: 0 2px 2px 1px rgba(0, 0, 0, 0.55);
+}
+
+@media only screen and (min-width: 735px) {
+
+    .demo {
+        margin-top: -60px;
+    }
 }
