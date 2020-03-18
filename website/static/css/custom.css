@@ -403,7 +403,7 @@ div.interfaces {
 
 .slidingNav {
     background: linear-gradient(90deg, #24477b 0%, #609bcd 100%);
-    background-size: 3000px;
+    background-size: 4000px;
     padding-bottom: 10px;
 }
 
@@ -476,7 +476,7 @@ footer.nav-footer {
 
 .fixedHeaderContainer, .nav-footer {
     background: linear-gradient(90deg, #24477b 0%, #609bcd 100%);
-    background-size: 3000px;
+    background-size: 4000px;
 }
 
 body > div.fixedHeaderContainer {
