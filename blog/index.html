@@ -6,7 +6,7 @@
 
               ga('create', 'UA-145747842-1', 'auto');
               ga('send', 'pageview');
-            </script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,500,600,700|Source+Code+Pro:400,700|Open+Sans:300,400,600,700"/><link rel="stylesheet" href="/css/code-block-buttons.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script type="text/javascript" src="/js/console-demo.js"></script><script type="text/javascript" src="/js/getstarted.js"></script><script type="text/javascript" src="/js/signup.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="blog"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/QuestDB_Logo.png" alt="QuestDB"/><h2 class="headerTitleWithLogo">QuestDB</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/" target="_self">Home</a></li><li class=""><a href="/getstarted" target="_self">Get QuestDB</a></li><li class=""><a href="/docs/documentationOverview" target="_self">Documentation</a></li><li class="siteNavGroupActive siteNavItemActive"><a href="/blog/" target="_self">Blog</a></li><li class=""><a href="/careers" target="_self">Careers</a></li><li class=""><a href="/about" target="_self">About</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search..." title="Search..."/></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Recent Posts</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Recent Posts</h3><ul class=""><li class="navListItem"><a class="navItem" href="/blog/2019/12/19/lineprot">QuestDB vs InfluxDB (storing data via Influx Line Protocol)</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/10/05/interthread">The art of thread messaging</a></li></ul></div></div></section></div><script>
+            </script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,500,600,700|Source+Code+Pro:400,700|Open+Sans:300,400,600,700"/><link rel="stylesheet" href="/css/code-block-buttons.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script type="text/javascript" src="/js/console-demo.js"></script><script type="text/javascript" src="/js/getstarted.js"></script><script type="text/javascript" src="/js/signup.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="blog"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/QuestDB_Logo.png" alt="QuestDB"/><h2 class="headerTitleWithLogo">QuestDB</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/" target="_self">Home</a></li><li class=""><a href="/getstarted" target="_self">Get QuestDB</a></li><li class=""><a href="/docs/documentationOverview" target="_self">Documentation</a></li><li class="siteNavGroupActive siteNavItemActive"><a href="/blog/" target="_self">Blog</a></li><li class=""><a href="/careers" target="_self">Careers</a></li><li class=""><a href="/about" target="_self">About</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search..." title="Search..."/></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Recent Posts</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Recent Posts</h3><ul class=""><li class="navListItem"><a class="navItem" href="/blog/2020/03/22/asof">Joining time-series data</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/12/19/lineprot">Speeding up Influx Line Protocol</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/10/05/interthread">The art of thread messaging</a></li></ul></div></div></section></div><script>
             var coll = document.getElementsByClassName('collapsible');
             var checkActiveCategory = true;
             for (var i = 0; i < coll.length; i++) {
@@ -62,7 +62,107 @@
                 };
               }
             });
-        </script></nav></div><div class="container mainContainer postContainer blogContainer"><div class="wrapper"><div class="posts"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle"><a href="/blog/2019/12/19/lineprot">QuestDB vs InfluxDB (storing data via Influx Line Protocol)</a></h1><p class="post-meta">December 19, 2019</p><div class="authorBlock"><p class="post-authorName"><a target="_blank" rel="noreferrer noopener">Tancrede Collard</a></p></div></header><article class="post-content"><div><span><p>Our background is in low-latency trading. We are obsessed with performance and have always wanted to build the fastest tech out there.</p>
+        </script></nav></div><div class="container mainContainer postContainer blogContainer"><div class="wrapper"><div class="posts"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle"><a href="/blog/2020/03/22/asof">Joining time-series data</a></h1><p class="post-meta">March 22, 2020</p><div class="authorBlock"><p class="post-authorName"><a target="_blank" rel="noreferrer noopener">Tancrede Collard</a></p></div></header><article class="post-content"><div><span><p>Modern time-series applications store metrics upon change rather than at regular intervals.
+This removes the need to hold static values when the series don't change, but keeps the possibility
+to catch bursts when required with a  high degree of precision.</p>
+<p>The consequence is a de-normalization of timestamps for time-series.
+Data is stored at varying time intervals, with different timestamps.
+It makes analysis across different series challenging because it is very unlikely
+that the timestamps will exactly match.</p>
+<p>With relational databases, joining time-series based on timestamp
+is either impossible, or at best inefficient. This is not because relational databases are bad,
+but rather because they were not designed for time-series.</p>
+<h3><a class="anchor" aria-hidden="true" id="why-time-series-joins"></a><a href="#why-time-series-joins" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Why time-series joins?</h3>
+<p>In a nutshell, to join tables on timestamp, even when they don't exactly match.</p>
+<p>Let's assume these two tables:</p>
+<p>Taxi rides:</p>
+<pre><code class="hljs">| timestamp                   | trip_dist | 
+|-----------------------------|-----------|
+| <span class="hljs-number">2019</span><span class="hljs-number">-10</span><span class="hljs-number">-17</span>T00:<span class="hljs-number">00</span>:<span class="hljs-number">00.000000</span>Z | <span class="hljs-number">2.5</span>       | 
+| <span class="hljs-number">2019</span><span class="hljs-number">-10</span><span class="hljs-number">-17</span>T00:<span class="hljs-number">00</span>:<span class="hljs-number">00.000000</span>Z | <span class="hljs-number">1.2</span>       | 
+| <span class="hljs-number">2019</span><span class="hljs-number">-10</span><span class="hljs-number">-17</span>T00:<span class="hljs-number">00</span>:<span class="hljs-number">00.000000</span>Z | <span class="hljs-number">2.8</span>       |
+| <span class="hljs-number">2019</span><span class="hljs-number">-10</span><span class="hljs-number">-17</span>T00:<span class="hljs-number">00</span>:<span class="hljs-number">00.000000</span>Z | <span class="hljs-number">7.5</span>       |
+</code></pre>
+<p>Weather observations:</p>
+<pre><code class="hljs">| timestamp                   | temperature |
+|-----------------------------|-------------|
+| <span class="hljs-number">2019</span><span class="hljs-number">-10</span><span class="hljs-number">-17</span>T00:<span class="hljs-number">00</span>:<span class="hljs-number">00.000000</span>Z | <span class="hljs-number">22</span>          | 
+| <span class="hljs-number">2019</span><span class="hljs-number">-10</span><span class="hljs-number">-17</span>T00:<span class="hljs-number">00</span>:<span class="hljs-number">00.000000</span>Z | <span class="hljs-number">15</span>          | 
+| <span class="hljs-number">2019</span><span class="hljs-number">-10</span><span class="hljs-number">-17</span>T00:<span class="hljs-number">00</span>:<span class="hljs-number">00.000000</span>Z | <span class="hljs-number">8</span>           | 
+| <span class="hljs-number">2019</span><span class="hljs-number">-10</span><span class="hljs-number">-17</span>T00:<span class="hljs-number">00</span>:<span class="hljs-number">00.000000</span>Z | <span class="hljs-number">7.5</span>         |
+</code></pre>
+<p>One might want to use this data to analyse how the weather affects the taxi business.
+For example, are customers more likely to hail a cab when it's cold outside.
+To do this, you need a way to match weather to a given taxi ride.</p>
+<p>Both tables have a timestamp column. However, The timestamps do not match. Let's look at
+ways to solve this problem.</p>
+<h3><a class="anchor" aria-hidden="true" id="using-a-relational-database"></a><a href="#using-a-relational-database" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Using a relational database</h3>
+<p>Relational databases highly inefficient at joining time-series data. They would usually answer this sort
+of query using either of two ways:</p>
+<h4><a class="anchor" aria-hidden="true" id="with-outer-join"></a><a href="#with-outer-join" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>With OUTER JOIN</h4>
+<p>OUTER JOIN returns all records from the LEFT table, and the matching records in the RIGHT
+table. All records in the right table must match, otherwise results will look like this:</p>
+<pre><code class="hljs">| timestamp                   | trip_dist | temperature   | 
+|-----------------------------|-----------|---------------|
+| <span class="hljs-number">2019</span><span class="hljs-number">-10</span><span class="hljs-number">-17</span>T00:<span class="hljs-number">00</span>:<span class="hljs-number">00.000000</span>Z | <span class="hljs-number">2.5</span>       |               | 
+| <span class="hljs-number">2019</span><span class="hljs-number">-10</span><span class="hljs-number">-17</span>T00:<span class="hljs-number">00</span>:<span class="hljs-number">00.000000</span>Z | <span class="hljs-number">1.2</span>       |               | 
+| <span class="hljs-number">2019</span><span class="hljs-number">-10</span><span class="hljs-number">-17</span>T00:<span class="hljs-number">00</span>:<span class="hljs-number">00.000000</span>Z | <span class="hljs-number">2.8</span>       | <span class="hljs-number">15</span>:<span class="hljs-number">25</span>         | 
+| <span class="hljs-number">2019</span><span class="hljs-number">-10</span><span class="hljs-number">-17</span>T00:<span class="hljs-number">00</span>:<span class="hljs-number">00.000000</span>Z | <span class="hljs-number">7.5</span>       |               | 
+</code></pre>
+<p>Most rides are missing temperature because the timestamps don't match. For this to work,
+users must enforce that the WEATHER table gets updated with every taxi ride using the
+exact same timestamp.</p>
+<p>It works. But it is an extremely bad method for four reasons:</p>
+<ul>
+<li>if the timestamps are exactly the same in both tables, it may be more sensible to store them both as one table.</li>
+<li>this method significantly slows down inserts.
+For each new ride, the DB needs to lookup the latest weather observation and write it again with
+the ride timestamp.</li>
+<li>it takes way more space. The resulting schema
+repeats weather observations for each new ride.</li>
+<li>it slows down queries. Redundant data bloats tables without adding new information, making scans
+longer.</li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="with-nested-cross-join--order-by-subqueries"></a><a href="#with-nested-cross-join--order-by-subqueries" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>With nested CROSS JOIN / ORDER BY subqueries</h4>
+<p>An alternative to OUTER JOIN yields the same result without requiring duplicated physical data on disk.
+The algorithm is as follows:</p>
+<p>For each row in the <code>trips</code> table:</p>
+<ul>
+<li>Select all observations from <code>weather</code> such that <code>weather.timestamp &lt;= trip.timestamp</code> (result size = n rows)</li>
+<li>Order these observations by ascending timestamp.</li>
+<li><code>CROSS JOIN</code> the ordered weather observations with the trip.</li>
+<li>Add the <code>n</code> results to a table held in memory</li>
+<li>Repeat for the next <code>trip</code></li>
+</ul>
+<p>An example of such query is as follows:</p>
+<pre><code class="hljs css language-sql"><span class="hljs-keyword">select</span> *
+<span class="hljs-keyword">from</span> (
+ <span class="hljs-keyword">select</span> *
+ <span class="hljs-keyword">from</span> trips) t
+ <span class="hljs-keyword">cross</span> <span class="hljs-keyword">join</span> <span class="hljs-keyword">lateral</span> (
+   <span class="hljs-keyword">select</span> *
+   <span class="hljs-keyword">from</span> weather
+   <span class="hljs-keyword">where</span> t.ts &gt; ts
+ <span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> ts <span class="hljs-keyword">DESC</span>
+ <span class="hljs-keyword">limit</span> <span class="hljs-number">1</span>);
+</code></pre>
+<p>Again, this method works but is inefficient because</p>
+<ul>
+<li>It is very slow: for each trip, it needs to scan the weather table and bring rows with an
+inferior timestamp. It then needs to run a sorting algorithm.</li>
+<li>It requires a LOT of RAM. Assuming a trips table of size <code>n</code>, a weather table of size <code>m</code>, and
+that <code>k</code> weather observations took place before the median trip, the table generated by the
+CROSS join will be of size <code>n x k</code>. The first trip CROSS JOIN with weather will be 1 row.
+The last trip CROSS JOIN with weather will be <code>n x m</code> rows</li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="using-asof-join"></a><a href="#using-asof-join" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Using ASOF JOIN</h4>
+<p>Getting the same results with QuestDB is simple thanks to the <code>ASOF JOIN</code> function. The
+above query can be answered simply by running the following sql:</p>
+<pre><code class="hljs css language-sql">trips asof <span class="hljs-keyword">join</span> weather;
+</code></pre>
+<p>It is also extremely fast. First because of its design: it leverages the fact that timestamp sequences
+are ordered, thus not requiring large table scans or ordering data. Second by construction: QuestDB implements it in such way that the path to data is</p>
+</span></div></article></div><div class="post"><header class="postHeader"><h1 class="postHeaderTitle"><a href="/blog/2019/12/19/lineprot">Speeding up Influx Line Protocol</a></h1><p class="post-meta">December 19, 2019</p><div class="authorBlock"><p class="post-authorName"><a target="_blank" rel="noreferrer noopener">Tancrede Collard</a></p></div></header><article class="post-content"><div><span><p>Our background is in low-latency trading. We are obsessed with performance and have always wanted to build the fastest tech out there.</p>
 <p>But let’s keep the suspense for a minute and introduce ourselves first. QuestDB is a NewSQL open-source relational time-series database. InfluxDB is the current market leader in time-series, and we thought it would only be fair if we had a stab at <strong>Influx line protocol (“ILP”)</strong>.
 It would not be an overstatement to say that InfluxDB uses a lot of CPU. We set ourselves to build a receiver for ILP, which stores data faster than InfluxDB while using less CPU.</p>
 <p>We built it in Java. Hopefully, the Java community will be proud!</p>
@@ -76,7 +176,7 @@ It would not be an overstatement to say that InfluxDB uses a lot of CPU. We set 
 <p>We have conducted our testing over UDP, thus expecting some level of data loss. However, we did not anticipate that InfluxDB would lose so much.</p>
 <p>We have built a sender, which caches outgoing messages in a small buffer before sending them to a UDP socket. It sends data as fast as possible to eventually overpower the consumers and introduce packet loss. To test for different use cases, we have throttled the sender by varying the size of its buffer. A smaller buffer results in more frequent network calls and results in lower sending rates.</p>
 <p>The benchmark publishes 50 million messages at various speeds. We then measure the number of entries in each DB after the fact to calculate the implied capture rate.</p>
-<p>We use the Dell XPS 15 7590, 64Gb RAM, 6-core i9 CPU, 1TB SSD drive. In this experiment, both the sender and QuestDB/InfluxDB instance run on the same machine. UDP publishing is over loopback. OS is Fedora 31, OS UDP buffer size (net.core.rmem_max) is 104_857_600.</p>
+<p>We use the Dell XPS 15 7590, 64Gb RAM, 6-core i9 CPU, 1TB SSD driQ6WCcPkuKybMBw6RH2Egve. In this experiment, both the sender and QuestDB/InfluxDB instance run on the same machine. UDP publishing is over loopback. OS is Fedora 31, OS UDP buffer size (net.core.rmem_max) is 104_857_600.</p>
 <h3><a class="anchor" aria-hidden="true" id="it-comes-down-to-ingestion-speed"></a><a href="#it-comes-down-to-ingestion-speed" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>It comes down to ingestion speed</h3>
 <p>Database performance is the bottleneck that results in packet loss. Messages are denied entry, and the loss rate is a direct function of the underlying database speed.</p>
 <p>By sending 50m messages at different speeds, we get the following outcome.</p>
