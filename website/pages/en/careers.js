@@ -334,6 +334,57 @@ class Index extends React.Component {
             </div>
         );
 
+
+        const TechWri = () => (
+            <div className="job" id="dev-techwriter-job">
+                <span className="jobtitle colored bold">Technical content writer / Developer education</span>
+                <p>
+                    Helping developers solve their problems is at the center of what we do. Your role will consist of
+                    producing content for targeted open source communities to improve developers’ engagement with our
+                    time-series database. This content will fuel developer’s usage of QuestDB and establish the brand in
+                    the global developer community.
+                    <br/><br/>
+                    You do not have to be a database expert, but you should be able to carry through research while
+                    liaising with software engineers and product managers to understand the technicalities of our
+                    product and consequently write about it in an accurate and engaging way.
+                </p>
+
+                <span className="jobsubtitle colored bold">Responsibilities</span>
+                <ul>
+                    <li>Participate in forming and executing the content strategy at QuestDB by leading article creation
+                        and publicization.
+                    </li>
+                    <li>Research, write, edit and facilitate technical articles, blog posts, white papers and reports
+                        through a variety of channels, including QuestDB’s blog and social media.
+                    </li>
+                    <li>
+                        Work alongside the engineering and product team to absorb database related knowledge.
+                    </li>
+                    <li>Follow developer discussions, interactions and feedback on social media and our support channels
+                        such as Slack or Stack Overflow. Leverage this intel to produce content that developers will
+                        engage with and find useful.
+                    </li>
+                    <li>
+                        Track time-series database and wider data/analytics related discussions on specialised forums
+                        and channels (HN, Reddit, dZone, etc.) to discern and analyse the gaps in our content strategy.
+                    </li>
+                    <li>
+                        Maintain internal database related knowledge base content and improve it on a regular basis.
+                    </li>
+                </ul>
+
+                <span className="jobsubtitle colored bold">Requirements</span>
+                <ul>
+                    <li>2+ years of experience in technical content creation, preferably for an open source projec</li>
+                    <li>Passionate about open source and the developer community</li>
+                    <li>String writing skills</li>
+                    <li>Database knowledge preferred</li>
+                    <li>Excellent spoken and written English</li>
+                </ul>
+
+            </div>
+        );
+
         const Openings = () => (
             <div className="job" id="job-list">
                 <span className="jobtitle colored bold">Current openings</span>
@@ -343,6 +394,7 @@ class Index extends React.Component {
                     <li><a href="#dev-rel-job">Head of developer relations (London, San Francisco)</a></li>
                     <li><a href="#dev-backend-job">Back-end engineer (London)</a></li>
                     <li><a href="#dev-frontend-job">Front-end engineer (London)</a></li>
+                    <li><a href="#dev-techwriter-job">Technical Writer (London, SF, remote)</a></li>
                 </ul>
             </div>
         );
@@ -357,6 +409,7 @@ class Index extends React.Component {
                     <DevRel/>
                     <Dev/>
                     <DefFE/>
+                    <TechWri/>
                     <JobFooter/>
                 </div>
             </div>
