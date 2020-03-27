@@ -124,6 +124,10 @@ body > div.navPusher > div > div.mainContainer > div.toptitle > div > div > div 
     color: rgba(211, 211, 211, 0.64);
 }
 
+.button:hover {
+    color: rgba(211, 211, 211, 0.64);
+}
+
 .announcement ul{
     list-style: disc;
 }
