@@ -69,6 +69,24 @@ body > div.navPusher > div > div.mainContainer > div.toptitle > div > div {
 
 }
 
+table td {
+    padding: 6px 7px;
+    border: none;
+    font-size: 13px;
+}
+
+table th {
+    padding: 6px 7px;
+    border: none;
+    border-bottom: 1px dotted #2371b5;
+    color: #2371b5;
+    font-size: 13px;
+}
+
+table tr {
+    border: none;
+}
+
 #start {
     background-color: #e6e8ea;
 }
@@ -386,7 +404,6 @@ div.interfaces {
     border-radius: 12px;
     background: none;
 }
-
 
 
 /*.slidingNav li:nth-child(5) {*/
