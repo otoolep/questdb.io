@@ -17,11 +17,11 @@
 }
 
 .subTopTitle {
-    line-height: 1.4em!important;
+    line-height: 1.4em !important;
 }
 
 .headerTitleWithLogo {
-    display: none!important;
+    display: none !important;
 }
 
 .mainContainer.index {
@@ -29,7 +29,7 @@
 }
 
 .fixedHeaderContainer .wrapper {
-    max-width: 1400px!important;
+    max-width: 1400px !important;
 }
 
 .toptitle, .sql, .community, .interfaces, .whatwedo, .perf, .demo {
@@ -53,7 +53,6 @@
     font-weight: bold;
 }
 
-
 #getStartedInstall, #getStartedQuestion, #getStartedTuto, #backButton {
     display: none;
 }
@@ -66,7 +65,6 @@ body > div.navPusher > div > div.mainContainer > div.toptitle > div > div {
     margin-left: auto;
     margin-right: auto;
     display: block;
-
 }
 
 table td {
@@ -146,7 +144,7 @@ body > div.navPusher > div > div.mainContainer > div.toptitle > div > div > div 
     color: rgba(211, 211, 211, 0.64);
 }
 
-.announcement ul{
+.announcement ul {
     list-style: disc;
 }
 
@@ -389,7 +387,7 @@ div.subtitle {
 }
 
 .featuresList img {
-    filter: invert(35%) brightness(300%) ;
+    filter: invert(35%) brightness(300%);
 }
 
 div.interfaces {
@@ -463,7 +461,7 @@ div.blockImage {
     color: white;
 }
 
-.bold   {
+.bold {
     font-weight: 400;
 }
 
@@ -577,7 +575,7 @@ body > div.fixedHeaderContainer {
 }
 
 
-.center{
+.center {
     text-align: center;
 }
 
