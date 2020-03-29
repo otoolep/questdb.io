@@ -2,24 +2,12 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://questdb.io/blog</id>
     <title>QuestDB Blog</title>
-    <updated>2020-03-22T06:00:00.000Z</updated>
+    <updated>2019-12-19T06:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://questdb.io/blog"/>
     <subtitle>The best place to stay up-to-date with the latest QuestDB news and events.</subtitle>
     <logo>https://questdb.io/img/QuestDB_Logo.png</logo>
     <rights>Copyright © 2020 QuestDB</rights>
-    <entry>
-        <title type="html"><![CDATA[Joining time-series data]]></title>
-        <id>https://questdb.io/blog/2020/03/22/asof.html</id>
-        <link href="https://questdb.io/blog/2020/03/22/asof.html"/>
-        <updated>2020-03-22T06:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<p>Modern time-series applications store metrics upon change rather than at regular intervals. This removes the need to hold static values when the series don't change, but keeps the possibility to catch bursts when required with a high degree of precis...</p>]]></summary>
-        <author>
-            <name>Tancrede Collard</name>
-            <email/>
-            <uri/>
-        </author>
-    </entry>
     <entry>
         <title type="html"><![CDATA[Speeding up Influx Line Protocol]]></title>
         <id>https://questdb.io/blog/2019/12/19/lineprot.html</id>

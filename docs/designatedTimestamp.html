@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Designated timestamp · QuestDB</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="QuestDB offers the option to elect a column as `designated timestamp`. This allows to leverage specific"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Designated timestamp · QuestDB"/><meta property="og:type" content="website"/><meta property="og:url" content="https://questdb.io/"/><meta property="og:description" content="QuestDB offers the option to elect a column as `designated timestamp`. This allows to leverage specific"/><meta property="og:image" content="https://questdb.io/img/favicon.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://questdb.io/img/favicon.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="alternate" type="application/atom+xml" href="https://questdb.io/blog/atom.xml" title="QuestDB Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://questdb.io/blog/feed.xml" title="QuestDB Blog RSS Feed"/><script>
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Designated timestamp · QuestDB</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="QuestDB offers the option to elect a column as `designated timestamp`. This allows you to leverage specific"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Designated timestamp · QuestDB"/><meta property="og:type" content="website"/><meta property="og:url" content="https://questdb.io/"/><meta property="og:description" content="QuestDB offers the option to elect a column as `designated timestamp`. This allows you to leverage specific"/><meta property="og:image" content="https://questdb.io/img/favicon.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://questdb.io/img/favicon.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="alternate" type="application/atom+xml" href="https://questdb.io/blog/atom.xml" title="QuestDB Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://questdb.io/blog/feed.xml" title="QuestDB Blog RSS Feed"/><script>
               (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
               (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
               m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -62,17 +62,17 @@
                 };
               }
             });
-        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 id="__docusaurus" class="postHeaderTitle">Designated timestamp</h1></header><article><div><span><p>QuestDB offers the option to elect a column as <code>designated timestamp</code>. This allows to leverage specific
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 id="__docusaurus" class="postHeaderTitle">Designated timestamp</h1></header><article><div><span><p>QuestDB offers the option to elect a column as <code>designated timestamp</code>. This allows you to leverage specific
 high-performance time-series functions of QuestDB, but introduces a constraint on the column in question that
 will reject out of order inserts.</p>
 <h4><a class="anchor" aria-hidden="true" id="properties"></a><a href="#properties" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Properties</h4>
 <ul>
-<li>Only a <code>timestamp</code> column can be <code>designated timestamp</code></li>
+<li>Only a <code>timestamp</code> column can be <code>designated timestamp</code>.</li>
 <li>Only <code>one</code> column can be elected for a given table.</li>
-<li><code>designated timestamp</code> can be elected either
+<li><code>designated timestamp</code> can be elected either:
 <ul>
-<li>with table creation</li>
-<li>on the fly on sub-tables created within a query</li>
+<li>during table creation.</li>
+<li>on the fly on sub-tables created within a query.</li>
 </ul></li>
 </ul>
 <blockquote>
@@ -89,10 +89,10 @@ will reject out of order inserts.</p>
 <li>New timestamps need only be <code>superior or equal</code> to the latest timestamp in the column.</li>
 </ul>
 <h4><a class="anchor" aria-hidden="true" id="advantages"></a><a href="#advantages" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Advantages</h4>
-<p>Electing a <code>designated timestamp</code> allows to:</p>
+<p>Electing a <code>designated timestamp</code> allows you to:</p>
 <ul>
-<li>leverage timestamp partitions. For more information, please refer to the <strong><a href="/docs/partitions">partitions section</a></strong>.</li>
-<li>use time-series joins such as <code>ASOF JOIN</code>. For more information please refer to the  <strong><a href="/docs/joins">joins section</a></strong>.</li>
+<li>leverage timestamp partitions. For more information, refer to the <strong><a href="/docs/partitions">partitions section</a></strong>.</li>
+<li>use time-series joins such as <code>ASOF JOIN</code>. For more information refer to the  <strong><a href="/docs/joins">joins section</a></strong>.</li>
 </ul>
 <h4><a class="anchor" aria-hidden="true" id="examples"></a><a href="#examples" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Examples</h4>
 <p>Representation of <code>designated timestamp</code> as a special column alongside other existing timestamp columns.
@@ -109,7 +109,7 @@ Note that</p>
 for example when inserting values from multiple devices with slightly different clocks or network conditions.
 Luckily, there are ways to circumvent this with little overhead:</p>
 <ul>
-<li>Use the <code>database host clock</code> as <code>designated timestamp</code>, for example by using <code>systimestamp()</code>:</li>
+<li>Use the <code>database host clock</code> as <code>designated timestamp</code> by using <code>systimestamp()</code>:</li>
 </ul>
 <pre><code class="hljs css language-sql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> readings(
 db_ts <span class="hljs-type_name">timestamp</span>, 
@@ -125,8 +125,10 @@ reading <span class="hljs-type_name">int</span>)
 <span class="hljs-number">133</span>
 );
 </code></pre>
-<p>For more information about <code>systimestamp()</code> and related functions, please check the
+<blockquote>
+<p>For more information about <code>systimestamp()</code> and related functions, check the
 <strong><a href="/docs/functionsDateAndTime">date &amp; time functions section</a></strong>.</p>
+</blockquote>
 <ul>
 <li>Use a temporary table for the latest partition and order data to insert into the main table when changing partition.</li>
 </ul>
@@ -148,7 +150,7 @@ reading <span class="hljs-type_name">int</span>);
 <pre><code class="hljs css language-sql"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> readings 
     <span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">FROM</span> (readings_temp <span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> db_ts) <span class="hljs-type_name">timestamp</span>(db_ts);
 </code></pre>
-</span></div></article></div><div class="docLastUpdate"><em>Last updated on 3/6/2020</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/datatypes"><span class="arrow-prev">← </span><span>Data Types</span></a><a class="docs-next button" href="/docs/partitions"><span>Partitions</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><div align="left" class="footersection"><h5>QuestDB</h5><a href="/docs/documentationOverview">Documentation</a><a href="/getstarted">Download</a><a href="/docs/roadmap">Roadmap</a></div><div align="left" class="footersection"><h5>Community</h5><a href="https://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://join.slack.com/t/questdb/shared_invite/enQtNzk4Nzg4Mjc2MTE2LTEzZThjMzliMjUzMTBmYzVjYWNmM2UyNWJmNDdkMDYyZmE0ZDliZTQxN2EzNzk5MDE3Zjc1ZmJiZmFiZTIwMGY&gt;"> Join Slack </a><a href="https://twitter.com/" target="@QuestDB" rel="noreferrer noopener">Twitter</a></div><div align="left" class="footersection"><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/questdb/questdb/">GitHub</a><a class="github-button" href="https://github.com/questdb/questdb" data-icon="octicon-star" data-count-href="/questdb/questdb/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="copyright">Copyright © 2020 QuestDB</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 3/28/2020</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/datatypes"><span class="arrow-prev">← </span><span>Data Types</span></a><a class="docs-next button" href="/docs/partitions"><span>Partitions</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><div align="left" class="footersection"><h5>QuestDB</h5><a href="/docs/documentationOverview">Documentation</a><a href="/getstarted">Download</a><a href="/docs/roadmap">Roadmap</a></div><div align="left" class="footersection"><h5>Community</h5><a href="https://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://join.slack.com/t/questdb/shared_invite/enQtNzk4Nzg4Mjc2MTE2LTEzZThjMzliMjUzMTBmYzVjYWNmM2UyNWJmNDdkMDYyZmE0ZDliZTQxN2EzNzk5MDE3Zjc1ZmJiZmFiZTIwMGY&gt;"> Join Slack </a><a href="https://twitter.com/" target="@QuestDB" rel="noreferrer noopener">Twitter</a></div><div align="left" class="footersection"><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/questdb/questdb/">GitHub</a><a class="github-button" href="https://github.com/questdb/questdb" data-icon="octicon-star" data-count-href="/questdb/questdb/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="copyright">Copyright © 2020 QuestDB</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
                 document.addEventListener('keyup', function(e) {
                   if (e.target !== document.body) {
                     return;

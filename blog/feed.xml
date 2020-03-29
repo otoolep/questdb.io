@@ -4,7 +4,7 @@
         <title>QuestDB Blog</title>
         <link>https://questdb.io/blog</link>
         <description>The best place to stay up-to-date with the latest QuestDB news and events.</description>
-        <lastBuildDate>Sun, 22 Mar 2020 06:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 19 Dec 2019 06:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <image>
@@ -13,13 +13,6 @@
             <link>https://questdb.io/blog</link>
         </image>
         <copyright>Copyright © 2020 QuestDB</copyright>
-        <item>
-            <title><![CDATA[Joining time-series data]]></title>
-            <link>https://questdb.io/blog/2020/03/22/asof.html</link>
-            <guid>https://questdb.io/blog/2020/03/22/asof.html</guid>
-            <pubDate>Sun, 22 Mar 2020 06:00:00 GMT</pubDate>
-            <description><![CDATA[<p>Modern time-series applications store metrics upon change rather than at regular intervals. This removes the need to hold static values when the series don't change, but keeps the possibility to catch bursts when required with a high degree of precis...</p>]]></description>
-        </item>
         <item>
             <title><![CDATA[Speeding up Influx Line Protocol]]></title>
             <link>https://questdb.io/blog/2019/12/19/lineprot.html</link>

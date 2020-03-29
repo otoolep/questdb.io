@@ -63,28 +63,31 @@
               }
             });
         </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 id="__docusaurus" class="postHeaderTitle">My First Database</h1></header><article><div><span><p>The goal of this tutorial is to explore QuestDB's features to interact with time-series data.
-This assumes you have an instance running. See instructions in the <a href="/docs/installationOverview">installation page</a></p>
-<p>In this tutorial, we will learn to</p>
+This assumes you have an instance running. If not, instructions are available in the
+<a href="/docs/installationOverview">installation page</a></p>
+<p>In this tutorial, we will learn to:</p>
 <ul>
 <li>Create tables</li>
 <li>Populate tables with sample data</li>
 <li>Run simple and more advanced queries</li>
 <li>Delete tables</li>
 </ul>
-<p>As an example, we will look at a hypothetical temperature readings from a variety of sensors.
-All commands are run through the <a href="/docs/usingWebConsole">Web Console</a> accessible on
+<p>As an example, we will look at hypothetical temperature readings from a variety of sensors.</p>
+<blockquote>
+<p>All commands are run through the <a href="/docs/usingWebConsole">Web Console</a> accessible on
 <strong><a href="http://localhost:9000/index.html">http://localhost:9000/index.html</a></strong>.</p>
+</blockquote>
 <h2><a class="anchor" aria-hidden="true" id="creating-a-table"></a><a href="#creating-a-table" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Creating a table</h2>
 <p>The first step is to create tables. One will contain the metadata of our sensors, the other will contain
 the readings from these sensors.</p>
-<p>First, we create the <code>sensors</code> table</p>
+<p>Let's start by creating the <code>sensors</code> table:</p>
 <pre><code class="hljs css language-sql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> sensors (<span class="hljs-keyword">ID</span> <span class="hljs-type_name">LONG</span>, make <span class="hljs-type_name">STRING</span>, city <span class="hljs-type_name">STRING</span>);
 </code></pre>
 <blockquote>
 <p>Find more about these commands in the <strong><a href="/docs/createTable">SQL Administration</a></strong> commands section.</p>
 </blockquote>
-<h2><a class="anchor" aria-hidden="true" id="insert-data"></a><a href="#insert-data" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Insert data</h2>
-<p>We populate our <code>sensors</code> table with procedurally-generated data:</p>
+<h2><a class="anchor" aria-hidden="true" id="inserting-data"></a><a href="#inserting-data" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Inserting data</h2>
+<p>Let's populate our <code>sensors</code> table with procedurally-generated data:</p>
 <pre><code class="hljs css language-sql"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> sensors
     <span class="hljs-keyword">SELECT</span> 
         x <span class="hljs-keyword">ID</span>, <span class="hljs-comment">--increasing integer
@@ -93,8 +96,12 @@ the readings from these sensors.</p>
     <span class="hljs-keyword">FROM</span> <span class="hljs-sql_function">long_sequence</span>(<span class="hljs-number">10000</span>) x
 ;
 </code></pre>
+<blockquote>
+<p>You can find more information on procedurally generated data in the <a href="/docs/functionsRandomValueGenerators">random  generator functions</a>
+and in the <a href="/docs/functionsRowGenerator">row generator functions</a></p>
+</blockquote>
 <p>Our <code>sensors</code> table now contains 10,000 randomly generated sensors of different makes and in various cities.
-It should look like this</p>
+It should look like the below:</p>
 <table>
 <thead>
 <tr><th>ID</th><th>make</th><th>city</th></tr>
@@ -107,7 +114,7 @@ It should look like this</p>
 <tr><td>...</td><td>...</td><td>...</td></tr>
 </tbody>
 </table>
-<p>Let's now create sensor readings. In this case, we will generate the table and the data at
+<p>Let's now create some sensor readings. In this case, we will generate the table and the data at
 the same time.</p>
 <pre><code class="hljs css language-sql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> readings 
 <span class="hljs-keyword">AS</span>(
@@ -122,10 +129,10 @@ the same time.</p>
 </code></pre>
 <p>Note:</p>
 <ul>
-<li>we elect <code>ts</code> as <code>TIMESTAMP</code>. This will enable time-partitioning.</li>
-<li>we partition data by <code>MONTH</code>. Our data will be sharded in monthly files.</li>
+<li>we elected <code>ts</code> as <code>TIMESTAMP</code>. This will enable time-partitioning.</li>
+<li>we partitioned data by <code>MONTH</code>. Our data will be sharded in monthly files.</li>
 </ul>
-<p>The generated data will look like this:</p>
+<p>The generated data will look like the below:</p>
 <table>
 <thead>
 <tr><th>ID</th><th>ts</th><th>temp</th><th>sensorId</th></tr>
@@ -140,14 +147,12 @@ the same time.</p>
 </tbody>
 </table>
 <h2><a class="anchor" aria-hidden="true" id="running-queries"></a><a href="#running-queries" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Running queries</h2>
-<p>Let's start simple:</p>
-<pre><code class="hljs css language-sql"><span class="hljs-comment">-- All readings (note the omission of SELECT * FROM)
-</span>readings;
+<p>Let's first select all records from the <code>readings</code> table (note the omission of <code>SELECT * FROM</code>):</p>
+<pre><code class="hljs css language-sql">readings;
 </code></pre>
-<pre><code class="hljs css language-sql"><span class="hljs-comment">--count of readings
-</span><span class="hljs-keyword">SELECT</span> <span class="hljs-sql_function">count</span>() <span class="hljs-keyword">FROM</span> readings;
+<p>Let's also select the <code>count</code> of records from <code>readings</code>:</p>
+<pre><code class="hljs css language-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-sql_function">count</span>() <span class="hljs-keyword">FROM</span> readings;
 </code></pre>
-<p>result:</p>
 <table>
 <thead>
 <tr><th>count</th></tr>
@@ -156,8 +161,8 @@ the same time.</p>
 <tr><td>10,000,000</td></tr>
 </tbody>
 </table>
-<pre><code class="hljs css language-sql"><span class="hljs-comment">--average of all readings
-</span><span class="hljs-keyword">SELECT</span> <span class="hljs-sql_function">avg</span>(temp) <span class="hljs-keyword">FROM</span> readings;
+<p>and the average reading:</p>
+<pre><code class="hljs css language-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-sql_function">avg</span>(temp) <span class="hljs-keyword">FROM</span> readings;
 </code></pre>
 <table>
 <thead>
@@ -176,7 +181,7 @@ the same time.</p>
     <span class="hljs-keyword">FROM</span> sensors) 
 <span class="hljs-keyword">ON</span> readings.sensorId = sensId;
 </code></pre>
-<p>Results should look like this</p>
+<p>Results should look like the data below:</p>
 <table>
 <thead>
 <tr><th>ID</th><th>ts</th><th>temp</th><th>sensorId</th><th>sensId</th><th>make</th><th>city</th></tr>
@@ -200,7 +205,7 @@ the same time.</p>
     <span class="hljs-keyword">FROM</span> sensors) 
 <span class="hljs-keyword">ON</span> readings.sensorId = sensId;
 </code></pre>
-<p>Results should look like this</p>
+<p>Results should look like the data below:</p>
 <table>
 <thead>
 <tr><th>city</th><th>max</th></tr>
@@ -224,7 +229,7 @@ the same time.</p>
 <span class="hljs-keyword">WHERE</span> ts =<span class="hljs-string">'2019-10-21;1d'</span> <span class="hljs-comment">-- this is an interval between 21-10 and 1day later
 </span><span class="hljs-keyword">SAMPLE</span> <span class="hljs-keyword">BY</span> <span class="hljs-number">1</span>h;
 </code></pre>
-<p>Results should look like this</p>
+<p>Results should look like the data below:</p>
 <table>
 <thead>
 <tr><th>ts</th><th>city</th><th>make</th><th>average</th></tr>
@@ -243,10 +248,10 @@ the same time.</p>
 <p>Find more about these commands in the <strong><a href="/docs/select">Select</a></strong> and <strong><a href="/docs/joins">Join</a></strong> sections.</p>
 </blockquote>
 <h2><a class="anchor" aria-hidden="true" id="finding-your-data-files"></a><a href="#finding-your-data-files" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Finding your data files</h2>
-<p>Data is stored on disk. You can find it in the same path as QuestDB executable in the db folder.
+<p>Data is stored on the hard drive. You can find it in the same path as QuestDB executable in the db folder.
 There will be a directory for each table. In this instance
 <code>/questDB/db/readings</code> and <code>/questDB/db/sensors</code>.</p>
-<p>Upon exploring this folder, you can see your data has been partitioned monthly:</p>
+<p>Upon exploring this folder, you can see your data has been partitioned monthly.</p>
 <table>
 <thead>
 <tr><th><strong>Folders</strong></th><th></th><th></th><th></th></tr>
@@ -269,7 +274,7 @@ There will be a directory for each table. In this instance
 <pre><code class="hljs css language-sql"><span class="hljs-keyword">DROP</span> <span class="hljs-keyword">TABLE</span> readings;
 <span class="hljs-keyword">DROP</span> <span class="hljs-keyword">TABLE</span> sensors;
 </code></pre>
-</span></div></article></div><div class="docLastUpdate"><em>Last updated on 3/17/2020</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/usingWebConsole"><span class="arrow-prev">← </span><span>Using Web Console</span></a><a class="docs-next button" href="/docs/storageModel"><span>Storage Model</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#creating-a-table">Creating a table</a></li><li><a href="#insert-data">Insert data</a></li><li><a href="#running-queries">Running queries</a></li><li><a href="#finding-your-data-files">Finding your data files</a></li><li><a href="#deleting-tables">Deleting tables</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><div align="left" class="footersection"><h5>QuestDB</h5><a href="/docs/documentationOverview">Documentation</a><a href="/getstarted">Download</a><a href="/docs/roadmap">Roadmap</a></div><div align="left" class="footersection"><h5>Community</h5><a href="https://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://join.slack.com/t/questdb/shared_invite/enQtNzk4Nzg4Mjc2MTE2LTEzZThjMzliMjUzMTBmYzVjYWNmM2UyNWJmNDdkMDYyZmE0ZDliZTQxN2EzNzk5MDE3Zjc1ZmJiZmFiZTIwMGY&gt;"> Join Slack </a><a href="https://twitter.com/" target="@QuestDB" rel="noreferrer noopener">Twitter</a></div><div align="left" class="footersection"><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/questdb/questdb/">GitHub</a><a class="github-button" href="https://github.com/questdb/questdb" data-icon="octicon-star" data-count-href="/questdb/questdb/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="copyright">Copyright © 2020 QuestDB</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 3/27/2020</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/usingWebConsole"><span class="arrow-prev">← </span><span>Using Web Console</span></a><a class="docs-next button" href="/docs/storageModel"><span>Storage Model</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#creating-a-table">Creating a table</a></li><li><a href="#inserting-data">Inserting data</a></li><li><a href="#running-queries">Running queries</a></li><li><a href="#finding-your-data-files">Finding your data files</a></li><li><a href="#deleting-tables">Deleting tables</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><div align="left" class="footersection"><h5>QuestDB</h5><a href="/docs/documentationOverview">Documentation</a><a href="/getstarted">Download</a><a href="/docs/roadmap">Roadmap</a></div><div align="left" class="footersection"><h5>Community</h5><a href="https://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://join.slack.com/t/questdb/shared_invite/enQtNzk4Nzg4Mjc2MTE2LTEzZThjMzliMjUzMTBmYzVjYWNmM2UyNWJmNDdkMDYyZmE0ZDliZTQxN2EzNzk5MDE3Zjc1ZmJiZmFiZTIwMGY&gt;"> Join Slack </a><a href="https://twitter.com/" target="@QuestDB" rel="noreferrer noopener">Twitter</a></div><div align="left" class="footersection"><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/questdb/questdb/">GitHub</a><a class="github-button" href="https://github.com/questdb/questdb" data-icon="octicon-star" data-count-href="/questdb/questdb/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="copyright">Copyright © 2020 QuestDB</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
                 document.addEventListener('keyup', function(e) {
                   if (e.target !== document.body) {
                     return;
