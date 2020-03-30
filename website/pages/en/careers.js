@@ -375,7 +375,7 @@ class Index extends React.Component {
 
                 <span className="jobsubtitle colored bold">Requirements</span>
                 <ul>
-                    <li>2+ years of experience in technical content creation, preferably for an open source projec</li>
+                    <li>2+ years of experience in technical content creation, preferably for an open source project</li>
                     <li>Passionate about open source and the developer community</li>
                     <li>String writing skills</li>
                     <li>Database knowledge preferred</li>
