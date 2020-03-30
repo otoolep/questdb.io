@@ -352,7 +352,7 @@ class Index extends React.Component {
                 <span className="jobsubtitle colored bold">Responsibilities</span>
                 <ul>
                     <li>Participate in forming and executing the content strategy at QuestDB by leading article creation
-                        and publicization.
+                        and publication.
                     </li>
                     <li>Research, write, edit and facilitate technical articles, blog posts, white papers and reports
                         through a variety of channels, including QuestDB’s blog and social media.
