@@ -377,7 +377,7 @@ class Index extends React.Component {
                 <ul>
                     <li>2+ years of experience in technical content creation, preferably for an open source project</li>
                     <li>Passionate about open source and the developer community</li>
-                    <li>String writing skills</li>
+                    <li>Strong writing skills</li>
                     <li>Database knowledge preferred</li>
                     <li>Excellent spoken and written English</li>
                 </ul>
