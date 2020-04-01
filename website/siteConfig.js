@@ -234,7 +234,7 @@ const siteConfig = {
     gaTrackingId: 'UA-145747842-1',
 
     //Pixel ID for facebook analytics
-    facebookPixelId: '1724909280980398',
+    facebookPixelId: '648273155994655',
 
     highlight: {
         // themeUrl: '/css/code-highlight.css',
