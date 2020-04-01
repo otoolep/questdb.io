@@ -9,11 +9,11 @@
     <logo>https://questdb.io/img/QuestDB_Logo.png</logo>
     <rights>Copyright © 2020 QuestDB</rights>
     <entry>
-        <title type="html"><![CDATA[Speeding up Influx Line Protocol]]></title>
+        <title type="html"><![CDATA[What makes QuestDB faster than InfluxDB]]></title>
         <id>https://questdb.io/blog/2019/12/19/lineprot.html</id>
         <link href="https://questdb.io/blog/2019/12/19/lineprot.html"/>
         <updated>2019-12-19T06:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<p>Our background is in low-latency trading. We are obsessed with performance and have always wanted to build the fastest tech out there.</p> <p>But let’s keep the suspense for a minute and introduce ourselves first. QuestDB is a NewSQL open-source relational ...</p>]]></summary>
+        <summary type="html"><![CDATA[<p>Our background is in low-latency trading. We are obsessed with performance and have always wanted to build the fastest tech out there.</p> <p>But let’s keep the suspense for a minute and introduce ourselves first. QuestDB is an open-source SQL time-series d...</p>]]></summary>
         <author>
             <name>Tancrede Collard</name>
             <email/>

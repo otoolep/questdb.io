@@ -14,11 +14,11 @@
         </image>
         <copyright>Copyright © 2020 QuestDB</copyright>
         <item>
-            <title><![CDATA[Speeding up Influx Line Protocol]]></title>
+            <title><![CDATA[What makes QuestDB faster than InfluxDB]]></title>
             <link>https://questdb.io/blog/2019/12/19/lineprot.html</link>
             <guid>https://questdb.io/blog/2019/12/19/lineprot.html</guid>
             <pubDate>Thu, 19 Dec 2019 06:00:00 GMT</pubDate>
-            <description><![CDATA[<p>Our background is in low-latency trading. We are obsessed with performance and have always wanted to build the fastest tech out there.</p> <p>But let’s keep the suspense for a minute and introduce ourselves first. QuestDB is a NewSQL open-source relational ...</p>]]></description>
+            <description><![CDATA[<p>Our background is in low-latency trading. We are obsessed with performance and have always wanted to build the fastest tech out there.</p> <p>But let’s keep the suspense for a minute and introduce ourselves first. QuestDB is an open-source SQL time-series d...</p>]]></description>
         </item>
         <item>
             <title><![CDATA[The art of thread messaging]]></title>
