@@ -72,9 +72,14 @@ class Index extends React.Component {
                     <br/>
 
                     <span className="colored bold ">About QuestDB: </span>
+                    <p>
                     QuestDB is an open-soure time-series database designed for high-performance. Our code is available
                     on Github under Apache 2.0.
+                    </p>
 
+                    <p>
+                        If you like what we are doing, please consider <b> <a href="https://github.com/questdb/questdb"> visiting our github repository and leaving a star <img className="yellow-star" src="/img/star-yellow.svg"/></a></b>
+                    </p>
                 </div>
 
 
