@@ -2,11 +2,14 @@
 title: The art of thread messaging
 author: Vlad Ilyushchenko
 ---
+<img src="assets/threadmessaging.png" alt="drawing" width="480px" align="left"/> 
 
 ### Introduction
 Inter-thread messaging is a fundamental part of any asynchronous system. It is the component responsible for transportation of data between threads. Messaging forms the infrastructure, the scaffolding of multi-threaded application and just like real-world transport infrastructure we want it to be inexpensive, fast, reliable and clean.
 
 For QuestDB we wrote our own messaging and this post is about how it works and how fast it is.
+<div></div>
+
 
 ### Architecture
 Borrowing heavily from world-famous Disruptor our messaging revolves around multiple threads accessing shared circular data structure. We call it RingQueue. Semantically RingQueue provides unbounded, index-based, random access to its elements. It does not coordinate concurrent access nor does it provide guarantees on thread safety. Coordination and thread-safety is a concern of Sequences. Sequences are responsible for providing indices that can be used to access RingQueue concurrently and safely.
