@@ -8,6 +8,11 @@
     padding: 0 30px;
 }
 
+.perks .blockImage{
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .perks {
     margin-right: auto;
     margin-left: auto;
@@ -22,9 +27,18 @@
     margin-top: 4%;
 }
 
-.perks .buttons li {
-    background-color: rgba(56, 153, 255, 0.4);
+.perks .buttons li, .careers-footer .buttons li{
     border: 1px solid #f8f9ff;
+    background: linear-gradient(270deg, #b400f0, #4c00d9, #b400f0);
+    background-size: 600% 600%;
+
+    -webkit-animation: buttonAnimation 5s ease infinite;
+    -moz-animation: buttonAnimation 5s ease infinite;
+    animation: buttonAnimation 5s ease infinite;
+}
+
+.perks .buttons a, .careers-footer .buttons a{
+    color: white;
 }
 
 .perks .buttons li:hover {
@@ -96,6 +110,7 @@
     margin-left: auto;
     display: block;
     width: 50%;
+    max-width: 600px;
 }
 
 .job {

@@ -70,12 +70,17 @@ class Index extends React.Component {
 
                     <img className="careers-img" src='/img/team.svg'/>
                     <br/>
+
+                    <span className="colored bold ">About QuestDB: </span>
+                    QuestDB is an open-soure time-series database designed for high-performance. Our code is available
+                    on Github under Apache 2.0.
+
                 </div>
 
 
                 <div className="perks center">
                     <span className="jobtitle colored bold center">Perks</span>
-                    <Block layout="twoColumn">
+                    <Block layout="fourColumn">
                         {[
                             {
                                 content: '<span class="center">Flexible work schedule</span>',
