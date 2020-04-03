@@ -2,6 +2,10 @@ h1.postHeaderTitle {
     padding-top: 200px;
 }
 
+.postHeaderTitle a{
+    color: #2371b5;
+}
+
 .mainContainer h1 {
     margin-top: 80px;
     color: #2371b5;
