@@ -37,6 +37,17 @@
     animation: buttonAnimation 5s ease infinite;
 }
 
+body > div.navPusher > div > div.mainContainer > div:nth-child(1) > div.perks.center > ul > li.github-cta {
+    border: 1px solid #f8f9ff;
+    background: linear-gradient(270deg, black, #3d0065, #393939);
+    background-size: 200% 200%;
+
+    animation: none;
+    -moz-animation: none;
+    -webkit-animation: none;
+    margin-left: 20px;
+}
+
 .perks .buttons a, .careers-footer .buttons a{
     color: white;
 }
@@ -175,4 +186,13 @@
 .apply-steps li{
     font-weight: 500;
     color: #2371b5;
+}
+
+.yellow-star {
+    height: 30px;
+    margin-bottom: -5px
+}
+
+.yellow-star-button {
+    height: 20px;
 }

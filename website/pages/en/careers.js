@@ -110,6 +110,9 @@ class Index extends React.Component {
                         <li><a href="#job-list">
                             <b>Check out our open positions</b>
                         </a></li>
+                        <li className="github-cta">
+                            <a href="https://github.com/questdb/questdb"> Checkout our Github </a>
+                        </li>
                     </ul>
                 </div>
             </div>
