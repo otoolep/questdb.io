@@ -211,6 +211,7 @@ class Index extends React.Component {
 
                 <span className="jobsubtitle colored bold">Requirements</span>
                 <ul>
+                    <li>Authorized to work in the US</li>
                     <li>3+ years of experience in community development</li>
                     <li>Passionate about open source and the developer community</li>
                     <li>Database or Java knowledge preferred</li>
