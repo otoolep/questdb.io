@@ -22,7 +22,7 @@ will figure out the Java location automatically.
 
 ### Downloading QuestDB
 
-> You can download QuestDB binaries and launch scripts **[here](https://github.com/questdb/questdb/releases/download/4.1.5/questdb-4.1.5-bin.tar.gz)**.
+> You can download QuestDB binaries and launch scripts **[here](https://github.com/questdb/questdb/releases/download/4.2.0/questdb-4.2.0-bin.tar.gz)**.
 
 ### Installing
 Simply extract the files in a directory of your choice. Then to run:
@@ -91,7 +91,7 @@ The launch script is `questdb.sh`. The questdb.exe is a part of multi-platform p
 Start QuestDB as follows:
 
 ```shell script
-cd questdb-4.1.5/
+cd questdb-4.2.0/
 ./questdb.sh start
 ```
 

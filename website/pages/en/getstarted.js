@@ -150,7 +150,7 @@ class Index extends React.Component {
                         <span className="headline">Cross-platform binaries (requires JRE8)</span>
                         <p>Supported Platforms: Windows 64-bit, Linux 64-bit, OSX and ARM64</p>
                         <pre><a
-                            href="https://github.com/questdb/questdb/releases/download/4.1.5/questdb-4.1.5-bin.tar.gz">https://github.com/questdb/questdb/releases/download/4.1.5/questdb-4.1.5-bin.tar.gz</a> (4Mb)</pre>
+                            href="https://github.com/questdb/questdb/releases/download/4.2.0/questdb-4.2.0-bin.tar.gz">https://github.com/questdb/questdb/releases/download/4.2.0/questdb-4.2.0-bin.tar.gz</a> (4Mb)</pre>
                     </li>
                     <li>
                         <span className="headline">Java library</span>
@@ -159,7 +159,7 @@ class Index extends React.Component {
 <dependency>
     <groupId>org.questdb</groupId>
     <artifactId>core</artifactId>
-    <version>4.1.5</version>
+    <version>4.2.0</version>
 </dependency>
                             `}
                         </pre>

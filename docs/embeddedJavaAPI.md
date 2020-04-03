@@ -11,14 +11,14 @@ To include QuestDB in your project use the latest Maven coordinates:
 <!--DOCUSAURUS_CODE_TABS-->
 <!--gradle-->
 ```shell script
-    implementation 'org.questdb:core:4.1.5'
+    implementation 'org.questdb:core:4.2.0'
 ```
 <!--maven-->
 ```xml
     <dependency>
         <groupId>org.questdb</groupId>
         <artifactId>core</artifactId>
-        <version>4.1.5</version>
+        <version>4.2.0</version>
     </dependency>
 ```
 <!--END_DOCUSAURUS_CODE_TABS-->
