@@ -1,24 +1,28 @@
 ---
-title: QuestDB 4.2: introducing SIMD aggregations
+title: Introducing QuestDB 4.2
 author: Tancrede Collard
 ---
 
 Today we release QuestDB 4.2, which brings a set of dramatic performance improvements. The main event is 
-the introduction of aggregations leveraging SIMD instructions, which result in ~100x performance improvements.
+the introduction of SIMD-based aggregations, which result in ~100x performance improvements.
+
+If you like what we are doing, please consider <b> <a href="https://github.com/questdb/questdb"> visiting our github repository and leaving a star <img class="yellow-star" src="/img/star-yellow.svg"/></a></b>
+          
 
 ### Introducing SIMD instructions
-<a href="https://en.wikipedia.org/wiki/SIMD" target="_blank">SIMD instructions</a> are specific CPU instruction sets for arithmetic calculations that use synthetic parallelisation. The parallelisation is synthetic - instead of spreading the work across CPU cores, 
-SIMD unlocks vector operations on multiple items using a **single** instruction. 
-In practice, SIMD allows you to sum 8 numbers with only one CPU operation (instead of 8).
+<a href="https://en.wikipedia.org/wiki/SIMD" target="_blank">SIMD instructions</a> are specific CPU instruction sets for arithmetic calculations that use synthetic parallelisation. 
+The parallelisation is said synthetic because instead of spreading the work across CPU cores, 
+SIMD performs vector operations on multiple items using a **single** CPU instruction. 
+In practice, if you needed to add 8 numbers together, SIMD does that in 1 operation instead of 8.
 We get compounded performance improvements by combining SIMD with actual parallelisation and spanning the aggregation calculation across CPUs.
 
 As of now, this new feature is available for aggregation queries such as
 ```select sum(value) from table```. In further releases, we will extend these to keyed aggregations, for example
-```select key, sum(value) from table``` (note the inetntional omission of `GROUP BY`). This will also lead to ultrafast 
-aggregation available for time-bucketed queries using `SAMPLE BY`.
+```select key, sum(value) from table``` (note the intentional omission of `GROUP BY`). This will also result in ultrafast 
+aggregation for time-bucketed queries using `SAMPLE BY`.
 
 ### How do we fare versus kdb+?
-To get an idea of the performance improvements, we ran a benchmark against kdb+, which has been known as the fastest
+To get an idea of how fast the new version is, we ran a benchmark against kdb+, which has been known as the fastest
  time-series database for the past 20 years. Coincidentally, their new version 4.0. (released a few days ago)
 introduces performance improvements through further parallelism. We benchmarked QuestDB against this latest version. 
 
@@ -26,8 +30,8 @@ For non-null doubles, questDB sums 1 billion values in roughly the same time as 
 
 ![alt-text](assets/sum-not-null.png)
 
-As we includes null numbers in the dataset, kdb's performance deteriorates significantly - Kdb+ then takes twice as much time to complete the same query. 
-On the other hand, QuestDB's performance does not degrade and stays unchanged once introducing null values:
+As we include null numbers in the dataset, kdb's performance deteriorates significantly: it takes twice as much time to complete the same query. 
+On the other hand, QuestDB's performance does not degrade once introducing null values:
 
 ![alt-text](assets/sum-null.png)
 
@@ -35,8 +39,8 @@ With max on non-null longs, QuestDB also outperforms kdb+ by about 2x:
 
 ![alt-text](assets/max-not-null.png)
 
-### TLDR
-- These new techniques improved our aggregation performance by a factor of ~100x
+### Takeaways for the community:
+- These new techniques improved our aggregation performance by a factor of ~100x. 
 - Alongside our previous optimization and innovation breakthroughs, SIMD instructions result in a new level of performance;  we are 2x faster than kdb+ for most aggregation queries.
 - 100% of our code is **[open-source](https://github.com/questdb/questdb)**!
 

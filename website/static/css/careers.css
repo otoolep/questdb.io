@@ -190,7 +190,8 @@ body > div.navPusher > div > div.mainContainer > div:nth-child(1) > div.perks.ce
 
 .yellow-star {
     height: 30px;
-    margin-bottom: -5px
+    margin-bottom: -5px;
+    display: inline;
 }
 
 .yellow-star-button {
