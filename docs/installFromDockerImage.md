@@ -49,7 +49,7 @@ argument. However doing so may limit your interaction with QuestDB.
 ## Create a container
 
 ```shell script
-docker create --name questdb -p9000:9000 -p 8892:8892 questdb/questdb
+docker create --name questdb -p 9000:9000 -p 8892:8892 questdb/questdb
 ```
 
 > You can set any name you like for the container name. This name will be used when you start/stop the container.
@@ -57,7 +57,7 @@ docker create --name questdb -p9000:9000 -p 8892:8892 questdb/questdb
 If you would like to use a specific release tag, you can specify it as follows when creating the container:
 
 ```shell script
-docker create --name questdb -p9000:9000 -p 8892:8892 questdb/questdb:4.0.2
+docker create --name questdb -p 9000:9000 -p 8892:8892 questdb/questdb:4.0.2
 ```
 
 Available options:
