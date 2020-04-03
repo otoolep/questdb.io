@@ -29,17 +29,17 @@
 
 .perks .buttons li, .careers-footer .buttons li{
     border: 1px solid #f8f9ff;
-    background: linear-gradient(270deg, #b400f0, #4c00d9, #b400f0);
+    background: linear-gradient(270deg, #fda31d, #fd8b0e, #fda31d);
     background-size: 600% 600%;
 
-    -webkit-animation: buttonAnimation 5s ease infinite;
-    -moz-animation: buttonAnimation 5s ease infinite;
-    animation: buttonAnimation 5s ease infinite;
+    -webkit-animation: buttonAnimation 15s ease infinite;
+    -moz-animation: buttonAnimation 15s ease infinite;
+    animation: buttonAnimation 15s ease infinite;
 }
 
 body > div.navPusher > div > div.mainContainer > div:nth-child(1) > div.perks.center > ul > li.github-cta {
     border: 1px solid #f8f9ff;
-    background: linear-gradient(270deg, black, #3d0065, #393939);
+    background: linear-gradient(270deg, black, #393939);
     background-size: 200% 200%;
 
     animation: none;

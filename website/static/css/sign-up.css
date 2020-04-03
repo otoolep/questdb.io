@@ -25,7 +25,13 @@
     }
 
     .signup, .signup-back {
-        background: linear-gradient(180deg, #ff7400 0%, rgb(252, 153, 0) 55%, #ff7400 100%);
+
+        background: linear-gradient(270deg, #fd7d05, #fd8b0e, #d0720c);
+        -webkit-animation: buttonAnimation 10s ease infinite;
+        -moz-animation: buttonAnimation 10s ease infinite;
+        animation: buttonAnimation 10s ease infinite;
+        background-size: 300% 300%;
+
         width: 400px;
         align-self: flex-end;
         margin: -300px 5% -80px auto;
@@ -90,7 +96,12 @@
 @media only screen and (max-width: 1000px) {
 
     .flip-box {
-        background-color: #e78300;
+        background: linear-gradient(270deg, #fd7d05, #fd8b0e, #d0720c);
+        -webkit-animation: buttonAnimation 10s ease infinite;
+        -moz-animation: buttonAnimation 10s ease infinite;
+        animation: buttonAnimation 10s ease infinite;
+        background-size: 300% 300%;
+
         width: 100%;
         align-self: flex-end;
         margin-left: auto;

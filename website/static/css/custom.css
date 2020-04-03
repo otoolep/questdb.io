@@ -271,12 +271,12 @@ div.blockjustified {
 
 
 .buttons .getquestdb {
-    background: linear-gradient(270deg, #b400f0, #4c00d9, #b400f0);
+    background: linear-gradient(270deg, #fd7d05, #fd8b0e, #d0720c);
     background-size: 600% 600%;
 
-    -webkit-animation: buttonAnimation 5s ease infinite;
-    -moz-animation: buttonAnimation 5s ease infinite;
-    animation: buttonAnimation 5s ease infinite;
+    -webkit-animation: buttonAnimation 15s ease infinite;
+    -moz-animation: buttonAnimation 15s ease infinite;
+    animation: buttonAnimation 15s ease infinite;
 
 }
 
