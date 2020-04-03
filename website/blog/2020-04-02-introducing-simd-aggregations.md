@@ -7,8 +7,7 @@ Today we release QuestDB 4.2, which brings a set of dramatic performance improve
 the introduction of aggregations leveraging SIMD instructions, which result in ~100x performance improvements.
 
 ### Introducing SIMD instructions
-**[SIMD instructions](https://en.wikipedia.org/wiki/SIMD)** are specific CPU instruction sets for arithmetic calculations that use synthetic  
-parallelisation. The parallelisation is synthetic - instead of spreading the work across CPU cores, 
+<a href="https://en.wikipedia.org/wiki/SIMD" target="_blank">SIMD instructions</a> are specific CPU instruction sets for arithmetic calculations that use synthetic parallelisation. The parallelisation is synthetic - instead of spreading the work across CPU cores, 
 SIMD unlocks vector operations on multiple items using a **single** instruction. 
 In practice, SIMD allows you to sum 8 numbers with only one CPU operation (instead of 8).
 We get compounded performance improvements by combining SIMD with actual parallelisation and spanning the aggregation calculation across CPUs.
@@ -24,13 +23,16 @@ To get an idea of the performance improvements, we ran a benchmark against kdb+,
 introduces performance improvements through further parallelism. We benchmarked QuestDB against this latest version. 
 
 For non-null doubles, questDB sums 1 billion values in roughly the same time as kdb (ok, slightly slower):
+
 ![alt-text](assets/sum-not-null.png)
 
 As we includes null numbers in the dataset, kdb's performance deteriorates significantly - Kdb+ then takes twice as much time to complete the same query. 
 On the other hand, QuestDB's performance does not degrade and stays unchanged once introducing null values:
+
 ![alt-text](assets/sum-null.png)
 
 With max on non-null longs, QuestDB also outperforms kdb+ by about 2x:
+
 ![alt-text](assets/max-not-null.png)
 
 ### TLDR
