@@ -1,5 +1,18 @@
 /* your custom css */
 
+.post p {
+    text-align: justify;
+}
+
+a {
+    color: #e68200;
+    font-weight: 400;
+}
+
+a:visited {
+    color: #f88800;
+}
+
 @media only screen and (min-width: 1025px) {
     .logo {
         padding-top: 30px;

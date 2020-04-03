@@ -2,9 +2,11 @@
 title: The art of thread messaging
 author: Vlad Ilyushchenko
 ---
-<img src="assets/threadmessaging.png" alt="drawing" width="480px" align="left"/> 
 
 ### Introduction
+
+<img src="/blog/assets/threadmessaging.png" alt="drawing" width="480px"/> 
+
 Inter-thread messaging is a fundamental part of any asynchronous system. It is the component responsible for transportation of data between threads. Messaging forms the infrastructure, the scaffolding of multi-threaded application and just like real-world transport infrastructure we want it to be inexpensive, fast, reliable and clean.
 
 For QuestDB we wrote our own messaging and this post is about how it works and how fast it is.
