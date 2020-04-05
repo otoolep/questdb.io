@@ -59,7 +59,7 @@ The execution times outlined above become more interesting once put into context
 
 ![alt-text](assets/bench-pg-kdb-quest.png)
 
-We found that our performance figures to be constained by available memory channels on CPU. If CPU has two memory channels, like in above examples, throwing more cores at the problem does not change outcome at all. This is applicable to both KDB+ and QuestDB. On other hand if CPU has more memory channels, pefromance scales almost lineraly. This is an example of `sum(doule)` on Amazon c5.metal instance using 16 threads:
+We found that our performance figures to be constained by available memory channels on CPU. If CPU has two memory channels, like in above examples, throwing more cores at the problem does not change outcome at all. This is applicable to both KDB+ and QuestDB. On other hand if CPU has more memory channels, pefromance scales almost lineraly. This is an example of `sum(double)` on Amazon c5.metal instance using 16 threads:
 
 todo: show chart comparing 260ms and 100ms (on c5.metal)
 
