@@ -8,7 +8,7 @@ author: Tancrede Collard
 <a href="https://en.wikipedia.org/wiki/SIMD" target="_blank">SIMD instructions</a> are specific CPU instruction sets for arithmetic calculations that use synthetic parallelisation. 
 The parallelisation is synthetic because instead of spreading the work across CPU cores, 
 SIMD performs vector operations on multiple items using a **single** CPU instruction. 
-In practice, if you were to to add 8 numbers together, SIMD does that in 1 operation instead of 8.
+In practice, if you were to add 8 numbers together, SIMD does that in 1 operation instead of 8.
 We get compounded performance improvements by combining SIMD with actual parallelisation and spanning the work across CPUs.
 
 
@@ -16,7 +16,7 @@ QuestDB 4.2 introduces SIMD instructions, which made our aggregations faster by 
 QuestDB is available [open-source under Apache 2.0](https://github.com/questdb/questdb).
  
  As of now, SIMD operations are available for non-keyed aggregation queries, such as
-```select sum(value) from table```. In further releases, we will extend these to keyed aggregations, for example
+```select sum(value) from table```. In future releases, we will extend these to keyed aggregations, for example
 ```select key, sum(value) from table``` (note the intentional omission of `GROUP BY`). This will also result in ultrafast 
 aggregation for time-bucketed queries using `SAMPLE BY`.
 
@@ -43,7 +43,7 @@ and the [AMD Ryzen 3900X](https://www.amd.com/en/products/cpu/amd-ryzen-9-3900x)
 ![alt-text](assets/bench-kdb-8850h.png)
 ![alt-text](assets/bench-kdb-3900x.png)
 
-The synthetic test above does not generate NULL values. What is interestin that as soon as data contains NULL values KDB+ sum() performance drops while QuestDB sum() does not. All other aggregate function in both KDB+ and QuestDB are unaffected.
+The synthetic test above does not generate NULL values. What it is interesting is that as soon as data contains NULL values KDB+ sum() performance drops while QuestDB sum() does not. All other aggregate functions in both KDB+ and QuestDB are unaffected.
 
 |Test	|Query (kdb+ 4.0)	|Query (QuestDB 4.2)|
 |---|---|---|
@@ -51,27 +51,27 @@ The synthetic test above does not generate NULL values. What is interestin that 
 
 ![alt-text](assets/bench-kdb-8850H-sum-null.png)
 
-QuestDB's sum(int) result is 64-bit long sum, wheras KDB sum(int) overflows 32-bit sum. There is a little bit of scope left to make our implementation faster in the future.
+QuestDB's sum(int) result is 64-bit long sum, whereas KDB sum(int) overflows 32-bit sum. There is a little bit of scope left to make our implementation faster in the future.
 
 ### Perspectives on performance
 
-The execution times outlined above become more interesting once put into context. This is how QuestDB compares to Postgres to sum 1 billion numbers from a given table `select sum(d) from 1G_double_nonNull`. 
+The execution times outlined above become more interesting once put into context. This is how QuestDB compares to Postgres when doing a sum of 1 billion numbers from a given table `select sum(d) from 1G_double_nonNull`. 
 
 ![alt-text](assets/bench-pg-kdb-quest.png)
 
-We found that our performance figures to be constained by available memory channels on CPU. If CPU has two memory channels, like in above examples, throwing more cores at the problem does not change outcome at all. This is applicable to both KDB+ and QuestDB. On other hand if CPU has more memory channels, pefromance scales almost lineraly. This is an example of `sum(double)` on Amazon c5.metal instance using 16 threads:
+We found that our performance figures to be constrained by available memory channels on CPU. If CPU has two memory channels, like in the above examples, throwing more cores at the problem does not improve the performance. This is applicable to both KDB+ and QuestDB. On the other hand, if CPU has more memory channels, performance scales almost linearly. This is an example of `sum(double)` on Amazon c5.metal instance using 16 threads:
 
 todo: show chart comparing 260ms and 100ms (on c5.metal)
 
-Amazon c5.metal uses two 24-core Intel 8275CL with 6 memory channels each. Unfortunately CPUs are hyperthreaded. It is possible that performance could be even higher if CPU are be fully isolated to do the computations.
+Amazon c5.metal uses two 24-core Intel 8275CL with 6 memory channels each. Unfortunately CPUs are hyperthreaded. It is also possible that performance could be even higher if CPU were fully isolated to do the computations.
 
-If you have easy access to 8- or 12-channel servers and would like to benchmark QuestDB we'd love to hear the results. You can <a href="https://www.questdb.io/getstarted">download QuestDB here</a> and please don't forget to <b> <a href="https://github.com/questdb/questdb"> follow us on Github and star our project <img class="yellow-star" src="/img/star-yellow.svg"/></a></b>
+If you have easy access to 8 or 12-channel servers and would like to benchmark QuestDB we'd love to hear the results. You can <a href="https://www.questdb.io/getstarted">download QuestDB here</a> and please don't forget to <b> <a href="https://github.com/questdb/questdb"> follow us on Github and star our project <img class="yellow-star" src="/img/star-yellow.svg"/></a></b>
 
 ### What is next?
-In further releases, we will roll out this model to other parts of our SQL. QuestDB implements SIMD in a generic 
-fashion. This allows us to translate this model into about everything our SQL engine does, such as keyed aggregations, 
+In further releases, we will roll out this functionality to other parts of our SQL. QuestDB implements SIMD in a generic 
+fashion, which will allow us to continue adding SIMD to about everything our SQL engine does, such as keyed aggregations, 
 indexing etc. We will also keep improving QuestDB's performance. Through some further work on assembly, we estimate that we can gain another 15% speed on these 
-operations. In the meantime, if you want to know exactly how we have achieved this, 100% of our code is **[open-source](https://github.com/questdb/questdb)**!
+operations. In the meantime, if you want to know exactly how we have achieved this, all of our code is **[open-source](https://github.com/questdb/questdb)**!
 
 
 ### About the release: QuestDB 4.2
