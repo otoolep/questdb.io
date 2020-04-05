@@ -64,23 +64,21 @@
             });
         </script></nav></div><div class="container mainContainer postContainer blogContainer"><div class="wrapper"><div class="lonePost"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle"><a href="/blog/2020/04/02/introducing-simd-aggregations">Fast aggregations using SIMD instructions</a></h1><p class="post-meta">April 2, 2020</p><div class="authorBlock"><p class="post-authorName"><a target="_blank" rel="noreferrer noopener">Tancrede Collard</a></p></div></header><div><span><p><img class="banner-4-2" src="/blog/assets/banner-4-2.png" alt="drawing"/></p>
 <p><a href="https://en.wikipedia.org/wiki/SIMD" target="_blank">SIMD instructions</a> are specific CPU instruction sets for arithmetic calculations that use synthetic parallelisation.
-The parallelisation is said synthetic because instead of spreading the work across CPU cores,
+The parallelisation is synthetic because instead of spreading the work across CPU cores,
 SIMD performs vector operations on multiple items using a <strong>single</strong> CPU instruction.
-In practice, if you needed to add 8 numbers together, SIMD does that in 1 operation instead of 8.
+In practice, if you were to to add 8 numbers together, SIMD does that in 1 operation instead of 8.
 We get compounded performance improvements by combining SIMD with actual parallelisation and spanning the work across CPUs.</p>
-<p>QuestDB 4.2 introduces SIMD instructions. This made our aggregations faster by 100x!
-It is available <a href="https://github.com/questdb/questdb">open-source under Apache 2.0</a>.</p>
-<p>As of now, SIMD operations are available for queries such as
+<p>QuestDB 4.2 introduces SIMD instructions, which made our aggregations faster by 100x!
+QuestDB is available <a href="https://github.com/questdb/questdb">open-source under Apache 2.0</a>.</p>
+<p>As of now, SIMD operations are available for non-keyed aggregation queries, such as
 <code>select sum(value) from table</code>. In further releases, we will extend these to keyed aggregations, for example
 <code>select key, sum(value) from table</code> (note the intentional omission of <code>GROUP BY</code>). This will also result in ultrafast
 aggregation for time-bucketed queries using <code>SAMPLE BY</code>.</p>
-<p>If you like what we do, please consider <b> <a href="https://github.com/questdb/questdb"> visiting us on Github and leaving a star <img class="yellow-star" src="/img/star-yellow.svg"/></a></b></p>
+<p>If you like what we do, please consider <b> <a href="https://github.com/questdb/questdb"> following us on Github and starring our project <img class="yellow-star" src="/img/star-yellow.svg"/></a></b></p>
 <h3><a class="anchor" aria-hidden="true" id="how-fast-is-it"></a><a href="#how-fast-is-it" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>How fast is it?</h3>
-<p>To get an idea of how fast aggregations have become, we ran a benchmark against kdb+, which markets itself as the fastest
-time-series database for the past 20 years. Coincidentally, their new version 4.0 (released a few days ago)
-introduces performance improvements through further parallelism.</p>
+<p>To get an idea of how fast aggregations have become, we ran a benchmark against kdb+, which is one of the fastest databases out there. Coincidentally, their new version 4.0 (released a few days ago) introduces performance improvements through implicit parallelism.</p>
 <h4><a class="anchor" aria-hidden="true" id="setup"></a><a href="#setup" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Setup</h4>
-<p>We benchmarked QuestDB against this latest version of kdb using 2 different CPU: the <a href="https://ark.intel.com/content/www/us/en/ark/products/134899/intel-core-i7-8850h-processor-9m-cache-up-to-4-30-ghz.html">Intel 8850H</a>
+<p>We have benchmarked QuestDB against kdb's latest version using 2 different CPUs: the <a href="https://ark.intel.com/content/www/us/en/ark/products/134899/intel-core-i7-8850h-processor-9m-cache-up-to-4-30-ghz.html">Intel 8850H</a>
 and the <a href="https://www.amd.com/en/products/cpu/amd-ryzen-9-3900x">AMD Ryzen 3900X</a>. Both databases were running on 4 threads.</p>
 <h4><a class="anchor" aria-hidden="true" id="queries"></a><a href="#queries" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Queries</h4>
 <table>
@@ -88,56 +86,44 @@ and the <a href="https://www.amd.com/en/products/cpu/amd-ryzen-9-3900x">AMD Ryze
 <tr><th>Test</th><th>Query (kdb+ 4.0)</th><th>Query (QuestDB 4.2)</th></tr>
 </thead>
 <tbody>
-<tr><td>sum of 1G doubles <br/> no nulls</td><td>zz:1000000000?1000.0 <br/>\t sum zz</td><td>create table 1G_double_nonNull as (select rnd_double() d from long_sequence(1000000000)); <br/> select sum(d) from 1G_double_nonNull;</td></tr>
-<tr><td>sum of 1G ints <br/> no nulls</td><td>zz:1000000000?1000i <br/> \t sum zz</td><td>create table 1G_int_nonNull as (select rnd_int() i from long_sequence(1000000000)); <br/> select sum(i) from 1G_int_nonNull;</td></tr>
-<tr><td>sum of 1G longs <br/> no nulls</td><td>zz:1000000000?1000j <br/>\t sum zz</td><td>create table 1G_long_nonNull as (select rnd_long() l from long_sequence(1000000000));<br/>select sum(l) from 1G_long_nonNull;</td></tr>
-<tr><td>max of 1G doubles <br/> no nulls</td><td>zz:1000000000?1000.0<br/>\t max zz</td><td>create table 1G_double_nonNull as (select rnd_double() d from long_sequence(1000000000));<br/>select max(d) from 1G_double_nonNull;</td></tr>
-<tr><td>max of 1G longs <br/>no nulls</td><td>zz:1000000000?1000<br/>\t max zz</td><td>create table 1G_long_nonNull as (select rnd_long() l from long_sequence(1000000000));<br/>select max(l) from 1G_long_nonNull;</td></tr>
+<tr><td>sum of 1Bn doubles <br/> no nulls</td><td>zz:1000000000?1000.0 <br/>\t sum zz</td><td>create table 1G_double_nonNull as (select rnd_double() d from long_sequence(1000000000)); <br/> select sum(d) from 1G_double_nonNull;</td></tr>
+<tr><td>sum of 1Bn ints</td><td>zz:1000000000?1000i <br/> \t sum zz</td><td>create table 1G_int_nonNull as (select rnd_int() i from long_sequence(1000000000)); <br/> select sum(i) from 1G_int_nonNull;</td></tr>
+<tr><td>sum of 1Bn longs</td><td>zz:1000000000?1000j <br/>\t sum zz</td><td>create table 1G_long_nonNull as (select rnd_long() l from long_sequence(1000000000));<br/>select sum(l) from 1G_long_nonNull;</td></tr>
+<tr><td>max of 1Bn doubles</td><td>zz:1000000000?1000.0<br/>\t max zz</td><td>create table 1G_double_nonNull as (select rnd_double() d from long_sequence(1000000000));<br/>select max(d) from 1G_double_nonNull;</td></tr>
+<tr><td>max of 1Bn longs</td><td>zz:1000000000?1000<br/>\t max zz</td><td>create table 1G_long_nonNull as (select rnd_long() l from long_sequence(1000000000));<br/>select max(l) from 1G_long_nonNull;</td></tr>
 </tbody>
 </table>
 <h4><a class="anchor" aria-hidden="true" id="results"></a><a href="#results" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Results</h4>
 <p><img src="/blog/assets/bench-kdb-8850h.png" alt="alt-text">
 <img src="/blog/assets/bench-kdb-3900x.png" alt="alt-text"></p>
-<p>For these simple aggregation queries, we run up to twice as fast as kdb+ on the same hardware. This gap grows when we
-introduce complexities. If we introduce some <code>null</code> values in the data, then the performance of kdb+ drops significantly.
-QuestDB, on the other hand, performs the same with or without nulls.</p>
+<p>The synthetic test above does not generate NULL values. What is interestin that as soon as data contains NULL values KDB+ sum() performance drops while QuestDB sum() does not. All other aggregate function in both KDB+ and QuestDB are unaffected.</p>
 <table>
 <thead>
 <tr><th>Test</th><th>Query (kdb+ 4.0)</th><th>Query (QuestDB 4.2)</th></tr>
 </thead>
 <tbody>
 <tr><td>sum of 1G doubles <br/>(nulls)</td><td>zz:1000000000?1000.0 <br/>zz:?[zz&lt;100;0Nf;zz]<br/>\t sum zz</td><td>create table 1G_double as (select rnd_double(5) d from long_sequence(1000000000));<br/>select sum(d) from 1G_double;</td></tr>
-<tr><td>max of 1G doubles <br/>(nulls)</td><td>zz:1000000000?1000.0<br/>zz:?[zz&lt;100;0Nf;zz]<br/>\t max zz</td><td>create table 1G_double as (select rnd_double(5) d from long_sequence(1000000000));<br/>select max(d) from 1G_double;</td></tr>
 </tbody>
 </table>
 <p><img src="/blog/assets/bench-kdb-8850H-sum-null.png" alt="alt-text"></p>
+<p>QuestDB's sum(int) result is 64-bit long sum, wheras KDB sum(int) overflows 32-bit sum. There is a little bit of scope left to make our implementation faster in the future.</p>
 <h3><a class="anchor" aria-hidden="true" id="perspectives-on-performance"></a><a href="#perspectives-on-performance" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Perspectives on performance</h3>
-<p>Execution times outlined above are more interesting when put into context.
-On the 8850H, QuestDB sums 1 billion integers in 144 milliseconds which roughly translates to <code>1bln / 0.142 = 7,042,253,521</code>
-records per second. Let's round that down to <code>7 billion records a second</code>. We can derive the time to sum two records
-as <code>2 / 7bln = 0.000000000285714285714 secs</code>. That's <code>0.28 nanoseconds</code>!</p>
-<p>To put this into context, here are the <strong><a href="https://colin-scott.github.io/personal_website/research/interactive_latency.html">latency numbers every programmer should know</a></strong> for 2020.
-A L1 cache reference is 1 nanosecond. Over one billion integers, QuestDB add 2 together in 0.28 nanoseconds. <strong>QuestDB can sum 6 integers together
-before a CPU can finish one L1 cache reference!</strong></p>
-<p><img src="/blog/assets/latency-numbers.png" alt="alt-text"></p>
-<p>We found that the limiting factor at this stage is on the memory side. In QuestDB, an <code>int</code> is <code>4 bytes</code>. In terms of storage,
-1 billion integers takes <code>1,000,000,000 x 4 / 1024 / 1024 / 1024 = 3.75 GB of data</code>. The 8850H has 2 memory channels and
-a maximum memory bandwidth of 42.7GB / second. Our sum, over 3.75 GB of data takes 0.142 seconds, which translates into
-<code>3.75 / 0.142 = 26.4 GB/second</code>.</p>
-<p>Another perspective is to compare those times popular databases.
-Here is how QuestDB compares to Postgres to sum 1 billion numbers from a given table <code>select sum(d) from 1G_double_nonNull;</code>.
-And this is a simple algorithm: sum values. The performance gap widens significantly with more complex queries.</p>
+<p>The execution times outlined above become more interesting once put into context. This is how QuestDB compares to Postgres to sum 1 billion numbers from a given table <code>select sum(d) from 1G_double_nonNull</code>.</p>
 <p><img src="/blog/assets/bench-pg-kdb-quest.png" alt="alt-text"></p>
-<h3><a class="anchor" aria-hidden="true" id="whats-next"></a><a href="#whats-next" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>What's next?</h3>
+<p>We found that our performance figures to be constained by available memory channels on CPU. If CPU has two memory channels, like in above examples, throwing more cores at the problem does not change outcome at all. This is applicable to both KDB+ and QuestDB. On other hand if CPU has more memory channels, pefromance scales almost lineraly. This is an example of <code>sum(double)</code> on Amazon c5.metal instance using 16 threads:</p>
+<p>todo: show chart comparing 260ms and 100ms (on c5.metal)</p>
+<p>Amazon c5.metal uses two 24-core Intel 8275CL with 6 memory channels each. Unfortunately CPUs are hyperthreaded. It is possible that performance could be even higher if CPU are be fully isolated to do the computations.</p>
+<p>If you have easy access to 8- or 12-channel servers and would like to benchmark QuestDB we'd love to hear the results. You can <a href="https://www.questdb.io/getstarted">download QuestDB here</a> and please don't forget to <b> <a href="https://github.com/questdb/questdb"> follow us on Github and star our project <img class="yellow-star" src="/img/star-yellow.svg"/></a></b></p>
+<h3><a class="anchor" aria-hidden="true" id="what-is-next"></a><a href="#what-is-next" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>What is next?</h3>
 <p>In further releases, we will roll out this model to other parts of our SQL. QuestDB implements SIMD in a generic
 fashion. This allows us to translate this model into about everything our SQL engine does, such as keyed aggregations,
-indexing etc. We are also not done on performance. With some work on assembly, we estimate we can gain another 15% speed on these
-operations. In the meantime, if you want to know exactly how we achieved this, 100% of our code is <strong><a href="https://github.com/questdb/questdb">open-source</a></strong>!</p>
+indexing etc. We will also keep improving QuestDB's performance. Through some further work on assembly, we estimate that we can gain another 15% speed on these
+operations. In the meantime, if you want to know exactly how we have achieved this, 100% of our code is <strong><a href="https://github.com/questdb/questdb">open-source</a></strong>!</p>
 <h3><a class="anchor" aria-hidden="true" id="about-the-release-questdb-42"></a><a href="#about-the-release-questdb-42" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>About the release: QuestDB 4.2</h3>
 <h4><a class="anchor" aria-hidden="true" id="summary"></a><a href="#summary" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Summary</h4>
 <p>We have implemented SIMD-based vector execution of queries, such as <code>select sum(value) from table</code>.
-This is around 100x faster than non-vector based execution. This is just the beginning. We are bringing vectors to more operations.
-Try our first implementation in this release and stay tuned for more features in the upcoming releases!</p>
+This is ~100x faster than non-vector based execution. This is just the beginning as we will introduce vectors to more operations going forward.
+Try our first implementation in this release - stay tuned for more features in the upcoming releases!</p>
 <h4><a class="anchor" aria-hidden="true" id="important"></a><a href="#important" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Important</h4>
 <p>Metadata file format has been changed to include a new flag for columns of type symbol.
 It is necessary to convert existing tables to new format. Running the following sql: <code>repair table myTable</code> will update the table metadata.</p>
@@ -160,7 +146,7 @@ It is necessary to convert existing tables to new format. Running the following 
 <li>SQL: allow the following syntax 'case cast(x as int) when 1 then ...'</li>
 <li>fix(griffin): syntax check for &quot;case&quot;-')' overlap, e.g. &quot;a + (case when .. ) end&quot;</li>
 </ul>
-</span></div></div><div class="blogSocialSection"></div></div><div class="blog-recent"><a class="button" href="/blog/">Recent Posts</a></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><div align="left" class="footersection"><h5>QuestDB</h5><a href="/docs/documentationOverview">Documentation</a><a href="/getstarted">Download</a><a href="/docs/roadmap">Roadmap</a></div><div align="left" class="footersection"><h5>Community</h5><a href="https://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://join.slack.com/t/questdb/shared_invite/enQtNzk4Nzg4Mjc2MTE2LTEzZThjMzliMjUzMTBmYzVjYWNmM2UyNWJmNDdkMDYyZmE0ZDliZTQxN2EzNzk5MDE3Zjc1ZmJiZmFiZTIwMGY&gt;"> Join Slack </a><a href="https://twitter.com/" target="@QuestDB" rel="noreferrer noopener">Twitter</a></div><div align="left" class="footersection"><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/questdb/questdb/">GitHub</a><a class="github-button" href="https://github.com/questdb/questdb" data-icon="octicon-star" data-count-href="/questdb/questdb/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="copyright">Copyright © 2020 QuestDB</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+</span></div></div><div class="blogSocialSection"></div></div><div class="blog-recent"><a class="button" href="/blog">Recent Posts</a></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><div align="left" class="footersection"><h5>QuestDB</h5><a href="/docs/documentationOverview">Documentation</a><a href="/getstarted">Download</a><a href="/docs/roadmap">Roadmap</a></div><div align="left" class="footersection"><h5>Community</h5><a href="https://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://join.slack.com/t/questdb/shared_invite/enQtNzk4Nzg4Mjc2MTE2LTEzZThjMzliMjUzMTBmYzVjYWNmM2UyNWJmNDdkMDYyZmE0ZDliZTQxN2EzNzk5MDE3Zjc1ZmJiZmFiZTIwMGY&gt;"> Join Slack </a><a href="https://twitter.com/" target="@QuestDB" rel="noreferrer noopener">Twitter</a></div><div align="left" class="footersection"><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/questdb/questdb/">GitHub</a><a class="github-button" href="https://github.com/questdb/questdb" data-icon="octicon-star" data-count-href="/questdb/questdb/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="copyright">Copyright © 2020 QuestDB</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
               !function(f,b,e,v,n,t,s)
               {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
               n.callMethod.apply(n,arguments):n.queue.push(arguments)};
