@@ -281,7 +281,6 @@ const siteConfig = {
         '/css/code-block-buttons.css',
     ],
     separateCss: [
-        '/css/code-block-buttons.css',
     ]
 
 };
