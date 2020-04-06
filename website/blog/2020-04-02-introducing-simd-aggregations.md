@@ -90,7 +90,7 @@ Unfortunately AWS CPUs are hyperthreaded.
 The performance could potentially be even higher if CPU were fully isolated to do the computations. 
 
 We did not get our hands on CPUs with more memory channels for this test, but if you have easy access to 8 or 12-channel servers and would like to benchmark QuestDB, we'd love to hear the results. 
-You can <a href="https://www.questdb.io/getstarted">download QuestDB here</a> and please don't forget to <b> <a href="https://github.com/questdb/questdb"> follow us on Github and star our project <img class="yellow-star" src="/img/star-yellow.svg"/></a></b>
+You can <a href="https://www.questdb.io/getstarted">download QuestDB</a> and leave a <a target="_blank" href="https://github.com/questdb/questdb/issues/146">comment on github</a>
 
 ### What is next?
 In further releases, we will roll out this functionality to other parts of our SQL. QuestDB implements SIMD in a generic 
