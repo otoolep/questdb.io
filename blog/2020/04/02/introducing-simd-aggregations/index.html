@@ -76,7 +76,8 @@ QuestDB is available <a href="https://github.com/questdb/questdb">open-source un
 aggregation for time-bucketed queries using <code>SAMPLE BY</code>.</p>
 <p>If you like what we do, please consider <b> <a href="https://github.com/questdb/questdb"> following us on Github and starring our project <img class="yellow-star" src="/img/star-yellow.svg"/></a></b></p>
 <h3><a class="anchor" aria-hidden="true" id="how-fast-is-it"></a><a href="#how-fast-is-it" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>How fast is it?</h3>
-<p>To get an idea of how fast aggregations have become, we ran a benchmark against kdb+, which is one of the fastest databases out there. Coincidentally, their new version 4.0 (released a few days ago) introduces performance improvements through implicit parallelism.</p>
+<p>To get an idea of how fast aggregations have become, we ran a benchmark against kdb+, which is one of the fastest databases out there.
+Coincidentally, their new version 4.0 (released a few days ago) introduces performance improvements through implicit parallelism.</p>
 <h4><a class="anchor" aria-hidden="true" id="setup"></a><a href="#setup" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Setup</h4>
 <p>We have benchmarked QuestDB against kdb's latest version using 2 different CPUs: the <a href="https://ark.intel.com/content/www/us/en/ark/products/134899/intel-core-i7-8850h-processor-9m-cache-up-to-4-30-ghz.html">Intel 8850H</a>
 and the <a href="https://www.amd.com/en/products/cpu/amd-ryzen-9-3900x">AMD Ryzen 3900X</a>. Both databases were running on 4 threads.</p>
@@ -96,24 +97,49 @@ and the <a href="https://www.amd.com/en/products/cpu/amd-ryzen-9-3900x">AMD Ryze
 <h4><a class="anchor" aria-hidden="true" id="results"></a><a href="#results" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Results</h4>
 <p><img src="/blog/assets/bench-kdb-8850h.png" alt="alt-text">
 <img src="/blog/assets/bench-kdb-3900x.png" alt="alt-text"></p>
-<p>The synthetic test above does not generate NULL values. What it is interesting is that as soon as data contains NULL values KDB+ sum() performance drops while QuestDB sum() does not. All other aggregate functions in both KDB+ and QuestDB are unaffected.</p>
+<p>The dataset in use does not contain NULL values. Interestingly, as soon as the data contains NULL values,
+kdb+ sum() performance drops while QuestDB sum() does not. All other aggregate functions in both kdb+ and QuestDB are unaffected.</p>
 <table>
 <thead>
 <tr><th>Test</th><th>Query (kdb+ 4.0)</th><th>Query (QuestDB 4.2)</th></tr>
 </thead>
 <tbody>
-<tr><td>sum of 1G doubles <br/>(nulls)</td><td>zz:1000000000?1000.0 <br/>zz:?[zz&lt;100;0Nf;zz]<br/>\t sum zz</td><td>create table 1G_double as (select rnd_double(5) d from long_sequence(1000000000));<br/>select sum(d) from 1G_double;</td></tr>
+<tr><td>sum of 1Bn doubles <br/>(nulls)</td><td>zz:1000000000?1000.0 <br/>zz:?[zz&lt;100;0Nf;zz]<br/>\t sum zz</td><td>create table 1G_double as (select rnd_double(5) d from long_sequence(1000000000));<br/>select sum(d) from 1G_double;</td></tr>
 </tbody>
 </table>
 <p><img src="/blog/assets/bench-kdb-8850H-sum-null.png" alt="alt-text"></p>
-<p>QuestDB's sum(int) result is 64-bit long sum, whereas KDB sum(int) overflows 32-bit sum. There is a little bit of scope left to make our implementation faster in the future.</p>
+<p>QuestDB's sum(int) result is 64-bit long, whereas kdb+ sum(int) returns a 32-bit integer (even if the sum overflows).
+Our approach is slightly more complicated as we convert each 32-bit integer to a 64-bit long to avoid overflow.
+By removing this overhead and more, there is a little bit of scope left to make our implementation faster in the future.</p>
 <h3><a class="anchor" aria-hidden="true" id="perspectives-on-performance"></a><a href="#perspectives-on-performance" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Perspectives on performance</h3>
-<p>The execution times outlined above become more interesting once put into context. This is how QuestDB compares to Postgres when doing a sum of 1 billion numbers from a given table <code>select sum(d) from 1G_double_nonNull</code>.</p>
+<p>The execution times outlined above become more interesting once put into context.
+This is how QuestDB compares to Postgres when doing a sum of 1 billion numbers from a given table <code>select sum(d) from 1G_double_nonNull</code>.</p>
 <p><img src="/blog/assets/bench-pg-kdb-quest.png" alt="alt-text"></p>
-<p>We found that our performance figures to be constrained by available memory channels on CPU. If CPU has two memory channels, like in the above examples, throwing more cores at the problem does not improve the performance. This is applicable to both KDB+ and QuestDB. On the other hand, if CPU has more memory channels, performance scales almost linearly. This is an example of <code>sum(double)</code> on Amazon c5.metal instance using 16 threads:</p>
-<p>todo: show chart comparing 260ms and 100ms (on c5.metal)</p>
-<p>Amazon c5.metal uses two 24-core Intel 8275CL with 6 memory channels each. Unfortunately CPUs are hyperthreaded. It is also possible that performance could be even higher if CPU were fully isolated to do the computations.</p>
-<p>If you have easy access to 8 or 12-channel servers and would like to benchmark QuestDB we'd love to hear the results. You can <a href="https://www.questdb.io/getstarted">download QuestDB here</a> and please don't forget to <b> <a href="https://github.com/questdb/questdb"> follow us on Github and star our project <img class="yellow-star" src="/img/star-yellow.svg"/></a></b></p>
+<p>We found that our performance figures are constrained by the available memory channels. Both the 8850H and the 3900X
+have 2 memory channels, and throwing more than 4 cores at the query above does not improve the performance.
+On the other hand, if the CPU has more memory channels, then performance scales almost linearly for both kdb+ and QuestDB.</p>
+<p>To get an idea of the impact of memory channels, we spun off a m5.metal instance on AWS. This instance has two
+24-core Intel 8275CL with 6 memory channels each. Here are the results compared to the 2-channel 3900X:</p>
+<table>
+<thead>
+<tr><th>cpu cores</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th></tr>
+</thead>
+<tbody>
+<tr><td>8275CL</td><td>910</td><td>605</td><td>380</td><td>240</td><td>193</td><td>176</td><td>156</td><td>148</td><td>140</td><td>136</td><td>133</td><td>141</td></tr>
+<tr><td>3900X</td><td>621</td><td>502</td><td>381</td><td>260</td><td>260</td><td>260</td><td>260</td><td>260</td><td>260</td><td>260</td><td>260</td><td>260</td></tr>
+</tbody>
+</table>
+<p>We plot those results below on the left. On the right-hand side, we normalise the results for each CPU and plot the performance
+improvement of going from 1 to more cores.</p>
+<p><img src="/blog/assets/core-scale.png" alt="alt-text"></p>
+<p>Interestingly, the 2-channel 3900X, is much faster on 1 core than the
+8275CL. But it does not scale well and hits a performance ceiling at 4 cores. This is because it only has 2 memory channels
+that are already saturated. The 6-channel 8275CL allows QuestDB to
+scale almost linearly as we add more CPU cores and hits a performance ceiling at around 12 cores.</p>
+<p>Unfortunately AWS CPUs are hyperthreaded.
+The performance could potentially be even higher if CPU were fully isolated to do the computations.</p>
+<p>We did not get our hands on CPUs with more memory channels for this test, but if you have easy access to 8 or 12-channel servers and would like to benchmark QuestDB, we'd love to hear the results.
+You can <a href="https://www.questdb.io/getstarted">download QuestDB here</a> and please don't forget to <b> <a href="https://github.com/questdb/questdb"> follow us on Github and star our project <img class="yellow-star" src="/img/star-yellow.svg"/></a></b></p>
 <h3><a class="anchor" aria-hidden="true" id="what-is-next"></a><a href="#what-is-next" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>What is next?</h3>
 <p>In further releases, we will roll out this functionality to other parts of our SQL. QuestDB implements SIMD in a generic
 fashion, which will allow us to continue adding SIMD to about everything our SQL engine does, such as keyed aggregations,
@@ -146,7 +172,7 @@ It is necessary to convert existing tables to new format. Running the following 
 <li>SQL: allow the following syntax 'case cast(x as int) when 1 then ...'</li>
 <li>fix(griffin): syntax check for &quot;case&quot;-')' overlap, e.g. &quot;a + (case when .. ) end&quot;</li>
 </ul>
-</span></div></div><div class="blogSocialSection"></div></div><div class="blog-recent"><a class="button" href="/blog">Recent Posts</a></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><div align="left" class="footersection"><h5>QuestDB</h5><a href="/docs/documentationOverview">Documentation</a><a href="/getstarted">Download</a><a href="/docs/roadmap">Roadmap</a></div><div align="left" class="footersection"><h5>Community</h5><a href="https://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://join.slack.com/t/questdb/shared_invite/enQtNzk4Nzg4Mjc2MTE2LTEzZThjMzliMjUzMTBmYzVjYWNmM2UyNWJmNDdkMDYyZmE0ZDliZTQxN2EzNzk5MDE3Zjc1ZmJiZmFiZTIwMGY&gt;"> Join Slack </a><a href="https://twitter.com/" target="@QuestDB" rel="noreferrer noopener">Twitter</a></div><div align="left" class="footersection"><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/questdb/questdb/">GitHub</a><a class="github-button" href="https://github.com/questdb/questdb" data-icon="octicon-star" data-count-href="/questdb/questdb/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="copyright">Copyright © 2020 QuestDB</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+</span></div></div><div class="blogSocialSection"></div></div><div class="blog-recent"><a class="button" href="/blog/">Recent Posts</a></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><div align="left" class="footersection"><h5>QuestDB</h5><a href="/docs/documentationOverview">Documentation</a><a href="/getstarted">Download</a><a href="/docs/roadmap">Roadmap</a></div><div align="left" class="footersection"><h5>Community</h5><a href="https://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://join.slack.com/t/questdb/shared_invite/enQtNzk4Nzg4Mjc2MTE2LTEzZThjMzliMjUzMTBmYzVjYWNmM2UyNWJmNDdkMDYyZmE0ZDliZTQxN2EzNzk5MDE3Zjc1ZmJiZmFiZTIwMGY&gt;"> Join Slack </a><a href="https://twitter.com/" target="@QuestDB" rel="noreferrer noopener">Twitter</a></div><div align="left" class="footersection"><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/questdb/questdb/">GitHub</a><a class="github-button" href="https://github.com/questdb/questdb" data-icon="octicon-star" data-count-href="/questdb/questdb/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="copyright">Copyright © 2020 QuestDB</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
               !function(f,b,e,v,n,t,s)
               {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
               n.callMethod.apply(n,arguments):n.queue.push(arguments)};
