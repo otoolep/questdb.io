@@ -34,11 +34,11 @@ and the [AMD Ryzen 3900X](https://www.amd.com/en/products/cpu/amd-ryzen-9-3900x)
 #### Queries
 |Test	|Query (kdb+ 4.0)	|Query (QuestDB 4.2)|
 |---|---|---|
-|sum of 1Bn doubles <br/> no nulls|zz:1000000000?1000.0 <br/>\t sum zz	|create table 1G_double_nonNull as (select rnd_double() d from long_sequence(1000000000)); <br/> select sum(d) from 1G_double_nonNull;|
-|sum of 1Bn ints |zz:1000000000?1000i <br/> \t sum zz         |create table 1G_int_nonNull as (select rnd_int() i from long_sequence(1000000000)); <br/> select sum(i) from 1G_int_nonNull; |
-|sum of 1Bn longs	|zz:1000000000?1000j <br/>\t sum zz|	create table 1G_long_nonNull as (select rnd_long() l from long_sequence(1000000000));<br/>select sum(l) from 1G_long_nonNull;|
-|max of 1Bn doubles|zz:1000000000?1000.0<br/>\t max zz|	create table 1G_double_nonNull as (select rnd_double() d from long_sequence(1000000000));<br/>select max(d) from 1G_double_nonNull;|
-|max of 1Bn longs |zz:1000000000?1000<br/>\t max zz|	create table 1G_long_nonNull as (select rnd_long() l from long_sequence(1000000000));<br/>select max(l) from 1G_long_nonNull;|
+|sum of 1Bn doubles <br/> no nulls|zz:1000000000?1000.0 <br/>\t sum zz	| create table zz as (select rnd_double() d from long_sequence(1000000000)); <br/> select sum(d) from zz;|
+|sum of 1Bn ints |zz:1000000000?1000i <br/> \t sum zz |create table zz as (select rnd_int() i from long_sequence(1000000000)); <br/> select sum(i) from zz; |
+|sum of 1Bn longs	|zz:1000000000?1000j <br/>\t sum zz|	create table zz as (select rnd_long() l from long_sequence(1000000000));<br/>select sum(l) from zz;|
+|max of 1Bn doubles|zz:1000000000?1000.0<br/>\t max zz|	create table zz as (select rnd_double() d from long_sequence(1000000000));<br/>select max(d) from zz;|
+|max of 1Bn longs |zz:1000000000?1000<br/>\t max zz|	create table zz as (select rnd_long() l from long_sequence(1000000000));<br/>select max(l) from zz;|
 
 #### Results
 ![alt-text](assets/bench-kdb-8850h.png)
@@ -49,7 +49,7 @@ kdb+ sum() performance drops while QuestDB sum() does not. All other aggregate f
 
 |Test	|Query (kdb+ 4.0)	|Query (QuestDB 4.2)|
 |---|---|---|
-|sum of 1Bn doubles <br/>(nulls)	|zz:1000000000?1000.0 <br/>zz:?[zz<100;0Nf;zz]<br/>\t sum zz|	create table 1G_double as (select rnd_double(5) d from long_sequence(1000000000));<br/>select sum(d) from 1G_double;|
+|sum of 1Bn doubles <br/>(nulls)	|zz:1000000000?1000.0 <br/>zz:?[zz<100;0Nf;zz]<br/>\t sum zz|	create table zz as (select rnd_double(5) d from long_sequence(1000000000));<br/>select sum(d) from zz;|
 
 ![alt-text](assets/bench-kdb-8850H-sum-null.png)
 
