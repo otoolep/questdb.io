@@ -24,7 +24,8 @@ If you like what we do, please consider <b> <a href="https://github.com/questdb/
 
 
 ### How fast is it?
-To get an idea of how fast aggregations have become, we ran a benchmark against kdb+, which is one of the fastest databases out there. Coincidentally, their new version 4.0 (released a few days ago) introduces performance improvements through implicit parallelism. 
+To get an idea of how fast aggregations have become, we ran a benchmark against kdb+, which is one of the fastest databases out there. 
+Coincidentally, their new version 4.0 (released a few days ago) introduces performance improvements through implicit parallelism. 
 
 #### Setup
 We have benchmarked QuestDB against kdb's latest version using 2 different CPUs: the [Intel 8850H](https://ark.intel.com/content/www/us/en/ark/products/134899/intel-core-i7-8850h-processor-9m-cache-up-to-4-30-ghz.html) 
@@ -43,29 +44,53 @@ and the [AMD Ryzen 3900X](https://www.amd.com/en/products/cpu/amd-ryzen-9-3900x)
 ![alt-text](assets/bench-kdb-8850h.png)
 ![alt-text](assets/bench-kdb-3900x.png)
 
-The synthetic test above does not generate NULL values. What it is interesting is that as soon as data contains NULL values KDB+ sum() performance drops while QuestDB sum() does not. All other aggregate functions in both KDB+ and QuestDB are unaffected.
+The dataset in use does not contain NULL values. Interestingly, as soon as the data contains NULL values, 
+kdb+ sum() performance drops while QuestDB sum() does not. All other aggregate functions in both kdb+ and QuestDB are unaffected.
 
 |Test	|Query (kdb+ 4.0)	|Query (QuestDB 4.2)|
 |---|---|---|
-|sum of 1G doubles <br/>(nulls)	|zz:1000000000?1000.0 <br/>zz:?[zz<100;0Nf;zz]<br/>\t sum zz|	create table 1G_double as (select rnd_double(5) d from long_sequence(1000000000));<br/>select sum(d) from 1G_double;|
+|sum of 1Bn doubles <br/>(nulls)	|zz:1000000000?1000.0 <br/>zz:?[zz<100;0Nf;zz]<br/>\t sum zz|	create table 1G_double as (select rnd_double(5) d from long_sequence(1000000000));<br/>select sum(d) from 1G_double;|
 
 ![alt-text](assets/bench-kdb-8850H-sum-null.png)
 
-QuestDB's sum(int) result is 64-bit long sum, whereas KDB sum(int) overflows 32-bit sum. There is a little bit of scope left to make our implementation faster in the future.
+QuestDB's sum(int) result is 64-bit long, whereas kdb+ sum(int) returns a 32-bit integer (even if the sum overflows). 
+Our approach is slightly more complicated as we convert each 32-bit integer to a 64-bit long to avoid overflow. 
+By removing this overhead and more, there is a little bit of scope left to make our implementation faster in the future.
 
 ### Perspectives on performance
 
-The execution times outlined above become more interesting once put into context. This is how QuestDB compares to Postgres when doing a sum of 1 billion numbers from a given table `select sum(d) from 1G_double_nonNull`. 
+The execution times outlined above become more interesting once put into context. 
+This is how QuestDB compares to Postgres when doing a sum of 1 billion numbers from a given table `select sum(d) from 1G_double_nonNull`. 
 
 ![alt-text](assets/bench-pg-kdb-quest.png)
 
-We found that our performance figures to be constrained by available memory channels on CPU. If CPU has two memory channels, like in the above examples, throwing more cores at the problem does not improve the performance. This is applicable to both KDB+ and QuestDB. On the other hand, if CPU has more memory channels, performance scales almost linearly. This is an example of `sum(double)` on Amazon c5.metal instance using 16 threads:
+We found that our performance figures are constrained by the available memory channels. Both the 8850H and the 3900X 
+have 2 memory channels, and throwing more than 4 cores at the query above does not improve the performance. 
+On the other hand, if the CPU has more memory channels, then performance scales almost linearly for both kdb+ and QuestDB. 
 
-todo: show chart comparing 260ms and 100ms (on c5.metal)
+To get an idea of the impact of memory channels, we spun off a m5.metal instance on AWS. This instance has two 
+ 24-core Intel 8275CL with 6 memory channels each. Here are the results compared to the 2-channel 3900X:
 
-Amazon c5.metal uses two 24-core Intel 8275CL with 6 memory channels each. Unfortunately CPUs are hyperthreaded. It is also possible that performance could be even higher if CPU were fully isolated to do the computations.
+|cpu cores|1|2|3|4|5|6|7|8|9|10|11|12|
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+|8275CL|910|605|380|240|193|176|156|148|140|136|133|141|
+|3900X|621|502|381|260|260|260|260|260|260|260|260|260|
 
-If you have easy access to 8 or 12-channel servers and would like to benchmark QuestDB we'd love to hear the results. You can <a href="https://www.questdb.io/getstarted">download QuestDB here</a> and please don't forget to <b> <a href="https://github.com/questdb/questdb"> follow us on Github and star our project <img class="yellow-star" src="/img/star-yellow.svg"/></a></b>
+We plot those results below on the left. On the right-hand side, we normalise the results for each CPU and plot the performance 
+improvement of going from 1 to more cores. 
+
+![alt-text](assets/core-scale.png)
+
+Interestingly, the 2-channel 3900X, is much faster on 1 core than the 
+8275CL. But it does not scale well and hits a performance ceiling at 4 cores. This is because it only has 2 memory channels 
+that are already saturated. The 6-channel 8275CL allows QuestDB to 
+scale almost linearly as we add more CPU cores and hits a performance ceiling at around 12 cores.
+
+Unfortunately AWS CPUs are hyperthreaded. 
+The performance could potentially be even higher if CPU were fully isolated to do the computations. 
+
+We did not get our hands on CPUs with more memory channels for this test, but if you have easy access to 8 or 12-channel servers and would like to benchmark QuestDB, we'd love to hear the results. 
+You can <a href="https://www.questdb.io/getstarted">download QuestDB here</a> and please don't forget to <b> <a href="https://github.com/questdb/questdb"> follow us on Github and star our project <img class="yellow-star" src="/img/star-yellow.svg"/></a></b>
 
 ### What is next?
 In further releases, we will roll out this functionality to other parts of our SQL. QuestDB implements SIMD in a generic 
