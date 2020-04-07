@@ -5,8 +5,8 @@
         <link>https://questdb.io/blog</link>
         <description>The best place to stay up-to-date with the latest QuestDB news and events.</description>
         <lastBuildDate>Thu, 02 Apr 2020 06:00:00 GMT</lastBuildDate>
-        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
-        <generator>https://github.com/jpmonette/feed</generator>
+        <docs>http://blogs.law.harvard.edu/tech/rss</docs>
+        <generator>Feed for Node.js</generator>
         <image>
             <title>QuestDB Blog</title>
             <url>https://questdb.io/img/QuestDB_Logo.png</url>
@@ -18,7 +18,7 @@
             <link>https://questdb.io/blog/2020/04/02/using-simd-to-aggregate-billions-of-rows-per-second.html</link>
             <guid>https://questdb.io/blog/2020/04/02/using-simd-to-aggregate-billions-of-rows-per-second.html</guid>
             <pubDate>Thu, 02 Apr 2020 06:00:00 GMT</pubDate>
-            <description><![CDATA[<p><img class="banner-4-2" src="/blog/assets/banner-4-2.png" alt="drawing"></p> <p><a href="https://en.wikipedia.org/wiki/SIMD" target="_blank">SIMD instructions</a> are specific CPU instruction sets for arithmetic calculations that use synthetic parallelisation. The parallelisation is synthetic because instead of spreading the work across CPU cores, SIMD performs vector operations on multiple ...</p>]]></description>
+            <description><![CDATA[<p><a href="https://www.questdb.io/getstarted" target="_blank"><img class="banner-4-2" src="/blog/assets/banner-4-2.png" alt="drawing"></a></p> <p><a href="https://en.wikipedia.org/wiki/SIMD" target="_blank">SIMD instructions</a> are specific CPU instruction sets for arithmetic calculations that use synthetic parallelisation. The parallelisation is synthetic because instead of spreading the work across CPU cores, SIMD performs vector operations on multiple ...</p>]]></description>
         </item>
         <item>
             <title><![CDATA[The art of thread messaging]]></title>
