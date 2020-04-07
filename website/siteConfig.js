@@ -274,7 +274,8 @@ const siteConfig = {
         'https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js',
         '/js/code-block-buttons.js',
         '/js/getstarted.js',
-        '/js/signup.js'
+        '/js/signup.js',
+        '/js/hotjar.js'
     ],
     stylesheets: [
         'https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,500,600,700|Source+Code+Pro:400,700|Open+Sans:300,400,600,700',
