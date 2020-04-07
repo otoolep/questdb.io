@@ -3,7 +3,7 @@ title: Using SIMD to aggregate billions of rows per second (on a laptop)
 author: Tancrede Collard
 ---
 
-<img class="banner-4-2" src="/blog/assets/banner-4-2.png" alt="drawing"/> 
+<a href="https://www.questdb.io/getstarted" target="_blank"><img class="banner-4-2" src="/blog/assets/banner-4-2.png" alt="drawing"/></a> 
 
 <a href="https://en.wikipedia.org/wiki/SIMD" target="_blank">SIMD instructions</a> are specific CPU instruction sets for arithmetic calculations that use synthetic parallelisation. 
 The parallelisation is synthetic because instead of spreading the work across CPU cores, 
@@ -42,6 +42,8 @@ and the [AMD Ryzen 3900X](https://www.amd.com/en/products/cpu/amd-ryzen-9-3900x)
 
 #### Results
 ![alt-text](assets/bench-kdb-8850h.png)
+
+
 ![alt-text](assets/bench-kdb-3900x.png)
 
 The dataset producing the results shown above does not contain NULL values. Interestingly, as soon as the data contains NULL values, kdb+ sum() performance drops while QuestDB sum() query time is unchanged as seen on the chart below.
