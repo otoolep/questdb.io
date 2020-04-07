@@ -1,5 +1,5 @@
 ---
-title: Fast aggregations using SIMD instructions
+title: Using SIMD to aggregate billions of rows per second (on a laptop)
 author: Tancrede Collard
 ---
 
