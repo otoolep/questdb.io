@@ -4,7 +4,7 @@ title: CRUD Operations
 sidebar_label: CRUD Operations
 ---
 
-`LASTEST BY` allows QuestDB developers to implement CRUD operations over immutable data stores. 
+`LATEST BY` allows QuestDB developers to implement CRUD operations over immutable data stores. 
 In this document we will describe each of CRUD operations and how to implement it using `LATEST BY`.
 
 ## (C)reate
