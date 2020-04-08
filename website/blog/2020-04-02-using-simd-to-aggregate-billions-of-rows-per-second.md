@@ -1,5 +1,5 @@
 ---
-title: Using SIMD to aggregate billions of rows per second (on a laptop)
+title: QuestDB - Using SIMD to aggregate billions of rows per second
 author: Tancrede Collard
 ---
 
@@ -11,17 +11,13 @@ SIMD performs vector operations on multiple items using a **single** CPU instruc
 In practice, if you were to add 8 numbers together, SIMD does that in 1 operation instead of 8.
 We get compounded performance improvements by combining SIMD with actual parallelisation and spanning the work across CPUs.
 
-
 QuestDB 4.2 introduces SIMD instructions, which made our aggregations faster by 100x! 
-QuestDB is available [open-source under Apache 2.0](https://github.com/questdb/questdb).
+QuestDB is available [open-source under Apache 2.0](https://github.com/questdb/questdb). If you like what we do, please consider <b> <a href="https://github.com/questdb/questdb"> following us on Github and starring our project <img class="yellow-star" src="/img/star-yellow.svg"/></a></b>
  
  As of now, SIMD operations are available for non-keyed aggregation queries, such as
 ```select sum(value) from table```. In future releases, we will extend these to keyed aggregations, for example
 ```select key, sum(value) from table``` (note the intentional omission of `GROUP BY`). This will also result in ultrafast 
 aggregation for time-bucketed queries using `SAMPLE BY`.
-
-If you like what we do, please consider <b> <a href="https://github.com/questdb/questdb"> following us on Github and starring our project <img class="yellow-star" src="/img/star-yellow.svg"/></a></b>
-
 
 ### How fast is it?
 To get an idea of how fast aggregations have become, we ran a benchmark against kdb+, which is one of the fastest databases out there. 
