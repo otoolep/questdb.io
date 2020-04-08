@@ -208,8 +208,8 @@ const siteConfig = {
             {blog: true, label: 'Blog'},
             {page: "careers", label: 'Careers'},
             {page: 'about', label: 'About'},
-            {search: true}
-            // {href: "https://github.com/questdb/questdb", label: 'GitHub'},
+            {search: true},
+            {href: "https://github.com/questdb/questdb", label: 'GitHub'},
         ],
     // If you have users set above, you add it here:
 
