@@ -1,0 +1,15 @@
+.github {
+    margin-top: 5px;
+    z-index: 99;
+}
+
+.slack img {
+    margin-left: 7px;
+    /*filter: brightness(100) contrast(100);*/
+    filter: contrast(50);
+}
+
+.slidingNav li:nth-child(7) a {
+    width: 86px;
+    justify-content: left!important;
+}

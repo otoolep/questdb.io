@@ -82,8 +82,8 @@ class Index extends React.Component {
                                 '<p class="left subTopTitle">QuestDB is a SQL open-source time-series database to store, stream and query data - faster</p>' +
                                 '<br>' +
                                 '<ul class="buttons">' +
-                                '<li class="cta margin-button"><a href="/getstarted">Get QuestDB</a></li>' +
-                                '<li class="cta getquestdb"><a href="https://github.com/questdb/questdb/">github</a></li>' +
+                                '<li class="margin-button"><a href="/getstarted">Get QuestDB</a></li>' +
+                                '<li class="github-main"><a class="cta" target="_blank" href="https://github.com/questdb/questdb/"><img src="/img/GitHub-Mark-32px.png">github</a></li>' +
                                 '</ul>'
                         }
                     ]

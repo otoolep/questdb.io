@@ -149,6 +149,10 @@
         transform: rotateX(180deg);
     }
 
+    .shadow {
+        height: 396px;
+    }
+
 }
 
 /* This container is needed to position the front and back side */

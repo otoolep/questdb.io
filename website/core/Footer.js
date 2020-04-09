@@ -27,7 +27,7 @@ class Footer extends React.Component {
         return (
             <footer className="nav-footer" id="footer">
                 <section className="sitemap">
-{/*                    <a href={this.props.config.baseUrl} className="nav-home">
+                    {/*                    <a href={this.props.config.baseUrl} className="nav-home">
                         {this.props.config.footerIcon && (
                             <img
                                 src={this.props.config.baseUrl + this.props.config.footerIcon}
@@ -72,6 +72,18 @@ class Footer extends React.Component {
                         <h5>More</h5>
                         <a href={`${this.props.config.baseUrl}blog`}>Blog</a>
                         <a href="https://github.com/questdb/questdb/">GitHub</a>
+                        <span className={'sucker'}>
+                            <a
+                                className="github-button"
+                                href={this.props.config.repoUrl}
+                                data-icon="octicon-star"
+                                data-count-href="/questdb/questdb/stargazers"
+                                data-show-count="true"
+                                data-count-aria-label="# stargazers on GitHub"
+                                aria-label="Star this project on GitHub">
+                            Star
+                            </a>
+                        </span>
                         <a
                             className="github-button"
                             href={this.props.config.repoUrl}

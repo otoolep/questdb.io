@@ -13,22 +13,6 @@ a:visited {
     color: #f88800;
 }
 
-@media only screen and (min-width: 1025px) {
-    .logo {
-        padding-top: 30px;
-        padding-bottom: 30px;
-        height: 100px !important;
-    }
-}
-
-@media only screen and (max-width: 1025px) {
-    .logo {
-        padding-top: 10px;
-        padding-bottom: 10px;
-        height: 50px !important;
-    }
-}
-
 .subTopTitle {
     line-height: 1.4em !important;
 }
@@ -259,7 +243,7 @@ div.blockjustified {
 }
 
 
-.buttons li.cta {
+.buttons .cta {
     display: inline-block;
     color: white;
     transition: transform 0.2s;
@@ -270,14 +254,13 @@ div.blockjustified {
 }
 
 
-.buttons .getquestdb {
-    background: linear-gradient(270deg, #fd7d05, #fd8b0e, #d0720c);
-    background-size: 600% 600%;
+.cta {
+    background-color: #e68200;
+    /*background-size: 600% 600%;*/
 
     -webkit-animation: buttonAnimation 15s ease infinite;
     -moz-animation: buttonAnimation 15s ease infinite;
     animation: buttonAnimation 15s ease infinite;
-
 }
 
 @-webkit-keyframes buttonAnimation {
@@ -296,15 +279,18 @@ div.blockjustified {
     100%{background-position:0% 50%}
 }
 
-.github-btn-large {
-    height: 200px;
-}
-
 .btn {
     padding-top: 5px;
 }
 
-.buttons li.cta a, .buttons li:hover a {
+.github-main img {
+    width: 25px;
+    margin-right: 8px;
+    margin-top: -2px;
+    filter: brightness(100);
+}
+
+.buttons li a, .buttons a:hover {
     color: white;
     cursor: pointer;
 }
@@ -455,13 +441,6 @@ div.interfaces {
     background: none;
 }
 
-
-/*.slidingNav li:nth-child(5) {*/
-/*    background-color: #e68200;*/
-/*    font-weight: 500;*/
-/*    border-radius: 2px;*/
-/*}*/
-
 .slidingNav li {
     font-weight: 500;
     border-radius: 2px;
@@ -567,25 +546,28 @@ body > div.fixedHeaderContainer {
 
 .buttons li {
     display: inline-block;
+    /*border: 1px solid #984631;*/
+}
+
+.buttons a {
+    display: inline-block;
     color: white;
     /*border: 1px solid #984631;*/
     border: 1px solid rgb(250, 240, 255);
-    font-size: 11px;
+    font-size: 14pt;
     text-transform: uppercase;
     font-weight: 600;
-    padding: 8px 25px;
+    padding: 10px 30px;
     border-radius: 5px;
-    transition: transform 0.2s;
+    transition: transform 0.1s;
 }
 
 
-.buttons li:hover {
+.buttons a:hover {
     cursor: pointer;
     color: white;
-    background-color: #e68200;
-    /*background-color: #de4f3a;*/
-    /*transform: translate(0px, -2px);*/
-    transform: scale(1.02);
+    /*background-color: #e68200;*/
+    transform: scale(1.1) translate(2px, -3px);
     -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */
     -moz-user-select: none; /* Old versions of Firefox */
@@ -630,11 +612,31 @@ body > div.fixedHeaderContainer {
     text-align: center;
 }
 
-@media only screen and (max-width: 735px) {
-
+@media only screen and (max-width: 735px){
     .toptitle img {
         display: none;
     }
+
+}
+
+@media only screen and (max-width: 1120px){
+    .logo {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        height: 50px !important;
+    }
+}
+
+@media only screen and (min-width: 1121px){
+    .logo {
+        padding-top: 30px;
+        padding-bottom: 30px;
+        height: 100px !important;
+    }
+}
+
+
+@media only screen and (max-width: 1023px) {
 
     .toptitle, .sql, .community, .interfaces, .whatwedo, .perf, .demo, .start {
         font-size: 20px;
@@ -675,11 +677,6 @@ body > div.fixedHeaderContainer {
 
     .maintitle {
         font-size: 28px;
-    }
-
-
-    .buttons li {
-        font-size: 11px;
     }
 
     .featuresList {
@@ -839,14 +836,19 @@ body > div.fixedHeaderContainer {
         width: 20%;
         margin-bottom: 0;
     }
-
-    .navigationSlider .slidingNav ul li a {
-        height: 30px;
-    }
-
 }
 
-@media only screen and (min-width: 736px) {
+.navigationSlider .slidingNav ul li a {
+    height: 30px;
+    font-size: 1em;
+    font-weight: 300;
+}
+
+.fixedHeaderContainer header img {
+    height: 22px;
+}
+
+@media only screen and (min-width: 1024px) {
 
     .about, .sql, .community, .interfaces, .whatwedo, .perf, .start, .demo {
         font-size: 20px;
@@ -898,11 +900,6 @@ body > div.fixedHeaderContainer {
         margin-top: 50px;
         width: 60%;
     }
-
-    .buttons li {
-        font-size: 18px;
-    }
-
 
     .featuresList {
         width: 50%;

@@ -208,8 +208,8 @@ const siteConfig = {
             {blog: true, label: 'Blog'},
             {page: "careers", label: 'Careers'},
             {page: 'about', label: 'About'},
+            {href: "https://serieux-saucisson-79115.herokuapp.com/", label: 'Join'},
             {search: true},
-            {href: "https://github.com/questdb/questdb", label: 'GitHub'},
         ],
     // If you have users set above, you add it here:
 
@@ -270,6 +270,7 @@ const siteConfig = {
     repoUrl: 'https://github.com/questdb/questdb',
 
     scripts: [
+        '/js/menu-hack.js',
         'https://buttons.github.io/buttons.js',
         'https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js',
         '/js/code-block-buttons.js',
