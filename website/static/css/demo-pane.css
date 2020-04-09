@@ -33,7 +33,7 @@
     padding-bottom: 10px;
 }
 
-@media only screen and (min-width: 735px) {
+@media only screen and (min-width: 1024px) {
 
     .demo {
         margin-top: -60px;

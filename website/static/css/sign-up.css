@@ -22,6 +22,7 @@
         width: 400px;
         align-self: flex-end;
         margin: -300px 5% -80px auto;
+        perspective: 1000px;
     }
 
     .signup, .signup-back {
@@ -81,10 +82,6 @@
         font-size: 130%;
         font-weight: 400;
     }
-
-    .flip-box {
-        perspective: 1000px;
-    }
 }
 
 .signup .send:hover{
@@ -96,16 +93,23 @@
 @media only screen and (max-width: 1000px) {
 
     .flip-box {
+        width: 80%;
+        align-self: flex-end;
+        margin-left: auto;
+        margin-right: auto;
+        perspective: 1000px;
+    }
+
+
+    .signup, .signup-back {
         background: linear-gradient(270deg, #fd7d05, #fd8b0e, #d0720c);
         -webkit-animation: buttonAnimation 10s ease infinite;
         -moz-animation: buttonAnimation 10s ease infinite;
         animation: buttonAnimation 10s ease infinite;
         background-size: 300% 300%;
 
-        width: 100%;
+        width: 80%;
         align-self: flex-end;
-        margin-left: auto;
-        margin-right: 10%;
         border-radius: 8px;
         box-shadow: 10px 30px 30px 20px rgba(0, 0, 0, 0.55);
         padding: 3px;
@@ -114,8 +118,17 @@
         height: 400px;
     }
 
+    .signup {
+        margin: 30px auto -80px auto;
+    }
+
+    .signup-back {
+        margin: -300px auto -80px auto;
+    }
+
     .signup-inner {
         padding: 40px 0;
+        margin-bottom: 0;
     }
 
     .signup ul {
