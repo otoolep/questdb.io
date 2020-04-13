@@ -75,6 +75,8 @@ It uses the HTTP API in the background but lets you interact with QuestDB in an 
 <li><a href="#import-screen">Import screen</a> - to import data and define schemas</li>
 <li><a href="#sql-screen">SQL screen</a> - to run SQL commands and view results</li>
 </ul>
+<p>You can navigate between the two screens using the navigation bar on the left-hand side of the web console.</p>
+<p><img src="/docs/assets/navigation-bar.png" alt="alt-text"></p>
 <h2><a class="anchor" aria-hidden="true" id="import-screen"></a><a href="#import-screen" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Import screen</h2>
 <p>The import screen can be accessed by clicking this icon on the left-side navigation menu.</p>
 <p><img src="/docs/assets/upload-button.png" alt="alt-text"></p>
@@ -121,7 +123,7 @@ If you would like to define the schema before ingesting (for example if you are 
 <tr><td>Size</td><td>Size of the imported file</td></tr>
 <tr><td>Total rows</td><td>Number of rows successfully imported</td></tr>
 <tr><td>Failed rows</td><td>Number of rows that failed to import</td></tr>
-<tr><td>Headers</td><td>Whether the dataset has been recognised to have headers or not</td></tr>
+<tr><td>Header row</td><td>Whether the dataset has been recognised to have a header row or not</td></tr>
 <tr><td>Status</td><td>Status of the import. See below</td></tr>
 </tbody>
 </table>
@@ -161,26 +163,27 @@ take you to the <a href="#sql-screen">SQL screen</a> and load the target table.<
 <tr><td>A</td><td>Append</td><td>Uploaded data will be appended at the end of the table</td></tr>
 <tr><td>O</td><td>Override</td><td>Uploaded data will override existing data in the table</td></tr>
 <tr><td>LEV</td><td>Skip lines with extra values</td><td>Skips rows that contains dangling values that don't fit the schema</td></tr>
-<tr><td>H</td><td>Headers</td><td>Flag whether the first row should be considered headers</td></tr>
+<tr><td>H</td><td>Header row</td><td>Flag whether the first row should be considered header</td></tr>
 </tbody>
 </table>
 <p><strong>To start the import, click the following button:</strong></p>
 <p><img src="/docs/assets/upload-button.png" alt="alt-text"></p>
 <h2><a class="anchor" aria-hidden="true" id="sql-screen"></a><a href="#sql-screen" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>SQL screen</h2>
-<p>The web console allows you to run queries on your database directly from your web browser.
-You can access it via this button situated on the left-side menu:</p>
+<p>The SQL screen allows you to run queries on your database directly from your web browser.
+You can access it via this button situated on the left-hand navigation bar:</p>
 <p><img src="/docs/assets/console-sql.png" alt="alt-text"></p>
-<p>The upper half is the SQL entry window. This is where you type SQL commands.</p>
-<blockquote>
-<p>Different SQL commands should be separated by a semicolon <code>;</code></p>
-</blockquote>
-<p>The bottom half is the results area, where your query results will be displayed.
+<h3><a class="anchor" aria-hidden="true" id="layout"></a><a href="#layout" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Layout</h3>
+<p>The upper half is the SQL entry window. This is where you type SQL commands.
+The bottom half is the results area, where your query results will be displayed.
 You can toggle between</p>
 <ul>
 <li>the results pane to display the results as a table</li>
 <li>the visualisation pane to display the results as charts</li>
 </ul>
 <p><img src="/docs/assets/console-overview.png" alt="alt-text"></p>
+<h3><a class="anchor" aria-hidden="true" id="controls"></a><a href="#controls" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Controls</h3>
+<p>Here is an overview of the available controls.
+<img src="/docs/assets/console-elements.png" alt="alt-text"></p>
 <h3><a class="anchor" aria-hidden="true" id="running-sql-commands"></a><a href="#running-sql-commands" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Running SQL commands</h3>
 <p>Simply type your query in the editor. Then click the following button:</p>
 <p><img src="/docs/assets/run-query.png" alt="alt-text"></p>
@@ -203,16 +206,26 @@ You can also use <a href="#keyboard-shortcuts">keyboard shortcuts</a>.</p>
 <h4><a class="anchor" aria-hidden="true" id="behaviour"></a><a href="#behaviour" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Behaviour</h4>
 <p>As you can write numerous SQL commands separated by semicolon, the web console uses the following logic to decide
 what command to execute.</p>
-<p><strong>If you have highlighted a command or part of it, this will be executed.</strong> In the below example, note that only the highlighted
-part of the SQL is executed. Neither the <code>CREATE TABLE</code> statement nor the <code>x*x</code> column have been executed and evaluated.</p>
+<ul>
+<li>If you have highlighted a command or part of it, this will be executed.</li>
+<li>If your cursor is within a SQL statement, this statement will be executed.</li>
+<li>If your cursor is on the same line as an SQL statement and after the semicolon, this statement will be executed.</li>
+<li>If your cursor is on a line that contains no SQL statement, the next encountered statement will be executed. If there is no statement following the cursor,
+then the previous statement will be executed.</li>
+</ul>
+<p><strong>Examples:</strong></p>
+<ul>
+<li>Command highlighted. Note neither the <code>CREATE TABLE</code> statement nor the <code>x*x</code> column have been executed and evaluated.</li>
+</ul>
 <p><img src="/docs/assets/sql-highlight.png" alt="alt-text"></p>
-<p><strong>If your cursor is within a SQL statement, this statement will be executed</strong>.</p>
-<p><img src="/docs/assets/cursor-in-sql.png" alt="alt-text"></p>
-<p><strong>If your cursor is on the same line as an SQL statement and after the semicolon, this statement will be executed</strong></p>
-<p><img src="/docs/assets/cursor-outside-same-line.png" alt="alt-text"></p>
-<p><strong>If your cursor is on a line that contains no SQL statement, the next encountered statement will be executed. If there is no statement following the cursor,
-then the previous statement will be executed.</strong></p>
-<p><img src="/docs/assets/cursor-outside-different-line.png" alt="alt-text"></p>
+<ul>
+<li><p>Cursor within a SQL statement
+<img src="/docs/assets/cursor-in-sql.png" alt="alt-text"></p></li>
+<li><p>Cursor outside of a statement but on the same line
+<img src="/docs/assets/cursor-outside-same-line.png" alt="alt-text"></p></li>
+<li><p>Cursor on another line
+<img src="/docs/assets/cursor-outside-different-line.png" alt="alt-text"></p></li>
+</ul>
 <h3><a class="anchor" aria-hidden="true" id="visualisation-pane"></a><a href="#visualisation-pane" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Visualisation pane</h3>
 <p>The visualisation pane lets you plot charts to visualise the results of a query.</p>
 <h4><a class="anchor" aria-hidden="true" id="toggling-between-panes"></a><a href="#toggling-between-panes" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Toggling between panes</h4>
@@ -249,18 +262,26 @@ transfer between the server and your local machine.</p>
 </blockquote>
 <h2><a class="anchor" aria-hidden="true" id="tips"></a><a href="#tips" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Tips</h2>
 <h3><a class="anchor" aria-hidden="true" id="loading-data-faster-with-sql"></a><a href="#loading-data-faster-with-sql" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Loading Data faster with SQL</h3>
-<p>If the file you wish to import is on the same machine as the QuestDB server, you can use the <code>COPY</code> command directly in the web console to import from a file.</p>
+<p>If the file you wish to import is on the same machine as the QuestDB server, you can use the <code>COPY</code> command directly in the web console to import from a file.
+This method is significantly faster as it bypasses the HTTP layer and lets QuestDB access the file directly on the local machine.</p>
+<blockquote>
+<p>This method is only available if the following two conditions are met:</p>
+<ul>
+<li>The file resides on the same machine as the database server</li>
+<li>The file is located within the database root folder</li>
+</ul>
+</blockquote>
 <p>Syntax is <code>COPY tablename FROM file_path</code>.</p>
 <p>Example:</p>
 <pre><code class="hljs css language-sql"><span class="hljs-keyword">COPY</span> prices <span class="hljs-keyword">FROM</span> <span class="hljs-string">`c:\\user\desktop\prices.csv`</span>;
 </code></pre>
 <p><img src="/docs/assets/copyconsole.gif" alt="alt-text"></p>
-<blockquote>
-<p>This method is significantly faster as it bypasses the HTTP layer and lets QuestDB access the file directly on the local machine.</p>
-</blockquote>
 <h3><a class="anchor" aria-hidden="true" id="extracting-the-url-encoded-query-endpoint"></a><a href="#extracting-the-url-encoded-query-endpoint" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Extracting the url-encoded query endpoint</h3>
-<p>After running a SQL command, the url-encoded endpoint is displayed at the top of the Query screen. You can copy it and use it to
-help design requests to send using the <a href="/docs/restAPI">HTTP api</a>.</p>
+<p>After running a SQL command, the url-encoded endpoint is displayed at the top of the Query screen. You can copy it and use it to:</p>
+<ul>
+<li>share query results with another user: they can download the results by themselves.</li>
+<li>help design requests to send using the <a href="/docs/restAPI">HTTP api</a>.</li>
+</ul>
 <p><img src="/docs/assets/http-endpoint-copy-button.png" alt="alt-text"></p>
 <h3><a class="anchor" aria-hidden="true" id="search-the-docs"></a><a href="#search-the-docs" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Search the docs</h3>
 <p>There is a search box in the top-right corner to help you find information on features and available commands. Simply type
@@ -271,7 +292,7 @@ the keywords you are looking for in the window and select the category you are i
 clipboard import (e.g <code>clipboard-1586805423709</code>. You can use <a href="/docs/rename">RENAME TABLE</a> to rename it to your liking.</p>
 <pre><code class="hljs css language-sql"><span class="hljs-keyword">RENAME</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-string">'clipboard-1586805423709'</span> <span class="hljs-keyword">TO</span> <span class="hljs-string">'my_table'</span>;
 </code></pre>
-</span></div></article></div><div class="docLastUpdate"><em>Last updated on 4/13/2020</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/installFromBinary"><span class="arrow-prev">← </span><span>Install from Binary</span></a><a class="docs-next button" href="/docs/myFirstDatabase"><span>My First Database</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#import-screen">Import screen</a><ul class="toc-headings"><li><a href="#loading-data">Loading data</a></li><li><a href="#checking-the-import">Checking the import</a></li><li><a href="#amending-the-schema">Amending the schema</a></li><li><a href="#custom-import">Custom import</a></li></ul></li><li><a href="#sql-screen">SQL screen</a><ul class="toc-headings"><li><a href="#running-sql-commands">Running SQL commands</a></li><li><a href="#visualisation-pane">Visualisation pane</a></li><li><a href="#exporting-results">Exporting Results</a></li></ul></li><li><a href="#tips">Tips</a><ul class="toc-headings"><li><a href="#loading-data-faster-with-sql">Loading Data faster with SQL</a></li><li><a href="#extracting-the-url-encoded-query-endpoint">Extracting the url-encoded query endpoint</a></li><li><a href="#search-the-docs">Search the docs</a></li><li><a href="#rename-your-tables-with-sql">Rename your tables with SQL</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><div align="left" class="footersection"><h5>QuestDB</h5><a href="/docs/documentationOverview">Documentation</a><a href="/getstarted">Download</a><a href="/docs/roadmap">Roadmap</a></div><div align="left" class="footersection"><h5>Community</h5><a href="https://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://join.slack.com/t/questdb/shared_invite/enQtNzk4Nzg4Mjc2MTE2LTEzZThjMzliMjUzMTBmYzVjYWNmM2UyNWJmNDdkMDYyZmE0ZDliZTQxN2EzNzk5MDE3Zjc1ZmJiZmFiZTIwMGY&gt;"> Join Slack </a><a href="https://twitter.com/" target="@QuestDB" rel="noreferrer noopener">Twitter</a></div><div align="left" class="footersection"><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/questdb/questdb/">GitHub</a><span class="sucker"><a class="github-button" href="https://github.com/questdb/questdb" data-icon="octicon-star" data-count-href="/questdb/questdb/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></span><a class="github-button" href="https://github.com/questdb/questdb" data-icon="octicon-star" data-count-href="/questdb/questdb/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="copyright">Copyright © 2020 QuestDB</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 4/13/2020</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/installFromBinary"><span class="arrow-prev">← </span><span>Install from Binary</span></a><a class="docs-next button" href="/docs/myFirstDatabase"><span>My First Database</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#import-screen">Import screen</a><ul class="toc-headings"><li><a href="#loading-data">Loading data</a></li><li><a href="#checking-the-import">Checking the import</a></li><li><a href="#amending-the-schema">Amending the schema</a></li><li><a href="#custom-import">Custom import</a></li></ul></li><li><a href="#sql-screen">SQL screen</a><ul class="toc-headings"><li><a href="#layout">Layout</a></li><li><a href="#controls">Controls</a></li><li><a href="#running-sql-commands">Running SQL commands</a></li><li><a href="#visualisation-pane">Visualisation pane</a></li><li><a href="#exporting-results">Exporting Results</a></li></ul></li><li><a href="#tips">Tips</a><ul class="toc-headings"><li><a href="#loading-data-faster-with-sql">Loading Data faster with SQL</a></li><li><a href="#extracting-the-url-encoded-query-endpoint">Extracting the url-encoded query endpoint</a></li><li><a href="#search-the-docs">Search the docs</a></li><li><a href="#rename-your-tables-with-sql">Rename your tables with SQL</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><div align="left" class="footersection"><h5>QuestDB</h5><a href="/docs/documentationOverview">Documentation</a><a href="/getstarted">Download</a><a href="/docs/roadmap">Roadmap</a></div><div align="left" class="footersection"><h5>Community</h5><a href="https://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://join.slack.com/t/questdb/shared_invite/enQtNzk4Nzg4Mjc2MTE2LTEzZThjMzliMjUzMTBmYzVjYWNmM2UyNWJmNDdkMDYyZmE0ZDliZTQxN2EzNzk5MDE3Zjc1ZmJiZmFiZTIwMGY&gt;"> Join Slack </a><a href="https://twitter.com/" target="@QuestDB" rel="noreferrer noopener">Twitter</a></div><div align="left" class="footersection"><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/questdb/questdb/">GitHub</a><span class="sucker"><a class="github-button" href="https://github.com/questdb/questdb" data-icon="octicon-star" data-count-href="/questdb/questdb/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></span><a class="github-button" href="https://github.com/questdb/questdb" data-icon="octicon-star" data-count-href="/questdb/questdb/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="copyright">Copyright © 2020 QuestDB</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
               !function(f,b,e,v,n,t,s)
               {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
               n.callMethod.apply(n,arguments):n.queue.push(arguments)};
