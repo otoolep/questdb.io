@@ -18,6 +18,10 @@ Available screens are:
 - [Import screen](#import-screen) - to import data and define schemas
 - [SQL screen](#sql-screen) - to run SQL commands and view results
 
+You can navigate between the two screens using the navigation bar on the left-hand side of the web console.
+
+![alt-text](assets/navigation-bar.png)
+
 ## Import screen
 
 
@@ -78,7 +82,7 @@ Once a file starts importing, a new line will appear in the Import screen. You c
 |Size| Size of the imported file|
 |Total rows| Number of rows successfully imported|
 |Failed rows| Number of rows that failed to import|
-|Headers| Whether the dataset has been recognised to have headers or not|
+|Header row| Whether the dataset has been recognised to have a header row or not|
 |Status| Status of the import. See below|
 
 
@@ -116,7 +120,7 @@ You can amend the import behaviour with the following options. This will trigger
 | A | Append | Uploaded data will be appended at the end of the table|
 | O | Override | Uploaded data will override existing data in the table |
 | LEV | Skip lines with extra values | Skips rows that contains dangling values that don't fit the schema |
-| H | Headers | Flag whether the first row should be considered headers |
+| H | Header row | Flag whether the first row should be considered header |
 
 
 **To start the import, click the following button:**
@@ -126,15 +130,14 @@ You can amend the import behaviour with the following options. This will trigger
 
 ## SQL screen
 
-The web console allows you to run queries on your database directly from your web browser. 
-You can access it via this button situated on the left-side menu: 
+The SQL screen allows you to run queries on your database directly from your web browser. 
+You can access it via this button situated on the left-hand navigation bar: 
  
 ![alt-text](assets/console-sql.png)
 
+### Layout
+
 The upper half is the SQL entry window. This is where you type SQL commands.
-
->Different SQL commands should be separated by a semicolon `;`
-
 The bottom half is the results area, where your query results will be displayed. 
 You can toggle between 
 - the results pane to display the results as a table 
@@ -142,6 +145,10 @@ You can toggle between
 
 ![alt-text](assets/console-overview.png)
 
+### Controls
+
+Here is an overview of the available controls.
+![alt-text](assets/console-elements.png)
 
 ### Running SQL commands
 Simply type your query in the editor. Then click the following button:
@@ -169,22 +176,25 @@ Example:
 As you can write numerous SQL commands separated by semicolon, the web console uses the following logic to decide 
 what command to execute.
 
-**If you have highlighted a command or part of it, this will be executed.** In the below example, note that only the highlighted 
-part of the SQL is executed. Neither the `CREATE TABLE` statement nor the `x*x` column have been executed and evaluated.
+- If you have highlighted a command or part of it, this will be executed.
+- If your cursor is within a SQL statement, this statement will be executed.
+- If your cursor is on the same line as an SQL statement and after the semicolon, this statement will be executed.
+- If your cursor is on a line that contains no SQL statement, the next encountered statement will be executed. If there is no statement following the cursor, 
+then the previous statement will be executed.
+
+**Examples:**
+
+- Command highlighted. Note neither the `CREATE TABLE` statement nor the `x*x` column have been executed and evaluated.
 
 ![alt-text](assets/sql-highlight.png)
 
-**If your cursor is within a SQL statement, this statement will be executed**.
-
+- Cursor within a SQL statement
 ![alt-text](assets/cursor-in-sql.png)
 
-**If your cursor is on the same line as an SQL statement and after the semicolon, this statement will be executed**
-
+- Cursor outside of a statement but on the same line
 ![alt-text](assets/cursor-outside-same-line.png)
 
-**If your cursor is on a line that contains no SQL statement, the next encountered statement will be executed. If there is no statement following the cursor, 
-then the previous statement will be executed.**
-
+- Cursor on another line
 ![alt-text](assets/cursor-outside-different-line.png)
 
 ### Visualisation pane
@@ -231,6 +241,11 @@ by clicking the download button at the top of the console.
 
 ### Loading Data faster with SQL
 If the file you wish to import is on the same machine as the QuestDB server, you can use the `COPY` command directly in the web console to import from a file.
+This method is significantly faster as it bypasses the HTTP layer and lets QuestDB access the file directly on the local machine.
+
+> This method is only available if the following two conditions are met:
+>- The file resides on the same machine as the database server
+>- The file is located within the database root folder
 
 Syntax is `COPY tablename FROM file_path`.
 
@@ -241,11 +256,11 @@ COPY prices FROM `c:\\user\desktop\prices.csv`;
 
 ![alt-text](assets/copyconsole.gif)
 
->This method is significantly faster as it bypasses the HTTP layer and lets QuestDB access the file directly on the local machine.
 
 ### Extracting the url-encoded query endpoint
-After running a SQL command, the url-encoded endpoint is displayed at the top of the Query screen. You can copy it and use it to 
-help design requests to send using the [HTTP api](restAPI.md).
+After running a SQL command, the url-encoded endpoint is displayed at the top of the Query screen. You can copy it and use it to:
+- share query results with another user: they can download the results by themselves.
+- help design requests to send using the [HTTP api](restAPI.md).
 
 ![alt-text](assets/http-endpoint-copy-button.png)
 
