@@ -59,6 +59,7 @@
           "cast",
           "copy",
           "createTable",
+          "rename",
           "drop",
           "insert",
           "joins",
