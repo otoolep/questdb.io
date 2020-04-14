@@ -7,60 +7,54 @@ Docker is a convenient method to have QuestDB running very quickly via simple co
 to be installed on your system. QuestDB has images for Windows, Linux and ARM64 Linux as well as manifest to automatically
 download correct image for your target architecture.
 
-The disadvantage of Docker is that QuestDB will be running in a virtualized environment with up to 20% performance penalty.
+> Using Docker means QuestDB will be running in a virtualized environment with up to 20% performance penalty.
 
 You can find our docker repository **<a href="https://hub.docker.com/r/questdb/questdb" target="_blank">here</a>**.
 
-## Supported platforms
-
-We support the following platforms natively as Docker containers:
+#### Supported platforms
 - Linux
 - Linux ARM64
 - Windows
 
 ## Pulling the image
-The following will pull the latest image from the Docker repository
+#### Latest
 ```shell script
 docker pull questdb/questdb
 ```
 
-If you prefer, you can pull a specific tag. For example
+#### Specific tag
 ```shell script
-docker pull questdb/questdb:4.0.2
+docker pull questdb/questdb:4.2.0
 ```
 
 ## Using the image
 You can use the Docker image in two ways:
-- Create a container and then start it.
-- Run as an interactive sandbox.
+- [Run as a container](#run-as-a-container)
+- [Run as an interactive sandbox](#run-as-an-interactive-sandbox)
 
-The interactive sandbox will create a container on the fly and start it. Once stopped, the container will be 
+>The interactive sandbox will create a container on the fly and start it. Once stopped, the container will be 
 removed and the data deleted. 
 
-## Ports & security
+#### Ports & security
 
-QuestDB will open two ports through the following arguments.
-If you do not want to open either of these ports, simply remove the 
-argument. However doing so may limit your interaction with QuestDB.
+QuestDB requires that you open ports to allow for interactions with the HTTP server and the Postgres wire.
+If you do not want to open either of these ports, you can alter the [port options](#-p-ports). However doing so may limit your interaction with QuestDB. 
 
-- `-p 9000:9000` opens port 9000 for the HTTP API and the web console. The web console is available on localhost:9000.
-- `-p 8892:8892` opens port 8892 for the PostgresSQL wire protocol.
+### Run as a container
 
-## Create a container
+#### Create a container
 
 ```shell script
 docker create --name questdb -p 9000:9000 -p 8892:8892 questdb/questdb
 ```
 
-> You can set any name you like for the container name. This name will be used when you start/stop the container.
-
 If you would like to use a specific release tag, you can specify it as follows when creating the container:
 
 ```shell script
-docker create --name questdb -p 9000:9000 -p 8892:8892 questdb/questdb:4.0.2
+docker create --name questdb -p 9000:9000 -p 8892:8892 questdb/questdb:4.2.0
 ```
 
-Available options:
+##### Options
 
 <table class="alt">
 <thead>
@@ -86,43 +80,56 @@ Though the parameter is optional, not opening the ports will limit interactions 
 </tbody>
 </table>
 
-## Start the container
+##### -p ports 
+- `-p 9000:9000` opens port 9000 for the HTTP API and the web console. The web console is available on localhost:9000.
+- `-p 8892:8892` opens port 8892 for the PostgresSQL wire protocol.
+
+##### -v volumes
+
+| Container OS | Volume | 
+|-----|-----|
+| Linux containers | `/root/.questdb/db` | 
+| Windows containers | `c:\questdb\db` | 
+
+#### Start the container
 ```shell script
 docker start questdb
 ```
 
-## Stop the container
+#### Stop the container
 ```shell script
 docker stop questdb
 ```
 
-## Display logs
+#### Display logs
 ```shell script
 docker logs questdb
 ```
 
-## Remove a container
+#### Remove a container
 ```shell script
 docker rm questdb
 ```
 
-## Run as an interactive sandbox
+### Run as an interactive sandbox
 
-You can run the container as an interactive sandbox. You do not need to create the
-container beforehand: it will be created on the fly. Logs will be displayed 
-in the shell window.
+You can run the container as an interactive sandbox with the `-it` option. 
 
-Simply run:
+#### Differences compared to running a container
+- You do not need to create the container beforehand: it will be created on the fly. 
+- Logs will be displayed in the shell window.
+- The container and all the data will be deleted when the container stops. 
+
+#### Start the sandbox
 ```shell script
 docker run --rm -it -p 9000:9000 -p 8892:8892 questdb/questdb
 ```
 
+#### Stop the sandbox
 As the process will be running in shell, you can `CTRL + C` to stop it.
 
-> When running as an interactive sandbox, the Container and all the data will be removed when
->the container stops. 
 
-## Log into the container
+### Log into the container
 
 You can log into the container and interact using `cmd` (if your container is windows-based) or `bash` 
 (if your container is linux-based). If you are using a MacOS or linux machine, this will also be `bash`. If you
@@ -141,16 +148,5 @@ docker exec -i questdb cmd
 
 Once logged in, you can run commands into the container's VM.
 
-## Volumes
 
-QuestDB supports the following volumes:
-
-**On Linux containers**
-`/root/.questdb/db` 
- 
-**On Windows containers**
-`c:\questdb\db` 
-
-> You can mount host directories using -v option, e.g.
->`-v /local/dir:/root/.questdb/db`
 
