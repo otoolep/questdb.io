@@ -145,12 +145,14 @@ class Index extends React.Component {
                         <span className="headline">Docker</span>
                         <p>Docker manifest to pull image for your target platform</p>
                         <pre>docker pull questdb/questdb</pre>
+                        <p>Learn how to use it with our <a href="/docs/installFromDockerImage"> Docker guide</a>.</p>
                     </li>
                     <li>
                         <span className="headline">Cross-platform binaries (requires JRE8)</span>
                         <p>Supported Platforms: Windows 64-bit, Linux 64-bit, OSX and ARM64</p>
                         <pre><a
                             href="https://github.com/questdb/questdb/releases/download/4.2.0/questdb-4.2.0-bin.tar.gz">https://github.com/questdb/questdb/releases/download/4.2.0/questdb-4.2.0-bin.tar.gz</a> (4Mb)</pre>
+                        <p>Follow our <a href="/docs/installFromBinary"> installation steps</a> to get started.</p>
                     </li>
                     <li>
                         <span className="headline">Java library</span>
@@ -163,6 +165,7 @@ class Index extends React.Component {
 </dependency>
                             `}
                         </pre>
+                        <p>Find out more in the <a href="/docs/embeddedJavaAPI"> embedded JAVA API documentation</a>.</p>
                     </li>
                 </ul>
             </div>
