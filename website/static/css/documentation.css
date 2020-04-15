@@ -42,3 +42,28 @@ code {
     color: #35393b;
     font-weight: bold;
 }
+
+.nav-tabs .active {
+    color: #fb8e00;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+}
+
+.nav-tabs {
+    color: #2371b5;
+    font-weight: bold;
+}
+
+.toc-headings .active{
+    color: #fb8e00;
+    font-weight: bold;
+}
+
+.toc-headings li a {
+    color: #24292e;
+}
+
+.toc .toggleNav ul li.navListItemActive a{
+    color: #fb8e00;
+    font-weight: bold;
+}
