@@ -80,6 +80,7 @@ function sql_qdb(hljs) {
                         'locator lock locked log log10 log2 logfile logfiles logging logical logical_reads_per_call ' +
                         'logoff logon logs long loop low low_priority lower lpad lrtrim ltrim main make_set makedate maketime ' +
                         'managed management manual map mapping mask master master_pos_wait match matched materialized ' +
+                        'managed management manual map mapping mask master master_pos_wait match matched materialized ' +
                         'maxextents maximize maxinstances maxlen maxlogfiles maxloghistory maxlogmembers maxsize maxtrans ' +
                         'md5 measures median medium member memcompress memory merge microsecond mid migration minextents ' +
                         'minimum mining minus minute minutes minvalue missing mod mode model modification modify module monitoring month ' +
@@ -138,6 +139,7 @@ function sql_qdb(hljs) {
                         'wellformed when whene whenev wheneve whenever where while whitespace window with within without work wrapped ' +
                         'xdb xml xmlagg xmlattributes xmlcast xmlcolattval xmlelement xmlexists xmlforest xmlindex xmlnamespaces ' +
                         'xmlpi xmlquery xmlroot xmlschema xmlserialize xmltable xmltype xor year_to_month years yearweek cache copy ' +
+                        'remove' +
                         '',
                     literal:
                         'true false null unknown',
