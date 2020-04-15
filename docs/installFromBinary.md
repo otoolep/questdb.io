@@ -3,171 +3,152 @@ id: installFromBinary
 title: Install from Binary
 ---
 
-### Supported Platforms
-We support the following platforms:
+This section describes how to [setup](#setup) and [use](#using-questdb) QuestDB using the binaries.
 
-* Mac OS X 64-bit
-* Windows 64-bit
-* Linux 64-bit
+## Requirements
 
-We support 64-bit JAVA 8 SDK and JRE
+- 64-bit MacOS, Windows or Linux.
+- Oracle Java JRE or JDK 8 and above, or OpenJDK equivalent.
+> OpenJDK may incur a performance penalty of up to 20% as it contains fewer intrinsics than the Oracle counterpart.
 
-We recommend to have Java installed and `JAVA_HOME` environment variable setup. 
-Both Windows and Linux wrappers for QuestDB will require `JAVA_HOME`. OSX wrapper 
-will figure out the Java location automatically.
+## Setup
 
-### Downloading JAVA
-> QuestDB requires JAVA You can download it **[here](https://www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html)**
->. If you are installing on ARM, download the ARM versions **[here](https://www.oracle.com/technetwork/java/javase/downloads/java-archive-javase8u211-later-5573849.html)**.
+#### Step 1 - Download & install JAVA
+If you already have a suitable version JAVA installed, you can skip this step.
+- Find the package corresponding to your architecture on the [Download page](https://www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html).
+- If you are installing on ARM, download the [ARM JDK](https://www.oracle.com/technetwork/java/javase/downloads/java-archive-javase8u211-later-5573849.html).
 
-### Downloading QuestDB
+#### Step 2 - Download QuestDB
 
-> You can download QuestDB binaries and launch scripts **[here](https://github.com/questdb/questdb/releases/download/4.2.0/questdb-4.2.0-bin.tar.gz)**.
+The QuestDB binaries and launch scripts can be found [here](https://github.com/questdb/questdb/releases/download/4.2.0/questdb-4.2.0-bin.tar.gz).
+Simply extract the files in a directory of your choice. 
 
-### Installing
-Simply extract the files in a directory of your choice. Then to run:
-- On Windows, launch `questdb.exe`
-- On Linux & MacOS, launch `questdb.sh`
 
-## Running on Windows
-QuestDB can either be run as a program or as a service. You can start it out of the box with the default
-configuration, or customise parameters as you start.
+## Using QuestDB
+
+QuestDB comes with an executable `questdb.exe` for Windows, and script `questdb.sh` for MacOS and Linux which can 
+be used to control QuestDB. On Windows, the executable can be also used to start [QuestDB as a service](#use-as-a-service-windows).
 
 ### Start
+Navigate to the directory containing `questdb.sh` (Linux, MacOS) or `questdb.exe` (Windows).
 
-Launch a new `cmd.exe` window and navigate to where to where you extracted tar.gz :
-
-```shell script
-cd questdb-1.0.2
-questdb.exe
-```
-
-
-
-### Start (as a service)
-Simply run `questdb.exe` as Administrator.
->When QuestDB is run as a service, the default home directory is `C:\Windows\System32\questdb`.
-
-
-### Stop
-
-
-Simply press <kbd>Ctrl</kbd>+<kbd>C</kbd> in `cmd` window.
-
-When run from console QuestDB server home is `qdbroot` in current directory.
-
-## Running on MacOS
-
-### Start
-
-```shell script
-questdb start
-```
-
-
-
-### Stop
-```shell script
-questdb stop
-```
-
-
-
-### Start with a different home directory:
-```shell script
-questdb start -d $HOME/.questdb
-```
-
-
-## Running on Linux
-> Make sure JAVA_HOME environment variable is exported and points at a valid Java8 directory
-
-> When running on Linux, QuestDB will run in the background and continue running even if you close the session.
-
-By default QuestDB home directory will be $HOME/.questdb. You can change this location with `-d` command line switch.
-
-### Start
-The launch script is `questdb.sh`. The questdb.exe is a part of multi-platform package, you can ignore or delete it.
-Start QuestDB as follows:
-
-```shell script
-cd questdb-4.2.0/
+<!--DOCUSAURUS_CODE_TABS-->
+<!--MacOS & Linux-->
+```sql
 ./questdb.sh start
 ```
+<!--Windows-->
+```sql
+questdb.exe start
+```
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+#### Behaviour
+
+When running on Linux and MacOS, QuestDB will run in the background and continue running even if you close the session. 
+On Windows, QuestDB will stop when you close the terminal window unless you [run as a service](#use-as-a-service-windows).
+
+#### Default directories
+By default, QuestDB root will be in the below directory
+<!--DOCUSAURUS_CODE_TABS-->
+<!--MacOS -->
+```shell script
+/usr/local/var/questdb/
+```
+<!--Linux -->
+```shell script
+$HOME/.questdb
+```
+<!--Windows-->
+
+On windows, the default directory will be where `questdb.exe` is located.
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+
+#### Start options
+- `-d` - specify QuestDB's root directory. 
+- `-f` - force reload the web console. The web console is cached otherwise and the HTML page will not be reloaded automatically in case it has been changed.
+- `-j` - path to the Java SDK directory. By default QuestDB uses the value of the `JAVA_HOME` environment variable.
+
+#### Examples
+
+<!--DOCUSAURUS_CODE_TABS-->
+<!-- -d MacOS & Linux-->
+```sql
+./questdb.sh start -d '/home/user/folder'
+```
+<!-- -d Windows-->
+```sql
+questdb.exe start -d 'C:\Users\user\folder'
+```
+<!-- -f -->
+```sql
+./questdb.sh start -f
+```
+<!-- -j -->
+```sql
+./questdb.sh start -j '/usr/java/jdk1.8.0_141'
+```
+<!-- -d -j -f -->
+```sql
+./questdb.sh start -d '/home/user/folder' -j '/usr/java/jdk1.8.0_141' -f
+```
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+
 
 ### Stop
-Response:
-```shell script
+<!--DOCUSAURUS_CODE_TABS-->
+<!--MacOS & Linux-->
+```sql
 ./questdb.sh stop
 ```
+<!--Windows-->
+
+Simply press <kbd>Ctrl</kbd>+<kbd>C</kbd> in the `Shell` window or close it.
+
+<!--END_DOCUSAURUS_CODE_TABS-->
 
 
-### Launch Options
+### Use as a service (Windows)
 
-Windows launches supports the following commands and options:
+You can start QuestDB as a service by either running `questdb.exe` as an Administrator or [using questdb.exe](#commands).
+
+#### Default directory
+When QuestDB is run as a service, the default home directory is `C:\Windows\System32\questdb`.
 
 
-```shell script
-questdb.exe [start|stop|status|install|remove] [-d dir] [-f] [-j JAVA_HOME] [-t tag]
+#### commands
+
+|Command | Description |
+|-----|------|
+|`start`| Starts Windows service. Default service name is `QuestDB`  |
+|`stop` | Stops Windows service |
+| `status` | Shows service status. This command is useful for troubleshooting problems with the service. It prints `RUNNING` or `INACTIVE` if the service is start or stopped respectively |
+| `install` | Install the Windows service |
+| `remove` | Remove the Windows service |
+
+#### Service start options
+The options are the same as when [starting QuestDB normally](#start-options).
+
+#### Using different service instances
+If you want to run several instances of the service, you can control them individually using `-t`
+- `-t` - service name suffix tag. This can be used with all [commands](#commands) and all [options](#start-options)
+
+##### Examples
+
+<!--DOCUSAURUS_CODE_TABS-->
+<!--Start a service with a tag-->
+```sql
+questdb.exe start -t 'mytag' -d 'C:\Users\user\folder'
 ```
-
-
-
-<table class="alt">
-<thead>
-
-<th>Command</th>
-<th>Comments</th>
-
-</thead>
-<tbody>
-<tr>
-<td><code>start</code></td>
-<td>Starts windows service. Default service name is <code>QuestDB</code></td>
-</tr>
-<tr>
-<td><code>stop</code></td>
-<td>Stops windows service</td>
-</tr>
-<tr>
-<td><code>status</code></td>
-<td>Shows service status. This command is useful for troubleshooting service problems. It prints RUNNING or
-INACTIVE if service is started or stopped respectively.</td>
-</tr>
-<tr>
-<td><code>install</code></td>
-<td>Installs windows service. Default name is <code>QuestDB</code>. Windows service names have to be unique. If
-you would like to run multiple instances of QuestDB you have to use <code>-t</code> option.</td>
-</tr>
-<tr>
-<td><code>remove</code></td>
-<td>Removes windows service</td>
-</tr>
-</tbody>
-</table>
-
-
-<table class="alt">
-<thead>
-
-<th>Option</th>
-<th>Comments</th>
-
-</thead>
-<tbody>
-<tr>
-<td><code>-j</code></td>
-<td>Path to Java SDK directory. By default QuestDB uses value of JAVA_HOME environment variable.</td>
-</tr>
-<tr>
-<td><code>-d</code></td>
-<td>Path to QuestDB home directory.</td>
-</tr>
-<tr>
-<td><code>-t</code></td>
-<td>Service name suffix tag. <code>-t X</code> will create <code>QuestDB:X</code> service name. This option
-can be used with all commands.</td>
-</tr>
-</tbody>
-</table>
-
+<!--Request status for a specific service tag-->
+```sql
+questdb.exe status -t 'mytag' 
+```
+<!--Stop a specific service tag-->
+```sql
+questdb.exe stop -t 'mytag' 
+```
+<!--END_DOCUSAURUS_CODE_TABS-->
