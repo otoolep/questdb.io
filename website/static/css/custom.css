@@ -516,6 +516,7 @@ footer.nav-footer {
     color: #edffff;
     z-index: 1;
     background-image: url(/docs/assets/wave.svg);
+    background-color: #335b8d;
 }
 
 .startTitle {
