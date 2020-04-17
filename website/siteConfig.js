@@ -185,6 +185,49 @@ function sql_qdb(hljs) {
     };
 }
 
+function file_struct(hljs) {
+    var COMMENT_MODE = hljs.COMMENT('--', '\n');
+    return {
+        case_insensitive: true,
+        illegal: /[<>{}*]/,
+        contains: [
+            {
+                beginKeywords:
+                    'begin  ',
+                end: /;/, endsWithParent: true,
+                lexemes: /[\w\.]+/,
+                keywords: {
+                    keyword:
+                        'db log conf public questdb'
+                },
+                contains: [
+                    {
+                        className: 'string',
+                        begin: '\'', end: '\'',
+                        contains: [{begin: '\'\''}]
+                    },
+                    {
+                        className: 'string',
+                        begin: '"', end: '"',
+                        contains: [{begin: '""'}]
+                    },
+                    {
+                        className: 'string',
+                        begin: '`', end: '`'
+                    },
+                    hljs.C_NUMBER_MODE,
+                    hljs.C_BLOCK_COMMENT_MODE,
+                    COMMENT_MODE,
+                    hljs.HASH_COMMENT_MODE
+                ]
+            },
+            hljs.C_BLOCK_COMMENT_MODE,
+            COMMENT_MODE,
+            hljs.HASH_COMMENT_MODE
+        ]
+    };
+}
+
 const siteConfig = {
 
     title: 'QuestDB', // Title for your website.
@@ -242,6 +285,7 @@ const siteConfig = {
         // themeUrl: '/css/code-highlight.css',
         hljs: function (hljs) {
             hljs.registerLanguage('sql', sql_qdb);
+            hljs.registerLanguage('filestructure', file_struct)
         }
     },
 

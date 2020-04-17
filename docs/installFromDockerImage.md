@@ -85,6 +85,7 @@ Though the parameter is optional, not opening the ports will limit interactions 
 - `-p 8892:8892` opens port 8892 for the PostgresSQL wire protocol.
 
 ##### -v volumes
+The questdb [root_directory](rootDirectoryStructure.md) will be in the following locations.
 
 | Container OS | Volume | 
 |-----|-----|

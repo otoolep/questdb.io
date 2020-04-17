@@ -27,6 +27,14 @@
     "Reference": [
       {
         "type": "subcategory",
+        "label": "Configuration",
+        "ids": [
+          "rootDirectoryStructure",
+          "serverConf"
+        ]
+      },
+      {
+        "type": "subcategory",
         "label": "APIs",
         "ids": [
           "restAPI",

@@ -23,7 +23,7 @@ You can download QuestDB from our <a href="/getstarted" target="_blank">download
 To install, simply extract the files into the directory of your choice. 
 
 > Throughout this documentation, we refer to this directory as the `installation_directory`. When starting, QuestDB requires 
->another directory where the configuration, logs, and data files are saved. We call this directory the `questdb_root_directory`.
+>another directory where the configuration, logs, and data files are saved. We call this directory the [root_directory](rootDirectoryStructure.md).
 
 
 ## Using QuestDB
