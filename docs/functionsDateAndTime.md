@@ -4,6 +4,7 @@ title: Date and Time
 sidebar_label: Date and Time
 ---
 
+
 ## systimestamp
 `systimestamp()` - offset from UTC Epoch in microseconds
 
@@ -36,10 +37,6 @@ INSERT INTO readings VALUES(systimestamp(), 123.5);
 SELECT * FROM readings WHERE date_time > systimestamp() - 60000000L;
 ```
 
-
-
-
-
 ## sysdate
 `sysdate()` - returns the timestamp of the host system as a `date` with `millisecond` precision.
 
@@ -70,49 +67,6 @@ INSERT INTO readings VALUES(sysdate(), 123.5);
 ```sql
 SELECT * FROM readings WHERE date_time > sysdate() - 60000000L;
 ```
-
-
-## to_str
-`to_str(value, format)` - converts date or timestamp value to a string in the specified format
-
-#### Arguments
-- `value` is any `date` or `timestamp`
-- `format` is a timestamp format. 
-
-#### Description
-Will convert a date or timestamp value to a string using the format definition passed as a parameter. When
-elements in the `format` definition are unrecognized, they will be passed-through as string.
-
-For more information about recognized timestamp formats, 
-see the **[date and timestamp format section](#date-and-timestamp-format)**.
-
-#### Return value
-Return value type is `string`
-
-#### Examples
-- Basic example
-```sql
-SELECT to_str(systimestamp(), 'yyyy-MM-dd') FROM long_sequence(1);
-```
-
-```
-| to_str                    |
-|---------------------------|
-| 2020-03-04                |
-```
-
-- With unrecognized timestamp definition
-```sql
-SELECT to_str(systimestamp(), 'yyyy-MM-dd gooD DAY 123') FROM long_sequence(1);
-```
-
-```
-| to_str                    |
-|---------------------------|
-| 2020-03-04 gooD DAY 123   |
-```
-
-
 
 ## to_timestamp
 `to_timestamp(string, format)` - converts string to `timestamp` by using the supplied `format` to extract the value.
@@ -163,8 +117,6 @@ INSERT INTO measurements values(to_timestamp('2019-12-12T12:15', 'yyyy-MM-ddTHH:
 | 2019-12-12T12:15:00.000000Z      | 123.5    |
 ```
 
-
-
 ## to_date
 `to_date(string, format)` - converts string to `date` by using the supplied `format` to extract the value.
 
@@ -214,16 +166,210 @@ INSERT INTO measurements values(to_date('2019-12-12T12:15', 'yyyy-MM-ddTHH:mm'),
 | 2019-12-12T12:15:00.000Z         | 123.5    |
 ```
 
+## to_str
+`to_str(value, format)` - converts date or timestamp value to a string in the specified format
 
+#### Arguments
+- `value` is any `date` or `timestamp`
+- `format` is a timestamp format. 
 
-## hour
-`hour(value)` - hour of timestamp or date, on 0-23 scale
+#### Description
+Will convert a date or timestamp value to a string using the format definition passed as a parameter. When
+elements in the `format` definition are unrecognized, they will be passed-through as string.
+
+For more information about recognized timestamp formats, 
+see the **[date and timestamp format section](#date-and-timestamp-format)**.
+
+#### Return value
+Return value type is `string`
+
+#### Examples
+- Basic example
+```sql
+SELECT to_str(systimestamp(), 'yyyy-MM-dd') FROM long_sequence(1);
+```
+
+```
+| to_str                    |
+|---------------------------|
+| 2020-03-04                |
+```
+
+- With unrecognized timestamp definition
+```sql
+SELECT to_str(systimestamp(), 'yyyy-MM-dd gooD DAY 123') FROM long_sequence(1);
+```
+
+```
+| to_str                    |
+|---------------------------|
+| 2020-03-04 gooD DAY 123   |
+```
+
+## millis
+`millis(value)` - milliseconds of the second on a 0-999 scale
 
 #### Parameters
 - `value` is any `timestamp` or `date`
 
 #### Description
-`hour(value)` returns the `hour` of a given date or timestamp from 0 to 23
+`millis(value)` returns the `millis` of the second for a given date or timestamp from 0 to 999
+
+#### Return Value
+Return value type is `int`
+
+#### Examples
+- Extracting the millis from a timestamp
+```sql
+SELECT millis(to_timestamp('2020-03-01:15:43:21.123456', 'yyyy-MM-dd:HH:mm:ss.SSSUUU')) FROM long_sequence(1);
+```
+
+```
+| millis      |
+|-------------|
+| 123          |
+```
+
+- Using as part of an aggregation
+```sql
+select millis(ts), count() from transactions;
+```
+
+```
+| second        | count    |
+|-------------|----------|
+| 0           | 2323     |
+| 1           | 6548     |
+| ...         | ...      |
+| 998          | 9876     |
+| 999          | 2567     |
+```
+
+## micros
+`micros(value)` - microseconds of the millisecond on a 0-999 scale
+
+#### Parameters
+- `value` is any `timestamp` or `date`
+
+#### Description
+`micros(value)` returns the `micros` of the millisecond for a given date or timestamp from 0 to 999
+
+#### Return Value
+Return value type is `int`
+
+#### Examples
+- Extracting the micros from a timestamp
+```sql
+SELECT micros(to_timestamp('2020-03-01:15:43:21.123456', 'yyyy-MM-dd:HH:mm:ss.SSSUUU')) FROM long_sequence(1);
+```
+
+```
+| millis      |
+|-------------|
+| 456          |
+```
+
+- Using as part of an aggregation
+```sql
+select micros(ts), count() from transactions;
+```
+
+```
+| second        | count    |
+|-------------|----------|
+| 0           | 2323     |
+| 1           | 6548     |
+| ...         | ...      |
+| 998          | 9876     |
+| 999          | 2567     |
+```
+
+## second
+`second(value)` - second of the minute on a 0-59 scale
+
+#### Parameters
+- `value` is any `timestamp` or `date`
+
+#### Description
+`second(value)` returns the `second` of the minute for a given date or timestamp from 0 to 59
+
+#### Return Value
+Return value type is `int`
+
+#### Examples
+- Extracting the second from a timestamp
+```sql
+SELECT second(to_timestamp('2020-03-01:15:43:21', 'yyyy-MM-dd:HH:mm:ss')) FROM long_sequence(1);
+```
+
+```
+| second      |
+|-------------|
+| 43          |
+```
+
+- Using as part of an aggregation
+```sql
+select second(ts), count() from transactions;
+```
+
+```
+| second        | count    |
+|-------------|----------|
+| 0           | 2323     |
+| 1           | 6548     |
+| ...         | ...      |
+| 58          | 9876     |
+| 59          | 2567     |
+```
+
+## minute
+`minute(value)` - minute of hour on a 0-59 scale
+
+#### Parameters
+- `value` is any `timestamp` or `date`
+
+#### Description
+`minute(value)` returns the `minute` of the hour for a given date or timestamp from 0 to 59
+
+#### Return Value
+Return value type is `int`
+
+#### Examples
+- Extracting the minute from a timestamp
+```sql
+SELECT minute(to_timestamp('2020-03-01:15:43:21', 'yyyy-MM-dd:HH:mm:ss')) FROM long_sequence(1);
+```
+
+```
+| minute      |
+|-------------|
+| 43          |
+```
+
+- Using as part of an aggregation
+```sql
+select minute(ts), count() from transactions;
+```
+
+```
+| minute        | count    |
+|-------------|----------|
+| 0           | 2323     |
+| 1           | 6548     |
+| ...         | ...      |
+| 58          | 9876     |
+| 59          | 2567     |
+```
+
+## hour
+`hour(value)` - hour of day on a 0-23 scale
+
+#### Parameters
+- `value` is any `timestamp` or `date`
+
+#### Description
+`hour(value)` returns the `hour` of day for a given date or timestamp from 0 to 23
 
 #### Return Value
 Return value type is `int`
@@ -254,6 +400,377 @@ select hour(ts), count() from transactions;
 | 22          | 9876     |
 | 23          | 2567     |
 ```
+
+## day
+`day(value)` - day of month on a 1 to 31 scale
+
+#### Parameters
+- `value` is any `timestamp` or `date`
+
+#### Description
+`day(value)` returns the `day` of month for a given date or timestamp from 0 to 23
+
+#### Return Value
+Return value type is `int`
+
+#### Examples
+- Extracting day from a timestamp
+```sql
+SELECT day(to_timestamp('2020-03-01:15:43:21', 'yyyy-MM-dd:HH:mm:ss')) FROM long_sequence(1);
+```
+
+```
+| day        |
+|-------------|
+| 01          |
+```
+
+- Using as part of an aggregation
+```sql
+select day(ts), count() from transactions;
+```
+
+```
+| day        | count    |
+|-------------|----------|
+| 1           | 2323     |
+| 2           | 6548     |
+| ...         | ...      |
+| 30          | 9876     |
+| 31          | 2567     |
+```
+
+## month
+`month(value)` - month of year on a 1-12 scale
+
+#### Parameters
+- `value` is any `timestamp` or `date`
+
+#### Description
+`month(value)` returns the `month` of year for a given date or timestamp from 1 to 12
+
+#### Return Value
+Return value type is `int`
+
+#### Examples
+- Extracting month from a timestamp
+```sql
+SELECT month(to_timestamp('2020-03-01:15:43:21', 'yyyy-MM-dd:HH:mm:ss')) FROM long_sequence(1);
+```
+
+```
+| month        |
+|-------------|
+| 03          |
+```
+
+- Using as part of an aggregation
+```sql
+select month(ts), count() from transactions;
+```
+
+```
+| month        | count    |
+|-------------|----------|
+| 1           | 2323     |
+| 2           | 6548     |
+| ...         | ...      |
+| 11          | 9876     |
+| 12          | 2567     |
+```
+
+## year
+`year(value)` - year of a timestamp
+
+#### Parameters
+- `value` is any `timestamp` or `date`
+
+#### Description
+`year(value)` returns the `year` for a given date or timestamp
+
+#### Return Value
+Return value type is `int`
+
+#### Examples
+- Extracting year from a timestamp
+```sql
+SELECT year(to_timestamp('2020-03-01:15:43:21', 'yyyy-MM-dd:HH:mm:ss')) FROM long_sequence(1);
+```
+
+```
+| year        |
+|-------------|
+| 2020          |
+```
+
+- Using as part of an aggregation
+```sql
+select month(ts), count() from transactions;
+```
+
+```
+| year        | count    |
+|-------------|----------|
+| 2015           | 2323     |
+| 2016          | 9876     |
+| 2017          | 2567     |
+```
+
+## add_hours
+`add_hours(value, hours)` - adds hours to a date or timestamp
+
+#### Arguments
+- `value` is any `date` or `timestamp`
+- `hours` is an `int`
+
+#### Description
+Adds `hours` to `value` and returns the resulting timestamp
+
+#### Return value
+Return value type is `timestamp`
+
+#### Examples
+```sql
+SELECT systimestamp(), add_hours(systimestamp(), 2) FROM long_sequence(1);
+```
+| systimestamp | add_hours |
+|---|---|
+| 2020-04-17T00:30:51.380499Z| 2020-04-17T02:30:51.380499Z|
+
+## add_days
+`add_days(value, days)` - adds days to a date or timestamp
+
+#### Arguments
+- `value` is any `date` or `timestamp`
+- `days` is an `int`
+
+#### Description
+Adds `days` to `value` and returns the resulting timestamp
+
+#### Return value
+Return value type is `timestamp`
+
+#### Examples
+```sql
+SELECT systimestamp(), add_days(systimestamp(), 2) FROM long_sequence(1);
+```
+| systimestamp | add_days |
+|---|---|
+| 2020-04-17T00:30:51.380499Z| 2020-04-19T00:30:51.380499Z|
+
+## add_months
+`add_months(value, months)` - adds months to a date or timestamp
+
+#### Arguments
+- `value` is any `date` or `timestamp`
+- `months` is an `int`
+
+#### Description
+Adds `months` to `value` and returns the resulting timestamp
+
+#### Return value
+Return value type is `timestamp`
+
+#### Examples
+```sql
+SELECT systimestamp(), add_months(systimestamp(), 2) FROM long_sequence(1);
+```
+| systimestamp | add_months |
+|---|---|
+| 2020-04-17T00:30:51.380499Z| 2020-06-17T00:30:51.380499Z|
+
+## add_years
+`add_years(value, years)` - adds years to a date or timestamp
+
+#### Arguments
+- `value` is any `date` or `timestamp`
+- `years` is an `int`
+
+#### Description
+Adds `years` to `value` and returns the resulting timestamp
+
+#### Return value
+Return value type is `timestamp`
+
+#### Examples
+```sql
+SELECT systimestamp(), add_years(systimestamp(), 2) FROM long_sequence(1);
+```
+| systimestamp | add_months |
+|---|---|
+| 2020-04-17T00:30:51.380499Z| 2022-04-17T00:30:51.380499Z|
+
+## days
+`days(value, value)` - number of days between 2 timestamps
+
+#### Arguments
+- `value` is any `date` or `timestamp`
+
+#### Description
+Returns the date difference in days between 2 timestamps
+
+#### Return value
+Return value type is `int`
+
+#### Examples
+```sql
+select days(to_timestamp('2020-01-23','yyyy-MM-dd'), to_timestamp('2020-01-27','yyyy-MM-dd')) from long_sequence(1);
+```
+
+| days |
+|-----|
+|4|
+
+## months
+`months(value, value)` - number of months between 2 timestamps
+
+#### Arguments
+- `value` is any `date` or `timestamp`
+
+#### Description
+Returns the date difference in months between 2 timestamps
+
+#### Return value
+Return value type is `int`
+
+#### Examples
+```sql
+select months(to_timestamp('2020-01-23','yyyy-MM-dd'), to_timestamp('2020-02-22','yyyy-MM-dd')) from long_sequence(1);
+select months(to_timestamp('2020-01-23','yyyy-MM-dd'), to_timestamp('2020-02-23','yyyy-MM-dd')) from long_sequence(1);
+```
+
+| months |
+|-----|
+|0|
+|1|
+
+## years
+`years(value, value)` - number of years between 2 timestamps
+
+#### Arguments
+- `value` is any `date` or `timestamp`
+
+#### Description
+Returns the date difference in years between 2 timestamps
+
+#### Return value
+Return value type is `int`
+
+#### Examples
+```sql
+select years(to_timestamp('2020-01-23','yyyy-MM-dd'), to_timestamp('2021-01-22','yyyy-MM-dd')) from long_sequence(1);
+select years(to_timestamp('2020-01-23','yyyy-MM-dd'), to_timestamp('2021-01-23','yyyy-MM-dd')) from long_sequence(1);
+```
+
+| years |
+|-----|
+|0|
+|1|
+
+## is_leap_year
+`is_leap_year(value)` - flags a leap year
+
+#### Parameters
+- `value` is any `timestamp` or `date`
+
+#### Description
+`is_leap_year(value)` returns `true` if the `year` of `value` is a leap year, `false` otherwise.
+
+#### Return Value
+Return value type is `boolean`
+
+#### Examples 
+```sql
+select year(ts), is_leap_year(ts) from myTable;
+```
+
+| year | is_leap_year |
+|---|---|
+|2020|true|
+|2021|false|
+|2022|false|
+|2023|false|
+|2024|true|
+|2025|false|
+
+## days_in_month
+`days_in_month(value)` - counts days in month
+
+#### Parameters
+- `value` is any `timestamp` or `date`
+
+#### Description
+`days_in_month(value)` returns the count of days in a the month.
+
+#### Return Value
+Return value type is `int`
+
+#### Examples 
+```sql
+select month(ts), days_in_month(ts) from myTable;
+```
+
+| month | days_in_month |
+|---|---|
+|4|30|
+|5|31|
+|6|30|
+|7|31|
+|8|31|
+
+## day_of_week
+`day_of_week(value)` - day number in the week starting on Monday
+
+#### Parameters
+- `value` is any `timestamp` or `date`
+
+#### Description
+`day_of_week(value)` returns the day number in a week from 1 (Monday) to 7 (Sunday)
+
+#### Return Value
+Return value type is `int`
+
+#### Examples 
+```sql
+select to_str(ts,'EE'),day_of_week(ts) from myTable;
+```
+
+| day | day_of_week |
+|---|---|
+|Monday|1|
+|Tuesday|2|
+|Wednesday|3|
+|Thursday|4|
+|Friday|5|
+|Saturday|6|
+|Sunday|7|
+
+## day_of_week_sunday_first
+`day_of_week_sunday_first(value)` - day number in the week starting on Sunday
+
+#### Parameters
+- `value` is any `timestamp` or `date`
+
+#### Description
+`day_of_week_sunday_first(value)` returns the day number in a week from 1 (Sunday) to 7 (Saturday)
+
+#### Return Value
+Return value type is `int`
+
+#### Examples 
+```sql
+select to_str(ts,'EE'),day_of_week_sunday_first(ts) from myTable;
+```
+
+| day | day_of_week_sunday_first |
+|---|---|
+|Monday|2|
+|Tuesday|3|
+|Wednesday|4|
+|Thursday|5|
+|Friday|6|
+|Saturday|7|
+|Sunday|1|
 
 ## Date and Timestamp format
 Format is a combination of letters from table below combined with arbitrary text. 
