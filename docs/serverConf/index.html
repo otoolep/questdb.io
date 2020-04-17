@@ -1,0 +1,251 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Server Configuration Properties · QuestDB</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="QuestDB server configuration can be set in the `server.conf` configuration file."/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Server Configuration Properties · QuestDB"/><meta property="og:type" content="website"/><meta property="og:url" content="https://questdb.io/"/><meta property="og:description" content="QuestDB server configuration can be set in the `server.conf` configuration file."/><meta property="og:image" content="https://questdb.io/img/favicon.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://questdb.io/img/favicon.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="alternate" type="application/atom+xml" href="https://questdb.io/blog/atom.xml" title="QuestDB Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://questdb.io/blog/feed.xml" title="QuestDB Blog RSS Feed"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-145747842-1', 'auto');
+              ga('send', 'pageview');
+            </script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,500,600,700|Source+Code+Pro:400,700|Open+Sans:300,400,600,700"/><script type="text/javascript" src="/js/menu-hack.js"></script><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script type="text/javascript" src="/js/getstarted.js"></script><script type="text/javascript" src="/js/signup.js"></script><script type="text/javascript" src="/js/hotjar.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/QuestDB_Logo.png" alt="QuestDB"/><h2 class="headerTitleWithLogo">QuestDB</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/" target="_self">Home</a></li><li class=""><a href="/getstarted" target="_self">Get QuestDB</a></li><li class="siteNavGroupActive"><a href="/docs/documentationOverview" target="_self">Documentation</a></li><li class=""><a href="/blog/" target="_self">Blog</a></li><li class=""><a href="/careers" target="_self">Careers</a></li><li class=""><a href="/about" target="_self">About</a></li><li class=""><a href="https://serieux-saucisson-79115.herokuapp.com/" target="_self">Join</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search..." title="Search..."/></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Configuration</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Intro<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/documentationOverview">Documentation overview</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Guides<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Installation</h4><ul><li class="navListItem"><a class="navItem" href="/docs/installationOverview">Overview</a></li><li class="navListItem"><a class="navItem" href="/docs/installFromDockerImage">Install from Docker image</a></li><li class="navListItem"><a class="navItem" href="/docs/installFromBinary">Install from Binary</a></li></ul></div><li class="navListItem"><a class="navItem" href="/docs/usingWebConsole">Using the Web Console</a></li><li class="navListItem"><a class="navItem" href="/docs/myFirstDatabase">My First Database</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Concepts<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/storageModel">Storage Model</a></li><li class="navListItem"><a class="navItem" href="/docs/datatypes">Data Types</a></li><li class="navListItem"><a class="navItem" href="/docs/designatedTimestamp">Designated timestamp</a></li><li class="navListItem"><a class="navItem" href="/docs/partitions">Partitions</a></li><li class="navListItem"><a class="navItem" href="/docs/crudOperations">CRUD Operations</a></li><li class="navListItem"><a class="navItem" href="/docs/indexes">Indexes</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Reference<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Configuration</h4><ul><li class="navListItem"><a class="navItem" href="/docs/rootDirectoryStructure">Root Directory Structure</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/serverConf">Configuration Properties</a></li></ul></div><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">APIs</h4><ul><li class="navListItem"><a class="navItem" href="/docs/restAPI">REST API</a></li><li class="navListItem"><a class="navItem" href="/docs/embeddedJavaAPI">Embedded Java API</a></li></ul></div><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Functions</h4><ul><li class="navListItem"><a class="navItem" href="/docs/functionsAggregation">Aggregation</a></li><li class="navListItem"><a class="navItem" href="/docs/functionsNumeric">Numeric</a></li><li class="navListItem"><a class="navItem" href="/docs/functionsDateAndTime">Date and Time</a></li><li class="navListItem"><a class="navItem" href="/docs/functionsRandomValueGenerators">Random Value Generators</a></li><li class="navListItem"><a class="navItem" href="/docs/functionsRowGenerator">Row Generator</a></li><li class="navListItem"><a class="navItem" href="/docs/functionsTimestampGenerator">Timestamp Generator</a></li><li class="navListItem"><a class="navItem" href="/docs/functionsText">Text Functions</a></li></ul></div><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">SQL Reference</h4><ul><li class="navListItem"><a class="navItem" href="/docs/sqlExecutionOrder">SQL Execution Order</a></li><li class="navListItem"><a class="navItem" href="/docs/alterTableAddColumn">ALTER TABLE ADD COLUMN</a></li><li class="navListItem"><a class="navItem" href="/docs/alterTableDropColumn">ALTER TABLE DROP COLUMN</a></li><li class="navListItem"><a class="navItem" href="/docs/alterTableAlterColumnAddIndex">ALTER TABLE COLUMN ADD INDEX</a></li><li class="navListItem"><a class="navItem" href="/docs/alterTableDropPartition">ALTER TABLE DROP PARTITION</a></li><li class="navListItem"><a class="navItem" href="/docs/cast">CAST</a></li><li class="navListItem"><a class="navItem" href="/docs/copy">COPY</a></li><li class="navListItem"><a class="navItem" href="/docs/createTable">CREATE TABLE</a></li><li class="navListItem"><a class="navItem" href="/docs/rename">RENAME TABLE</a></li><li class="navListItem"><a class="navItem" href="/docs/drop">DROP TABLE</a></li><li class="navListItem"><a class="navItem" href="/docs/insert">INSERT</a></li><li class="navListItem"><a class="navItem" href="/docs/joins">JOINS</a></li><li class="navListItem"><a class="navItem" href="/docs/select">SELECT</a></li><li class="navListItem"><a class="navItem" href="/docs/truncate">TRUNCATE TABLE</a></li><li class="navListItem"><a class="navItem" href="/docs/union">UNION</a></li></ul></div><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Java API Reference</h4><ul><li class="navListItem"><a class="navItem" href="/docs/javaAPIOverview">Overview</a></li><li class="navListItem"><a class="navItem" href="/docs/influxSenderLibrary">Influx Sender Library</a></li></ul></div></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">FAQ<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/faq">Frequently Asked</a></li><li class="navListItem"><a class="navItem" href="/docs/roadmap">Roadmap</a></li><li class="navListItem"><a class="navItem" href="/docs/gettestdata">Obtaining Test Data</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 id="__docusaurus" class="postHeaderTitle">Server Configuration Properties</h1></header><article><div><span><p>QuestDB server configuration can be set in the <code>server.conf</code> configuration file.</p>
+<blockquote>
+<p>A restart of QuestDB is required to pickup the new configuration</p>
+</blockquote>
+<table>
+<thead>
+<tr><th>Property</th><th>Default value</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>shared.worker.count</td><td>2</td><td></td></tr>
+<tr><td>shared.worker.affinity</td><td>sharedWorkerCount</td><td></td></tr>
+<tr><td>shared.worker.haltOnError</td><td>false</td><td></td></tr>
+<tr><td>http.enabled</td><td>true</td><td></td></tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr><th>Property</th><th>Default value</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>http.connection.pool.initial.capacity</td><td>16</td><td></td></tr>
+<tr><td>http.connection.string.pool.capacity</td><td>128</td><td></td></tr>
+<tr><td>http.multipart.header.buffer.size</td><td>512</td><td></td></tr>
+<tr><td>http.multipart.idle.spin.count</td><td>10_000</td><td></td></tr>
+<tr><td>http.receive.buffer.size</td><td>1024 * 1024</td><td></td></tr>
+<tr><td>http.request.header.buffer.size</td><td>32 * 2014</td><td></td></tr>
+<tr><td>http.response.header.buffer.size</td><td>32 * 1024</td><td></td></tr>
+<tr><td>http.worker.count</td><td>0</td><td></td></tr>
+<tr><td>http.worker.affinity</td><td>httpWorkerCount</td><td></td></tr>
+<tr><td>http.worker.haltOnError</td><td>false</td><td></td></tr>
+<tr><td>http.send.buffer.size</td><td>2 * 1024 * 1024</td><td></td></tr>
+<tr><td>http.static.index.file.name</td><td>index.html</td><td></td></tr>
+<tr><td>http.frozen.clock</td><td>false</td><td></td></tr>
+<tr><td>http.allow.deflate.before.send</td><td>false</td><td></td></tr>
+<tr><td>http.keep-alive.timeout</td><td>5</td><td></td></tr>
+<tr><td>http.keep-alive.max</td><td>10_000</td><td></td></tr>
+<tr><td>http.static.pubic.directory</td><td>public</td><td></td></tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr><th>Property</th><th>Default value</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>http.net.active.connection.limit</td><td>256</td><td></td></tr>
+<tr><td>http.net.event.capacity</td><td>1024</td><td></td></tr>
+<tr><td>http.net.io.queue.capacity</td><td>1024</td><td></td></tr>
+<tr><td>http.net.idle.connection.timeout</td><td>5 * 60 * 1000L</td><td></td></tr>
+<tr><td>http.net.interest.queue.capacity</td><td>1024</td><td></td></tr>
+<tr><td>http.net.listen.backlog</td><td>256</td><td></td></tr>
+<tr><td>http.net.snd.buf.size</td><td>2 * 1024 * 1024</td><td></td></tr>
+<tr><td>http.net.rcv.buf.size</td><td>2 * 1024 * 1024</td><td></td></tr>
+<tr><td>http.text.date.adapter.pool.capacity</td><td>16</td><td></td></tr>
+<tr><td>http.text.json.cache.limit</td><td>16384</td><td></td></tr>
+<tr><td>http.text.json.cache.size</td><td>8192</td><td></td></tr>
+<tr><td>http.text.max.required.delimiter.stddev</td><td>0.1222d</td><td></td></tr>
+<tr><td>http.text.max.required.line.length.stddev</td><td>0.8</td><td></td></tr>
+<tr><td>http.text.metadata.string.pool.capacity</td><td>128</td><td></td></tr>
+<tr><td>http.text.roll.buffer.limit</td><td>1024 * 4096</td><td></td></tr>
+<tr><td>http.text.roll.buffer.size</td><td>1024</td><td></td></tr>
+<tr><td>http.text.analysis.max.lines</td><td>1000</td><td></td></tr>
+<tr><td>http.text.lexer.string.pool.capacity</td><td>64</td><td></td></tr>
+<tr><td>http.text.timestamp.adapter.pool.capacity</td><td>64</td><td></td></tr>
+<tr><td>http.text.utf8.sink.size</td><td>4096</td><td></td></tr>
+<tr><td>http.json.query.connection.check.frequency</td><td>1_000_000</td><td></td></tr>
+<tr><td>http.json.query.float.scale</td><td>10</td><td></td></tr>
+<tr><td>http.bind.to</td><td>0.0.0.0:9000</td><td></td></tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr><th>Property</th><th>Default value</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>cairo.root</td><td>db</td><td></td></tr>
+<tr><td>cairo.commit.mode</td><td></td><td></td></tr>
+<tr><td>cairo.create.as.select.retry.count</td><td>5</td><td></td></tr>
+<tr><td>cairo.default.map.type</td><td>fast</td><td></td></tr>
+<tr><td>cairo.default.symbol.cache.flag</td><td>false</td><td></td></tr>
+<tr><td>cairo.default.symbol.capacity</td><td>256</td><td></td></tr>
+<tr><td>cairo.file.operation.retry.count</td><td>30</td><td></td></tr>
+<tr><td>cairo.idle.check.interval</td><td>5 * 60 * 1000L</td><td></td></tr>
+<tr><td>cairo.inactive.reader.ttl</td><td>-10000</td><td></td></tr>
+<tr><td>cairo.inactive.writer.ttl</td><td>-10000</td><td></td></tr>
+<tr><td>cairo.index.value.block.size</td><td>256)</td><td></td></tr>
+<tr><td>cairo.max.swap.file.count</td><td>30</td><td></td></tr>
+<tr><td>cairo.mkdir.mode</td><td>509</td><td></td></tr>
+<tr><td>cairo.parallel.index.threshold</td><td>100000</td><td></td></tr>
+<tr><td>cairo.reader.pool.max.segments</td><td>5</td><td></td></tr>
+<tr><td>cairo.spin.lock.timeout</td><td>1_000_000</td><td></td></tr>
+<tr><td>cairo.cache.rows</td><td>16</td><td></td></tr>
+<tr><td>cairo.cache.blocks</td><td>4</td><td></td></tr>
+<tr><td>cairo.character.store.capacity</td><td>1024</td><td></td></tr>
+<tr><td>cairo.character.store.sequence.pool.capacity</td><td>64</td><td></td></tr>
+<tr><td>cairo.column.pool.capacity</td><td>4096</td><td></td></tr>
+<tr><td>cairo.compact.map.load.factor</td><td>0.7</td><td></td></tr>
+<tr><td>cairo.expression.pool.capacity</td><td>8192</td><td></td></tr>
+<tr><td>cairo.fast.map.load.factor</td><td>0.5</td><td></td></tr>
+<tr><td>cairo.sql.join.context.pool.capacity</td><td>64</td><td></td></tr>
+<tr><td>cairo.lexer.pool.capacity</td><td>2048</td><td></td></tr>
+<tr><td>cairo.sql.map.key.capacity</td><td>2048 * 1024</td><td></td></tr>
+<tr><td>cairo.sql.map.page.size</td><td>4 * 1024 * 1024</td><td></td></tr>
+<tr><td>cairo.model.pool.capacity</td><td>1024</td><td></td></tr>
+<tr><td>cairo.sql.sort.key.page.size</td><td>4 * 1024 * 1024</td><td></td></tr>
+<tr><td>cairo.sql.sort.light.value.page.size</td><td>1048576</td><td></td></tr>
+<tr><td>cairo.sql.hash.join.value.page.size</td><td>16777216</td><td></td></tr>
+<tr><td>cairo.sql.latest.by.row.count</td><td>1000</td><td></td></tr>
+<tr><td>cairo.sql.hash.join.light.value.page.size</td><td>1048576</td><td></td></tr>
+<tr><td>cairo.sql.sort.value.page.size</td><td>16777216</td><td></td></tr>
+<tr><td>cairo.work.steal.timeout.nanos</td><td>10_000</td><td></td></tr>
+<tr><td>cairo.parallel.indexing.enabled</td><td>true</td><td></td></tr>
+<tr><td>cairo.sql.join.metadata.page.size</td><td>16384</td><td></td></tr>
+<tr><td>cairo.sql.analytic.column.pool.capacity</td><td>64</td><td></td></tr>
+<tr><td>cairo.sql.create.table.model.pool.capacity</td><td>16</td><td></td></tr>
+<tr><td>cairo.sql.column.cast.model.pool.capacity</td><td>16</td><td></td></tr>
+<tr><td>cairo.sql.rename.table.model.pool.capacity</td><td>16</td><td></td></tr>
+<tr><td>cairo.sql.with.clause.model.pool.capacity</td><td>128</td><td></td></tr>
+<tr><td>cairo.sql.insert.model.pool.capacity</td><td>64</td><td></td></tr>
+<tr><td>cairo.sql.copy.model.pool.capacity</td><td>32</td><td></td></tr>
+<tr><td>cairo.sql.copy.buffer.size</td><td>2 * 1024 * 1024</td><td></td></tr>
+<tr><td>cairo.sql.copy.formats.file</td><td>/text_loader.json</td><td>);</td></tr>
+<tr><td>cairo.date.locale</td><td>en</td><td></td></tr>
+<tr><td>cairo.timestamp.locale</td><td>en</td><td></td></tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr><th>Property</th><th>Default value</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>cairo.sql.copy.root</td><td>null</td><td></td></tr>
+<tr><td>cairo.sql.backup.root</td><td>null</td><td></td></tr>
+<tr><td>cairo.sql.backup.dir.datetime.format</td><td>null</td><td></td></tr>
+<tr><td>cairo.sql.backup.dir.tmp.name</td><td>tmp</td><td></td></tr>
+<tr><td>cairo.sql.backup.mkdir.mode</td><td>509</td><td></td></tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr><th>Property</th><th>Default value</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>line.udp.bind.to</td><td>0.0.0.0:9009</td><td></td></tr>
+<tr><td>line.udp.join</td><td>232.1.2.3</td><td></td></tr>
+<tr><td>line.udp.commit.rate</td><td>1_000_000</td><td></td></tr>
+<tr><td>line.udp.msg.buffer.size</td><td>2048</td><td></td></tr>
+<tr><td>line.udp.msg.count</td><td>10_000</td><td></td></tr>
+<tr><td>line.udp.receive.buffer.size</td><td>8 * 1024 * 1024</td><td></td></tr>
+<tr><td>line.udp.enabled</td><td>true</td><td></td></tr>
+<tr><td>line.udp.own.thread.affinity</td><td>-1</td><td></td></tr>
+<tr><td>line.udp.own.thread</td><td>false</td><td></td></tr>
+<tr><td>line.udp.unicast</td><td>false</td><td></td></tr>
+<tr><td>line.udp.commit.mode</td><td></td><td></td></tr>
+<tr><td>line.udp.timestamp</td><td>n</td><td>n,u,ms,s,m,h</td></tr>
+</tbody>
+</table>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/rootDirectoryStructure"><span class="arrow-prev">← </span><span>Root Directory Structure</span></a><a class="docs-next button" href="/docs/restAPI"><span>REST API</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><div align="left" class="footersection"><h5>QuestDB</h5><a href="/docs/documentationOverview">Documentation</a><a href="/getstarted">Download</a><a href="/docs/roadmap">Roadmap</a></div><div align="left" class="footersection"><h5>Community</h5><a href="https://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://join.slack.com/t/questdb/shared_invite/enQtNzk4Nzg4Mjc2MTE2LTEzZThjMzliMjUzMTBmYzVjYWNmM2UyNWJmNDdkMDYyZmE0ZDliZTQxN2EzNzk5MDE3Zjc1ZmJiZmFiZTIwMGY&gt;"> Join Slack </a><a href="https://twitter.com/" target="@QuestDB" rel="noreferrer noopener">Twitter</a></div><div align="left" class="footersection"><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/questdb/questdb/">GitHub</a><span class="sucker"><a class="github-button" href="https://github.com/questdb/questdb" data-icon="octicon-star" data-count-href="/questdb/questdb/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></span><a class="github-button" href="https://github.com/questdb/questdb" data-icon="octicon-star" data-count-href="/questdb/questdb/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="copyright">Copyright © 2020 QuestDB</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+              !function(f,b,e,v,n,t,s)
+              {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+              n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+              if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+              n.queue=[];t=b.createElement(e);t.async=!0;
+              t.src=v;s=b.getElementsByTagName(e)[0];
+              s.parentNode.insertBefore(t,s)}(window, document,'script',
+              'https://connect.facebook.net/en_US/fbevents.js');
+              fbq('init', '648273155994655');
+              fbq('track', 'PageView');
+                </script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: 'b2a69b4869a2a85284a82fb57519dcda',
+                indexName: 'questdb',
+                inputSelector: '#search_input_react',
+                algoliaOptions: {}
+              });
+            </script></body></html>
