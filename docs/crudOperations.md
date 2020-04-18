@@ -89,22 +89,22 @@ Lets insert records:
 
 ```sql
 insert into balances (cust_id, balance_ccy, balance, timestamp)
-	values (1, 'USD', 1500.00, to_timestamp(6000000001));
+	values (1, 'USD', 1500.00, 6000000001);
 
 insert into balances (cust_id, balance_ccy, balance, timestamp)
-	values (1, 'EUR', 650.50, to_timestamp(6000000002));
+	values (1, 'EUR', 650.50, 6000000002);
 
 insert into balances (cust_id, balance_ccy, balance, timestamp)
-	values (2, 'USD', 900.75, to_timestamp(6000000003));
+	values (2, 'USD', 900.75, 6000000003);
 
 insert into balances (cust_id, balance_ccy, balance, timestamp)
-	values (2, 'EUR', 880.20, to_timestamp(6000000004));
+	values (2, 'EUR', 880.20, 6000000004);
 ```
 <!--REST-->
 ```shell 
 curl -G "http://localhost:13005/exec" --data-urlencode "query=
 insert into balances (cust_id, balance_ccy, balance, timestamp)
-	values (1, 'USD', 1500.00, to_timestamp(6000000001))
+	values (1, 'USD', 1500.00, 6000000001)
 "
 ```
 <!--Java Raw-->
@@ -153,7 +153,7 @@ final Connection connection =
     DriverManager.getConnection("jdbc:postgresql://localhost:9120/qdb", properties);
 PreparedStatement insert = connection.prepareStatement(
     "insert into balances (cust_id, balance_ccy, balance, timestamp)"+
-     	"values (?, ?, ?, to_timestamp(?))";
+     	"values (?, ?, ?, ?)";
 
 )
 insert.setInt(1, 1);
@@ -256,7 +256,7 @@ Lets update balance of customer `1` in the `balances` table:
 
 ```sql
 insert into balances (cust_id, balance_ccy, balance, timestamp)
-	values (1, 'USD', 660.50, to_timestamp(6000000005));
+	values (1, 'USD', 660.50, 6000000005);
 ```
 
 You might expect an `UPDATE`. QuestDB uses `INSERT` which means each table keeps change history.
