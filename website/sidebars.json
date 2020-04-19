@@ -14,7 +14,9 @@
         ]
       },
       "usingWebConsole",
-      "myFirstDatabase"
+      "myFirstDatabase",
+      "gettestdata"
+
     ],
     "Concepts": [
       "storageModel",
@@ -86,9 +88,7 @@
       }
     ],
     "FAQ": [
-      "faq",
-      "roadmap",
-      "gettestdata"
+      "faq"
     ]
   }
 }

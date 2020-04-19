@@ -26,7 +26,7 @@ Installation is also simplified: unzip and run.
 None apart from Java of course. We use Java only for the JVM and the JIT. However, we do not use any of the standard java libraries.
 
 ### What is on the roadmap?
-See our [roadmap](faqROADMAP.md)
+See our [roadmap](https://github.com/questdb/questdb/projects/2)
 
 ### Is QuestDB ACID compliant
 QuestDB is ACID compliant to write in a single table. We don't support ACID on multi-table transactions yet.
