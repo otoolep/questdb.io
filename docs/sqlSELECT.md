@@ -6,7 +6,7 @@ sidebar_label: SELECT
 
 `SELECT` allows you to specify list of columns and expressions to be selected and evaluated from a table.
 
->All examples below are given for the file ratings.csv from the movielens project. See section to **[Get sample data](faqGETTESTDATA.md)**
+>All examples below are given for the file ratings.csv from the movielens project. See section to **[Get sample data](gettestdata.md)**
 
 ## Syntax
 ![alt-text](assets/select-statement.svg)
