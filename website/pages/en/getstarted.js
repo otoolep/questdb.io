@@ -155,6 +155,12 @@ class Index extends React.Component {
                         <p>Follow our <a href="/docs/installFromBinary"> installation steps</a> to get started.</p>
                     </li>
                     <li>
+                        <span className="headline">Homebrew</span>
+                        <p>Install with Homebrew</p>
+                        <pre>brew install questdb</pre>
+                        <p>Learn how to use QuestDB with Homebrew <a href="/docs/homebrew"> here</a>.</p>
+                    </li>
+                    <li>
                         <span className="headline">Java library</span>
                         <p>Embedded Java database as Maven dependency</p>
                         <pre>{`

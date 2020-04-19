@@ -75,7 +75,7 @@ QuestDB will start and run in the background and continue running even if you cl
 
 
 #### Default directories
-By default, QuestDB `root_directory` will be the following
+By default, QuestDB [root directory](rootDirectoryStructure.md) will be the following
 <!--DOCUSAURUS_CODE_TABS-->
 <!--Linux -->
 ```shell script

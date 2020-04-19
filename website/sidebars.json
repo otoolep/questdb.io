@@ -10,6 +10,7 @@
         "ids": [
           "installationOverview",
           "installFromDockerImage",
+          "installFromHomebrew",
           "installFromBinary"
         ]
       },
