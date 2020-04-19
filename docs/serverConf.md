@@ -9,7 +9,7 @@ When a key is absent from the configuration file, the default value is used.
 
 ### Customising the configuration
 
-To override a default value with a custom value, add the key in the configuration file. as follows
+To override a default value with a custom value, add the key in the configuration file as follows
 ```shell script
 aaa.bbb.ccc.ddd=myValue
 ```

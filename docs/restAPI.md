@@ -10,14 +10,19 @@ API functions are fully keyed on the URL and they use query parameters as their 
 Responses are function specific, for example you can download query results as CSV files, 
 directly from the API. You can also get JSON responses.
 
-Available function are `/imp`, `/exec`, `/exp` and `/chk`.
+The REST API can be accessed interactively using Web Console that is a part of QuestDB distribution.
+Find out more in the section **[using the web console](usingWebConsole.md)**.
 
+>Other machines on your network can access the console or connect to the DB on
+  `http://IP_OF_THE_HOST_MACHINE:9000`
 
->The REST API can be accessed interactively using Web Console that is a part of QuestDB distribution.
-To access the Web Console visit **[http://localhost:9000](http://localhost:9000)**
+>All strings need to be passed as url-encoded, for example by using `--data-urlencode`
 
-Other machines on your network can access the console or connect to the DB programmatically
- by navigating `http://IP_OF_THE_HOST_MACHINE:9000`
+## Available methods 
+- [`/imp` to load data](#imp---loading-data)
+- [`/exec` to query data](#exec---querying-data)
+- [`/exp`  to export data](#exp---export-data)
+- `/chk`
 
 ## /imp - Loading data
 The function `/imp` streams tabular text data directly into a table.
@@ -51,8 +56,8 @@ When a header row is missing, column names are generated automatically.
 <td class="param"><code>schema</code> (optional, form)</td>
 <td>
 
-URL-encoded string of type hints<p><img src="assets/schema.svg"></p>
-<code>schema</code> parameter must always precede <code>data</code>. 
+Type hints passed as a JSON object as follows
+<p><code>schema='[{"name":"columnName1", "type": "TYPE1"},{"name":"columnName2", "type":"TYPE2"},{...}]'</code></p>
 
 </td>
 </tr>
@@ -144,11 +149,11 @@ When column types are correct error count must be zero.
 
 ### Basic import
 ```shell script
-mpb:ml-latest user$ <em>curl -i -F data=@ratings.csv http://localhost:9000/imp
+curl -i -F data=@ratings.csv http://localhost:9000/imp
 ```
 
 Response:
-```shell script
+```
 HTTP/1.1 200 OK
 Server: questDB/1.0
 Date: Fri, 28 Oct 2016 17:58:31 GMT
@@ -208,10 +213,10 @@ JSON response for the same request would be:
 
 
 ### Import with schema
-This example overrides types of `userId` and `movieId` by including `schema` parameter:
+This example overrides types of `userId` and `movieId` by including `schema` parameter. Schema is passed as a `JSON object`.
 
 ```shell script 
-:ml-latest user$ curl -i -F 'schema=userId=STRING&movieId=STRING' -F data=@ratings.csv http://localhost:9000/imp
+curl -i -F schema='[{"name":"userId", "type": "STRING"},{"name":"movieId", "type":"STRING"}]' -F data=@ratings.csv http://localhost:9000/imp
 ```
 
 
@@ -306,7 +311,10 @@ The following will use `curl` to send a query over http. The result will be sent
 Note that the `query` is url-encoded.
 
 ```shell script
-C:\Users\info>curl -v -G http://localhost:9000/exp --data-urlencode "query=select * from mydb;" -d limit=5
+curl -v -G http://localhost:9000/exp --data-urlencode "query=select * from mydb;" -d limit=5
+```
+
+```
 *   Trying ::1...
 * TCP_NODELAY set
 *   Trying 127.0.0.1...
@@ -424,9 +432,9 @@ and <code>limit=20</code> will return first 20 rows, which is equivalent to <cod
 Below is example of exporting data from command line using `curl`
 
 ```shell script
-mbp:~ user$ curl -v -G http://localhost:9000/exp \
-                 --data-urlencode "query=select AccidentIndex2, Date, Time from 'Accidents0514.csv'" \
-                 -d limit=5
+curl -v -G http://localhost:9000/exp \
+    --data-urlencode "query=select AccidentIndex2, Date, Time from 'Accidents0514.csv'" \
+    -d limit=5
 ```
       
 Response:
@@ -461,9 +469,9 @@ When query contains syntax errors `/exp` attempts to return as much diagnostic i
 Example erroneous request:
 
 ```shell script
-mbp:ui user$ curl -v -G http://localhost:9000/exp \
->                  --data-urlencode "query=select AccidentIndex2, Date, Time from 'Accidents0514.csv'" \
->                  -d limit=5
+curl -v -G http://localhost:9000/exp \
+    --data-urlencode "query=select AccidentIndex2, Date, Time from 'Accidents0514.csv'" \
+    -d limit=5
 ```
 Response:
 ```shell script
