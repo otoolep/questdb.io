@@ -23,3 +23,6 @@ typeDef ::= (
 indexDef ::= 'index' '(' columnRef (indexCapacityDef)? ')'
 
 indexCapacityDef ::= 'capacity' valueBlockSize
+
+insertInto
+  ::= 'INSERT' 'INTO' tableName (('('columnName (',' columnName)*) ')')? ('VALUES' '(' value (',' value)* ')' | 'SELECT' queryDef )
