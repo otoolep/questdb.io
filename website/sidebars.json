@@ -24,6 +24,7 @@
       "datatypes",
       "designatedTimestamp",
       "partitions",
+      "symbol",
       "crudOperations",
       "indexes"
     ],

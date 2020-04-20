@@ -34,12 +34,12 @@ both ASCII and unicode characters, file system special character restrictions st
   ![alt-text](assets/column-type-def.svg)
 
 * `distinctValueEstimate` - optionally you can hint QuestDB how many distinct values this column is going to have. QuestDB will
-use this value to size data structures used to support symbol. These data structures will resize themselves when necessary to allow
+use this value to size data structures used to support [symbol](symbol.md). These data structures will resize themselves when necessary to allow
 QuestDB to function correctly. Under-estimating symbol value count might result in drop of performance whereas over-estimating - in
 higher disk space and memory consumption. When `distinctValueEstimate` is not specified, a configuration default is used (`cairo.default.symbol.capacity`). 
 
 
-* `CACHE | NOCACHE` - a flag to tell QuestDB how to cache symbols. `CACHE` means that QuestDB will use Java Heap based Map to resolve symbol
+* `CACHE | NOCACHE` - a flag to tell QuestDB how to cache a [symbol](symbol.md). `CACHE` means that QuestDB will use Java Heap based Map to resolve symbol
 values and keys. When column has large number of distinct symbol values (over 100,000) heap impact might be significant and depending on
 heap size might cause OutOfMemory error. To avoid Java Heap impact, `NOCACHE` will leverage off-heap structure, which can deal with larger value
 count but is slower. Default option is `CACHE`.
@@ -52,7 +52,7 @@ count but is slower. Default option is `CACHE`.
 
   ![alt-text](assets/index-capacity-def.svg)
 
-* `valueBlockSize` - index storage parameter. This value is optional and will default to the value of configuration parameter `cairo.index.value.block.size`.
+* `valueBlockSize` - index storage parameter. This value is optional and will default to the value of [configuration key](serverConf.md) `cairo.index.value.block.size`.
 `valueBlockSize` tells QuestDB how many rowids to store in a single storage block on disk. Consider the following example.
 Your table has 200 unique stock symbols and 1,000,000,000 stock quotes over time. Index will have to store 1,000,000,000/200 
 row IDs for each symbol, e.g. 5,000,000 per symbol. When `valueBlockSize` is 1,048,576 QuestDB will use 5 blocks to store the row IDs, but when `valueBlockSize` is 1,024,
@@ -80,33 +80,34 @@ block count will be 4,883. To attain better performance the fewer blocks are use
   
 ## Usage
 
-There are three main use cases of `create table`: 
-* create a new table
-* clone existing SQL structure
-* create and populate table from results of a SQL select statement
+Find below example uses of [CREATE TABLE](#create-table) and of [CREATE TABLE AS](#create-table-as)
 
-### Create new table example
+### CREATE TABLE
 
-Create vanilla table without nominated timestamp and not partitioned. Such table can accept data in any order.
+#### Without [designated timestamp](designatedTimestamp.md) and not [partitioned](partitions.md). 
 
 ```sql
 CREATE TABLE my_table(symb SYMBOL, price DOUBLE, ts TIMESTAMP, s STRING)
 ```
 
-Create the same table but with nominated timestamp to have QuestDB enforce chronological order of `ts` values.
+Such table can accept data in any order.
+
+#### With [designated timestamp](designatedTimestamp.md)
 
 ```sql
 CREATE TABLE my_table(symb SYMBOL, price DOUBLE, ts TIMESTAMP, s STRING) timestamp(ts)
 ```
 
-Create table and partition by `DAY`
+With this setting, QuestDB enforce chronological order of `ts` values.
+
+#### With [Partition](partitions.md)
 
 ```sql
 CREATE TABLE my_table(symb SYMBOL, price DOUBLE, ts TIMESTAMP, s STRING) timestamp(ts)
   partition by DAY
 ```
 
-Create table with `SYMBOL` column having all options
+#### With [SYMBOL](symbol.md)
 
 ```sql
 CREATE TABLE my_table(
@@ -116,9 +117,11 @@ CREATE TABLE my_table(
 ) timestamp(ts)  partition by DAY
 ``` 
 
-### Clone existing SQL structure
+### CREATE TABLE AS
 
-Cloning existing SQL structure can clone a table, when SQL is `select * from tab`  or any arbitrary SQL result:
+#### Cloning existing SQL structure
+
+When SQL is `select * from tab`  or any arbitrary SQL result, the table data will be copied with the corresponding structure.
 
 ```sql
 create table x as (
@@ -142,7 +145,7 @@ create table x as (select * from y where false)
     , cast(sym as symbol index)
 ```
 
-here we changed type of `price` (assuming it was `INT`) to `LONG` and changed type of `sym` to `SYMBOL` and created index.
+Here we changed type of `price` (assuming it was `INT`) to `LONG` and changed type of `sym` to [SYMBOL](symbol.md) and created an [index](indexes.md).
 
 ### Create new table using SQL structure and data
 

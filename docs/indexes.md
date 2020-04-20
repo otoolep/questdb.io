@@ -7,7 +7,7 @@ sidebar_label: Indexes
 An index stores the row locations for each value of the target column in order to provide faster read access. 
 It allows you to bypass full table scans by directly accessing the relevant rows during queries with `WHERE` conditions.
 
-> Indexing is available for `SYMBOL` columns. Index support for other types will be added over time.
+Indexing is available for [SYMBOL](symbol.md) columns. Index support for other types will be added over time.
 
 There are two ways to create an index:
 - At table creation time using  [CREATE TABLE](createTable.md#index)
@@ -15,7 +15,7 @@ There are two ways to create an index:
 
 ## How Index works
 
-Index creates a table of row locations for each distinct value for the target symbol. 
+Index creates a table of row locations for each distinct value for the target [symbol](symbol.md). 
 Once the index is created, inserting data into the table will update the index.
 Lookups on indexed values will be performed in the index table directly which will provide the 
 memory locations of the items, thus avoiding unnecessary table scans.
