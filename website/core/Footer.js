@@ -45,7 +45,7 @@ class Footer extends React.Component {
                         <a href={`/getstarted`}>
                             Download
                         </a>
-                        <a href={this.docUrlDefault('roadmap')}>
+                        <a href="https://github.com/questdb/questdb/projects/2">
                             Roadmap
                         </a>
                     </div>

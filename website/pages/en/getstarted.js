@@ -158,7 +158,7 @@ class Index extends React.Component {
                         <span className="headline">Homebrew</span>
                         <p>Install with Homebrew</p>
                         <pre>brew install questdb</pre>
-                        <p>Learn how to use QuestDB with Homebrew <a href="/docs/homebrew"> here</a>.</p>
+                        <p>Learn how to use QuestDB with Homebrew <a href="/docs/installFromHomebrew"> here</a>.</p>
                     </li>
                     <li>
                         <span className="headline">Java library</span>
