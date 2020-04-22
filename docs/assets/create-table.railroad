@@ -26,3 +26,6 @@ indexCapacityDef ::= 'capacity' valueBlockSize
 
 insertInto
   ::= 'INSERT' 'INTO' tableName (('('columnName (',' columnName)*) ')')? ('VALUES' '(' value (',' value)* ')' | 'SELECT' queryDef )
+
+Backup
+::= 'BACKUP' ( 'TABLE' tableName ( ',' tableName )* | 'DATABASE' ) ';'
