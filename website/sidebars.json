@@ -68,6 +68,7 @@
           "alterTableDropColumn",
           "alterTableAlterColumnAddIndex",
           "alterTableDropPartition",
+          "backup",
           "cast",
           "copy",
           "createTable",

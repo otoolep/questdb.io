@@ -198,7 +198,7 @@ function file_struct(hljs) {
                 lexemes: /[\w\.]+/,
                 keywords: {
                     keyword:
-                        'db log conf public questdb'
+                        'db log conf public questdb backup directory'
                 },
                 contains: [
                     {
