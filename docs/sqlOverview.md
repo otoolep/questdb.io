@@ -4,79 +4,61 @@ title: SQL Overview
 sidebar_label: SQL Overview
 ---
 
-## Introduction
-QuestDB attempts to implement standard ANSI SQL. We also attempt to be PostgresSQL compatible, although some of it is work in progress. QuestDB implements the following clauses in this execution order:
 
-1. FROM
-2. ON
-3. JOIN
-4. WHERE
-5. LATEST BY
-6. GROUP BY (implicit)
-7. WITH
-8. HAVING (implicit)
-9. SELECT
-10. DISTINCT
-11. ORDER BY
-12. LIMIT
+QuestDB attempts to implement standard ANSI SQL. We also attempt to be PostgresSQL compatible, although some of it is work in progress. 
+This page presents the main extensions we bring to SQL and the main differences that one might find in SQL but not in QuestDB's dialect
 
-We also implemented sub-queries. They can be used anywhere table name is used. Our sub-query implementation adds 
-virtually zero execution cost to SQL. We encourage their use to add flavours of functional language to old-school SQL. 
+## SQL extensions
+
+We have extended SQL language to support our data storage model and simplify semantics of time series queries.
+
+#### LATEST BY
+[LATEST BY](crudOperations.md) is a clause introduced to help perform UPDATE and DELETE operations within an append-only framework.
+
+#### SAMPLE BY
+[SAMPLE BY](sqlSELECT.md#sample-by) for time-based [aggregations](functionsAggregation.md) with an efficient syntax.
+The short query below will return the simple average balance from a list of accounts by one month buckets.
+```sql
+select avg(balance) from accounts sample by 1M
+```
 
 ## Important differences from standard SQL
 
-### `SELECT * FROM` Optionality
+#### `SELECT * FROM` Optionality
 
 In QuestDB `select * from` is optional.
 
-```sql
-SELECT * FROM tab;
-```
+So `SELECT * FROM tab;` achieves the same effect as `tab;`
 
-and
+While `select * from` makes SQL look more complete on a single time, there are examples where its optionality makes things a lot easier to read. See examples in [GROUP BY](#absence-of-group-by) section.
 
-```sql
-tab;
-```
+#### Absence of `GROUP BY`
 
-achieves the same effect.
+We do not support explicit `GROUP BY` clause. Instead, QuestDB optimiser derives group-by implementation from `SELECT` clause. 
 
-While `select * from` makes SQL look more complete on a single time, there are examples where its optionality makes things a lot easier to read. See examples in `GROUP BY` section.
-
-### Absence of `GROUP BY ... HAVING`
-
-We do not support explicit `GROUP BY` clause. Instead QuestDB optimiser derives group-by implementation from `SELECT` clause. For example:
-
+In standard SQL, users might write a query like the below.
 ```sql
 SELECT a, b, c, d, sum(e) FROM tab GROUP BY a, b, c, d;
 ```
 
-We find enumerating subset of `SELECT` columns in `GROUP BY` clause redundant and therefore unnecessary. The same SQL in QuestDB SQL-dialect will look like:
+However, enumerating subset of `SELECT` columns in the `GROUP BY` clause redundant and therefore unnecessary. 
+The same SQL in QuestDB SQL-dialect will look like:
 
 ```sql
 SELECT a, b, c, d, sum(e) FROM tab;
 ```
 
-Lets see how we replace
+Let's look at another more complex example using HAVING in standard SQL.
 ```sql
 SELECT a, b, c, d, sum(e) 
 FROM tab 
 GROUP BY a, b, c, d 
 HAVING sum(e) > 100;
 ```
-Here `select * from` optionality and featherweight sub-queries come to the rescue:
-
+In QuestDB's dialect, `select * from` optionality and featherweight sub-queries come to the rescue to create a 
+smaller, more readable query, without unnecessary repetitive aggregations.
 ```sql
 (SELECT a, b, c, d, sum(e) s FROM tab) WHERE s > 100;
 ```
 
-Here we avoided repetitive aggregation expressions without extra furniture syntax.
 
-## SQL extensions
-
-We have extended SQL language to support our data storage model and simplify semantics of time series queries.
-
-- `LATEST BY` (find out more **[here](crudOperations.md)**)
-- `SAMPLE BY`
-
-Please follow the links for detailed description of these clauses.

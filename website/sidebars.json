@@ -26,7 +26,8 @@
       "partitions",
       "symbol",
       "crudOperations",
-      "indexes"
+      "indexes",
+      "sqlOverview"
     ],
     "Reference": [
       {
