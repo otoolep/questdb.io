@@ -29,3 +29,6 @@ insertInto
 
 Backup
 ::= 'BACKUP' ( 'TABLE' tableName ( ',' tableName )* | 'DATABASE' ) ';'
+
+case
+::= 'CASE' ('WHEN' condition 'THEN' value)* ( | 'ELSE' value ) 'END'
