@@ -306,7 +306,7 @@ perform 4x as many operations, then as an illustration, our CPU usage time looks
 
 Here are the results when calculating the sum of 1 billion doubles on a quad-core i7.
 
-![alt-text](assets/bench-naive-kahan-neub.png)
+![alt-text](assets/bench-naive-kahan-neum.png)
 
 **Granted, Kahan and Neumaier sum take slightly longer than the naive approach. However, the impact is a marginal 9%, not 400%!
 Also, Neumaier's algo, which is a little more precise in certain edge cases but adds more operations to the algorithm performs just as 
@@ -332,7 +332,7 @@ The results are as below.
 ![alt-text](assets/bench-kahan-kdb-clickhouse.png)
 
 The three databases are summing naively at roughly the same speed. However, this summation method is inaccurate. 
-When using compensated sum (Kahan's algorithm), Clickhouse's performs twice as slow while QuestDB's performance only deteriorates by 9%.
+When using compensated sum (Kahan's algorithm), Clickhouse's performs 55% slower. QuestDB's performance deteriorates by 9%.
 kdb+ did not seem to offer compensated summation.
 
 We are conscious this benchmark is not representative of any particular use case. We chose this test because 
