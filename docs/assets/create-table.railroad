@@ -32,3 +32,6 @@ Backup
 
 case
 ::= 'CASE' ('WHEN' condition 'THEN' value)* ( | 'ELSE' value ) 'END'
+
+Copy
+::= 'COPY' tableName 'FROM' fileName  (| 'WITH' 'HEADER' (true|false) ) ';'

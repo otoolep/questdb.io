@@ -11,7 +11,7 @@ sidebar_label: BACKUP
 Creates a backup for one, several, or all database tables. 
 
 ## Required configuration
-`BACKUP TABLE` requires a `backup directory` which is set using the [configuration key](serverConf.md) `cairo.sql.copy.root` in the [server.conf](rootDirectoryStructure.md#serverconf) file.
+`BACKUP TABLE` requires a `backup directory` which is set using the [configuration key](serverConf.md) `cairo.sql.backup.root` in the [server.conf](rootDirectoryStructure.md#serverconf) file.
 
 Example:
 ```shell script

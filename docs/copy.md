@@ -12,12 +12,24 @@ sidebar_label: COPY
 
 Copies data from a delimited text file into a table. Column delimiter detection is automatic.
 
-When target table exists data is appended if file structure matches the table. 
+- If the target table exists, then the data is appended provided the file structure matches the table. 
+- If the target table does not exist, then it is created using metadata derived from the file data.  
 
-When target table does not exist it is created using metadata derived from the file data.  
+## Options
+- `with headers true` - QuestDB will automatically assume the first row is a header.
+- `with headers false` - QuestDB will use schema recognition to determine whether the first rows should be used as header.
 
-File can either be on local disk to the server or a remote disk, on a remote file system. In either case QuestDB will treat the
-file name as relative to the value of ``cairo.sql.copy.root`` configuration property. This is a security feature to disallow random file access via QuestDB.
+## Required configuration
+`COPY` requires a `copy root directory` which is set using the [configuration key](serverConf.md) `cairo.sql.copy.root` in the [server.conf](rootDirectoryStructure.md#serverconf) file.
+
+Example:
+```shell script
+cairo.sql.copy.root=/Users/UserName/Desktop
+```
+
+> The `copy directory` can be on a local disk to the server, on a remote disk, or a remote filesystem. QuestDB will 
+>enforce that the tables are only written from files located in a directory relative to the `copy directory`. This is a security feature to disallow 
+>random file access by QuestDB.
 
 ## Example
 
@@ -25,3 +37,12 @@ file name as relative to the value of ``cairo.sql.copy.root`` configuration prop
 COPY trades20191223 FROM 'C:\archive\trades\20191223.csv'
 ```
 
+#### with headers true
+```sql
+COPY trades20191223 FROM 'C:\archive\trades\20191223.csv' with headers true
+```
+
+#### with headers false
+```sql
+COPY trades20191223 FROM 'C:\archive\trades\20191223.csv' with headers false
+```
