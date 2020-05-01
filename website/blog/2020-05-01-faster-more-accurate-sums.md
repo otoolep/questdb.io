@@ -1,5 +1,5 @@
 ---
-title: Faster more accurate sums
+title: Faster, more accurate sums
 author: Tancrede Collard
 ---
 
