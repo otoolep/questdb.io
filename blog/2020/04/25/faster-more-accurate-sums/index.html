@@ -1,0 +1,355 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Faster more accurate sums · QuestDB</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="**Summing floating-point values has always implied a tradeoff between speed and accuracy. Until now.**"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Faster more accurate sums · QuestDB"/><meta property="og:type" content="website"/><meta property="og:url" content="https://questdb.io/blog/2020/04/25/faster-more-accurate-sums"/><meta property="og:description" content="**Summing floating-point values has always implied a tradeoff between speed and accuracy. Until now.**"/><meta property="og:image" content="https://questdb.io/img/favicon.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://questdb.io/img/favicon.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="alternate" type="application/atom+xml" href="https://questdb.io/blog/atom.xml" title="QuestDB Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://questdb.io/blog/feed.xml" title="QuestDB Blog RSS Feed"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-145747842-1', 'auto');
+              ga('send', 'pageview');
+            </script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,500,600,700|Source+Code+Pro:400,700|Open+Sans:300,400,600,700"/><script type="text/javascript" src="/js/menu-hack.js"></script><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script type="text/javascript" src="/js/getstarted.js"></script><script type="text/javascript" src="/js/signup.js"></script><script type="text/javascript" src="/js/hotjar.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/QuestDB_Logo.png" alt="QuestDB"/><h2 class="headerTitleWithLogo">QuestDB</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/" target="_self">Home</a></li><li class=""><a href="/getstarted" target="_self">Get QuestDB</a></li><li class=""><a href="/docs/documentationOverview" target="_self">Documentation</a></li><li class="siteNavGroupActive"><a href="/blog/" target="_self">Blog</a></li><li class=""><a href="/careers" target="_self">Careers</a></li><li class=""><a href="/about" target="_self">About</a></li><li class=""><a href="https://serieux-saucisson-79115.herokuapp.com/" target="_self">Join</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search..." title="Search..."/></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Recent Posts</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Recent Posts</h3><ul class=""><li class="navListItem navListItemActive"><a class="navItem" href="/blog/2020/04/25/faster-more-accurate-sums">Faster more accurate sums</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/04/02/using-simd-to-aggregate-billions-of-rows-per-second">Using SIMD to aggregate billions of rows per second</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/03/15/interthread">The art of thread messaging</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/12/19/lineprot">What makes QuestDB faster than InfluxDB</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer postContainer blogContainer"><div class="wrapper"><div class="lonePost"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle"><a href="/blog/2020/04/25/faster-more-accurate-sums">Faster more accurate sums</a></h1><p class="post-meta">April 25, 2020</p><div class="authorBlock"><p class="post-authorName"><a target="_blank" rel="noreferrer noopener">Tancrede Collard</a></p></div></header><div><span><p><strong>Summing floating-point values has always implied a tradeoff between speed and accuracy. Until now.</strong></p>
+<p><img src="/blog/assets/road-runner.png" alt="alt-text"></p>
+<p>With <a href="https://github.com/questdb/questdb/releases/tag/4.2.1">release 4.2.1</a>, QuestDB implements Kahan and Neumaier compensated summation algorithms that perform as fast
+as naive approaches. That's right! More accurate results in the same execution time.</p>
+<p>You can find our code in our
+<b> <a href="https://github.com/questdb/questdb" target="_blank"> Github repo. If you like it, please consider leaving a star :-) <img class="yellow-star" src="/img/star-yellow.svg"/></a></b></p>
+<h3><a class="anchor" aria-hidden="true" id="tldr"></a><a href="#tldr" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>TLDR</h3>
+<p>In this post we cover</p>
+<ul>
+<li>An introductory <a href="#more-accurate-additions">example</a> of the problem with summing doubles.</li>
+<li>An <a href="#float-representation">overview</a> of how floating-point numbers are represented.</li>
+<li>A <a href="#kahans-algorithm-for-compensated-summation">presentation</a> of the Kahan algorithm.</li>
+<li>Our <a href="#questdbs-implementation-with-avx-instructions">implementation</a> using SIMD instructions.</li>
+<li>Performance <a href="#performance-impact-over-naive-method">benchmarks</a> between summation methods and <a href="#comparing-to-other-databases">across</a> some databases.</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="more-accurate-additions"></a><a href="#more-accurate-additions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>More accurate additions?</h3>
+<p>Before we dig in, some of you might wonder how an addition can be inaccurate as opposed to simply right or wrong.</p>
+<p>CPUs are poor at dealing with floating-point values. Arithmetics are almost always wrong, with a
+worst-case error proportional to the number of operations <code>n</code>. As floating-point operations are intransitive, the order
+in which you perform them also has an impact on accuracy. This is not because QuestDB uses a particular format for doubles.
+In fact, it conforms with the <b> <a href="https://en.wikipedia.org/wiki/IEEE_754" target="_blank">IEEE standard</a></b>.</p>
+<p>Here is an example:</p>
+<pre><code class="hljs css language-java">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{
+        System.out.println(<span class="hljs-number">5.1</span>+<span class="hljs-number">9.2</span>);
+    }
+</code></pre>
+<p>We ask to add <code>5.1</code> to <code>9.2</code>. The result should be <code>14.3</code>, but we get the following.</p>
+<pre><code class="hljs css language-shell script">14.299999999999999
+</code></pre>
+<p>It's a small (only <code>0.000000000000001</code>), but it is wrong. To make matters worse, this error can be compounded.</p>
+<pre><code class="hljs css language-java">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{
+        <span class="hljs-keyword">double</span> a = <span class="hljs-number">5.1</span>+<span class="hljs-number">9.2</span>;
+        <span class="hljs-keyword">double</span> b = a + <span class="hljs-number">3.5</span>;
+        <span class="hljs-keyword">double</span> c = <span class="hljs-number">14.3</span> + <span class="hljs-number">3.5</span>;
+        System.out.println(<span class="hljs-string">"The result is: "</span> + b);
+        System.out.print(<span class="hljs-string">"But we expected: "</span> + c);
+    }
+</code></pre>
+<pre><code class="hljs css language-shell script">The result is: 17.799999999999997
+But we expected: 17.8
+</code></pre>
+<p>The error has just grown to <code>0.000000000000003</code> and will keep on growing as we add operations.</p>
+<h3><a class="anchor" aria-hidden="true" id="how-is-accuracy-lost"></a><a href="#how-is-accuracy-lost" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>How is accuracy lost?</h3>
+<h4><a class="anchor" aria-hidden="true" id="float-representation"></a><a href="#float-representation" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Float representation</h4>
+<p>To understand why, we first need to take a quick look at how floating-point numbers are represented in a computer.
+Floats are stored in a format similar to scientific notation like the below.</p>
+<p><img src="/blog/assets/float-eq-1.png" alt="alt-text"></p>
+<p>However, the number of digits in the significand is fixed, and the base is <code>2</code> instead of <code>10</code>. In addition,
+the exponent is a series of bits rather than a number. In practice, it looks more like the below.</p>
+<p><img src="/blog/assets/float-eq-2.png" alt="alt-text"></p>
+<p>If we simplify, it is basically the sum of <code>jx2^i</code> where <code>j</code> is either <code>0</code> or <code>1</code>.</p>
+<p><img src="/blog/assets/float-eq-3.png" alt="alt-text"></p>
+<p>To calculate a given number, you then multiply the significand by the base elevated to the exponent. As the
+exponent is expressed in bits, it looks like the below. Note that we ignore inactivated bits and that bits reading
+is done from right to left.</p>
+<p><img src="/blog/assets/float-eq-4.png" alt="alt-text"></p>
+<h4><a class="anchor" aria-hidden="true" id="what-about-negative-exponents"></a><a href="#what-about-negative-exponents" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>What about negative exponents?</h4>
+<p>It gets trickier when using negative exponents (i.e a right-side of the equation inferior to 1).
+In this case, the right side consists of a sum of
+negative powers of two. Here is an example of how this works. Note that in this case the bits in the exponent are read from
+left to right.</p>
+<p><img src="/blog/assets/float-eq-5.png" alt="alt-text"></p>
+<p>Interestingly, this example shows one of the limits of floating-point representation. The design of the standard made
+a trade-off and <strong>the format sacrifices precision for range</strong>. In the above example,
+the <code>0011</code> pattern will repeat to infinity. Each new bit will get us closer to 0.1. But we will never exactly get there.
+As a result, <strong>it is impossible to properly store <code>0.1</code>. Instead
+computers store something really close, but not equal</strong>.</p>
+<h4><a class="anchor" aria-hidden="true" id="truncation-accuracy-loss"></a><a href="#truncation-accuracy-loss" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Truncation accuracy loss</h4>
+<p>As we saw above, floating-point numbers are not stored accurately. Naturally, operations these numbers will return
+inaccurate results. That's not the only problem. Performing operations is also likely to introduce and grow errors
+over time. One such case is when the result of an operation has to be truncated to fit the original format.
+Here is a simplified example of the <strong>truncation</strong> that happens when adding floats of different orders of magnitude.</p>
+<blockquote>
+<p>For the below example we will be using base 10 and expressing the
+exponent as a number rather than a binary for sake of simplicity. We will assume 5 significant digits.</p>
+</blockquote>
+<p>We start with both our numbers expressed in scientific notation.</p>
+<p><img src="/blog/assets/sum-1.png" alt="alt-text"></p>
+<p>Let's expand into decimal notation and place them on a similar scale so all digits fit.</p>
+<p><img src="/blog/assets/sum-2.png" alt="alt-text"></p>
+<p>Now, let's express this sum back as one number in scientific notation. We have to <code>truncate</code> the result back to 5 significant digits.</p>
+<p><img src="/blog/assets/sum-3.png" alt="alt-text"></p>
+<p>The result is completely off. In fact, it's as if we did not add anything.</p>
+<h3><a class="anchor" aria-hidden="true" id="kahans-algorithm-for-compensated-summation"></a><a href="#kahans-algorithm-for-compensated-summation" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Kahan's algorithm for compensated summation</h3>
+<p>Compensated sum maintains a sum of accumulated errors and uses it to attempt to correct the (inaccurate) sum by the total error.
+It does so by trying to adjust each new number by the total accumulated error.</p>
+<p>The main Compensated summation algorithm is the <a href="https://en.wikipedia.org/wiki/Kahan_summation_algorithm" target="_blank">Kahan</a> sum. It runs in 4 steps:</p>
+<ul>
+<li>Subtract the <code>running error</code> from new <code>nunber</code> to get the <code>adjusted number</code>. If this is the first number, then the running error is 0.</li>
+<li>Add the <code>adjusted number</code> to the <code>running total</code> and truncate to the number of significant digits. This is the <code>truncated result</code>.</li>
+<li>Calculate the <code>new running error</code> as <code>(truncated result - running total) - adjusted number</code></li>
+<li>Assign the <code>truncated result</code> as the new <code>running total</code>.</li>
+</ul>
+<p>Here is how Wikipedia describes the algorithm in pseudocode.</p>
+<pre><code class="hljs css language-shell script">function KahanSum(input)
+       var sum = 0.0                    // Prepare the accumulator.
+       var c = 0.0                      // A running compensation for lost low-order bits.
+       for i = 1 to input.length do     // The array input has elements indexed input[1] to input[input.length].
+           var y = input[i] - c         // [step 1] c is zero the first time around.
+           var t = sum + y              // [step 2] Alas, sum is big, y small, so low-order digits of y are lost.
+           c = (t - sum) - y            // [step 3] (t - sum) cancels the high-order part of y; subtracting y recovers negative (low part of y)
+           sum = t                      // [step 4] Algebraically, c should always be zero. Beware overly-aggressive optimizing compilers!
+       next i                           // Next time around, the lost low part will be added to y in a fresh attempt.
+       return sum
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="why-does-this-work"></a><a href="#why-does-this-work" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Why does this work?</h3>
+<p>Let's take a closer look at the following:</p>
+<pre><code class="hljs css language-shell script">[1] c = (t - sum) - y
+[2] t = sum + y
+</code></pre>
+<p>Let's replace <code>t</code> by <code>[2]</code> in our running error <code>c</code></p>
+<pre><code class="hljs css language-shell script">c = (t - sum) - y
+c = ((sum + y) - sum) - y
+So applying addition transitivity to remove brackets, we obtain
+c = sum + y - sum - y
+c = 0       //???
+</code></pre>
+<p>With addition transitivity rules, the error should always be zero.<br>
+Here is a quick example that illustrates how this is not the case. We assume 2 significant digits.</p>
+<p>Initial values:</p>
+<pre><code class="hljs css language-shell script">a = 0.2
+b = 0.4
+c = 12
+</code></pre>
+<p>Calculate <code>(a + b) + c</code>:</p>
+<pre><code class="hljs css language-shell script">= (0.2 + 0.4) + 12
+= (0.6) + 12        
+= 13                // truncate to 2 significant digits and round up
+</code></pre>
+<p>Calculate <code>(a + c) + b</code>:</p>
+<pre><code class="hljs css language-shell script">= (0.2 + 12) + 0.4
+= 12 + 0.4          // truncate to 2 significant digits 
+= 12                // truncate to 2 significant digits 
+</code></pre>
+<p>The non-transitivity is the reason why <code>((sum + y) - sum) - y</code> returns the error <code>c</code> instead of <code>0</code>.</p>
+<h3><a class="anchor" aria-hidden="true" id="applying-the-algorithm-to-real-numbers"></a><a href="#applying-the-algorithm-to-real-numbers" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Applying the algorithm to real numbers</h3>
+<p>Here is a great example from <a href="https://en.wikipedia.org/wiki/Kahan_summation_algorithm" target="_blank">Wikipedia</a> to illustrate the algorithm's cycle.</p>
+<pre><code class="hljs css language-shell script">Assume initial error c is equal to 0
+ y = 3.14159 - 0.00000             y = input[i] - c
+  t = 10000.0 + 3.14159
+    = 10003.14159                   But only six digits are retained.
+    = 10003.1                       Many digits have been lost!
+  c = (10003.1 - 10000.0) - 3.14159 This must be evaluated as written! 
+    = 3.10000 - 3.14159             The assimilated part of y recovered, vs. the original full y.
+    = -0.0415900                    Trailing zeros shown because this is six-digit arithmetic.
+sum = 10003.1                       Thus, few digits from input(i) met those of sum.
+</code></pre>
+<p>The result is too large to be stored with full precision. On the next step, c gives the error.</p>
+<pre><code class="hljs css language-shell script">  y = 2.71828 - (-0.0415900)        The shortfall from the previous stage gets included.
+    = 2.75987                       It is of a size similar to y: most digits meet.
+  t = 10003.1 + 2.75987             But few meet the digits of sum.
+    = 10005.85987                   And the result is rounded
+    = 10005.9                       To six digits.
+  c = (10005.9 - 10003.1) - 2.75987 This extracts whatever went in.
+    = 2.80000 - 2.75987             In this case, too much.
+    = 0.040130                      But no matter, the excess would be subtracted off next time.
+sum = 10005.9                       Exact result is 10005.85987, this is correctly rounded to 6 digits.
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="questdbs-implementation-with-avx-instructions"></a><a href="#questdbs-implementation-with-avx-instructions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>QuestDB's implementation with AVX instructions</h3>
+<p>QuestDB implements the same 4-step algorithm as Kahan. However, it uses vectorised instructions to make this faster.
+The idea came from Zach Bjornson who wrote about this on
+<b> <a href="http://blog.zachbjornson.com/2019/08/11/fast-float-summation.html" target="_blank"> his blog</a></b>.</p>
+<p>Although the implementations are the same, QuestDB's execution time differential between methods is radically different.
+We dig into the details further along the article. Here is the implementation in QuestDB.</p>
+<p>We first define our vectors</p>
+<pre><code class="hljs css language-java">   Vec8d inputVec;
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> step = <span class="hljs-number">8</span>;
+    <span class="hljs-keyword">const</span> auto *lim = d + count;
+    <span class="hljs-keyword">const</span> auto remainder = (int32_t) (count - (count / step) * step);
+    <span class="hljs-keyword">const</span> auto *lim_vec = lim - remainder;
+    Vec8d sumVec = <span class="hljs-number">0</span>.;
+    Vec8d yVec;
+    Vec8d cVec = <span class="hljs-number">0</span>.;
+    Vec8db bVec;
+    Vec8q nancount = <span class="hljs-number">0</span>;
+    Vec8d tVec;
+</code></pre>
+<p>Then we load vectors with data. What's happening below is exactly Kahan's algorithm. However, instead of summing individual values,
+we are summing vectors of 8 values each.</p>
+<pre><code class="hljs css language-java">    <span class="hljs-keyword">for</span> (; d &lt; lim_vec; d += step) {
+        _mm_prefetch(d + <span class="hljs-number">63</span> * step, _MM_HINT_T1);
+        inputVec.load(d);
+        bVec = is_nan(inputVec);
+        nancount = if_add(bVec, nancount, <span class="hljs-number">1</span>);
+        yVec = select(bVec, <span class="hljs-number">0</span>, inputVec - cVec);
+        tVec = sumVec + yVec;
+        cVec = (tVec - sumVec) - yVec;
+        sumVec = tVec;
+    }
+</code></pre>
+<p>You may have noted the <code>prefetch</code> instruction above. As QuestDB uses contiguous storage, we can use this instruction
+to hint the CPU to fetch data ahead of time by loading the next page. Doing this means the CPU spends less time waiting for data.
+Just this one trick improved our performance by around 20%.</p>
+<p>Lastly, we use <code>horizontal_add</code> to sum all values into a scalar value. Again, we recognise Kahan's sum algorithm.</p>
+<pre><code class="hljs css language-java">    <span class="hljs-keyword">double</span> sum = horizontal_add(sumVec);
+    <span class="hljs-keyword">double</span> c = horizontal_add(cVec);
+    <span class="hljs-keyword">int</span> nans = horizontal_add(nancount);
+    <span class="hljs-keyword">for</span> (; d &lt; lim; d++) {
+        <span class="hljs-keyword">double</span> x = *d;
+        <span class="hljs-keyword">if</span> (x == x) {
+            auto y = x - c;
+            auto t = sum + y;
+            c = (t - sum) -y;
+            sum = t;
+        } <span class="hljs-keyword">else</span> {
+            nans++;
+        }
+    }
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="performance-impact-over-naive-method"></a><a href="#performance-impact-over-naive-method" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Performance impact over naive method</h3>
+<p>The more accurate the result, the better. What is the price of increased accuracy?
+Kahan algorithm adds each new <code>number</code> in 4 steps instead of one for the naive approach.
+So in theory it should be 4x slower, right?</p>
+<p><strong>In theory yes. Not with QuestDB.</strong></p>
+<p>As we have shown in a
+<a href="http://localhost:3000/blog/2020/04/02/using-simd-to-aggregate-billions-of-rows-per-second">previous article</a>, QuestDB's sum is actually so fast that it's bound by memory throughput. This means that
+our CPU is actually spending a lot of time waiting for the memory.</p>
+<p><img src="/blog/assets/thread-release.png" alt="alt-text"></p>
+<p>What is QuestDB doing while it waits? Does it lock the CPU? Of course not! It releases it for someone else to use.
+QuestDB's threading model is non-blocking. So whenever a thread is waiting, it does not stay idle and unavailable for other
+work. It is released to the thread pool, and resumes work as soon as possible.</p>
+<p>While we wait for the memory, <strong>we have plenty of CPU time which we can either release or use to improve sum accuracy without affecting performance</strong>. If we use kahan sum and
+perform 4x as many operations, then as an illustration, our CPU usage time looks like this.</p>
+<p><img src="/blog/assets/thread-work.png" alt="alt-text"></p>
+<p><strong>We fill the gaps with extra work to get a more accurate result without affecting execution time.</strong></p>
+<p>Here are the results when calculating the sum of 1 billion doubles on a quad-core i7.</p>
+<p><img src="/blog/assets/bench-naive-kahan-neub.png" alt="alt-text"></p>
+<p><strong>Granted, Kahan and Neumaier sum take slightly longer than the naive approach. However, the impact is a marginal 9%, not 400%!
+Also, Neumaier's algo, which is a little more precise in certain edge cases but adds more operations to the algorithm performs just as
+fast as Kahan for the same reason.</strong></p>
+<h3><a class="anchor" aria-hidden="true" id="comparing-to-other-databases"></a><a href="#comparing-to-other-databases" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Comparing to other databases</h3>
+<p>We compared how performance behaves when switching from naive (inaccurate) sum to kahan compensated sum. We run all
+databases on an m5a.2xlarge AWS instance. We used QuestDB to generate a data file as follows and exported it as csv.</p>
+<pre><code class="hljs css language-shell script">select rnd_double() from long_sequence(1_000_000_000);
+</code></pre>
+<table>
+<thead>
+<tr><th>Description</th><th>QuestDB</th><th>Clickhouse</th><th>kdb+</th></tr>
+</thead>
+<tbody>
+<tr><td>File generation</td><td><code>select rnd_double() from long_sequence(1_000_000_000);</code></td><td></td><td></td></tr>
+<tr><td>DDL</td><td><code>create table test_double(val double);</code></td><td><code>CREATE TABLE test_double (val Float64) Engine=Memory;</code></td><td>n/a</td></tr>
+<tr><td>Import</td><td><code>insert into test_double 'test_double.csv';</code></td><td><code>clickhouse-client --query=&quot;INSERT INTO test_double FORMAT CSVWithNames;&quot; &lt; test_double.csv</code></td><td></td></tr>
+<tr><td>Naive sum</td><td><code>select sum(val) from test_double</code></td><td><code>clickhouse-client --query=&quot;SELECT sum(val) FROM test_double</code></td><td><code>\t sum test_double</code></td></tr>
+<tr><td>Kahan sum</td><td><code>select ksum(val) from test_double</code></td><td><code>clickhouse-client --query=&quot;SELECT sumKahan(val) FROM test_double</code></td><td>n/a</td></tr>
+</tbody>
+</table>
+<p>The results are as below.</p>
+<p><img src="/blog/assets/bench-kahan-kdb-clickhouse.png" alt="alt-text"></p>
+<p>The three databases are summing naively at roughly the same speed. However, this summation method is inaccurate.
+When using compensated sum (Kahan's algorithm), Clickhouse's performs twice as slow while QuestDB's performance only deteriorates by 9%.
+kdb+ did not seem to offer compensated summation.</p>
+<p>We are conscious this benchmark is not representative of any particular use case. We chose this test because
+it is a basic query, and is trivial to reproduce. With more complex queries, we expect QuestDB's performance gap to compound.
+But we still have a few features to implement before we can release more advanced benchmarks, hopefully in the next few weeks. So stay tuned!</p>
+<h3><a class="anchor" aria-hidden="true" id="interested-in-performance"></a><a href="#interested-in-performance" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Interested in performance?</h3>
+<p>If you are interested in what we are doing, want to solve performance issues (or get help to do so), feel free to drop by
+our <b> <a href="https://serieux-saucisson-79115.herokuapp.com/" target="_blank">Slack channel</a></b>. We also post performance-geared
+code on our <b> <a href="https://github.com/questdb/questdb" target="_blank"> Github </a></b> every day.
+Our friendly community of high-performance junkies is growing every day, and we keep finding ways to pack more performance in.</p>
+</span></div></div><div class="blogSocialSection"></div></div><div class="blog-recent"><a class="button" href="/blog/">Recent Posts</a></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><div align="left" class="footersection"><h5>QuestDB</h5><a href="/docs/documentationOverview">Documentation</a><a href="/getstarted">Download</a><a href="https://github.com/questdb/questdb/projects/2">Roadmap</a></div><div align="left" class="footersection"><h5>Community</h5><a href="https://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://join.slack.com/t/questdb/shared_invite/enQtNzk4Nzg4Mjc2MTE2LTEzZThjMzliMjUzMTBmYzVjYWNmM2UyNWJmNDdkMDYyZmE0ZDliZTQxN2EzNzk5MDE3Zjc1ZmJiZmFiZTIwMGY&gt;"> Join Slack </a><a href="https://twitter.com/" target="@QuestDB" rel="noreferrer noopener">Twitter</a></div><div align="left" class="footersection"><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/questdb/questdb/">GitHub</a><span class="sucker"><a class="github-button" href="https://github.com/questdb/questdb" data-icon="octicon-star" data-count-href="/questdb/questdb/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></span><a class="github-button" href="https://github.com/questdb/questdb" data-icon="octicon-star" data-count-href="/questdb/questdb/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="copyright">Copyright © 2020 QuestDB</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+              !function(f,b,e,v,n,t,s)
+              {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+              n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+              if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+              n.queue=[];t=b.createElement(e);t.async=!0;
+              t.src=v;s=b.getElementsByTagName(e)[0];
+              s.parentNode.insertBefore(t,s)}(window, document,'script',
+              'https://connect.facebook.net/en_US/fbevents.js');
+              fbq('init', '648273155994655');
+              fbq('track', 'PageView');
+                </script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: 'b2a69b4869a2a85284a82fb57519dcda',
+                indexName: 'questdb',
+                inputSelector: '#search_input_react',
+                algoliaOptions: {}
+              });
+            </script></body></html>

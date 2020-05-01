@@ -4,7 +4,7 @@
         <title>QuestDB Blog</title>
         <link>https://questdb.io/blog</link>
         <description>The best place to stay up-to-date with the latest QuestDB news and events.</description>
-        <lastBuildDate>Thu, 02 Apr 2020 06:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Sat, 25 Apr 2020 06:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <image>
@@ -13,6 +13,13 @@
             <link>https://questdb.io/blog</link>
         </image>
         <copyright>Copyright © 2020 QuestDB</copyright>
+        <item>
+            <title><![CDATA[Faster more accurate sums]]></title>
+            <link>https://questdb.io/blog/2020/04/25/faster-more-accurate-sums.html</link>
+            <guid>https://questdb.io/blog/2020/04/25/faster-more-accurate-sums.html</guid>
+            <pubDate>Sat, 25 Apr 2020 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p><strong>Summing floating-point values has always implied a tradeoff between speed and accuracy. Until now.</strong></p> <p><img src="/blog/assets/road-runner.png" alt="alt-text"></p> <p>With <a href="https://github.com/questdb/questdb/releases/tag/4.2.1">release 4.2.1</a>, QuestDB implements Kahan and Neumaier compensated summation algorithms that perform as fast as naive approaches. That's right! Mor...</p>]]></description>
+        </item>
         <item>
             <title><![CDATA[Using SIMD to aggregate billions of rows per second]]></title>
             <link>https://questdb.io/blog/2020/04/02/using-simd-to-aggregate-billions-of-rows-per-second.html</link>
