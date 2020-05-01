@@ -79,10 +79,14 @@ jumps in the system time (e.g., if the system administrator manually changes the
 </ul>
 <pre><code class="hljs css language-sql"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> readings <span class="hljs-keyword">VALUES</span>(<span class="hljs-sql_function">systimestamp</span>(), <span class="hljs-number">123.5</span>);
 </code></pre>
-<pre><code class="hljs">|<span class="hljs-string"> ts                            </span>|<span class="hljs-string"> reading       </span>|
-|<span class="hljs-string">-------------------------------</span>|<span class="hljs-string">---------------</span>|
-|<span class="hljs-string"> 2020-01-02T19:28:48.727516Z   </span>|<span class="hljs-string"> 123.5         </span>|
-</code></pre>
+<table>
+<thead>
+<tr><th>ts</th><th>reading</th></tr>
+</thead>
+<tbody>
+<tr><td>2020-01-02T19:28:48.727516Z</td><td>123.5</td></tr>
+</tbody>
+</table>
 <ul>
 <li>Perform queries based on current system timestamp, for example last 60 seconds:</li>
 </ul>
@@ -105,10 +109,14 @@ jumps in the system time (e.g., if the system administrator manually changes the
 </ul>
 <pre><code class="hljs css language-sql"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> readings <span class="hljs-keyword">VALUES</span>(<span class="hljs-sql_function">sysdate</span>(), <span class="hljs-number">123.5</span>);
 </code></pre>
-<pre><code class="hljs">|<span class="hljs-string"> sysdate                       </span>|<span class="hljs-string"> reading       </span>|
-|<span class="hljs-string">-------------------------------</span>|<span class="hljs-string">---------------</span>|
-|<span class="hljs-string"> 2020-01-02T19:28:48.727516Z   </span>|<span class="hljs-string"> 123.5         </span>|
-</code></pre>
+<table>
+<thead>
+<tr><th>sysdate</th><th>reading</th></tr>
+</thead>
+<tbody>
+<tr><td>2020-01-02T19:28:48.727516Z</td><td>123.5</td></tr>
+</tbody>
+</table>
 <ul>
 <li>Perform queries based on current system date, for example last 60 seconds:</li>
 </ul>
@@ -134,28 +142,40 @@ see the <strong><a href="#date-and-timestamp-format">date and timestamp format s
 </ul>
 <pre><code class="hljs css language-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-sql_function">to_timestamp</span>(<span class="hljs-string">'2020-03-01:15:43:21'</span>, <span class="hljs-string">'yyyy-MM-dd:HH:mm:ss'</span>) <span class="hljs-keyword">FROM</span> <span class="hljs-sql_function">long_sequence</span>(<span class="hljs-number">1</span>);
 </code></pre>
-<pre><code class="hljs">|<span class="hljs-string"> to_timestamp                  </span>|
-|<span class="hljs-string">-------------------------------</span>|
-|<span class="hljs-string"> 2020-03-01T15:43:21.000000Z   </span>|
-</code></pre>
+<table>
+<thead>
+<tr><th>to_timestamp</th></tr>
+</thead>
+<tbody>
+<tr><td>2020-03-01T15:43:21.000000Z</td></tr>
+</tbody>
+</table>
 <ul>
 <li><code>string</code> and <code>format</code> do NOT match:</li>
 </ul>
 <pre><code class="hljs css language-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-sql_function">to_timestamp</span>(<span class="hljs-string">'2020-03-01:15:43:21'</span>, <span class="hljs-string">'yyyy'</span>) <span class="hljs-keyword">FROM</span> <span class="hljs-sql_function">long_sequence</span>(<span class="hljs-number">1</span>);
 </code></pre>
-<pre><code class="hljs">|<span class="hljs-string"> to_timestamp                  </span>|
-|<span class="hljs-string">-------------------------------</span>|
-|<span class="hljs-string"> null                          </span>|
-</code></pre>
+<table>
+<thead>
+<tr><th>to_timestamp</th></tr>
+</thead>
+<tbody>
+<tr><td>null</td></tr>
+</tbody>
+</table>
 <ul>
 <li>using with <code>INSERT</code></li>
 </ul>
 <pre><code class="hljs css language-sql"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> measurements <span class="hljs-keyword">values</span>(<span class="hljs-sql_function">to_timestamp</span>(<span class="hljs-string">'2019-12-12T12:15'</span>, <span class="hljs-string">'yyyy-MM-ddTHH:mm'</span>), <span class="hljs-number">123.5</span>);
 </code></pre>
-<pre><code class="hljs">|<span class="hljs-string"> timestamp                        </span>|<span class="hljs-string"> value    </span>|
-|<span class="hljs-string">----------------------------------</span>|<span class="hljs-string">----------</span>|
-|<span class="hljs-string"> 2019-12-12T12:15:00.000000Z      </span>|<span class="hljs-string"> 123.5    </span>|
-</code></pre>
+<table>
+<thead>
+<tr><th>timestamp</th><th>value</th></tr>
+</thead>
+<tbody>
+<tr><td>2019-12-12T12:15:00.000000Z</td><td>123.5</td></tr>
+</tbody>
+</table>
 <h2><a class="anchor" aria-hidden="true" id="to_date"></a><a href="#to_date" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>to_date</h2>
 <p><code>to_date(string, format)</code> - converts string to <code>date</code> by using the supplied <code>format</code> to extract the value.</p>
 <h4><a class="anchor" aria-hidden="true" id="arguments-3"></a><a href="#arguments-3" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Arguments</h4>
@@ -176,28 +196,40 @@ see the <strong><a href="#date-and-timestamp-format">date and timestamp format s
 </ul>
 <pre><code class="hljs css language-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-sql_function">to_date</span>(<span class="hljs-string">'2020-03-01:15:43:21'</span>, <span class="hljs-string">'yyyy-MM-dd:HH:mm:ss'</span>) <span class="hljs-keyword">FROM</span> <span class="hljs-sql_function">long_sequence</span>(<span class="hljs-number">1</span>);
 </code></pre>
-<pre><code class="hljs">|<span class="hljs-string"> to_date                       </span>|
-|<span class="hljs-string">-------------------------------</span>|
-|<span class="hljs-string"> 2020-03-01T15:43:21.000Z      </span>|
-</code></pre>
+<table>
+<thead>
+<tr><th>to_date</th></tr>
+</thead>
+<tbody>
+<tr><td>2020-03-01T15:43:21.000Z</td></tr>
+</tbody>
+</table>
 <ul>
 <li><code>string</code> and <code>format</code> do NOT match:</li>
 </ul>
 <pre><code class="hljs css language-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-sql_function">to_date</span>(<span class="hljs-string">'2020-03-01:15:43:21'</span>, <span class="hljs-string">'yyyy'</span>) <span class="hljs-keyword">FROM</span> <span class="hljs-sql_function">long_sequence</span>(<span class="hljs-number">1</span>);
 </code></pre>
-<pre><code class="hljs">|<span class="hljs-string"> to_date                       </span>|
-|<span class="hljs-string">-------------------------------</span>|
-|<span class="hljs-string"> null                          </span>|
-</code></pre>
+<table>
+<thead>
+<tr><th>to_date</th></tr>
+</thead>
+<tbody>
+<tr><td>null</td></tr>
+</tbody>
+</table>
 <ul>
 <li>using with <code>INSERT</code></li>
 </ul>
 <pre><code class="hljs css language-sql"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> measurements <span class="hljs-keyword">values</span>(<span class="hljs-sql_function">to_date</span>(<span class="hljs-string">'2019-12-12T12:15'</span>, <span class="hljs-string">'yyyy-MM-ddTHH:mm'</span>), <span class="hljs-number">123.5</span>);
 </code></pre>
-<pre><code class="hljs">|<span class="hljs-string"> date                             </span>|<span class="hljs-string"> value    </span>|
-|<span class="hljs-string">----------------------------------</span>|<span class="hljs-string">----------</span>|
-|<span class="hljs-string"> 2019-12-12T12:15:00.000Z         </span>|<span class="hljs-string"> 123.5    </span>|
-</code></pre>
+<table>
+<thead>
+<tr><th>date</th><th>value</th></tr>
+</thead>
+<tbody>
+<tr><td>2019-12-12T12:15:00.000Z</td><td>123.5</td></tr>
+</tbody>
+</table>
 <h2><a class="anchor" aria-hidden="true" id="to_str"></a><a href="#to_str" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>to_str</h2>
 <p><code>to_str(value, format)</code> - converts date or timestamp value to a string in the specified format</p>
 <h4><a class="anchor" aria-hidden="true" id="arguments-4"></a><a href="#arguments-4" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Arguments</h4>
@@ -218,434 +250,433 @@ see the <strong><a href="#date-and-timestamp-format">date and timestamp format s
 </ul>
 <pre><code class="hljs css language-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-sql_function">to_str</span>(<span class="hljs-sql_function">systimestamp</span>(), <span class="hljs-string">'yyyy-MM-dd'</span>) <span class="hljs-keyword">FROM</span> <span class="hljs-sql_function">long_sequence</span>(<span class="hljs-number">1</span>);
 </code></pre>
-<pre><code class="hljs">|<span class="hljs-string"> to_str                    </span>|
-|<span class="hljs-string">---------------------------</span>|
-|<span class="hljs-string"> 2020-03-04                </span>|
-</code></pre>
+<table>
+<thead>
+<tr><th>to_str</th></tr>
+</thead>
+<tbody>
+<tr><td>2020-03-04</td></tr>
+</tbody>
+</table>
 <ul>
 <li>With unrecognized timestamp definition</li>
 </ul>
 <pre><code class="hljs css language-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-sql_function">to_str</span>(<span class="hljs-sql_function">systimestamp</span>(), <span class="hljs-string">'yyyy-MM-dd gooD DAY 123'</span>) <span class="hljs-keyword">FROM</span> <span class="hljs-sql_function">long_sequence</span>(<span class="hljs-number">1</span>);
 </code></pre>
-<pre><code class="hljs">|<span class="hljs-string"> to_str                    </span>|
-|<span class="hljs-string">---------------------------</span>|
-|<span class="hljs-string"> 2020-03-04 gooD DAY 123   </span>|
+<table>
+<thead>
+<tr><th>to_str</th></tr>
+</thead>
+<tbody>
+<tr><td>2020-03-04 gooD DAY 123</td></tr>
+</tbody>
+</table>
+<h2><a class="anchor" aria-hidden="true" id="dateadd"></a><a href="#dateadd" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>dateadd</h2>
+<p><code>dateadd(period, n, startDate)</code> - adds time to a date or timestamp</p>
+<h4><a class="anchor" aria-hidden="true" id="arguments-5"></a><a href="#arguments-5" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Arguments</h4>
+<ul>
+<li><code>period</code> is a char. Period to be added. Available periods are <code>s</code>, <code>m</code>, <code>h</code>, <code>d</code>, <code>M</code>, <code>y</code>.</li>
+<li><code>n</code> is an int. Number of periods to add.</li>
+<li><code>startDate</code> is a timestamp or date. Timestamp to add the periods to.</li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="description-5"></a><a href="#description-5" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Description</h4>
+<p>Adds <code>n</code> <code>period</code> to <code>startDate</code>.</p>
+<h4><a class="anchor" aria-hidden="true" id="return-value-5"></a><a href="#return-value-5" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Return value</h4>
+<p>Return value type is <code>timestamp</code></p>
+<h4><a class="anchor" aria-hidden="true" id="examples-5"></a><a href="#examples-5" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Examples</h4>
+<h5><a class="anchor" aria-hidden="true" id="adding-hours"></a><a href="#adding-hours" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Adding hours</h5>
+<pre><code class="hljs css language-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-sql_function">systimestamp</span>(), <span class="hljs-sql_function">dateadd</span>(<span class="hljs-string">'h'</span>, <span class="hljs-number">2</span>, <span class="hljs-sql_function">systimestamp</span>()) <span class="hljs-keyword">FROM</span> <span class="hljs-sql_function">long_sequence</span>(<span class="hljs-number">1</span>);
 </code></pre>
+<table>
+<thead>
+<tr><th>systimestamp</th><th>dateadd</th></tr>
+</thead>
+<tbody>
+<tr><td>2020-04-17T00:30:51.380499Z</td><td>2020-04-17T02:30:51.380499Z</td></tr>
+</tbody>
+</table>
+<h5><a class="anchor" aria-hidden="true" id="adding-days"></a><a href="#adding-days" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Adding days</h5>
+<pre><code class="hljs css language-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-sql_function">systimestamp</span>(), <span class="hljs-sql_function">dateadd</span>(<span class="hljs-string">'d'</span>, <span class="hljs-number">2</span>, <span class="hljs-sql_function">systimestamp</span>()) <span class="hljs-keyword">FROM</span> <span class="hljs-sql_function">long_sequence</span>(<span class="hljs-number">1</span>);
+</code></pre>
+<table>
+<thead>
+<tr><th>systimestamp</th><th>dateadd</th></tr>
+</thead>
+<tbody>
+<tr><td>2020-04-17T00:30:51.380499Z</td><td>2020-04-19T00:30:51.380499Z</td></tr>
+</tbody>
+</table>
+<h5><a class="anchor" aria-hidden="true" id="adding-months"></a><a href="#adding-months" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Adding months</h5>
+<pre><code class="hljs css language-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-sql_function">systimestamp</span>(), <span class="hljs-sql_function">dateadd</span>(<span class="hljs-string">`M`</span>, <span class="hljs-number">2</span>, <span class="hljs-sql_function">systimestamp</span>()) <span class="hljs-keyword">FROM</span> <span class="hljs-sql_function">long_sequence</span>(<span class="hljs-number">1</span>);
+</code></pre>
+<table>
+<thead>
+<tr><th>systimestamp</th><th>dateadd</th></tr>
+</thead>
+<tbody>
+<tr><td>2020-04-17T00:30:51.380499Z</td><td>2020-06-17T00:30:51.380499Z</td></tr>
+</tbody>
+</table>
+<h2><a class="anchor" aria-hidden="true" id="datediff"></a><a href="#datediff" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>datediff</h2>
+<p><code>datediff(period, date1, date2)</code> - returns the difference between two dates or timestamps</p>
+<h4><a class="anchor" aria-hidden="true" id="arguments-6"></a><a href="#arguments-6" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Arguments</h4>
+<ul>
+<li><code>period</code> is a char. Period to be added. Available periods are <code>s</code>, <code>m</code>, <code>h</code>, <code>d</code>, <code>M</code>, <code>y</code>.</li>
+<li><code>date1</code> and <code>date2</code> are date or timestamp. Dates to compare</li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="description-6"></a><a href="#description-6" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Description</h4>
+<p>Returns the absolute number of <code>period</code> between <code>date1</code> and <code>date2</code>.</p>
+<h4><a class="anchor" aria-hidden="true" id="return-value-6"></a><a href="#return-value-6" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Return value</h4>
+<p>Return value type is <code>int</code></p>
+<h4><a class="anchor" aria-hidden="true" id="examples-6"></a><a href="#examples-6" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Examples</h4>
+<h5><a class="anchor" aria-hidden="true" id="days-difference"></a><a href="#days-difference" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Days difference</h5>
+<pre><code class="hljs css language-sql"><span class="hljs-keyword">select</span> <span class="hljs-sql_function">datediff</span>(<span class="hljs-string">'d'</span>, <span class="hljs-sql_function">to_timestamp</span>(<span class="hljs-string">'2020-01-23'</span>,<span class="hljs-string">'yyyy-MM-dd'</span>), <span class="hljs-sql_function">to_timestamp</span>(<span class="hljs-string">'2020-01-27'</span>,<span class="hljs-string">'yyyy-MM-dd'</span>)) <span class="hljs-keyword">from</span> <span class="hljs-sql_function">long_sequence</span>(<span class="hljs-number">1</span>);
+</code></pre>
+<table>
+<thead>
+<tr><th>datediff</th></tr>
+</thead>
+<tbody>
+<tr><td>4</td></tr>
+</tbody>
+</table>
+<h5><a class="anchor" aria-hidden="true" id="months-difference"></a><a href="#months-difference" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Months difference</h5>
+<pre><code class="hljs css language-sql"><span class="hljs-keyword">select</span> <span class="hljs-sql_function">datediff</span>(<span class="hljs-string">'M'</span>, <span class="hljs-sql_function">to_timestamp</span>(<span class="hljs-string">'2020-01-23'</span>,<span class="hljs-string">'yyyy-MM-dd'</span>), <span class="hljs-sql_function">to_timestamp</span>(<span class="hljs-string">'2020-02-22'</span>,<span class="hljs-string">'yyyy-MM-dd'</span>)) <span class="hljs-keyword">from</span> <span class="hljs-sql_function">long_sequence</span>(<span class="hljs-number">1</span>);
+<span class="hljs-keyword">select</span> <span class="hljs-sql_function">datediff</span>(<span class="hljs-string">'M'</span>, <span class="hljs-sql_function">to_timestamp</span>(<span class="hljs-string">'2020-01-23'</span>,<span class="hljs-string">'yyyy-MM-dd'</span>), <span class="hljs-sql_function">to_timestamp</span>(<span class="hljs-string">'2020-02-23'</span>,<span class="hljs-string">'yyyy-MM-dd'</span>)) <span class="hljs-keyword">from</span> <span class="hljs-sql_function">long_sequence</span>(<span class="hljs-number">1</span>);
+</code></pre>
+<table>
+<thead>
+<tr><th>datediff</th></tr>
+</thead>
+<tbody>
+<tr><td>0</td></tr>
+<tr><td>1</td></tr>
+</tbody>
+</table>
 <h2><a class="anchor" aria-hidden="true" id="millis"></a><a href="#millis" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>millis</h2>
 <p><code>millis(value)</code> - milliseconds of the second on a 0-999 scale</p>
 <h4><a class="anchor" aria-hidden="true" id="parameters"></a><a href="#parameters" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Parameters</h4>
 <ul>
 <li><code>value</code> is any <code>timestamp</code> or <code>date</code></li>
 </ul>
-<h4><a class="anchor" aria-hidden="true" id="description-5"></a><a href="#description-5" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Description</h4>
+<h4><a class="anchor" aria-hidden="true" id="description-7"></a><a href="#description-7" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Description</h4>
 <p><code>millis(value)</code> returns the <code>millis</code> of the second for a given date or timestamp from 0 to 999</p>
-<h4><a class="anchor" aria-hidden="true" id="return-value-5"></a><a href="#return-value-5" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Return Value</h4>
+<h4><a class="anchor" aria-hidden="true" id="return-value-7"></a><a href="#return-value-7" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Return Value</h4>
 <p>Return value type is <code>int</code></p>
-<h4><a class="anchor" aria-hidden="true" id="examples-5"></a><a href="#examples-5" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Examples</h4>
+<h4><a class="anchor" aria-hidden="true" id="examples-7"></a><a href="#examples-7" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Examples</h4>
 <ul>
 <li>Extracting the millis from a timestamp</li>
 </ul>
 <pre><code class="hljs css language-sql"><span class="hljs-keyword">SELECT</span> millis(<span class="hljs-sql_function">to_timestamp</span>(<span class="hljs-string">'2020-03-01:15:43:21.123456'</span>, <span class="hljs-string">'yyyy-MM-dd:HH:mm:ss.SSSUUU'</span>)) <span class="hljs-keyword">FROM</span> <span class="hljs-sql_function">long_sequence</span>(<span class="hljs-number">1</span>);
 </code></pre>
-<pre><code class="hljs">|<span class="hljs-string"> millis      </span>|
-|<span class="hljs-string">-------------</span>|
-|<span class="hljs-string"> 123          </span>|
-</code></pre>
+<table>
+<thead>
+<tr><th>millis</th></tr>
+</thead>
+<tbody>
+<tr><td>123</td></tr>
+</tbody>
+</table>
 <ul>
 <li>Using as part of an aggregation</li>
 </ul>
 <pre><code class="hljs css language-sql"><span class="hljs-keyword">select</span> millis(ts), <span class="hljs-sql_function">count</span>() <span class="hljs-keyword">from</span> transactions;
 </code></pre>
-<pre><code class="hljs">|<span class="hljs-string"> second        </span>|<span class="hljs-string"> count    </span>|
-|<span class="hljs-string">-------------</span>|<span class="hljs-string">----------</span>|
-|<span class="hljs-string"> 0           </span>|<span class="hljs-string"> 2323     </span>|
-|<span class="hljs-string"> 1           </span>|<span class="hljs-string"> 6548     </span>|
-|<span class="hljs-string"> ...         </span>|<span class="hljs-string"> ...      </span>|
-|<span class="hljs-string"> 998          </span>|<span class="hljs-string"> 9876     </span>|
-|<span class="hljs-string"> 999          </span>|<span class="hljs-string"> 2567     </span>|
-</code></pre>
+<table>
+<thead>
+<tr><th>second</th><th>count</th></tr>
+</thead>
+<tbody>
+<tr><td>0</td><td>2323</td></tr>
+<tr><td>1</td><td>6548</td></tr>
+<tr><td>...</td><td>...</td></tr>
+<tr><td>998</td><td>9876</td></tr>
+<tr><td>999</td><td>2567</td></tr>
+</tbody>
+</table>
 <h2><a class="anchor" aria-hidden="true" id="micros"></a><a href="#micros" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>micros</h2>
 <p><code>micros(value)</code> - microseconds of the millisecond on a 0-999 scale</p>
 <h4><a class="anchor" aria-hidden="true" id="parameters-1"></a><a href="#parameters-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Parameters</h4>
 <ul>
 <li><code>value</code> is any <code>timestamp</code> or <code>date</code></li>
 </ul>
-<h4><a class="anchor" aria-hidden="true" id="description-6"></a><a href="#description-6" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Description</h4>
+<h4><a class="anchor" aria-hidden="true" id="description-8"></a><a href="#description-8" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Description</h4>
 <p><code>micros(value)</code> returns the <code>micros</code> of the millisecond for a given date or timestamp from 0 to 999</p>
-<h4><a class="anchor" aria-hidden="true" id="return-value-6"></a><a href="#return-value-6" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Return Value</h4>
+<h4><a class="anchor" aria-hidden="true" id="return-value-8"></a><a href="#return-value-8" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Return Value</h4>
 <p>Return value type is <code>int</code></p>
-<h4><a class="anchor" aria-hidden="true" id="examples-6"></a><a href="#examples-6" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Examples</h4>
+<h4><a class="anchor" aria-hidden="true" id="examples-8"></a><a href="#examples-8" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Examples</h4>
 <ul>
 <li>Extracting the micros from a timestamp</li>
 </ul>
 <pre><code class="hljs css language-sql"><span class="hljs-keyword">SELECT</span> micros(<span class="hljs-sql_function">to_timestamp</span>(<span class="hljs-string">'2020-03-01:15:43:21.123456'</span>, <span class="hljs-string">'yyyy-MM-dd:HH:mm:ss.SSSUUU'</span>)) <span class="hljs-keyword">FROM</span> <span class="hljs-sql_function">long_sequence</span>(<span class="hljs-number">1</span>);
 </code></pre>
-<pre><code class="hljs">|<span class="hljs-string"> millis      </span>|
-|<span class="hljs-string">-------------</span>|
-|<span class="hljs-string"> 456          </span>|
-</code></pre>
+<table>
+<thead>
+<tr><th>millis</th></tr>
+</thead>
+<tbody>
+<tr><td>456</td></tr>
+</tbody>
+</table>
 <ul>
 <li>Using as part of an aggregation</li>
 </ul>
 <pre><code class="hljs css language-sql"><span class="hljs-keyword">select</span> micros(ts), <span class="hljs-sql_function">count</span>() <span class="hljs-keyword">from</span> transactions;
 </code></pre>
-<pre><code class="hljs">|<span class="hljs-string"> second        </span>|<span class="hljs-string"> count    </span>|
-|<span class="hljs-string">-------------</span>|<span class="hljs-string">----------</span>|
-|<span class="hljs-string"> 0           </span>|<span class="hljs-string"> 2323     </span>|
-|<span class="hljs-string"> 1           </span>|<span class="hljs-string"> 6548     </span>|
-|<span class="hljs-string"> ...         </span>|<span class="hljs-string"> ...      </span>|
-|<span class="hljs-string"> 998          </span>|<span class="hljs-string"> 9876     </span>|
-|<span class="hljs-string"> 999          </span>|<span class="hljs-string"> 2567     </span>|
-</code></pre>
+<table>
+<thead>
+<tr><th>second</th><th>count</th></tr>
+</thead>
+<tbody>
+<tr><td>0</td><td>2323</td></tr>
+<tr><td>1</td><td>6548</td></tr>
+<tr><td>...</td><td>...</td></tr>
+<tr><td>998</td><td>9876</td></tr>
+<tr><td>999</td><td>2567</td></tr>
+</tbody>
+</table>
 <h2><a class="anchor" aria-hidden="true" id="second"></a><a href="#second" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>second</h2>
 <p><code>second(value)</code> - second of the minute on a 0-59 scale</p>
 <h4><a class="anchor" aria-hidden="true" id="parameters-2"></a><a href="#parameters-2" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Parameters</h4>
 <ul>
 <li><code>value</code> is any <code>timestamp</code> or <code>date</code></li>
 </ul>
-<h4><a class="anchor" aria-hidden="true" id="description-7"></a><a href="#description-7" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Description</h4>
+<h4><a class="anchor" aria-hidden="true" id="description-9"></a><a href="#description-9" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Description</h4>
 <p><code>second(value)</code> returns the <code>second</code> of the minute for a given date or timestamp from 0 to 59</p>
-<h4><a class="anchor" aria-hidden="true" id="return-value-7"></a><a href="#return-value-7" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Return Value</h4>
+<h4><a class="anchor" aria-hidden="true" id="return-value-9"></a><a href="#return-value-9" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Return Value</h4>
 <p>Return value type is <code>int</code></p>
-<h4><a class="anchor" aria-hidden="true" id="examples-7"></a><a href="#examples-7" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Examples</h4>
+<h4><a class="anchor" aria-hidden="true" id="examples-9"></a><a href="#examples-9" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Examples</h4>
 <ul>
 <li>Extracting the second from a timestamp</li>
 </ul>
 <pre><code class="hljs css language-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-sql_function">second</span>(<span class="hljs-sql_function">to_timestamp</span>(<span class="hljs-string">'2020-03-01:15:43:21'</span>, <span class="hljs-string">'yyyy-MM-dd:HH:mm:ss'</span>)) <span class="hljs-keyword">FROM</span> <span class="hljs-sql_function">long_sequence</span>(<span class="hljs-number">1</span>);
 </code></pre>
-<pre><code class="hljs">|<span class="hljs-string"> second      </span>|
-|<span class="hljs-string">-------------</span>|
-|<span class="hljs-string"> 43          </span>|
-</code></pre>
+<table>
+<thead>
+<tr><th>second</th></tr>
+</thead>
+<tbody>
+<tr><td>43</td></tr>
+</tbody>
+</table>
 <ul>
 <li>Using as part of an aggregation</li>
 </ul>
 <pre><code class="hljs css language-sql"><span class="hljs-keyword">select</span> <span class="hljs-sql_function">second</span>(ts), <span class="hljs-sql_function">count</span>() <span class="hljs-keyword">from</span> transactions;
 </code></pre>
-<pre><code class="hljs">|<span class="hljs-string"> second        </span>|<span class="hljs-string"> count    </span>|
-|<span class="hljs-string">-------------</span>|<span class="hljs-string">----------</span>|
-|<span class="hljs-string"> 0           </span>|<span class="hljs-string"> 2323     </span>|
-|<span class="hljs-string"> 1           </span>|<span class="hljs-string"> 6548     </span>|
-|<span class="hljs-string"> ...         </span>|<span class="hljs-string"> ...      </span>|
-|<span class="hljs-string"> 58          </span>|<span class="hljs-string"> 9876     </span>|
-|<span class="hljs-string"> 59          </span>|<span class="hljs-string"> 2567     </span>|
-</code></pre>
+<table>
+<thead>
+<tr><th>second</th><th>count</th></tr>
+</thead>
+<tbody>
+<tr><td>0</td><td>2323</td></tr>
+<tr><td>1</td><td>6548</td></tr>
+<tr><td>...</td><td>...</td></tr>
+<tr><td>58</td><td>9876</td></tr>
+<tr><td>59</td><td>2567</td></tr>
+</tbody>
+</table>
 <h2><a class="anchor" aria-hidden="true" id="minute"></a><a href="#minute" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>minute</h2>
 <p><code>minute(value)</code> - minute of hour on a 0-59 scale</p>
 <h4><a class="anchor" aria-hidden="true" id="parameters-3"></a><a href="#parameters-3" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Parameters</h4>
 <ul>
 <li><code>value</code> is any <code>timestamp</code> or <code>date</code></li>
 </ul>
-<h4><a class="anchor" aria-hidden="true" id="description-8"></a><a href="#description-8" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Description</h4>
+<h4><a class="anchor" aria-hidden="true" id="description-10"></a><a href="#description-10" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Description</h4>
 <p><code>minute(value)</code> returns the <code>minute</code> of the hour for a given date or timestamp from 0 to 59</p>
-<h4><a class="anchor" aria-hidden="true" id="return-value-8"></a><a href="#return-value-8" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Return Value</h4>
+<h4><a class="anchor" aria-hidden="true" id="return-value-10"></a><a href="#return-value-10" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Return Value</h4>
 <p>Return value type is <code>int</code></p>
-<h4><a class="anchor" aria-hidden="true" id="examples-8"></a><a href="#examples-8" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Examples</h4>
+<h4><a class="anchor" aria-hidden="true" id="examples-10"></a><a href="#examples-10" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Examples</h4>
 <ul>
 <li>Extracting the minute from a timestamp</li>
 </ul>
 <pre><code class="hljs css language-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-sql_function">minute</span>(<span class="hljs-sql_function">to_timestamp</span>(<span class="hljs-string">'2020-03-01:15:43:21'</span>, <span class="hljs-string">'yyyy-MM-dd:HH:mm:ss'</span>)) <span class="hljs-keyword">FROM</span> <span class="hljs-sql_function">long_sequence</span>(<span class="hljs-number">1</span>);
 </code></pre>
-<pre><code class="hljs">|<span class="hljs-string"> minute      </span>|
-|<span class="hljs-string">-------------</span>|
-|<span class="hljs-string"> 43          </span>|
-</code></pre>
+<table>
+<thead>
+<tr><th>minute</th></tr>
+</thead>
+<tbody>
+<tr><td>43</td></tr>
+</tbody>
+</table>
 <ul>
 <li>Using as part of an aggregation</li>
 </ul>
 <pre><code class="hljs css language-sql"><span class="hljs-keyword">select</span> <span class="hljs-sql_function">minute</span>(ts), <span class="hljs-sql_function">count</span>() <span class="hljs-keyword">from</span> transactions;
 </code></pre>
-<pre><code class="hljs">|<span class="hljs-string"> minute        </span>|<span class="hljs-string"> count    </span>|
-|<span class="hljs-string">-------------</span>|<span class="hljs-string">----------</span>|
-|<span class="hljs-string"> 0           </span>|<span class="hljs-string"> 2323     </span>|
-|<span class="hljs-string"> 1           </span>|<span class="hljs-string"> 6548     </span>|
-|<span class="hljs-string"> ...         </span>|<span class="hljs-string"> ...      </span>|
-|<span class="hljs-string"> 58          </span>|<span class="hljs-string"> 9876     </span>|
-|<span class="hljs-string"> 59          </span>|<span class="hljs-string"> 2567     </span>|
-</code></pre>
+<table>
+<thead>
+<tr><th>minute</th><th>count</th></tr>
+</thead>
+<tbody>
+<tr><td>0</td><td>2323</td></tr>
+<tr><td>1</td><td>6548</td></tr>
+<tr><td>...</td><td>...</td></tr>
+<tr><td>58</td><td>9876</td></tr>
+<tr><td>59</td><td>2567</td></tr>
+</tbody>
+</table>
 <h2><a class="anchor" aria-hidden="true" id="hour"></a><a href="#hour" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>hour</h2>
 <p><code>hour(value)</code> - hour of day on a 0-23 scale</p>
 <h4><a class="anchor" aria-hidden="true" id="parameters-4"></a><a href="#parameters-4" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Parameters</h4>
 <ul>
 <li><code>value</code> is any <code>timestamp</code> or <code>date</code></li>
 </ul>
-<h4><a class="anchor" aria-hidden="true" id="description-9"></a><a href="#description-9" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Description</h4>
+<h4><a class="anchor" aria-hidden="true" id="description-11"></a><a href="#description-11" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Description</h4>
 <p><code>hour(value)</code> returns the <code>hour</code> of day for a given date or timestamp from 0 to 23</p>
-<h4><a class="anchor" aria-hidden="true" id="return-value-9"></a><a href="#return-value-9" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Return Value</h4>
+<h4><a class="anchor" aria-hidden="true" id="return-value-11"></a><a href="#return-value-11" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Return Value</h4>
 <p>Return value type is <code>int</code></p>
-<h4><a class="anchor" aria-hidden="true" id="examples-9"></a><a href="#examples-9" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Examples</h4>
+<h4><a class="anchor" aria-hidden="true" id="examples-11"></a><a href="#examples-11" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Examples</h4>
 <ul>
 <li>Extracting hour from a timestamp</li>
 </ul>
 <pre><code class="hljs css language-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-sql_function">hour</span>(<span class="hljs-sql_function">to_timestamp</span>(<span class="hljs-string">'2020-03-01:15:43:21'</span>, <span class="hljs-string">'yyyy-MM-dd:HH:mm:ss'</span>)) <span class="hljs-keyword">FROM</span> <span class="hljs-sql_function">long_sequence</span>(<span class="hljs-number">1</span>);
 </code></pre>
-<pre><code class="hljs">|<span class="hljs-string"> hour        </span>|
-|<span class="hljs-string">-------------</span>|
-|<span class="hljs-string"> 12          </span>|
-</code></pre>
+<table>
+<thead>
+<tr><th>hour</th></tr>
+</thead>
+<tbody>
+<tr><td>12</td></tr>
+</tbody>
+</table>
 <ul>
 <li>Using as part of an aggregation</li>
 </ul>
 <pre><code class="hljs css language-sql"><span class="hljs-keyword">select</span> <span class="hljs-sql_function">hour</span>(ts), <span class="hljs-sql_function">count</span>() <span class="hljs-keyword">from</span> transactions;
 </code></pre>
-<pre><code class="hljs">|<span class="hljs-string"> hour        </span>|<span class="hljs-string"> count    </span>|
-|<span class="hljs-string">-------------</span>|<span class="hljs-string">----------</span>|
-|<span class="hljs-string"> 0           </span>|<span class="hljs-string"> 2323     </span>|
-|<span class="hljs-string"> 1           </span>|<span class="hljs-string"> 6548     </span>|
-|<span class="hljs-string"> ...         </span>|<span class="hljs-string"> ...      </span>|
-|<span class="hljs-string"> 22          </span>|<span class="hljs-string"> 9876     </span>|
-|<span class="hljs-string"> 23          </span>|<span class="hljs-string"> 2567     </span>|
-</code></pre>
+<table>
+<thead>
+<tr><th>hour</th><th>count</th></tr>
+</thead>
+<tbody>
+<tr><td>0</td><td>2323</td></tr>
+<tr><td>1</td><td>6548</td></tr>
+<tr><td>...</td><td>...</td></tr>
+<tr><td>22</td><td>9876</td></tr>
+<tr><td>23</td><td>2567</td></tr>
+</tbody>
+</table>
 <h2><a class="anchor" aria-hidden="true" id="day"></a><a href="#day" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>day</h2>
 <p><code>day(value)</code> - day of month on a 1 to 31 scale</p>
 <h4><a class="anchor" aria-hidden="true" id="parameters-5"></a><a href="#parameters-5" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Parameters</h4>
 <ul>
 <li><code>value</code> is any <code>timestamp</code> or <code>date</code></li>
 </ul>
-<h4><a class="anchor" aria-hidden="true" id="description-10"></a><a href="#description-10" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Description</h4>
+<h4><a class="anchor" aria-hidden="true" id="description-12"></a><a href="#description-12" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Description</h4>
 <p><code>day(value)</code> returns the <code>day</code> of month for a given date or timestamp from 0 to 23</p>
-<h4><a class="anchor" aria-hidden="true" id="return-value-10"></a><a href="#return-value-10" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Return Value</h4>
+<h4><a class="anchor" aria-hidden="true" id="return-value-12"></a><a href="#return-value-12" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Return Value</h4>
 <p>Return value type is <code>int</code></p>
-<h4><a class="anchor" aria-hidden="true" id="examples-10"></a><a href="#examples-10" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Examples</h4>
+<h4><a class="anchor" aria-hidden="true" id="examples-12"></a><a href="#examples-12" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Examples</h4>
 <ul>
 <li>Extracting day from a timestamp</li>
 </ul>
 <pre><code class="hljs css language-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-sql_function">day</span>(<span class="hljs-sql_function">to_timestamp</span>(<span class="hljs-string">'2020-03-01:15:43:21'</span>, <span class="hljs-string">'yyyy-MM-dd:HH:mm:ss'</span>)) <span class="hljs-keyword">FROM</span> <span class="hljs-sql_function">long_sequence</span>(<span class="hljs-number">1</span>);
 </code></pre>
-<pre><code class="hljs">|<span class="hljs-string"> day        </span>|
-|<span class="hljs-string">-------------</span>|
-|<span class="hljs-string"> 01          </span>|
-</code></pre>
+<table>
+<thead>
+<tr><th>day</th></tr>
+</thead>
+<tbody>
+<tr><td>01</td></tr>
+</tbody>
+</table>
 <ul>
 <li>Using as part of an aggregation</li>
 </ul>
 <pre><code class="hljs css language-sql"><span class="hljs-keyword">select</span> <span class="hljs-sql_function">day</span>(ts), <span class="hljs-sql_function">count</span>() <span class="hljs-keyword">from</span> transactions;
 </code></pre>
-<pre><code class="hljs">|<span class="hljs-string"> day        </span>|<span class="hljs-string"> count    </span>|
-|<span class="hljs-string">-------------</span>|<span class="hljs-string">----------</span>|
-|<span class="hljs-string"> 1           </span>|<span class="hljs-string"> 2323     </span>|
-|<span class="hljs-string"> 2           </span>|<span class="hljs-string"> 6548     </span>|
-|<span class="hljs-string"> ...         </span>|<span class="hljs-string"> ...      </span>|
-|<span class="hljs-string"> 30          </span>|<span class="hljs-string"> 9876     </span>|
-|<span class="hljs-string"> 31          </span>|<span class="hljs-string"> 2567     </span>|
-</code></pre>
+<table>
+<thead>
+<tr><th>day</th><th>count</th></tr>
+</thead>
+<tbody>
+<tr><td>1</td><td>2323</td></tr>
+<tr><td>2</td><td>6548</td></tr>
+<tr><td>...</td><td>...</td></tr>
+<tr><td>30</td><td>9876</td></tr>
+<tr><td>31</td><td>2567</td></tr>
+</tbody>
+</table>
 <h2><a class="anchor" aria-hidden="true" id="month"></a><a href="#month" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>month</h2>
 <p><code>month(value)</code> - month of year on a 1-12 scale</p>
 <h4><a class="anchor" aria-hidden="true" id="parameters-6"></a><a href="#parameters-6" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Parameters</h4>
 <ul>
 <li><code>value</code> is any <code>timestamp</code> or <code>date</code></li>
 </ul>
-<h4><a class="anchor" aria-hidden="true" id="description-11"></a><a href="#description-11" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Description</h4>
+<h4><a class="anchor" aria-hidden="true" id="description-13"></a><a href="#description-13" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Description</h4>
 <p><code>month(value)</code> returns the <code>month</code> of year for a given date or timestamp from 1 to 12</p>
-<h4><a class="anchor" aria-hidden="true" id="return-value-11"></a><a href="#return-value-11" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Return Value</h4>
+<h4><a class="anchor" aria-hidden="true" id="return-value-13"></a><a href="#return-value-13" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Return Value</h4>
 <p>Return value type is <code>int</code></p>
-<h4><a class="anchor" aria-hidden="true" id="examples-11"></a><a href="#examples-11" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Examples</h4>
+<h4><a class="anchor" aria-hidden="true" id="examples-13"></a><a href="#examples-13" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Examples</h4>
 <ul>
 <li>Extracting month from a timestamp</li>
 </ul>
 <pre><code class="hljs css language-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-sql_function">month</span>(<span class="hljs-sql_function">to_timestamp</span>(<span class="hljs-string">'2020-03-01:15:43:21'</span>, <span class="hljs-string">'yyyy-MM-dd:HH:mm:ss'</span>)) <span class="hljs-keyword">FROM</span> <span class="hljs-sql_function">long_sequence</span>(<span class="hljs-number">1</span>);
 </code></pre>
-<pre><code class="hljs">|<span class="hljs-string"> month        </span>|
-|<span class="hljs-string">-------------</span>|
-|<span class="hljs-string"> 03          </span>|
-</code></pre>
+<table>
+<thead>
+<tr><th>month</th></tr>
+</thead>
+<tbody>
+<tr><td>03</td></tr>
+</tbody>
+</table>
 <ul>
 <li>Using as part of an aggregation</li>
 </ul>
 <pre><code class="hljs css language-sql"><span class="hljs-keyword">select</span> <span class="hljs-sql_function">month</span>(ts), <span class="hljs-sql_function">count</span>() <span class="hljs-keyword">from</span> transactions;
 </code></pre>
-<pre><code class="hljs">|<span class="hljs-string"> month        </span>|<span class="hljs-string"> count    </span>|
-|<span class="hljs-string">-------------</span>|<span class="hljs-string">----------</span>|
-|<span class="hljs-string"> 1           </span>|<span class="hljs-string"> 2323     </span>|
-|<span class="hljs-string"> 2           </span>|<span class="hljs-string"> 6548     </span>|
-|<span class="hljs-string"> ...         </span>|<span class="hljs-string"> ...      </span>|
-|<span class="hljs-string"> 11          </span>|<span class="hljs-string"> 9876     </span>|
-|<span class="hljs-string"> 12          </span>|<span class="hljs-string"> 2567     </span>|
-</code></pre>
+<table>
+<thead>
+<tr><th>month</th><th>count</th></tr>
+</thead>
+<tbody>
+<tr><td>1</td><td>2323</td></tr>
+<tr><td>2</td><td>6548</td></tr>
+<tr><td>...</td><td>...</td></tr>
+<tr><td>11</td><td>9876</td></tr>
+<tr><td>12</td><td>2567</td></tr>
+</tbody>
+</table>
 <h2><a class="anchor" aria-hidden="true" id="year"></a><a href="#year" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>year</h2>
 <p><code>year(value)</code> - year of a timestamp</p>
 <h4><a class="anchor" aria-hidden="true" id="parameters-7"></a><a href="#parameters-7" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Parameters</h4>
 <ul>
 <li><code>value</code> is any <code>timestamp</code> or <code>date</code></li>
 </ul>
-<h4><a class="anchor" aria-hidden="true" id="description-12"></a><a href="#description-12" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Description</h4>
+<h4><a class="anchor" aria-hidden="true" id="description-14"></a><a href="#description-14" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Description</h4>
 <p><code>year(value)</code> returns the <code>year</code> for a given date or timestamp</p>
-<h4><a class="anchor" aria-hidden="true" id="return-value-12"></a><a href="#return-value-12" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Return Value</h4>
+<h4><a class="anchor" aria-hidden="true" id="return-value-14"></a><a href="#return-value-14" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Return Value</h4>
 <p>Return value type is <code>int</code></p>
-<h4><a class="anchor" aria-hidden="true" id="examples-12"></a><a href="#examples-12" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Examples</h4>
+<h4><a class="anchor" aria-hidden="true" id="examples-14"></a><a href="#examples-14" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Examples</h4>
 <ul>
 <li>Extracting year from a timestamp</li>
 </ul>
 <pre><code class="hljs css language-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-sql_function">year</span>(<span class="hljs-sql_function">to_timestamp</span>(<span class="hljs-string">'2020-03-01:15:43:21'</span>, <span class="hljs-string">'yyyy-MM-dd:HH:mm:ss'</span>)) <span class="hljs-keyword">FROM</span> <span class="hljs-sql_function">long_sequence</span>(<span class="hljs-number">1</span>);
 </code></pre>
-<pre><code class="hljs">|<span class="hljs-string"> year        </span>|
-|<span class="hljs-string">-------------</span>|
-|<span class="hljs-string"> 2020          </span>|
-</code></pre>
+<table>
+<thead>
+<tr><th>year</th></tr>
+</thead>
+<tbody>
+<tr><td>2020</td></tr>
+</tbody>
+</table>
 <ul>
 <li>Using as part of an aggregation</li>
 </ul>
 <pre><code class="hljs css language-sql"><span class="hljs-keyword">select</span> <span class="hljs-sql_function">month</span>(ts), <span class="hljs-sql_function">count</span>() <span class="hljs-keyword">from</span> transactions;
 </code></pre>
-<pre><code class="hljs">|<span class="hljs-string"> year        </span>|<span class="hljs-string"> count    </span>|
-|<span class="hljs-string">-------------</span>|<span class="hljs-string">----------</span>|
-|<span class="hljs-string"> 2015           </span>|<span class="hljs-string"> 2323     </span>|
-|<span class="hljs-string"> 2016          </span>|<span class="hljs-string"> 9876     </span>|
-|<span class="hljs-string"> 2017          </span>|<span class="hljs-string"> 2567     </span>|
-</code></pre>
-<h2><a class="anchor" aria-hidden="true" id="add_hours"></a><a href="#add_hours" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>add_hours</h2>
-<p><code>add_hours(value, hours)</code> - adds hours to a date or timestamp</p>
-<h4><a class="anchor" aria-hidden="true" id="arguments-5"></a><a href="#arguments-5" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Arguments</h4>
-<ul>
-<li><code>value</code> is any <code>date</code> or <code>timestamp</code></li>
-<li><code>hours</code> is an <code>int</code></li>
-</ul>
-<h4><a class="anchor" aria-hidden="true" id="description-13"></a><a href="#description-13" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Description</h4>
-<p>Adds <code>hours</code> to <code>value</code> and returns the resulting timestamp</p>
-<h4><a class="anchor" aria-hidden="true" id="return-value-13"></a><a href="#return-value-13" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Return value</h4>
-<p>Return value type is <code>timestamp</code></p>
-<h4><a class="anchor" aria-hidden="true" id="examples-13"></a><a href="#examples-13" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Examples</h4>
-<pre><code class="hljs css language-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-sql_function">systimestamp</span>(), add_hours(<span class="hljs-sql_function">systimestamp</span>(), <span class="hljs-number">2</span>) <span class="hljs-keyword">FROM</span> <span class="hljs-sql_function">long_sequence</span>(<span class="hljs-number">1</span>);
-</code></pre>
 <table>
 <thead>
-<tr><th>systimestamp</th><th>add_hours</th></tr>
+<tr><th>year</th><th>count</th></tr>
 </thead>
 <tbody>
-<tr><td>2020-04-17T00:30:51.380499Z</td><td>2020-04-17T02:30:51.380499Z</td></tr>
-</tbody>
-</table>
-<h2><a class="anchor" aria-hidden="true" id="add_days"></a><a href="#add_days" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>add_days</h2>
-<p><code>add_days(value, days)</code> - adds days to a date or timestamp</p>
-<h4><a class="anchor" aria-hidden="true" id="arguments-6"></a><a href="#arguments-6" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Arguments</h4>
-<ul>
-<li><code>value</code> is any <code>date</code> or <code>timestamp</code></li>
-<li><code>days</code> is an <code>int</code></li>
-</ul>
-<h4><a class="anchor" aria-hidden="true" id="description-14"></a><a href="#description-14" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Description</h4>
-<p>Adds <code>days</code> to <code>value</code> and returns the resulting timestamp</p>
-<h4><a class="anchor" aria-hidden="true" id="return-value-14"></a><a href="#return-value-14" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Return value</h4>
-<p>Return value type is <code>timestamp</code></p>
-<h4><a class="anchor" aria-hidden="true" id="examples-14"></a><a href="#examples-14" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Examples</h4>
-<pre><code class="hljs css language-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-sql_function">systimestamp</span>(), add_days(<span class="hljs-sql_function">systimestamp</span>(), <span class="hljs-number">2</span>) <span class="hljs-keyword">FROM</span> <span class="hljs-sql_function">long_sequence</span>(<span class="hljs-number">1</span>);
-</code></pre>
-<table>
-<thead>
-<tr><th>systimestamp</th><th>add_days</th></tr>
-</thead>
-<tbody>
-<tr><td>2020-04-17T00:30:51.380499Z</td><td>2020-04-19T00:30:51.380499Z</td></tr>
-</tbody>
-</table>
-<h2><a class="anchor" aria-hidden="true" id="add_months"></a><a href="#add_months" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>add_months</h2>
-<p><code>add_months(value, months)</code> - adds months to a date or timestamp</p>
-<h4><a class="anchor" aria-hidden="true" id="arguments-7"></a><a href="#arguments-7" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Arguments</h4>
-<ul>
-<li><code>value</code> is any <code>date</code> or <code>timestamp</code></li>
-<li><code>months</code> is an <code>int</code></li>
-</ul>
-<h4><a class="anchor" aria-hidden="true" id="description-15"></a><a href="#description-15" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Description</h4>
-<p>Adds <code>months</code> to <code>value</code> and returns the resulting timestamp</p>
-<h4><a class="anchor" aria-hidden="true" id="return-value-15"></a><a href="#return-value-15" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Return value</h4>
-<p>Return value type is <code>timestamp</code></p>
-<h4><a class="anchor" aria-hidden="true" id="examples-15"></a><a href="#examples-15" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Examples</h4>
-<pre><code class="hljs css language-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-sql_function">systimestamp</span>(), add_months(<span class="hljs-sql_function">systimestamp</span>(), <span class="hljs-number">2</span>) <span class="hljs-keyword">FROM</span> <span class="hljs-sql_function">long_sequence</span>(<span class="hljs-number">1</span>);
-</code></pre>
-<table>
-<thead>
-<tr><th>systimestamp</th><th>add_months</th></tr>
-</thead>
-<tbody>
-<tr><td>2020-04-17T00:30:51.380499Z</td><td>2020-06-17T00:30:51.380499Z</td></tr>
-</tbody>
-</table>
-<h2><a class="anchor" aria-hidden="true" id="add_years"></a><a href="#add_years" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>add_years</h2>
-<p><code>add_years(value, years)</code> - adds years to a date or timestamp</p>
-<h4><a class="anchor" aria-hidden="true" id="arguments-8"></a><a href="#arguments-8" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Arguments</h4>
-<ul>
-<li><code>value</code> is any <code>date</code> or <code>timestamp</code></li>
-<li><code>years</code> is an <code>int</code></li>
-</ul>
-<h4><a class="anchor" aria-hidden="true" id="description-16"></a><a href="#description-16" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Description</h4>
-<p>Adds <code>years</code> to <code>value</code> and returns the resulting timestamp</p>
-<h4><a class="anchor" aria-hidden="true" id="return-value-16"></a><a href="#return-value-16" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Return value</h4>
-<p>Return value type is <code>timestamp</code></p>
-<h4><a class="anchor" aria-hidden="true" id="examples-16"></a><a href="#examples-16" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Examples</h4>
-<pre><code class="hljs css language-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-sql_function">systimestamp</span>(), add_years(<span class="hljs-sql_function">systimestamp</span>(), <span class="hljs-number">2</span>) <span class="hljs-keyword">FROM</span> <span class="hljs-sql_function">long_sequence</span>(<span class="hljs-number">1</span>);
-</code></pre>
-<table>
-<thead>
-<tr><th>systimestamp</th><th>add_months</th></tr>
-</thead>
-<tbody>
-<tr><td>2020-04-17T00:30:51.380499Z</td><td>2022-04-17T00:30:51.380499Z</td></tr>
-</tbody>
-</table>
-<h2><a class="anchor" aria-hidden="true" id="days"></a><a href="#days" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>days</h2>
-<p><code>days(value, value)</code> - number of days between 2 timestamps</p>
-<h4><a class="anchor" aria-hidden="true" id="arguments-9"></a><a href="#arguments-9" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Arguments</h4>
-<ul>
-<li><code>value</code> is any <code>date</code> or <code>timestamp</code></li>
-</ul>
-<h4><a class="anchor" aria-hidden="true" id="description-17"></a><a href="#description-17" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Description</h4>
-<p>Returns the date difference in days between 2 timestamps</p>
-<h4><a class="anchor" aria-hidden="true" id="return-value-17"></a><a href="#return-value-17" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Return value</h4>
-<p>Return value type is <code>int</code></p>
-<h4><a class="anchor" aria-hidden="true" id="examples-17"></a><a href="#examples-17" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Examples</h4>
-<pre><code class="hljs css language-sql"><span class="hljs-keyword">select</span> <span class="hljs-sql_function">days</span>(<span class="hljs-sql_function">to_timestamp</span>(<span class="hljs-string">'2020-01-23'</span>,<span class="hljs-string">'yyyy-MM-dd'</span>), <span class="hljs-sql_function">to_timestamp</span>(<span class="hljs-string">'2020-01-27'</span>,<span class="hljs-string">'yyyy-MM-dd'</span>)) <span class="hljs-keyword">from</span> <span class="hljs-sql_function">long_sequence</span>(<span class="hljs-number">1</span>);
-</code></pre>
-<table>
-<thead>
-<tr><th>days</th></tr>
-</thead>
-<tbody>
-<tr><td>4</td></tr>
-</tbody>
-</table>
-<h2><a class="anchor" aria-hidden="true" id="months"></a><a href="#months" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>months</h2>
-<p><code>months(value, value)</code> - number of months between 2 timestamps</p>
-<h4><a class="anchor" aria-hidden="true" id="arguments-10"></a><a href="#arguments-10" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Arguments</h4>
-<ul>
-<li><code>value</code> is any <code>date</code> or <code>timestamp</code></li>
-</ul>
-<h4><a class="anchor" aria-hidden="true" id="description-18"></a><a href="#description-18" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Description</h4>
-<p>Returns the date difference in months between 2 timestamps</p>
-<h4><a class="anchor" aria-hidden="true" id="return-value-18"></a><a href="#return-value-18" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Return value</h4>
-<p>Return value type is <code>int</code></p>
-<h4><a class="anchor" aria-hidden="true" id="examples-18"></a><a href="#examples-18" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Examples</h4>
-<pre><code class="hljs css language-sql"><span class="hljs-keyword">select</span> <span class="hljs-keyword">months</span>(<span class="hljs-sql_function">to_timestamp</span>(<span class="hljs-string">'2020-01-23'</span>,<span class="hljs-string">'yyyy-MM-dd'</span>), <span class="hljs-sql_function">to_timestamp</span>(<span class="hljs-string">'2020-02-22'</span>,<span class="hljs-string">'yyyy-MM-dd'</span>)) <span class="hljs-keyword">from</span> <span class="hljs-sql_function">long_sequence</span>(<span class="hljs-number">1</span>);
-<span class="hljs-keyword">select</span> <span class="hljs-keyword">months</span>(<span class="hljs-sql_function">to_timestamp</span>(<span class="hljs-string">'2020-01-23'</span>,<span class="hljs-string">'yyyy-MM-dd'</span>), <span class="hljs-sql_function">to_timestamp</span>(<span class="hljs-string">'2020-02-23'</span>,<span class="hljs-string">'yyyy-MM-dd'</span>)) <span class="hljs-keyword">from</span> <span class="hljs-sql_function">long_sequence</span>(<span class="hljs-number">1</span>);
-</code></pre>
-<table>
-<thead>
-<tr><th>months</th></tr>
-</thead>
-<tbody>
-<tr><td>0</td></tr>
-<tr><td>1</td></tr>
-</tbody>
-</table>
-<h2><a class="anchor" aria-hidden="true" id="years"></a><a href="#years" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>years</h2>
-<p><code>years(value, value)</code> - number of years between 2 timestamps</p>
-<h4><a class="anchor" aria-hidden="true" id="arguments-11"></a><a href="#arguments-11" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Arguments</h4>
-<ul>
-<li><code>value</code> is any <code>date</code> or <code>timestamp</code></li>
-</ul>
-<h4><a class="anchor" aria-hidden="true" id="description-19"></a><a href="#description-19" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Description</h4>
-<p>Returns the date difference in years between 2 timestamps</p>
-<h4><a class="anchor" aria-hidden="true" id="return-value-19"></a><a href="#return-value-19" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Return value</h4>
-<p>Return value type is <code>int</code></p>
-<h4><a class="anchor" aria-hidden="true" id="examples-19"></a><a href="#examples-19" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Examples</h4>
-<pre><code class="hljs css language-sql"><span class="hljs-keyword">select</span> <span class="hljs-keyword">years</span>(<span class="hljs-sql_function">to_timestamp</span>(<span class="hljs-string">'2020-01-23'</span>,<span class="hljs-string">'yyyy-MM-dd'</span>), <span class="hljs-sql_function">to_timestamp</span>(<span class="hljs-string">'2021-01-22'</span>,<span class="hljs-string">'yyyy-MM-dd'</span>)) <span class="hljs-keyword">from</span> <span class="hljs-sql_function">long_sequence</span>(<span class="hljs-number">1</span>);
-<span class="hljs-keyword">select</span> <span class="hljs-keyword">years</span>(<span class="hljs-sql_function">to_timestamp</span>(<span class="hljs-string">'2020-01-23'</span>,<span class="hljs-string">'yyyy-MM-dd'</span>), <span class="hljs-sql_function">to_timestamp</span>(<span class="hljs-string">'2021-01-23'</span>,<span class="hljs-string">'yyyy-MM-dd'</span>)) <span class="hljs-keyword">from</span> <span class="hljs-sql_function">long_sequence</span>(<span class="hljs-number">1</span>);
-</code></pre>
-<table>
-<thead>
-<tr><th>years</th></tr>
-</thead>
-<tbody>
-<tr><td>0</td></tr>
-<tr><td>1</td></tr>
+<tr><td>2015</td><td>2323</td></tr>
+<tr><td>2016</td><td>9876</td></tr>
+<tr><td>2017</td><td>2567</td></tr>
 </tbody>
 </table>
 <h2><a class="anchor" aria-hidden="true" id="is_leap_year"></a><a href="#is_leap_year" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>is_leap_year</h2>
@@ -654,11 +685,11 @@ see the <strong><a href="#date-and-timestamp-format">date and timestamp format s
 <ul>
 <li><code>value</code> is any <code>timestamp</code> or <code>date</code></li>
 </ul>
-<h4><a class="anchor" aria-hidden="true" id="description-20"></a><a href="#description-20" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Description</h4>
+<h4><a class="anchor" aria-hidden="true" id="description-15"></a><a href="#description-15" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Description</h4>
 <p><code>is_leap_year(value)</code> returns <code>true</code> if the <code>year</code> of <code>value</code> is a leap year, <code>false</code> otherwise.</p>
-<h4><a class="anchor" aria-hidden="true" id="return-value-20"></a><a href="#return-value-20" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Return Value</h4>
+<h4><a class="anchor" aria-hidden="true" id="return-value-15"></a><a href="#return-value-15" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Return Value</h4>
 <p>Return value type is <code>boolean</code></p>
-<h4><a class="anchor" aria-hidden="true" id="examples-20"></a><a href="#examples-20" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Examples</h4>
+<h4><a class="anchor" aria-hidden="true" id="examples-15"></a><a href="#examples-15" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Examples</h4>
 <pre><code class="hljs css language-sql"><span class="hljs-keyword">select</span> <span class="hljs-sql_function">year</span>(ts), is_leap_year(ts) <span class="hljs-keyword">from</span> myTable;
 </code></pre>
 <table>
@@ -680,11 +711,11 @@ see the <strong><a href="#date-and-timestamp-format">date and timestamp format s
 <ul>
 <li><code>value</code> is any <code>timestamp</code> or <code>date</code></li>
 </ul>
-<h4><a class="anchor" aria-hidden="true" id="description-21"></a><a href="#description-21" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Description</h4>
+<h4><a class="anchor" aria-hidden="true" id="description-16"></a><a href="#description-16" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Description</h4>
 <p><code>days_in_month(value)</code> returns the count of days in a the month.</p>
-<h4><a class="anchor" aria-hidden="true" id="return-value-21"></a><a href="#return-value-21" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Return Value</h4>
+<h4><a class="anchor" aria-hidden="true" id="return-value-16"></a><a href="#return-value-16" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Return Value</h4>
 <p>Return value type is <code>int</code></p>
-<h4><a class="anchor" aria-hidden="true" id="examples-21"></a><a href="#examples-21" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Examples</h4>
+<h4><a class="anchor" aria-hidden="true" id="examples-16"></a><a href="#examples-16" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Examples</h4>
 <pre><code class="hljs css language-sql"><span class="hljs-keyword">select</span> <span class="hljs-sql_function">month</span>(ts), days_in_month(ts) <span class="hljs-keyword">from</span> myTable;
 </code></pre>
 <table>
@@ -705,11 +736,11 @@ see the <strong><a href="#date-and-timestamp-format">date and timestamp format s
 <ul>
 <li><code>value</code> is any <code>timestamp</code> or <code>date</code></li>
 </ul>
-<h4><a class="anchor" aria-hidden="true" id="description-22"></a><a href="#description-22" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Description</h4>
+<h4><a class="anchor" aria-hidden="true" id="description-17"></a><a href="#description-17" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Description</h4>
 <p><code>day_of_week(value)</code> returns the day number in a week from 1 (Monday) to 7 (Sunday)</p>
-<h4><a class="anchor" aria-hidden="true" id="return-value-22"></a><a href="#return-value-22" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Return Value</h4>
+<h4><a class="anchor" aria-hidden="true" id="return-value-17"></a><a href="#return-value-17" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Return Value</h4>
 <p>Return value type is <code>int</code></p>
-<h4><a class="anchor" aria-hidden="true" id="examples-22"></a><a href="#examples-22" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Examples</h4>
+<h4><a class="anchor" aria-hidden="true" id="examples-17"></a><a href="#examples-17" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Examples</h4>
 <pre><code class="hljs css language-sql"><span class="hljs-keyword">select</span> <span class="hljs-sql_function">to_str</span>(ts,<span class="hljs-string">'EE'</span>),day_of_week(ts) <span class="hljs-keyword">from</span> myTable;
 </code></pre>
 <table>
@@ -732,11 +763,11 @@ see the <strong><a href="#date-and-timestamp-format">date and timestamp format s
 <ul>
 <li><code>value</code> is any <code>timestamp</code> or <code>date</code></li>
 </ul>
-<h4><a class="anchor" aria-hidden="true" id="description-23"></a><a href="#description-23" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Description</h4>
+<h4><a class="anchor" aria-hidden="true" id="description-18"></a><a href="#description-18" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Description</h4>
 <p><code>day_of_week_sunday_first(value)</code> returns the day number in a week from 1 (Sunday) to 7 (Saturday)</p>
-<h4><a class="anchor" aria-hidden="true" id="return-value-23"></a><a href="#return-value-23" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Return Value</h4>
+<h4><a class="anchor" aria-hidden="true" id="return-value-18"></a><a href="#return-value-18" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Return Value</h4>
 <p>Return value type is <code>int</code></p>
-<h4><a class="anchor" aria-hidden="true" id="examples-23"></a><a href="#examples-23" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Examples</h4>
+<h4><a class="anchor" aria-hidden="true" id="examples-18"></a><a href="#examples-18" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Examples</h4>
 <pre><code class="hljs css language-sql"><span class="hljs-keyword">select</span> <span class="hljs-sql_function">to_str</span>(ts,<span class="hljs-string">'EE'</span>),day_of_week_sunday_first(ts) <span class="hljs-keyword">from</span> myTable;
 </code></pre>
 <table>
@@ -792,7 +823,7 @@ Format letters are case-sensitive and are used as is (e.g. without any prefix)</
 <li><strong><a href="#to_date">to_date</a></strong></li>
 <li><strong><a href="#to_str">to_str</a></strong></li>
 </ul>
-</span></div></article></div><div class="docLastUpdate"><em>Last updated on 4/17/2020</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/functionsNumeric"><span class="arrow-prev">← </span><span>Numeric</span></a><a class="docs-next button" href="/docs/functionsRandomValueGenerators"><span>Random Value Generators</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#systimestamp">systimestamp</a></li><li><a href="#sysdate">sysdate</a></li><li><a href="#to_timestamp">to_timestamp</a></li><li><a href="#to_date">to_date</a></li><li><a href="#to_str">to_str</a></li><li><a href="#millis">millis</a></li><li><a href="#micros">micros</a></li><li><a href="#second">second</a></li><li><a href="#minute">minute</a></li><li><a href="#hour">hour</a></li><li><a href="#day">day</a></li><li><a href="#month">month</a></li><li><a href="#year">year</a></li><li><a href="#add_hours">add_hours</a></li><li><a href="#add_days">add_days</a></li><li><a href="#add_months">add_months</a></li><li><a href="#add_years">add_years</a></li><li><a href="#days">days</a></li><li><a href="#months">months</a></li><li><a href="#years">years</a></li><li><a href="#is_leap_year">is_leap_year</a></li><li><a href="#days_in_month">days_in_month</a></li><li><a href="#day_of_week">day_of_week</a></li><li><a href="#day_of_week_sunday_first">day_of_week_sunday_first</a></li><li><a href="#date-and-timestamp-format">Date and Timestamp format</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><div align="left" class="footersection"><h5>QuestDB</h5><a href="/docs/documentationOverview">Documentation</a><a href="/getstarted">Download</a><a href="https://github.com/questdb/questdb/projects/2">Roadmap</a></div><div align="left" class="footersection"><h5>Community</h5><a href="https://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://join.slack.com/t/questdb/shared_invite/enQtNzk4Nzg4Mjc2MTE2LTEzZThjMzliMjUzMTBmYzVjYWNmM2UyNWJmNDdkMDYyZmE0ZDliZTQxN2EzNzk5MDE3Zjc1ZmJiZmFiZTIwMGY&gt;"> Join Slack </a><a href="https://twitter.com/" target="@QuestDB" rel="noreferrer noopener">Twitter</a></div><div align="left" class="footersection"><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/questdb/questdb/">GitHub</a><span class="sucker"><a class="github-button" href="https://github.com/questdb/questdb" data-icon="octicon-star" data-count-href="/questdb/questdb/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></span><a class="github-button" href="https://github.com/questdb/questdb" data-icon="octicon-star" data-count-href="/questdb/questdb/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="copyright">Copyright © 2020 QuestDB</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 5/1/2020</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/functionsNumeric"><span class="arrow-prev">← </span><span>Numeric</span></a><a class="docs-next button" href="/docs/functionsRandomValueGenerators"><span>Random Value Generators</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#systimestamp">systimestamp</a></li><li><a href="#sysdate">sysdate</a></li><li><a href="#to_timestamp">to_timestamp</a></li><li><a href="#to_date">to_date</a></li><li><a href="#to_str">to_str</a></li><li><a href="#dateadd">dateadd</a></li><li><a href="#datediff">datediff</a></li><li><a href="#millis">millis</a></li><li><a href="#micros">micros</a></li><li><a href="#second">second</a></li><li><a href="#minute">minute</a></li><li><a href="#hour">hour</a></li><li><a href="#day">day</a></li><li><a href="#month">month</a></li><li><a href="#year">year</a></li><li><a href="#is_leap_year">is_leap_year</a></li><li><a href="#days_in_month">days_in_month</a></li><li><a href="#day_of_week">day_of_week</a></li><li><a href="#day_of_week_sunday_first">day_of_week_sunday_first</a></li><li><a href="#date-and-timestamp-format">Date and Timestamp format</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><div align="left" class="footersection"><h5>QuestDB</h5><a href="/docs/documentationOverview">Documentation</a><a href="/getstarted">Download</a><a href="https://github.com/questdb/questdb/projects/2">Roadmap</a></div><div align="left" class="footersection"><h5>Community</h5><a href="https://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://join.slack.com/t/questdb/shared_invite/enQtNzk4Nzg4Mjc2MTE2LTEzZThjMzliMjUzMTBmYzVjYWNmM2UyNWJmNDdkMDYyZmE0ZDliZTQxN2EzNzk5MDE3Zjc1ZmJiZmFiZTIwMGY&gt;"> Join Slack </a><a href="https://twitter.com/" target="@QuestDB" rel="noreferrer noopener">Twitter</a></div><div align="left" class="footersection"><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/questdb/questdb/">GitHub</a><span class="sucker"><a class="github-button" href="https://github.com/questdb/questdb" data-icon="octicon-star" data-count-href="/questdb/questdb/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></span><a class="github-button" href="https://github.com/questdb/questdb" data-icon="octicon-star" data-count-href="/questdb/questdb/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="copyright">Copyright © 2020 QuestDB</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
               !function(f,b,e,v,n,t,s)
               {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
               n.callMethod.apply(n,arguments):n.queue.push(arguments)};

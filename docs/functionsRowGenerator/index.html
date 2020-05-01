@@ -65,10 +65,13 @@
         </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 id="__docusaurus" class="postHeaderTitle">Row Generator</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="long_sequence"></a><a href="#long_sequence" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>long_sequence</h2>
 <ul>
 <li><code>long_sequence(iterations)</code> - generates rows.</li>
+<li><code>long_sequence(iterations, seed1, seed2)</code> - generates rows with deterministic randomness.</li>
 </ul>
 <h4><a class="anchor" aria-hidden="true" id="arguments"></a><a href="#arguments" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Arguments</h4>
-<p>-<code>iterations</code>: is a <code>long</code> representing the number of rows to generate.</p>
+<p>-<code>iterations</code>: is a <code>long</code> representing the number of rows to generate.
+-<code>seed1</code> and <code>seed2</code> are <code>long64</code> representing both parts of a <code>long128</code> seed.</p>
 <h4><a class="anchor" aria-hidden="true" id="description"></a><a href="#description" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Description</h4>
+<h5><a class="anchor" aria-hidden="true" id="row-generation"></a><a href="#row-generation" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Row generation</h5>
 <p><code>long_sequence(iterations)</code> is used to:</p>
 <ul>
 <li>Generate a number of rows defined by <code>iterations</code>.</li>
@@ -78,34 +81,64 @@ can be accessed for queries.</li>
 <blockquote>
 <p>do not be afraid to generate very large datasets for your testing e.g billions of rows or more if your disk allows.</p>
 </blockquote>
+<h5><a class="anchor" aria-hidden="true" id="random-number-seed"></a><a href="#random-number-seed" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Random number seed</h5>
+<p>When <code>long_sequence</code> is used conjointly with <a href="/docs/functionsRandomValueGenerators">random generators</a>, these values are
+usually generated at random. It is sometimes useful to generate deterministic datasets which allows to perform testing
+on vasts amounts of data without actually moving large files around. Using the same seed on any machine at any time will
+consistently produce the same results for all random functions.</p>
 <h4><a class="anchor" aria-hidden="true" id="examples"></a><a href="#examples" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Examples</h4>
 <ul>
 <li>Generating multiple rows</li>
 </ul>
 <pre><code class="hljs css language-sql"><span class="hljs-keyword">SELECT</span> x, <span class="hljs-sql_function">rnd_double</span>() <span class="hljs-keyword">FROM</span> <span class="hljs-sql_function">long_sequence</span>(<span class="hljs-number">5</span>);
 </code></pre>
-<pre><code class="hljs">|<span class="hljs-string"> x         </span>|<span class="hljs-string"> rnd_double        </span>|
-|<span class="hljs-string">-----------</span>|<span class="hljs-string">-------------------</span>|
-|<span class="hljs-string"> 1         </span>|<span class="hljs-string"> 0.3279246687      </span>|
-|<span class="hljs-string"> 2         </span>|<span class="hljs-string"> 0.8341038236      </span>|
-|<span class="hljs-string"> 3         </span>|<span class="hljs-string"> 0.1023834675      </span>|
-|<span class="hljs-string"> 4         </span>|<span class="hljs-string"> 0.9130602021      </span>|
-|<span class="hljs-string"> 5         </span>|<span class="hljs-string"> 0.718276777       </span>|
-</code></pre>
+<table>
+<thead>
+<tr><th>x</th><th>rnd_double</th></tr>
+</thead>
+<tbody>
+<tr><td>1</td><td>0.3279246687</td></tr>
+<tr><td>2</td><td>0.8341038236</td></tr>
+<tr><td>3</td><td>0.1023834675</td></tr>
+<tr><td>4</td><td>0.9130602021</td></tr>
+<tr><td>5</td><td>0.718276777</td></tr>
+</tbody>
+</table>
 <ul>
 <li>Accessing row number via <code>x</code> column</li>
 </ul>
 <pre><code class="hljs css language-sql"><span class="hljs-keyword">SELECT</span> x, x*x <span class="hljs-keyword">FROM</span> <span class="hljs-sql_function">long_sequence</span>(<span class="hljs-number">5</span>);
 </code></pre>
-<pre><code class="hljs">|<span class="hljs-string"> x       </span>|<span class="hljs-string"> x*x     </span>|
-|<span class="hljs-string">---------</span>|<span class="hljs-string">---------</span>|
-|<span class="hljs-string"> 1       </span>|<span class="hljs-string"> 1       </span>|
-|<span class="hljs-string"> 2       </span>|<span class="hljs-string"> 4       </span>|
-|<span class="hljs-string"> 3       </span>|<span class="hljs-string"> 9       </span>|
-|<span class="hljs-string"> 4       </span>|<span class="hljs-string"> 16      </span>|
-|<span class="hljs-string"> 5       </span>|<span class="hljs-string"> 25      </span>|
+<table>
+<thead>
+<tr><th>x</th><th>x*x</th></tr>
+</thead>
+<tbody>
+<tr><td>1</td><td>1</td></tr>
+<tr><td>2</td><td>4</td></tr>
+<tr><td>3</td><td>9</td></tr>
+<tr><td>4</td><td>16</td></tr>
+<tr><td>5</td><td>25</td></tr>
+</tbody>
+</table>
+<ul>
+<li>Using with a seed</li>
+</ul>
+<pre><code class="hljs css language-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-sql_function">rnd_double</span>() <span class="hljs-keyword">from</span> <span class="hljs-sql_function">long_sequence</span>(<span class="hljs-number">2</span>,<span class="hljs-number">128349234</span>,<span class="hljs-number">4327897</span>);
 </code></pre>
-</span></div></article></div><div class="docLastUpdate"><em>Last updated on 3/6/2020</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/functionsRandomValueGenerators"><span class="arrow-prev">← </span><span>Random Value Generators</span></a><a class="docs-next button" href="/docs/functionsTimestampGenerator"><span>Timestamp Generator</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#long_sequence">long_sequence</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><div align="left" class="footersection"><h5>QuestDB</h5><a href="/docs/documentationOverview">Documentation</a><a href="/getstarted">Download</a><a href="https://github.com/questdb/questdb/projects/2">Roadmap</a></div><div align="left" class="footersection"><h5>Community</h5><a href="https://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://join.slack.com/t/questdb/shared_invite/enQtNzk4Nzg4Mjc2MTE2LTEzZThjMzliMjUzMTBmYzVjYWNmM2UyNWJmNDdkMDYyZmE0ZDliZTQxN2EzNzk5MDE3Zjc1ZmJiZmFiZTIwMGY&gt;"> Join Slack </a><a href="https://twitter.com/" target="@QuestDB" rel="noreferrer noopener">Twitter</a></div><div align="left" class="footersection"><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/questdb/questdb/">GitHub</a><span class="sucker"><a class="github-button" href="https://github.com/questdb/questdb" data-icon="octicon-star" data-count-href="/questdb/questdb/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></span><a class="github-button" href="https://github.com/questdb/questdb" data-icon="octicon-star" data-count-href="/questdb/questdb/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="copyright">Copyright © 2020 QuestDB</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+<blockquote>
+<p>The results below will be the same on any machine at any time as long as they use the same seed in long_sequence.</p>
+</blockquote>
+<table>
+<thead>
+<tr><th>rnd_double</th></tr>
+</thead>
+<tbody>
+<tr><td>0.8251337821991485</td></tr>
+<tr><td>0.2714941145110299</td></tr>
+</tbody>
+</table>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 5/1/2020</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/functionsRandomValueGenerators"><span class="arrow-prev">← </span><span>Random Value Generators</span></a><a class="docs-next button" href="/docs/functionsTimestampGenerator"><span>Timestamp Generator</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#long_sequence">long_sequence</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><div align="left" class="footersection"><h5>QuestDB</h5><a href="/docs/documentationOverview">Documentation</a><a href="/getstarted">Download</a><a href="https://github.com/questdb/questdb/projects/2">Roadmap</a></div><div align="left" class="footersection"><h5>Community</h5><a href="https://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://join.slack.com/t/questdb/shared_invite/enQtNzk4Nzg4Mjc2MTE2LTEzZThjMzliMjUzMTBmYzVjYWNmM2UyNWJmNDdkMDYyZmE0ZDliZTQxN2EzNzk5MDE3Zjc1ZmJiZmFiZTIwMGY&gt;"> Join Slack </a><a href="https://twitter.com/" target="@QuestDB" rel="noreferrer noopener">Twitter</a></div><div align="left" class="footersection"><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/questdb/questdb/">GitHub</a><span class="sucker"><a class="github-button" href="https://github.com/questdb/questdb" data-icon="octicon-star" data-count-href="/questdb/questdb/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></span><a class="github-button" href="https://github.com/questdb/questdb" data-icon="octicon-star" data-count-href="/questdb/questdb/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="copyright">Copyright © 2020 QuestDB</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
               !function(f,b,e,v,n,t,s)
               {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
               n.callMethod.apply(n,arguments):n.queue.push(arguments)};

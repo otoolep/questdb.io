@@ -14,7 +14,7 @@
         </image>
         <copyright>Copyright © 2020 QuestDB</copyright>
         <item>
-            <title><![CDATA[QuestDB - Using SIMD to aggregate billions of rows per second]]></title>
+            <title><![CDATA[Using SIMD to aggregate billions of rows per second]]></title>
             <link>https://questdb.io/blog/2020/04/02/using-simd-to-aggregate-billions-of-rows-per-second.html</link>
             <guid>https://questdb.io/blog/2020/04/02/using-simd-to-aggregate-billions-of-rows-per-second.html</guid>
             <pubDate>Thu, 02 Apr 2020 06:00:00 GMT</pubDate>
