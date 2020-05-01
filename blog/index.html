@@ -288,7 +288,7 @@ perform 4x as many operations, then as an illustration, our CPU usage time looks
 <p><img src="/blog/assets/thread-work.png" alt="alt-text"></p>
 <p><strong>We fill the gaps with extra work to get a more accurate result without affecting execution time.</strong></p>
 <p>Here are the results when calculating the sum of 1 billion doubles on a quad-core i7.</p>
-<p><img src="/blog/assets/bench-naive-kahan-neub.png" alt="alt-text"></p>
+<p><img src="/blog/assets/bench-naive-kahan-neum.png" alt="alt-text"></p>
 <p><strong>Granted, Kahan and Neumaier sum take slightly longer than the naive approach. However, the impact is a marginal 9%, not 400%!
 Also, Neumaier's algo, which is a little more precise in certain edge cases but adds more operations to the algorithm performs just as
 fast as Kahan for the same reason.</strong></p>
@@ -312,7 +312,7 @@ databases on an m5a.2xlarge AWS instance. We used QuestDB to generate a data fil
 <p>The results are as below.</p>
 <p><img src="/blog/assets/bench-kahan-kdb-clickhouse.png" alt="alt-text"></p>
 <p>The three databases are summing naively at roughly the same speed. However, this summation method is inaccurate.
-When using compensated sum (Kahan's algorithm), Clickhouse's performs twice as slow while QuestDB's performance only deteriorates by 9%.
+When using compensated sum (Kahan's algorithm), Clickhouse's performs 55% slower. QuestDB's performance deteriorates by 9%.
 kdb+ did not seem to offer compensated summation.</p>
 <p>We are conscious this benchmark is not representative of any particular use case. We chose this test because
 it is a basic query, and is trivial to reproduce. With more complex queries, we expect QuestDB's performance gap to compound.
