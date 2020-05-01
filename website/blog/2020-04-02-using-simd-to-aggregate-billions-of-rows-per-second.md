@@ -1,5 +1,5 @@
 ---
-title: QuestDB - Using SIMD to aggregate billions of rows per second
+title: Using SIMD to aggregate billions of rows per second
 author: Tancrede Collard
 ---
 
