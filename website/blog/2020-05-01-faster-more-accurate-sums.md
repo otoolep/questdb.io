@@ -7,7 +7,7 @@ author: Tancrede Collard
 
 ![alt-text](assets/road-runner.png)
 
-With [release 4.2.1](https://github.com/questdb/questdb/releases/tag/4.2.1), QuestDB implements Kahan and Neumaier compensated summation algorithms that perform as fast 
+With its latest [release 4.2.1](https://github.com/questdb/questdb/releases/tag/4.2.1), QuestDB now implements Kahan and Neumaier compensated summation algorithms which perform as fast 
 as naive approaches. That's right! More accurate results in the same execution time.
 
 You can find our code in our 
@@ -20,7 +20,7 @@ In this post we cover
 - An [overview](#float-representation) of how floating-point numbers are represented.
 - A [presentation](#kahans-algorithm-for-compensated-summation) of the Kahan algorithm.
 - Our [implementation](#questdbs-implementation-with-avx-instructions) using SIMD instructions.
-- Performance [benchmarks](#performance-impact-over-naive-method) between summation methods and [across](#comparing-to-other-databases) some databases.
+- Performance [benchmarks](#performance-impact-over-naive-method) amongst summation methods and [across](#comparing-to-other-databases) several databases.
 
 ### More accurate additions?
 Before we dig in, some of you might wonder how an addition can be inaccurate as opposed to simply right or wrong.
@@ -38,12 +38,12 @@ Here is an example:
     }
 ```
 
-We ask to add `5.1` to `9.2`. The result should be `14.3`, but we get the following.
+We ask to add `5.1` to `9.2`. The result should be `14.3`, but we get the following instead.
 ```shell script
 14.299999999999999
 ```
 
-It's a small (only `0.000000000000001`), but it is wrong. To make matters worse, this error can be compounded.
+It is a small difference (only `0.000000000000001`), but it is nontheless wrong. To make matters worse, this error can be compounded.
 
 ```java
     public static void main(String[] args) {
@@ -89,27 +89,27 @@ is done from right to left.
 ![alt-text](assets/float-eq-4.png)
 
 #### What about negative exponents?
-It gets trickier when using negative exponents (i.e a right-side of the equation inferior to 1). 
+It gets trickier when using negative exponents (i.e the right-side of the equation inferior to 1). 
 In this case, the right side consists of a sum of 
 negative powers of two. Here is an example of how this works. Note that in this case the bits in the exponent are read from 
 left to right.
 
 ![alt-text](assets/float-eq-5.png)
 
-Interestingly, this example shows one of the limits of floating-point representation. The design of the standard made 
-a trade-off and **the format sacrifices precision for range**. In the above example, 
+Interestingly, this example highlights one of the limits of floating-point representation. The design of the standard made 
+a trade-off to **sacrifice precision for range**. In the above example, 
 the `0011` pattern will repeat to infinity. Each new bit will get us closer to 0.1. But we will never exactly get there. 
-As a result, **it is impossible to properly store `0.1`. Instead 
-computers store something really close, but not equal**. 
+As a result, **it is impossible to properly store `0.1`. Instead, 
+computers store something really close, but never exact**. 
 
 #### Truncation accuracy loss
-As we saw above, floating-point numbers are not stored accurately. Naturally, operations these numbers will return 
-inaccurate results. That's not the only problem. Performing operations is also likely to introduce and grow errors 
-over time. One such case is when the result of an operation has to be truncated to fit the original format. 
+As we saw above, floating-point are not accurately stored. Naturally, operations these numbers will return 
+inaccurate results. This is not the only problem. Performing operations is also likely to introduce more errors and to
+grow the total error over time. One such case is once the result of an operation has to be truncated to fit the original format. 
 Here is a simplified example of the **truncation** that happens when adding floats of different orders of magnitude. 
 
 >For the below example we will be using base 10 and expressing the 
-exponent as a number rather than a binary for sake of simplicity. We will assume 5 significant digits.
+exponent as a number rather than a binary for sake of simplicity. We assume 5 significant digits.
 
 We start with both our numbers expressed in scientific notation.
 
@@ -119,19 +119,19 @@ Let's expand into decimal notation and place them on a similar scale so all digi
 
 ![alt-text](assets/sum-2.png)
 
-Now, let's express this sum back as one number in scientific notation. We have to `truncate` the result back to 5 significant digits. 
+Now, let us express this sum back as one number in scientific notation. We have to `truncate` the result back to 5 significant digits. 
 
 ![alt-text](assets/sum-3.png)
 
-The result is completely off. In fact, it's as if we did not add anything. 
+The result is incorrect. In fact, it is as if we did not sum anything. 
 
 ### Kahan's algorithm for compensated summation
-Compensated sum maintains a sum of accumulated errors and uses it to attempt to correct the (inaccurate) sum by the total error. 
+Compensated sum maintains a sum of accumulated errors and uses it to attempt to correct the (inaccurate) sum by the total error amount. 
 It does so by trying to adjust each new number by the total accumulated error. 
 
 The main Compensated summation algorithm is the <a href="https://en.wikipedia.org/wiki/Kahan_summation_algorithm" target="_blank">Kahan</a> sum. It runs in 4 steps:
 
-- Subtract the `running error` from new `nunber` to get the `adjusted number`. If this is the first number, then the running error is 0.
+- Subtract the `running error` from the new `number` to get the `adjusted number`. If this is the first number, then the running error is 0.
 - Add the `adjusted number` to the `running total` and truncate to the number of significant digits. This is the `truncated result`.
 - Calculate the `new running error` as `(truncated result - running total) - adjusted number`
 - Assign the `truncated result` as the new `running total`.
@@ -161,7 +161,7 @@ Let's replace `t` by `[2]` in our running error `c`
 ```shell script
 c = (t - sum) - y
 c = ((sum + y) - sum) - y
-So applying addition transitivity to remove brackets, we obtain
+Applying addition transitivity to remove brackets, we obtain
 c = sum + y - sum - y
 c = 0       //???
 ```
@@ -258,7 +258,7 @@ we are summing vectors of 8 values each.
     }
 ```
 You may have noted the `prefetch` instruction above. As QuestDB uses contiguous storage, we can use this instruction 
-to hint the CPU to fetch data ahead of time by loading the next page. Doing this means the CPU spends less time waiting for data.
+to ask the CPU to fetch data ahead of time by loading the next page. Doing this means the CPU spends less time waiting for data.
 Just this one trick improved our performance by around 20%.
 
 Lastly, we use `horizontal_add` to sum all values into a scalar value. Again, we recognise Kahan's sum algorithm.
@@ -293,9 +293,9 @@ our CPU is actually spending a lot of time waiting for the memory.
 
 ![alt-text](assets/thread-release.png) 
 
-What is QuestDB doing while it waits? Does it lock the CPU? Of course not! It releases it for someone else to use. 
+What is QuestDB doing while it is idle? Does it lock the CPU? Of course not! It releases it for someone else to use. 
 QuestDB's threading model is non-blocking. So whenever a thread is waiting, it does not stay idle and unavailable for other 
-work. It is released to the thread pool, and resumes work as soon as possible.
+work, unlike other time-series databases. It is released to the thread pool, and resumes work as soon as possible.
 
 While we wait for the memory, **we have plenty of CPU time which we can either release or use to improve sum accuracy without affecting performance**. If we use kahan sum and 
 perform 4x as many operations, then as an illustration, our CPU usage time looks like this.
@@ -303,44 +303,75 @@ perform 4x as many operations, then as an illustration, our CPU usage time looks
 ![alt-text](assets/thread-work.png)
 
 **We fill the gaps with extra work to get a more accurate result without affecting execution time.**
-
-Here are the results when calculating the sum of 1 billion doubles on a quad-core i7.
+Here are the results when calculating the sum of 1 billion doubles.
 
 ![alt-text](assets/bench-naive-kahan-neum.png)
 
-**Granted, Kahan and Neumaier sum take slightly longer than the naive approach. However, the impact is a marginal 9%, not 400%!
+**Granted, Kahan and Neumaier sum take slightly longer than the naive approach. However, the impact is 3%, not 400%.
 Also, Neumaier's algo, which is a little more precise in certain edge cases but adds more operations to the algorithm performs just as 
 fast as Kahan for the same reason.**
 
 ### Comparing to other databases
-We compared how performance behaves when switching from naive (inaccurate) sum to kahan compensated sum. We run all 
-databases on an m5a.2xlarge AWS instance. We used QuestDB to generate a data file as follows and exported it as csv.
+We compared how performance behaves when switching from naive (inaccurate) sum to kahan compensated sum. 
+
+#### Hardware
+We run all databases on an `c5.metal` AWS instance, which is a 96-thread machine with 192GB of memory. 
+QuestDB and KDB were running on 16 threads. As we showed in a [previous article](2020-04-02-using-simd-to-aggregate-billions-of-rows-per-second.md), 
+adding more threads does not improve performance beyond a certain point. Clickhouse was running using all cores as per default configuration, 
+however we increased the memory limit from the default value of 10GB to 40GB `<max_memory_usage>40000000000</max_memory_usage>`
+
+#### Test data
+We generated two test files using QuestDB [random generation functions](/docs/functionsRandomValueGenerators.md) and 
+exported the results to csv. We then imported the csv individually in the databases.
+
 ```shell script
-select rnd_double() from long_sequence(1_000_000_000);
+select rnd_double() from long_sequence(1_000_000_000l); -- non null
+select rnd_double(2) from long_sequence(1_000_000_000l); -- with nulls
 ```
 
+#### Storage engine
+- **QuestDB**: on disk
+- **kdb+**: in memory as an array
+- **clickhouse**: in memory using the `memory()` engine
+
+> We used the fastest method available for all databases. However it is worth noting that both kdb and clickhouse were 
+>in-memory while QuestDB was storing the data on disk.
+
+#### Commands
+
+##### With null
 | Description | QuestDB | Clickhouse | kdb+|
 |---|---|---|---|
-| File generation | `select rnd_double() from long_sequence(1_000_000_000);` | | | 
-|DDL| `create table test_double(val double);` | `CREATE TABLE test_double (val Float64) Engine=Memory;` | n/a |
-|Import| `insert into test_double 'test_double.csv';` |`clickhouse-client --query="INSERT INTO test_double FORMAT CSVWithNames;" < test_double.csv ` | |
-| Naive sum| `select sum(val) from test_double` | `clickhouse-client --query="SELECT sum(val) FROM test_double` |`\t sum test_double` |
-| Kahan sum | `select ksum(val) from test_double` | `clickhouse-client --query="SELECT sumKahan(val) FROM test_double`  | n/a |
+|DDL| `create table test_double(val double);`| `CREATE TABLE test_double (val Nullable(Float64)) Engine=Memory;` | n/a |
+|Import| `copy test_double from '~/db/test_double.csv';`|`clickhouse-client --query="INSERT INTO test_double FORMAT CSVWithNames;" < test_double.csv `  |`zz:1000000000?1000.0` `zz:?[zz<100;0Nf;zz]`|
+| Naive sum| `select sum(val) from test_double` | `SELECT sum(val) FROM test_double` |`\t sum zz` |
+| Kahan sum | `select ksum(val) from test_double` | `SELECT sumKahan(val) FROM test_double`  | n/a |
 
-The results are as below. 
+##### Non-null
+For non-null values, we adjusted the commands as follows
+- use `test_double_not_nul.csv` instead of `test_double.csv`.
+- for Clickhouse, skip declaring val as `nullable`: `CREATE TABLE test_double_not_null (val Float64) Engine=Memory;`.
+- For kdb+, only run `zz:1000000000?1000.0` for the import step.
 
-![alt-text](assets/bench-kahan-kdb-clickhouse.png)
+#### Results
+We ran each query several times and took the best result.
 
-The three databases are summing naively at roughly the same speed. However, this summation method is inaccurate. 
-When using compensated sum (Kahan's algorithm), Clickhouse's performs 55% slower. QuestDB's performance deteriorates by 9%.
-kdb+ did not seem to offer compensated summation.
+Without null values, the three databases are summing naively at roughly the same speed. When using Kahan summation, 
+QuestDB performs at the same speed and Clickhouse takes a performance hit of around 40%. kdb+ does not offer kahan summation but is listed for reference. 
 
-We are conscious this benchmark is not representative of any particular use case. We chose this test because 
+![alt-text](assets/kahan-naive-not-null.png)
+
+With null values, kdb takes a performance hit of 220% on naive calculation and Clickhouse of 28% and 50% for naive and kahan summation 
+respectively.
+
+![alt-text](assets/kahan-naive-null.png)
+
+We are conscious that this benchmark is not representative of any particular use case. We chose this test because 
 it is a basic query, and is trivial to reproduce. With more complex queries, we expect QuestDB's performance gap to compound.
 But we still have a few features to implement before we can release more advanced benchmarks, hopefully in the next few weeks. So stay tuned!
 
 ### Interested in performance?
-If you are interested in what we are doing, want to solve performance issues (or get help to do so), feel free to drop by 
-our <b> <a href="https://serieux-saucisson-79115.herokuapp.com/" target="_blank">Slack channel</a></b>. We also post performance-geared 
+If you are interested in what we are doing, want to solve performance issues (or get help to do so), feel free to join
+our <b> <a href="https://serieux-saucisson-79115.herokuapp.com/" target="_blank">Slack channel</a></b>. We also push performance-geared 
 code on our <b> <a href="https://github.com/questdb/questdb" target="_blank"> Github </a></b> every day. 
-Our friendly community of high-performance junkies is growing every day, and we keep finding ways to pack more performance in.
+Our friendly community of high-performance junkies is growing every day, and we always aim to unpack more performance from QuestDB.
