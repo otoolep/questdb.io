@@ -64,7 +64,7 @@
             });
         </script></nav></div><div class="container mainContainer postContainer blogContainer"><div class="wrapper"><div class="lonePost"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle"><a href="/blog/2020/05/01/faster-more-accurate-sums">Faster, more accurate sums</a></h1><p class="post-meta">May 1, 2020</p><div class="authorBlock"><p class="post-authorName"><a target="_blank" rel="noreferrer noopener">Tancrede Collard</a></p></div></header><div><span><p><strong>Summing floating-point values has always implied a tradeoff between speed and accuracy. Until now.</strong></p>
 <p><img src="/blog/assets/road-runner.png" alt="alt-text"></p>
-<p>With <a href="https://github.com/questdb/questdb/releases/tag/4.2.1">release 4.2.1</a>, QuestDB implements Kahan and Neumaier compensated summation algorithms that perform as fast
+<p>With its latest <a href="https://github.com/questdb/questdb/releases/tag/4.2.1">release 4.2.1</a>, QuestDB now implements Kahan and Neumaier compensated summation algorithms which perform as fast
 as naive approaches. That's right! More accurate results in the same execution time.</p>
 <p>You can find our code in our
 <b> <a href="https://github.com/questdb/questdb" target="_blank"> Github repo. If you like it, please consider leaving a star :-) <img class="yellow-star" src="/img/star-yellow.svg"/></a></b></p>
@@ -75,7 +75,7 @@ as naive approaches. That's right! More accurate results in the same execution t
 <li>An <a href="#float-representation">overview</a> of how floating-point numbers are represented.</li>
 <li>A <a href="#kahans-algorithm-for-compensated-summation">presentation</a> of the Kahan algorithm.</li>
 <li>Our <a href="#questdbs-implementation-with-avx-instructions">implementation</a> using SIMD instructions.</li>
-<li>Performance <a href="#performance-impact-over-naive-method">benchmarks</a> between summation methods and <a href="#comparing-to-other-databases">across</a> some databases.</li>
+<li>Performance <a href="#performance-impact-over-naive-method">benchmarks</a> amongst summation methods and <a href="#comparing-to-other-databases">across</a> several databases.</li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="more-accurate-additions"></a><a href="#more-accurate-additions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>More accurate additions?</h3>
 <p>Before we dig in, some of you might wonder how an addition can be inaccurate as opposed to simply right or wrong.</p>
@@ -88,10 +88,10 @@ In fact, it conforms with the <b> <a href="https://en.wikipedia.org/wiki/IEEE_75
         System.out.println(<span class="hljs-number">5.1</span>+<span class="hljs-number">9.2</span>);
     }
 </code></pre>
-<p>We ask to add <code>5.1</code> to <code>9.2</code>. The result should be <code>14.3</code>, but we get the following.</p>
+<p>We ask to add <code>5.1</code> to <code>9.2</code>. The result should be <code>14.3</code>, but we get the following instead.</p>
 <pre><code class="hljs css language-shell script">14.299999999999999
 </code></pre>
-<p>It's a small (only <code>0.000000000000001</code>), but it is wrong. To make matters worse, this error can be compounded.</p>
+<p>It is a small difference (only <code>0.000000000000001</code>), but it is nontheless wrong. To make matters worse, this error can be compounded.</p>
 <pre><code class="hljs css language-java">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{
         <span class="hljs-keyword">double</span> a = <span class="hljs-number">5.1</span>+<span class="hljs-number">9.2</span>;
         <span class="hljs-keyword">double</span> b = a + <span class="hljs-number">3.5</span>;
@@ -119,38 +119,38 @@ exponent is expressed in bits, it looks like the below. Note that we ignore inac
 is done from right to left.</p>
 <p><img src="/blog/assets/float-eq-4.png" alt="alt-text"></p>
 <h4><a class="anchor" aria-hidden="true" id="what-about-negative-exponents"></a><a href="#what-about-negative-exponents" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>What about negative exponents?</h4>
-<p>It gets trickier when using negative exponents (i.e a right-side of the equation inferior to 1).
+<p>It gets trickier when using negative exponents (i.e the right-side of the equation inferior to 1).
 In this case, the right side consists of a sum of
 negative powers of two. Here is an example of how this works. Note that in this case the bits in the exponent are read from
 left to right.</p>
 <p><img src="/blog/assets/float-eq-5.png" alt="alt-text"></p>
-<p>Interestingly, this example shows one of the limits of floating-point representation. The design of the standard made
-a trade-off and <strong>the format sacrifices precision for range</strong>. In the above example,
+<p>Interestingly, this example highlights one of the limits of floating-point representation. The design of the standard made
+a trade-off to <strong>sacrifice precision for range</strong>. In the above example,
 the <code>0011</code> pattern will repeat to infinity. Each new bit will get us closer to 0.1. But we will never exactly get there.
-As a result, <strong>it is impossible to properly store <code>0.1</code>. Instead
-computers store something really close, but not equal</strong>.</p>
+As a result, <strong>it is impossible to properly store <code>0.1</code>. Instead,
+computers store something really close, but never exact</strong>.</p>
 <h4><a class="anchor" aria-hidden="true" id="truncation-accuracy-loss"></a><a href="#truncation-accuracy-loss" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Truncation accuracy loss</h4>
-<p>As we saw above, floating-point numbers are not stored accurately. Naturally, operations these numbers will return
-inaccurate results. That's not the only problem. Performing operations is also likely to introduce and grow errors
-over time. One such case is when the result of an operation has to be truncated to fit the original format.
+<p>As we saw above, floating-point are not accurately stored. Naturally, operations these numbers will return
+inaccurate results. This is not the only problem. Performing operations is also likely to introduce more errors and to
+grow the total error over time. One such case is once the result of an operation has to be truncated to fit the original format.
 Here is a simplified example of the <strong>truncation</strong> that happens when adding floats of different orders of magnitude.</p>
 <blockquote>
 <p>For the below example we will be using base 10 and expressing the
-exponent as a number rather than a binary for sake of simplicity. We will assume 5 significant digits.</p>
+exponent as a number rather than a binary for sake of simplicity. We assume 5 significant digits.</p>
 </blockquote>
 <p>We start with both our numbers expressed in scientific notation.</p>
 <p><img src="/blog/assets/sum-1.png" alt="alt-text"></p>
 <p>Let's expand into decimal notation and place them on a similar scale so all digits fit.</p>
 <p><img src="/blog/assets/sum-2.png" alt="alt-text"></p>
-<p>Now, let's express this sum back as one number in scientific notation. We have to <code>truncate</code> the result back to 5 significant digits.</p>
+<p>Now, let us express this sum back as one number in scientific notation. We have to <code>truncate</code> the result back to 5 significant digits.</p>
 <p><img src="/blog/assets/sum-3.png" alt="alt-text"></p>
-<p>The result is completely off. In fact, it's as if we did not add anything.</p>
+<p>The result is incorrect. In fact, it is as if we did not sum anything.</p>
 <h3><a class="anchor" aria-hidden="true" id="kahans-algorithm-for-compensated-summation"></a><a href="#kahans-algorithm-for-compensated-summation" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Kahan's algorithm for compensated summation</h3>
-<p>Compensated sum maintains a sum of accumulated errors and uses it to attempt to correct the (inaccurate) sum by the total error.
+<p>Compensated sum maintains a sum of accumulated errors and uses it to attempt to correct the (inaccurate) sum by the total error amount.
 It does so by trying to adjust each new number by the total accumulated error.</p>
 <p>The main Compensated summation algorithm is the <a href="https://en.wikipedia.org/wiki/Kahan_summation_algorithm" target="_blank">Kahan</a> sum. It runs in 4 steps:</p>
 <ul>
-<li>Subtract the <code>running error</code> from new <code>nunber</code> to get the <code>adjusted number</code>. If this is the first number, then the running error is 0.</li>
+<li>Subtract the <code>running error</code> from the new <code>number</code> to get the <code>adjusted number</code>. If this is the first number, then the running error is 0.</li>
 <li>Add the <code>adjusted number</code> to the <code>running total</code> and truncate to the number of significant digits. This is the <code>truncated result</code>.</li>
 <li>Calculate the <code>new running error</code> as <code>(truncated result - running total) - adjusted number</code></li>
 <li>Assign the <code>truncated result</code> as the new <code>running total</code>.</li>
@@ -175,7 +175,7 @@ It does so by trying to adjust each new number by the total accumulated error.</
 <p>Let's replace <code>t</code> by <code>[2]</code> in our running error <code>c</code></p>
 <pre><code class="hljs css language-shell script">c = (t - sum) - y
 c = ((sum + y) - sum) - y
-So applying addition transitivity to remove brackets, we obtain
+Applying addition transitivity to remove brackets, we obtain
 c = sum + y - sum - y
 c = 0       //???
 </code></pre>
@@ -253,7 +253,7 @@ we are summing vectors of 8 values each.</p>
     }
 </code></pre>
 <p>You may have noted the <code>prefetch</code> instruction above. As QuestDB uses contiguous storage, we can use this instruction
-to hint the CPU to fetch data ahead of time by loading the next page. Doing this means the CPU spends less time waiting for data.
+to ask the CPU to fetch data ahead of time by loading the next page. Doing this means the CPU spends less time waiting for data.
 Just this one trick improved our performance by around 20%.</p>
 <p>Lastly, we use <code>horizontal_add</code> to sum all values into a scalar value. Again, we recognise Kahan's sum algorithm.</p>
 <pre><code class="hljs css language-java">    <span class="hljs-keyword">double</span> sum = horizontal_add(sumVec);
@@ -280,48 +280,77 @@ So in theory it should be 4x slower, right?</p>
 <a href="http://localhost:3000/blog/2020/04/02/using-simd-to-aggregate-billions-of-rows-per-second">previous article</a>, QuestDB's sum is actually so fast that it's bound by memory throughput. This means that
 our CPU is actually spending a lot of time waiting for the memory.</p>
 <p><img src="/blog/assets/thread-release.png" alt="alt-text"></p>
-<p>What is QuestDB doing while it waits? Does it lock the CPU? Of course not! It releases it for someone else to use.
+<p>What is QuestDB doing while it is idle? Does it lock the CPU? Of course not! It releases it for someone else to use.
 QuestDB's threading model is non-blocking. So whenever a thread is waiting, it does not stay idle and unavailable for other
-work. It is released to the thread pool, and resumes work as soon as possible.</p>
+work, unlike other time-series databases. It is released to the thread pool, and resumes work as soon as possible.</p>
 <p>While we wait for the memory, <strong>we have plenty of CPU time which we can either release or use to improve sum accuracy without affecting performance</strong>. If we use kahan sum and
 perform 4x as many operations, then as an illustration, our CPU usage time looks like this.</p>
 <p><img src="/blog/assets/thread-work.png" alt="alt-text"></p>
-<p><strong>We fill the gaps with extra work to get a more accurate result without affecting execution time.</strong></p>
-<p>Here are the results when calculating the sum of 1 billion doubles on a quad-core i7.</p>
+<p><strong>We fill the gaps with extra work to get a more accurate result without affecting execution time.</strong>
+Here are the results when calculating the sum of 1 billion doubles.</p>
 <p><img src="/blog/assets/bench-naive-kahan-neum.png" alt="alt-text"></p>
-<p><strong>Granted, Kahan and Neumaier sum take slightly longer than the naive approach. However, the impact is a marginal 9%, not 400%!
+<p><strong>Granted, Kahan and Neumaier sum take slightly longer than the naive approach. However, the impact is 3%, not 400%.
 Also, Neumaier's algo, which is a little more precise in certain edge cases but adds more operations to the algorithm performs just as
 fast as Kahan for the same reason.</strong></p>
 <h3><a class="anchor" aria-hidden="true" id="comparing-to-other-databases"></a><a href="#comparing-to-other-databases" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Comparing to other databases</h3>
-<p>We compared how performance behaves when switching from naive (inaccurate) sum to kahan compensated sum. We run all
-databases on an m5a.2xlarge AWS instance. We used QuestDB to generate a data file as follows and exported it as csv.</p>
-<pre><code class="hljs css language-shell script">select rnd_double() from long_sequence(1_000_000_000);
+<p>We compared how performance behaves when switching from naive (inaccurate) sum to kahan compensated sum.</p>
+<h4><a class="anchor" aria-hidden="true" id="hardware"></a><a href="#hardware" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Hardware</h4>
+<p>We run all databases on an <code>c5.metal</code> AWS instance, which is a 96-thread machine with 192GB of memory.
+QuestDB and KDB were running on 16 threads. As we showed in a <a href="2020-04-02-using-simd-to-aggregate-billions-of-rows-per-second.md">previous article</a>,
+adding more threads does not improve performance beyond a certain point. Clickhouse was running using all cores as per default configuration,
+however we increased the memory limit from the default value of 10GB to 40GB <code>&lt;max_memory_usage&gt;40000000000&lt;/max_memory_usage&gt;</code></p>
+<h4><a class="anchor" aria-hidden="true" id="test-data"></a><a href="#test-data" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Test data</h4>
+<p>We generated two test files using QuestDB <a href="/docs/functionsRandomValueGenerators.md">random generation functions</a> and
+exported the results to csv. We then imported the csv individually in the databases.</p>
+<pre><code class="hljs css language-shell script">select rnd_double() from long_sequence(1_000_000_000l); -- non null
+select rnd_double(2) from long_sequence(1_000_000_000l); -- with nulls
 </code></pre>
+<h4><a class="anchor" aria-hidden="true" id="storage-engine"></a><a href="#storage-engine" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Storage engine</h4>
+<ul>
+<li><strong>QuestDB</strong>: on disk</li>
+<li><strong>kdb+</strong>: in memory as an array</li>
+<li><strong>clickhouse</strong>: in memory using the <code>memory()</code> engine</li>
+</ul>
+<blockquote>
+<p>We used the fastest method available for all databases. However it is worth noting that both kdb and clickhouse were
+in-memory while QuestDB was storing the data on disk.</p>
+</blockquote>
+<h4><a class="anchor" aria-hidden="true" id="commands"></a><a href="#commands" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Commands</h4>
+<h5><a class="anchor" aria-hidden="true" id="with-null"></a><a href="#with-null" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>With null</h5>
 <table>
 <thead>
 <tr><th>Description</th><th>QuestDB</th><th>Clickhouse</th><th>kdb+</th></tr>
 </thead>
 <tbody>
-<tr><td>File generation</td><td><code>select rnd_double() from long_sequence(1_000_000_000);</code></td><td></td><td></td></tr>
-<tr><td>DDL</td><td><code>create table test_double(val double);</code></td><td><code>CREATE TABLE test_double (val Float64) Engine=Memory;</code></td><td>n/a</td></tr>
-<tr><td>Import</td><td><code>insert into test_double 'test_double.csv';</code></td><td><code>clickhouse-client --query=&quot;INSERT INTO test_double FORMAT CSVWithNames;&quot; &lt; test_double.csv</code></td><td></td></tr>
-<tr><td>Naive sum</td><td><code>select sum(val) from test_double</code></td><td><code>clickhouse-client --query=&quot;SELECT sum(val) FROM test_double</code></td><td><code>\t sum test_double</code></td></tr>
-<tr><td>Kahan sum</td><td><code>select ksum(val) from test_double</code></td><td><code>clickhouse-client --query=&quot;SELECT sumKahan(val) FROM test_double</code></td><td>n/a</td></tr>
+<tr><td>DDL</td><td><code>create table test_double(val double);</code></td><td><code>CREATE TABLE test_double (val Nullable(Float64)) Engine=Memory;</code></td><td>n/a</td></tr>
+<tr><td>Import</td><td><code>copy test_double from '~/db/test_double.csv';</code></td><td><code>clickhouse-client --query=&quot;INSERT INTO test_double FORMAT CSVWithNames;&quot; &lt; test_double.csv</code></td><td><code>zz:1000000000?1000.0</code> <code>zz:?[zz&lt;100;0Nf;zz]</code></td></tr>
+<tr><td>Naive sum</td><td><code>select sum(val) from test_double</code></td><td><code>SELECT sum(val) FROM test_double</code></td><td><code>\t sum zz</code></td></tr>
+<tr><td>Kahan sum</td><td><code>select ksum(val) from test_double</code></td><td><code>SELECT sumKahan(val) FROM test_double</code></td><td>n/a</td></tr>
 </tbody>
 </table>
-<p>The results are as below.</p>
-<p><img src="/blog/assets/bench-kahan-kdb-clickhouse.png" alt="alt-text"></p>
-<p>The three databases are summing naively at roughly the same speed. However, this summation method is inaccurate.
-When using compensated sum (Kahan's algorithm), Clickhouse's performs 55% slower. QuestDB's performance deteriorates by 9%.
-kdb+ did not seem to offer compensated summation.</p>
-<p>We are conscious this benchmark is not representative of any particular use case. We chose this test because
+<h5><a class="anchor" aria-hidden="true" id="non-null"></a><a href="#non-null" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Non-null</h5>
+<p>For non-null values, we adjusted the commands as follows</p>
+<ul>
+<li>use <code>test_double_not_nul.csv</code> instead of <code>test_double.csv</code>.</li>
+<li>for Clickhouse, skip declaring val as <code>nullable</code>: <code>CREATE TABLE test_double_not_null (val Float64) Engine=Memory;</code>.</li>
+<li>For kdb+, only run <code>zz:1000000000?1000.0</code> for the import step.</li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="results"></a><a href="#results" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Results</h4>
+<p>We ran each query several times and took the best result.</p>
+<p>Without null values, the three databases are summing naively at roughly the same speed. When using Kahan summation,
+QuestDB performs at the same speed and Clickhouse takes a performance hit of around 40%. kdb+ does not offer kahan summation but is listed for reference.</p>
+<p><img src="/blog/assets/kahan-naive-not-null.png" alt="alt-text"></p>
+<p>With null values, kdb takes a performance hit of 220% on naive calculation and Clickhouse of 28% and 50% for naive and kahan summation
+respectively.</p>
+<p><img src="/blog/assets/kahan-naive-null.png" alt="alt-text"></p>
+<p>We are conscious that this benchmark is not representative of any particular use case. We chose this test because
 it is a basic query, and is trivial to reproduce. With more complex queries, we expect QuestDB's performance gap to compound.
 But we still have a few features to implement before we can release more advanced benchmarks, hopefully in the next few weeks. So stay tuned!</p>
 <h3><a class="anchor" aria-hidden="true" id="interested-in-performance"></a><a href="#interested-in-performance" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Interested in performance?</h3>
-<p>If you are interested in what we are doing, want to solve performance issues (or get help to do so), feel free to drop by
-our <b> <a href="https://serieux-saucisson-79115.herokuapp.com/" target="_blank">Slack channel</a></b>. We also post performance-geared
+<p>If you are interested in what we are doing, want to solve performance issues (or get help to do so), feel free to join
+our <b> <a href="https://serieux-saucisson-79115.herokuapp.com/" target="_blank">Slack channel</a></b>. We also push performance-geared
 code on our <b> <a href="https://github.com/questdb/questdb" target="_blank"> Github </a></b> every day.
-Our friendly community of high-performance junkies is growing every day, and we keep finding ways to pack more performance in.</p>
+Our friendly community of high-performance junkies is growing every day, and we always aim to unpack more performance from QuestDB.</p>
 </span></div></div><div class="blogSocialSection"></div></div><div class="blog-recent"><a class="button" href="/blog/">Recent Posts</a></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><div align="left" class="footersection"><h5>QuestDB</h5><a href="/docs/documentationOverview">Documentation</a><a href="/getstarted">Download</a><a href="https://github.com/questdb/questdb/projects/2">Roadmap</a></div><div align="left" class="footersection"><h5>Community</h5><a href="https://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://join.slack.com/t/questdb/shared_invite/enQtNzk4Nzg4Mjc2MTE2LTEzZThjMzliMjUzMTBmYzVjYWNmM2UyNWJmNDdkMDYyZmE0ZDliZTQxN2EzNzk5MDE3Zjc1ZmJiZmFiZTIwMGY&gt;"> Join Slack </a><a href="https://twitter.com/" target="@QuestDB" rel="noreferrer noopener">Twitter</a></div><div align="left" class="footersection"><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/questdb/questdb/">GitHub</a><span class="sucker"><a class="github-button" href="https://github.com/questdb/questdb" data-icon="octicon-star" data-count-href="/questdb/questdb/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></span><a class="github-button" href="https://github.com/questdb/questdb" data-icon="octicon-star" data-count-href="/questdb/questdb/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="copyright">Copyright © 2020 QuestDB</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
               !function(f,b,e,v,n,t,s)
               {if(f.fbq)return;n=f.fbq=function(){n.callMethod?

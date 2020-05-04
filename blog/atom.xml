@@ -13,7 +13,7 @@
         <id>https://questdb.io/blog/2020/05/01/faster-more-accurate-sums.html</id>
         <link href="https://questdb.io/blog/2020/05/01/faster-more-accurate-sums.html"/>
         <updated>2020-05-01T06:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<p><strong>Summing floating-point values has always implied a tradeoff between speed and accuracy. Until now.</strong></p> <p><img src="/blog/assets/road-runner.png" alt="alt-text"></p> <p>With <a href="https://github.com/questdb/questdb/releases/tag/4.2.1">release 4.2.1</a>, QuestDB implements Kahan and Neumaier compensated summation algorithms that perform as fast as naive approaches. That's right! Mor...</p>]]></summary>
+        <summary type="html"><![CDATA[<p><strong>Summing floating-point values has always implied a tradeoff between speed and accuracy. Until now.</strong></p> <p><img src="/blog/assets/road-runner.png" alt="alt-text"></p> <p>With its latest <a href="https://github.com/questdb/questdb/releases/tag/4.2.1">release 4.2.1</a>, QuestDB now implements Kahan and Neumaier compensated summation algorithms which perform as fast as naive approaches. T...</p>]]></summary>
         <author>
             <name>Tancrede Collard</name>
             <email/>
