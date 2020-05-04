@@ -43,7 +43,7 @@ We ask to add `5.1` to `9.2`. The result should be `14.3`, but we get the follow
 14.299999999999999
 ```
 
-It is a small difference (only `0.000000000000001`), but it is nontheless wrong. To make matters worse, this error can be compounded.
+It is a small difference (only `0.000000000000001`), but it is still wrong. To make matters worse, this error can be compounded.
 
 ```java
     public static void main(String[] args) {
@@ -297,7 +297,7 @@ What is QuestDB doing while it is idle? Does it lock the CPU? Of course not! It 
 QuestDB's threading model is non-blocking. So whenever a thread is waiting, it does not stay idle and unavailable for other 
 work, unlike other time-series databases. It is released to the thread pool, and resumes work as soon as possible.
 
-While we wait for the memory, **we have plenty of CPU time which we can either release or use to improve sum accuracy without affecting performance**. If we use kahan sum and 
+While we wait for the memory, **we have plenty of CPU time which we can either release or use to improve sum accuracy without affecting performance**. If we use Kahan sum and 
 perform 4x as many operations, then as an illustration, our CPU usage time looks like this.
 
 ![alt-text](assets/thread-work.png)
@@ -332,9 +332,9 @@ select rnd_double(2) from long_sequence(1_000_000_000l); -- with nulls
 #### Storage engine
 - **QuestDB**: on disk
 - **kdb+**: in memory as an array
-- **clickhouse**: in memory using the `memory()` engine
+- **Clickhouse**: in memory using the `memory()` engine
 
-> We used the fastest method available for all databases. However it is worth noting that both kdb and clickhouse were 
+> We used the fastest method available for all databases. However, it is worth noting that both kdb and Clickhouse were 
 >in-memory while QuestDB was storing the data on disk.
 
 #### Commands
@@ -342,8 +342,8 @@ select rnd_double(2) from long_sequence(1_000_000_000l); -- with nulls
 ##### With null
 | Description | QuestDB | Clickhouse | kdb+|
 |---|---|---|---|
-|DDL| `create table test_double(val double);`| `CREATE TABLE test_double (val Nullable(Float64)) Engine=Memory;` | n/a |
-|Import| `copy test_double from '~/db/test_double.csv';`|`clickhouse-client --query="INSERT INTO test_double FORMAT CSVWithNames;" < test_double.csv `  |`zz:1000000000?1000.0` `zz:?[zz<100;0Nf;zz]`|
+|DDL| `create table test_double as(select rnd_double() from long_sequence(1000000000L);`  | `CREATE TABLE test_double (val Nullable(Float64)) Engine=Memory;` | `zz:1000000000?1000.0` `zz:?[zz<100;0Nf;zz]` |
+|Import| not required |`clickhouse-client --query="INSERT INTO test_double FORMAT CSVWithNames;" < test_double.csv `  |not required|
 | Naive sum| `select sum(val) from test_double` | `SELECT sum(val) FROM test_double` |`\t sum zz` |
 | Kahan sum | `select ksum(val) from test_double` | `SELECT sumKahan(val) FROM test_double`  | n/a |
 
@@ -351,17 +351,18 @@ select rnd_double(2) from long_sequence(1_000_000_000l); -- with nulls
 For non-null values, we adjusted the commands as follows
 - use `test_double_not_nul.csv` instead of `test_double.csv`.
 - for Clickhouse, skip declaring val as `nullable`: `CREATE TABLE test_double_not_null (val Float64) Engine=Memory;`.
-- For kdb+, only run `zz:1000000000?1000.0` for the import step.
+- for kdb+, only run `zz:1000000000?1000.0` at the DDL step.
+- for QuestDB, replace `rnd_double()` by `rnd_double(2)` at the DDL step.
 
 #### Results
 We ran each query several times and took the best result.
 
 Without null values, the three databases are summing naively at roughly the same speed. When using Kahan summation, 
-QuestDB performs at the same speed and Clickhouse takes a performance hit of around 40%. kdb+ does not offer kahan summation but is listed for reference. 
+QuestDB performs at the same speed and Clickhouse takes a performance hit of around 40%. kdb+ does not offer Kahan summation but is listed for reference. 
 
 ![alt-text](assets/kahan-naive-not-null.png)
 
-With null values, kdb takes a performance hit of 220% on naive calculation and Clickhouse of 28% and 50% for naive and kahan summation 
+With null values, kdb takes a performance hit of 220% on naive calculation and Clickhouse of 28% and 50% for naive and Kahan summation 
 respectively.
 
 ![alt-text](assets/kahan-naive-null.png)
