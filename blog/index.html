@@ -91,7 +91,7 @@ In fact, it conforms with the <b> <a href="https://en.wikipedia.org/wiki/IEEE_75
 <p>We ask to add <code>5.1</code> to <code>9.2</code>. The result should be <code>14.3</code>, but we get the following instead.</p>
 <pre><code class="hljs css language-shell script">14.299999999999999
 </code></pre>
-<p>It is a small difference (only <code>0.000000000000001</code>), but it is nontheless wrong. To make matters worse, this error can be compounded.</p>
+<p>It is a small difference (only <code>0.000000000000001</code>), but it is still wrong. To make matters worse, this error can be compounded.</p>
 <pre><code class="hljs css language-java">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{
         <span class="hljs-keyword">double</span> a = <span class="hljs-number">5.1</span>+<span class="hljs-number">9.2</span>;
         <span class="hljs-keyword">double</span> b = a + <span class="hljs-number">3.5</span>;
@@ -283,7 +283,7 @@ our CPU is actually spending a lot of time waiting for the memory.</p>
 <p>What is QuestDB doing while it is idle? Does it lock the CPU? Of course not! It releases it for someone else to use.
 QuestDB's threading model is non-blocking. So whenever a thread is waiting, it does not stay idle and unavailable for other
 work, unlike other time-series databases. It is released to the thread pool, and resumes work as soon as possible.</p>
-<p>While we wait for the memory, <strong>we have plenty of CPU time which we can either release or use to improve sum accuracy without affecting performance</strong>. If we use kahan sum and
+<p>While we wait for the memory, <strong>we have plenty of CPU time which we can either release or use to improve sum accuracy without affecting performance</strong>. If we use Kahan sum and
 perform 4x as many operations, then as an illustration, our CPU usage time looks like this.</p>
 <p><img src="/blog/assets/thread-work.png" alt="alt-text"></p>
 <p><strong>We fill the gaps with extra work to get a more accurate result without affecting execution time.</strong>
@@ -309,10 +309,10 @@ select rnd_double(2) from long_sequence(1_000_000_000l); -- with nulls
 <ul>
 <li><strong>QuestDB</strong>: on disk</li>
 <li><strong>kdb+</strong>: in memory as an array</li>
-<li><strong>clickhouse</strong>: in memory using the <code>memory()</code> engine</li>
+<li><strong>Clickhouse</strong>: in memory using the <code>memory()</code> engine</li>
 </ul>
 <blockquote>
-<p>We used the fastest method available for all databases. However it is worth noting that both kdb and clickhouse were
+<p>We used the fastest method available for all databases. However, it is worth noting that both kdb and Clickhouse were
 in-memory while QuestDB was storing the data on disk.</p>
 </blockquote>
 <h4><a class="anchor" aria-hidden="true" id="commands"></a><a href="#commands" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Commands</h4>
@@ -322,8 +322,8 @@ in-memory while QuestDB was storing the data on disk.</p>
 <tr><th>Description</th><th>QuestDB</th><th>Clickhouse</th><th>kdb+</th></tr>
 </thead>
 <tbody>
-<tr><td>DDL</td><td><code>create table test_double(val double);</code></td><td><code>CREATE TABLE test_double (val Nullable(Float64)) Engine=Memory;</code></td><td>n/a</td></tr>
-<tr><td>Import</td><td><code>copy test_double from '~/db/test_double.csv';</code></td><td><code>clickhouse-client --query=&quot;INSERT INTO test_double FORMAT CSVWithNames;&quot; &lt; test_double.csv</code></td><td><code>zz:1000000000?1000.0</code> <code>zz:?[zz&lt;100;0Nf;zz]</code></td></tr>
+<tr><td>DDL</td><td><code>create table test_double as(select rnd_double() from long_sequence(1000000000L);</code></td><td><code>CREATE TABLE test_double (val Nullable(Float64)) Engine=Memory;</code></td><td><code>zz:1000000000?1000.0</code> <code>zz:?[zz&lt;100;0Nf;zz]</code></td></tr>
+<tr><td>Import</td><td>not required</td><td><code>clickhouse-client --query=&quot;INSERT INTO test_double FORMAT CSVWithNames;&quot; &lt; test_double.csv</code></td><td>not required</td></tr>
 <tr><td>Naive sum</td><td><code>select sum(val) from test_double</code></td><td><code>SELECT sum(val) FROM test_double</code></td><td><code>\t sum zz</code></td></tr>
 <tr><td>Kahan sum</td><td><code>select ksum(val) from test_double</code></td><td><code>SELECT sumKahan(val) FROM test_double</code></td><td>n/a</td></tr>
 </tbody>
@@ -333,14 +333,15 @@ in-memory while QuestDB was storing the data on disk.</p>
 <ul>
 <li>use <code>test_double_not_nul.csv</code> instead of <code>test_double.csv</code>.</li>
 <li>for Clickhouse, skip declaring val as <code>nullable</code>: <code>CREATE TABLE test_double_not_null (val Float64) Engine=Memory;</code>.</li>
-<li>For kdb+, only run <code>zz:1000000000?1000.0</code> for the import step.</li>
+<li>for kdb+, only run <code>zz:1000000000?1000.0</code> at the DDL step.</li>
+<li>for QuestDB, replace <code>rnd_double()</code> by <code>rnd_double(2)</code> at the DDL step.</li>
 </ul>
 <h4><a class="anchor" aria-hidden="true" id="results"></a><a href="#results" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Results</h4>
 <p>We ran each query several times and took the best result.</p>
 <p>Without null values, the three databases are summing naively at roughly the same speed. When using Kahan summation,
-QuestDB performs at the same speed and Clickhouse takes a performance hit of around 40%. kdb+ does not offer kahan summation but is listed for reference.</p>
+QuestDB performs at the same speed and Clickhouse takes a performance hit of around 40%. kdb+ does not offer Kahan summation but is listed for reference.</p>
 <p><img src="/blog/assets/kahan-naive-not-null.png" alt="alt-text"></p>
-<p>With null values, kdb takes a performance hit of 220% on naive calculation and Clickhouse of 28% and 50% for naive and kahan summation
+<p>With null values, kdb takes a performance hit of 220% on naive calculation and Clickhouse of 28% and 50% for naive and Kahan summation
 respectively.</p>
 <p><img src="/blog/assets/kahan-naive-null.png" alt="alt-text"></p>
 <p>We are conscious that this benchmark is not representative of any particular use case. We chose this test because
