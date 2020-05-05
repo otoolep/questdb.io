@@ -296,7 +296,7 @@ fast as Kahan for the same reason.</strong></p>
 <p>We compared how performance behaves when switching from naive (inaccurate) sum to kahan compensated sum.</p>
 <h4><a class="anchor" aria-hidden="true" id="hardware"></a><a href="#hardware" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Hardware</h4>
 <p>We run all databases on an <code>c5.metal</code> AWS instance, which is a 96-thread machine with 192GB of memory.
-QuestDB and KDB were running on 16 threads. As we showed in a <a href="2020-04-02-using-simd-to-aggregate-billions-of-rows-per-second.md">previous article</a>,
+QuestDB was running on 16 threads. As we showed in a <a href="2020-04-02-using-simd-to-aggregate-billions-of-rows-per-second.md">previous article</a>,
 adding more threads does not improve performance beyond a certain point. Clickhouse was running using all cores as per default configuration,
 however we increased the memory limit from the default value of 10GB to 40GB <code>&lt;max_memory_usage&gt;40000000000&lt;/max_memory_usage&gt;</code></p>
 <h4><a class="anchor" aria-hidden="true" id="test-data"></a><a href="#test-data" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Test data</h4>
@@ -308,24 +308,23 @@ select rnd_double(2) from long_sequence(1_000_000_000l); -- with nulls
 <h4><a class="anchor" aria-hidden="true" id="storage-engine"></a><a href="#storage-engine" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Storage engine</h4>
 <ul>
 <li><strong>QuestDB</strong>: on disk</li>
-<li><strong>kdb+</strong>: in memory as an array</li>
 <li><strong>Clickhouse</strong>: in memory using the <code>memory()</code> engine</li>
 </ul>
 <blockquote>
-<p>We used the fastest method available for all databases. However, it is worth noting that both kdb and Clickhouse were
+<p>We used the fastest method available for all databases. However, it is worth noting that Clickhouse was
 in-memory while QuestDB was storing the data on disk.</p>
 </blockquote>
 <h4><a class="anchor" aria-hidden="true" id="commands"></a><a href="#commands" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Commands</h4>
 <h5><a class="anchor" aria-hidden="true" id="with-null"></a><a href="#with-null" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>With null</h5>
 <table>
 <thead>
-<tr><th>Description</th><th>QuestDB</th><th>Clickhouse</th><th>kdb+</th></tr>
+<tr><th>Description</th><th>QuestDB</th><th>Clickhouse</th></tr>
 </thead>
 <tbody>
-<tr><td>DDL</td><td><code>create table test_double as(select rnd_double() from long_sequence(1000000000L);</code></td><td><code>CREATE TABLE test_double (val Nullable(Float64)) Engine=Memory;</code></td><td><code>zz:1000000000?1000.0</code> <code>zz:?[zz&lt;100;0Nf;zz]</code></td></tr>
-<tr><td>Import</td><td>not required</td><td><code>clickhouse-client --query=&quot;INSERT INTO test_double FORMAT CSVWithNames;&quot; &lt; test_double.csv</code></td><td>not required</td></tr>
-<tr><td>Naive sum</td><td><code>select sum(val) from test_double</code></td><td><code>SELECT sum(val) FROM test_double</code></td><td><code>\t sum zz</code></td></tr>
-<tr><td>Kahan sum</td><td><code>select ksum(val) from test_double</code></td><td><code>SELECT sumKahan(val) FROM test_double</code></td><td>n/a</td></tr>
+<tr><td>DDL</td><td><code>create table test_double as(select rnd_double() from long_sequence(1000000000L);</code></td><td><code>CREATE TABLE test_double (val Nullable(Float64)) Engine=Memory;</code></td></tr>
+<tr><td>Import</td><td>not required</td><td><code>clickhouse-client --query=&quot;INSERT INTO test_double FORMAT CSVWithNames;&quot; &lt; test_double.csv</code></td></tr>
+<tr><td>Naive sum</td><td><code>select sum(val) from test_double</code></td><td><code>SELECT sum(val) FROM test_double</code></td></tr>
+<tr><td>Kahan sum</td><td><code>select ksum(val) from test_double</code></td><td><code>SELECT sumKahan(val) FROM test_double</code></td></tr>
 </tbody>
 </table>
 <h5><a class="anchor" aria-hidden="true" id="non-null"></a><a href="#non-null" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Non-null</h5>
@@ -333,16 +332,14 @@ in-memory while QuestDB was storing the data on disk.</p>
 <ul>
 <li>use <code>test_double_not_nul.csv</code> instead of <code>test_double.csv</code>.</li>
 <li>for Clickhouse, skip declaring val as <code>nullable</code>: <code>CREATE TABLE test_double_not_null (val Float64) Engine=Memory;</code>.</li>
-<li>for kdb+, only run <code>zz:1000000000?1000.0</code> at the DDL step.</li>
 <li>for QuestDB, replace <code>rnd_double()</code> by <code>rnd_double(2)</code> at the DDL step.</li>
 </ul>
 <h4><a class="anchor" aria-hidden="true" id="results"></a><a href="#results" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Results</h4>
 <p>We ran each query several times and took the best result.</p>
 <p>Without null values, the three databases are summing naively at roughly the same speed. When using Kahan summation,
-QuestDB performs at the same speed and Clickhouse takes a performance hit of around 40%. kdb+ does not offer Kahan summation but is listed for reference.</p>
+QuestDB performs at the same speed and Clickhouse takes a performance hit of around 40%.</p>
 <p><img src="/blog/assets/kahan-naive-not-null.png" alt="alt-text"></p>
-<p>With null values, kdb takes a performance hit of 220% on naive calculation and Clickhouse of 28% and 50% for naive and Kahan summation
-respectively.</p>
+<p>With null values, Clickhouse takes a performance hit of 28% and 50% for naive and Kahan summation respectively.</p>
 <p><img src="/blog/assets/kahan-naive-null.png" alt="alt-text"></p>
 <p>We are conscious that this benchmark is not representative of any particular use case. We chose this test because
 it is a basic query, and is trivial to reproduce. With more complex queries, we expect QuestDB's performance gap to compound.
