@@ -316,7 +316,7 @@ We compared how performance behaves when switching from naive (inaccurate) sum t
 
 #### Hardware
 We run all databases on an `c5.metal` AWS instance, which is a 96-thread machine with 192GB of memory. 
-QuestDB and KDB were running on 16 threads. As we showed in a [previous article](2020-04-02-using-simd-to-aggregate-billions-of-rows-per-second.md), 
+QuestDB was running on 16 threads. As we showed in a [previous article](2020-04-02-using-simd-to-aggregate-billions-of-rows-per-second.md), 
 adding more threads does not improve performance beyond a certain point. Clickhouse was running using all cores as per default configuration, 
 however we increased the memory limit from the default value of 10GB to 40GB `<max_memory_usage>40000000000</max_memory_usage>`
 
@@ -331,39 +331,36 @@ select rnd_double(2) from long_sequence(1_000_000_000l); -- with nulls
 
 #### Storage engine
 - **QuestDB**: on disk
-- **kdb+**: in memory as an array
 - **Clickhouse**: in memory using the `memory()` engine
 
-> We used the fastest method available for all databases. However, it is worth noting that both kdb and Clickhouse were 
+> We used the fastest method available for all databases. However, it is worth noting that Clickhouse was 
 >in-memory while QuestDB was storing the data on disk.
 
 #### Commands
 
 ##### With null
-| Description | QuestDB | Clickhouse | kdb+|
-|---|---|---|---|
-|DDL| `create table test_double as(select rnd_double() from long_sequence(1000000000L);`  | `CREATE TABLE test_double (val Nullable(Float64)) Engine=Memory;` | `zz:1000000000?1000.0` `zz:?[zz<100;0Nf;zz]` |
-|Import| not required |`clickhouse-client --query="INSERT INTO test_double FORMAT CSVWithNames;" < test_double.csv `  |not required|
-| Naive sum| `select sum(val) from test_double` | `SELECT sum(val) FROM test_double` |`\t sum zz` |
-| Kahan sum | `select ksum(val) from test_double` | `SELECT sumKahan(val) FROM test_double`  | n/a |
+| Description | QuestDB | Clickhouse |
+|---|---|---|
+|DDL| `create table test_double as(select rnd_double() from long_sequence(1000000000L);`  | `CREATE TABLE test_double (val Nullable(Float64)) Engine=Memory;` |
+|Import| not required |`clickhouse-client --query="INSERT INTO test_double FORMAT CSVWithNames;" < test_double.csv `  |
+| Naive sum| `select sum(val) from test_double` | `SELECT sum(val) FROM test_double` |
+| Kahan sum | `select ksum(val) from test_double` | `SELECT sumKahan(val) FROM test_double`  |
 
 ##### Non-null
 For non-null values, we adjusted the commands as follows
 - use `test_double_not_nul.csv` instead of `test_double.csv`.
 - for Clickhouse, skip declaring val as `nullable`: `CREATE TABLE test_double_not_null (val Float64) Engine=Memory;`.
-- for kdb+, only run `zz:1000000000?1000.0` at the DDL step.
 - for QuestDB, replace `rnd_double()` by `rnd_double(2)` at the DDL step.
 
 #### Results
 We ran each query several times and took the best result.
 
 Without null values, the three databases are summing naively at roughly the same speed. When using Kahan summation, 
-QuestDB performs at the same speed and Clickhouse takes a performance hit of around 40%. kdb+ does not offer Kahan summation but is listed for reference. 
+QuestDB performs at the same speed and Clickhouse takes a performance hit of around 40%. 
 
 ![alt-text](assets/kahan-naive-not-null.png)
 
-With null values, kdb takes a performance hit of 220% on naive calculation and Clickhouse of 28% and 50% for naive and Kahan summation 
-respectively.
+With null values, Clickhouse takes a performance hit of 28% and 50% for naive and Kahan summation respectively.
 
 ![alt-text](assets/kahan-naive-null.png)
 
