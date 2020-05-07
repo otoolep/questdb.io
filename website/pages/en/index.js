@@ -171,7 +171,7 @@ class Index extends React.Component {
         </span>
         <span className="demo__subtitle">
           In the meantime, get started with QuestDB from your laptop and
-          experience what ultimate performance is like
+          experience what ultimate performance feels like
         </span>
       </div>
     )
