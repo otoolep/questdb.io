@@ -72,7 +72,7 @@ class Index extends React.Component {
             {
               content:
                 '<span class="title">The fastest time-series database</span>' +
-                '<p class="left subTopTitle">QuestDB is an open source designed to process time-series data, faster.</p>' +
+                '<p class="left subTopTitle">QuestDB is an open source database designed to process time-series data, faster.</p>' +
                 "<br>" +
                 '<ul class="buttons">' +
                 '<li class="margin-button"><a href="/getstarted">Get QuestDB</a></li>' +
