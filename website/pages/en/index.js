@@ -181,7 +181,7 @@ class Index extends React.Component {
         <span className="title">Lightning fast</span>
 
         <div className="bench__inner">
-          <div class="benchmark">
+          <div className="benchmark">
             <span>Sum 1 billion doubles with nulls:</span>
             <div className="questdb-in bar">
               <span className="benchmark__name">QuestDB</span>
@@ -197,6 +197,10 @@ class Index extends React.Component {
               <span className="benchmark__separator" />
               <span className="benchmark__timing">>1min</span>
             </div>
+            <span className="benchmark__machine">
+              We ran the query on a c5.metal AWS instance: 96 threads with 192GB
+              of memory
+            </span>
           </div>
         </div>
       </div>

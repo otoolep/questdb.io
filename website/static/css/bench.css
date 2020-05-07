@@ -113,3 +113,7 @@
   color: white;
   right: 20px;
 }
+
+.benchmark__machine {
+  font-size: 16px;
+}
