@@ -198,8 +198,7 @@ class Index extends React.Component {
               <span className="benchmark__timing">>1min</span>
             </div>
             <span className="benchmark__machine">
-              We ran the query on a c5.metal AWS instance: 96 threads with 192GB
-              of memory
+              We ran the query on a AWS c5.metal instance using only 16 threads out of 48(96) CPU cores available
             </span>
           </div>
         </div>
