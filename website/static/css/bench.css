@@ -1,0 +1,115 @@
+.bench {
+  display: flex;
+  font-size: 20px;
+  padding-bottom: 15px;
+  padding-top: 40px;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 16px;
+  display: block;
+  text-align: center;
+}
+
+.bench__inner {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.benchmark {
+  max-width: 100%;
+  flex: 0 0 680px;
+}
+
+.bar {
+  position: relative;
+  margin: 16px 5px;
+  padding-left: 14px;
+  text-align: left;
+  border-radius: 25px;
+  line-height: 30px;
+  font-size: 18px;
+  color: white;
+}
+
+.bar::before {
+  content: "";
+  width: 100%;
+  position: absolute;
+  border-radius: 25px;
+  left: 0;
+  height: 30px;
+  top: 0;
+  z-index: -2;
+  background: #ecf0f1;
+}
+
+.bar::after {
+  content: "";
+  background: #24477b;
+  border-radius: 25px;
+  height: 30px;
+  transition: 0.7s;
+  display: block;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.benchmark__timing {
+  position: absolute;
+  color: black;
+}
+
+.benchmark__separator {
+  position: absolute;
+  width: 2px;
+  height: 40px;
+  top: -5px;
+  right: 140px;
+  transform: rotate(25deg);
+  background: white;
+}
+
+.benchmark__separator + .benchmark__separator {
+  right: 150px;
+}
+
+@media only screen and (max-width: 735px) {
+  .benchmark__separator {
+    right: 100px;
+  }
+
+  .benchmark__separator + .benchmark__separator {
+    right: 110px;
+  }
+}
+
+.questdb-in .benchmark__timing {
+  left: calc(22% + 10px);
+}
+
+.questdb-in::after {
+  width: 22%;
+  background: #fe982a;
+}
+
+.clickhouse-in::after {
+  width: 38%;
+}
+
+.clickhouse-in .benchmark__timing {
+  left: calc(38% + 10px);
+}
+
+.postgresql-in::after {
+  width: 100%;
+}
+
+.postgresql-in .benchmark__timing {
+  color: white;
+  right: 20px;
+}

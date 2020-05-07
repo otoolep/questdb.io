@@ -29,7 +29,7 @@
 
 .perks .buttons li, .careers-footer .buttons li{
     border: 1px solid #f8f9ff;
-    background: linear-gradient(270deg, #fda31d, #fd8b0e, #fda31d);
+    background: linear-gradient(270deg, #fda31d, #fe982a, #fd8b0e, #fda31d);
     background-size: 600% 600%;
 
     -webkit-animation: buttonAnimation 15s ease infinite;

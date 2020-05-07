@@ -11,26 +11,26 @@ To include QuestDB in your project use the latest Maven coordinates:
 <!--DOCUSAURUS_CODE_TABS-->
 <!--gradle-->
 ```shell script
-    implementation 'org.questdb:core:4.2.0'
+    implementation 'org.questdb:core:4.2.1'
 ```
 <!--maven-->
 ```xml
     <dependency>
         <groupId>org.questdb</groupId>
         <artifactId>core</artifactId>
-        <version>4.2.0</version>
+        <version>4.2.1</version>
     </dependency>
 ```
 <!--END_DOCUSAURUS_CODE_TABS-->
 
->Please note that latest QuestDB version number in this documentation may not be up to date. Follow this 
-><a href="https://search.maven.org/artifact/org.questdb/core" target="_blank">Maven Central URL</a> to check the exact version number 
+>Please note that latest QuestDB version number in this documentation may not be up to date. Follow this
+><a href="https://search.maven.org/artifact/org.questdb/core" target="_blank">Maven Central URL</a> to check the exact version number
 
 ## Writing data
 
 The `TableWriter` facilitates table writes. To successfully create an instance of `TableWriter`, the table must:
 - already exist
-- have no other open writers against it as the `TableWriter` constructor will attempt to obtain an exclusive 
+- have no other open writers against it as the `TableWriter` constructor will attempt to obtain an exclusive
 cross-process lock on the table.
 
 ### Example
@@ -68,18 +68,18 @@ AllowAllSecurityContextFactory securityContextFactor = new AllowAllSecurityConte
 CairoSecurityContext cairoSecurityContext = securityContextFactor.getInstance("admin");
 try (TableWriter writer = engine.getWriter(cairoSecurityContext, "abc")) {
 ~~~
-The `writer` instance must be eventually released to release resources. 
-In this case, it will be released back to the engine for re-use. 
-Constructing a new writer is a resource-intensive operation and it will allocate memory on JVM heap. 
+The `writer` instance must be eventually released to release resources.
+In this case, it will be released back to the engine for re-use.
+Constructing a new writer is a resource-intensive operation and it will allocate memory on JVM heap.
 Writers lifecycle should be carefully considered for your particular use case.
 
 2 - Create a new row
 ~~~ java
 TableWriter.Row row = writer.newRow(Os.currentTimeMicros());
 ~~~
-Although this operation semantically looks like a new object creation, the row instance is actually being re-used under 
-the hood. A Timestamp is necessary to determine a partition for the new row. Its value has to be 
-either increment or stay the same as the last row. When the table is not partitioned and does not have a 
+Although this operation semantically looks like a new object creation, the row instance is actually being re-used under
+the hood. A Timestamp is necessary to determine a partition for the new row. Its value has to be
+either increment or stay the same as the last row. When the table is not partitioned and does not have a
 designated timestamp column, timestamp value can be 0, e.g.
 ~~~ java
 TableWriter.Row row = writer.newRow(0);
@@ -87,9 +87,9 @@ TableWriter.Row row = writer.newRow(0);
 
 3 - Populate row columns
 There are put* methods for every supported data type. Columns are updated by an index for performance reasons:
-~~~ java 
+~~~ java
 row.putLong(3, 333);
-~~~ 
+~~~
 
 Column update order is not important and update can be sparse. All unset columns will default to NULL values.
 
@@ -107,14 +107,14 @@ row.cancel();
 A pending row is automatically cancelled when `writer.newRow()` is called.
 
 5 - Commit changes
-`writer.commit` commits changes, which makes them visible to readers. 
+`writer.commit` commits changes, which makes them visible to readers.
 This method call is atomic and has a complexity of O(1).
- 
+
 ## Compiling SQL
 
 JAVA users can use the `SqlCompiler` to run SQL queries like they would do in the web console for example.
 
-> Note this can be used for any SQL query. This means you can use this with any supported SQL statement. For example 
+> Note this can be used for any SQL query. This means you can use this with any supported SQL statement. For example
 > [INSERT](sqlINSERT.md) or [COPY](copy.md) to write data, DDL such as [CREATE TABLE](createTable.md) or [SELECT](sqlSELECT.md) to query data.
 
 ### Syntax
@@ -130,7 +130,7 @@ try (CairoEngine engine = new CairoEngine(configuration)) {
 }
 ```
 
-`configuration` holds various settings that can be overridden via a subclass. 
+`configuration` holds various settings that can be overridden via a subclass.
 Most importantly configuration is bound to the database root - directory where table sub-directories will be created.
 
 `engine` is a concurrent pool of table readers and writers.
@@ -159,7 +159,7 @@ try (CairoEngine engine = new CairoEngine(configuration)) {
                         "x SYMBOL, " +
                         "z STRING, " +
                         "y BOOLEAN" +
-                        ") timestamp(t) partition by MONTH", 
+                        ") timestamp(t) partition by MONTH",
         );
     }
 }
@@ -169,7 +169,7 @@ try (CairoEngine engine = new CairoEngine(configuration)) {
 
 Querying data is a three-step process:
 
-1 - Compile the SQL text to an instance of `RecordCursorFactory`, an instance that encapsulates execution plan. You can 
+1 - Compile the SQL text to an instance of `RecordCursorFactory`, an instance that encapsulates execution plan. You can
 run custom SQL queries by instantiating `RecordCursorFactory` to `compiler.compile("YOUR_SQL_HERE")`
 
 2 - Create a `RecordCursor` instance using a factory from step 1.
@@ -193,7 +193,7 @@ while(cursor.hasNext()) {
 ### Component life cycle
 1 - **Engine**
 
-This is a thread-safe, concurrent and non-blocking pool of TableReader and TableWriter instances. 
+This is a thread-safe, concurrent and non-blocking pool of TableReader and TableWriter instances.
 Ideally, there should be only one per database location.
 
 2 - **SqlCompiler**
@@ -202,8 +202,8 @@ This is a totally single-threaded, factory-style instance
 
 3 - **RecordCursorFactory**
 
-Execution plan of respective SQL, also single-threaded. 
-The instance is reusable as far as the creation of RecordCursor is concerned and should be 
+Execution plan of respective SQL, also single-threaded.
+The instance is reusable as far as the creation of RecordCursor is concerned and should be
 retained until data access is no longer needed. It can be closed explicitly via close() method.
 
 4 - **RecordCursor**
