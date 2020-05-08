@@ -71,8 +71,8 @@ class Index extends React.Component {
             },
             {
               content:
-                '<span class="title">The fastest time-series database</span>' +
-                '<p class="left subTopTitle">QuestDB is an open source database designed to process time-series data, faster.</p>' +
+                '<span class="title">Time-series data, faster</span>' +
+                '<p class="left subTopTitle">QuestDB is an open source database which makes time-series fast and easy.</p>' +
                 "<br>" +
                 '<ul class="buttons">' +
                 '<li class="margin-button"><a href="/getstarted">Get QuestDB</a></li>' +
@@ -182,7 +182,7 @@ class Index extends React.Component {
 
         <div className="bench__inner">
           <div className="benchmark">
-            <span>Sum 1 billion doubles with nulls:</span>
+            <span>Sum 1 billion doubles with nulls</span>
             <div className="questdb-in bar">
               <span className="benchmark__name">QuestDB</span>
               <span className="benchmark__timing">66ms</span>
@@ -241,7 +241,7 @@ class Index extends React.Component {
 
     const ConsoleGIF = () => (
       <div className="consoleGIF">
-        <img src={"/img/sql.gif"} alt="sql example" className={"shadow"} />
+        <img src={"/img/gifdemo.gif"} alt="sql example" className={"shadow"} />
       </div>
     )
 
