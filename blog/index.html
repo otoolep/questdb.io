@@ -354,48 +354,44 @@ QuestDB is available <a href="https://github.com/questdb/questdb">open-source un
 <code>select key, sum(value) from table</code> (note the intentional omission of <code>GROUP BY</code>). This will also result in ultrafast
 aggregation for time-bucketed queries using <code>SAMPLE BY</code>.</p>
 <h3><a class="anchor" aria-hidden="true" id="how-fast-is-it"></a><a href="#how-fast-is-it" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>How fast is it?</h3>
-<p>To get an idea of how fast aggregations have become, we ran a benchmark against kdb+, which is one of the fastest databases out there.
-Coincidentally, their new version 4.0 (released a few days ago) introduces performance improvements through implicit parallelism.</p>
-<h4><a class="anchor" aria-hidden="true" id="setup"></a><a href="#setup" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Setup</h4>
-<p>We have benchmarked QuestDB against kdb's latest version using 2 different CPUs: the <a href="https://ark.intel.com/content/www/us/en/ark/products/134899/intel-core-i7-8850h-processor-9m-cache-up-to-4-30-ghz.html">Intel 8850H</a>
-and the <a href="https://www.amd.com/en/products/cpu/amd-ryzen-9-3900x">AMD Ryzen 3900X</a>. Both databases were running on 4 threads.</p>
+<p>We ran performance tests using 2 different CPUs: the <a href="https://ark.intel.com/content/www/us/en/ark/products/134899/intel-core-i7-8850h-processor-9m-cache-up-to-4-30-ghz.html">Intel 8850H</a>
+and the <a href="https://www.amd.com/en/products/cpu/amd-ryzen-9-3900x">AMD Ryzen 3900X</a>. Both were running on 4 threads.</p>
 <h4><a class="anchor" aria-hidden="true" id="queries"></a><a href="#queries" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Queries</h4>
 <table>
 <thead>
-<tr><th>Test</th><th>Query (kdb+ 4.0)</th><th>Query (QuestDB 4.2)</th></tr>
+<tr><th>Test</th><th>Query</th></tr>
 </thead>
 <tbody>
-<tr><td>sum of 1Bn doubles <br/> no nulls</td><td>zz:1000000000?1000.0 <br/>\t sum zz</td><td>create table zz as (select rnd_double() d from long_sequence(1000000000)); <br/> select sum(d) from zz;</td></tr>
-<tr><td>sum of 1Bn ints</td><td>zz:1000000000?1000i <br/> \t sum zz</td><td>create table zz as (select rnd_int() i from long_sequence(1000000000)); <br/> select sum(i) from zz;</td></tr>
-<tr><td>sum of 1Bn longs</td><td>zz:1000000000?1000j <br/>\t sum zz</td><td>create table zz as (select rnd_long() l from long_sequence(1000000000));<br/>select sum(l) from zz;</td></tr>
-<tr><td>max of 1Bn doubles</td><td>zz:1000000000?1000.0<br/>\t max zz</td><td>create table zz as (select rnd_double() d from long_sequence(1000000000));<br/>select max(d) from zz;</td></tr>
-<tr><td>max of 1Bn longs</td><td>zz:1000000000?1000<br/>\t max zz</td><td>create table zz as (select rnd_long() l from long_sequence(1000000000));<br/>select max(l) from zz;</td></tr>
+<tr><td>sum of 1Bn doubles <br/> no nulls</td><td>create table zz as (select rnd_double() d from long_sequence(1000000000)); <br/> select sum(d) from zz;</td></tr>
+<tr><td>sum of 1Bn ints</td><td>create table zz as (select rnd_int() i from long_sequence(1000000000)); <br/> select sum(i) from zz;</td></tr>
+<tr><td>sum of 1Bn longs</td><td>create table zz as (select rnd_long() l from long_sequence(1000000000));<br/>select sum(l) from zz;</td></tr>
+<tr><td>max of 1Bn doubles</td><td>create table zz as (select rnd_double() d from long_sequence(1000000000));<br/>select max(d) from zz;</td></tr>
+<tr><td>max of 1Bn longs</td><td>create table zz as (select rnd_long() l from long_sequence(1000000000));<br/>select max(l) from zz;</td></tr>
 </tbody>
 </table>
 <h4><a class="anchor" aria-hidden="true" id="results"></a><a href="#results" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Results</h4>
-<p><img src="/blog/assets/bench-kdb-8850h.png" alt="alt-text"></p>
-<p><img src="/blog/assets/bench-kdb-3900x.png" alt="alt-text"></p>
-<p>The dataset producing the results shown above does not contain NULL values. Interestingly, as soon as the data contains NULL values, kdb+ sum() performance drops while QuestDB sum() query time is unchanged as seen on the chart below.</p>
+<p><img src="/blog/assets/bench-8850h.png" alt="alt-text"></p>
+<p><img src="/blog/assets/bench-3900x.png" alt="alt-text"></p>
+<p>The dataset producing the results shown above does not contain NULL values. Interestingly, when introducing nulls, QuestDB sum() query time is unchanged.
+This can be tested by creating the table as follows.</p>
 <table>
 <thead>
-<tr><th>Test</th><th>Query (kdb+ 4.0)</th><th>Query (QuestDB 4.2)</th></tr>
+<tr><th>Test</th><th>Query</th></tr>
 </thead>
 <tbody>
-<tr><td>sum of 1Bn doubles <br/>(nulls)</td><td>zz:1000000000?1000.0 <br/>zz:?[zz&lt;100;0Nf;zz]<br/>\t sum zz</td><td>create table zz as (select rnd_double(5) d from long_sequence(1000000000));<br/>select sum(d) from zz;</td></tr>
+<tr><td>sum of 1Bn doubles <br/>(nulls)</td><td>create table zz as (select rnd_double(5) d from long_sequence(1000000000));<br/>select sum(d) from zz;</td></tr>
 </tbody>
 </table>
-<p><img src="/blog/assets/bench-kdb-8850H-sum-null.png" alt="alt-text"></p>
 <h4><a class="anchor" aria-hidden="true" id="we-can-improve-this-performance-further"></a><a href="#we-can-improve-this-performance-further" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>We can improve this performance further</h4>
-<p>QuestDB's sum(int) result is 64-bit long, whereas kdb+ sum(int) returns a 32-bit integer (even if the sum overflows).
-Our approach is currently slightly more complicated as we convert each 32-bit integer to a 64-bit long to avoid overflow.
+<p>Our approach is currently slightly more complicated as we convert each 32-bit integer to a 64-bit long to avoid overflow.
 By removing this overhead and more, there is scope left to make our implementation faster in the future.</p>
 <h3><a class="anchor" aria-hidden="true" id="perspectives-on-performance"></a><a href="#perspectives-on-performance" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Perspectives on performance</h3>
 <p>The execution times outlined above become more interesting once put into context.
 This is how QuestDB compares to Postgres when doing a sum of 1 billion numbers from a given table <code>select sum(d) from 1G_double_nonNull</code>.</p>
-<p><img src="/blog/assets/bench-pg-kdb-quest.png" alt="alt-text"></p>
+<p><img src="/blog/assets/bench-pg.png" alt="alt-text"></p>
 <p>We found that our performance figures are constrained by the available memory channels. Both the 8850H and the 3900X
 have 2 memory channels, and throwing more than 4 cores at the query above does not improve the performance.
-On the other hand, if the CPU has more memory channels, then performance scales almost linearly for both kdb+ and QuestDB.</p>
+On the other hand, if the CPU has more memory channels, then performance scales almost linearly.</p>
 <p>To get an idea of the impact of memory channels, we spun off a m5.metal instance on AWS. This instance has two
 24-core Intel 8275CL with 6 memory channels each. Here are the results compared to the 2-channel 3900X:</p>
 <table>
