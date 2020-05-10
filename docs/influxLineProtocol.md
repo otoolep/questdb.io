@@ -35,7 +35,7 @@ For the time being QuestDB can listen for UDP packets, either multicast or unica
 protocol is on our road map.
 
 > QuestDB listens for multicast on `232.1.2.3:9009`. The address change or switch to unicast can be done via configuration. If you run QuestDB via Docker
-> start container as `run --rm -it -p 9000:9000 -p 8892:8892 -p 9009:9009 --net=host questdb/questdb`  and publish
+> start container as `run --rm -it -p 9000:9000 -p 8812:8812 -p 9009:9009 --net=host questdb/questdb`  and publish
 > multicast packets with TTL of at least 2.
 
 ### Syntax
@@ -172,7 +172,7 @@ where:
 Example:
 ```java
 
-    sender.metric("readings").tag("city", "London").tag("by", "quest").field("temp", 3400).field("humid", 0.434).$(Os.currentTimeNanos());
+sender.metric("readings").tag("city", "London").tag("by", "quest").field("temp", 3400).field("humid", 0.434).$(Os.currentTimeNanos());
 ```
 
 
@@ -181,11 +181,11 @@ Sender will send message as soon as send buffer is full. To send messages before
 #### Example
 ```java
 
-    LineProtoSender sender = new LineProtoSender(0, Net.parseIPv4("232.1.2.3"), 9009, 1024, 2);
-    sender.metric("readings").tag("city", "London").tag("by", "quest").field("temp", 3400).$(Os.currentTimeNanos());
-    sender.metric("readings").tag("city", "London").tag("by", "quest").field("temp", 3400).$(Os.currentTimeNanos());
-    sender.metric("readings").tag("city", "London").tag("by", "quest").field("temp", 3400).$(Os.currentTimeNanos());
-    sender.flush();
+LineProtoSender sender = new LineProtoSender(0, Net.parseIPv4("232.1.2.3"), 9009, 1024, 2);
+sender.metric("readings").tag("city", "London").tag("by", "quest").field("temp", 3400).$(Os.currentTimeNanos());
+sender.metric("readings").tag("city", "London").tag("by", "quest").field("temp", 3400).$(Os.currentTimeNanos());
+sender.metric("readings").tag("city", "London").tag("by", "quest").field("temp", 3400).$(Os.currentTimeNanos());
+sender.flush();
 ```
 
 ### Sending messages from Unix shell
@@ -219,11 +219,11 @@ JAVA users can use the `SqlCompiler` to run SQL queries like they would do in th
 CairoConfiguration configuration = new DefaultCairoConfiguration("/tmp/my_database");
 BindVariableService bindVariableService = new BindVariableService();
 try (CairoEngine engine = new CairoEngine(configuration)) {
-    try (SqlCompiler compiler = new SqlCompiler(engine, configuration)) {
-        compiler.compile(
-            "YOUR_SQL_HERE"
-        );
-    }
+try (SqlCompiler compiler = new SqlCompiler(engine, configuration)) {
+    compiler.compile(
+        "YOUR_SQL_HERE"
+    );
+}
 }
 ```
 
@@ -241,24 +241,24 @@ The following will create a new table abc with the specifications set below.
 CairoConfiguration configuration = new DefaultCairoConfiguration("/tmp/my_database");
 BindVariableService bindVariableService = new BindVariableService();
 try (CairoEngine engine = new CairoEngine(configuration)) {
-    try (SqlCompiler compiler = new SqlCompiler(engine, configuration)) {
-        compiler.compile(
-                "create table abc (" +
-                        "a INT, " +
-                        "b BYTE, " +
-                        "c SHORT, " +
-                        "d LONG, " +
-                        "e FLOAT, " +
-                        "f DOUBLE, " +
-                        "g DATE, " +
-                        "h BINARY, " +
-                        "t TIMESTAMP, " +
-                        "x SYMBOL, " +
-                        "z STRING, " +
-                        "y BOOLEAN" +
-                        ") timestamp(t) partition by MONTH", 
-        );
-    }
+try (SqlCompiler compiler = new SqlCompiler(engine, configuration)) {
+    compiler.compile(
+            "create table abc (" +
+                    "a INT, " +
+                    "b BYTE, " +
+                    "c SHORT, " +
+                    "d LONG, " +
+                    "e FLOAT, " +
+                    "f DOUBLE, " +
+                    "g DATE, " +
+                    "h BINARY, " +
+                    "t TIMESTAMP, " +
+                    "x SYMBOL, " +
+                    "z STRING, " +
+                    "y BOOLEAN" +
+                    ") timestamp(t) partition by MONTH", 
+    );
+}
 }
 ```
 
@@ -283,8 +283,8 @@ final RecordCursor cursor = factory.getCursor();
 final Record record = cursor.getRecord();
 
 while(cursor.hasNext()) {
-    record.getInt(0);
-    ...
+record.getInt(0);
+...
 }
 ~~~
 
@@ -329,23 +329,23 @@ cross-process lock on the table.
 AllowAllSecurityContextFactory securityContextFactor = new AllowAllSecurityContextFactory();
 CairoSecurityContext cairoSecurityContext = securityContextFactor.getInstance("admin");
 try (TableWriter writer = engine.getWriter(cairoSecurityContext, "abc")) {
-    for (int i = 0; i < 10; i++) {
-        TableWriter.Row row = writer.newRow(Os.currentTimeMicros());
-        row.putInt(0, 123);
-        row.putByte(1, (byte) 1111);
-        row.putShort(2, (short) 222);
-        row.putLong(3, 333);
-        row.putFloat(4, 4.44f);
-        row.putDouble(5, 5.55);
-        row.putDate(6, System.currentTimeMillis());
-        // skip 7 - see separate function to write blobs
-        // skip 8 - timestamp is already set via newRow() call
-        row.putSym(9, "xyz");
-        row.putStr(10, "abc");
-        row.putBool(11, true);
-        row.append();
-    }
-    writer.commit();
+for (int i = 0; i < 10; i++) {
+    TableWriter.Row row = writer.newRow(Os.currentTimeMicros());
+    row.putInt(0, 123);
+    row.putByte(1, (byte) 1111);
+    row.putShort(2, (short) 222);
+    row.putLong(3, 333);
+    row.putFloat(4, 4.44f);
+    row.putDouble(5, 5.55);
+    row.putDate(6, System.currentTimeMillis());
+    // skip 7 - see separate function to write blobs
+    // skip 8 - timestamp is already set via newRow() call
+    row.putSym(9, "xyz");
+    row.putStr(10, "abc");
+    row.putBool(11, true);
+    row.append();
+}
+writer.commit();
 }
 ~~~
 
@@ -417,7 +417,7 @@ Available function are `/imp`, `/exec`, `/exp` and `/chk`.
 To access Web Console visit **[http://localhost:9000](http://localhost:9000)**
 
 Other machines on your network can access the console or connect to the DB programmatically
- by navigating `http://IP_OF_THE_HOST_MACHINE:9000`
+by navigating `http://IP_OF_THE_HOST_MACHINE:9000`
 
 ### /imp - Loading data
 #### Overview
@@ -434,7 +434,7 @@ However in some cases additional configuration can be provided to augment automa
 `/imp` column names from header row as table columns. The following characters are removed from column names:
 
 ~~~ java
-     [space] _  ?  .  ,  \  \  \\  /  \0  :  )  (  +  -  *  %  ~
+ [space] _  ?  .  ,  \  \  \\  /  \0  :  )  (  +  -  *  %  ~
 ~~~
 
 When header row is missing column names are generated automatically.
@@ -574,36 +574,36 @@ JSON response for the same request would be:
 
 ~~~ json
 {
-    "status": "OK",
-    "location": "ratings.csv",
-    "rowsRejected": 0,
-    "rowsImported": 22884377,
-    "columns": [
-        {
-            "name": "userId",
-            "type": "INT",
-            "size": 4,
-            "errors": 0
-        },
-        {
-            "name": "movieId",
-            "type": "INT",
-            "size": 4,
-            "errors": 0
-        },
-        {
-            "name": "rating",
-            "type": "DOUBLE",
-            "size": 8,
-            "errors": 0
-        },
-        {
-            "name": "timestamp",
-            "type": "INT",
-            "size": 4,
-            "errors": 0
-        }
-    ]
+"status": "OK",
+"location": "ratings.csv",
+"rowsRejected": 0,
+"rowsImported": 22884377,
+"columns": [
+    {
+        "name": "userId",
+        "type": "INT",
+        "size": 4,
+        "errors": 0
+    },
+    {
+        "name": "movieId",
+        "type": "INT",
+        "size": 4,
+        "errors": 0
+    },
+    {
+        "name": "rating",
+        "type": "DOUBLE",
+        "size": 8,
+        "errors": 0
+    },
+    {
+        "name": "timestamp",
+        "type": "INT",
+        "size": 4,
+        "errors": 0
+    }
+]
 }
 ~~~
 
@@ -780,35 +780,35 @@ This is an example of successful query execution response. HTTP status code `200
 
 ~~~ json
 {
-    "query": "select AccidentIndex, Date, Time from 'Accidents0514.csv' limit 2",
-    "columns": [
-        {
-            "name": "AccidentIndex",
-            "type": "STRING"
-        },
-        {
-            "name": "Date",
-            "type": "DATE"
-        },
-        {
-            "name": "Time",
-            "type": "STRING"
-        }
+"query": "select AccidentIndex, Date, Time from 'Accidents0514.csv' limit 2",
+"columns": [
+    {
+        "name": "AccidentIndex",
+        "type": "STRING"
+    },
+    {
+        "name": "Date",
+        "type": "DATE"
+    },
+    {
+        "name": "Time",
+        "type": "STRING"
+    }
+],
+"dataset": [
+    [
+        "200501BS00001",
+        "2005-01-04T00:00:00.000Z",
+        "17:42"
     ],
-    "dataset": [
-        [
-            "200501BS00001",
-            "2005-01-04T00:00:00.000Z",
-            "17:42"
-        ],
-        [
-            "200501BS00002",
-            "2005-01-05T00:00:00.000Z",
-            "17:36"
-        ],
-       
+    [
+        "200501BS00002",
+        "2005-01-05T00:00:00.000Z",
+        "17:36"
     ],
-    "count": 2
+   
+],
+"count": 2
 }
 ~~~
 
@@ -819,9 +819,9 @@ errors, which should not normally occur.
 
 ~~~ json
 {
-    "query": "\nselect AccidentIndex, Date, Time2 from 'Accidents0514.csv' limit 10",
-    "error": "Invalid column: Time2",
-    "position": 29
+"query": "\nselect AccidentIndex, Date, Time2 from 'Accidents0514.csv' limit 10",
+"error": "Invalid column: Time2",
+"position": 29
 }
 ~~~
 
@@ -867,10 +867,10 @@ Below is example of exporting data from command line using `curl`
 
 ```shell script
 mbp:~ user$ curl -v -G http://localhost:9000/exp \
-                 --data-urlencode "query=select AccidentIndex2, Date, Time from 'Accidents0514.csv'" \
-                 -d limit=5
+             --data-urlencode "query=select AccidentIndex2, Date, Time from 'Accidents0514.csv'" \
+             -d limit=5
 ```
-      
+  
 Response:
 ```shell script      
 *   Trying ::1...

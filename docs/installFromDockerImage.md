@@ -45,13 +45,13 @@ If you do not want to open either of these ports, you can alter the [port option
 #### Create a container
 
 ```shell script
-docker create --name questdb -p 9000:9000 -p 8892:8892 questdb/questdb
+docker create --name questdb -p 9000:9000 -p 8812:8812 questdb/questdb
 ```
 
 If you would like to use a specific release tag, you can specify it as follows when creating the container:
 
 ```shell script
-docker create --name questdb -p 9000:9000 -p 8892:8892 questdb/questdb:4.2.1
+docker create --name questdb -p 9000:9000 -p 8812:8812 questdb/questdb:4.2.1
 ```
 
 ##### Options
@@ -82,7 +82,7 @@ Though the parameter is optional, not opening the ports will limit interactions 
 
 ##### -p ports
 - `-p 9000:9000` opens port 9000 for the HTTP API and the web console. The web console is available on localhost:9000.
-- `-p 8892:8892` opens port 8892 for the PostgresSQL wire protocol.
+- `-p 8812:8812` opens port 8812 for the PostgresSQL wire protocol.
 
 ##### -v volumes
 The questdb [root_directory](rootDirectoryStructure.md) will be in the following locations.
@@ -123,7 +123,7 @@ You can run the container as an interactive sandbox with the `-it` option.
 
 #### Start the sandbox
 ```shell script
-docker run --rm -it -p 9000:9000 -p 8892:8892 questdb/questdb
+docker run --rm -it -p 9000:9000 -p 8812:8812 questdb/questdb
 ```
 
 #### Stop the sandbox

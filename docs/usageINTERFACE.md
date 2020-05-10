@@ -178,7 +178,7 @@ For the time being QuestDB can listen for UDP packets, either multicast or unica
 protocol is on our road map.
 
 > QuestDB listens for multicast on `232.1.2.3:9009`. The address change or switch to unicast can be done via configuration. If you run QuestDB via Docker
-> start container as `run --rm -it -p 9000:9000 -p 8892:8892 -p 9009:9009 --net=host questdb/questdb`  and publish
+> start container as `run --rm -it -p 9000:9000 -p 8812:8812 -p 9009:9009 --net=host questdb/questdb`  and publish
 > multicast packets with TTL of at least 2.
 
 ### Syntax
