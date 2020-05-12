@@ -2,19 +2,19 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://questdb.io/blog</id>
     <title>QuestDB Blog</title>
-    <updated>2020-05-01T06:00:00Z</updated>
+    <updated>2020-05-12T06:00:00Z</updated>
     <generator>Feed for Node.js</generator>
     <link rel="alternate" href="https://questdb.io/blog"/>
     <subtitle>The best place to stay up-to-date with the latest QuestDB news and events.</subtitle>
     <logo>https://questdb.io/img/QuestDB_Logo.png</logo>
     <rights>Copyright © 2020 QuestDB</rights>
     <entry>
-        <title type="html"><![CDATA[Faster, more accurate sums]]></title>
-        <id>https://questdb.io/blog/2020/05/01/faster-more-accurate-sums.html</id>
-        <link href="https://questdb.io/blog/2020/05/01/faster-more-accurate-sums.html">
+        <title type="html"><![CDATA[Summing one billion rows accurately in 68ms]]></title>
+        <id>https://questdb.io/blog/2020/05/12/Summing-one-billion-rows-accurately-in-68ms.html</id>
+        <link href="https://questdb.io/blog/2020/05/12/Summing-one-billion-rows-accurately-in-68ms.html">
         </link>
-        <updated>2020-05-01T06:00:00Z</updated>
-        <summary type="html"><![CDATA[<p><strong>Summing floating-point values has always implied a tradeoff between speed and accuracy. Until now.</strong></p> <p><img src="/blog/assets/road-runner.png" alt="alt-text"></p> <p>With its latest <a href="https://github.com/questdb/questdb/releases/tag/4.2.1">release 4.2.1</a>, QuestDB now implements Kahan and Neumaier compensated summation algorithms which perform as fast as naive approaches. T...</p>]]></summary>
+        <updated>2020-05-12T06:00:00Z</updated>
+        <summary type="html"><![CDATA[<p><img src="/blog/assets/road-runner.png" alt="alt-text"></p> <p><a href="https://www.questdb.io/blog/2020/04/02/using-simd-to-aggregate-billions-of-rows-per-second">About a month ago</a>, we announced a new release with SIMD aggregations on <a href="https://news.ycombinator.com/item?id=22803504">HackerNews</a>, <a href="https://www.reddit.com/r/programming/comments/fwlk0k/questdb_using_simd_to_aggregate_billions_of/">Reddit</a> and other forums. We have received heated comments about cutting corners by benchmarking imprecise &quot;naive&quot; summations. The implied remark here being...</p>]]></summary>
         <author>
             <name>Tancrede Collard</name>
         </author>

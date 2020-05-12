@@ -1,0 +1,325 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Summing one billion rows accurately in 68ms · QuestDB</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="[About a month ago](https://www.questdb.io/blog/2020/04/02/using-simd-to-aggregate-billions-of-rows-per-second),"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Summing one billion rows accurately in 68ms · QuestDB"/><meta property="og:type" content="website"/><meta property="og:url" content="https://questdb.io/blog/2020/05/12/Summing-one-billion-rows-accurately-in-68ms"/><meta property="og:description" content="[About a month ago](https://www.questdb.io/blog/2020/04/02/using-simd-to-aggregate-billions-of-rows-per-second),"/><meta property="og:image" content="https://questdb.io/img/favicon.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://questdb.io/img/favicon.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="alternate" type="application/atom+xml" href="https://questdb.io/blog/atom.xml" title="QuestDB Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://questdb.io/blog/feed.xml" title="QuestDB Blog RSS Feed"/><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700|IBM+Plex+Sans:300,400,600,700"/><script type="text/javascript" src="/js/gtmgmt.js"></script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-145747842-1"></script><script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script><script type="text/javascript" src="/js/fonts.js"></script><script type="text/javascript" src="/js/menu-hack.js"></script><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script type="text/javascript" src="/js/getstarted.js"></script><script type="text/javascript" src="/js/hotjar.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/QuestDB_Logo.png" alt="QuestDB"/><h2 class="headerTitleWithLogo">QuestDB</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/" target="_self">Home</a></li><li class=""><a href="/getstarted" target="_self">Get QuestDB</a></li><li class=""><a href="/docs/documentationOverview" target="_self">Documentation</a></li><li class="siteNavGroupActive"><a href="/blog/" target="_self">Blog</a></li><li class=""><a href="/careers" target="_self">Careers</a></li><li class=""><a href="/about" target="_self">About</a></li><li class=""><a href="https://serieux-saucisson-79115.herokuapp.com/" target="_self">Join</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search..." title="Search..."/></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Recent Posts</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Recent Posts</h3><ul class=""><li class="navListItem navListItemActive"><a class="navItem" href="/blog/2020/05/12/Summing-one-billion-rows-accurately-in-68ms">Summing one billion rows accurately in 68ms</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/04/02/using-simd-to-aggregate-billions-of-rows-per-second">Using SIMD to aggregate billions of rows per second</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/03/15/interthread">The art of thread messaging</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/12/19/lineprot">What makes QuestDB faster than InfluxDB</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer postContainer blogContainer"><div class="wrapper"><div class="lonePost"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle"><a href="/blog/2020/05/12/Summing-one-billion-rows-accurately-in-68ms">Summing one billion rows accurately in 68ms</a></h1><p class="post-meta">May 12, 2020</p><div class="authorBlock"><p class="post-authorName"><a target="_blank" rel="noreferrer noopener">Tancrede Collard</a></p></div></header><div><span><p><img src="/blog/assets/road-runner.png" alt="alt-text"></p>
+<p><a href="https://www.questdb.io/blog/2020/04/02/using-simd-to-aggregate-billions-of-rows-per-second">About a month ago</a>,
+we announced a new release with SIMD aggregations on
+<a href="https://news.ycombinator.com/item?id=22803504">HackerNews</a>,
+<a href="https://www.reddit.com/r/programming/comments/fwlk0k/questdb_using_simd_to_aggregate_billions_of/">Reddit</a>
+and other forums. We have received heated comments about cutting corners by
+benchmarking imprecise &quot;naive&quot; summations. The implied remark here being that
+compensated &quot;accurate&quot; sums would be much slower as a result. Also, some users
+claimed that the accuracy loss could be as high as 20%! We had to verify this at
+least.</p>
+<p>A user mentioned prefetch and co-routines techniques to pull data from RAM to
+cache in parallel with other CPU instructions. While we cannot use co-routines
+easily, we wanted to understand the impact of prefetch. Our performance was
+previously limited by memory bandwidth - using these techniques would address
+this and allow us to compute accurate sums as fast as naive sums.</p>
+<p>So we took this feedback in and implemented accurate summation algorithms while using prefetch placement and range values.</p>
+<p>Naive sum was indeed inaccurate, but nowhere near the 20% claimed. For example,
+on a large popular dataset of taxi rides in NYC, the sum of the column
+<code>fareAmount</code> was <code>$19,082,235,123.69902</code> for naive sums and <code>$19,082,235,123.7</code>
+for Kahan accurate sums. This is less than 1 cent difference on ~$19bn.</p>
+<p>With its latest
+<a href="https://github.com/questdb/questdb/releases/tag/4.2.1">release 4.2.1</a>, QuestDB
+now implements Kahan and Neumaier compensated summation algorithms.</p>
+<p>You can find our repository on <a href="https://github.com/questdb/questdb">GitHub</a>. All
+your
+<a href="https://github.com/questdb/questdb/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc">issues</a>,
+<a href="https://github.com/questdb/questdb/pulls?q=is%3Apr+is%3Aopen+sort%3Aupdated-desc">pull-requests</a>
+and <a href="https://github.com/questdb/questdb">stars</a> are welcome
+<span class="emoji">🙂</span>.</p>
+<h3><a class="anchor" aria-hidden="true" id="tl-dr"></a><a href="#tl-dr" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>TL;DR</h3>
+<p>With the help of prefetch we implemented the fastest and most accurate summation we have ever <a href="#comparison-with-clickhouse">tested</a> - 68ms over 1Bn double values.</p>
+<p>Contents:</p>
+<ul>
+<li>An <a href="#inaccurate-summation">introductory example</a> of the problem with summing
+doubles.</li>
+<li>A <a href="#float-representation-and-truncation-accuracy-loss">quick glance</a> at
+floating points inaccuracies.</li>
+<li>A <a href="#kahans-algorithm-for-compensated-summation">presentation</a> of the Kahan
+algorithm.</li>
+<li>Our <a href="#implementation-with-simd-instructions">compensated sum implementation</a>
+using SIMD instructions.</li>
+<li><a href="#comparison-with-clickhouse">Benchmark versus Clickhouse</a> for naive and accurate summation
+methods.</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="inaccurate-summation"></a><a href="#inaccurate-summation" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Inaccurate summation?</h3>
+<p>Before we dig in, some of you might wonder how an addition can be inaccurate as
+opposed to simply right or wrong.</p>
+<p>CPUs are poor at dealing with floating-point values. Arithmetics are almost
+always wrong, with a worst-case error proportional to the number of operations
+<code>n</code>. As floating-point operations are intransitive, the order in which you
+perform them also has an impact on accuracy.</p>
+<p>Here is an example:</p>
+<pre><code class="hljs css language-java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{
+    System.out.println(<span class="hljs-number">5.1</span>+<span class="hljs-number">9.2</span>);
+}
+</code></pre>
+<p>We ask to add <code>5.1</code> to <code>9.2</code>. The result should be <code>14.3</code>, but we get the
+following instead.</p>
+<pre><code class="hljs"><span class="hljs-number">14.299999999999999</span>
+</code></pre>
+<p>It is a small difference (only <code>0.000000000000001</code>), but it is still wrong. To
+make matters worse, this error can be compounded.</p>
+<pre><code class="hljs css language-java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{
+    <span class="hljs-keyword">double</span> a = <span class="hljs-number">5.1</span>+<span class="hljs-number">9.2</span>;
+    <span class="hljs-keyword">double</span> b = a + <span class="hljs-number">3.5</span>;
+    <span class="hljs-keyword">double</span> c = <span class="hljs-number">14.3</span> + <span class="hljs-number">3.5</span>;
+    System.out.println(<span class="hljs-string">"The result is: "</span> + b);
+    System.out.print(<span class="hljs-string">"But we expected: "</span> + c);
+}
+</code></pre>
+<pre><code class="hljs"><span class="hljs-attr">The result is:</span> <span class="hljs-number">17.799999999999997</span>
+<span class="hljs-attr">But we expected:</span> <span class="hljs-number">17.8</span>
+</code></pre>
+<p>The error has just grown to <code>0.000000000000003</code> and will keep on growing as we
+add operations.</p>
+<h3><a class="anchor" aria-hidden="true" id="float-representation-and-truncation-accuracy-loss"></a><a href="#float-representation-and-truncation-accuracy-loss" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Float representation and truncation accuracy loss</h3>
+<p>Decimal numbers are not accurately stored. This is well documented already, for
+example on
+<a href="https://stackoverflow.com/questions/588004/is-floating-point-math-broken/588014#588014">StackOverlow</a>
+or <a href="https://0.30000000000000004.com/">here</a>.</p>
+<p>Consequently, operations on floating points will return inaccurate results. This
+is not the only problem. Performing operations is also likely to introduce more
+errors and to grow the total error over time. One such case is once the result
+of an operation has to be truncated to fit the original format. Here is a
+simplified example of the <strong>truncation</strong> that happens when adding floats of
+different orders of magnitude.</p>
+<blockquote>
+<p>For the below example we will be using base 10 and expressing the exponent as
+a number rather than a binary for sake of simplicity. We assume 5 significant
+digits.</p>
+</blockquote>
+<p>We start with both our numbers expressed in scientific notation.</p>
+<p><img src="/blog/assets/sum-1.png" alt="alt-text"></p>
+<p>Let's expand into decimal notation and place them on a similar scale so all
+digits fit.</p>
+<p><img src="/blog/assets/sum-2.png" alt="alt-text"></p>
+<p>Now, let us express this sum back as one number in scientific notation. We have
+to <code>truncate</code> the result back to 5 significant digits.</p>
+<p><img src="/blog/assets/sum-3.png" alt="alt-text"></p>
+<p>The result is incorrect. In fact, it is as if we did not sum anything.</p>
+<h3><a class="anchor" aria-hidden="true" id="kahans-algorithm-for-compensated-summation"></a><a href="#kahans-algorithm-for-compensated-summation" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Kahan's algorithm for compensated summation</h3>
+<p>Compensated sum maintains a sum of accumulated errors and uses it to attempt to
+correct the (inaccurate) sum by the total error amount. It does so by trying to
+adjust each new number by the total accumulated error.</p>
+<p>The main Compensated summation algorithm is the
+<a href="https://en.wikipedia.org/wiki/Kahan_summation_algorithm" target="_blank">Kahan</a>
+sum. It runs in 4 steps:</p>
+<ul>
+<li>Subtract the <code>running error</code> from the new <code>number</code> to get the
+<code>adjusted number</code>. If this is the first number, then the running error is 0.</li>
+<li>Add the <code>adjusted number</code> to the <code>running total</code> and truncate to the number of
+significant digits. This is the <code>truncated result</code>.</li>
+<li>Calculate the <code>new running error</code> as
+<code>(truncated result - running total) - adjusted number</code>.</li>
+<li>Assign the <code>truncated result</code> as the new <code>running total</code>.</li>
+</ul>
+<p>This works because of addition transitivity rules.</p>
+<h3><a class="anchor" aria-hidden="true" id="implementation-with-simd-instructions"></a><a href="#implementation-with-simd-instructions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Implementation with SIMD instructions</h3>
+<p>Now, the interesting bit! QuestDB implements the same 4-step algorithm as Kahan.
+However, it uses vectorized instructions to make things a lot faster. The idea
+came from Zach Bjornson who wrote about this on
+<a href="http://blog.zachbjornson.com/2019/08/11/fast-float-summation.html" target="_blank">
+his blog</a>.</p>
+<p>Here is our implementation in details:</p>
+<p>We first define our vectors:</p>
+<pre><code class="hljs css language-java">Vec8d inputVec;
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> step = <span class="hljs-number">8</span>;
+<span class="hljs-keyword">const</span> auto *lim = d + count;
+<span class="hljs-keyword">const</span> auto remainder = (int32_t) (count - (count / step) * step);
+<span class="hljs-keyword">const</span> auto *lim_vec = lim - remainder;
+Vec8d sumVec = <span class="hljs-number">0</span>.;
+Vec8d yVec;
+Vec8d cVec = <span class="hljs-number">0</span>.;
+Vec8db bVec;
+Vec8q nancount = <span class="hljs-number">0</span>;
+Vec8d tVec;
+</code></pre>
+<p>Then we load vectors with data. What's happening below is exactly Kahan's
+algorithm. However, instead of summing individual values, we are summing vectors
+of 8 values each.</p>
+<pre><code class="hljs css language-java"><span class="hljs-keyword">for</span> (; d &lt; lim_vec; d += step) {
+    _mm_prefetch(d + <span class="hljs-number">63</span> * step, _MM_HINT_T1);
+    inputVec.load(d);
+    bVec = is_nan(inputVec);
+    nancount = if_add(bVec, nancount, <span class="hljs-number">1</span>);
+    yVec = select(bVec, <span class="hljs-number">0</span>, inputVec - cVec);
+    tVec = sumVec + yVec;
+    cVec = (tVec - sumVec) - yVec;
+    sumVec = tVec;
+}
+</code></pre>
+<p>The strategically placed <code>prefetch</code> relies on CPU pipelining. The goal is to
+have the CPU fetching the next chunk of data from RAM to cache while we are
+calculating the current vector.</p>
+<p>Lastly, we use <code>horizontal_add</code> to sum all values into a scalar value. Again, we
+recognise Kahan's sum algorithm.</p>
+<pre><code class="hljs css language-java"><span class="hljs-keyword">double</span> sum = horizontal_add(sumVec);
+<span class="hljs-keyword">double</span> c = horizontal_add(cVec);
+<span class="hljs-keyword">int</span> nans = horizontal_add(nancount);
+<span class="hljs-keyword">for</span> (; d &lt; lim; d++) {
+      <span class="hljs-keyword">double</span> x = *d;
+    <span class="hljs-keyword">if</span> (x == x) {
+        auto y = x - c;
+        auto t = sum + y;
+        c = (t - sum) -y;
+        sum = t;
+    } <span class="hljs-keyword">else</span> {
+        nans++;
+    }
+}
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="comparison-with-clickhouse"></a><a href="#comparison-with-clickhouse" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Comparison with Clickhouse</h3>
+<p>We compared how performance behaves when switching from naive (inaccurate) sum
+to Kahan compensated sum.</p>
+<h4><a class="anchor" aria-hidden="true" id="hardware"></a><a href="#hardware" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Hardware</h4>
+<p>We run all databases on an <code>c5.metal</code> AWS instance, which has two Intel 8275CL 24-core CPU sand 192GB of memory. QuestDB was running on 16 threads. As we showed in a
+<a href="2020-04-02-using-simd-to-aggregate-billions-of-rows-per-second.md">previous article</a>,
+adding more threads does not improve performance beyond a certain point.
+Clickhouse was running using all cores as per default configuration, however we
+increased the memory limit from the default value from 10GB to 40GB
+<code>&lt;max_memory_usage&gt;40000000000&lt;/max_memory_usage&gt;</code>.</p>
+<h4><a class="anchor" aria-hidden="true" id="test-data"></a><a href="#test-data" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Test data</h4>
+<p>We generated two test files using our
+<a href="/docs/functionsRandomValueGenerators.md">random generation functions</a> and
+exported the results to CSV. We then imported the CSV individually in the
+databases.</p>
+<pre><code class="hljs css language-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-sql_function">rnd_double</span>() <span class="hljs-keyword">FROM</span> <span class="hljs-sql_function">long_sequence</span>(<span class="hljs-number">1</span>_000_000_000l); <span class="hljs-comment">-- non null
+</span><span class="hljs-keyword">SELECT</span> <span class="hljs-sql_function">rnd_double</span>(<span class="hljs-number">2</span>) <span class="hljs-keyword">FROM</span> <span class="hljs-sql_function">long_sequence</span>(<span class="hljs-number">1</span>_000_000_000l); <span class="hljs-comment">-- with nulls
+</span></code></pre>
+<h4><a class="anchor" aria-hidden="true" id="storage-engine"></a><a href="#storage-engine" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Storage engine</h4>
+<ul>
+<li><strong>QuestDB</strong>: on disk</li>
+<li><strong>Clickhouse</strong>: in memory (using the <code>memory()</code> engine)</li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="commands"></a><a href="#commands" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Commands</h4>
+<h5><a class="anchor" aria-hidden="true" id="with-null"></a><a href="#with-null" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>With null</h5>
+<table>
+<thead>
+<tr><th>Description</th><th>QuestDB</th><th>Clickhouse</th></tr>
+</thead>
+<tbody>
+<tr><td>DDL</td><td><code>CREATE TABLE test_double AS(SELECT rnd_double() FROM long_sequence(1000000000L);</code></td><td><code>CREATE TABLE test_double (val Nullable(Float64)) Engine=Memory;</code></td></tr>
+<tr><td>Import</td><td>Not required</td><td><code>clickhouse-client --query=&quot;INSERT INTO test_double FORMAT CSVWithNames;&quot; &lt; test_double.csv</code></td></tr>
+<tr><td>Naive sum</td><td><code>SELECT sum(val) FROM test_double;</code></td><td><code>SELECT sum(val) FROM test_double;</code></td></tr>
+<tr><td>Kahan sum</td><td><code>SELECT ksum(val) FROM test_double;</code></td><td><code>SELECT sumKahan(val) FROM test_double;</code></td></tr>
+</tbody>
+</table>
+<h5><a class="anchor" aria-hidden="true" id="non-null"></a><a href="#non-null" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Non-null</h5>
+<p>For non-null values, we adjusted the commands as follows</p>
+<ul>
+<li>use <code>test_double_not_nul.csv</code> instead of <code>test_double.csv</code>.</li>
+<li>for Clickhouse, skip declaring val as <code>nullable</code>:
+<code>CREATE TABLE test_double_not_null (val Float64) Engine=Memory;</code>.</li>
+<li>for QuestDB, replace <code>rnd_double()</code> by <code>rnd_double(2)</code> at the DDL step.</li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="results"></a><a href="#results" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Results</h4>
+<p>We ran each query several times for both QuestDB and Clickhouse and took the
+best result.</p>
+<p>Without null values, both databases sum naively at roughly the same speed. When
+using Kahan summation, QuestDB performs at the same speed while Clickhouse
+suffers from a performance hit of ~40%.</p>
+<p><img src="/blog/assets/kahan-naive-not-null.png" alt="alt-text"></p>
+<p>With null values, Clickhouse's performance degrades by 28% and 50% for naive and
+Kahan summation, respectively.</p>
+<p><img src="/blog/assets/kahan-naive-null.png" alt="alt-text"></p>
+<h4><a class="anchor" aria-hidden="true" id="concluding-remarks"></a><a href="#concluding-remarks" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Concluding remarks</h4>
+<p>Our experiment was triggered by our community's reaction, and we set out to
+prove that accurate aggregations can be run as fast as naive ones. In order to
+do so, we also had to start relying on CPU pipelining. We chose to compare our
+performance versus Clickhouse because they run accurate sum algorithms -
+moreover they are popular amongst the developer community and open source,
+meaning that we can benchmark and report their figures.</p>
+<p>We are conscious that this benchmark is not representative of any particular use
+case in a production environment. We chose this test because it is a basic
+query, and is trivial to reproduce. With more complex queries, we expect the
+performance gap to grow further.</p>
+<p>Finally, we are open source and will always be. You can download and use QuestDB
+for free, reproduce all these benchmarks and write new ones yourself.</p>
+</span></div></div><div class="blogSocialSection"></div></div><div class="blog-recent"><a class="button" href="/blog">Recent Posts</a></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><div align="left" class="footersection"><h5>QuestDB</h5><a href="/docs/documentationOverview">Documentation</a><a href="/getstarted">Download</a><a href="https://github.com/questdb/questdb/projects/2">Roadmap</a></div><div align="left" class="footersection"><h5>Community</h5><a href="https://join.slack.com/t/questdb/shared_invite/enQtNzk4Nzg4Mjc2MTE2LTEzZThjMzliMjUzMTBmYzVjYWNmM2UyNWJmNDdkMDYyZmE0ZDliZTQxN2EzNzk5MDE3Zjc1ZmJiZmFiZTIwMGY&gt;"> Join Slack </a><a href="https://twitter.com/" target="@QuestDB" rel="noreferrer noopener">Twitter</a></div><div align="left" class="footersection"><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/questdb/questdb/">GitHub</a><span class="sucker"><a class="github-button" href="https://github.com/questdb/questdb" data-icon="octicon-star" data-count-href="/questdb/questdb/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></span><span class="github-trigger"><a class="github-button" href="https://github.com/questdb/questdb" data-icon="octicon-star" data-count-href="/questdb/questdb/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></span></div></section><section class="copyright">Copyright © 2020 QuestDB</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+              !function(f,b,e,v,n,t,s)
+              {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+              n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+              if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+              n.queue=[];t=b.createElement(e);t.async=!0;
+              t.src=v;s=b.getElementsByTagName(e)[0];
+              s.parentNode.insertBefore(t,s)}(window, document,'script',
+              'https://connect.facebook.net/en_US/fbevents.js');
+              fbq('init', '648273155994655');
+              fbq('track', 'PageView');
+                </script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: 'b2a69b4869a2a85284a82fb57519dcda',
+                indexName: 'questdb',
+                inputSelector: '#search_input_react',
+                algoliaOptions: {}
+              });
+            </script></body></html>
