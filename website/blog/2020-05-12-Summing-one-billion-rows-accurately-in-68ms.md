@@ -21,7 +21,8 @@ easily, we wanted to understand the impact of prefetch. Our performance was
 previously limited by memory bandwidth - using these techniques would address
 this and allow us to compute accurate sums as fast as naive sums.
 
-So we took this feedback in and implemented accurate summation algorithms while using prefetch placement and range values.
+Following the feedback from our community, we implemented accurate summation
+algorithms while using prefetch placement and range values.
 
 Naive sum was indeed inaccurate, but nowhere near the 20% claimed. For example,
 on a large popular dataset of taxi rides in NYC, the sum of the column
@@ -41,7 +42,9 @@ and [stars](https://github.com/questdb/questdb) are welcome
 
 ### TL;DR
 
-With the help of prefetch we implemented the fastest and most accurate summation we have ever [tested](#comparison-with-clickhouse) - 68ms over 1Bn double values.
+With the help of prefetch we implemented the fastest and most accurate summation
+we have ever [tested](#comparison-with-clickhouse) - 68ms over 1bn double
+values.
 
 Contents:
 
@@ -53,8 +56,8 @@ Contents:
   algorithm.
 - Our [compensated sum implementation](#implementation-with-simd-instructions)
   using SIMD instructions.
-- [Benchmark versus Clickhouse](#comparison-with-clickhouse) for naive and accurate summation
-  methods.
+- A [benchmark versus Clickhouse](#comparison-with-clickhouse) for naive and
+  accurate summation methods.
 
 ### Inaccurate summation?
 
@@ -230,7 +233,9 @@ to Kahan compensated sum.
 
 #### Hardware
 
-We run all databases on an `c5.metal` AWS instance, which has two Intel 8275CL 24-core CPU sand 192GB of memory. QuestDB was running on 16 threads. As we showed in a
+We run all databases on an `c5.metal` AWS instance, which has two Intel 8275CL
+24-core CPUs and 192GB of memory. QuestDB was running on 16 threads. As we
+showed in a
 [previous article](2020-04-02-using-simd-to-aggregate-billions-of-rows-per-second.md),
 adding more threads does not improve performance beyond a certain point.
 Clickhouse was running using all cores as per default configuration, however we
