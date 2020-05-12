@@ -69,7 +69,8 @@ cache in parallel with other CPU instructions. While we cannot use co-routines
 easily, we wanted to understand the impact of prefetch. Our performance was
 previously limited by memory bandwidth - using these techniques would address
 this and allow us to compute accurate sums as fast as naive sums.</p>
-<p>So we took this feedback in and implemented accurate summation algorithms while using prefetch placement and range values.</p>
+<p>Following the feedback from our community, we implemented accurate summation
+algorithms while using prefetch placement and range values.</p>
 <p>Naive sum was indeed inaccurate, but nowhere near the 20% claimed. For example,
 on a large popular dataset of taxi rides in NYC, the sum of the column
 <code>fareAmount</code> was <code>$19,082,235,123.69902</code> for naive sums and <code>$19,082,235,123.7</code>
@@ -83,8 +84,10 @@ your
 <a href="https://github.com/questdb/questdb/pulls?q=is%3Apr+is%3Aopen+sort%3Aupdated-desc">pull-requests</a>
 and <a href="https://github.com/questdb/questdb">stars</a> are welcome
 <span class="emoji">🙂</span>.</p>
-<h3><a class="anchor" aria-hidden="true" id="tl-dr"></a><a href="#tl-dr" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>TL;DR</h3>
-<p>With the help of prefetch we implemented the fastest and most accurate summation we have ever <a href="#comparison-with-clickhouse">tested</a> - 68ms over 1Bn double values.</p>
+<h3><a class="anchor" aria-hidden="true" id="tldr"></a><a href="#tldr" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>TL;DR</h3>
+<p>With the help of prefetch we implemented the fastest and most accurate summation
+we have ever <a href="#comparison-with-clickhouse">tested</a> - 68ms over 1bn double
+values.</p>
 <p>Contents:</p>
 <ul>
 <li>An <a href="#inaccurate-summation">introductory example</a> of the problem with summing
@@ -95,8 +98,8 @@ floating points inaccuracies.</li>
 algorithm.</li>
 <li>Our <a href="#implementation-with-simd-instructions">compensated sum implementation</a>
 using SIMD instructions.</li>
-<li><a href="#comparison-with-clickhouse">Benchmark versus Clickhouse</a> for naive and accurate summation
-methods.</li>
+<li>A <a href="#comparison-with-clickhouse">benchmark versus Clickhouse</a> for naive and
+accurate summation methods.</li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="inaccurate-summation"></a><a href="#inaccurate-summation" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Inaccurate summation?</h3>
 <p>Before we dig in, some of you might wonder how an addition can be inaccurate as
@@ -229,7 +232,9 @@ recognise Kahan's sum algorithm.</p>
 <p>We compared how performance behaves when switching from naive (inaccurate) sum
 to Kahan compensated sum.</p>
 <h4><a class="anchor" aria-hidden="true" id="hardware"></a><a href="#hardware" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Hardware</h4>
-<p>We run all databases on an <code>c5.metal</code> AWS instance, which has two Intel 8275CL 24-core CPU sand 192GB of memory. QuestDB was running on 16 threads. As we showed in a
+<p>We run all databases on an <code>c5.metal</code> AWS instance, which has two Intel 8275CL
+24-core CPUs and 192GB of memory. QuestDB was running on 16 threads. As we
+showed in a
 <a href="2020-04-02-using-simd-to-aggregate-billions-of-rows-per-second.md">previous article</a>,
 adding more threads does not improve performance beyond a certain point.
 Clickhouse was running using all cores as per default configuration, however we
