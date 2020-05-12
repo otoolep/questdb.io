@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Programmatic Interfaces · QuestDB</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## Overview"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Programmatic Interfaces · QuestDB"/><meta property="og:type" content="website"/><meta property="og:url" content="https://questdb.io/"/><meta property="og:description" content="## Overview"/><meta property="og:image" content="https://questdb.io/img/favicon.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://questdb.io/img/favicon.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="alternate" type="application/atom+xml" href="https://questdb.io/blog/atom.xml" title="QuestDB Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://questdb.io/blog/feed.xml" title="QuestDB Blog RSS Feed"/><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700|IBM+Plex+Sans:300,400,600,700"/><script type="text/javascript" src="/js/gtmgmt.js"></script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-145747842-1"></script><script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script><script type="text/javascript" src="/js/fonts.js"></script><script type="text/javascript" src="/js/menu-hack.js"></script><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script type="text/javascript" src="/js/getstarted.js"></script><script type="text/javascript" src="/js/hotjar.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/QuestDB_Logo.png" alt="QuestDB"/><h2 class="headerTitleWithLogo">QuestDB</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/" target="_self">Home</a></li><li class=""><a href="/getstarted" target="_self">Get QuestDB</a></li><li class=""><a href="/docs/documentationOverview" target="_self">Documentation</a></li><li class=""><a href="/blog/" target="_self">Blog</a></li><li class=""><a href="/careers" target="_self">Careers</a></li><li class=""><a href="/about" target="_self">About</a></li><li class=""><a href="https://serieux-saucisson-79115.herokuapp.com/" target="_self">Join</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search..." title="Search..."/></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 id="__docusaurus" class="postHeaderTitle">Programmatic Interfaces</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="overview"></a><a href="#overview" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Overview</h2>
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Programmatic Interfaces · QuestDB</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## Overview"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Programmatic Interfaces · QuestDB"/><meta property="og:type" content="website"/><meta property="og:url" content="https://questdb.io/"/><meta property="og:description" content="## Overview"/><meta property="og:image" content="https://questdb.io/img/favicon.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://questdb.io/img/favicon.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="alternate" type="application/atom+xml" href="https://questdb.io/blog/atom.xml" title="QuestDB Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://questdb.io/blog/feed.xml" title="QuestDB Blog RSS Feed"/><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700|IBM+Plex+Sans:300,400,600,700"/><script type="text/javascript" src="/js/gtmgmt.js"></script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-145747842-1"></script><script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script><script type="text/javascript" src="/js/fonts.js"></script><script type="text/javascript" src="/js/menu-hack.js"></script><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script type="text/javascript" src="/js/getstarted.js"></script><script type="text/javascript" src="/js/hotjar.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/QuestDB_Logo.png" alt="QuestDB"/><h2 class="headerTitleWithLogo">QuestDB</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/" target="_self">Home</a></li><li class=""><a href="/getstarted" target="_self">Get QuestDB</a></li><li class=""><a href="/docs/documentationOverview" target="_self">Documentation</a></li><li class=""><a href="/blog/" target="_self">Blog</a></li><li class=""><a href="/careers" target="_self">Careers</a></li><li class=""><a href="/about" target="_self">About</a></li><li class=""><a href="https://serieux-saucisson-79115.herokuapp.com/" target="_self">Join</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search..." title="Search..."/></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Programmatic Interfaces</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="overview"></a><a href="#overview" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Overview</h2>
 <p>QuestDB exposes the following interfaces:</p>
 <ul>
 <li><strong><a href="intPROGRAM.md#postgres-wire-protocol">Postgres wire protocol</a></strong></li>
@@ -27,7 +27,7 @@ tables and add missing columns.</p>
 protocol is on our road map.</p>
 <blockquote>
 <p>QuestDB listens for multicast on <code>232.1.2.3:9009</code>. The address change or switch to unicast can be done via configuration. If you run QuestDB via Docker
-start container as <code>run --rm -it -p 9000:9000 -p 8812:8812 -p 9009:9009 --net=host questdb/questdb</code>  and publish
+start container as <code>run --rm -it -p 9000:9000 -p 8892:8892 -p 9009:9009 --net=host questdb/questdb</code>  and publish
 multicast packets with TTL of at least 2.</p>
 </blockquote>
 <h3><a class="anchor" aria-hidden="true" id="syntax"></a><a href="#syntax" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Syntax</h3>
@@ -179,16 +179,16 @@ Example tag(&quot;a&quot;,&quot;x&quot;).tag(&quot;b&quot;,&quot;y&quot;).tag(&q
 </blockquote>
 <p>Example:</p>
 <pre><code class="hljs css language-java">
-sender.metric(<span class="hljs-string">"readings"</span>).tag(<span class="hljs-string">"city"</span>, <span class="hljs-string">"London"</span>).tag(<span class="hljs-string">"by"</span>, <span class="hljs-string">"quest"</span>).field(<span class="hljs-string">"temp"</span>, <span class="hljs-number">3400</span>).field(<span class="hljs-string">"humid"</span>, <span class="hljs-number">0.434</span>).$(Os.currentTimeNanos());
+    sender.metric(<span class="hljs-string">"readings"</span>).tag(<span class="hljs-string">"city"</span>, <span class="hljs-string">"London"</span>).tag(<span class="hljs-string">"by"</span>, <span class="hljs-string">"quest"</span>).field(<span class="hljs-string">"temp"</span>, <span class="hljs-number">3400</span>).field(<span class="hljs-string">"humid"</span>, <span class="hljs-number">0.434</span>).$(Os.currentTimeNanos());
 </code></pre>
 <p>Sender will send message as soon as send buffer is full. To send messages before buffer fills up you can use <code>sender.flush()</code></p>
 <h4><a class="anchor" aria-hidden="true" id="example"></a><a href="#example" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Example</h4>
 <pre><code class="hljs css language-java">
-LineProtoSender sender = <span class="hljs-keyword">new</span> LineProtoSender(<span class="hljs-number">0</span>, Net.parseIPv4(<span class="hljs-string">"232.1.2.3"</span>), <span class="hljs-number">9009</span>, <span class="hljs-number">1024</span>, <span class="hljs-number">2</span>);
-sender.metric(<span class="hljs-string">"readings"</span>).tag(<span class="hljs-string">"city"</span>, <span class="hljs-string">"London"</span>).tag(<span class="hljs-string">"by"</span>, <span class="hljs-string">"quest"</span>).field(<span class="hljs-string">"temp"</span>, <span class="hljs-number">3400</span>).$(Os.currentTimeNanos());
-sender.metric(<span class="hljs-string">"readings"</span>).tag(<span class="hljs-string">"city"</span>, <span class="hljs-string">"London"</span>).tag(<span class="hljs-string">"by"</span>, <span class="hljs-string">"quest"</span>).field(<span class="hljs-string">"temp"</span>, <span class="hljs-number">3400</span>).$(Os.currentTimeNanos());
-sender.metric(<span class="hljs-string">"readings"</span>).tag(<span class="hljs-string">"city"</span>, <span class="hljs-string">"London"</span>).tag(<span class="hljs-string">"by"</span>, <span class="hljs-string">"quest"</span>).field(<span class="hljs-string">"temp"</span>, <span class="hljs-number">3400</span>).$(Os.currentTimeNanos());
-sender.flush();
+    LineProtoSender sender = <span class="hljs-keyword">new</span> LineProtoSender(<span class="hljs-number">0</span>, Net.parseIPv4(<span class="hljs-string">"232.1.2.3"</span>), <span class="hljs-number">9009</span>, <span class="hljs-number">1024</span>, <span class="hljs-number">2</span>);
+    sender.metric(<span class="hljs-string">"readings"</span>).tag(<span class="hljs-string">"city"</span>, <span class="hljs-string">"London"</span>).tag(<span class="hljs-string">"by"</span>, <span class="hljs-string">"quest"</span>).field(<span class="hljs-string">"temp"</span>, <span class="hljs-number">3400</span>).$(Os.currentTimeNanos());
+    sender.metric(<span class="hljs-string">"readings"</span>).tag(<span class="hljs-string">"city"</span>, <span class="hljs-string">"London"</span>).tag(<span class="hljs-string">"by"</span>, <span class="hljs-string">"quest"</span>).field(<span class="hljs-string">"temp"</span>, <span class="hljs-number">3400</span>).$(Os.currentTimeNanos());
+    sender.metric(<span class="hljs-string">"readings"</span>).tag(<span class="hljs-string">"city"</span>, <span class="hljs-string">"London"</span>).tag(<span class="hljs-string">"by"</span>, <span class="hljs-string">"quest"</span>).field(<span class="hljs-string">"temp"</span>, <span class="hljs-number">3400</span>).$(Os.currentTimeNanos());
+    sender.flush();
 </code></pre>
 <h3><a class="anchor" aria-hidden="true" id="sending-messages-from-unix-shell"></a><a href="#sending-messages-from-unix-shell" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Sending messages from Unix shell</h3>
 <p>It is very easy to send metrics from shell. <code>bash</code> has specific syntax to send udp packets, for example:</p>
@@ -212,11 +212,11 @@ to administer tables, and <a href="/docs/select">SELECT</a> to query data.</p>
 <pre><code class="hljs css language-java">CairoConfiguration configuration = <span class="hljs-keyword">new</span> DefaultCairoConfiguration(<span class="hljs-string">"/tmp/my_database"</span>);
 BindVariableService bindVariableService = <span class="hljs-keyword">new</span> BindVariableService();
 <span class="hljs-keyword">try</span> (CairoEngine engine = <span class="hljs-keyword">new</span> CairoEngine(configuration)) {
-<span class="hljs-keyword">try</span> (SqlCompiler compiler = <span class="hljs-keyword">new</span> SqlCompiler(engine, configuration)) {
-    compiler.compile(
-        <span class="hljs-string">"YOUR_SQL_HERE"</span>
-    );
-}
+    <span class="hljs-keyword">try</span> (SqlCompiler compiler = <span class="hljs-keyword">new</span> SqlCompiler(engine, configuration)) {
+        compiler.compile(
+            <span class="hljs-string">"YOUR_SQL_HERE"</span>
+        );
+    }
 }
 </code></pre>
 <p><code>configuration</code> holds various settings that can be overridden via a subclass.
@@ -228,24 +228,24 @@ Most importantly configuration is bound to the database root - directory where t
 <pre><code class="hljs css language-java">CairoConfiguration configuration = <span class="hljs-keyword">new</span> DefaultCairoConfiguration(<span class="hljs-string">"/tmp/my_database"</span>);
 BindVariableService bindVariableService = <span class="hljs-keyword">new</span> BindVariableService();
 <span class="hljs-keyword">try</span> (CairoEngine engine = <span class="hljs-keyword">new</span> CairoEngine(configuration)) {
-<span class="hljs-keyword">try</span> (SqlCompiler compiler = <span class="hljs-keyword">new</span> SqlCompiler(engine, configuration)) {
-    compiler.compile(
-            <span class="hljs-string">"create table abc ("</span> +
-                    <span class="hljs-string">"a INT, "</span> +
-                    <span class="hljs-string">"b BYTE, "</span> +
-                    <span class="hljs-string">"c SHORT, "</span> +
-                    <span class="hljs-string">"d LONG, "</span> +
-                    <span class="hljs-string">"e FLOAT, "</span> +
-                    <span class="hljs-string">"f DOUBLE, "</span> +
-                    <span class="hljs-string">"g DATE, "</span> +
-                    <span class="hljs-string">"h BINARY, "</span> +
-                    <span class="hljs-string">"t TIMESTAMP, "</span> +
-                    <span class="hljs-string">"x SYMBOL, "</span> +
-                    <span class="hljs-string">"z STRING, "</span> +
-                    <span class="hljs-string">"y BOOLEAN"</span> +
-                    <span class="hljs-string">") timestamp(t) partition by MONTH"</span>, 
-    );
-}
+    <span class="hljs-keyword">try</span> (SqlCompiler compiler = <span class="hljs-keyword">new</span> SqlCompiler(engine, configuration)) {
+        compiler.compile(
+                <span class="hljs-string">"create table abc ("</span> +
+                        <span class="hljs-string">"a INT, "</span> +
+                        <span class="hljs-string">"b BYTE, "</span> +
+                        <span class="hljs-string">"c SHORT, "</span> +
+                        <span class="hljs-string">"d LONG, "</span> +
+                        <span class="hljs-string">"e FLOAT, "</span> +
+                        <span class="hljs-string">"f DOUBLE, "</span> +
+                        <span class="hljs-string">"g DATE, "</span> +
+                        <span class="hljs-string">"h BINARY, "</span> +
+                        <span class="hljs-string">"t TIMESTAMP, "</span> +
+                        <span class="hljs-string">"x SYMBOL, "</span> +
+                        <span class="hljs-string">"z STRING, "</span> +
+                        <span class="hljs-string">"y BOOLEAN"</span> +
+                        <span class="hljs-string">") timestamp(t) partition by MONTH"</span>, 
+        );
+    }
 }
 </code></pre>
 <h3><a class="anchor" aria-hidden="true" id="reading-query-results"></a><a href="#reading-query-results" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Reading query results</h3>
@@ -263,8 +263,8 @@ run custom SQL queries by instantiating <code>RecordCursorFactory</code> to <cod
 <span class="hljs-keyword">final</span> Record record = cursor.getRecord();
 
 <span class="hljs-keyword">while</span>(cursor.hasNext()) {
-record.getInt(<span class="hljs-number">0</span>);
-...
+    record.getInt(<span class="hljs-number">0</span>);
+    ...
 }
 </code></pre>
 <h4><a class="anchor" aria-hidden="true" id="component-life-cycle"></a><a href="#component-life-cycle" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Component life cycle</h4>
@@ -296,23 +296,23 @@ cross-process lock on the table.</li>
 <pre><code class="hljs css language-java">AllowAllSecurityContextFactory securityContextFactor = <span class="hljs-keyword">new</span> AllowAllSecurityContextFactory();
 CairoSecurityContext cairoSecurityContext = securityContextFactor.getInstance(<span class="hljs-string">"admin"</span>);
 <span class="hljs-keyword">try</span> (TableWriter writer = engine.getWriter(cairoSecurityContext, <span class="hljs-string">"abc"</span>)) {
-<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++) {
-    TableWriter.Row row = writer.newRow(Os.currentTimeMicros());
-    row.putInt(<span class="hljs-number">0</span>, <span class="hljs-number">123</span>);
-    row.putByte(<span class="hljs-number">1</span>, (<span class="hljs-keyword">byte</span>) <span class="hljs-number">1111</span>);
-    row.putShort(<span class="hljs-number">2</span>, (<span class="hljs-keyword">short</span>) <span class="hljs-number">222</span>);
-    row.putLong(<span class="hljs-number">3</span>, <span class="hljs-number">333</span>);
-    row.putFloat(<span class="hljs-number">4</span>, <span class="hljs-number">4.44f</span>);
-    row.putDouble(<span class="hljs-number">5</span>, <span class="hljs-number">5.55</span>);
-    row.putDate(<span class="hljs-number">6</span>, System.currentTimeMillis());
-    <span class="hljs-comment">// skip 7 - see separate function to write blobs</span>
-    <span class="hljs-comment">// skip 8 - timestamp is already set via newRow() call</span>
-    row.putSym(<span class="hljs-number">9</span>, <span class="hljs-string">"xyz"</span>);
-    row.putStr(<span class="hljs-number">10</span>, <span class="hljs-string">"abc"</span>);
-    row.putBool(<span class="hljs-number">11</span>, <span class="hljs-keyword">true</span>);
-    row.append();
-}
-writer.commit();
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++) {
+        TableWriter.Row row = writer.newRow(Os.currentTimeMicros());
+        row.putInt(<span class="hljs-number">0</span>, <span class="hljs-number">123</span>);
+        row.putByte(<span class="hljs-number">1</span>, (<span class="hljs-keyword">byte</span>) <span class="hljs-number">1111</span>);
+        row.putShort(<span class="hljs-number">2</span>, (<span class="hljs-keyword">short</span>) <span class="hljs-number">222</span>);
+        row.putLong(<span class="hljs-number">3</span>, <span class="hljs-number">333</span>);
+        row.putFloat(<span class="hljs-number">4</span>, <span class="hljs-number">4.44f</span>);
+        row.putDouble(<span class="hljs-number">5</span>, <span class="hljs-number">5.55</span>);
+        row.putDate(<span class="hljs-number">6</span>, System.currentTimeMillis());
+        <span class="hljs-comment">// skip 7 - see separate function to write blobs</span>
+        <span class="hljs-comment">// skip 8 - timestamp is already set via newRow() call</span>
+        row.putSym(<span class="hljs-number">9</span>, <span class="hljs-string">"xyz"</span>);
+        row.putStr(<span class="hljs-number">10</span>, <span class="hljs-string">"abc"</span>);
+        row.putBool(<span class="hljs-number">11</span>, <span class="hljs-keyword">true</span>);
+        row.append();
+    }
+    writer.commit();
 }
 </code></pre>
 <h4><a class="anchor" aria-hidden="true" id="detailed-steps"></a><a href="#detailed-steps" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Detailed Steps</h4>
@@ -364,7 +364,7 @@ To access Web Console visit <strong><a href="http://localhost:9000">http://local
 </blockquote>
 <p>Other machines on your network can access the console or connect to the DB programmatically
 by navigating <code>http://IP_OF_THE_HOST_MACHINE:9000</code></p>
-<h3><a class="anchor" aria-hidden="true" id="imp---loading-data"></a><a href="#imp---loading-data" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>/imp - Loading data</h3>
+<h3><a class="anchor" aria-hidden="true" id="imp-loading-data"></a><a href="#imp-loading-data" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>/imp - Loading data</h3>
 <h4><a class="anchor" aria-hidden="true" id="overview-7"></a><a href="#overview-7" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Overview</h4>
 <p>The function <code>/imp</code> streams tabular text data directly into a table.
 It supports CSV, TAB and Pipe (<code>|</code>) delimited inputs and optional headers. There are no restrictions on
@@ -375,7 +375,7 @@ However in some cases additional configuration can be provided to augment automa
 When first chunk is non-representative of rest of data automatic import can yield errors.</p>
 </blockquote>
 <p><code>/imp</code> column names from header row as table columns. The following characters are removed from column names:</p>
-<pre><code class="hljs css language-java"> [space] _  ?  .  ,  \  \  \\  /  \<span class="hljs-number">0</span>  :  )  (  +  -  *  %  ~
+<pre><code class="hljs css language-java">     [space] _  ?  .  ,  \  \  \\  /  \<span class="hljs-number">0</span>  :  )  (  +  -  *  %  ~
 </code></pre>
 <p>When header row is missing column names are generated automatically.</p>
 <h4><a class="anchor" aria-hidden="true" id="syntax-2"></a><a href="#syntax-2" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Syntax</h4>
@@ -488,36 +488,36 @@ Content-Type: text/plain; charset=utf-8
 </code></pre>
 <p>JSON response for the same request would be:</p>
 <pre><code class="hljs css language-json">{
-<span class="hljs-attr">"status"</span>: <span class="hljs-string">"OK"</span>,
-<span class="hljs-attr">"location"</span>: <span class="hljs-string">"ratings.csv"</span>,
-<span class="hljs-attr">"rowsRejected"</span>: <span class="hljs-number">0</span>,
-<span class="hljs-attr">"rowsImported"</span>: <span class="hljs-number">22884377</span>,
-<span class="hljs-attr">"columns"</span>: [
-    {
-        <span class="hljs-attr">"name"</span>: <span class="hljs-string">"userId"</span>,
-        <span class="hljs-attr">"type"</span>: <span class="hljs-string">"INT"</span>,
-        <span class="hljs-attr">"size"</span>: <span class="hljs-number">4</span>,
-        <span class="hljs-attr">"errors"</span>: <span class="hljs-number">0</span>
-    },
-    {
-        <span class="hljs-attr">"name"</span>: <span class="hljs-string">"movieId"</span>,
-        <span class="hljs-attr">"type"</span>: <span class="hljs-string">"INT"</span>,
-        <span class="hljs-attr">"size"</span>: <span class="hljs-number">4</span>,
-        <span class="hljs-attr">"errors"</span>: <span class="hljs-number">0</span>
-    },
-    {
-        <span class="hljs-attr">"name"</span>: <span class="hljs-string">"rating"</span>,
-        <span class="hljs-attr">"type"</span>: <span class="hljs-string">"DOUBLE"</span>,
-        <span class="hljs-attr">"size"</span>: <span class="hljs-number">8</span>,
-        <span class="hljs-attr">"errors"</span>: <span class="hljs-number">0</span>
-    },
-    {
-        <span class="hljs-attr">"name"</span>: <span class="hljs-string">"timestamp"</span>,
-        <span class="hljs-attr">"type"</span>: <span class="hljs-string">"INT"</span>,
-        <span class="hljs-attr">"size"</span>: <span class="hljs-number">4</span>,
-        <span class="hljs-attr">"errors"</span>: <span class="hljs-number">0</span>
-    }
-]
+    <span class="hljs-attr">"status"</span>: <span class="hljs-string">"OK"</span>,
+    <span class="hljs-attr">"location"</span>: <span class="hljs-string">"ratings.csv"</span>,
+    <span class="hljs-attr">"rowsRejected"</span>: <span class="hljs-number">0</span>,
+    <span class="hljs-attr">"rowsImported"</span>: <span class="hljs-number">22884377</span>,
+    <span class="hljs-attr">"columns"</span>: [
+        {
+            <span class="hljs-attr">"name"</span>: <span class="hljs-string">"userId"</span>,
+            <span class="hljs-attr">"type"</span>: <span class="hljs-string">"INT"</span>,
+            <span class="hljs-attr">"size"</span>: <span class="hljs-number">4</span>,
+            <span class="hljs-attr">"errors"</span>: <span class="hljs-number">0</span>
+        },
+        {
+            <span class="hljs-attr">"name"</span>: <span class="hljs-string">"movieId"</span>,
+            <span class="hljs-attr">"type"</span>: <span class="hljs-string">"INT"</span>,
+            <span class="hljs-attr">"size"</span>: <span class="hljs-number">4</span>,
+            <span class="hljs-attr">"errors"</span>: <span class="hljs-number">0</span>
+        },
+        {
+            <span class="hljs-attr">"name"</span>: <span class="hljs-string">"rating"</span>,
+            <span class="hljs-attr">"type"</span>: <span class="hljs-string">"DOUBLE"</span>,
+            <span class="hljs-attr">"size"</span>: <span class="hljs-number">8</span>,
+            <span class="hljs-attr">"errors"</span>: <span class="hljs-number">0</span>
+        },
+        {
+            <span class="hljs-attr">"name"</span>: <span class="hljs-string">"timestamp"</span>,
+            <span class="hljs-attr">"type"</span>: <span class="hljs-string">"INT"</span>,
+            <span class="hljs-attr">"size"</span>: <span class="hljs-number">4</span>,
+            <span class="hljs-attr">"errors"</span>: <span class="hljs-number">0</span>
+        }
+    ]
 }
 </code></pre>
 <h4><a class="anchor" aria-hidden="true" id="import-with-schema"></a><a href="#import-with-schema" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Import with schema</h4>
@@ -657,44 +657,44 @@ Note that the <code>query</code> is url-encoded.</p>
 </code></pre>
 <p>This is an example of successful query execution response. HTTP status code <code>200</code>.</p>
 <pre><code class="hljs css language-json">{
-<span class="hljs-attr">"query"</span>: <span class="hljs-string">"select AccidentIndex, Date, Time from 'Accidents0514.csv' limit 2"</span>,
-<span class="hljs-attr">"columns"</span>: [
-    {
-        <span class="hljs-attr">"name"</span>: <span class="hljs-string">"AccidentIndex"</span>,
-        <span class="hljs-attr">"type"</span>: <span class="hljs-string">"STRING"</span>
-    },
-    {
-        <span class="hljs-attr">"name"</span>: <span class="hljs-string">"Date"</span>,
-        <span class="hljs-attr">"type"</span>: <span class="hljs-string">"DATE"</span>
-    },
-    {
-        <span class="hljs-attr">"name"</span>: <span class="hljs-string">"Time"</span>,
-        <span class="hljs-attr">"type"</span>: <span class="hljs-string">"STRING"</span>
-    }
-],
-<span class="hljs-attr">"dataset"</span>: [
-    [
-        <span class="hljs-string">"200501BS00001"</span>,
-        <span class="hljs-string">"2005-01-04T00:00:00.000Z"</span>,
-        <span class="hljs-string">"17:42"</span>
+    <span class="hljs-attr">"query"</span>: <span class="hljs-string">"select AccidentIndex, Date, Time from 'Accidents0514.csv' limit 2"</span>,
+    <span class="hljs-attr">"columns"</span>: [
+        {
+            <span class="hljs-attr">"name"</span>: <span class="hljs-string">"AccidentIndex"</span>,
+            <span class="hljs-attr">"type"</span>: <span class="hljs-string">"STRING"</span>
+        },
+        {
+            <span class="hljs-attr">"name"</span>: <span class="hljs-string">"Date"</span>,
+            <span class="hljs-attr">"type"</span>: <span class="hljs-string">"DATE"</span>
+        },
+        {
+            <span class="hljs-attr">"name"</span>: <span class="hljs-string">"Time"</span>,
+            <span class="hljs-attr">"type"</span>: <span class="hljs-string">"STRING"</span>
+        }
     ],
-    [
-        <span class="hljs-string">"200501BS00002"</span>,
-        <span class="hljs-string">"2005-01-05T00:00:00.000Z"</span>,
-        <span class="hljs-string">"17:36"</span>
+    <span class="hljs-attr">"dataset"</span>: [
+        [
+            <span class="hljs-string">"200501BS00001"</span>,
+            <span class="hljs-string">"2005-01-04T00:00:00.000Z"</span>,
+            <span class="hljs-string">"17:42"</span>
+        ],
+        [
+            <span class="hljs-string">"200501BS00002"</span>,
+            <span class="hljs-string">"2005-01-05T00:00:00.000Z"</span>,
+            <span class="hljs-string">"17:36"</span>
+        ],
+       
     ],
-   
-],
-<span class="hljs-attr">"count"</span>: <span class="hljs-number">2</span>
+    <span class="hljs-attr">"count"</span>: <span class="hljs-number">2</span>
 }
 </code></pre>
 <h4><a class="anchor" aria-hidden="true" id="error-response"></a><a href="#error-response" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Error response</h4>
 <p>Example of error response. HTTP status code <code>400</code> is used for query errors and <code>500</code> for internal server
 errors, which should not normally occur.</p>
 <pre><code class="hljs css language-json">{
-<span class="hljs-attr">"query"</span>: <span class="hljs-string">"\nselect AccidentIndex, Date, Time2 from 'Accidents0514.csv' limit 10"</span>,
-<span class="hljs-attr">"error"</span>: <span class="hljs-string">"Invalid column: Time2"</span>,
-<span class="hljs-attr">"position"</span>: <span class="hljs-number">29</span>
+    <span class="hljs-attr">"query"</span>: <span class="hljs-string">"\nselect AccidentIndex, Date, Time2 from 'Accidents0514.csv' limit 10"</span>,
+    <span class="hljs-attr">"error"</span>: <span class="hljs-string">"Invalid column: Time2"</span>,
+    <span class="hljs-attr">"position"</span>: <span class="hljs-number">29</span>
 }
 </code></pre>
 <h3><a class="anchor" aria-hidden="true" id="exp-export-data"></a><a href="#exp-export-data" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>/exp Export Data</h3>
@@ -729,8 +729,8 @@ and <code>limit=20</code> will return first 20 rows, which is equivalent to <cod
 <h4><a class="anchor" aria-hidden="true" id="success-response"></a><a href="#success-response" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Success response</h4>
 <p>Below is example of exporting data from command line using <code>curl</code></p>
 <pre><code class="hljs css language-shell script">mbp:~ user$ curl -v -G http://localhost:9000/exp \
-             --data-urlencode "query=select AccidentIndex2, Date, Time from 'Accidents0514.csv'" \
-             -d limit=5
+                 --data-urlencode "query=select AccidentIndex2, Date, Time from 'Accidents0514.csv'" \
+                 -d limit=5
 </code></pre>
 <p>Response:</p>
 <pre><code class="hljs css language-shell script">*   Trying ::1...
@@ -784,7 +784,7 @@ Example erroneous request:</p>
 &lt;em&gt;Error at(7): Invalid column: AccidentIndex2&lt;/em&gt;
 * Connection #0 to host localhost left intact
 </code></pre>
-</span></div></article></div><div class="docLastUpdate"><em>Last updated on 5/10/2020</em></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#overview">Overview</a></li><li><a href="#postgres-wire-protocol">Postgres Wire Protocol</a><ul class="toc-headings"><li><a href="#overview-1">Overview</a></li></ul></li><li><a href="#influx-line-protocol">Influx Line Protocol</a><ul class="toc-headings"><li><a href="#overview-2">Overview</a></li><li><a href="#syntax">Syntax</a></li><li><a href="#dealing-with-irregularly-structured-data">Dealing with irregularly-structured data</a></li><li><a href="#configuration">Configuration</a></li><li><a href="#sending-messages-from-java">Sending messages from Java</a></li><li><a href="#sending-messages-from-unix-shell">Sending messages from Unix shell</a></li></ul></li><li><a href="#java">Java</a><ul class="toc-headings"><li><a href="#compiling-sql-in-java">Compiling SQL in Java</a></li><li><a href="#reading-query-results">Reading query results</a></li><li><a href="#writing-data-programmatically">Writing data programmatically</a></li></ul></li><li><a href="#http-rest">HTTP Rest</a><ul class="toc-headings"><li><a href="#overview-6">Overview</a></li><li><a href="#imp---loading-data">/imp - Loading data</a></li><li><a href="#imp-append-data">/imp Append Data</a></li><li><a href="#exec-query-data">/exec Query Data</a></li><li><a href="#exp-export-data">/exp Export Data</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><div align="left" class="footersection"><h5>QuestDB</h5><a href="/docs/documentationOverview">Documentation</a><a href="/getstarted">Download</a><a href="https://github.com/questdb/questdb/projects/2">Roadmap</a></div><div align="left" class="footersection"><h5>Community</h5><a href="https://join.slack.com/t/questdb/shared_invite/enQtNzk4Nzg4Mjc2MTE2LTEzZThjMzliMjUzMTBmYzVjYWNmM2UyNWJmNDdkMDYyZmE0ZDliZTQxN2EzNzk5MDE3Zjc1ZmJiZmFiZTIwMGY&gt;"> Join Slack </a><a href="https://twitter.com/" target="@QuestDB" rel="noreferrer noopener">Twitter</a></div><div align="left" class="footersection"><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/questdb/questdb/">GitHub</a><span class="sucker"><a class="github-button" href="https://github.com/questdb/questdb" data-icon="octicon-star" data-count-href="/questdb/questdb/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></span><span class="github-trigger"><a class="github-button" href="https://github.com/questdb/questdb" data-icon="octicon-star" data-count-href="/questdb/questdb/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></span></div></section><section class="copyright">Copyright © 2020 QuestDB</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 3/6/2020</em></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#overview">Overview</a></li><li><a href="#postgres-wire-protocol">Postgres Wire Protocol</a><ul class="toc-headings"><li><a href="#overview-1">Overview</a></li></ul></li><li><a href="#influx-line-protocol">Influx Line Protocol</a><ul class="toc-headings"><li><a href="#overview-2">Overview</a></li><li><a href="#syntax">Syntax</a></li><li><a href="#dealing-with-irregularly-structured-data">Dealing with irregularly-structured data</a></li><li><a href="#configuration">Configuration</a></li><li><a href="#sending-messages-from-java">Sending messages from Java</a></li><li><a href="#sending-messages-from-unix-shell">Sending messages from Unix shell</a></li></ul></li><li><a href="#java">Java</a><ul class="toc-headings"><li><a href="#compiling-sql-in-java">Compiling SQL in Java</a></li><li><a href="#reading-query-results">Reading query results</a></li><li><a href="#writing-data-programmatically">Writing data programmatically</a></li></ul></li><li><a href="#http-rest">HTTP Rest</a><ul class="toc-headings"><li><a href="#overview-6">Overview</a></li><li><a href="#imp-loading-data">/imp - Loading data</a></li><li><a href="#imp-append-data">/imp Append Data</a></li><li><a href="#exec-query-data">/exec Query Data</a></li><li><a href="#exp-export-data">/exp Export Data</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><div align="left" class="footersection"><h5>QuestDB</h5><a href="/docs/documentationOverview">Documentation</a><a href="/getstarted">Download</a><a href="https://github.com/questdb/questdb/projects/2">Roadmap</a></div><div align="left" class="footersection"><h5>Community</h5><a href="https://join.slack.com/t/questdb/shared_invite/enQtNzk4Nzg4Mjc2MTE2LTEzZThjMzliMjUzMTBmYzVjYWNmM2UyNWJmNDdkMDYyZmE0ZDliZTQxN2EzNzk5MDE3Zjc1ZmJiZmFiZTIwMGY&gt;"> Join Slack </a><a href="https://twitter.com/" target="@QuestDB" rel="noreferrer noopener">Twitter</a></div><div align="left" class="footersection"><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/questdb/questdb/">GitHub</a><span class="sucker"><a class="github-button" href="https://github.com/questdb/questdb" data-icon="octicon-star" data-count-href="/questdb/questdb/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></span><span class="github-trigger"><a class="github-button" href="https://github.com/questdb/questdb" data-icon="octicon-star" data-count-href="/questdb/questdb/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></span></div></section><section class="copyright">Copyright © 2020 QuestDB</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
               !function(f,b,e,v,n,t,s)
               {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
               n.callMethod.apply(n,arguments):n.queue.push(arguments)};
