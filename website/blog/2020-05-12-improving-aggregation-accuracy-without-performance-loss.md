@@ -1,33 +1,16 @@
 ---
-title: Summing one billion rows accurately in 68ms
+title: Improving aggregation accuracy without performance loss
 author: Tancrede Collard
 ---
 
 ![alt-text](assets/road-runner.png)
 
-[About a month ago](https://www.questdb.io/blog/2020/04/02/using-simd-to-aggregate-billions-of-rows-per-second),
-we announced a new release with SIMD aggregations on
-[HackerNews](https://news.ycombinator.com/item?id=22803504),
-[Reddit](https://www.reddit.com/r/programming/comments/fwlk0k/questdb_using_simd_to_aggregate_billions_of/)
-and other forums. We have received heated comments about cutting corners by
-benchmarking imprecise "naive" summations. The implied remark here being that
-compensated "accurate" sums would be much slower as a result. Also, some users
-claimed that the accuracy loss could be as high as 20%! We had to verify this at
-least.
+In the world of databases, benchmarking performance has always been the hottest topic. Who is faster for data ingestion
+and queries?[About a month ago](https://www.questdb.io/blog/2020/04/02/using-simd-to-aggregate-billions-of-rows-per-second) we announced a new release with SIMD aggregations on [HackerNews](https://news.ycombinator.com/item?id=22803504) and [Reddit](https://www.reddit.com/r/programming/comments/fwlk0k/questdb_using_simd_to_aggregate_billions_of/). Fast. But were those results accurate too?
 
-A user mentioned prefetch and co-routines techniques to pull data from RAM to
-cache in parallel with other CPU instructions. While we cannot use co-routines
-easily, we wanted to understand the impact of prefetch. Our performance was
-previously limited by memory bandwidth - using these techniques would address
-this and allow us to compute accurate sums as fast as naive sums.
+Speed is not everything. Some of the feedback we have received pointed us toward accuracy of our results. This is something typically overlooked in the space, but our sums were  "naive". By compounding a very small error over and over through a set of operations, it can eventually become signifiant enough for people to start worrying about it.  
 
-Following the feedback from our community, we implemented accurate summation
-algorithms while using prefetch placement and range values.
-
-Naive sum was indeed inaccurate, but nowhere near the 20% claimed. For example,
-on a large popular dataset of taxi rides in NYC, the sum of the column
-`fareAmount` was `$19,082,235,123.69902` for naive sums and `$19,082,235,123.7`
-for Kahan accurate sums. This is less than 1 cent difference on ~\$19bn.
+There is a trade-off between speed and accuracy. But we wanted to see if we could be the first to actually include an accurate summation algo (such as "Kahan" and "Neumaier" compensated summation) without a loss in performance. We eventually managed to do so, and hope this advance can benefit the community.
 
 With its latest
 [release 4.2.1](https://github.com/questdb/questdb/releases/tag/4.2.1), QuestDB
@@ -40,13 +23,19 @@ your
 and [stars](https://github.com/questdb/questdb) are welcome
 <span class="emoji">🙂</span>.
 
-### TL;DR
+### How did we get there? TL;DR
+
+We used prefetch and co-routines techniques to pull data from RAM to
+cache in parallel with other CPU instructions. Our performance was
+previously limited by memory bandwidth - using these techniques would address
+this and allow us to compute accurate sums as fast as naive sums.
 
 With the help of prefetch we implemented the fastest and most accurate summation
 we have ever [tested](#comparison-with-clickhouse) - 68ms over 1bn double
-values.
+values. We believe this is a significant advance in terms of performance for accurate summations, and will
+help developers handling intensive computations with large datasets.
 
-Contents:
+### Contents
 
 - An [introductory example](#inaccurate-summation) of the problem with summing
   doubles.
@@ -294,20 +283,3 @@ With null values, Clickhouse's performance degrades by 28% and 50% for naive and
 Kahan summation, respectively.
 
 ![alt-text](assets/kahan-naive-null.png)
-
-#### Concluding remarks
-
-Our experiment was triggered by our community's reaction, and we set out to
-prove that accurate aggregations can be run as fast as naive ones. In order to
-do so, we also had to start relying on CPU pipelining. We chose to compare our
-performance versus Clickhouse because they run accurate sum algorithms -
-moreover they are popular amongst the developer community and open source,
-meaning that we can benchmark and report their figures.
-
-We are conscious that this benchmark is not representative of any particular use
-case in a production environment. We chose this test because it is a basic
-query, and is trivial to reproduce. With more complex queries, we expect the
-performance gap to grow further.
-
-Finally, we are open source and will always be. You can download and use QuestDB
-for free, reproduce all these benchmarks and write new ones yourself.
