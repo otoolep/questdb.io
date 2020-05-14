@@ -18,7 +18,7 @@ We then went on to include an accurate summation algo (such as "Kahan" and "Neum
 Now that we're doing the sums accurately, we wanted to see how it affected performance. 
 There is typically a trade-off between speed and accuracy. However, by extracting even more performance 
 out of QuestDB (see below for how we did it), we managed to compute accurate sums as fast as naive ones! 
-We benched QuestDB versus Clickhouse for accurate sums on a billion row dataset, and we are nearly as twice as fast.
+We benched QuestDB versus Clickhouse for accurate sums on a billion row dataset, and we are nearly twice as fast.
 
 With its latest
 [release 4.2.1](https://github.com/questdb/questdb/releases/tag/4.2.1), QuestDB
@@ -279,16 +279,16 @@ For non-null values, we adjusted the commands as follows
 
 #### Results
 
-We ran each query several times for both QuestDB and Clickhouse and took the
+We ran each query several times for both QuestDB and Clickhouse and kept the
 best result.
 
-Without null values, both databases sum naively at roughly the same speed. When
-using Kahan summation, QuestDB performs at the same speed while Clickhouse
-suffers from a performance hit of ~40%.
+Without null values, both databases sum naively at roughly the same speed. 
+With Kahan summation, QuestDB performs at the same speed while Clickhouse's
+performance drops by ~40%.
 
 ![alt-text](assets/kahan-naive-not-null.png)
 
-With null values, Clickhouse's performance degrades by 28% and 50% for naive and
+As we include null values, Clickhouse's performance degrades by 28% and 50% for naive and
 Kahan summation, respectively.
 
 ![alt-text](assets/kahan-naive-null.png)
