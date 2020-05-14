@@ -29,9 +29,8 @@ fast as naive ones! Since comparisons to Clickhouse have been our most frequent
 question, we have run the numbers and [here](#comparison-with-clickhouse) is what we got, 2x faster for summing
 1bn doubles will nulls.
 
-With its latest
-[release 4.2.1](https://github.com/questdb/questdb/releases/tag/4.2.1), QuestDB
-now implements Kahan and Neumaier compensated summation algorithms.
+All of this is included in our new
+[release 4.2.1](https://github.com/questdb/questdb/releases/tag/4.2.1)
 
 You can find our repository on [GitHub](https://github.com/questdb/questdb). All
 your
