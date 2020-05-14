@@ -300,7 +300,7 @@ naive and Kahan summation, respectively.
 
 ![alt-text](assets/kahan-naive-null.png)
 
-#### Concluding remarks
+### Concluding remarks
 
 It is useful to stabilize aggregation with compensated sums. We learned that vector-based calculation produce different arithmetic errors compared to non-vector calcs. The way the aggregation is executed by multiple threads is not constant. This can cause results to be different from one SQL run to another, if the sum is accuracy naive. Through compensated sums, the results are consistent and more accurate. 
 
