@@ -300,3 +300,12 @@ As we include null values, Clickhouse's performance degrades by 28% and 50% for
 naive and Kahan summation, respectively.
 
 ![alt-text](assets/kahan-naive-null.png)
+
+#### Concluding remarks
+
+It is useful to stabilize aggregation with compensated sums. We learned that vector-based calculation produce different arithmetic errors compared to non-vector calcs. The way the aggregation is executed by multiple threads is not constant. This can cause results to be different from one SQL run to another, if the sum is accuracy naive. Through compensated sums, the results are consistent and more accurate. 
+
+It was also both interesting and surprising to be able to quantify the effect of prefetch on what is essentially sequential memory read.
+
+We hope you enjoyed reading this. If you like what we do and where we are going  - please consider joining our community. Your support means a lot to us.
+
