@@ -14,11 +14,11 @@
         </image>
         <copyright>Copyright © 2020 QuestDB</copyright>
         <item>
-            <title><![CDATA[Summing one billion rows accurately in 68ms]]></title>
-            <link>https://questdb.io/blog/2020/05/12/Summing-one-billion-rows-accurately-in-68ms.html</link>
-            <guid>https://questdb.io/blog/2020/05/12/Summing-one-billion-rows-accurately-in-68ms.html</guid>
+            <title><![CDATA[Interesting things we learned about sums]]></title>
+            <link>https://questdb.io/blog/2020/05/12/interesting-things-we-learned-about-sums.html</link>
+            <guid>https://questdb.io/blog/2020/05/12/interesting-things-we-learned-about-sums.html</guid>
             <pubDate>Tue, 12 May 2020 06:00:00 GMT</pubDate>
-            <description><![CDATA[<p><img src="/blog/assets/road-runner.png" alt="alt-text"></p> <p><a href="https://www.questdb.io/blog/2020/04/02/using-simd-to-aggregate-billions-of-rows-per-second">About a month ago</a>, we announced a new release with SIMD aggregations on <a href="https://news.ycombinator.com/item?id=22803504">HackerNews</a>, <a href="https://www.reddit.com/r/programming/comments/fwlk0k/questdb_using_simd_to_aggregate_billions_of/">Reddit</a> and other forums. We have received heated comments about cutting corners by benchmarking imprecise &quot;naive&quot; summations. The implied remark here being...</p>]]></description>
+            <description><![CDATA[<p><img src="/blog/assets/road-runner.png" alt="alt-text"></p> <p>In the world of databases, benchmarking performance has always been the hottest topic. Who is faster for data ingestion and queries?<a href="https://www.questdb.io/blog/2020/04/02/using-simd-to-aggregate-billions-of-rows-per-second">About a month ago</a> we announced a new release with SIMD aggregations on <a href="https://news.ycombinator.com/item?id=22803504">HackerNews</a> and <a href="https://www.reddit.com/r/programming/comments/fwlk0k/questdb_using_simd_to_aggregate_billions_of/">Reddit</a>. Fast. But were those re...</p>]]></description>
         </item>
         <item>
             <title><![CDATA[Using SIMD to aggregate billions of rows per second]]></title>
