@@ -5,19 +5,29 @@ author: Tancrede Collard
 
 ![alt-text](assets/road-runner.png)
 
-In the world of databases, benchmarking performance has always been the hottest topic. 
-Who is faster for data ingestion and queries?[About a month ago](https://www.questdb.io/blog/2020/04/02/using-simd-to-aggregate-billions-of-rows-per-second) we announced a new release with SIMD aggregations on [HackerNews](https://news.ycombinator.com/item?id=22803504) and [Reddit](https://www.reddit.com/r/programming/comments/fwlk0k/questdb_using_simd_to_aggregate_billions_of/). Fast.
-But were those results accurate too?
+In the world of databases, benchmarking performance has always been the hottest
+topic. Who is faster for data ingestion and
+queries?[About a month ago](https://www.questdb.io/blog/2020/04/02/using-simd-to-aggregate-billions-of-rows-per-second)
+we announced a new release with SIMD aggregations on
+[HackerNews](https://news.ycombinator.com/item?id=22803504) and
+[Reddit](https://www.reddit.com/r/programming/comments/fwlk0k/questdb_using_simd_to_aggregate_billions_of/).
+Fast. But were those results accurate too?
 
-Speed is not everything. Some of the feedback we have received pointed us toward the accuracy of our results. 
-This is something typically overlooked in the space, but our sums turned out to be "naive", with small errors for large computations. By compounding a very small error over and over through a set of operations, it can eventually become signifiant enough for people to start worrying about it.  
+Speed is not everything. Some of the feedback we have received pointed us toward
+the accuracy of our results. This is something typically overlooked in the
+space, but our sums turned out to be "naive", with small errors for large
+computations. By compounding a very small error over and over through a set of
+operations, it can eventually become significant enough for people to start
+worrying about it.
 
-We then went on to include an accurate summation algo (such as "Kahan" and "Neumaier" compensated sums). 
-Now that we're doing the sums accurately, we wanted to see how it affected performance. 
-There is typically a trade-off between speed and accuracy. However, by extracting even more performance 
-out of QuestDB (see below for how we did it), we managed to compute accurate sums as fast as naive ones! 
-Since comparisons to Clickhouse have been our most frequent question, we have run the numbers 
-and here's what we got, 2x faster for summing 1bn  doubles will nulls (see [here](#comparison-with-clickhouse)).
+We then went on to include an accurate summation algorithm (such as "Kahan" and
+"Neumaier" compensated sums). Now that we're doing the sums accurately, we
+wanted to see how it affected performance. There is typically a trade-off
+between speed and accuracy. However, by extracting even more performance out of
+QuestDB (see below for how we did it), we managed to compute accurate sums as
+fast as naive ones! Since comparisons to Clickhouse have been our most frequent
+question, we have run the numbers and here's what we got, 2x faster for summing
+1bn doubles will nulls (see [here](#comparison-with-clickhouse)).
 
 With its latest
 [release 4.2.1](https://github.com/questdb/questdb/releases/tag/4.2.1), QuestDB
@@ -32,16 +42,16 @@ and [stars](https://github.com/questdb/questdb) are welcome
 
 ### How did we get there? TL;DR
 
-We used prefetch and co-routines techniques to pull data from RAM to
-cache in parallel with other CPU instructions. Our performance was
-previously limited by memory bandwidth - using these techniques would address
-this and allow us to compute accurate sums as fast as naive sums.
+We used prefetch and co-routines techniques to pull data from RAM to cache in
+parallel with other CPU instructions. Our performance was previously limited by
+memory bandwidth - using these techniques would address this and allow us to
+compute accurate sums as fast as naive sums.
 
 With the help of prefetch we implemented the fastest and most accurate summation
-we have ever [tested](#comparison-with-clickhouse) - 68ms over 1bn double
-values (versus 108ms for Clickhouse). We believe this is a significant advance 
-in terms of performance for accurate summations, and will
-help developers handling intensive computations with large datasets.
+we have ever [tested](#comparison-with-clickhouse) - 68ms over 1bn double values
+(versus 108ms for Clickhouse). We believe this is a significant advance in terms
+of performance for accurate summations, and will help developers handling
+intensive computations with large datasets.
 
 ### Contents
 
@@ -281,13 +291,13 @@ For non-null values, we adjusted the commands as follows
 We ran each query several times for both QuestDB and Clickhouse and kept the
 best result.
 
-Without null values, both databases sum naively at roughly the same speed. 
-With Kahan summation, QuestDB performs at the same speed while Clickhouse's
+Without null values, both databases sum naively at roughly the same speed. With
+Kahan summation, QuestDB performs at the same speed while Clickhouse's
 performance drops by ~40%.
 
 ![alt-text](assets/kahan-naive-not-null.png)
 
-As we include null values, Clickhouse's performance degrades by 28% and 50% for naive and
-Kahan summation, respectively.
+As we include null values, Clickhouse's performance degrades by 28% and 50% for
+naive and Kahan summation, respectively.
 
 ![alt-text](assets/kahan-naive-null.png)
