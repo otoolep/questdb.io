@@ -7,7 +7,7 @@ author: Tancrede Collard
 
 In the world of databases, benchmarking performance has always been the hottest
 topic. Who is faster for data ingestion and
-queries?[About a month ago](https://www.questdb.io/blog/2020/04/02/using-simd-to-aggregate-billions-of-rows-per-second)
+queries? [About a month ago](https://www.questdb.io/blog/2020/04/02/using-simd-to-aggregate-billions-of-rows-per-second)
 we announced a new release with SIMD aggregations on
 [HackerNews](https://news.ycombinator.com/item?id=22803504) and
 [Reddit](https://www.reddit.com/r/programming/comments/fwlk0k/questdb_using_simd_to_aggregate_billions_of/).
@@ -26,8 +26,8 @@ wanted to see how it affected performance. There is typically a trade-off
 between speed and accuracy. However, by extracting even more performance out of
 QuestDB (see below for how we did it), we managed to compute accurate sums as
 fast as naive ones! Since comparisons to Clickhouse have been our most frequent
-question, we have run the numbers and here's what we got, 2x faster for summing
-1bn doubles will nulls (see [here](#comparison-with-clickhouse)).
+question, we have run the numbers and [here](#comparison-with-clickhouse) is what we got, 2x faster for summing
+1bn doubles will nulls.
 
 With its latest
 [release 4.2.1](https://github.com/questdb/questdb/releases/tag/4.2.1), QuestDB
@@ -48,8 +48,8 @@ memory bandwidth - using these techniques would address this and allow us to
 compute accurate sums as fast as naive sums.
 
 With the help of prefetch we implemented the fastest and most accurate summation
-we have ever [tested](#comparison-with-clickhouse) - 68ms over 1bn double values
-(versus 108ms for Clickhouse). We believe this is a significant advance in terms
+we have ever [tested](#comparison-with-clickhouse) - 68ms over 1bn double values with nulls
+(versus 139ms for Clickhouse). We believe this is a significant advance in terms
 of performance for accurate summations, and will help developers handling
 intensive computations with large datasets.
 
