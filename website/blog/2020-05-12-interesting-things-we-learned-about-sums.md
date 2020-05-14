@@ -17,7 +17,7 @@ Now that we're doing the sums accurately, we wanted to see how it affected perfo
 There is typically a trade-off between speed and accuracy. However, by extracting even more performance 
 out of QuestDB (see below for how we did it), we managed to compute accurate sums as fast as naive ones! 
 Since comparisons to Clickhouse have been our most frequent question, we have run the numbers 
-and here's what we got - nearly 2x faster (see [here](#comparison-with-clickhouse)).
+and here's what we got, 2x faster for summing 1bn  doubles will nulls (see [here](#comparison-with-clickhouse)).
 
 With its latest
 [release 4.2.1](https://github.com/questdb/questdb/releases/tag/4.2.1), QuestDB
