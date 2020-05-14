@@ -17,7 +17,7 @@ for people to start worrying about it.
 We then went on to include an accurate summation algo (such as "Kahan" and "Neumaier" compensated sums). 
 Now that we're doing the sums accurately, we wanted to see how it affected performance. 
 There is typically a trade-off between speed and accuracy. However, by extracting even more performance 
-out of QuestDB (see below how we did this), we managed to compute accurate sums as fast as naive ones! 
+out of QuestDB (see below for how we did it), we managed to compute accurate sums as fast as naive ones! 
 We benched QuestDB versus Clickhouse for accurate sums on a billion row dataset, and we are nearly as twice as fast.
 
 With its latest
