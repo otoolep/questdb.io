@@ -55,36 +55,44 @@
               }
             });
         </script></nav></div><div class="container mainContainer postContainer blogContainer"><div class="wrapper"><div class="posts"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle"><a href="/blog/2020/05/12/interesting-things-we-learned-about-sums">Interesting things we learned about sums</a></h1><p class="post-meta">May 12, 2020</p><div class="authorBlock"><p class="post-authorName"><a target="_blank" rel="noreferrer noopener">Tancrede Collard</a></p></div></header><article class="post-content"><div><span><p><img src="/blog/assets/road-runner.png" alt="alt-text"></p>
-<p>In the world of databases, benchmarking performance has always been the hottest topic.
-Who is faster for data ingestion and queries?<a href="https://www.questdb.io/blog/2020/04/02/using-simd-to-aggregate-billions-of-rows-per-second">About a month ago</a> we announced a new release with SIMD aggregations on <a href="https://news.ycombinator.com/item?id=22803504">HackerNews</a> and <a href="https://www.reddit.com/r/programming/comments/fwlk0k/questdb_using_simd_to_aggregate_billions_of/">Reddit</a>. Fast.
-But were those results accurate too?</p>
-<p>Speed is not everything. Some of the feedback we have received pointed us toward the accuracy of our results.
-This is something typically overlooked in the space, but our sums turned out to be &quot;naive&quot;, with small errors for large computations. By compounding a very small error over and over through a set of operations, it can eventually become signifiant enough for people to start worrying about it.</p>
-<p>We then went on to include an accurate summation algo (such as &quot;Kahan&quot; and &quot;Neumaier&quot; compensated sums).
-Now that we're doing the sums accurately, we wanted to see how it affected performance.
-There is typically a trade-off between speed and accuracy. However, by extracting even more performance
-out of QuestDB (see below for how we did it), we managed to compute accurate sums as fast as naive ones!
-Since comparisons to Clickhouse have been our most frequent question, we have run the numbers
-and here's what we got, 2x faster for summing 1bn  doubles will nulls (see <a href="#comparison-with-clickhouse">here</a>).</p>
-<p>With its latest
-<a href="https://github.com/questdb/questdb/releases/tag/4.2.1">release 4.2.1</a>, QuestDB
-now implements Kahan and Neumaier compensated summation algorithms.</p>
+<p>In the world of databases, benchmarking performance has always been the hottest
+topic. Who is faster for data ingestion and
+queries? About a month ago we announced a new release with SIMD aggregations on
+<a href="https://news.ycombinator.com/item?id=22803504">HackerNews</a> and
+<a href="https://www.reddit.com/r/programming/comments/fwlk0k/questdb_using_simd_to_aggregate_billions_of/">Reddit</a>.
+Fast. But were those results accurate too?</p>
+<p>Speed is not everything. Some of the feedback we have received pointed us toward
+the accuracy of our results. This is something typically overlooked in the
+space, but our sums turned out to be &quot;naive&quot;, with small errors for large
+computations. By compounding a very small error over and over through a set of
+operations, it can eventually become significant enough for people to start
+worrying about it.</p>
+<p>We then went on to include an accurate summation algorithm (such as &quot;Kahan&quot; and
+&quot;Neumaier&quot; compensated sums). Now that we're doing the sums accurately, we
+wanted to see how it affected performance. There is typically a trade-off
+between speed and accuracy. However, by extracting even more performance out of
+QuestDB (see below for how we did it), we managed to compute accurate sums as
+fast as naive ones! Since comparisons to Clickhouse have been our most frequent
+question, we have run the numbers and <a href="#comparison-with-clickhouse">here</a> is what we got, 2x faster for summing
+1bn doubles will nulls.</p>
+<p>All of this is included in our new
+<a href="https://github.com/questdb/questdb/releases/tag/4.2.1">release 4.2.1</a></p>
 <p>You can find our repository on <a href="https://github.com/questdb/questdb">GitHub</a>. All
 your
 <a href="https://github.com/questdb/questdb/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc">issues</a>,
 <a href="https://github.com/questdb/questdb/pulls?q=is%3Apr+is%3Aopen+sort%3Aupdated-desc">pull-requests</a>
 and <a href="https://github.com/questdb/questdb">stars</a> are welcome
 <span class="emoji">🙂</span>.</p>
-<h3><a class="anchor" aria-hidden="true" id="how-did-we-get-there-tldr"></a><a href="#how-did-we-get-there-tldr" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>How did we get there? TL;DR</h3>
-<p>We used prefetch and co-routines techniques to pull data from RAM to
-cache in parallel with other CPU instructions. Our performance was
-previously limited by memory bandwidth - using these techniques would address
-this and allow us to compute accurate sums as fast as naive sums.</p>
+<h3><a class="anchor" aria-hidden="true" id="how-did-we-get-there-tl-dr"></a><a href="#how-did-we-get-there-tl-dr" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>How did we get there? TL;DR</h3>
+<p>We used prefetch and co-routines techniques to pull data from RAM to cache in
+parallel with other CPU instructions. Our performance was previously limited by
+memory bandwidth - using these techniques would address this and allow us to
+compute accurate sums as fast as naive sums.</p>
 <p>With the help of prefetch we implemented the fastest and most accurate summation
-we have ever <a href="#comparison-with-clickhouse">tested</a> - 68ms over 1bn double
-values (versus 108ms for Clickhouse). We believe this is a significant advance
-in terms of performance for accurate summations, and will
-help developers handling intensive computations with large datasets.</p>
+we have ever <a href="#comparison-with-clickhouse">tested</a> - 68ms over 1bn double values with nulls
+(versus 139ms for Clickhouse). We believe this is a significant advance in terms
+of performance for accurate summations, and will help developers handling
+intensive computations with large datasets.</p>
 <h3><a class="anchor" aria-hidden="true" id="contents"></a><a href="#contents" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Contents</h3>
 <ul>
 <li>An <a href="#inaccurate-summation">introductory example</a> of the problem with summing
@@ -274,13 +282,17 @@ databases.</p>
 <h4><a class="anchor" aria-hidden="true" id="results"></a><a href="#results" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Results</h4>
 <p>We ran each query several times for both QuestDB and Clickhouse and kept the
 best result.</p>
-<p>Without null values, both databases sum naively at roughly the same speed.
-With Kahan summation, QuestDB performs at the same speed while Clickhouse's
+<p>Without null values, both databases sum naively at roughly the same speed. With
+Kahan summation, QuestDB performs at the same speed while Clickhouse's
 performance drops by ~40%.</p>
 <p><img src="/blog/assets/kahan-naive-not-null.png" alt="alt-text"></p>
-<p>As we include null values, Clickhouse's performance degrades by 28% and 50% for naive and
-Kahan summation, respectively.</p>
+<p>As we include null values, Clickhouse's performance degrades by 28% and 50% for
+naive and Kahan summation, respectively.</p>
 <p><img src="/blog/assets/kahan-naive-null.png" alt="alt-text"></p>
+<h4><a class="anchor" aria-hidden="true" id="concluding-remarks"></a><a href="#concluding-remarks" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Concluding remarks</h4>
+<p>It is useful to stabilize aggregation with compensated sums. We learned that vector-based calculation produce different arithmetic errors compared to non-vector calcs. The way the aggregation is executed by multiple threads is not constant. This can cause results to be different from one SQL run to another, if the sum is accuracy naive. Through compensated sums, the results are consistent and more accurate.</p>
+<p>It was also both interesting and surprising to be able to quantify the effect of prefetch on what is essentially sequential memory read.</p>
+<p>We hope you enjoyed reading this. If you like what we do and where we are going  - please consider joining our community. Your support means a lot to us.</p>
 </span></div></article></div><div class="post"><header class="postHeader"><h1 class="postHeaderTitle"><a href="/blog/2020/04/02/using-simd-to-aggregate-billions-of-rows-per-second">Using SIMD to aggregate billions of rows per second</a></h1><p class="post-meta">April 2, 2020</p><div class="authorBlock"><p class="post-authorName"><a target="_blank" rel="noreferrer noopener">Tancrede Collard</a></p></div></header><article class="post-content"><div><span><p><a href="https://www.questdb.io/getstarted" target="_blank"><img class="banner-4-2" src="/blog/assets/banner-4-2.png" alt="drawing"/></a></p>
 <p><a href="https://en.wikipedia.org/wiki/SIMD" target="_blank">SIMD instructions</a> are specific CPU instruction sets for arithmetic calculations that use synthetic parallelisation.
 The parallelisation is synthetic because instead of spreading the work across CPU cores,
