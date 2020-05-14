@@ -10,15 +10,14 @@ Who is faster for data ingestion and queries?[About a month ago](https://www.que
 But were those results accurate too?
 
 Speed is not everything. Some of the feedback we have received pointed us toward the accuracy of our results. 
-This is something typically overlooked in the space, but our sums turned out to be "naive". By compounding a 
-very small error over and over through a set of operations, it can eventually become signifiant enough
-for people to start worrying about it.  
+This is something typically overlooked in the space, but our sums turned out to be "naive", with small errors for large computations. By compounding a very small error over and over through a set of operations, it can eventually become signifiant enough for people to start worrying about it.  
 
 We then went on to include an accurate summation algo (such as "Kahan" and "Neumaier" compensated sums). 
 Now that we're doing the sums accurately, we wanted to see how it affected performance. 
 There is typically a trade-off between speed and accuracy. However, by extracting even more performance 
 out of QuestDB (see below for how we did it), we managed to compute accurate sums as fast as naive ones! 
-We benched QuestDB versus Clickhouse for accurate sums on a billion row dataset, and we are nearly twice as fast.
+Since comparisons to Clickhouse have been our most frequent question, we have run the numbers 
+and here's what we got - nearly 2x faster (see [here](#comparison-with-clickhouse)).
 
 With its latest
 [release 4.2.1](https://github.com/questdb/questdb/releases/tag/4.2.1), QuestDB
