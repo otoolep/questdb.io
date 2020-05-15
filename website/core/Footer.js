@@ -62,7 +62,7 @@ class Footer extends React.Component {
           <div align={"left"} className="footersection">
             <h5>More</h5>
             <a href={`${this.props.config.baseUrl}blog`}>Blog</a>
-            <a href="https://github.com/questdb/questdb/">GitHub</a>
+            <a href="https://github.com/questdb/questdb">GitHub</a>
             <span className={"sucker"}>
               <a
                 className="github-button"

@@ -76,7 +76,7 @@ class Index extends React.Component {
                 "<br>" +
                 '<ul class="buttons">' +
                 '<li class="margin-button"><a href="/getstarted">Get QuestDB</a></li>' +
-                '<li class="github-main"><a class="cta" target="_blank" href="https://github.com/questdb/questdb/"><img src="/img/GitHub-Mark-32px.png">github</a></li>' +
+                '<li class="github-main"><a class="cta" target="_blank" href="https://github.com/questdb/questdb"><img src="/img/GitHub-Mark-32px.png">github</a></li>' +
                 "</ul>",
             },
           ]}
@@ -198,7 +198,8 @@ class Index extends React.Component {
               <span className="benchmark__timing">>1min</span>
             </div>
             <span className="benchmark__machine">
-              We ran the query on a AWS c5.metal instance using only 16 threads out of 48(96) CPU cores available
+              We ran the query on a AWS c5.metal instance using only 16 threads
+              out of 48(96) CPU cores available
             </span>
           </div>
         </div>
