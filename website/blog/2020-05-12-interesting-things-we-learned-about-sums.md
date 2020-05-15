@@ -6,8 +6,8 @@ author: Tancrede Collard
 ![alt-text](assets/road-runner.png)
 
 In the world of databases, benchmarking performance has always been the hottest
-topic. Who is faster for data ingestion and
-queries? About a month ago we announced a new release with SIMD aggregations on
+topic. Who is faster for data ingestion and queries? About a month ago we
+announced a new release with SIMD aggregations on
 [HackerNews](https://news.ycombinator.com/item?id=22803504) and
 [Reddit](https://www.reddit.com/r/programming/comments/fwlk0k/questdb_using_simd_to_aggregate_billions_of/).
 Fast. But were those results accurate too?
@@ -25,8 +25,8 @@ wanted to see how it affected performance. There is typically a trade-off
 between speed and accuracy. However, by extracting even more performance out of
 QuestDB (see below for how we did it), we managed to compute accurate sums as
 fast as naive ones! Since comparisons to Clickhouse have been our most frequent
-question, we have run the numbers and [here](#comparison-with-clickhouse) is what we got, 2x faster for summing
-1bn doubles will nulls.
+question, we have run the numbers and [here](#comparison-with-clickhouse) is
+what we got, 2x faster for summing 1bn doubles will nulls.
 
 All of this is included in our new
 [release 4.2.1](https://github.com/questdb/questdb/releases/tag/4.2.1)
@@ -46,10 +46,10 @@ memory bandwidth - using these techniques would address this and allow us to
 compute accurate sums as fast as naive sums.
 
 With the help of prefetch we implemented the fastest and most accurate summation
-we have ever [tested](#comparison-with-clickhouse) - 68ms over 1bn double values with nulls
-(versus 139ms for Clickhouse). We believe this is a significant advance in terms
-of performance for accurate summations, and will help developers handling
-intensive computations with large datasets.
+we have ever [tested](#comparison-with-clickhouse) - 68ms over 1bn double values
+with nulls (versus 139ms for Clickhouse). We believe this is a significant
+advance in terms of performance for accurate summations, and will help
+developers handling intensive computations with large datasets.
 
 ### Contents
 
@@ -302,9 +302,15 @@ naive and Kahan summation, respectively.
 
 ### Concluding remarks
 
-It is useful to stabilize aggregation with compensated sums. We learned that vector-based calculation produce different arithmetic errors compared to non-vector calcs. The way the aggregation is executed by multiple threads is not constant. This can cause results to be different from one SQL run to another, if the sum is accuracy naive. Through compensated sums, the results are consistent and more accurate. 
+It is useful to stabilize aggregation with compensated sums. We learned that
+vector-based calculation produce different arithmetic errors compared to
+non-vector calculations. The way the aggregation is executed by multiple threads
+is not constant. This can cause results to be different from one SQL run to
+another, if the sum is accuracy naive. Through compensated sums, the results are
+consistent and more accurate.
 
-It was also both interesting and surprising to be able to quantify the effect of prefetch on what is essentially sequential memory read.
+It was also both interesting and surprising to be able to quantify the effect of
+prefetch on what is essentially sequential memory read.
 
-We hope you enjoyed reading this. If you like what we do and where we are going  - please consider joining our community. Your support means a lot to us.
-
+We hope you enjoyed reading this. If you like what we do and where we are
+going - please consider joining our community. Your support means a lot to us.
