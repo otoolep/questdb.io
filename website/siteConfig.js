@@ -240,6 +240,7 @@ const siteConfig = {
   baseUrl: "/", // Base URL for your project */
   projectName: "website",
   organizationName: "questdb",
+
   // serach bar settings
   algolia: {
     apiKey: "b2a69b4869a2a85284a82fb57519dcda",
@@ -281,6 +282,9 @@ const siteConfig = {
   //Pixel ID for facebook analytics
   facebookPixelId: "648273155994655",
 
+  gaTrackingId: "GTM-PVR7M2G",
+  gaGtag: true,
+
   highlight: {
     // themeUrl: '/css/code-highlight.css',
     hljs: function (hljs) {
@@ -297,8 +301,9 @@ const siteConfig = {
   cleanUrl: true,
 
   // Open Graph and Twitter card images.
-  ogImage: "img/favicon.png",
-  twitterImage: "img/favicon.png",
+  ogImage: "img/questdb_og.png",
+  twitterImage: "img/questdb_og.png",
+  twitterUsername: "questdb",
 
   // For sites with a sizable amount of content, set collapsible to true.
   // Expand/collapse the links and subcategories under categories.
@@ -316,8 +321,6 @@ const siteConfig = {
   repoUrl: "https://github.com/questdb/questdb",
 
   scripts: [
-    "/js/gtmgmt.js",
-    "https://www.googletagmanager.com/gtag/js?id=UA-145747842-1",
     "https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js",
     "/js/fonts.js",
     "/js/menu-hack.js",
