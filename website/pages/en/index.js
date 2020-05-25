@@ -52,16 +52,6 @@ class Index extends React.Component {
       </Container>
     )
 
-    const CenterBlock = (props) => (
-      <Container id={props.id} background={props.background}>
-        <GridBlock
-          align="center"
-          contents={props.children}
-          layout={props.layout}
-        />
-      </Container>
-    )
-
     const Title = () => (
       <div className="toptitle">
         <Block>
@@ -88,77 +78,77 @@ class Index extends React.Component {
       <div className="whatwedo">
         <div className="title">Features</div>
 
-        <div class="whatwedo__card">
+        <div className="whatwedo__card">
           <img
-            class="whatwedo__image"
+            className="whatwedo__image"
             src={`${baseUrl}img/ossicon.svg`}
             height="50px"
           />
-          <div class="whatwedo__subtitle">Apache 2.0</div>
+          <div className="whatwedo__subtitle">Apache 2.0</div>
         </div>
-        <div class="whatwedo__card">
+        <div className="whatwedo__card">
           <img
-            class="whatwedo__image"
+            className="whatwedo__image"
             src={`${baseUrl}img/speedicon.svg`}
             height="50px"
           />
-          <div class="whatwedo__subtitle">SIMD accelerated</div>
+          <div className="whatwedo__subtitle">SIMD accelerated</div>
         </div>
-        <div class="whatwedo__card">
+        <div className="whatwedo__card">
           <img
-            class="whatwedo__image"
+            className="whatwedo__image"
             src={`${baseUrl}img/table.svg`}
             height="50px"
           />
-          <div class="whatwedo__subtitle">Relational Model</div>
+          <div className="whatwedo__subtitle">Relational Model</div>
         </div>
-        <div class="whatwedo__card">
+        <div className="whatwedo__card">
           <img
-            class="whatwedo__image"
+            className="whatwedo__image"
             src={`${baseUrl}img/packageicon.svg`}
             height="50px"
           />
-          <div class="whatwedo__subtitle">Cross-platform package</div>
+          <div className="whatwedo__subtitle">Cross-platform package</div>
         </div>
-        <div class="whatwedo__card">
+        <div className="whatwedo__card">
           <img
-            class="whatwedo__image"
+            className="whatwedo__image"
             src={`${baseUrl}img/sqlicon.svg`}
             height="50px"
           />
-          <div class="whatwedo__subtitle">Query Optimiser</div>
+          <div className="whatwedo__subtitle">Query Optimiser</div>
         </div>
-        <div class="whatwedo__card">
+        <div className="whatwedo__card">
           <img
-            class="whatwedo__image"
+            className="whatwedo__image"
             src={`${baseUrl}img/usersicon.svg`}
             height="50px"
           />
-          <div class="whatwedo__subtitle">Fast for concurrent users</div>
+          <div className="whatwedo__subtitle">Fast for concurrent users</div>
         </div>
-        <div class="whatwedo__card">
+        <div className="whatwedo__card">
           <img
-            class="whatwedo__image"
+            className="whatwedo__image"
             src={`${baseUrl}img/joinsicon.svg`}
             height="50px"
           />
-          <div class="whatwedo__subtitle">Relational joins</div>
+          <div className="whatwedo__subtitle">Relational joins</div>
         </div>
-        <div class="whatwedo__card">
+        <div className="whatwedo__card">
           <img
-            class="whatwedo__image"
+            className="whatwedo__image"
             src={`${baseUrl}img/charticon.svg`}
             height="50px"
           />
-          <div class="whatwedo__subtitle">Time-series joins</div>
+          <div className="whatwedo__subtitle">Time-series joins</div>
         </div>
-        <div class="whatwedo__card">
+        <div className="whatwedo__card">
           <img
-            class="whatwedo__image"
+            className="whatwedo__image"
             height="50px"
             src={`${baseUrl}img/unlimtransacticon.svg`}
           />
-          <div class="whatwedo__subtitle">Unlimited transaction size</div>
+          <div className="whatwedo__subtitle">Unlimited transaction size</div>
         </div>
       </div>
     )

@@ -272,8 +272,8 @@ const siteConfig = {
   /* Colors for website */
   /*    Both set to transparent to customise manually*/
   colors: {
-    // primaryColor: '#2371b5',
-    // secondaryColor: '#2371b5',
+    primaryColor: "transparent",
+    secondaryColor: "transparent",
   },
 
   // This copyright info is used in /core/Footer.js and blog RSS/Atom feeds.
@@ -293,7 +293,7 @@ const siteConfig = {
     },
   },
 
-  cname: "www.questdb.io",
+  cname: "questdb.io",
 
   // On page navigation for the current documentation page.
   onPageNav: "separate",
