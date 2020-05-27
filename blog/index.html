@@ -1,9 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Blog · QuestDB</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="Always on time"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Blog · QuestDB"/><meta property="og:type" content="website"/><meta property="og:url" content="https://questdb.io/"/><meta property="og:description" content="Always on time"/><meta property="og:image" content="https://questdb.io/img/questdb_og.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://questdb.io/img/questdb_og.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="alternate" type="application/atom+xml" href="https://questdb.io/blog/atom.xml" title="QuestDB Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://questdb.io/blog/feed.xml" title="QuestDB Blog RSS Feed"/><script async="" src="https://www.googletagmanager.com/gtag/js?id=GTM-PVR7M2G"></script><script>
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments); }
-              gtag('js', new Date());
-              gtag('config', 'GTM-PVR7M2G');
-            </script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700|IBM+Plex+Sans:300,400,600,700"/><script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script><script type="text/javascript" src="/js/fonts.js"></script><script type="text/javascript" src="/js/menu-hack.js"></script><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script type="text/javascript" src="/js/getstarted.js"></script><script type="text/javascript" src="/js/hotjar.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="blog"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/QuestDB_Logo.png" alt="QuestDB"/><h2 class="headerTitleWithLogo">QuestDB</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/" target="_self">Home</a></li><li class=""><a href="/getstarted" target="_self">Get QuestDB</a></li><li class=""><a href="/docs/documentationOverview" target="_self">Documentation</a></li><li class="siteNavGroupActive siteNavItemActive"><a href="/blog/" target="_self">Blog</a></li><li class=""><a href="/careers" target="_self">Careers</a></li><li class=""><a href="/about" target="_self">About</a></li><li class=""><a href="https://serieux-saucisson-79115.herokuapp.com/" target="_self">Join</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search..." title="Search..."/></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Recent Posts</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Recent Posts</h3><ul class=""><li class="navListItem"><a class="navItem" href="/blog/2020/05/12/interesting-things-we-learned-about-sums">Interesting things we learned about sums</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/04/02/using-simd-to-aggregate-billions-of-rows-per-second">Using SIMD to aggregate billions of rows per second</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/03/15/interthread">The art of thread messaging</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/12/19/lineprot">What makes QuestDB faster than InfluxDB</a></li></ul></div></div></section></div><script>
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Blog · QuestDB</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="Always on time"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Blog · QuestDB"/><meta property="og:type" content="website"/><meta property="og:url" content="https://questdb.io/"/><meta property="og:description" content="Always on time"/><meta property="og:image" content="https://questdb.io/img/favicon.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://questdb.io/img/favicon.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="alternate" type="application/atom+xml" href="https://questdb.io/blog/atom.xml" title="QuestDB Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://questdb.io/blog/feed.xml" title="QuestDB Blog RSS Feed"/><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700|IBM+Plex+Sans:300,400,600,700"/><script type="text/javascript" src="/js/gtmgmt.js"></script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-145747842-1"></script><script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script><script type="text/javascript" src="/js/fonts.js"></script><script type="text/javascript" src="/js/menu-hack.js"></script><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script type="text/javascript" src="/js/getstarted.js"></script><script type="text/javascript" src="/js/hotjar.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="blog"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/QuestDB_Logo.png" alt="QuestDB"/><h2 class="headerTitleWithLogo">QuestDB</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/" target="_self">Home</a></li><li class=""><a href="/getstarted" target="_self">Get QuestDB</a></li><li class=""><a href="/docs/documentationOverview" target="_self">Documentation</a></li><li class="siteNavGroupActive siteNavItemActive"><a href="/blog/" target="_self">Blog</a></li><li class=""><a href="/careers" target="_self">Careers</a></li><li class=""><a href="/about" target="_self">About</a></li><li class=""><a href="https://serieux-saucisson-79115.herokuapp.com/" target="_self">Join</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search..." title="Search..."/></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Recent Posts</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Recent Posts</h3><ul class=""><li class="navListItem"><a class="navItem" href="/blog/2020/05/12/interesting-things-we-learned-about-sums">Interesting things we learned about sums</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/04/02/using-simd-to-aggregate-billions-of-rows-per-second">Using SIMD to aggregate billions of rows per second</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/03/15/interthread">The art of thread messaging</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/12/19/lineprot">What makes QuestDB faster than InfluxDB</a></li></ul></div></div></section></div><script>
             var coll = document.getElementsByClassName('collapsible');
             var checkActiveCategory = true;
             for (var i = 0; i < coll.length; i++) {
@@ -305,32 +300,21 @@ consistent and more accurate.</p>
 prefetch on what is essentially sequential memory read.</p>
 <p>We hope you enjoyed reading this. If you like what we do and where we are
 going - please consider joining our community. Your support means a lot to us.</p>
-</span></div></article></div><div class="post"><header class="postHeader"><h1 class="postHeaderTitle"><a href="/blog/2020/04/02/using-simd-to-aggregate-billions-of-rows-per-second">Using SIMD to aggregate billions of rows per second</a></h1><p class="post-meta">April 2, 2020</p><div class="authorBlock"><p class="post-authorName"><a target="_blank" rel="noreferrer noopener">Tancrede Collard</a></p></div></header><article class="post-content"><div><span><p><a href="https://questdb.io/getstarted" target="_blank"><img class="banner-4-2" src="/blog/assets/banner-4-2.png" alt="drawing"/></a></p>
-<p><a href="https://en.wikipedia.org/wiki/SIMD" target="_blank">SIMD
-instructions</a> are specific CPU instruction sets for arithmetic calculations
-that use synthetic parallelisation. The parallelisation is synthetic because
-instead of spreading the work across CPU cores, SIMD performs vector operations
-on multiple items using a <strong>single</strong> CPU instruction. In practice, if you were
-to add 8 numbers together, SIMD does that in 1 operation instead of 8. We get
-compounded performance improvements by combining SIMD with actual
-parallelisation and spanning the work across CPUs.</p>
-<p>QuestDB 4.2 introduces SIMD instructions, which made our aggregations faster by
-100x! QuestDB is available
-<a href="https://github.com/questdb/questdb">open-source under Apache 2.0</a>. If you like
-what we do, please consider <b> <a href="https://github.com/questdb/questdb">
-following us on Github and starring our project
-<img class="yellow-star" src="/img/star-yellow.svg"/></a></b></p>
-<p>As of now, SIMD operations are available for non-keyed aggregation queries, such
-as <code>select sum(value) from table</code>. In future releases, we will extend these to
-keyed aggregations, for example <code>select key, sum(value) from table</code> (note the
-intentional omission of <code>GROUP BY</code>). This will also result in ultrafast
+</span></div></article></div><div class="post"><header class="postHeader"><h1 class="postHeaderTitle"><a href="/blog/2020/04/02/using-simd-to-aggregate-billions-of-rows-per-second">Using SIMD to aggregate billions of rows per second</a></h1><p class="post-meta">April 2, 2020</p><div class="authorBlock"><p class="post-authorName"><a target="_blank" rel="noreferrer noopener">Tancrede Collard</a></p></div></header><article class="post-content"><div><span><p><a href="https://www.questdb.io/getstarted" target="_blank"><img class="banner-4-2" src="/blog/assets/banner-4-2.png" alt="drawing"/></a></p>
+<p><a href="https://en.wikipedia.org/wiki/SIMD" target="_blank">SIMD instructions</a> are specific CPU instruction sets for arithmetic calculations that use synthetic parallelisation.
+The parallelisation is synthetic because instead of spreading the work across CPU cores,
+SIMD performs vector operations on multiple items using a <strong>single</strong> CPU instruction.
+In practice, if you were to add 8 numbers together, SIMD does that in 1 operation instead of 8.
+We get compounded performance improvements by combining SIMD with actual parallelisation and spanning the work across CPUs.</p>
+<p>QuestDB 4.2 introduces SIMD instructions, which made our aggregations faster by 100x!
+QuestDB is available <a href="https://github.com/questdb/questdb">open-source under Apache 2.0</a>. If you like what we do, please consider <b> <a href="https://github.com/questdb/questdb"> following us on Github and starring our project <img class="yellow-star" src="/img/star-yellow.svg"/></a></b></p>
+<p>As of now, SIMD operations are available for non-keyed aggregation queries, such as
+<code>select sum(value) from table</code>. In future releases, we will extend these to keyed aggregations, for example
+<code>select key, sum(value) from table</code> (note the intentional omission of <code>GROUP BY</code>). This will also result in ultrafast
 aggregation for time-bucketed queries using <code>SAMPLE BY</code>.</p>
 <h3><a class="anchor" aria-hidden="true" id="how-fast-is-it"></a><a href="#how-fast-is-it" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>How fast is it?</h3>
-<p>We ran performance tests using 2 different CPUs: the
-<a href="https://ark.intel.com/content/www/us/en/ark/products/134899/intel-core-i7-8850h-processor-9m-cache-up-to-4-30-ghz.html">Intel 8850H</a>
-and the
-<a href="https://www.amd.com/en/products/cpu/amd-ryzen-9-3900x">AMD Ryzen 3900X</a>. Both
-were running on 4 threads.</p>
+<p>We ran performance tests using 2 different CPUs: the <a href="https://ark.intel.com/content/www/us/en/ark/products/134899/intel-core-i7-8850h-processor-9m-cache-up-to-4-30-ghz.html">Intel 8850H</a>
+and the <a href="https://www.amd.com/en/products/cpu/amd-ryzen-9-3900x">AMD Ryzen 3900X</a>. Both were running on 4 threads.</p>
 <h4><a class="anchor" aria-hidden="true" id="queries"></a><a href="#queries" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Queries</h4>
 <table>
 <thead>
@@ -347,8 +331,7 @@ were running on 4 threads.</p>
 <h4><a class="anchor" aria-hidden="true" id="results"></a><a href="#results" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Results</h4>
 <p><img src="/blog/assets/bench-8850h.png" alt="alt-text"></p>
 <p><img src="/blog/assets/bench-3900x.png" alt="alt-text"></p>
-<p>The dataset producing the results shown above does not contain NULL values.
-Interestingly, when introducing nulls, QuestDB sum() query time is unchanged.
+<p>The dataset producing the results shown above does not contain NULL values. Interestingly, when introducing nulls, QuestDB sum() query time is unchanged.
 This can be tested by creating the table as follows.</p>
 <table>
 <thead>
@@ -359,22 +342,17 @@ This can be tested by creating the table as follows.</p>
 </tbody>
 </table>
 <h4><a class="anchor" aria-hidden="true" id="we-can-improve-this-performance-further"></a><a href="#we-can-improve-this-performance-further" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>We can improve this performance further</h4>
-<p>Our approach is currently slightly more complicated as we convert each 32-bit
-integer to a 64-bit long to avoid overflow. By removing this overhead and more,
-there is scope left to make our implementation faster in the future.</p>
+<p>Our approach is currently slightly more complicated as we convert each 32-bit integer to a 64-bit long to avoid overflow.
+By removing this overhead and more, there is scope left to make our implementation faster in the future.</p>
 <h3><a class="anchor" aria-hidden="true" id="perspectives-on-performance"></a><a href="#perspectives-on-performance" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Perspectives on performance</h3>
-<p>The execution times outlined above become more interesting once put into
-context. This is how QuestDB compares to Postgres when doing a sum of 1 billion
-numbers from a given table <code>select sum(d) from 1G_double_nonNull</code>.</p>
+<p>The execution times outlined above become more interesting once put into context.
+This is how QuestDB compares to Postgres when doing a sum of 1 billion numbers from a given table <code>select sum(d) from 1G_double_nonNull</code>.</p>
 <p><img src="/blog/assets/bench-pg.png" alt="alt-text"></p>
-<p>We found that our performance figures are constrained by the available memory
-channels. Both the 8850H and the 3900X have 2 memory channels, and throwing more
-than 4 cores at the query above does not improve the performance. On the other
-hand, if the CPU has more memory channels, then performance scales almost
-linearly.</p>
-<p>To get an idea of the impact of memory channels, we spun off a m5.metal instance
-on AWS. This instance has two 24-core Intel 8275CL with 6 memory channels each.
-Here are the results compared to the 2-channel 3900X:</p>
+<p>We found that our performance figures are constrained by the available memory channels. Both the 8850H and the 3900X
+have 2 memory channels, and throwing more than 4 cores at the query above does not improve the performance.
+On the other hand, if the CPU has more memory channels, then performance scales almost linearly.</p>
+<p>To get an idea of the impact of memory channels, we spun off a m5.metal instance on AWS. This instance has two
+24-core Intel 8275CL with 6 memory channels each. Here are the results compared to the 2-channel 3900X:</p>
 <table>
 <thead>
 <tr><th>cpu cores</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th></tr>
@@ -384,43 +362,28 @@ Here are the results compared to the 2-channel 3900X:</p>
 <tr><td>3900X</td><td>621</td><td>502</td><td>381</td><td>260</td><td>260</td><td>260</td><td>260</td><td>260</td><td>260</td><td>260</td><td>260</td><td>260</td></tr>
 </tbody>
 </table>
-<p>We plot those results below on the left. On the right-hand side, we normalise
-the results for each CPU and plot the performance improvement of going from 1 to
-more cores.</p>
+<p>We plot those results below on the left. On the right-hand side, we normalise the results for each CPU and plot the performance
+improvement of going from 1 to more cores.</p>
 <p><img src="/blog/assets/core-scale.png" alt="alt-text"></p>
-<p>Interestingly, the 2-channel 3900X, is much faster on 1 core than the 8275CL.
-But it does not scale well and hits a performance ceiling at 4 cores. This is
-because it only has 2 memory channels that are already saturated. The 6-channel
-8275CL allows QuestDB to scale almost linearly as we add more CPU cores and hits
-a performance ceiling at around 12 cores.</p>
-<p>Unfortunately AWS CPUs are hyperthreaded. We could unpack even more performance
-if CPU were fully isolated to run the computations.</p>
-<p>We did not get our hands on CPUs with more memory channels for this test, but if
-you have easy access to 8 or 12-channel servers and would like to benchmark
-QuestDB, we'd love to hear the results. You can
-<a href="https://questdb.io/getstarted">download QuestDB</a> and leave a
-<a target="_blank" href="https://github.com/questdb/questdb/issues/146">comment
-on github</a></p>
+<p>Interestingly, the 2-channel 3900X, is much faster on 1 core than the
+8275CL. But it does not scale well and hits a performance ceiling at 4 cores. This is because it only has 2 memory channels
+that are already saturated. The 6-channel 8275CL allows QuestDB to
+scale almost linearly as we add more CPU cores and hits a performance ceiling at around 12 cores.</p>
+<p>Unfortunately AWS CPUs are hyperthreaded.
+We could unpack even more performance if CPU were fully isolated to run the computations.</p>
+<p>We did not get our hands on CPUs with more memory channels for this test, but if you have easy access to 8 or 12-channel servers and would like to benchmark QuestDB, we'd love to hear the results.
+You can <a href="https://www.questdb.io/getstarted">download QuestDB</a> and leave a <a target="_blank" href="https://github.com/questdb/questdb/issues/146">comment on github</a></p>
 <h3><a class="anchor" aria-hidden="true" id="what-is-next"></a><a href="#what-is-next" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>What is next?</h3>
-<p>In further releases, we will roll out this functionality to other parts of our
-SQL implementation. QuestDB implements SIMD in a generic fashion, which will
-allow us to continue adding SIMD to about everything our SQL engine does, such
-as keyed aggregations, indexing etc. We will also keep improving QuestDB's
-performance. Through some further work on assembly, we estimate that we can gain
-another 15% speed on these operations. In the meantime, if you want to know
-exactly how we have achieved this, all of our code is
-<strong><a href="https://github.com/questdb/questdb">open-source</a></strong>!</p>
+<p>In further releases, we will roll out this functionality to other parts of our SQL implementation. QuestDB implements SIMD in a generic fashion, which will allow us to continue adding SIMD to about everything our SQL engine does, such as keyed aggregations, indexing etc. We will also keep improving QuestDB's performance. Through some further work on assembly, we estimate that we can gain another 15% speed on these
+operations. In the meantime, if you want to know exactly how we have achieved this, all of our code is <strong><a href="https://github.com/questdb/questdb">open-source</a></strong>!</p>
 <h3><a class="anchor" aria-hidden="true" id="about-the-release-questdb-42"></a><a href="#about-the-release-questdb-42" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>About the release: QuestDB 4.2</h3>
 <h4><a class="anchor" aria-hidden="true" id="summary"></a><a href="#summary" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Summary</h4>
-<p>We have implemented SIMD-based vector execution of queries, such as
-<code>select sum(value) from table</code>. This is ~100x faster than non-vector based
-execution. This is just the beginning as we will introduce vectors to more
-operations going forward. Try our first implementation in this release - stay
-tuned for more features in the upcoming releases!</p>
+<p>We have implemented SIMD-based vector execution of queries, such as <code>select sum(value) from table</code>.
+This is ~100x faster than non-vector based execution. This is just the beginning as we will introduce vectors to more operations going forward.
+Try our first implementation in this release - stay tuned for more features in the upcoming releases!</p>
 <h4><a class="anchor" aria-hidden="true" id="important"></a><a href="#important" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Important</h4>
-<p>Metadata file format has been changed to include a new flag for columns of type
-symbol. It is necessary to convert existing tables to new format. Running the
-following sql: <code>repair table myTable</code> will update the table metadata.</p>
+<p>Metadata file format has been changed to include a new flag for columns of type symbol.
+It is necessary to convert existing tables to new format. Running the following sql: <code>repair table myTable</code> will update the table metadata.</p>
 <h4><a class="anchor" aria-hidden="true" id="what-is-new"></a><a href="#what-is-new" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>What is new?</h4>
 <ul>
 <li>Java: vectorized sum(), avg(), min(), max() for DOUBLE, LONG, INT</li>
@@ -430,21 +393,15 @@ following sql: <code>repair table myTable</code> will update the table metadata.
 </ul>
 <h4><a class="anchor" aria-hidden="true" id="what-we-fixed"></a><a href="#what-we-fixed" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>What we fixed</h4>
 <ul>
-<li>SQL: NPE when parsing SQL text with malformed table name expression , for
-example ')', or ', blah'</li>
-<li>SQL: parsing 'fill' clause in sub-query context was causing unexpected syntax
-error (#115)</li>
+<li>SQL: NPE when parsing SQL text with malformed table name expression , for example ')', or ', blah'</li>
+<li>SQL: parsing 'fill' clause in sub-query context was causing unexpected syntax error (#115)</li>
 <li>SQL: possible internal error when ordering result of group-by or sample-by</li>
-<li>Data Import: Ignore byte order marks (BOM) in table names created from an
-imported CSV (#114)</li>
-<li>SQL: 'timestamp' propagation thru group-by code had issues. sum() was tripping
-over null values. Added last() aggregate function. (#113)</li>
+<li>Data Import: Ignore byte order marks (BOM) in table names created from an imported CSV (#114)</li>
+<li>SQL: 'timestamp' propagation thru group-by code had issues. sum() was tripping over null values. Added last() aggregate function. (#113)</li>
 <li>LOG: make service log names consistent on windows (#106)</li>
-<li>SQL: deal with the following syntax 'select * from select ( select a from
-....)'</li>
+<li>SQL: deal with the following syntax 'select * from select ( select a from ....)'</li>
 <li>SQL: allow the following syntax 'case cast(x as int) when 1 then ...'</li>
-<li>fix(griffin): syntax check for &quot;case&quot;-')' overlap, e.g. &quot;a + (case when .. )
-end&quot;</li>
+<li>fix(griffin): syntax check for &quot;case&quot;-')' overlap, e.g. &quot;a + (case when .. ) end&quot;</li>
 </ul>
 </span></div></article></div><div class="post"><header class="postHeader"><h1 class="postHeaderTitle"><a href="/blog/2020/03/15/interthread">The art of thread messaging</a></h1><p class="post-meta">March 15, 2020</p><div class="authorBlock"><p class="post-authorName"><a target="_blank" rel="noreferrer noopener">Vlad Ilyushchenko</a></p></div></header><article class="post-content"><div><span><h3><a class="anchor" aria-hidden="true" id="introduction"></a><a href="#introduction" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Introduction</h3>
 <p><img src="/blog/assets/threadmessaging.png" alt="drawing" width="480px"/></p>
@@ -659,7 +616,7 @@ The following illustration assumes that there would be spare CPU capacity in oth
 <p>QuestDB supports ILP over UDP multicast and unicast sockets. TCP support will follow shortly. You don’t need to change anything in your application. For Telegraf, you can configure the UDP sender for QuestDB’s address and port.</p>
 <p>Follow this link to <strong><a href="http://questdb.io/getstarted">download QuestDB</a></strong>. You can also use our <strong><a href="https://github.com/questdb/questdb/blob/master/benchmarks/src/main/java/org/questdb/LineUDPSenderMain.java">sender</a></strong> against QuestDB and InfluxDB to reproduce the experiment.</p>
 <p>You can use JOINs while modifying your data structure on the fly and querying it all in SQL.</p>
-</span></div></article></div><div class="docs-prevnext"></div></div></div></div></div><footer class="nav-footer" id="footer"><section class="sitemap"><div align="left" class="footersection"><h5>QuestDB</h5><a href="/docs/documentationOverview">Documentation</a><a href="/getstarted">Download</a><a href="https://github.com/questdb/questdb/projects/2">Roadmap</a></div><div align="left" class="footersection"><h5>Community</h5><a href="https://join.slack.com/t/questdb/shared_invite/enQtNzk4Nzg4Mjc2MTE2LTEzZThjMzliMjUzMTBmYzVjYWNmM2UyNWJmNDdkMDYyZmE0ZDliZTQxN2EzNzk5MDE3Zjc1ZmJiZmFiZTIwMGY&gt;"> Join Slack </a><a href="https://twitter.com/" target="@QuestDB" rel="noreferrer noopener">Twitter</a></div><div align="left" class="footersection"><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/questdb/questdb">GitHub</a><span class="sucker"><a class="github-button" href="https://github.com/questdb/questdb" data-icon="octicon-star" data-count-href="/questdb/questdb/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></span><span class="github-trigger"><a class="github-button" href="https://github.com/questdb/questdb" data-icon="octicon-star" data-count-href="/questdb/questdb/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></span><div class="social"><a href="https://twitter.com/questdb" class="twitter-follow-button">Follow @questdb</a></div></div></section><section class="copyright">Copyright © 2020 QuestDB</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+</span></div></article></div><div class="docs-prevnext"></div></div></div></div></div><footer class="nav-footer" id="footer"><section class="sitemap"><div align="left" class="footersection"><h5>QuestDB</h5><a href="/docs/documentationOverview">Documentation</a><a href="/getstarted">Download</a><a href="https://github.com/questdb/questdb/projects/2">Roadmap</a></div><div align="left" class="footersection"><h5>Community</h5><a href="https://join.slack.com/t/questdb/shared_invite/enQtNzk4Nzg4Mjc2MTE2LTEzZThjMzliMjUzMTBmYzVjYWNmM2UyNWJmNDdkMDYyZmE0ZDliZTQxN2EzNzk5MDE3Zjc1ZmJiZmFiZTIwMGY&gt;"> Join Slack </a><a href="https://twitter.com/" target="@QuestDB" rel="noreferrer noopener">Twitter</a></div><div align="left" class="footersection"><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/questdb/questdb">GitHub</a><span class="sucker"><a class="github-button" href="https://github.com/questdb/questdb" data-icon="octicon-star" data-count-href="/questdb/questdb/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></span><span class="github-trigger"><a class="github-button" href="https://github.com/questdb/questdb" data-icon="octicon-star" data-count-href="/questdb/questdb/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></span></div></section><section class="copyright">Copyright © 2020 QuestDB</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
               !function(f,b,e,v,n,t,s)
               {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
               n.callMethod.apply(n,arguments):n.queue.push(arguments)};
@@ -670,7 +627,7 @@ The following illustration assumes that there would be spare CPU capacity in oth
               'https://connect.facebook.net/en_US/fbevents.js');
               fbq('init', '648273155994655');
               fbq('track', 'PageView');
-                </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script><script>
+                </script><script>
                 document.addEventListener('keyup', function(e) {
                   if (e.target !== document.body) {
                     return;
