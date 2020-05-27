@@ -2,8 +2,8 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://questdb.io/blog</id>
     <title>QuestDB Blog</title>
-    <updated>2020-05-12T06:00:00.000Z</updated>
-    <generator>https://github.com/jpmonette/feed</generator>
+    <updated>2020-05-12T06:00:00Z</updated>
+    <generator>Feed for Node.js</generator>
     <link rel="alternate" href="https://questdb.io/blog"/>
     <subtitle>The best place to stay up-to-date with the latest QuestDB news and events.</subtitle>
     <logo>https://questdb.io/img/QuestDB_Logo.png</logo>
@@ -11,49 +11,45 @@
     <entry>
         <title type="html"><![CDATA[Interesting things we learned about sums]]></title>
         <id>https://questdb.io/blog/2020/05/12/interesting-things-we-learned-about-sums.html</id>
-        <link href="https://questdb.io/blog/2020/05/12/interesting-things-we-learned-about-sums.html"/>
-        <updated>2020-05-12T06:00:00.000Z</updated>
+        <link href="https://questdb.io/blog/2020/05/12/interesting-things-we-learned-about-sums.html">
+        </link>
+        <updated>2020-05-12T06:00:00Z</updated>
         <summary type="html"><![CDATA[<p><img src="/blog/assets/road-runner.png" alt="alt-text"></p> <p>In the world of databases, benchmarking performance has always been the hottest topic. Who is faster for data ingestion and queries? About a month ago we announced a new release with SIMD aggregations on <a href="https://news.ycombinator.com/item?id=22803504">HackerNews</a> and <a href="https://www.reddit.com/r/programming/comments/fwlk0k/questdb_using_simd_to_aggregate_billions_of/">Reddit</a>. Fast. But were those r...</p>]]></summary>
         <author>
             <name>Tancrede Collard</name>
-            <email/>
-            <uri/>
         </author>
     </entry>
     <entry>
         <title type="html"><![CDATA[Using SIMD to aggregate billions of rows per second]]></title>
         <id>https://questdb.io/blog/2020/04/02/using-simd-to-aggregate-billions-of-rows-per-second.html</id>
-        <link href="https://questdb.io/blog/2020/04/02/using-simd-to-aggregate-billions-of-rows-per-second.html"/>
-        <updated>2020-04-02T06:00:00.000Z</updated>
+        <link href="https://questdb.io/blog/2020/04/02/using-simd-to-aggregate-billions-of-rows-per-second.html">
+        </link>
+        <updated>2020-04-02T06:00:00Z</updated>
         <summary type="html"><![CDATA[<p><a href="https://www.questdb.io/getstarted" target="_blank"><img class="banner-4-2" src="/blog/assets/banner-4-2.png" alt="drawing"></a></p> <p><a href="https://en.wikipedia.org/wiki/SIMD" target="_blank">SIMD instructions</a> are specific CPU instruction sets for arithmetic calculations that use synthetic parallelisation. The parallelisation is synthetic because instead of spreading the work across CPU cores, SIMD performs vector operations on multiple ...</p>]]></summary>
         <author>
             <name>Tancrede Collard</name>
-            <email/>
-            <uri/>
         </author>
     </entry>
     <entry>
         <title type="html"><![CDATA[The art of thread messaging]]></title>
         <id>https://questdb.io/blog/2020/03/15/interthread.html</id>
-        <link href="https://questdb.io/blog/2020/03/15/interthread.html"/>
-        <updated>2020-03-15T06:00:00.000Z</updated>
+        <link href="https://questdb.io/blog/2020/03/15/interthread.html">
+        </link>
+        <updated>2020-03-15T06:00:00Z</updated>
         <summary type="html"><![CDATA[<h3><a class="anchor" aria-hidden="true" id="introduction"></a><a href="#introduction" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewbox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"/></svg></a>Introduction</h3> <p><img src="/blog/assets/threadmessaging.png" alt="drawing" width="480px"></p> <p>Inter-thread messaging is a fundamental part of any asynchronous system. It is the component responsible for transportation of data between threads. Messaging forms the infrastructure, the scaffolding of multi-threaded application and j...</p>]]></summary>
         <author>
             <name>Vlad Ilyushchenko</name>
-            <email/>
-            <uri/>
         </author>
     </entry>
     <entry>
         <title type="html"><![CDATA[What makes QuestDB faster than InfluxDB]]></title>
         <id>https://questdb.io/blog/2019/12/19/lineprot.html</id>
-        <link href="https://questdb.io/blog/2019/12/19/lineprot.html"/>
-        <updated>2019-12-19T06:00:00.000Z</updated>
+        <link href="https://questdb.io/blog/2019/12/19/lineprot.html">
+        </link>
+        <updated>2019-12-19T06:00:00Z</updated>
         <summary type="html"><![CDATA[<p>Our background is in low-latency trading. We are obsessed with performance and have always wanted to build the fastest tech out there.</p> <p>But let’s keep the suspense for a minute and introduce ourselves first. QuestDB is an open-source SQL time-series d...</p>]]></summary>
         <author>
             <name>Tancrede Collard</name>
-            <email/>
-            <uri/>
         </author>
     </entry>
 </feed>

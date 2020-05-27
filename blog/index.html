@@ -56,8 +56,8 @@
             });
         </script></nav></div><div class="container mainContainer postContainer blogContainer"><div class="wrapper"><div class="posts"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle"><a href="/blog/2020/05/12/interesting-things-we-learned-about-sums">Interesting things we learned about sums</a></h1><p class="post-meta">May 12, 2020</p><div class="authorBlock"><p class="post-authorName"><a target="_blank" rel="noreferrer noopener">Tancrede Collard</a></p></div></header><article class="post-content"><div><span><p><img src="/blog/assets/road-runner.png" alt="alt-text"></p>
 <p>In the world of databases, benchmarking performance has always been the hottest
-topic. Who is faster for data ingestion and queries? About a month ago we
-announced a new release with SIMD aggregations on
+topic. Who is faster for data ingestion and
+queries? About a month ago we announced a new release with SIMD aggregations on
 <a href="https://news.ycombinator.com/item?id=22803504">HackerNews</a> and
 <a href="https://www.reddit.com/r/programming/comments/fwlk0k/questdb_using_simd_to_aggregate_billions_of/">Reddit</a>.
 Fast. But were those results accurate too?</p>
@@ -73,8 +73,8 @@ wanted to see how it affected performance. There is typically a trade-off
 between speed and accuracy. However, by extracting even more performance out of
 QuestDB (see below for how we did it), we managed to compute accurate sums as
 fast as naive ones! Since comparisons to Clickhouse have been our most frequent
-question, we have run the numbers and <a href="#comparison-with-clickhouse">here</a> is
-what we got, 2x faster for summing 1bn doubles will nulls.</p>
+question, we have run the numbers and <a href="#comparison-with-clickhouse">here</a> is what we got, 2x faster for summing
+1bn doubles will nulls.</p>
 <p>All of this is included in our new
 <a href="https://github.com/questdb/questdb/releases/tag/4.2.1">release 4.2.1</a></p>
 <p>You can find our repository on <a href="https://github.com/questdb/questdb">GitHub</a>. All
@@ -83,16 +83,16 @@ your
 <a href="https://github.com/questdb/questdb/pulls?q=is%3Apr+is%3Aopen+sort%3Aupdated-desc">pull-requests</a>
 and <a href="https://github.com/questdb/questdb">stars</a> are welcome
 <span class="emoji">🙂</span>.</p>
-<h3><a class="anchor" aria-hidden="true" id="how-did-we-get-there-tldr"></a><a href="#how-did-we-get-there-tldr" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>How did we get there? TL;DR</h3>
+<h3><a class="anchor" aria-hidden="true" id="how-did-we-get-there-tl-dr"></a><a href="#how-did-we-get-there-tl-dr" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>How did we get there? TL;DR</h3>
 <p>We used prefetch and co-routines techniques to pull data from RAM to cache in
 parallel with other CPU instructions. Our performance was previously limited by
 memory bandwidth - using these techniques would address this and allow us to
 compute accurate sums as fast as naive sums.</p>
 <p>With the help of prefetch we implemented the fastest and most accurate summation
-we have ever <a href="#comparison-with-clickhouse">tested</a> - 68ms over 1bn double values
-with nulls (versus 139ms for Clickhouse). We believe this is a significant
-advance in terms of performance for accurate summations, and will help
-developers handling intensive computations with large datasets.</p>
+we have ever <a href="#comparison-with-clickhouse">tested</a> - 68ms over 1bn double values with nulls
+(versus 139ms for Clickhouse). We believe this is a significant advance in terms
+of performance for accurate summations, and will help developers handling
+intensive computations with large datasets.</p>
 <h3><a class="anchor" aria-hidden="true" id="contents"></a><a href="#contents" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Contents</h3>
 <ul>
 <li>An <a href="#inaccurate-summation">introductory example</a> of the problem with summing
@@ -290,16 +290,9 @@ performance drops by ~40%.</p>
 naive and Kahan summation, respectively.</p>
 <p><img src="/blog/assets/kahan-naive-null.png" alt="alt-text"></p>
 <h3><a class="anchor" aria-hidden="true" id="concluding-remarks"></a><a href="#concluding-remarks" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Concluding remarks</h3>
-<p>It is useful to stabilize aggregation with compensated sums. We learned that
-vector-based calculation produce different arithmetic errors compared to
-non-vector calculations. The way the aggregation is executed by multiple threads
-is not constant. This can cause results to be different from one SQL run to
-another, if the sum is accuracy naive. Through compensated sums, the results are
-consistent and more accurate.</p>
-<p>It was also both interesting and surprising to be able to quantify the effect of
-prefetch on what is essentially sequential memory read.</p>
-<p>We hope you enjoyed reading this. If you like what we do and where we are
-going - please consider joining our community. Your support means a lot to us.</p>
+<p>It is useful to stabilize aggregation with compensated sums. We learned that vector-based calculation produce different arithmetic errors compared to non-vector calcs. The way the aggregation is executed by multiple threads is not constant. This can cause results to be different from one SQL run to another, if the sum is accuracy naive. Through compensated sums, the results are consistent and more accurate.</p>
+<p>It was also both interesting and surprising to be able to quantify the effect of prefetch on what is essentially sequential memory read.</p>
+<p>We hope you enjoyed reading this. If you like what we do and where we are going  - please consider joining our community. Your support means a lot to us.</p>
 </span></div></article></div><div class="post"><header class="postHeader"><h1 class="postHeaderTitle"><a href="/blog/2020/04/02/using-simd-to-aggregate-billions-of-rows-per-second">Using SIMD to aggregate billions of rows per second</a></h1><p class="post-meta">April 2, 2020</p><div class="authorBlock"><p class="post-authorName"><a target="_blank" rel="noreferrer noopener">Tancrede Collard</a></p></div></header><article class="post-content"><div><span><p><a href="https://www.questdb.io/getstarted" target="_blank"><img class="banner-4-2" src="/blog/assets/banner-4-2.png" alt="drawing"/></a></p>
 <p><a href="https://en.wikipedia.org/wiki/SIMD" target="_blank">SIMD instructions</a> are specific CPU instruction sets for arithmetic calculations that use synthetic parallelisation.
 The parallelisation is synthetic because instead of spreading the work across CPU cores,
@@ -616,7 +609,7 @@ The following illustration assumes that there would be spare CPU capacity in oth
 <p>QuestDB supports ILP over UDP multicast and unicast sockets. TCP support will follow shortly. You don’t need to change anything in your application. For Telegraf, you can configure the UDP sender for QuestDB’s address and port.</p>
 <p>Follow this link to <strong><a href="http://questdb.io/getstarted">download QuestDB</a></strong>. You can also use our <strong><a href="https://github.com/questdb/questdb/blob/master/benchmarks/src/main/java/org/questdb/LineUDPSenderMain.java">sender</a></strong> against QuestDB and InfluxDB to reproduce the experiment.</p>
 <p>You can use JOINs while modifying your data structure on the fly and querying it all in SQL.</p>
-</span></div></article></div><div class="docs-prevnext"></div></div></div></div></div><footer class="nav-footer" id="footer"><section class="sitemap"><div align="left" class="footersection"><h5>QuestDB</h5><a href="/docs/documentationOverview">Documentation</a><a href="/getstarted">Download</a><a href="https://github.com/questdb/questdb/projects/2">Roadmap</a></div><div align="left" class="footersection"><h5>Community</h5><a href="https://join.slack.com/t/questdb/shared_invite/enQtNzk4Nzg4Mjc2MTE2LTEzZThjMzliMjUzMTBmYzVjYWNmM2UyNWJmNDdkMDYyZmE0ZDliZTQxN2EzNzk5MDE3Zjc1ZmJiZmFiZTIwMGY&gt;"> Join Slack </a><a href="https://twitter.com/" target="@QuestDB" rel="noreferrer noopener">Twitter</a></div><div align="left" class="footersection"><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/questdb/questdb">GitHub</a><span class="sucker"><a class="github-button" href="https://github.com/questdb/questdb" data-icon="octicon-star" data-count-href="/questdb/questdb/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></span><span class="github-trigger"><a class="github-button" href="https://github.com/questdb/questdb" data-icon="octicon-star" data-count-href="/questdb/questdb/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></span></div></section><section class="copyright">Copyright © 2020 QuestDB</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+</span></div></article></div><div class="docs-prevnext"></div></div></div></div></div><footer class="nav-footer" id="footer"><section class="sitemap"><div align="left" class="footersection"><h5>QuestDB</h5><a href="/docs/documentationOverview">Documentation</a><a href="/getstarted">Download</a><a href="https://github.com/questdb/questdb/projects/2">Roadmap</a></div><div align="left" class="footersection"><h5>Community</h5><a href="https://join.slack.com/t/questdb/shared_invite/enQtNzk4Nzg4Mjc2MTE2LTEzZThjMzliMjUzMTBmYzVjYWNmM2UyNWJmNDdkMDYyZmE0ZDliZTQxN2EzNzk5MDE3Zjc1ZmJiZmFiZTIwMGY&gt;"> Join Slack </a><a href="https://twitter.com/" target="@QuestDB" rel="noreferrer noopener">Twitter</a></div><div align="left" class="footersection"><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/questdb/questdb/">GitHub</a><span class="sucker"><a class="github-button" href="https://github.com/questdb/questdb" data-icon="octicon-star" data-count-href="/questdb/questdb/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></span><span class="github-trigger"><a class="github-button" href="https://github.com/questdb/questdb" data-icon="octicon-star" data-count-href="/questdb/questdb/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></span></div></section><section class="copyright">Copyright © 2020 QuestDB</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
               !function(f,b,e,v,n,t,s)
               {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
               n.callMethod.apply(n,arguments):n.queue.push(arguments)};
