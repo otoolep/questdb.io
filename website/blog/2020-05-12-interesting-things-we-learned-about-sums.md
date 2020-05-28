@@ -1,5 +1,5 @@
 ---
-title: Interesting things we learned about sums
+title: Things we learned about sums
 author: Tancrede Collard
 ---
 
@@ -10,7 +10,7 @@ topic. Who is faster for data ingestion and queries? About a month ago we
 announced a new release with SIMD aggregations on
 [HackerNews](https://news.ycombinator.com/item?id=22803504) and
 [Reddit](https://www.reddit.com/r/programming/comments/fwlk0k/questdb_using_simd_to_aggregate_billions_of/).
-Fast. But were those results accurate too?
+Fast. But were those results numerically accurate?
 
 Speed is not everything. Some of the feedback we have received pointed us toward
 the accuracy of our results. This is something typically overlooked in the
