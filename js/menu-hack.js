@@ -7,21 +7,14 @@ window.addEventListener("load", function () {
   const githubBtn = document.getElementsByClassName("sucker")[0]
   const nav = document.getElementsByClassName("nav-site")[0]
 
-  function gtag() {
-    dataLayer.push(arguments)
-  }
-
   github.className = "github"
   github.appendChild(githubBtn)
   logo.insertAdjacentElement("afterEnd", github)
 
-  gtag("js", new Date())
-  gtag("config", "UA-145747842-1")
-
   const goalGaGithub = (e) => {
-    gtag("event", "https://github.com/questdb/questdb/", {
-      event_category: "Github Link Click",
-      event_label: window.location.pathname,
+    dataLayer.push({
+      event: "gtm.linkClick",
+      "gtm.elementUrl": "https://github.com/questdb/questdb",
     })
   }
 
