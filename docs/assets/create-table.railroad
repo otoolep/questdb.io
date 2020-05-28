@@ -35,3 +35,6 @@ case
 
 Copy
 ::= 'COPY' tableName 'FROM' fileName  (| 'WITH' 'HEADER' (true|false) ) ';'
+
+show
+::= 'SHOW' ('TABLES' | 'COLUMNS' 'FROM' tableName) ';'
