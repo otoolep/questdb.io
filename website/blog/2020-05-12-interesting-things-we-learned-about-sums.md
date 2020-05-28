@@ -312,5 +312,4 @@ consistent and more accurate.
 It was also both interesting and surprising to be able to quantify the effect of
 prefetch on what is essentially sequential memory read.
 
-We hope you enjoyed reading this. If you like what we do and where we are
-going - please consider joining our community. Your support means a lot to us.
+Your support means a lot to us! If you like content like this, what we do, and where we're going, please [join our community](https://serieux-saucisson-79115.herokuapp.com/) and give us a [star️](https://github.com/questdb/questdb) on GitHub.
