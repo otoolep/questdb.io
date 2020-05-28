@@ -68,6 +68,6 @@ code {
   font-weight: bold;
 }
 
-.toc .toggleNav ul li a:hover {
-  color: #393939;
+.toggleNav h2 i {
+  font-style: normal;
 }

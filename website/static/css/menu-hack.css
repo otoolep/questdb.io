@@ -1,6 +1,12 @@
 .github {
+    display: flex;
     margin-top: 5px;
+    align-items: center;
     z-index: 99;
+}
+
+.github div {
+    display: flex;
 }
 
 .slack img {

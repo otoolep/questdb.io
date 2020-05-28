@@ -251,12 +251,10 @@ const siteConfig = {
 
   // For no header links in the top nav bar -> headerLinks: [],
   headerLinks: [
-    { href: "/", label: "Home" },
     { page: "getstarted", label: "Get QuestDB" },
     { doc: "documentationOverview", label: "Documentation" },
     { blog: true, label: "Blog" },
     { page: "careers", label: "Careers" },
-    { page: "about", label: "About" },
     { href: "https://serieux-saucisson-79115.herokuapp.com/", label: "Join" },
     { search: true },
   ],
@@ -272,8 +270,8 @@ const siteConfig = {
   /* Colors for website */
   /*    Both set to transparent to customise manually*/
   colors: {
-    primaryColor: "transparent",
-    secondaryColor: "transparent",
+    primaryColor: "#fb8e00",
+    secondaryColor: "#24477b",
   },
 
   // This copyright info is used in /core/Footer.js and blog RSS/Atom feeds.
@@ -303,7 +301,6 @@ const siteConfig = {
   // Open Graph and Twitter card images.
   ogImage: "img/questdb_og.png",
   twitterImage: "img/questdb_og.png",
-  twitterUsername: "questdb",
 
   // For sites with a sizable amount of content, set collapsible to true.
   // Expand/collapse the links and subcategories under categories.

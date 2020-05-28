@@ -44,6 +44,7 @@ class Footer extends React.Component {
             </a>
             <a href={`/getstarted`}>Download</a>
             <a href="https://github.com/questdb/questdb/projects/2">Roadmap</a>
+            <a href="/about">About</a>
           </div>
           <div align={"left"} className="footersection">
             <h5>Community</h5>
