@@ -5,8 +5,8 @@
         <link>https://questdb.io/blog</link>
         <description>The best place to stay up-to-date with the latest QuestDB news and events.</description>
         <lastBuildDate>Tue, 12 May 2020 06:00:00 GMT</lastBuildDate>
-        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
-        <generator>https://github.com/jpmonette/feed</generator>
+        <docs>http://blogs.law.harvard.edu/tech/rss</docs>
+        <generator>Feed for Node.js</generator>
         <image>
             <title>QuestDB Blog</title>
             <url>https://questdb.io/img/QuestDB_Logo.png</url>
@@ -14,7 +14,7 @@
         </image>
         <copyright>Copyright © 2020 QuestDB</copyright>
         <item>
-            <title><![CDATA[Interesting things we learned about sums]]></title>
+            <title><![CDATA[Things we learned about sums]]></title>
             <link>https://questdb.io/blog/2020/05/12/interesting-things-we-learned-about-sums.html</link>
             <guid>https://questdb.io/blog/2020/05/12/interesting-things-we-learned-about-sums.html</guid>
             <pubDate>Tue, 12 May 2020 06:00:00 GMT</pubDate>
