@@ -21,7 +21,7 @@ window.addEventListener("load", function () {
   githubBtn.addEventListener("click", goalGaGithub)
   githubTrigger.addEventListener("click", goalGaGithub)
 
-  const joinSlack = nav.childNodes[6] // 7th element in menu
+  const joinSlack = nav.childNodes[4]
   const joinSlackA = joinSlack.childNodes[0]
   joinSlackA.innerHTML = 'Join <img src="/img/slack-color.svg" alt="slack">'
   joinSlackA.className = "slack"
