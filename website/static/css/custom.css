@@ -481,15 +481,6 @@ footer.nav-footer {
   padding-top: 50px;
 }
 
-.fixedHeaderContainer img {
-  filter: brightness(100) contrast(100) drop-shadow(2px 4px 6px black)
-    grayscale(100%);
-}
-
-.fixedHeaderContainer h2 {
-  filter: brightness(100) contrast(100) drop-shadow(2px 4px 6px black);
-}
-
 .toptitle {
   padding-top: 90px;
   padding-bottom: 120px;
