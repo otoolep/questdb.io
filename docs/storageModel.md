@@ -33,7 +33,6 @@ QuestDB utilizes [ACID properties](https://en.wikipedia.org/wiki/Atomicity_(data
  To guarantee **atomicity**, each table maintains a `last_committed_record_count` in a separate file. 
  By convention, any table reader will never read more records than  `tx_count`. 
  This enables the property `isolation`: where uncommitted data cannot be read. 
- This enables the property `isolation`: where uncommitted data cannot be read. 
  Since uncommitted data is appended directly to the table, 
  
  Once all data is appended, QuestDB `commit()` ensures that the 
