@@ -2,12 +2,24 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://questdb.io/blog</id>
     <title>QuestDB Blog</title>
-    <updated>2020-05-12T06:00:00.000Z</updated>
+    <updated>2020-06-05T06:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://questdb.io/blog"/>
     <subtitle>The best place to stay up-to-date with the latest QuestDB news and events.</subtitle>
     <logo>https://questdb.io/img/QuestDB_Logo.png</logo>
     <rights>Copyright © 2020 QuestDB</rights>
+    <entry>
+        <title type="html"><![CDATA[IoT on QuestDB]]></title>
+        <id>https://questdb.io/blog/2020/06/05/IoT-on-QuestDB.html</id>
+        <link href="https://questdb.io/blog/2020/06/05/IoT-on-QuestDB.html"/>
+        <updated>2020-06-05T06:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<p>As you can well imagine, I've been super busy in my hew job at QuestDB so this has taken me longer than I would have liked, but here we are. If you know me at all, you know that one of the first things I always do with new things is, well, connect th...</p>]]></summary>
+        <author>
+            <name>David G Simmons</name>
+            <email/>
+            <uri/>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Things we learned about sums]]></title>
         <id>https://questdb.io/blog/2020/05/12/interesting-things-we-learned-about-sums.html</id>

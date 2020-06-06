@@ -4,7 +4,7 @@
         <title>QuestDB Blog</title>
         <link>https://questdb.io/blog</link>
         <description>The best place to stay up-to-date with the latest QuestDB news and events.</description>
-        <lastBuildDate>Tue, 12 May 2020 06:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 05 Jun 2020 06:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <image>
@@ -13,6 +13,13 @@
             <link>https://questdb.io/blog</link>
         </image>
         <copyright>Copyright © 2020 QuestDB</copyright>
+        <item>
+            <title><![CDATA[IoT on QuestDB]]></title>
+            <link>https://questdb.io/blog/2020/06/05/IoT-on-QuestDB.html</link>
+            <guid>https://questdb.io/blog/2020/06/05/IoT-on-QuestDB.html</guid>
+            <pubDate>Fri, 05 Jun 2020 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>As you can well imagine, I've been super busy in my hew job at QuestDB so this has taken me longer than I would have liked, but here we are. If you know me at all, you know that one of the first things I always do with new things is, well, connect th...</p>]]></description>
+        </item>
         <item>
             <title><![CDATA[Things we learned about sums]]></title>
             <link>https://questdb.io/blog/2020/05/12/interesting-things-we-learned-about-sums.html</link>
