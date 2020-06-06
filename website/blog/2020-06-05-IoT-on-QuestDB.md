@@ -1,4 +1,7 @@
-# IoT on QuestDB
+---
+title: IoT on QuestDB
+author: David G Simmons
+---
 
 As you can well imagine, I've been super busy in my hew job at QuestDB so this has taken me longer than I would have liked, but here we are. If you know me at all, you know that one of the first things I always do with new things is, well, connect things to them! So I immediately went to connect an IoT device to QuestDB to see how it went. Unsurprisingly, it went quite well. So here's how it went, from start to finish.
 
