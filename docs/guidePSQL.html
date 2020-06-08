@@ -1,0 +1,249 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>PSQL Guide (alpha) · QuestDB</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="![psql](/docs/assets/psql.png)"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="PSQL Guide (alpha) · QuestDB"/><meta property="og:type" content="website"/><meta property="og:url" content="https://questdb.io/"/><meta property="og:description" content="![psql](/docs/assets/psql.png)"/><meta property="og:image" content="https://questdb.io/img/questdb_og.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://questdb.io/img/questdb_og.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="alternate" type="application/atom+xml" href="https://questdb.io/blog/atom.xml" title="QuestDB Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://questdb.io/blog/feed.xml" title="QuestDB Blog RSS Feed"/><script async="" src="https://www.googletagmanager.com/gtag/js?id=GTM-PVR7M2G"></script><script>
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments); }
+              gtag('js', new Date());
+              gtag('config', 'GTM-PVR7M2G');
+            </script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700|IBM+Plex+Sans:300,400,600,700"/><script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script><script type="text/javascript" src="/js/fonts.js"></script><script type="text/javascript" src="/js/menu-hack.js"></script><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script type="text/javascript" src="/js/getstarted.js"></script><script type="text/javascript" src="/js/hotjar.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/QuestDB_Logo.png" alt="QuestDB"/><h2 class="headerTitleWithLogo">QuestDB</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/getstarted" target="_self">Get QuestDB</a></li><li class="siteNavGroupActive"><a href="/docs/documentationOverview" target="_self">Documentation</a></li><li class=""><a href="/blog/" target="_self">Blog</a></li><li class=""><a href="/careers" target="_self">Careers</a></li><li class=""><a href="https://serieux-saucisson-79115.herokuapp.com/" target="_self">Join</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search..." title="Search..."/></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Installation</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Intro<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/documentationOverview">Documentation overview</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Guides<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Installation</h4><ul><li class="navListItem"><a class="navItem" href="/docs/installationOverview">Overview</a></li><li class="navListItem"><a class="navItem" href="/docs/guideDocker">How to setup on Docker</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/guidePSQL">How to use with psql</a></li><li class="navListItem"><a class="navItem" href="/docs/installFromHomebrew">Install from Homebrew</a></li><li class="navListItem"><a class="navItem" href="/docs/installFromBinary">Install from Binary</a></li></ul></div><li class="navListItem"><a class="navItem" href="/docs/usingWebConsole">Using the Web Console</a></li><li class="navListItem"><a class="navItem" href="/docs/myFirstDatabase">My First Database</a></li><li class="navListItem"><a class="navItem" href="/docs/gettestdata">Obtaining Test Data</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Concepts<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/storageModel">Storage Model</a></li><li class="navListItem"><a class="navItem" href="/docs/datatypes">Data Types</a></li><li class="navListItem"><a class="navItem" href="/docs/designatedTimestamp">Designated timestamp</a></li><li class="navListItem"><a class="navItem" href="/docs/partitions">Partitions</a></li><li class="navListItem"><a class="navItem" href="/docs/symbol">Symbol</a></li><li class="navListItem"><a class="navItem" href="/docs/crudOperations">CRUD Operations</a></li><li class="navListItem"><a class="navItem" href="/docs/indexes">Indexes</a></li><li class="navListItem"><a class="navItem" href="/docs/sqlOverview">SQL Overview</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Reference<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Configuration</h4><ul><li class="navListItem"><a class="navItem" href="/docs/rootDirectoryStructure">Root Directory Structure</a></li><li class="navListItem"><a class="navItem" href="/docs/serverConf">Configuration Properties</a></li><li class="navListItem"><a class="navItem" href="/docs/installFromDockerImage">Docker configuration</a></li></ul></div><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">APIs</h4><ul><li class="navListItem"><a class="navItem" href="/docs/restAPI">REST API</a></li><li class="navListItem"><a class="navItem" href="/docs/embeddedJavaAPI">Embedded Java API</a></li></ul></div><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Functions</h4><ul><li class="navListItem"><a class="navItem" href="/docs/functionsAggregation">Aggregation</a></li><li class="navListItem"><a class="navItem" href="/docs/functionsNumeric">Numeric</a></li><li class="navListItem"><a class="navItem" href="/docs/functionsDateAndTime">Date and Time</a></li><li class="navListItem"><a class="navItem" href="/docs/functionsRandomValueGenerators">Random Value Generators</a></li><li class="navListItem"><a class="navItem" href="/docs/functionsRowGenerator">Row Generator</a></li><li class="navListItem"><a class="navItem" href="/docs/functionsTimestampGenerator">Timestamp Generator</a></li><li class="navListItem"><a class="navItem" href="/docs/functionsText">Text Functions</a></li></ul></div><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">SQL Reference</h4><ul><li class="navListItem"><a class="navItem" href="/docs/sqlExecutionOrder">SQL Execution Order</a></li><li class="navListItem"><a class="navItem" href="/docs/alterTableAddColumn">ALTER TABLE ADD COLUMN</a></li><li class="navListItem"><a class="navItem" href="/docs/alterTableDropColumn">ALTER TABLE DROP COLUMN</a></li><li class="navListItem"><a class="navItem" href="/docs/alterTableAlterColumnAddIndex">ALTER TABLE COLUMN ADD INDEX</a></li><li class="navListItem"><a class="navItem" href="/docs/alterTableDropPartition">ALTER TABLE DROP PARTITION</a></li><li class="navListItem"><a class="navItem" href="/docs/backup">BACKUP</a></li><li class="navListItem"><a class="navItem" href="/docs/case">CASE</a></li><li class="navListItem"><a class="navItem" href="/docs/cast">CAST</a></li><li class="navListItem"><a class="navItem" href="/docs/copy">COPY</a></li><li class="navListItem"><a class="navItem" href="/docs/createTable">CREATE TABLE</a></li><li class="navListItem"><a class="navItem" href="/docs/rename">RENAME TABLE</a></li><li class="navListItem"><a class="navItem" href="/docs/drop">DROP TABLE</a></li><li class="navListItem"><a class="navItem" href="/docs/insert">INSERT</a></li><li class="navListItem"><a class="navItem" href="/docs/joins">JOINS</a></li><li class="navListItem"><a class="navItem" href="/docs/select">SELECT</a></li><li class="navListItem"><a class="navItem" href="/docs/truncate">TRUNCATE TABLE</a></li><li class="navListItem"><a class="navItem" href="/docs/union">UNION</a></li></ul></div><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Java API Reference</h4><ul><li class="navListItem"><a class="navItem" href="/docs/javaAPIOverview">Overview</a></li><li class="navListItem"><a class="navItem" href="/docs/influxSenderLibrary">Influx Sender Library</a></li></ul></div></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">FAQ<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/faq">Frequently Asked</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 id="__docusaurus" class="postHeaderTitle">PSQL Guide (alpha)</h1></header><article><div><span><p><img src="/docs/assets/psql.png" alt="psql"></p>
+<p>This short guide explains how to connect to QuestDB using <code>psql</code>.</p>
+<blockquote>
+<p>Our implementation of the Postgres wire protocol is still in beta.
+Some features such as metadata are not yet supported.</p>
+</blockquote>
+<blockquote>
+<p>This guide assumes you have installed QuestDB and have it running.</p>
+</blockquote>
+<h2><a class="anchor" aria-hidden="true" id="how-to-install-psql"></a><a href="#how-to-install-psql" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>How to Install psql</h2>
+<p>You can check if you already have psql installed with</p>
+<pre><code class="hljs css language-shell script">psql --version
+</code></pre>
+<p>Here are installation instructions for the major platforms:</p>
+<h4><a class="anchor" aria-hidden="true" id="homebrew-macos"></a><a href="#homebrew-macos" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Homebrew (MacOS)</h4>
+<pre><code class="hljs css language-shell script">brew install libpq  
+brew link --force libpq  
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="ubuntu"></a><a href="#ubuntu" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Ubuntu</h4>
+<pre><code class="hljs css language-shell script">sudo apt-get install postgresql-client  
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="fedora"></a><a href="#fedora" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Fedora</h4>
+<pre><code class="hljs css language-shell script">sudo dnf install postgresql.x86_64  
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="windows-10"></a><a href="#windows-10" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Windows 10</h4>
+<p>Install using the  <a href="https://www.enterprisedb.com/downloads/postgres-postgresql-downloads" target="_blank">Windows Installer</a>.</p>
+<h2><a class="anchor" aria-hidden="true" id="how-to-connect"></a><a href="#how-to-connect" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>How to connect</h2>
+<p>The following shows how to connect to QuestDB over the Postgres wire protocol using the default configuration.</p>
+<h3><a class="anchor" aria-hidden="true" id="syntax"></a><a href="#syntax" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Syntax</h3>
+<pre><code class="hljs css language-shell script">psql -h [host] -p [port] -U [user] -W -d [database]
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="connection-parameters"></a><a href="#connection-parameters" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Connection parameters</h3>
+<table>
+<thead>
+<tr><th>Parameter</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>database</td><td>Default database is <code>qdb</code></td></tr>
+<tr><td>host</td><td>Your IP. If running locally, that's <code>localhost</code></td></tr>
+<tr><td>password</td><td>You will be prompted manually. Default is <code>quest</code></td></tr>
+<tr><td>port</td><td>Default is <code>8812</code></td></tr>
+<tr><td>user</td><td>Default is <code>admin</code></td></tr>
+</tbody>
+</table>
+<h3><a class="anchor" aria-hidden="true" id="establishing-a-connection"></a><a href="#establishing-a-connection" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Establishing a connection</h3>
+<p>The following will use the default parameters to connect to a QuestDB instance running locally listening on port 8812.</p>
+<pre><code class="hljs css language-shell script">psql -h localhost -p 8812 -U admin -W -d qdb
+</code></pre>
+<p>This will prompt you for a password. Enter the default password <code>quest</code>.
+A successful connection will return the following</p>
+<pre><code class="hljs css language-shell script">psql -h localhost -p 8812 -U admin -W -d qdb
+Password: 
+psql (12.2, server 11.3)
+Type "help" for help.
+
+qdb=&gt; 
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="using-the-command-prompt"></a><a href="#using-the-command-prompt" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Using the command prompt</h2>
+<p>Now that you are connected to QuestDB, you can use the <code>psql</code> prompt to run SQL commands.</p>
+<h3><a class="anchor" aria-hidden="true" id="create-tables"></a><a href="#create-tables" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Create tables</h3>
+<p>Let's create a simple table with three columns (timestamp, location and a temperature reading) with a designated timestamp.</p>
+<pre><code class="hljs css language-sql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> temp(
+    ts <span class="hljs-type_name">timestamp</span>, 
+    location <span class="hljs-type_name">symbol</span>, 
+    tempC <span class="hljs-type_name">double</span>) 
+<span class="hljs-type_name">timestamp</span>(ts);
+</code></pre>
+<blockquote>
+<p>Symbol is a special type which allows us to write strings but store them efficiently as an int which
+makes writes and scans more efficient and reduces the storage requirements. Find out more <a href="/docs/symbol">here</a>.</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="insert-data"></a><a href="#insert-data" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Insert data</h3>
+<p>Let's simulate a house with 4 temperature sensors to populate our newly created table with
+test data.</p>
+<h4><a class="anchor" aria-hidden="true" id="manual-insert"></a><a href="#manual-insert" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Manual insert</h4>
+<p>We can insert data points manually as follows</p>
+<pre><code class="hljs css language-sql"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> temp <span class="hljs-keyword">VALUES</span>(
+    <span class="hljs-sql_function">systimestamp</span>(), 
+    <span class="hljs-sql_function">rnd_symbol</span>(<span class="hljs-string">'kitchen'</span>, <span class="hljs-string">'bedroom'</span>, <span class="hljs-string">'bathroom'</span>, <span class="hljs-string">'garage'</span>),
+    <span class="hljs-sql_function">round</span>(<span class="hljs-sql_function">rnd_int</span>(<span class="hljs-number">10</span>,<span class="hljs-number">15</span>,<span class="hljs-number">0</span>) + <span class="hljs-sql_function">rnd_double</span>(),<span class="hljs-number">1</span>)
+    );
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="procedurally-generated-data"></a><a href="#procedurally-generated-data" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Procedurally generated data</h4>
+<p>For the purpose of this guide, it is easier to insert from a file or in this case to generate the data.
+We can use QuestDB's <a href="/docs/functionsRowGenerator">row generation functions</a> and <a href="/docs/functionsRandomValueGenerators">random generators</a>
+to quickly create test data. We use <code>long_sequence()</code> which generates rows and returns a synthetic column <code>x</code> with monotonically increasing
+values. As <code>x</code> is of type <code>long</code>, we use <code>cast</code> to convert it to <code>int</code>.</p>
+<p>The below will add 1 million readings from a location chosen at random approximatively every 30 seconds.</p>
+<pre><code class="hljs css language-sql"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> temp 
+<span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">FROM</span> (
+    <span class="hljs-keyword">SELECT</span> 
+    <span class="hljs-sql_function">dateadd</span>(<span class="hljs-string">'s'</span>, <span class="hljs-sql_function">cast</span>(<span class="hljs-number">30</span> * x <span class="hljs-keyword">AS</span> <span class="hljs-type_name">INT</span>), <span class="hljs-sql_function">systimestamp</span>()) ts,
+    <span class="hljs-sql_function">rnd_symbol</span>(<span class="hljs-string">'kitchen'</span>, <span class="hljs-string">'bedroom'</span>, <span class="hljs-string">'bathroom'</span>, <span class="hljs-string">'garage'</span>) location,
+    <span class="hljs-sql_function">round</span>(<span class="hljs-sql_function">rnd_int</span>(<span class="hljs-number">10</span>,<span class="hljs-number">15</span>,<span class="hljs-number">0</span>) + <span class="hljs-sql_function">rnd_double</span>(),<span class="hljs-number">1</span>) tempC
+    <span class="hljs-keyword">FROM</span> <span class="hljs-sql_function">long_sequence</span>(<span class="hljs-number">1000000</span>)
+) <span class="hljs-type_name">TIMESTAMP</span>(ts);
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="query-data"></a><a href="#query-data" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Query data</h3>
+<p>Now that we have data, we can run a few queries to start leveraging QuestDB's time-series SQL extensions.</p>
+<h4><a class="anchor" aria-hidden="true" id="weekly-average-kitchen-temperature-over-time"></a><a href="#weekly-average-kitchen-temperature-over-time" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Weekly average kitchen temperature over time</h4>
+<pre><code class="hljs css language-sql"><span class="hljs-keyword">SELECT</span> ts, <span class="hljs-sql_function">avg</span>(tempC) 
+<span class="hljs-keyword">FROM</span> temp 
+<span class="hljs-keyword">WHERE</span> location = <span class="hljs-string">'kitchen'</span> 
+<span class="hljs-keyword">SAMPLE</span> <span class="hljs-keyword">BY</span> <span class="hljs-number">7</span>d;
+</code></pre>
+<table>
+<thead>
+<tr><th>ts</th><th>avg</th></tr>
+</thead>
+<tbody>
+<tr><td>2020-06-04 00:00:00.000000</td><td>13.2</td></tr>
+<tr><td>2020-06-11 00:00:00.000000</td><td>12.9</td></tr>
+<tr><td>2020-06-18 00:00:00.000000</td><td>13.1</td></tr>
+<tr><td>2020-06-25 00:00:00.000000</td><td>12.8</td></tr>
+<tr><td>2020-07-02 00:00:00.000000</td><td>13.0</td></tr>
+</tbody>
+</table>
+<p>This query uses <a href="/docs/select#sample-by">SAMPLE BY</a> to generate weekly time buckets in just 3 words.</p>
+<h4><a class="anchor" aria-hidden="true" id="last-temperature-readings"></a><a href="#last-temperature-readings" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Last temperature readings</h4>
+<pre><code class="hljs css language-sql"><span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">FROM</span> temp
+<span class="hljs-keyword">LATEST</span> <span class="hljs-keyword">BY</span> location;
+</code></pre>
+<table>
+<thead>
+<tr><th>ts</th><th>location</th><th>tempC</th></tr>
+</thead>
+<tbody>
+<tr><td>2020-11-29 06:46:08.793172</td><td>kitchen</td><td>11.9</td></tr>
+<tr><td>2020-11-29 06:46:23.793172</td><td>bathroom</td><td>10.8</td></tr>
+<tr><td>2020-11-29 06:46:38.793172</td><td>bedroom</td><td>14.5</td></tr>
+<tr><td>2020-11-29 06:46:53.793172</td><td>garage</td><td>14.4</td></tr>
+</tbody>
+</table>
+<h4><a class="anchor" aria-hidden="true" id="last-reading-of-december"></a><a href="#last-reading-of-december" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Last reading of december</h4>
+<pre><code class="hljs css language-sql"><span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">FROM</span> temp
+<span class="hljs-keyword">LATEST</span> <span class="hljs-keyword">BY</span> location 
+<span class="hljs-keyword">WHERE</span> ts=<span class="hljs-string">'2020-12'</span>;
+</code></pre>
+<p>This query uses <a href="/docs/crudOperations">LATEST BY</a> and our <a href="/docs/select#interval-timestamp">timestamp search</a>.</p>
+<table>
+<thead>
+<tr><th>ts</th><th>location</th><th>tempC</th></tr>
+</thead>
+<tbody>
+<tr><td>2020-12-31 23:57:25.500585</td><td>garage</td><td>13.2</td></tr>
+<tr><td>2020-12-31 23:58:55.500586</td><td>kitchen</td><td>15.1</td></tr>
+<tr><td>2020-12-31 23:59:25.500586</td><td>bedroom</td><td>11.9</td></tr>
+<tr><td>2020-12-31 23:59:55.500586</td><td>bathroom</td><td>14.9</td></tr>
+</tbody>
+</table>
+<h2><a class="anchor" aria-hidden="true" id="whats-next"></a><a href="#whats-next" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>What's next</h2>
+<p>There is plenty to do with QuestDB. As a next step, you could check out our guide to <a href="/docs/crudOperations">CRUD operations</a>,
+how to join time-series with <a href="/docs/joins#asof-join">ASOF JOIN</a> or how to <a href="/docs/select#fill">FILL</a> missing intervals within a select statement.</p>
+<p>Before we leave, let's remember to cleanup and delete all the data</p>
+<pre><code class="hljs css language-sql"><span class="hljs-keyword">DROP</span> <span class="hljs-keyword">TABLE</span> temp
+</code></pre>
+<p>We hope you enjoyed this guide. Feel free to join our Slack to ask questions if you would like to further explore
+a particular topic or ask functionality / syntax questions.</p>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 6/8/2020</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/guideDocker"><span class="arrow-prev">← </span><span>How to setup on Docker</span></a><a class="docs-next button" href="/docs/installFromHomebrew"><span>Install from Homebrew</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#how-to-install-psql">How to Install psql</a></li><li><a href="#how-to-connect">How to connect</a><ul class="toc-headings"><li><a href="#syntax">Syntax</a></li><li><a href="#connection-parameters">Connection parameters</a></li><li><a href="#establishing-a-connection">Establishing a connection</a></li></ul></li><li><a href="#using-the-command-prompt">Using the command prompt</a><ul class="toc-headings"><li><a href="#create-tables">Create tables</a></li><li><a href="#insert-data">Insert data</a></li><li><a href="#query-data">Query data</a></li></ul></li><li><a href="#whats-next">What's next</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><div align="left" class="footersection"><h5>QuestDB</h5><a href="/docs/documentationOverview">Documentation</a><a href="/getstarted">Download</a><a href="https://github.com/questdb/questdb/projects/3">Roadmap</a></div><div align="left" class="footersection"><h5>Community</h5><a href="https://join.slack.com/t/questdb/shared_invite/enQtNzk4Nzg4Mjc2MTE2LTEzZThjMzliMjUzMTBmYzVjYWNmM2UyNWJmNDdkMDYyZmE0ZDliZTQxN2EzNzk5MDE3Zjc1ZmJiZmFiZTIwMGY&gt;"> Join Slack </a><a href="https://twitter.com/intent/follow?screen_name=QuestDB" target="@QuestDB" rel="noreferrer noopener">Twitter</a></div><div align="left" class="footersection"><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/questdb/questdb">GitHub</a><span class="sucker"><a class="github-button" href="https://github.com/questdb/questdb" data-icon="octicon-star" data-count-href="/questdb/questdb/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></span><span class="github-trigger"><a class="github-button" href="https://github.com/questdb/questdb" data-icon="octicon-star" data-count-href="/questdb/questdb/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></span></div></section><section class="copyright">Copyright © 2020 QuestDB</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+              !function(f,b,e,v,n,t,s)
+              {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+              n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+              if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+              n.queue=[];t=b.createElement(e);t.async=!0;
+              t.src=v;s=b.getElementsByTagName(e)[0];
+              s.parentNode.insertBefore(t,s)}(window, document,'script',
+              'https://connect.facebook.net/en_US/fbevents.js');
+              fbq('init', '648273155994655');
+              fbq('track', 'PageView');
+                </script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: 'b2a69b4869a2a85284a82fb57519dcda',
+                indexName: 'questdb',
+                inputSelector: '#search_input_react'
+              });
+            </script></body></html>

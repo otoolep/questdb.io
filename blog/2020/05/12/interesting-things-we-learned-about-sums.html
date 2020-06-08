@@ -245,14 +245,14 @@ to Kahan compensated sum.</p>
 <p>We run all databases on an <code>c5.metal</code> AWS instance, which has two Intel 8275CL
 24-core CPUs and 192GB of memory. QuestDB was running on 16 threads. As we
 showed in a
-<a href="2020-04-02-using-simd-to-aggregate-billions-of-rows-per-second.md">previous article</a>,
+<a href="/blog/2020-04-02-using-simd-to-aggregate-billions-of-rows-per-second">previous article</a>,
 adding more threads does not improve performance beyond a certain point.
 Clickhouse was running using all cores as per default configuration, however we
 increased the memory limit from the default value from 10GB to 40GB
 <code>&lt;max_memory_usage&gt;40000000000&lt;/max_memory_usage&gt;</code>.</p>
 <h4><a class="anchor" aria-hidden="true" id="test-data"></a><a href="#test-data" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Test data</h4>
 <p>We generated two test files using our
-<a href="/docs/functionsRandomValueGenerators.md">random generation functions</a> and
+<a href="/docs/functionsRandomValueGenerators">random generation functions</a> and
 exported the results to CSV. We then imported the CSV individually in the
 databases.</p>
 <pre><code class="hljs css language-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-sql_function">rnd_double</span>() <span class="hljs-keyword">FROM</span> <span class="hljs-sql_function">long_sequence</span>(<span class="hljs-number">1</span>_000_000_000l); <span class="hljs-comment">-- non null
@@ -331,7 +331,6 @@ prefetch on what is essentially sequential memory read.</p>
                 
                 apiKey: 'b2a69b4869a2a85284a82fb57519dcda',
                 indexName: 'questdb',
-                inputSelector: '#search_input_react',
-                algoliaOptions: {}
+                inputSelector: '#search_input_react'
               });
             </script></body></html>
