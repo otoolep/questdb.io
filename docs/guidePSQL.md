@@ -123,13 +123,11 @@ values. As `x` is of type `long`, we use `cast` to convert it to `int`.
 The below will add 1 million readings from a location chosen at random approximatively every 30 seconds.
 ```sql
 INSERT INTO temp 
-SELECT * FROM (
     SELECT 
-    dateadd('s', cast(30 * x AS INT), systimestamp()) ts,
-    rnd_symbol('kitchen', 'bedroom', 'bathroom', 'garage') location,
-    round(rnd_int(10,15,0) + rnd_double(),1) tempC
-    FROM long_sequence(1000000)
-) TIMESTAMP(ts);
+        systimestamp() ts,
+        rnd_symbol('kitchen', 'bedroom', 'bathroom', 'garage') location,
+        round(rnd_int(10,15,0) + rnd_double(),1) tempC
+    FROM long_sequence(1000000);
 ```
 
 ### Query data
@@ -189,7 +187,7 @@ how to join time-series with [ASOF JOIN](joins.md#asof-join) or how to [FILL](sq
 
 Before we leave, let's remember to cleanup and delete all the data
 ```sql
-DROP TABLE temp
+DROP TABLE temp;
 ```
 
 We hope you enjoyed this guide. Feel free to join our Slack to ask questions if you would like to further explore 
