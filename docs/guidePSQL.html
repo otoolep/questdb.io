@@ -147,13 +147,11 @@ to quickly create test data. We use <code>long_sequence()</code> which generates
 values. As <code>x</code> is of type <code>long</code>, we use <code>cast</code> to convert it to <code>int</code>.</p>
 <p>The below will add 1 million readings from a location chosen at random approximatively every 30 seconds.</p>
 <pre><code class="hljs css language-sql"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> temp 
-<span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">FROM</span> (
     <span class="hljs-keyword">SELECT</span> 
-    <span class="hljs-sql_function">dateadd</span>(<span class="hljs-string">'s'</span>, <span class="hljs-sql_function">cast</span>(<span class="hljs-number">30</span> * x <span class="hljs-keyword">AS</span> <span class="hljs-type_name">INT</span>), <span class="hljs-sql_function">systimestamp</span>()) ts,
-    <span class="hljs-sql_function">rnd_symbol</span>(<span class="hljs-string">'kitchen'</span>, <span class="hljs-string">'bedroom'</span>, <span class="hljs-string">'bathroom'</span>, <span class="hljs-string">'garage'</span>) location,
-    <span class="hljs-sql_function">round</span>(<span class="hljs-sql_function">rnd_int</span>(<span class="hljs-number">10</span>,<span class="hljs-number">15</span>,<span class="hljs-number">0</span>) + <span class="hljs-sql_function">rnd_double</span>(),<span class="hljs-number">1</span>) tempC
-    <span class="hljs-keyword">FROM</span> <span class="hljs-sql_function">long_sequence</span>(<span class="hljs-number">1000000</span>)
-) <span class="hljs-type_name">TIMESTAMP</span>(ts);
+        <span class="hljs-sql_function">systimestamp</span>() ts,
+        <span class="hljs-sql_function">rnd_symbol</span>(<span class="hljs-string">'kitchen'</span>, <span class="hljs-string">'bedroom'</span>, <span class="hljs-string">'bathroom'</span>, <span class="hljs-string">'garage'</span>) location,
+        <span class="hljs-sql_function">round</span>(<span class="hljs-sql_function">rnd_int</span>(<span class="hljs-number">10</span>,<span class="hljs-number">15</span>,<span class="hljs-number">0</span>) + <span class="hljs-sql_function">rnd_double</span>(),<span class="hljs-number">1</span>) tempC
+    <span class="hljs-keyword">FROM</span> <span class="hljs-sql_function">long_sequence</span>(<span class="hljs-number">1000000</span>);
 </code></pre>
 <h3><a class="anchor" aria-hidden="true" id="query-data"></a><a href="#query-data" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Query data</h3>
 <p>Now that we have data, we can run a few queries to start leveraging QuestDB's time-series SQL extensions.</p>
@@ -212,7 +210,7 @@ values. As <code>x</code> is of type <code>long</code>, we use <code>cast</code>
 <p>There is plenty to do with QuestDB. As a next step, you could check out our guide to <a href="/docs/crudOperations">CRUD operations</a>,
 how to join time-series with <a href="/docs/joins#asof-join">ASOF JOIN</a> or how to <a href="/docs/select#fill">FILL</a> missing intervals within a select statement.</p>
 <p>Before we leave, let's remember to cleanup and delete all the data</p>
-<pre><code class="hljs css language-sql"><span class="hljs-keyword">DROP</span> <span class="hljs-keyword">TABLE</span> temp
+<pre><code class="hljs css language-sql"><span class="hljs-keyword">DROP</span> <span class="hljs-keyword">TABLE</span> temp;
 </code></pre>
 <p>We hope you enjoyed this guide. Feel free to join our Slack to ask questions if you would like to further explore
 a particular topic or ask functionality / syntax questions.</p>
