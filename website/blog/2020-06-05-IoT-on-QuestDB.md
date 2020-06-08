@@ -5,6 +5,8 @@ author: David G Simmons
 
 As you can well imagine, I've been super busy in my hew job at QuestDB so this has taken me longer than I would have liked, but here we are. If you know me at all, you know that one of the first things I always do with new things is, well, connect things to them! So I immediately went to connect an IoT device to QuestDB to see how it went. Unsurprisingly, it went quite well. So here's how it went, from start to finish.
 
+If you like what you see here, pleases go give us a star on <a href="https://github.com/questdb">GitHub</a>
+
 ## The Database Part
 
 The first thing I had to do was a to get QuestDB up and running. Luckily, this is very straightforward. I guess I could have gone the Docker route, but as you're probably aware, I'm not a huge fan of Docker (in no small part due to the fact that it will literally suck the life out of a MacOS laptop). There's also (for you MacOS users) `brew install questdb` but since I work here, and I wanted to test out the latest and greatest web console, I decided to build from source:
@@ -188,5 +190,5 @@ That's exactly what I expected!
 
 ## What's Next
 
-Now it's time to start building some dashboards, etc. on top of this. I'm currently working on connecting this all up with Node Red, so that may be my next post. We're also working on support for Grafana, which will be huge, so stay tuned for that. If you like what you see here, pleases go give us a star on <a href="https://github.com/questdb">GitHub</a>, and follow the project if you'd like to get updates!</p>
+Now it's time to start building some dashboards, etc. on top of this. I'm currently working on connecting this all up with Node Red, so that may be my next post. We're also working on support for Grafana, which will be huge, so stay tuned for that. You can find us on <a href="https://github.com/questdb">GitHub</a> - follow the project if you'd like to get updates!</p>
 
