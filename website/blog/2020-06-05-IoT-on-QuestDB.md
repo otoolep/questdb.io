@@ -3,7 +3,9 @@ title: IoT on QuestDB
 author: David G Simmons
 ---
 
-As you can well imagine, I've been super busy in my hew job at QuestDB so this has taken me longer than I would have liked, but here we are. If you know me at all, you know that one of the first things I always do with new things is, well, connect things to them! So I immediately went to connect an IoT device to QuestDB to see how it went. Unsurprisingly, it went quite well. So here's how it went, from start to finish.
+As you can well imagine, I've been super busy in my new job at QuestDB so this has taken me longer than I would have liked, but here we are. If you know me at all, you know that one of the first things I always do with new things is, well, connect things to them! So I immediately went to connect an IoT device to QuestDB to see how it went. Unsurprisingly, it went quite well. So here's how it went, from start to finish.
+
+If you like what you see here, pleases go give us a star on <a href="https://github.com/questdb/questdb">GitHub</a>
 
 ## The Database Part
 
@@ -188,5 +190,5 @@ That's exactly what I expected!
 
 ## What's Next
 
-Now it's time to start building some dashboards, etc. on top of this. I'm currently working on connecting this all up with Node Red, so that may be my next post. We're also working on support for Grafana, which will be huge, so stay tuned for that. If you like what you see here, pleases go give us a star on <a href="https://github.com/questdb">GitHub</a>, and follow the project if you'd like to get updates!</p>
+Now it's time to start building some dashboards, etc. on top of this. I'm currently working on connecting this all up with Node Red, so that may be my next post. We're also working on support for Grafana, which will be huge, so stay tuned for that. You can find us on <a href="https://github.com/questdb">GitHub</a> - follow the project if you'd like to get updates!</p>
 
