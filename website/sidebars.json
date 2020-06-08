@@ -10,6 +10,7 @@
         "ids": [
           "installationOverview",
           "guideDocker",
+          "guidePSQL",
           "installFromHomebrew",
           "installFromBinary"
         ]

@@ -140,7 +140,7 @@ function sql_qdb(hljs) {
             "wellformed when whene whenev wheneve whenever where while whitespace window with within without work wrapped " +
             "xdb xml xmlagg xmlattributes xmlcast xmlcolattval xmlelement xmlexists xmlforest xmlindex xmlnamespaces " +
             "xmlpi xmlquery xmlroot xmlschema xmlserialize xmltable xmltype xor year_to_month years yearweek cache copy " +
-            "remove pull docker ps" +
+            "remove pull docker ps latest" +
             "",
           literal: "true false null unknown",
           type_name:
