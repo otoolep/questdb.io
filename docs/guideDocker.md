@@ -1,10 +1,8 @@
 ---
 id: guideDocker
-title: Docker Guide
+title: How to setup QuestDB on Docker
 sidebar_label: How to setup on Docker
 ---
-
-![docker guide](assets/docker-guide.png)
 
 Docker is great to try new stuff and get started in minutes with just a few commands. Follow this guide to set up and start using QuestDB from scratch. By the end, you will be able to set up containers, send data and run queries using the REST API and the web console.
 

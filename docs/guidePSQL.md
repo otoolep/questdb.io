@@ -1,14 +1,12 @@
 ---
 id: guidePSQL
-title: PSQL Guide (alpha)
-sidebar_label: How to use with psql
+title: How to connect QuestDB to PSQL (aplha)
+sidebar_label: How to use with PSQL
 ---
-
-![psql](assets/psql.png)
 
 This short guide explains how to connect to QuestDB using `psql`.
 
-> Our implementation of the Postgres wire protocol is still in beta. 
+> Our implementation of the Postgres wire protocol is still in alpha. 
 >Some features such as metadata are not yet supported. 
 
 > This guide assumes you have installed QuestDB and have it running.
