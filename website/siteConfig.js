@@ -23,7 +23,7 @@ function sql_qdb(hljs) {
           "delete do handler insert load replace select truncate update set show pragma grant " +
           "merge describe use explain help declare prepare execute deallocate release " +
           "unlock purge reset change stop analyze cache flush optimize repair kill " +
-          "install uninstall checksum restore check backup revoke comment values with copy ",
+          "install uninstall checksum restore check backup revoke comment values with copy docker",
         end: /;/,
         endsWithParent: true,
         lexemes: /[\w\.]+/,
@@ -140,7 +140,7 @@ function sql_qdb(hljs) {
             "wellformed when whene whenev wheneve whenever where while whitespace window with within without work wrapped " +
             "xdb xml xmlagg xmlattributes xmlcast xmlcolattval xmlelement xmlexists xmlforest xmlindex xmlnamespaces " +
             "xmlpi xmlquery xmlroot xmlschema xmlserialize xmltable xmltype xor year_to_month years yearweek cache copy " +
-            "remove" +
+            "remove pull docker ps" +
             "",
           literal: "true false null unknown",
           type_name:
@@ -240,15 +240,12 @@ const siteConfig = {
   baseUrl: "/", // Base URL for your project */
   projectName: "website",
   organizationName: "questdb",
-
   // serach bar settings
   algolia: {
     apiKey: "b2a69b4869a2a85284a82fb57519dcda",
     indexName: "questdb",
     placeholder: "Search...",
-    algoliaOptions: {}, // Optional, if provided by Algolia
   },
-
   // For no header links in the top nav bar -> headerLinks: [],
   headerLinks: [
     { page: "getstarted", label: "Get QuestDB" },

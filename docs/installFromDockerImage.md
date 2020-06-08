@@ -1,6 +1,6 @@
 ---
 id: installFromDockerImage
-title: Install from Docker image
+title: Docker configuration
 ---
 
 Docker is a convenient method to have QuestDB running very quickly via simple commands. You will of course need Docker

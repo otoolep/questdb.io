@@ -9,7 +9,7 @@
         "label": "Installation",
         "ids": [
           "installationOverview",
-          "installFromDockerImage",
+          "guideDocker",
           "installFromHomebrew",
           "installFromBinary"
         ]
@@ -35,7 +35,8 @@
         "label": "Configuration",
         "ids": [
           "rootDirectoryStructure",
-          "serverConf"
+          "serverConf",
+          "installFromDockerImage"
         ]
       },
       {
