@@ -108,7 +108,7 @@ test data.
 We can insert data points manually as follows
 ```sql
 INSERT INTO temp VALUES(
-    systimestamp(), 
+    systimestamp() , 
     rnd_symbol('kitchen', 'bedroom', 'bathroom', 'garage'),
     round(rnd_int(10,15,0) + rnd_double(),1)
     );
@@ -124,7 +124,7 @@ The below will add 1 million readings from a location chosen at random approxima
 ```sql
 INSERT INTO temp 
     SELECT 
-        systimestamp() ts,
+        dateadd('s', 30 * cast(x as int), systimestamp()) ts,
         rnd_symbol('kitchen', 'bedroom', 'bathroom', 'garage') location,
         round(rnd_int(10,15,0) + rnd_double(),1) tempC
     FROM long_sequence(1000000);

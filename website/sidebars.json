@@ -38,10 +38,17 @@
         "ids": [
           "datatypes",
           "rootDirectoryStructure",
-          "serverConf",
+          "serverConf"
+        ]
+      },
+      {
+        "type": "subcategory",
+        "label": "Interfaces",
+        "ids": [
           "dockerReference",
           "homebrewReference",
-          "installFromBinary"
+          "installFromBinary",
+          "consoleReference"
         ]
       },
       {

@@ -21,7 +21,7 @@ You can setup QuestDB using the following methods
 
 #### Using QuestDB
 Follow these guides to start using QuestDB
-- with the [Web console](usingWebConsole.md)
+- with the [Web console](consoleGuide.md)
 - with the Postgres Wire Protocol (beta), for example [PSQL](guidePSQL.md)
 - with the [HTTP REST PI](guideREST.md)
 

@@ -5,10 +5,7 @@ sidebar_label: Homebrew Reference
 ---
 
 QuestDB is distributed via Homebrew to use on MacOS. This is useful when you want to perform fast analytics 
-on data files using your own local machine. 
-
-## Requirements
-- 64-bit MacOS
+on data files using your own local machine. This requires a 64-bit MacOS machine. 
 
 ## Setup
 

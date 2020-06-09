@@ -11,7 +11,7 @@ Responses are function specific, for example you can download query results as C
 directly from the API. You can also get JSON responses.
 
 The REST API can be accessed interactively using Web Console that is a part of QuestDB distribution.
-Find out more in the section **[using the web console](usingWebConsole.md)**.
+Find out more in the section **[using the web console](consoleGuide.md)**.
 
 >Other machines on your network can access the console or connect to the DB on
   `http://IP_OF_THE_HOST_MACHINE:9000`

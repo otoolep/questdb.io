@@ -12,13 +12,13 @@ If you already have homebrew installed, you can skip this part.
 
 To install Homebrew, run the following.
 ```shell script
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+/bin/bash -c \
+"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 ```
 
 
 ## Installing QuestDB
 The below will install the `questdb` service.
-
 ```shell script
 brew install questdb
 ```
@@ -26,7 +26,6 @@ brew install questdb
 ## Starting QuestDB
 
 Run the below to start the QuestDB service. The service will run in the background.
-
 ```shell script
 questdb start
 ```
