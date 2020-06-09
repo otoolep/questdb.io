@@ -7,21 +7,22 @@ sidebar_label: REST API
 QuestDB comes with an HTTP server which exposes a REST API. This guide will teach you 
 how to use the REST API to create tables, import data, run queries, and export results with `curl`.
 
-If you prefer a more visual approach, you can also use the Web Console.
+If you prefer a more visual approach, you can also use the [Web Console](consoleGuide.md).
 
 > This requires a running instance of QuestDB with port `9000` exposed. You can learn how to do so with  
 > [Docker](guideDocker.md)
 
 
+## Get test data
+The first step is to get data into the database. Here are some sample files you may want to try. You may use only one (we provide example queries for both), but using the two files will allow you to try asof join.
+| Data | Description | Download | File Size | Number of rows |
+|---|---|---|---|---|
+|**NYC taxi data** | 10 years of NYC taxi trips. Simplified to 2 trips per hour. Contains ride start and end times, distance, passenger count, fare, tip, and total amount paid. | [Download](https://s3-eu-west-1.amazonaws.com/questdb.io/datasets/trips.csv) | 16.2 Mb| 183,000|
+|**NYX weather** | 10 years of hourly weather data in central NYC. 137,000 rows. Contains timestamp, temperature, wind, snow, and more | [Download](https://s3-eu-west-1.amazonaws.com/questdb.io/datasets/weather.csv) | 6.7 Mb | 137,000 |
+
 ## Create tables
 With your container running and port 9000 mapped, you can now send curl requests to the database server. This 
-guide shows examples of how to interact with it. For more details, please refer to our [REST API reference](restAPI.md)
-
-The first step is to get data into the database. Here are some sample files you may want to try. You may use only one (we provide example queries for both), but using the two files will allow you to try asof join.
-NYC taxi data 
-NYC weather 
-@TODO - download links
-
+guide shows examples of how to interact with it. 
 
 First, we create the tables using `/exec`, which allows us to pass SQL statements. 
 We also specify a designated timestamp column which will be useful for time-based queries and time joins across tables.
