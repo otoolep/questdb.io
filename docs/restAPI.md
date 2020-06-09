@@ -1,7 +1,7 @@
 ---
 id: restAPI
-title: REST API
-sidebar_label: REST API
+title: REST API reference
+sidebar_label: REST API reference
 ---
 
 The QuestDB REST API is based around standard HTTP features and is understood by off-the-shelf HTTP clients. 

@@ -1,7 +1,7 @@
 ---
-id: installFromHomebrew
-title: Install from Homebrew
-sidebar_label: Install from Homebrew
+id: homebrewReference
+title: Homebrew Reference
+sidebar_label: Homebrew Reference
 ---
 
 QuestDB is distributed via Homebrew to use on MacOS. This is useful when you want to perform fast analytics 

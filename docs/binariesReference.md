@@ -1,40 +1,14 @@
 ---
 id: installFromBinary
-title: Install from Binary
+title: Binaries reference
 ---
 
-This section describes how to [setup](#setup) and [use](#using-questdb) QuestDB using the binaries.
 
-## Requirements
-
-- 64-bit MacOS, Windows or Linux.
-- Oracle Java JRE or JDK 8 and above, or OpenJDK equivalent.
-> OpenJDK may incur a performance penalty of up to 20% as it contains fewer intrinsics than the Oracle counterpart.
-
-## Setup
-
-#### Step 1 - Download & install JAVA
-If you already have a suitable version JAVA installed, you can skip this step.
-You can find the package corresponding to your architecture on the <a href="https://www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html" target="_blank">Oracle Download page</a>.
-
-
-#### Step 2 - Download QuestDB
-You can download QuestDB from our <a href="/getstarted" target="_blank">download page</a>.
-To install, simply extract the files into the directory of your choice. 
-
-> Throughout this documentation, we refer to this directory as the `installation_directory`. When starting, QuestDB requires 
->another directory where the configuration, logs, and data files are saved. We call this directory the [root_directory](rootDirectoryStructure.md).
-
-
-## Using QuestDB
 QuestDB comes with an executable `questdb.exe` for Windows, and script `questdb.sh` for MacOS and Linux which can 
 be used to control QuestDB as a service. On Windows, QuestDB can also be [started interactively](#use-interactively-windows).
 
-Navigate to the `installation_directory`.
-```sql
-cd installation_directory
-```
-You can interact with the service using the following syntax and commands.
+
+## Available commands
 
 <!--DOCUSAURUS_CODE_TABS-->
 <!--Linux & MacOS syntax-->
@@ -98,7 +72,7 @@ C:\Windows\System32\questdb
 - `-j (Windows only)` - path to JAVA_HOME
 - `-t` - specify a service tag. You can use this option to run several services and administer them separately.
 
-##### Examples
+#### Examples
 <!--DOCUSAURUS_CODE_TABS-->
 <!-- -d Linux-->
 ```sql
@@ -185,7 +159,6 @@ questdb.exe install -t 'my-questdb-service'
 ### Remove
 `remove` - removes the Windows questdb service. It will no longer start at startup.
 
-
 > `remove` is only available on Windows.
 
 #### Examples
@@ -209,10 +182,12 @@ This will launch QuestDB interactively in the active `Shell` window. QuestDB wil
 #### Default directory
 When started interactively, QuestDB's root directory defaults to the `current` directory.
 
+#### Start
 To start, run the following.
 ```sql
 questdb.exe
 ```
 
+#### Stop
 To stop, simply press <kbd>Ctrl</kbd>+<kbd>C</kbd> in the `Shell` window or close it.
 

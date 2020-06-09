@@ -1,44 +1,47 @@
 {
   "docs": {
-    "Intro": [
-      "documentationOverview"
-    ],
     "Guides": [
+      "documentationOverview",
       {
         "type": "subcategory",
-        "label": "Installation",
+        "label": "Setting up QuestDB",
         "ids": [
-          "installationOverview",
           "guideDocker",
-          "guidePSQL",
-          "guideREST",
-          "installFromHomebrew",
-          "installFromBinary"
+          "guideHomebrew",
+          "guideBinaries"
         ]
       },
-      "usingWebConsole",
-      "myFirstDatabase",
-      "gettestdata"
-
+      {
+        "type": "subcategory",
+        "label": "Using QuestDB",
+        "ids": [
+          "usingWebConsole",
+          "guidePSQL",
+          "guideREST",
+          "crudOperations",
+          "myFirstDatabase"
+        ]
+      }
     ],
     "Concepts": [
       "storageModel",
-      "datatypes",
       "designatedTimestamp",
+      "sqlExtensions",
       "partitions",
       "symbol",
-      "crudOperations",
-      "indexes",
-      "sqlOverview"
+      "indexes"
     ],
     "Reference": [
       {
         "type": "subcategory",
         "label": "Configuration",
         "ids": [
+          "datatypes",
           "rootDirectoryStructure",
           "serverConf",
-          "installFromDockerImage"
+          "dockerReference",
+          "homebrewReference",
+          "installFromBinary"
         ]
       },
       {
@@ -94,9 +97,6 @@
           "influxSenderLibrary"
         ]
       }
-    ],
-    "FAQ": [
-      "faq"
     ]
   }
 }

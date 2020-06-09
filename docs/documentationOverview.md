@@ -1,7 +1,6 @@
 ---
 id: documentationOverview
-title: QuestDB Documentation
-sidebar_label: Documentation overview
+title: Introduction
 ---
 
 QuestDB is a relational column-oriented database that handles both transactions and real-time analytics.
@@ -13,6 +12,18 @@ links will help you get familiar with QuestDB.
 features and capabilities specific to QuestDB.
 - **Guides**: Learn how to setup QuestDB, create a database, use the web-interface, start running queries, and more.
 - **Reference**: Fund documentation of available SQL commands, functions, along with API references.
+
+#### Get started
+You can setup QuestDB using the following methods
+- with [Docker](guideDocker.md)
+- with the [binaries](guideBinaries.md)
+- with [Homebrew](guideHomebrew.md)
+
+#### Using QuestDB
+Follow these guides to start using QuestDB
+- with the [Web console](usingWebConsole.md)
+- with the Postgres Wire Protocol (beta), for example [PSQL](guidePSQL.md)
+- with the [HTTP REST PI](guideREST.md)
 
 #### Need help? Have questions?
 We are happy to help with any question you may have, particularly to help 

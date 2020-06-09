@@ -1,11 +1,11 @@
 ---
 id: guideREST
-title: How to use the REST API
-sidebar_label: How to use the REST API
+title: How to use the QuestDB REST API
+sidebar_label: REST API
 ---
 
 QuestDB comes with an HTTP server which exposes a REST API. This guide will teach you 
-how to use the REST API to create tables, import data, run queries, and export results.
+how to use the REST API to create tables, import data, run queries, and export results with `curl`.
 
 If you prefer a more visual approach, you can also use the Web Console.
 
@@ -15,7 +15,7 @@ If you prefer a more visual approach, you can also use the Web Console.
 
 ## Create tables
 With your container running and port 9000 mapped, you can now send curl requests to the database server. This 
-guide shows examples of how to interact with it. For more details, please refer to our [REST API documentation](restAPI.md)
+guide shows examples of how to interact with it. For more details, please refer to our [REST API reference](restAPI.md)
 
 The first step is to get data into the database. Here are some sample files you may want to try. You may use only one (we provide example queries for both), but using the two files will allow you to try asof join.
 NYC taxi data 

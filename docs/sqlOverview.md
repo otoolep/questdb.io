@@ -1,7 +1,6 @@
 ---
-id: sqlOverview
-title: SQL Overview
-sidebar_label: SQL Overview
+id: sqlExtensions
+title: SQL extensions
 ---
 
 

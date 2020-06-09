@@ -1,7 +1,7 @@
 ---
 id: guidePSQL
 title: How to connect QuestDB to PSQL (aplha)
-sidebar_label: How to use with PSQL
+sidebar_label: Postgres Wire (alpha)
 ---
 
 This short guide explains how to connect to QuestDB using `psql`.

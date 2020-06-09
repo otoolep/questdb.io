@@ -1,7 +1,7 @@
 ---
 id: crudOperations
-title: CRUD Operations
-sidebar_label: CRUD Operations
+title: How to perform CRUD operations
+sidebar_label: CRUD operations
 ---
 
 QuestDB's data store is mostly meant to be immutable. We plan to support out-of-order inserts from 4.3 which 

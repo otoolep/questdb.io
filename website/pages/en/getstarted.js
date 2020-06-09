@@ -140,7 +140,7 @@ class Index extends React.Component {
             <pre>docker pull questdb/questdb</pre>
             <p>
               Learn how to use it with our{" "}
-              <a href="/docs/installFromDockerImage"> Docker guide</a>.
+              <a href="/docs/guideDocker"> Docker guide</a>.
             </p>
           </li>
           <li>
@@ -158,7 +158,7 @@ class Index extends React.Component {
             </pre>
             <p>
               Follow our{" "}
-              <a href="/docs/installFromBinary"> installation steps</a> to get
+              <a href="/docs/guideBinaries"> installation steps</a> to get
               started.
             </p>
           </li>
@@ -168,7 +168,7 @@ class Index extends React.Component {
             <pre>brew install questdb</pre>
             <p>
               Learn how to use QuestDB with Homebrew{" "}
-              <a href="/docs/installFromHomebrew"> here</a>.
+              <a href="/docs/guideHomebrew"> here</a>.
             </p>
           </li>
           <li>

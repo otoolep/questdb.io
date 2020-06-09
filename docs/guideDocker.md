@@ -1,7 +1,7 @@
 ---
 id: guideDocker
-title: How to setup QuestDB on Docker
-sidebar_label: How to setup on Docker
+title: How to use QuestDB with Docker
+sidebar_label: Docker
 ---
 
 Docker is great to try new stuff and get started in minutes with just a few commands. Follow this guide to set up and start using QuestDB from scratch. By the end, you will be able to set up containers and be ready to 
@@ -21,7 +21,7 @@ docker pull questdb/questdb
 
 ## Create a container
 `docker create` lets you create a container. 
-In this guide, we mostly look at the following two arguments. For a complete list, please refer to our [Docker documentation](installFromDockerImage.md).
+In this guide, we mostly look at the following two arguments. For a complete list, please refer to our [Docker reference](dockerReference.md).
 
 | argument | description |
 |---|---|
@@ -58,9 +58,8 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 ```
 
 ## Importing data and sending queries
-
 Congratulations, you have a running QuestDB server. You can now start to interact with it. 
-- If you opened port 9000, you can follow our [HTTP API and web console guide](guidePSQL.md)
+- If you opened port 9000, you can follow our [HTTP REST API](guidePSQL.md)
 - If you mapped port `8812`, follow our [psql Guide](guidePSQL.md)
 
 
@@ -72,7 +71,7 @@ DROP TABLE weather;
 ```
 
 > You can run QuestDB in Sandbox mode which will delete all data when the container is stopped. Find out more in 
->our [Docker documentation](installFromDockerImage.md])
+>our [Docker reference](dockerReference.md)
 
 You can then shut down and remove the container.
 ```sql
