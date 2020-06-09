@@ -1,0 +1,202 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>How to use the QuestDB REST API · QuestDB</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="QuestDB comes with an HTTP server which exposes a REST API. This guide will teach you "/><meta name="docsearch:language" content="en"/><meta property="og:title" content="How to use the QuestDB REST API · QuestDB"/><meta property="og:type" content="website"/><meta property="og:url" content="https://questdb.io/"/><meta property="og:description" content="QuestDB comes with an HTTP server which exposes a REST API. This guide will teach you "/><meta property="og:image" content="https://questdb.io/img/questdb_og.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://questdb.io/img/questdb_og.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="alternate" type="application/atom+xml" href="https://questdb.io/blog/atom.xml" title="QuestDB Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://questdb.io/blog/feed.xml" title="QuestDB Blog RSS Feed"/><script async="" src="https://www.googletagmanager.com/gtag/js?id=GTM-PVR7M2G"></script><script>
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments); }
+              gtag('js', new Date());
+              gtag('config', 'GTM-PVR7M2G');
+            </script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700|IBM+Plex+Sans:300,400,600,700"/><script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script><script type="text/javascript" src="/js/fonts.js"></script><script type="text/javascript" src="/js/menu-hack.js"></script><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script type="text/javascript" src="/js/getstarted.js"></script><script type="text/javascript" src="/js/hotjar.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/QuestDB_Logo.png" alt="QuestDB"/><h2 class="headerTitleWithLogo">QuestDB</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/getstarted" target="_self">Get QuestDB</a></li><li class="siteNavGroupActive"><a href="/docs/documentationOverview" target="_self">Documentation</a></li><li class=""><a href="/blog/" target="_self">Blog</a></li><li class=""><a href="/careers" target="_self">Careers</a></li><li class=""><a href="https://serieux-saucisson-79115.herokuapp.com/" target="_self">Join</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search..." title="Search..."/></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Using QuestDB</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Guides<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/documentationOverview">Introduction</a></li><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Setting up QuestDB</h4><ul><li class="navListItem"><a class="navItem" href="/docs/guideDocker">Docker</a></li><li class="navListItem"><a class="navItem" href="/docs/guideHomebrew">Homebrew</a></li><li class="navListItem"><a class="navItem" href="/docs/guideBinaries">Using the binaries</a></li></ul></div><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Using QuestDB</h4><ul><li class="navListItem"><a class="navItem" href="/docs/usingWebConsole">Web Console</a></li><li class="navListItem"><a class="navItem" href="/docs/guidePSQL">Postgres Wire (alpha)</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/guideREST">REST API</a></li><li class="navListItem"><a class="navItem" href="/docs/crudOperations">CRUD operations</a></li><li class="navListItem"><a class="navItem" href="/docs/myFirstDatabase">My First Database</a></li></ul></div></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Concepts<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/storageModel">Storage Model</a></li><li class="navListItem"><a class="navItem" href="/docs/designatedTimestamp">Designated timestamp</a></li><li class="navListItem"><a class="navItem" href="/docs/sqlExtensions">SQL extensions</a></li><li class="navListItem"><a class="navItem" href="/docs/partitions">Partitions</a></li><li class="navListItem"><a class="navItem" href="/docs/symbol">Symbol</a></li><li class="navListItem"><a class="navItem" href="/docs/indexes">Indexes</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Reference<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Configuration</h4><ul><li class="navListItem"><a class="navItem" href="/docs/datatypes">Data Types</a></li><li class="navListItem"><a class="navItem" href="/docs/rootDirectoryStructure">Root Directory Structure</a></li><li class="navListItem"><a class="navItem" href="/docs/serverConf">Configuration Properties</a></li></ul></div><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Interfaces</h4><ul><li class="navListItem"><a class="navItem" href="/docs/dockerReference">Docker reference</a></li><li class="navListItem"><a class="navItem" href="/docs/homebrewReference">Homebrew Reference</a></li><li class="navListItem"><a class="navItem" href="/docs/installFromBinary">Binaries reference</a></li><li class="navListItem"><a class="navItem" href="/docs/consoleReference">Console Reference</a></li><li class="navListItem"><a class="navItem" href="/docs/influxReference">Influx Line Protocol Reference</a></li></ul></div><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">APIs</h4><ul><li class="navListItem"><a class="navItem" href="/docs/restAPI">REST API reference</a></li><li class="navListItem"><a class="navItem" href="/docs/embeddedJavaAPI">Embedded Java API</a></li></ul></div><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Functions</h4><ul><li class="navListItem"><a class="navItem" href="/docs/functionsAggregation">Aggregation</a></li><li class="navListItem"><a class="navItem" href="/docs/functionsNumeric">Numeric</a></li><li class="navListItem"><a class="navItem" href="/docs/functionsDateAndTime">Date and Time</a></li><li class="navListItem"><a class="navItem" href="/docs/functionsRandomValueGenerators">Random Value Generators</a></li><li class="navListItem"><a class="navItem" href="/docs/functionsRowGenerator">Row Generator</a></li><li class="navListItem"><a class="navItem" href="/docs/functionsTimestampGenerator">Timestamp Generator</a></li><li class="navListItem"><a class="navItem" href="/docs/functionsText">Text Functions</a></li></ul></div><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">SQL Reference</h4><ul><li class="navListItem"><a class="navItem" href="/docs/sqlExecutionOrder">SQL Execution Order</a></li><li class="navListItem"><a class="navItem" href="/docs/alterTableAddColumn">ALTER TABLE ADD COLUMN</a></li><li class="navListItem"><a class="navItem" href="/docs/alterTableDropColumn">ALTER TABLE DROP COLUMN</a></li><li class="navListItem"><a class="navItem" href="/docs/alterTableAlterColumnAddIndex">ALTER TABLE COLUMN ADD INDEX</a></li><li class="navListItem"><a class="navItem" href="/docs/alterTableDropPartition">ALTER TABLE DROP PARTITION</a></li><li class="navListItem"><a class="navItem" href="/docs/backup">BACKUP</a></li><li class="navListItem"><a class="navItem" href="/docs/case">CASE</a></li><li class="navListItem"><a class="navItem" href="/docs/cast">CAST</a></li><li class="navListItem"><a class="navItem" href="/docs/copy">COPY</a></li><li class="navListItem"><a class="navItem" href="/docs/createTable">CREATE TABLE</a></li><li class="navListItem"><a class="navItem" href="/docs/rename">RENAME TABLE</a></li><li class="navListItem"><a class="navItem" href="/docs/drop">DROP TABLE</a></li><li class="navListItem"><a class="navItem" href="/docs/insert">INSERT</a></li><li class="navListItem"><a class="navItem" href="/docs/joins">JOINS</a></li><li class="navListItem"><a class="navItem" href="/docs/select">SELECT</a></li><li class="navListItem"><a class="navItem" href="/docs/truncate">TRUNCATE TABLE</a></li><li class="navListItem"><a class="navItem" href="/docs/union">UNION</a></li></ul></div><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Java API Reference</h4><ul><li class="navListItem"><a class="navItem" href="/docs/javaAPIOverview">Overview</a></li><li class="navListItem"><a class="navItem" href="/docs/influxSenderLibrary">Influx Sender Library</a></li></ul></div></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 id="__docusaurus" class="postHeaderTitle">How to use the QuestDB REST API</h1></header><article><div><span><p>QuestDB comes with an HTTP server which exposes a REST API. This guide will teach you
+how to use the REST API to create tables, import data, run queries, and export results with <code>curl</code>.</p>
+<p>If you prefer a more visual approach, you can also use the <a href="/docs/usingWebConsole">Web Console</a>.</p>
+<blockquote>
+<p>This requires a running instance of QuestDB with port <code>9000</code> exposed. You can learn how to do so with<br>
+<a href="/docs/guideDocker">Docker</a></p>
+</blockquote>
+<h2><a class="anchor" aria-hidden="true" id="get-test-data"></a><a href="#get-test-data" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Get test data</h2>
+<p>The first step is to get data into the database. Here are some sample files you may want to try. You may use only one (we provide example queries for both), but using the two files will allow you to try asof join.</p>
+<table>
+<thead>
+<tr><th>Data</th><th>Description</th><th>Download</th><th>File Size</th><th>Number of rows</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>NYC taxi data</strong></td><td>10 years of NYC taxi trips. Simplified to 2 trips per hour. Contains ride start and end times, distance, passenger count, fare, tip, and total amount paid.</td><td><a href="https://s3-eu-west-1.amazonaws.com/questdb.io/datasets/trips.csv">Download</a></td><td>16.2 Mb</td><td>183,000</td></tr>
+<tr><td><strong>NYX weather</strong></td><td>10 years of hourly weather data in central NYC. 137,000 rows. Contains timestamp, temperature, wind, snow, and more</td><td><a href="https://s3-eu-west-1.amazonaws.com/questdb.io/datasets/weather.csv">Download</a></td><td>6.7 Mb</td><td>137,000</td></tr>
+</tbody>
+</table>
+<h2><a class="anchor" aria-hidden="true" id="create-tables"></a><a href="#create-tables" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Create tables</h2>
+<p>With your container running and port 9000 mapped, you can now send curl requests to the database server. This
+guide shows examples of how to interact with it.</p>
+<p>First, we create the tables using <code>/exec</code>, which allows us to pass SQL statements.
+We also specify a designated timestamp column which will be useful for time-based queries and time joins across tables.</p>
+<pre><code class="hljs css language-sql">curl -G http://localhost:9000/exec <span class="hljs-comment">--data-urlencode \
+</span>"query=<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> trips(pickupDatetime <span class="hljs-type_name">timestamp</span>, \
+dropoffDatetime <span class="hljs-type_name">timestamp</span>, passengerCount <span class="hljs-type_name">int</span>, tripDistance <span class="hljs-type_name">double</span>, \
+fareAmount <span class="hljs-type_name">double</span>, tipAmount <span class="hljs-type_name">double</span>, taxesAndTolls <span class="hljs-type_name">double</span>, totalAmount <span class="hljs-type_name">double</span>) \
+<span class="hljs-type_name">timestamp</span>(pickupDatetime);"
+</code></pre>
+<pre><code class="hljs css language-sql">curl -G http://localhost:9000/exec <span class="hljs-comment">--data-urlencode \
+</span>"query=<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> weather(<span class="hljs-type_name">timestamp</span> <span class="hljs-type_name">timestamp</span>, windSpeed <span class="hljs-type_name">int</span>, \
+skyCover <span class="hljs-type_name">symbol</span>, tempF <span class="hljs-type_name">int</span>, rain1H <span class="hljs-type_name">double</span>, snowDepth <span class="hljs-type_name">int</span>) \
+<span class="hljs-type_name">timestamp</span>(<span class="hljs-type_name">timestamp</span>);"
+</code></pre>
+<p>Note that the table creation step is optional as QuestDB automatically recognizes schema. However, creating the table manually allows us to specify a <code>dedicated timestamp</code> column which will be useful for time-based queries, and to specify <code>symbol</code> which are more efficient than the automatically <code>string</code> type for skyCover.</p>
+<h2><a class="anchor" aria-hidden="true" id="import-data"></a><a href="#import-data" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Import data</h2>
+<p>We import both files using the <code>/imp</code> endpoint. Note that I set the flag <code>name</code> so the data flows into the tables we just created. Otherwise, the data would be inserted in a new table named after the file, for example <code>weather.csv</code>. We also set the <code>timestamp</code> flag to mark the designated timestamp column in the csv file.</p>
+<pre><code class="hljs css language-sql">curl -i -F data=@trips.csv \
+"http://localhost:9000/imp?\
+name=trips&amp;forceHeaders=true&amp;overwrite=false&amp;timestamp=pickupDatetime"
+</code></pre>
+<pre><code class="hljs css language-sql">curl -i -F data=@weather.csv \
+"http://localhost:9000/imp?\
+name=weather&amp;forceHeaders=true&amp;overwrite=false&amp;timestamp=timestamp"
+</code></pre>
+<p>In addition to the csv import, we can also use <code>exec</code> to execute INSERT statements.
+You can either send all fields or a subset of the schema like in the example below.
+This is useful to send values in a different order from the table definition. It is also useful to skip values when they are not relevant. Missing values will be inserted as <code>null</code>.</p>
+<pre><code class="hljs css language-sql">curl -G http://localhost:9000/exec <span class="hljs-comment">--data-urlencode \
+</span>"query=<span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> weather(<span class="hljs-type_name">timestamp</span>,tempF) <span class="hljs-keyword">values</span>(<span class="hljs-sql_function">systimestamp</span>(),<span class="hljs-number">45</span>);" 
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="run-queries"></a><a href="#run-queries" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Run queries</h2>
+<p>Just like <code>CREATE TABLE</code> and <code>INSERT INTO</code> statements, we can use <code>exec</code> to pass SQL queries.
+<code>exec</code> returns results in JSON.</p>
+<pre><code class="hljs css language-sql">curl -G http://localhost:9000/exec <span class="hljs-comment">--data-urlencode \
+</span>"query=<span class="hljs-keyword">select</span> <span class="hljs-type_name">timestamp</span>, tempF <span class="hljs-keyword">from</span> weather <span class="hljs-keyword">limit</span> <span class="hljs-number">2</span>;"  
+</code></pre>
+<p>JSON Response</p>
+<pre><code class="hljs css language-json">{
+   <span class="hljs-attr">"query"</span>:<span class="hljs-string">"select timestamp, tempF from weather limit 2;"</span>,
+   <span class="hljs-attr">"columns"</span>:[
+      {
+         <span class="hljs-attr">"name"</span>:<span class="hljs-string">"timestamp"</span>,
+         <span class="hljs-attr">"type"</span>:<span class="hljs-string">"TIMESTAMP"</span>
+      },
+      {
+         <span class="hljs-attr">"name"</span>:<span class="hljs-string">"tempF"</span>,
+         <span class="hljs-attr">"type"</span>:<span class="hljs-string">"INT"</span>
+      }
+   ],
+   <span class="hljs-attr">"dataset"</span>:[
+      [
+         <span class="hljs-string">"2010-01-01T00:00:00.000000Z"</span>,
+         <span class="hljs-number">34</span>
+      ],
+      [
+         <span class="hljs-string">"2010-01-01T00:51:00.000000Z"</span>,
+         <span class="hljs-number">34</span>
+      ]
+   ],
+   <span class="hljs-attr">"count"</span>:<span class="hljs-number">2</span>
+}
+</code></pre>
+<p>Here are a few example queries you could run against the dataset.</p>
+<table>
+<thead>
+<tr><th>table</th><th>description</th><th>query</th></tr>
+</thead>
+<tbody>
+<tr><td>trips</td><td>Average week by week trip distance over time</td><td><code>select pickupDatetime, avg(tripDistance) from trips timestamp(pickupDatetime) sample by 7d;</code></td></tr>
+<tr><td>trips</td><td>Average monthly trip duration in minutes</td><td><code>select pickupDatetime, avg(datediff('m',pickupDatetime, dropoffDatetime)) from trips sample by 1M;</code></td></tr>
+<tr><td>trips</td><td>Average fare per passenger count bucket</td><td><code>select passengerCount, avg(tipAmount/fareAmount)*100 from trips order by passengerCount;</code></td></tr>
+<tr><td>trips</td><td>Average tip percentage per passenger count bucket</td><td><code>select passengerCount, avg(tipAmount/fareAmount)*100 from trips order by passengerCount;</code></td></tr>
+<tr><td>weather</td><td>Rainy days</td><td><code>select timestamp, sum(rain1H)from weathersample by 1d;</code></td></tr>
+<tr><td>weather</td><td>Temperature seasonality</td><td><code>select timestamp, avg(tempF)from weather sample by 7d;</code></td></tr>
+<tr><td>trips and weather</td><td>Joining trips and weather data. This query returns the prevailing weather conditions for every trip in 2017</td><td><code>trips where pickupDatetime='2017' asof join weather;</code></td></tr>
+</tbody>
+</table>
+<h2><a class="anchor" aria-hidden="true" id="download-results"></a><a href="#download-results" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Download results</h2>
+<p>You can use the <code>/exp</code> endpoint to export query results as follows.</p>
+<pre><code class="hljs css language-sql">curl -G http://localhost:9000/exp --data-urlencode \
+"query=select * from weather limit 100;" &gt; results.csv       
+</code></pre>
+<p>If you are querying from the web console, then you can download the results using the <code>download to csv</code> button.</p>
+<p><img src="/docs/assets/downloadgif.gif" alt="download gif"></p>
+<h2><a class="anchor" aria-hidden="true" id="shut-down-and-cleanup"></a><a href="#shut-down-and-cleanup" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Shut down and cleanup</h2>
+<p>As QuestDB is a persisted database, the data will remain after you shut down the server.
+If you would like to remove the data, you can run the following statements to drop the tables.</p>
+<pre><code class="hljs css language-sql"><span class="hljs-keyword">DROP</span> <span class="hljs-keyword">TABLE</span> trips;
+<span class="hljs-keyword">DROP</span> <span class="hljs-keyword">TABLE</span> weather;
+</code></pre>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 6/9/2020</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/guidePSQL"><span class="arrow-prev">← </span><span>Postgres Wire (alpha)</span></a><a class="docs-next button" href="/docs/crudOperations"><span>CRUD operations</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#get-test-data">Get test data</a></li><li><a href="#create-tables">Create tables</a></li><li><a href="#import-data">Import data</a></li><li><a href="#run-queries">Run queries</a></li><li><a href="#download-results">Download results</a></li><li><a href="#shut-down-and-cleanup">Shut down and cleanup</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><div align="left" class="footersection"><h5>QuestDB</h5><a href="/docs/documentationOverview">Documentation</a><a href="/getstarted">Download</a><a href="https://github.com/questdb/questdb/projects/3">Roadmap</a></div><div align="left" class="footersection"><h5>Community</h5><a href="https://join.slack.com/t/questdb/shared_invite/enQtNzk4Nzg4Mjc2MTE2LTEzZThjMzliMjUzMTBmYzVjYWNmM2UyNWJmNDdkMDYyZmE0ZDliZTQxN2EzNzk5MDE3Zjc1ZmJiZmFiZTIwMGY&gt;"> Join Slack </a><a href="https://twitter.com/intent/follow?screen_name=QuestDB" target="@QuestDB" rel="noreferrer noopener">Twitter</a></div><div align="left" class="footersection"><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/questdb/questdb">GitHub</a><span class="sucker"><a class="github-button" href="https://github.com/questdb/questdb" data-icon="octicon-star" data-count-href="/questdb/questdb/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></span><span class="github-trigger"><a class="github-button" href="https://github.com/questdb/questdb" data-icon="octicon-star" data-count-href="/questdb/questdb/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></span></div></section><section class="copyright">Copyright © 2020 QuestDB</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+              !function(f,b,e,v,n,t,s)
+              {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+              n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+              if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+              n.queue=[];t=b.createElement(e);t.async=!0;
+              t.src=v;s=b.getElementsByTagName(e)[0];
+              s.parentNode.insertBefore(t,s)}(window, document,'script',
+              'https://connect.facebook.net/en_US/fbevents.js');
+              fbq('init', '648273155994655');
+              fbq('track', 'PageView');
+                </script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: 'b2a69b4869a2a85284a82fb57519dcda',
+                indexName: 'questdb',
+                inputSelector: '#search_input_react'
+              });
+            </script></body></html>

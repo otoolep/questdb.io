@@ -1,0 +1,183 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Console Reference · QuestDB</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="This is a reference for the Console. If you want to learn how to use it, we suggest you "/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Console Reference · QuestDB"/><meta property="og:type" content="website"/><meta property="og:url" content="https://questdb.io/"/><meta property="og:description" content="This is a reference for the Console. If you want to learn how to use it, we suggest you "/><meta property="og:image" content="https://questdb.io/img/questdb_og.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://questdb.io/img/questdb_og.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="alternate" type="application/atom+xml" href="https://questdb.io/blog/atom.xml" title="QuestDB Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://questdb.io/blog/feed.xml" title="QuestDB Blog RSS Feed"/><script async="" src="https://www.googletagmanager.com/gtag/js?id=GTM-PVR7M2G"></script><script>
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments); }
+              gtag('js', new Date());
+              gtag('config', 'GTM-PVR7M2G');
+            </script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700|IBM+Plex+Sans:300,400,600,700"/><script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script><script type="text/javascript" src="/js/fonts.js"></script><script type="text/javascript" src="/js/menu-hack.js"></script><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script type="text/javascript" src="/js/getstarted.js"></script><script type="text/javascript" src="/js/hotjar.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/QuestDB_Logo.png" alt="QuestDB"/><h2 class="headerTitleWithLogo">QuestDB</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/getstarted" target="_self">Get QuestDB</a></li><li class="siteNavGroupActive"><a href="/docs/documentationOverview" target="_self">Documentation</a></li><li class=""><a href="/blog/" target="_self">Blog</a></li><li class=""><a href="/careers" target="_self">Careers</a></li><li class=""><a href="https://serieux-saucisson-79115.herokuapp.com/" target="_self">Join</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search..." title="Search..."/></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Interfaces</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Guides<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/documentationOverview">Introduction</a></li><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Setting up QuestDB</h4><ul><li class="navListItem"><a class="navItem" href="/docs/guideDocker">Docker</a></li><li class="navListItem"><a class="navItem" href="/docs/guideHomebrew">Homebrew</a></li><li class="navListItem"><a class="navItem" href="/docs/guideBinaries">Using the binaries</a></li></ul></div><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Using QuestDB</h4><ul><li class="navListItem"><a class="navItem" href="/docs/usingWebConsole">Web Console</a></li><li class="navListItem"><a class="navItem" href="/docs/guidePSQL">Postgres Wire (alpha)</a></li><li class="navListItem"><a class="navItem" href="/docs/guideREST">REST API</a></li><li class="navListItem"><a class="navItem" href="/docs/crudOperations">CRUD operations</a></li><li class="navListItem"><a class="navItem" href="/docs/myFirstDatabase">My First Database</a></li></ul></div></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Concepts<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/storageModel">Storage Model</a></li><li class="navListItem"><a class="navItem" href="/docs/designatedTimestamp">Designated timestamp</a></li><li class="navListItem"><a class="navItem" href="/docs/sqlExtensions">SQL extensions</a></li><li class="navListItem"><a class="navItem" href="/docs/partitions">Partitions</a></li><li class="navListItem"><a class="navItem" href="/docs/symbol">Symbol</a></li><li class="navListItem"><a class="navItem" href="/docs/indexes">Indexes</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Reference<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Configuration</h4><ul><li class="navListItem"><a class="navItem" href="/docs/datatypes">Data Types</a></li><li class="navListItem"><a class="navItem" href="/docs/rootDirectoryStructure">Root Directory Structure</a></li><li class="navListItem"><a class="navItem" href="/docs/serverConf">Configuration Properties</a></li></ul></div><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Interfaces</h4><ul><li class="navListItem"><a class="navItem" href="/docs/dockerReference">Docker reference</a></li><li class="navListItem"><a class="navItem" href="/docs/homebrewReference">Homebrew Reference</a></li><li class="navListItem"><a class="navItem" href="/docs/installFromBinary">Binaries reference</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/consoleReference">Console Reference</a></li><li class="navListItem"><a class="navItem" href="/docs/influxReference">Influx Line Protocol Reference</a></li></ul></div><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">APIs</h4><ul><li class="navListItem"><a class="navItem" href="/docs/restAPI">REST API reference</a></li><li class="navListItem"><a class="navItem" href="/docs/embeddedJavaAPI">Embedded Java API</a></li></ul></div><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Functions</h4><ul><li class="navListItem"><a class="navItem" href="/docs/functionsAggregation">Aggregation</a></li><li class="navListItem"><a class="navItem" href="/docs/functionsNumeric">Numeric</a></li><li class="navListItem"><a class="navItem" href="/docs/functionsDateAndTime">Date and Time</a></li><li class="navListItem"><a class="navItem" href="/docs/functionsRandomValueGenerators">Random Value Generators</a></li><li class="navListItem"><a class="navItem" href="/docs/functionsRowGenerator">Row Generator</a></li><li class="navListItem"><a class="navItem" href="/docs/functionsTimestampGenerator">Timestamp Generator</a></li><li class="navListItem"><a class="navItem" href="/docs/functionsText">Text Functions</a></li></ul></div><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">SQL Reference</h4><ul><li class="navListItem"><a class="navItem" href="/docs/sqlExecutionOrder">SQL Execution Order</a></li><li class="navListItem"><a class="navItem" href="/docs/alterTableAddColumn">ALTER TABLE ADD COLUMN</a></li><li class="navListItem"><a class="navItem" href="/docs/alterTableDropColumn">ALTER TABLE DROP COLUMN</a></li><li class="navListItem"><a class="navItem" href="/docs/alterTableAlterColumnAddIndex">ALTER TABLE COLUMN ADD INDEX</a></li><li class="navListItem"><a class="navItem" href="/docs/alterTableDropPartition">ALTER TABLE DROP PARTITION</a></li><li class="navListItem"><a class="navItem" href="/docs/backup">BACKUP</a></li><li class="navListItem"><a class="navItem" href="/docs/case">CASE</a></li><li class="navListItem"><a class="navItem" href="/docs/cast">CAST</a></li><li class="navListItem"><a class="navItem" href="/docs/copy">COPY</a></li><li class="navListItem"><a class="navItem" href="/docs/createTable">CREATE TABLE</a></li><li class="navListItem"><a class="navItem" href="/docs/rename">RENAME TABLE</a></li><li class="navListItem"><a class="navItem" href="/docs/drop">DROP TABLE</a></li><li class="navListItem"><a class="navItem" href="/docs/insert">INSERT</a></li><li class="navListItem"><a class="navItem" href="/docs/joins">JOINS</a></li><li class="navListItem"><a class="navItem" href="/docs/select">SELECT</a></li><li class="navListItem"><a class="navItem" href="/docs/truncate">TRUNCATE TABLE</a></li><li class="navListItem"><a class="navItem" href="/docs/union">UNION</a></li></ul></div><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Java API Reference</h4><ul><li class="navListItem"><a class="navItem" href="/docs/javaAPIOverview">Overview</a></li><li class="navListItem"><a class="navItem" href="/docs/influxSenderLibrary">Influx Sender Library</a></li></ul></div></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 id="__docusaurus" class="postHeaderTitle">Console Reference</h1></header><article><div><span><p>This is a reference for the Console. If you want to learn how to use it, we suggest you
+follow the <a href="/docs/usingWebConsole">Quickstart Guide</a></p>
+<blockquote>
+<p>We are currently updating the web console so part of this page is out of date.
+This page will be updated with the next release.</p>
+</blockquote>
+<h2><a class="anchor" aria-hidden="true" id="import"></a><a href="#import" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Import</h2>
+<h3><a class="anchor" aria-hidden="true" id="import-details"></a><a href="#import-details" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Import details</h3>
+<p>Description of the fields in the import details table</p>
+<table>
+<thead>
+<tr><th>Column</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>File name</td><td>Name of the file imported. If imported from copy &amp; paste, an automatically-generated file name</td></tr>
+<tr><td>Size</td><td>Size of the imported file</td></tr>
+<tr><td>Total rows</td><td>Number of rows successfully imported</td></tr>
+<tr><td>Failed rows</td><td>Number of rows that failed to import</td></tr>
+<tr><td>Header row</td><td>Whether the dataset has been recognised to have a header row or not</td></tr>
+<tr><td>Status</td><td>Status of the import. See below</td></tr>
+</tbody>
+</table>
+<h3><a class="anchor" aria-hidden="true" id="import-statuses"></a><a href="#import-statuses" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Import statuses</h3>
+<p>Description of the import statuses</p>
+<table>
+<thead>
+<tr><th>Status</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>importing</td><td>data is being imported</td></tr>
+<tr><td>failed</td><td>import failed, nothing was imported</td></tr>
+<tr><td>imported in [time]</td><td>import is finished. The completion time will be displayed next to the status</td></tr>
+<tr><td>exists</td><td>you are trying to import a file that already exists. To import it anyways, you can either <strong>append</strong> or <strong>override</strong>. See <a href="#custom-import">importing again</a> for a more exhaustive description</td></tr>
+</tbody>
+</table>
+<h3><a class="anchor" aria-hidden="true" id="amending-the-schema"></a><a href="#amending-the-schema" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Amending the schema</h3>
+<p>Although the schema is automatically detected, you can amend the type for any column using the following steps:</p>
+<ul>
+<li>Click on the file you want to amend in the Import screen. The schema will be displayed.</li>
+<li>Find and click on the column which type you want to change.</li>
+<li>You will then need to <a href="#custom-import">re-trigger the import</a>.
+<img src="/docs/assets/amendtype.jpg" alt="alt-text"></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="custom-import"></a><a href="#custom-import" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Custom import</h3>
+<p>You can amend the import behaviour with the following options. This will trigger to import the data again.</p>
+<table>
+<thead>
+<tr><th>Option</th><th>Name</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>A</td><td>Append</td><td>Uploaded data will be appended at the end of the table</td></tr>
+<tr><td>O</td><td>Override</td><td>Uploaded data will override existing data in the table</td></tr>
+<tr><td>LEV</td><td>Skip lines with extra values</td><td>Skips rows that contains dangling values that don't fit the schema</td></tr>
+<tr><td>H</td><td>Header row</td><td>Flag whether the first row should be considered header</td></tr>
+</tbody>
+</table>
+<p><strong>To start the import, click the following button:</strong></p>
+<p><img src="/docs/assets/upload-button.png" alt="alt-text"></p>
+<h2><a class="anchor" aria-hidden="true" id="sql-editor"></a><a href="#sql-editor" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>SQL Editor</h2>
+<h3><a class="anchor" aria-hidden="true" id="shortcuts"></a><a href="#shortcuts" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Shortcuts</h3>
+<table>
+<thead>
+<tr><th>Shortcut</th><th>Action</th></tr>
+</thead>
+<tbody>
+<tr><td>Run Query</td><td><code>F9</code> or <code>CTRL</code> + <code>Enter</code> or <code>CMD</code> + <code>Enter</code> (MacOS)</td></tr>
+<tr><td>Locate cursor</td><td><code>F2</code>. Use this to focus the SQL editor on your cursor in order to locate it</td></tr>
+</tbody>
+</table>
+<h3><a class="anchor" aria-hidden="true" id="behaviour"></a><a href="#behaviour" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Behaviour</h3>
+<p>As you can write numerous SQL commands separated by semicolon, the web console uses the following logic to decide
+what command to execute.</p>
+<ul>
+<li>If you have highlighted a command or part of it, this will be executed.</li>
+<li>If your cursor is within a SQL statement, this statement will be executed.</li>
+<li>If your cursor is on the same line as an SQL statement and after the semicolon, this statement will be executed.</li>
+<li>If your cursor is on a line that contains no SQL statement, the next encountered statement will be executed. If there is no statement following the cursor,
+then the previous statement will be executed.</li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="examples"></a><a href="#examples" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Examples</h4>
+<ul>
+<li>Command highlighted. Note neither the <code>CREATE TABLE</code> statement nor the <code>x*x</code> column have been executed and evaluated.</li>
+</ul>
+<p><img src="/docs/assets/sql-highlight.png" alt="alt-text"></p>
+<ul>
+<li><p>Cursor within a SQL statement
+<img src="/docs/assets/cursor-in-sql.png" alt="alt-text"></p></li>
+<li><p>Cursor outside of a statement but on the same line
+<img src="/docs/assets/cursor-outside-same-line.png" alt="alt-text"></p></li>
+<li><p>Cursor on another line
+<img src="/docs/assets/cursor-outside-different-line.png" alt="alt-text"></p></li>
+</ul>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 6/9/2020</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/installFromBinary"><span class="arrow-prev">← </span><span>Binaries reference</span></a><a class="docs-next button" href="/docs/influxReference"><span>Influx Line Protocol Reference</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#import">Import</a><ul class="toc-headings"><li><a href="#import-details">Import details</a></li><li><a href="#import-statuses">Import statuses</a></li><li><a href="#amending-the-schema">Amending the schema</a></li><li><a href="#custom-import">Custom import</a></li></ul></li><li><a href="#sql-editor">SQL Editor</a><ul class="toc-headings"><li><a href="#shortcuts">Shortcuts</a></li><li><a href="#behaviour">Behaviour</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><div align="left" class="footersection"><h5>QuestDB</h5><a href="/docs/documentationOverview">Documentation</a><a href="/getstarted">Download</a><a href="https://github.com/questdb/questdb/projects/3">Roadmap</a></div><div align="left" class="footersection"><h5>Community</h5><a href="https://join.slack.com/t/questdb/shared_invite/enQtNzk4Nzg4Mjc2MTE2LTEzZThjMzliMjUzMTBmYzVjYWNmM2UyNWJmNDdkMDYyZmE0ZDliZTQxN2EzNzk5MDE3Zjc1ZmJiZmFiZTIwMGY&gt;"> Join Slack </a><a href="https://twitter.com/intent/follow?screen_name=QuestDB" target="@QuestDB" rel="noreferrer noopener">Twitter</a></div><div align="left" class="footersection"><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/questdb/questdb">GitHub</a><span class="sucker"><a class="github-button" href="https://github.com/questdb/questdb" data-icon="octicon-star" data-count-href="/questdb/questdb/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></span><span class="github-trigger"><a class="github-button" href="https://github.com/questdb/questdb" data-icon="octicon-star" data-count-href="/questdb/questdb/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></span></div></section><section class="copyright">Copyright © 2020 QuestDB</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+              !function(f,b,e,v,n,t,s)
+              {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+              n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+              if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+              n.queue=[];t=b.createElement(e);t.async=!0;
+              t.src=v;s=b.getElementsByTagName(e)[0];
+              s.parentNode.insertBefore(t,s)}(window, document,'script',
+              'https://connect.facebook.net/en_US/fbevents.js');
+              fbq('init', '648273155994655');
+              fbq('track', 'PageView');
+                </script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: 'b2a69b4869a2a85284a82fb57519dcda',
+                indexName: 'questdb',
+                inputSelector: '#search_input_react'
+              });
+            </script></body></html>

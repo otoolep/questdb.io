@@ -1,0 +1,207 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Influx Line Protocol Reference · QuestDB</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="QuestDB is able to ingest data over **Influx Line Protocol**. Existing systems already publishing line protocol"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Influx Line Protocol Reference · QuestDB"/><meta property="og:type" content="website"/><meta property="og:url" content="https://questdb.io/"/><meta property="og:description" content="QuestDB is able to ingest data over **Influx Line Protocol**. Existing systems already publishing line protocol"/><meta property="og:image" content="https://questdb.io/img/questdb_og.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://questdb.io/img/questdb_og.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="alternate" type="application/atom+xml" href="https://questdb.io/blog/atom.xml" title="QuestDB Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://questdb.io/blog/feed.xml" title="QuestDB Blog RSS Feed"/><script async="" src="https://www.googletagmanager.com/gtag/js?id=GTM-PVR7M2G"></script><script>
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments); }
+              gtag('js', new Date());
+              gtag('config', 'GTM-PVR7M2G');
+            </script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700|IBM+Plex+Sans:300,400,600,700"/><script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script><script type="text/javascript" src="/js/fonts.js"></script><script type="text/javascript" src="/js/menu-hack.js"></script><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script type="text/javascript" src="/js/getstarted.js"></script><script type="text/javascript" src="/js/hotjar.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/QuestDB_Logo.png" alt="QuestDB"/><h2 class="headerTitleWithLogo">QuestDB</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/getstarted" target="_self">Get QuestDB</a></li><li class="siteNavGroupActive"><a href="/docs/documentationOverview" target="_self">Documentation</a></li><li class=""><a href="/blog/" target="_self">Blog</a></li><li class=""><a href="/careers" target="_self">Careers</a></li><li class=""><a href="https://serieux-saucisson-79115.herokuapp.com/" target="_self">Join</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search..." title="Search..."/></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Interfaces</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Guides<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/documentationOverview">Introduction</a></li><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Setting up QuestDB</h4><ul><li class="navListItem"><a class="navItem" href="/docs/guideDocker">Docker</a></li><li class="navListItem"><a class="navItem" href="/docs/guideHomebrew">Homebrew</a></li><li class="navListItem"><a class="navItem" href="/docs/guideBinaries">Using the binaries</a></li></ul></div><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Using QuestDB</h4><ul><li class="navListItem"><a class="navItem" href="/docs/usingWebConsole">Web Console</a></li><li class="navListItem"><a class="navItem" href="/docs/guidePSQL">Postgres Wire (alpha)</a></li><li class="navListItem"><a class="navItem" href="/docs/guideREST">REST API</a></li><li class="navListItem"><a class="navItem" href="/docs/crudOperations">CRUD operations</a></li><li class="navListItem"><a class="navItem" href="/docs/myFirstDatabase">My First Database</a></li></ul></div></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Concepts<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/storageModel">Storage Model</a></li><li class="navListItem"><a class="navItem" href="/docs/designatedTimestamp">Designated timestamp</a></li><li class="navListItem"><a class="navItem" href="/docs/sqlExtensions">SQL extensions</a></li><li class="navListItem"><a class="navItem" href="/docs/partitions">Partitions</a></li><li class="navListItem"><a class="navItem" href="/docs/symbol">Symbol</a></li><li class="navListItem"><a class="navItem" href="/docs/indexes">Indexes</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Reference<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Configuration</h4><ul><li class="navListItem"><a class="navItem" href="/docs/datatypes">Data Types</a></li><li class="navListItem"><a class="navItem" href="/docs/rootDirectoryStructure">Root Directory Structure</a></li><li class="navListItem"><a class="navItem" href="/docs/serverConf">Configuration Properties</a></li></ul></div><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Interfaces</h4><ul><li class="navListItem"><a class="navItem" href="/docs/dockerReference">Docker reference</a></li><li class="navListItem"><a class="navItem" href="/docs/homebrewReference">Homebrew Reference</a></li><li class="navListItem"><a class="navItem" href="/docs/installFromBinary">Binaries reference</a></li><li class="navListItem"><a class="navItem" href="/docs/consoleReference">Console Reference</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/influxReference">Influx Line Protocol Reference</a></li></ul></div><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">APIs</h4><ul><li class="navListItem"><a class="navItem" href="/docs/restAPI">REST API reference</a></li><li class="navListItem"><a class="navItem" href="/docs/embeddedJavaAPI">Embedded Java API</a></li></ul></div><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Functions</h4><ul><li class="navListItem"><a class="navItem" href="/docs/functionsAggregation">Aggregation</a></li><li class="navListItem"><a class="navItem" href="/docs/functionsNumeric">Numeric</a></li><li class="navListItem"><a class="navItem" href="/docs/functionsDateAndTime">Date and Time</a></li><li class="navListItem"><a class="navItem" href="/docs/functionsRandomValueGenerators">Random Value Generators</a></li><li class="navListItem"><a class="navItem" href="/docs/functionsRowGenerator">Row Generator</a></li><li class="navListItem"><a class="navItem" href="/docs/functionsTimestampGenerator">Timestamp Generator</a></li><li class="navListItem"><a class="navItem" href="/docs/functionsText">Text Functions</a></li></ul></div><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">SQL Reference</h4><ul><li class="navListItem"><a class="navItem" href="/docs/sqlExecutionOrder">SQL Execution Order</a></li><li class="navListItem"><a class="navItem" href="/docs/alterTableAddColumn">ALTER TABLE ADD COLUMN</a></li><li class="navListItem"><a class="navItem" href="/docs/alterTableDropColumn">ALTER TABLE DROP COLUMN</a></li><li class="navListItem"><a class="navItem" href="/docs/alterTableAlterColumnAddIndex">ALTER TABLE COLUMN ADD INDEX</a></li><li class="navListItem"><a class="navItem" href="/docs/alterTableDropPartition">ALTER TABLE DROP PARTITION</a></li><li class="navListItem"><a class="navItem" href="/docs/backup">BACKUP</a></li><li class="navListItem"><a class="navItem" href="/docs/case">CASE</a></li><li class="navListItem"><a class="navItem" href="/docs/cast">CAST</a></li><li class="navListItem"><a class="navItem" href="/docs/copy">COPY</a></li><li class="navListItem"><a class="navItem" href="/docs/createTable">CREATE TABLE</a></li><li class="navListItem"><a class="navItem" href="/docs/rename">RENAME TABLE</a></li><li class="navListItem"><a class="navItem" href="/docs/drop">DROP TABLE</a></li><li class="navListItem"><a class="navItem" href="/docs/insert">INSERT</a></li><li class="navListItem"><a class="navItem" href="/docs/joins">JOINS</a></li><li class="navListItem"><a class="navItem" href="/docs/select">SELECT</a></li><li class="navListItem"><a class="navItem" href="/docs/truncate">TRUNCATE TABLE</a></li><li class="navListItem"><a class="navItem" href="/docs/union">UNION</a></li></ul></div><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Java API Reference</h4><ul><li class="navListItem"><a class="navItem" href="/docs/javaAPIOverview">Overview</a></li><li class="navListItem"><a class="navItem" href="/docs/influxSenderLibrary">Influx Sender Library</a></li></ul></div></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 id="__docusaurus" class="postHeaderTitle">Influx Line Protocol Reference</h1></header><article><div><span><p>QuestDB is able to ingest data over <strong>Influx Line Protocol</strong>. Existing systems already publishing line protocol
+need not change at all. Although QuestDB uses relational model, line protocol parser will automatically create
+tables and add missing columns.</p>
+<p>For the time being QuestDB can listen for UDP packets, either multicast or unicast. TCP and HTTP support for line
+protocol is on our road map. Find an example of how to use this <a href="/docs/influxSenderLibrary">here</a></p>
+<blockquote>
+<p>QuestDB listens for multicast on <code>232.1.2.3:9009</code>. The address change or switch to unicast can be done via configuration. If you run QuestDB via Docker
+start container as <code>run --rm -it -p 9000:9000 -p 8812:8812 -p 9009:9009 --net=host questdb/questdb</code>  and publish
+multicast packets with TTL of at least 2.</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="syntax"></a><a href="#syntax" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Syntax</h3>
+<p>Influx Line Protocol follows this syntax</p>
+<pre><code class="hljs css language-shell script">table_name,tagset valueset  timestamp
+</code></pre>
+<p>where:</p>
+<table>
+<thead>
+<tr><th>Element</th><th>Definition</th></tr>
+</thead>
+<tbody>
+<tr><td>table_name</td><td>Name of the table where QuestDB will write data.</td></tr>
+<tr><td>tagset</td><td>Array of string key-value pairs  separated by commas that represent the reading's associated metadata</td></tr>
+<tr><td>values</td><td>Array of key-value pairs separated by commas that represent the readings. The keys are string, values can be numeric or boolean</td></tr>
+<tr><td>timestamp</td><td>UNIX timestamp. By default in microseconds. Can be changed in the configuration (see below)</td></tr>
+</tbody>
+</table>
+<blockquote>
+<p>When <code>table_name</code> does not correspond to an existing table, QuestDB will create the table on the fly using the name
+provided. Column types will be automatically recognized and assigned based on the data.</p>
+</blockquote>
+<h4><a class="anchor" aria-hidden="true" id="examples"></a><a href="#examples" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Examples</h4>
+<p>Let's assume the following data:</p>
+<table>
+<thead>
+<tr><th>timestamp</th><th>city</th><th>temperature</th><th>humidity</th><th>make</th></tr>
+</thead>
+<tbody>
+<tr><td>1465839830100400000</td><td>London</td><td>23.5</td><td>0.343</td><td>Omron</td></tr>
+<tr><td>1465839830100600000</td><td>Bristol</td><td>23.2</td><td>0.443</td><td>Honeywell</td></tr>
+<tr><td>1465839830100700000</td><td>London</td><td>23.6</td><td>0.358</td><td>Omron</td></tr>
+</tbody>
+</table>
+<p>Line protocol to insert this data in the <code>readings</code> table would look like this:</p>
+<pre><code class="hljs css language-shell script">readings,city=London,make=Omron temperature=23.5,humidity=0.343 1465839830100400000
+readings,city=Bristol,make=Honeywell temperature=23.2,humidity=0.443 1465839830100600000
+readings,city=London,make=Omron temperature=23.6,humidity=0.348 1465839830100700000
+</code></pre>
+<blockquote>
+<p>Note there are only 2 spaces in each line. First between the <code>tagset</code> and <code>values</code>. Second between
+<code>values</code> and <code>timestamp</code>.</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="dealing-with-irregularly-structured-data"></a><a href="#dealing-with-irregularly-structured-data" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Dealing with irregularly-structured data</h3>
+<blockquote>
+<p>QuestDB can support on-the-fly data structure changes with minimal overhead. Should users decide to send
+varying quantities of readings or metadata tags for different entries, QuestDB will adapt on the fly.</p>
+</blockquote>
+<p>Influx line protocol makes it possible to send data under different shapes. Each new entry may contain certain
+metadata tags or readings, and others not. Whilst the example just above
+highlights structured data, it is possible for Influx line protocol users to send data as follows.</p>
+<pre><code class="hljs css language-shell script">readings,city=London temperature=23.2 1465839830100400000
+readings,city=London temperature=23.6 1465839830100700000
+readings,make=Honeywell temperature=23.2,humidity=0.443 1465839830100800000
+</code></pre>
+<p>Note that on the third line,</p>
+<ul>
+<li>a new <code>tag</code> is added: &quot;make&quot;</li>
+<li>a new <code>field</code> is added: &quot;humidity&quot;</li>
+</ul>
+<p>After writing two entries, the data would look like this:</p>
+<table>
+<thead>
+<tr><th>timestamp</th><th>city</th><th>temperature</th></tr>
+</thead>
+<tbody>
+<tr><td>1465839830100400000</td><td>London</td><td>23.5</td></tr>
+<tr><td>1465839830100700000</td><td>London</td><td>23.6</td></tr>
+</tbody>
+</table>
+<p>The third entry would result in the following table:</p>
+<table>
+<thead>
+<tr><th>timestamp</th><th>city</th><th>temperature</th><th>humidity</th><th>make</th></tr>
+</thead>
+<tbody>
+<tr><td>1465839830100400000</td><td>London</td><td>23.5</td><td>NULL</td><td>NULL</td></tr>
+<tr><td>1465839830100700000</td><td>London</td><td>23.6</td><td>NULL</td><td>NULL</td></tr>
+<tr><td>1465839830100800000</td><td>NULL</td><td>23.2</td><td>0.358</td><td>Honeywell</td></tr>
+</tbody>
+</table>
+<blockquote>
+<p>Adding columns on the fly is no issue for QuestDB. New columns will be created in the affected partitions, and only
+populated if they contain values. Whilst we offer this function for flexibility, we recommend that users try to minimise
+structural changes to maintain operational simplicity.</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="configuration"></a><a href="#configuration" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Configuration</h3>
+<p>The following configuration parameters can be added to the configuration file to customise the interaction using
+Influx line protocol. The configuration file is found under <code>/questdb/conf/questdb.conf</code></p>
+<table>
+<thead>
+<tr><th>Property</th><th>Type</th><th>Default value</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>line.udp.join</td><td><code>string</code></td><td><em>&quot;232.1.2.3&quot;</em></td><td>Multicast address receiver joins. This values is ignored when receiver is in &quot;unicast&quot; mode</td></tr>
+<tr><td>line.udp.bind.to</td><td><code>string</code></td><td><em>&quot;0.0.0.0:9009&quot;</em></td><td>IP address of the network interface to bind listener to and port. By default UDP receiver listens on all network interfaces</td></tr>
+<tr><td>line.udp.commit.rate</td><td><code>long</code></td><td><em>1000000</em></td><td>For packet bursts the number of continuously received messages after which receiver will force commit. Receiver will commit irrespective of this parameter when there are no messages.</td></tr>
+<tr><td>line.udp.msg.buffer.size</td><td><code>long</code></td><td><em>2048</em></td><td>Buffer used to receive single message. This value should be roughly equal to your MTU size.</td></tr>
+<tr><td>line.udp.msg.count</td><td><code>long</code></td><td><em>10000</em></td><td>Only for Linux. On Linix QuestDB will use recvmmsg(). This is the max number of messages to receive at once.</td></tr>
+<tr><td>line.udp.receive.buffer.size</td><td><code>long</code></td><td><em>8388608</em></td><td>UDP socket buffer size. Larger size of the buffer will help reduce message loss during bursts.</td></tr>
+<tr><td>line.udp.enabled</td><td><code>boolean</code></td><td><em>true</em></td><td>Flag to enable or disable UDP receiver</td></tr>
+<tr><td>line.udp.own.thread</td><td><code>boolean</code></td><td><em>false</em></td><td>When &quot;true&quot; UDP receiver will use its own thread and busy spin that for performance reasons. &quot;false&quot; makes receiver use worker threads that do everything else in QuestDB.</td></tr>
+<tr><td>line.udp.own.thread.affinity</td><td><code>int</code></td><td><em>-1</em></td><td>-1 does not set thread affinity. OS will schedule thread and it will be liable to run on random cores and jump between the. 0 or higher pins thread to give core. This propertly is only valid when UDP receiver uses own thread.</td></tr>
+<tr><td>line.udp.unicast</td><td><code>boolean</code></td><td><em>false</em></td><td>When true, UDP will me unicast. Otherwise multicast</td></tr>
+<tr><td>line.udp.timestamp</td><td><code>string</code></td><td>&quot;n&quot;</td><td>Input timestamp resolution. Possible values are &quot;n&quot;, &quot;u&quot;, &quot;ms&quot;, &quot;s&quot; and &quot;h&quot;.</td></tr>
+<tr><td>line.udp.commit.mode</td><td><code>string</code></td><td>&quot;nosync&quot;</td><td>Commit durability. Available values are &quot;nosync&quot;, &quot;sync&quot; and &quot;async&quot;</td></tr>
+</tbody>
+</table>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 6/9/2020</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/consoleReference"><span class="arrow-prev">← </span><span>Console Reference</span></a><a class="docs-next button" href="/docs/restAPI"><span>REST API reference</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><div align="left" class="footersection"><h5>QuestDB</h5><a href="/docs/documentationOverview">Documentation</a><a href="/getstarted">Download</a><a href="https://github.com/questdb/questdb/projects/3">Roadmap</a></div><div align="left" class="footersection"><h5>Community</h5><a href="https://join.slack.com/t/questdb/shared_invite/enQtNzk4Nzg4Mjc2MTE2LTEzZThjMzliMjUzMTBmYzVjYWNmM2UyNWJmNDdkMDYyZmE0ZDliZTQxN2EzNzk5MDE3Zjc1ZmJiZmFiZTIwMGY&gt;"> Join Slack </a><a href="https://twitter.com/intent/follow?screen_name=QuestDB" target="@QuestDB" rel="noreferrer noopener">Twitter</a></div><div align="left" class="footersection"><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/questdb/questdb">GitHub</a><span class="sucker"><a class="github-button" href="https://github.com/questdb/questdb" data-icon="octicon-star" data-count-href="/questdb/questdb/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></span><span class="github-trigger"><a class="github-button" href="https://github.com/questdb/questdb" data-icon="octicon-star" data-count-href="/questdb/questdb/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></span></div></section><section class="copyright">Copyright © 2020 QuestDB</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+              !function(f,b,e,v,n,t,s)
+              {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+              n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+              if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+              n.queue=[];t=b.createElement(e);t.async=!0;
+              t.src=v;s=b.getElementsByTagName(e)[0];
+              s.parentNode.insertBefore(t,s)}(window, document,'script',
+              'https://connect.facebook.net/en_US/fbevents.js');
+              fbq('init', '648273155994655');
+              fbq('track', 'PageView');
+                </script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: 'b2a69b4869a2a85284a82fb57519dcda',
+                indexName: 'questdb',
+                inputSelector: '#search_input_react'
+              });
+            </script></body></html>
