@@ -23,15 +23,17 @@ shared.worker.count=5
 
 ### Available keys and default values
 
+#### Worker config
 |Property|Default value|Description|
 |---|---|---|
 |shared.worker.count|2|Maximum number of threads used by the HTTP server|
 |shared.worker.affinity|||
 |shared.worker.haltOnError|false||
-|http.enabled|true||
 
+#### HTTP server config
 |Property|Default value|Description|
 |---|---|---|
+|http.enabled|true||
 |http.connection.pool.initial.capacity|16||
 |http.connection.string.pool.capacity|128||
 |http.multipart.header.buffer.size|512||
@@ -49,10 +51,6 @@ shared.worker.count=5
 |http.keep-alive.timeout|5||
 |http.keep-alive.max|10_000||
 |http.static.pubic.directory|public||
-
-
-|Property|Default value|Description|
-|---|---|---|
 |http.net.active.connection.limit|256||
 |http.net.event.capacity|1024||
 |http.net.io.queue.capacity|1024||
@@ -77,9 +75,14 @@ shared.worker.count=5
 |http.json.query.float.scale|10||
 |http.bind.to|0.0.0.0:9000||
 
-
+#### Cairo config
 |Property|Default value|Description|
 |---|---|---|
+|cairo.sql.copy.root|null||
+|cairo.sql.backup.root|null||
+|cairo.sql.backup.dir.datetime.format|null||
+|cairo.sql.backup.dir.tmp.name|tmp||
+|cairo.sql.backup.mkdir.mode|509||
 |cairo.root|db||
 |cairo.commit.mode|||
 |cairo.create.as.select.retry.count|5||
@@ -131,26 +134,20 @@ shared.worker.count=5
 |cairo.timestamp.locale|en||
 
 
-|Property|Default value|Description|
-|---|---|---|
-|cairo.sql.copy.root|null||
-|cairo.sql.backup.root|null||
-|cairo.sql.backup.dir.datetime.format|null||
-|cairo.sql.backup.dir.tmp.name|tmp||
-|cairo.sql.backup.mkdir.mode|509||
 
+#### Influx Line Protocol config
+| Property                       | Type           | Default value  | Description                                         |
+|--------------------------------|----------------|----------------|-----------------------------------------------------|
+|line.udp.join               | `string`       |*"232.1.2.3"*   | Multicast address receiver joins. This values is ignored when receiver is in "unicast" mode   |
+|line.udp.bind.to            | `string`       |*"0.0.0.0:9009"* | IP address of the network interface to bind listener to and port. By default UDP receiver listens on all network interfaces|
+|line.udp.commit.rate       | `long`         |*1000000*        | For packet bursts the number of continuously received messages after which receiver will force commit. Receiver will commit irrespective of this parameter when there are no messages.                 |
+|line.udp.msg.buffer.size    | `long`         |*2048*          | Buffer used to receive single message. This value should be roughly equal to your MTU size.                |
+|line.udp.msg.count          | `long`         |*10000*        | Only for Linux. On Linix QuestDB will use recvmmsg(). This is the max number of messages to receive at once.                                                    |
+|line.udp.receive.buffer.size| `long`         |*8388608*       | UDP socket buffer size. Larger size of the buffer will help reduce message loss during bursts.                                                    |
+|line.udp.enabled            | `boolean`      |*true*          | Flag to enable or disable UDP receiver                                                    |
+|line.udp.own.thread         | `boolean`      |*false*         | When "true" UDP receiver will use its own thread and busy spin that for performance reasons. "false" makes receiver use worker threads that do everything else in QuestDB.                                                    |
+|line.udp.own.thread.affinity         | `int`      |*-1*    |  -1 does not set thread affinity. OS will schedule thread and it will be liable to run on random cores and jump between the. 0 or higher pins thread to give core. This propertly is only valid when UDP receiver uses own thread. |
+|line.udp.unicast            | `boolean`      |*false*         | When true, UDP will me unicast. Otherwise multicast |
+|line.udp.timestamp          | `string` | "n" | Input timestamp resolution. Possible values are "n", "u", "ms", "s" and "h". |
+|line.udp.commit.mode        | `string` | "nosync" | Commit durability. Available values are "nosync", "sync" and "async"   |
 
-|Property|Default value|Description|
-|---|---|---|
-|line.udp.bind.to|0.0.0.0:9009||
-|line.udp.join|232.1.2.3||
-|line.udp.commit.rate|1_000_000||
-|line.udp.msg.buffer.size|2048||
-|line.udp.msg.count|10_000||
-|line.udp.receive.buffer.size|8 * 1024 * 1024||
-|line.udp.enabled|true||
-|line.udp.own.thread.affinity|-1||
-|line.udp.own.thread|false||
-|line.udp.unicast|false||
-|line.udp.commit.mode|||
-|line.udp.timestamp|n|available values are `n`, `u`, `ms`, `s`, `m`, `h`|

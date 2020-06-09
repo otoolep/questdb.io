@@ -48,7 +48,8 @@
           "dockerReference",
           "homebrewReference",
           "installFromBinary",
-          "consoleReference"
+          "consoleReference",
+          "influxReference"
         ]
       },
       {

@@ -83,6 +83,7 @@ Though the parameter is optional, not opening the ports will limit interactions 
 ##### -p ports
 - `-p 9000:9000` opens port 9000 for the HTTP API and the web console. The web console is available on localhost:9000.
 - `-p 8812:8812` opens port 8812 for the PostgresSQL wire protocol.
+- `-p 9009:9009` opens port 9009 to listen for UDP Influx line protocol
 
 ##### -v volumes
 The questdb [root_directory](rootDirectoryStructure.md) will be in the following locations.
