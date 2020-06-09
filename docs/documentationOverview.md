@@ -4,29 +4,31 @@ title: Introduction
 ---
 
 QuestDB is a relational column-oriented database that handles both transactions and real-time analytics.
-Querying is done through SQL syntax and through a range of compatible drivers and applications. The below
-links will help you get familiar with QuestDB.
+Querying is done through SQL syntax and through a range of compatible drivers and applications. The elements below 
+will help you get familiar with QuestDB and get started. 
 
-#### Contents
-- **Concepts**: This section describes the architecture of QuestDB, how it stores and queries data, and introduces
-features and capabilities specific to QuestDB.
-- **Guides**: Learn how to setup QuestDB, create a database, use the web-interface, start running queries, and more.
-- **Reference**: Fund documentation of available SQL commands, functions, along with API references.
+### Concepts
+This section describes the architecture of QuestDB, how it stores and queries data, and introduces
+features and capabilities specific to QuestDB. 
+ 
+As a start, we suggest you read about the [storage model](storageModel.md) and 
+about the [designated timestamp](designatedTimestamp.md). To make the most of QuestDB, you should also get 
+familiar with our [SQL extensions](sqlOverview.md) which allow to make the most of time-series capabilities with 
+an efficient non-verbose syntax. You will also find the [symbol](symbol.md) concept interesting 
+to store and retrieve repetitive strings efficiently.
 
-#### Get started
-You can setup QuestDB using the following methods
-- with [Docker](guideDocker.md)
-- with the [binaries](guideBinaries.md)
-- with [Homebrew](guideHomebrew.md)
+### Guides
+Learn how to setup and start using QuestDB with step-by-step guides. 
 
-#### Using QuestDB
-Follow these guides to start using QuestDB
-- with the [Web console](consoleGuide.md)
-- with the Postgres Wire Protocol (beta), for example [PSQL](guidePSQL.md)
-- with the [HTTP REST API](guideREST.md)
-- with the [Java API](embeddedJavaAPI.md)
+To setup QuestDB, you can use [Docker](guideDocker.md), the [binaries](guideBinaries.md) or [Homebrew](guideHomebrew.md).
 
-#### Need help? Have questions?
+To Use QuestDB, you can use the [Web console](consoleGuide.md), with the Postgres Wire Protocol (beta), for example with [PSQL](guidePSQL.md), 
+the [HTTP REST API](guideREST.md) or the [Java API](embeddedJavaAPI.md)
+
+### Reference
+This section lists reference about configuration, interfaces, APIs, functions, and SQL statements. 
+
+### Need help? Have questions?
 We are happy to help with any question you may have, particularly to help 
 you optimise the performance of your application. Feel free to reach out using the following channels: 
 - **[Ask a question on Slack](https://join.slack.com/t/questdb/shared_invite/enQtNzk4Nzg4Mjc2MTE2LTEzZThjMzliMjUzMTBmYzVjYWNmM2UyNWJmNDdkMDYyZmE0ZDliZTQxN2EzNzk5MDE3Zjc1ZmJiZmFiZTIwMGY>)**
