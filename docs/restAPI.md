@@ -216,7 +216,10 @@ JSON response for the same request would be:
 This example overrides types of `userId` and `movieId` by including `schema` parameter. Schema is passed as a `JSON object`.
 
 ```shell script 
-curl -i -F schema='[{"name":"userId", "type": "STRING"},{"name":"movieId", "type":"STRING"}]' -F data=@ratings.csv http://localhost:9000/imp
+curl -i \
+-F schema='[{"name":"userId", "type": "STRING"},{"name":"movieId", "type":"STRING"}]' \
+-F data=@ratings.csv \
+http://localhost:9000/imp
 ```
 
 
@@ -247,7 +250,9 @@ Content-Type: text/plain; charset=utf-8
 ### Import with several parameters
 This example shows the concatenation of several import parameters
 ```shell script
-curl -i -F data=@ratings.csv 'http://localhost:9000/imp?forceHeaders=true&overwrite=true'
+curl -i \
+-F data=@ratings.csv \
+'http://localhost:9000/imp?forceHeaders=true&overwrite=true'
 ```
 
 ## /exec - Querying Data
@@ -306,76 +311,44 @@ included in the response.
 </tbody>
 </table>
 
-### Examples
+
 The following will use `curl` to send a query over http. The result will be sent back over HTTP.
-Note that the `query` is url-encoded.
+
+> Note that the `query` must be url-encoded.
 
 ```shell script
-curl -v -G http://localhost:9000/exp --data-urlencode "query=select * from mydb;" -d limit=5
+curl -v \
+-G http://localhost:9000/exp \
+--data-urlencode "query=select * from mydb;" -d limit=5
 ```
 
-```
-*   Trying ::1...
-* TCP_NODELAY set
-*   Trying 127.0.0.1...
-* TCP_NODELAY set
-* Connected to localhost (127.0.0.1) port 9000 (#0)
-> GET /exp?query=select%20%2A%20from%20mydb%3B&limit=5 HTTP/1.1
-> Host: localhost:9000
-> User-Agent: curl/7.55.1
-> Accept: */*
->
-< HTTP/1.1 200 OK
-< Server: questDB/1.0
-< Date: Mon, 25 Nov 2019 12:33:01 GMT
-< Transfer-Encoding: chunked
-< Content-Type: text/csv; charset=utf-8
-< Content-Disposition: attachment; filename="questdb-query-1574685181623.csv"
-< Keep-Alive: timeout=5, max=10000
-<
-"userId","movieId","rating","timestamp"
-1,307,3.5000000000,1256677221
-1,481,3.5000000000,1256677456
-1,1091,1.5000000000,1256677471
-1,1257,4.5000000000,1256677460
-1,1449,4.5000000000,1256677264
-* Connection #0 to host localhost left intact
-```
-
-
+### Success Response
 This is an example of successful query execution response. HTTP status code `200`.
 
 ~~~ json
 {
-    "query": "select AccidentIndex, Date, Time from 'Accidents0514.csv' limit 2",
-    "columns": [
-        {
-            "name": "AccidentIndex",
-            "type": "STRING"
-        },
-        {
-            "name": "Date",
-            "type": "DATE"
-        },
-        {
-            "name": "Time",
-            "type": "STRING"
-        }
-    ],
-    "dataset": [
-        [
-            "200501BS00001",
-            "2005-01-04T00:00:00.000Z",
-            "17:42"
-        ],
-        [
-            "200501BS00002",
-            "2005-01-05T00:00:00.000Z",
-            "17:36"
-        ],
-       
-    ],
-    "count": 2
+   "query":"select timestamp, tempF from weather limit 2;",
+   "columns":[
+      {
+         "name":"timestamp",
+         "type":"TIMESTAMP"
+      },
+      {
+         "name":"tempF",
+         "type":"INT"
+      }
+   ],
+   "dataset":[
+      [
+         "2010-01-01T00:00:00.000000Z",
+         34
+      ],
+      [
+         "2010-01-01T00:51:00.000000Z",
+         34
+      ]
+   ],
+   "count":2
 }
 ~~~
 
@@ -394,8 +367,8 @@ errors, which should not normally occur.
 
 
 ## /exp - Export Data
-QuestDB allows exporting results of query execution. Function `/exp` does exactly that. The exported data is saved in a CSV
-(comma delimited) file with Unix line ends `\n`. Once the file is generated, it will be available for download as opposed to being displayed in the browser.
+Just like `/exec`, `/exp` allows you to pass url-encoded queries.
+Instead of a json, the results are returned in tabular form to be saved into a file such as `.csv`
 
 Server responds with HTTP `200` when query execution is successful and `400` when there is error and returns error text. 
 
