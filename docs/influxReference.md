@@ -8,7 +8,7 @@ need not change at all. Although QuestDB uses relational model, line protocol pa
 tables and add missing columns.
 
 For the time being QuestDB can listen for UDP packets, either multicast or unicast. TCP and HTTP support for line
-protocol is on our road map.
+protocol is on our road map. Find an example of how to use this [here](influxSenderLibrary.md)
 
 > QuestDB listens for multicast on `232.1.2.3:9009`. The address change or switch to unicast can be done via configuration. If you run QuestDB via Docker
 > start container as `run --rm -it -p 9000:9000 -p 8812:8812 -p 9009:9009 --net=host questdb/questdb`  and publish
