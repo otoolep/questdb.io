@@ -11,6 +11,7 @@
           "installationOverview",
           "guideDocker",
           "guidePSQL",
+          "guideREST",
           "installFromHomebrew",
           "installFromBinary"
         ]
