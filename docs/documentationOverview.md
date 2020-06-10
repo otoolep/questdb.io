@@ -3,9 +3,9 @@ id: documentationOverview
 title: Introduction
 ---
 
-QuestDB is a relational column-oriented database that handles both transactions and real-time analytics.
-Querying is done through SQL syntax and through a range of compatible drivers and applications. The elements below 
-will help you get familiar with QuestDB and get started. 
+QuestDB is a relational column-oriented database which can handle transactions and real-time analytics.
+It uses the SQL language with a few extensions for time-series. 
+The below will help you get familiar with QuestDB and get started. 
 
 ### Concepts
 This section describes the architecture of QuestDB, how it stores and queries data, and introduces
@@ -18,11 +18,9 @@ an efficient non-verbose syntax. You will also find the [symbol](symbol.md) conc
 to store and retrieve repetitive strings efficiently.
 
 ### Guides
-Learn how to setup and start using QuestDB with step-by-step guides. 
+Setup guides are available for [Docker](guideDocker.md), the [binaries](guideBinaries.md) or [Homebrew](guideHomebrew.md).
 
-To setup QuestDB, you can use [Docker](guideDocker.md), the [binaries](guideBinaries.md) or [Homebrew](guideHomebrew.md).
-
-To Use QuestDB, you can use the [Web console](consoleGuide.md), with the Postgres Wire Protocol (beta), for example with [PSQL](guidePSQL.md), 
+There are guides to get started with the [Web console](consoleGuide.md), with the Postgres Wire Protocol (beta), for example with [PSQL](guidePSQL.md), 
 the [HTTP REST API](guideREST.md) or the [Java API](embeddedJavaAPI.md)
 
 ### Reference
@@ -31,7 +29,7 @@ This section lists reference about configuration, interfaces, APIs, functions, a
 ### Need help? Have questions?
 We are happy to help with any question you may have, particularly to help 
 you optimise the performance of your application. Feel free to reach out using the following channels: 
-- **[Ask a question on Slack](https://join.slack.com/t/questdb/shared_invite/enQtNzk4Nzg4Mjc2MTE2LTEzZThjMzliMjUzMTBmYzVjYWNmM2UyNWJmNDdkMDYyZmE0ZDliZTQxN2EzNzk5MDE3Zjc1ZmJiZmFiZTIwMGY>)**
-- **[Raise an issue on Github](https://github.com/questdb/questdb/issues)**
-- or send us an email at **[hello@questdb.io](mailto:hello@questdb.io)**
+- [Ask a question on Slack](https://join.slack.com/t/questdb/shared_invite/enQtNzk4Nzg4Mjc2MTE2LTEzZThjMzliMjUzMTBmYzVjYWNmM2UyNWJmNDdkMDYyZmE0ZDliZTQxN2EzNzk5MDE3Zjc1ZmJiZmFiZTIwMGY>)
+- [Raise an issue on Github](https://github.com/questdb/questdb/issues)
+- or send us an email at [hello@questdb.io](mailto:hello@questdb.io)
 
