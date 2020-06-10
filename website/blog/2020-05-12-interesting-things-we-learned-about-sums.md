@@ -3,7 +3,7 @@ title: Things we learned about sums
 author: Tancrede Collard
 ---
 
-![alt-text](assets/road-runner.png)
+![road runner](assets/road-runner.png)
 
 In the world of databases, benchmarking performance has always been the hottest
 topic. Who is faster for data ingestion and queries? About a month ago we
@@ -130,17 +130,17 @@ different orders of magnitude.
 
 We start with both our numbers expressed in scientific notation.
 
-![alt-text](assets/sum-1.png)
+![sum1](assets/sum-1.png)
 
 Let's expand into decimal notation and place them on a similar scale so all
 digits fit.
 
-![alt-text](assets/sum-2.png)
+![sum2](assets/sum-2.png)
 
 Now, let us express this sum back as one number in scientific notation. We have
 to `truncate` the result back to 5 significant digits.
 
-![alt-text](assets/sum-3.png)
+![sum3](assets/sum-3.png)
 
 The result is incorrect. In fact, it is as if we did not sum anything.
 
@@ -293,12 +293,12 @@ Without null values, both databases sum naively at roughly the same speed. With
 Kahan summation, QuestDB performs at the same speed while Clickhouse's
 performance drops by ~40%.
 
-![alt-text](assets/kahan-naive-not-null.png)
+![kahan naive not null](assets/kahan-naive-not-null.png)
 
 As we include null values, Clickhouse's performance degrades by 28% and 50% for
 naive and Kahan summation, respectively.
 
-![alt-text](assets/kahan-naive-null.png)
+![kahan naive null](assets/kahan-naive-null.png)
 
 ### Concluding remarks
 

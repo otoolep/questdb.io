@@ -47,9 +47,9 @@ were running on 4 threads.
 
 #### Results
 
-![alt-text](assets/bench-8850h.png)
+![bench 8859h](assets/bench-8850h.png)
 
-![alt-text](assets/bench-3900x.png)
+![bench 3900x](assets/bench-3900x.png)
 
 The dataset producing the results shown above does not contain NULL values.
 Interestingly, when introducing nulls, QuestDB sum() query time is unchanged.
@@ -71,7 +71,7 @@ The execution times outlined above become more interesting once put into
 context. This is how QuestDB compares to Postgres when doing a sum of 1 billion
 numbers from a given table `select sum(d) from 1G_double_nonNull`.
 
-![alt-text](assets/bench-pg.png)
+![bench pg](assets/bench-pg.png)
 
 We found that our performance figures are constrained by the available memory
 channels. Both the 8850H and the 3900X have 2 memory channels, and throwing more
@@ -92,7 +92,7 @@ We plot those results below on the left. On the right-hand side, we normalise
 the results for each CPU and plot the performance improvement of going from 1 to
 more cores.
 
-![alt-text](assets/core-scale.png)
+![core scale](assets/core-scale.png)
 
 Interestingly, the 2-channel 3900X, is much faster on 1 core than the 8275CL.
 But it does not scale well and hits a performance ceiling at 4 cores. This is

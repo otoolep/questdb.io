@@ -10,7 +10,7 @@ Inserts data into a database table
 
 ## Syntax
 
-![alt-text](assets/insert-into-table.svg)
+![insert data](assets/insert-into-table.svg)
 
 ## Examples
 

@@ -9,8 +9,8 @@ Drops column from existing table.
 
 ## Syntax
 
-![alt-text](assets/alter-table.svg)
-![alt-text](assets/alter-table-drop-column.svg)
+![alter table syntax](assets/alter-table.svg)
+![drop column syntax](assets/alter-table-drop-column.svg)
 
 ## Description
 

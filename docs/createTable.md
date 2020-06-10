@@ -10,7 +10,7 @@ Creates new table in the database.
 
 ## Syntax
 
-![alt-text](assets/create-table.svg)
+![create table syntax](assets/create-table.svg)
 
 ## Description
 
@@ -31,7 +31,7 @@ both ASCII and unicode characters, file system special character restrictions st
 
 * `typeDef` - column [type name](datatypes.md) with additional options. 
 
-  ![alt-text](assets/column-type-def.svg)
+  ![column type](assets/column-type-def.svg)
 
 * `distinctValueEstimate` - optionally you can hint QuestDB how many distinct values this column is going to have. QuestDB will
 use this value to size data structures used to support [symbol](symbol.md). These data structures will resize themselves when necessary to allow
@@ -46,11 +46,11 @@ count but is slower. Default option is `CACHE`.
 
 * `inlineIndexDef` - when present, QuestDB will create and maintain [index](indexes.md) for `symbol` column.
 
-  ![alt-text](assets/inline-index-def.svg)
+  ![index definition](assets/inline-index-def.svg)
 
 * `indexCapacityDef` - storage options for the index
 
-  ![alt-text](assets/index-capacity-def.svg)
+  ![index capacity](assets/index-capacity-def.svg)
 
 * `valueBlockSize` - index storage parameter. This value is optional and will default to the value of [configuration key](serverConf.md) `cairo.index.value.block.size`.
 `valueBlockSize` tells QuestDB how many rowids to store in a single storage block on disk. Consider the following example.
@@ -62,12 +62,12 @@ block count will be 4,883. To attain better performance the fewer blocks are use
 
 * `castDef` - casts type of cherry-picked column. `columnRef` must reference existing column in the `selectSql`
 
-  ![alt-text](assets/cast-def.svg)
+  ![cast definition](assets/cast-def.svg)
   
 * `indexDef` - instructs QuestDB to create an index for one of table's columns. This clause references column name to be indexed.
   The referenced column muse be of type `SYMBOL`
 
-  ![alt-text](assets/index-def.svg)
+  ![index definition](assets/index-def.svg)
   
 * `timestamp` - references a column in new table, which will be the nominated timestamp. Such column must be of type `timestamp`
 

@@ -6,7 +6,7 @@ sidebar_label: COPY
  
 ## Syntax
  
-![alt-text](assets/copy.svg)
+![copy syntax](assets/copy.svg)
 
 ## Description
 

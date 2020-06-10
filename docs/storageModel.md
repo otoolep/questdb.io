@@ -16,14 +16,14 @@ and the new page is mapped at a new append offset.
  
 **This method ensures minimum resource churn and consistent append latency.** 
  
-![alt-text](assets/column-read.png)
+![column read](assets/column-read.png)
   
 ## Read Model
 Table columns are randomly accessible. Columns with fixed size data types are read by translating the record number 
 into a file offset by a simple bit shift. The offset in the column file is then translated into an offset in a lazily 
 mapped memory page, where the required value is read from.
   
-![alt-text](assets/column-update.png)
+![column update](assets/column-update.png)
 
 ## ACID properties
 
@@ -46,11 +46,11 @@ QuestDB utilizes [ACID properties](https://en.wikipedia.org/wiki/Atomicity_(data
  Data **durability** can be configured with commit() optionally being able to invoke msync() 
  with a choice of synchronous or asynchronous IO.
  
- ![alt-text](assets/storage-model-2.png)
+ ![storage model](assets/storage-model-2.png)
 
 ## Summary
 The QuestDB storage model uses memory mapped files and cross-process atomic transaction updates as a low overhead 
 method of inter-process communication. Data committed by one process can be instantaneously read by another process 
 either randomly (via queries) or incrementally (as data queue). QuestDB provides a variety of reader implementations. 
    
-![alt-text](assets/storage-summarized.png)
+![storage summarized](assets/storage-summarized.png)

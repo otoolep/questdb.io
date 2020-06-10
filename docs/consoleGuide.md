@@ -98,7 +98,7 @@ import functionality below.
 Let's now take a look at the import screen. 
 It can be accessed by clicking this icon on the left-side navigation menu. 
 
-![alt-text](assets/upload-button.png) 
+![upload button](assets/upload-button.png) 
 
 #### Loading data
 

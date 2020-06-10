@@ -7,7 +7,7 @@ sidebar_label: SELECT
 `SELECT` allows you to specify list of columns and expressions to be selected and evaluated from a table.
 
 ## Syntax
-![alt-text](assets/select-statement.svg)
+![select syntax](assets/select-statement.svg)
 
 >Note that the `TABLE` you query from can either be a table in your database (in which case you would pass the table's name),
 >or the result of a sub query.
@@ -193,7 +193,7 @@ SELECT movieId, (min(rating) + max(rating))/2 mid, count() count FROM ratings;
 QuestDB supports standard `WHERE` clause for filtering data. 
 Filter expressions are required to return boolean result.
 
-![alt-text](assets/filtered-statement.svg)
+![filter syntax](assets/filtered-statement.svg)
 
 ```sql
 SELECT COLUMN1, COLUMN2...
@@ -367,7 +367,7 @@ QuestDB uses the following algorithm to create the interval: `2010-01-12T14` is 
 
 Interval modifier format is:
 
-![alt-text](assets/interval-modifier.svg)
+![interval modifier](assets/interval-modifier.svg)
 
 where letters stand for:
 

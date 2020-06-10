@@ -10,8 +10,8 @@ Drops table partition
 
 ## Syntax
 
-![alt-text](assets/alter-table.svg)
-![alt-text](assets/alter-table-drop-partition.svg)
+![alter table](assets/alter-table.svg)
+![drop partition](assets/alter-table-drop-partition.svg)
 
 ## Description
 

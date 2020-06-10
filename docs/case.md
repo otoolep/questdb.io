@@ -5,7 +5,7 @@ sidebar_label: CASE
 ---
 
 ### Syntax
-![alt-text](assets/case-def.svg)
+![case syntax](assets/case-def.svg)
 
 ### Description
 `CASE` goes through a set of conditions and returns a value corresponding to the first condition met.

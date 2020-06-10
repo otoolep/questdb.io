@@ -84,7 +84,7 @@ when they would not result in data being truncated or precision being lost.
 
 The below chart illustrates the explicit and implicit cast available in QuestDB.
 
-![alt-text](assets/castmap.jpg)
+![cast map](assets/castmap.jpg)
 
 > Implicit casting prevents data loss. When an operation involves multiple types, the resulting type will be the smallest possible
 type so that no data is lost. 

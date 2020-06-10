@@ -10,8 +10,8 @@ Adds index to existing column
 
 ## Syntax
 
-![alt-text](assets/alter-table.svg)
-![alt-text](assets/alter-table-add-index.svg)
+![alter table syntax](assets/alter-table.svg)
+![add index syntax](assets/alter-table-add-index.svg)
 
 ## Description
 Adds new index to column of type `symbol`. Adding index is an atomic, non-blocking and non-waiting operation. Once complete optimiser will start using new index for SQL executions.

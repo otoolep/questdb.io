@@ -10,8 +10,8 @@ Adds new empty column to existing table
 
 ## Syntax
 
-![alt-text](assets/alter-table.svg)
-![alt-text](assets/alter-table-add-column.svg)
+![alter table syntax](assets/alter-table.svg)
+![add column syntax](assets/alter-table-add-column.svg)
 
 ## Description
 

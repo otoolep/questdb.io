@@ -10,7 +10,7 @@ join types can be combined in a single SQL statement; it is job of QuestDB SQL o
 There are no known limitations on size of tables or sub-queries participating in joins and there are no limitations on number of joins either.
 
 ## Join Syntax
-![alt-text](assets/joins.svg)
+![joins](assets/joins.svg)
 
 Following data join columns from joined tables are combined in single row. Same name columns originating from different tables will be automatically aliased to create
 unique column namespace of the result set.
@@ -23,7 +23,7 @@ Though it is a best practice to diligently specify join conditions, QuestDB will
 
 ### Overview
 `(INNER) JOIN` is used to return rows from 2 tables where the records on the compared column have matching values in both tables
-![alt-text](assets/innerjoin.gif)
+![inner join](assets/innerjoin.gif)
 
 ### Examples
 
@@ -51,7 +51,7 @@ ON ratings.movieId = id;
 ### Overview
 `OUTER JOIN` will return **all** records from the LEFT table, and if matched, the records of the RIGHT table.
 When there is no match for the RIGHT table, it will return `NULL` values in right table fields
-![alt-text](assets/leftjoin.gif)
+![left join](assets/leftjoin.gif)
 
 ### Examples
 General syntax is as follows:

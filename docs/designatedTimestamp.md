@@ -38,11 +38,11 @@ Note that
  - the `designated timestamp` column only allows ordered timestamps 
  - any other `timestamp` column tolerates out of order timestamps 
  
-![alt-text](assets/designated_timestamp.jpg)
+![designated timestamp](assets/designated_timestamp.jpg)
 
 Attempts to insert `out of order` timestamps will be rejected:
 
-![alt-text](assets/timestamp_reject.jpg)
+![timestamp reject](assets/timestamp_reject.jpg)
 
 
 #### Working with timestamp order constraint
