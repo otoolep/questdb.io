@@ -65,7 +65,7 @@ It would not be an overstatement to say that InfluxDB uses a lot of CPU. We set 
 <p>We built QuestDB in zero-GC Java. Hopefully, the Java community will be proud!</p>
 <h3><a class="anchor" aria-hidden="true" id="why-ilp"></a><a href="#why-ilp" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Why ILP?</h3>
 <p>Starting with QuestDB 4.0.4, users can ingest data through ILP to <strong>leverage SQL to query Influx data alongside other tables in a relational database while keeping the flexibility of ILP</strong>.</p>
-<p><img src="/blog/assets/storeasmany.png" alt="alt-text"></p>
+<p><img src="/blog/assets/storeasmany.png" alt="store as many"></p>
 <blockquote>
 <p>Store (fast) as many — query fast) as one.</p>
 </blockquote>
@@ -77,23 +77,23 @@ It would not be an overstatement to say that InfluxDB uses a lot of CPU. We set 
 <h3><a class="anchor" aria-hidden="true" id="it-comes-down-to-ingestion-speed"></a><a href="#it-comes-down-to-ingestion-speed" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>It comes down to ingestion speed</h3>
 <p>Database performance is the bottleneck that results in packet loss. Messages are denied entry, and the loss rate is a direct function of the underlying database speed.</p>
 <p>By sending 50m messages at different speeds, we get the following outcome.</p>
-<p><img src="/blog/assets/capturerate.png" alt="alt-text"></p>
+<p><img src="/blog/assets/capturerate.png" alt="capture rate"></p>
 <blockquote>
 <p>Capture rate as a function of sender speed</p>
 </blockquote>
 <p>InfluxDB’s capture rate rapidly drops below 50%, eventually converging toward single-digit rates.</p>
-<p><img src="/blog/assets/captureratechart.png" alt="alt-text"></p>
+<p><img src="/blog/assets/captureratechart.png" alt="capture rate"></p>
 <blockquote>
 <p>Capture rate as a function of sending speed.</p>
 </blockquote>
-<p><img src="/blog/assets/impliedspeed.png" alt="alt-text"></p>
+<p><img src="/blog/assets/impliedspeed.png" alt="implied speed"></p>
 <blockquote>
 <p>Implied ingestion speed in function of Sender speed</p>
 </blockquote>
 <p>QuestDB’s ingestion speed results are obtained through ILP. Our ingestion speed is considerably higher while using our native input formats instead.</p>
 <h3><a class="anchor" aria-hidden="true" id="why-is-the-senders-rate-slower-for-influxdb-compared-to-questdb"></a><a href="#why-is-the-senders-rate-slower-for-influxdb-compared-to-questdb" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Why is the sender’s rate slower for InfluxDB compared to QuestDB?</h3>
 <p>In this test, we run the sender and the DB on the same machine, and it turns out that <strong>InfluxDB slows down our UDP sender by cannibalizing the CPU</strong>. Here is what happens to your CPUs while using InfluxDB:</p>
-<p><img src="/blog/assets/cpuinflux.png" alt="alt-text"></p>
+<p><img src="/blog/assets/cpuinflux.png" alt="cpu influx"></p>
 <blockquote>
 <p>InfluxDB’s CPU usage when serving requests</p>
 </blockquote>
@@ -102,23 +102,23 @@ It would not be an overstatement to say that InfluxDB uses a lot of CPU. We set 
 <p>We maximise the utilization of each CPU, from which we extract as much performance as possible. For the example below, we compared InfluxDB’s ingestion speed using 12 cores to QuestDB using one CPU core only. Despite utilizing one core instead of 12, QuestDB still outperforms InfluxDB significantly.</p>
 <p>If spare CPU capacity arises, QuestDB will execute multiple data ingestions in parallel, leveraging multiple CPUs at the same time, but with one key difference; QuestDB uses work-stealing algorithms to ensure every last bit of CPU capacity is used while never being idle. Let us illustrate why this is the case.</p>
 <p>Modern network cards have much superior throughput than the single receiver. Being limited to one receiver by design, InfluxDB considerably under-utilizes the network card, which is the limiting factor in the pipeline.
-<img src="/blog/assets/queueinflux.png" alt="alt-text"></p>
+<img src="/blog/assets/queueinflux.png" alt="queue influx"></p>
 <blockquote>
 <p>All CPU cores open one single receiver that under-utilizes the network card</p>
 </blockquote>
 <p>Conversely, QuestDB can open parallel receivers (requiring one core each), fully utilizing the network card capabilities.
 The following illustration assumes that there would be spare CPU capacity in other cores to be filled. In such a scenario we would get QuestDB utilizing 12 cores, with each one of those being considerably faster than InfluxDB’s combined 12 cores!</p>
-<p><img src="/blog/assets/queuequest.png" alt="alt-text"></p>
+<p><img src="/blog/assets/queuequest.png" alt="queue quest"></p>
 <blockquote>
 <p>Each CPU core opens an independent receiver working in parallel that fully leverages the network card</p>
 </blockquote>
 <p>Besides ingestion, InfluxDB also saturates the CPU on queries. The current user cannibalizes the whole CPU, while other users have to wait for their turn.
-<img src="/blog/assets/userinflux.png" alt="alt-text"></p>
+<img src="/blog/assets/userinflux.png" alt="user influx"></p>
 <blockquote>
 <p>Users monopolize all CPU cores one after the other</p>
 </blockquote>
 <p>By contrast, QuestDB uses each core separately, allowing multiple users to query or write concurrently without delay. The performance gap between QuestDB and InfluxDB grows significantly as the number of simultaneous users increases.
-<img src="/blog/assets/userquest.png" alt="alt-text"></p>
+<img src="/blog/assets/userquest.png" alt="user quest"></p>
 <blockquote>
 <p>Users share CPU cores and are served concurrently, fast. They also use cores to the maximum.</p>
 </blockquote>

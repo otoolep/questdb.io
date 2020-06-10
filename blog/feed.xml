@@ -25,7 +25,7 @@
             <link>https://questdb.io/blog/2020/05/12/interesting-things-we-learned-about-sums.html</link>
             <guid>https://questdb.io/blog/2020/05/12/interesting-things-we-learned-about-sums.html</guid>
             <pubDate>Tue, 12 May 2020 06:00:00 GMT</pubDate>
-            <description><![CDATA[<p><img src="/blog/assets/road-runner.png" alt="alt-text"></p> <p>In the world of databases, benchmarking performance has always been the hottest topic. Who is faster for data ingestion and queries? About a month ago we announced a new release with SIMD aggregations on <a href="https://news.ycombinator.com/item?id=22803504">HackerNews</a> and <a href="https://www.reddit.com/r/programming/comments/fwlk0k/questdb_using_simd_to_aggregate_billions_of/">Reddit</a>. Fast. But were those r...</p>]]></description>
+            <description><![CDATA[<p><img src="/blog/assets/road-runner.png" alt="road runner"></p> <p>In the world of databases, benchmarking performance has always been the hottest topic. Who is faster for data ingestion and queries? About a month ago we announced a new release with SIMD aggregations on <a href="https://news.ycombinator.com/item?id=22803504">HackerNews</a> and <a href="https://www.reddit.com/r/programming/comments/fwlk0k/questdb_using_simd_to_aggregate_billions_of/">Reddit</a>. Fast. But were those r...</p>]]></description>
         </item>
         <item>
             <title><![CDATA[Using SIMD to aggregate billions of rows per second]]></title>

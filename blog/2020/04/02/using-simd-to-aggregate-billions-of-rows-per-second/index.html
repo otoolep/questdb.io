@@ -99,8 +99,8 @@ were running on 4 threads.</p>
 </tbody>
 </table>
 <h4><a class="anchor" aria-hidden="true" id="results"></a><a href="#results" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Results</h4>
-<p><img src="/blog/assets/bench-8850h.png" alt="alt-text"></p>
-<p><img src="/blog/assets/bench-3900x.png" alt="alt-text"></p>
+<p><img src="/blog/assets/bench-8850h.png" alt="bench 8859h"></p>
+<p><img src="/blog/assets/bench-3900x.png" alt="bench 3900x"></p>
 <p>The dataset producing the results shown above does not contain NULL values.
 Interestingly, when introducing nulls, QuestDB sum() query time is unchanged.
 This can be tested by creating the table as follows.</p>
@@ -120,7 +120,7 @@ there is scope left to make our implementation faster in the future.</p>
 <p>The execution times outlined above become more interesting once put into
 context. This is how QuestDB compares to Postgres when doing a sum of 1 billion
 numbers from a given table <code>select sum(d) from 1G_double_nonNull</code>.</p>
-<p><img src="/blog/assets/bench-pg.png" alt="alt-text"></p>
+<p><img src="/blog/assets/bench-pg.png" alt="bench pg"></p>
 <p>We found that our performance figures are constrained by the available memory
 channels. Both the 8850H and the 3900X have 2 memory channels, and throwing more
 than 4 cores at the query above does not improve the performance. On the other
@@ -141,7 +141,7 @@ Here are the results compared to the 2-channel 3900X:</p>
 <p>We plot those results below on the left. On the right-hand side, we normalise
 the results for each CPU and plot the performance improvement of going from 1 to
 more cores.</p>
-<p><img src="/blog/assets/core-scale.png" alt="alt-text"></p>
+<p><img src="/blog/assets/core-scale.png" alt="core scale"></p>
 <p>Interestingly, the 2-channel 3900X, is much faster on 1 core than the 8275CL.
 But it does not scale well and hits a performance ceiling at 4 cores. This is
 because it only has 2 memory channels that are already saturated. The 6-channel

@@ -59,7 +59,7 @@
                 };
               }
             });
-        </script></nav></div><div class="container mainContainer postContainer blogContainer"><div class="wrapper"><div class="lonePost"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle"><a href="/blog/2020/05/12/interesting-things-we-learned-about-sums">Things we learned about sums</a></h1><p class="post-meta">May 12, 2020</p><div class="authorBlock"><p class="post-authorName"><a target="_blank" rel="noreferrer noopener">Tancrede Collard</a></p></div></header><div><span><p><img src="/blog/assets/road-runner.png" alt="alt-text"></p>
+        </script></nav></div><div class="container mainContainer postContainer blogContainer"><div class="wrapper"><div class="lonePost"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle"><a href="/blog/2020/05/12/interesting-things-we-learned-about-sums">Things we learned about sums</a></h1><p class="post-meta">May 12, 2020</p><div class="authorBlock"><p class="post-authorName"><a target="_blank" rel="noreferrer noopener">Tancrede Collard</a></p></div></header><div><span><p><img src="/blog/assets/road-runner.png" alt="road runner"></p>
 <p>In the world of databases, benchmarking performance has always been the hottest
 topic. Who is faster for data ingestion and queries? About a month ago we
 announced a new release with SIMD aggregations on
@@ -159,13 +159,13 @@ a number rather than a binary for sake of simplicity. We assume 5 significant
 digits.</p>
 </blockquote>
 <p>We start with both our numbers expressed in scientific notation.</p>
-<p><img src="/blog/assets/sum-1.png" alt="alt-text"></p>
+<p><img src="/blog/assets/sum-1.png" alt="sum1"></p>
 <p>Let's expand into decimal notation and place them on a similar scale so all
 digits fit.</p>
-<p><img src="/blog/assets/sum-2.png" alt="alt-text"></p>
+<p><img src="/blog/assets/sum-2.png" alt="sum2"></p>
 <p>Now, let us express this sum back as one number in scientific notation. We have
 to <code>truncate</code> the result back to 5 significant digits.</p>
-<p><img src="/blog/assets/sum-3.png" alt="alt-text"></p>
+<p><img src="/blog/assets/sum-3.png" alt="sum3"></p>
 <p>The result is incorrect. In fact, it is as if we did not sum anything.</p>
 <h3><a class="anchor" aria-hidden="true" id="kahans-algorithm-for-compensated-summation"></a><a href="#kahans-algorithm-for-compensated-summation" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Kahan's algorithm for compensated summation</h3>
 <p>Compensated sum maintains a sum of accumulated errors and uses it to attempt to
@@ -290,10 +290,10 @@ best result.</p>
 <p>Without null values, both databases sum naively at roughly the same speed. With
 Kahan summation, QuestDB performs at the same speed while Clickhouse's
 performance drops by ~40%.</p>
-<p><img src="/blog/assets/kahan-naive-not-null.png" alt="alt-text"></p>
+<p><img src="/blog/assets/kahan-naive-not-null.png" alt="kahan naive not null"></p>
 <p>As we include null values, Clickhouse's performance degrades by 28% and 50% for
 naive and Kahan summation, respectively.</p>
-<p><img src="/blog/assets/kahan-naive-null.png" alt="alt-text"></p>
+<p><img src="/blog/assets/kahan-naive-null.png" alt="kahan naive null"></p>
 <h3><a class="anchor" aria-hidden="true" id="concluding-remarks"></a><a href="#concluding-remarks" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Concluding remarks</h3>
 <p>It is useful to stabilize aggregation with compensated sums. We learned that
 vector-based calculation produce different arithmetic errors compared to
