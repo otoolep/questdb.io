@@ -151,8 +151,8 @@ class Index extends React.Component {
               Supported Platforms: Windows 64-bit, Linux 64-bit, OSX and ARM64
             </p>
             <pre>
-              <a href="https://github.com/questdb/questdb/releases/download/4.2.1/questdb-4.2.1-bin.tar.gz">
-                https://github.com/questdb/questdb/releases/download/4.2.1/questdb-4.2.1-bin.tar.gz
+              <a href="https://github.com/questdb/questdb/releases/download/5.0.0/questdb-5.0.0-bin.tar.gz">
+                https://github.com/questdb/questdb/releases/download/5.0.0/questdb-5.0.0-bin.tar.gz
               </a>{" "}
               (4Mb)
             </pre>
@@ -179,7 +179,7 @@ class Index extends React.Component {
 <dependency>
     <groupId>org.questdb</groupId>
     <artifactId>core</artifactId>
-    <version>4.2.1</version>
+    <version>5.0.0</version>
 </dependency>
                             `}
             </pre>
