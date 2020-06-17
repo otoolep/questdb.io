@@ -71,7 +71,8 @@
           "functionsRandomValueGenerators",
           "functionsRowGenerator",
           "functionsTimestampGenerator",
-          "functionsText"
+          "functionsText",
+          "functionsMeta"
         ]
       },
       {
@@ -93,6 +94,7 @@
           "insert",
           "joins",
           "select",
+          "show",
           "truncate",
           "union"
         ]
